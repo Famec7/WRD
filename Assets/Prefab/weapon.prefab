@@ -1,0 +1,174 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3389851106601669535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3030976560068207964}
+  - component: {fileID: 1713387919857434032}
+  - component: {fileID: 2215607016740057113}
+  - component: {fileID: 7252777528288533029}
+  - component: {fileID: 6133593947224175152}
+  m_Layer: 0
+  m_Name: weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3030976560068207964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389851106601669535}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1713387919857434032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389851106601669535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3633e451984cb49b29dd66c6caba28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponNumber: 0
+  skillList: []
+  range: 0
+  damage: 0
+  attackSpeed: 0
+  isAttackable: 0
+  hasAttacked: 0
+  target: {fileID: 0}
+  type: 
+  activeSkill: {fileID: 2215607016740057113}
+  passiveSkill: {fileID: 7252777528288533029}
+  autoAttack: {fileID: 6133593947224175152}
+  skillData:
+    projectileSpeed: 0
+    skillNumber: 0
+    skillType: 0
+    skillName: 
+    skillDescription: 
+    skillDamage: 0
+    skillRange: 0
+    scopeRange: 0
+    skillCooltime: 0
+    checkCooltime: 0
+    canUse: 0
+    skillUptime: 0
+    checkUptime: 0
+    skillChance: 0
+    skillIcon: {fileID: 0}
+--- !u!114 &2215607016740057113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389851106601669535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2cd18b72109cd43bd6b60d54bf2fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    projectileSpeed: 0
+    skillNumber: 0
+    skillType: 0
+    skillName: 
+    skillDescription: 
+    skillDamage: 0
+    skillRange: 0
+    scopeRange: 0
+    skillCooltime: 0
+    checkCooltime: 0
+    canUse: 0
+    skillUptime: 0
+    checkUptime: 0
+    skillChance: 0
+    skillIcon: {fileID: 0}
+  user: {fileID: 0}
+  target: {fileID: 0}
+  projectile: {fileID: 0}
+  hitEffect: {fileID: 0}
+  skillIndicator: {fileID: 0}
+--- !u!114 &7252777528288533029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389851106601669535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6bd9e159072374a88c688ab6b7ec30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    projectileSpeed: 0
+    skillNumber: 0
+    skillType: 0
+    skillName: 
+    skillDescription: 
+    skillDamage: 0
+    skillRange: 0
+    scopeRange: 0
+    skillCooltime: 0
+    checkCooltime: 0
+    canUse: 0
+    skillUptime: 0
+    checkUptime: 0
+    skillChance: 0
+    skillIcon: {fileID: 0}
+  user: {fileID: 0}
+  target: {fileID: 0}
+  projectile: {fileID: 0}
+  hitEffect: {fileID: 0}
+--- !u!114 &6133593947224175152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3389851106601669535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97df3c06c928e04db19491e3bef3b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    projectileSpeed: 0
+    skillNumber: 0
+    skillType: 0
+    skillName: 
+    skillDescription: 
+    skillDamage: 0
+    skillRange: 0
+    scopeRange: 0
+    skillCooltime: 0
+    checkCooltime: 0
+    canUse: 0
+    skillUptime: 0
+    checkUptime: 0
+    skillChance: 0
+    skillIcon: {fileID: 0}
+  user: {fileID: 0}
+  target: {fileID: 0}
+  projectile: {fileID: 0}
+  hitEffect: {fileID: 0}

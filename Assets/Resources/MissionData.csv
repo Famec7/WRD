@@ -1,0 +1,7 @@
+﻿monster_name,spawn_wave,hp,defense,speed,resist(%),mission_playtime,require_grade,require_number,easy_grade,easy_number,reward_grade,reward_number,체력 기준,비고
+a,3~10,500,10,1,10,40,unnormal,2,rare,1,normal_m,3,,처음 보스로 강하지 않게 적당히
+b,6~10,2000,20,1,10,40,rare,2,epic,1,unnormal,2,,"웨이브 5, 웨이브 10 보스의 절반"
+c,11~15,12000,70,0.5,10,40,epic,2,legendary,1,rare,1,,탱커
+d,16~20,10000,30,3.5,50,40,epic,3,"epic, legendary","1, 1",normal_m,10,,속도 빠른 대신 몸이 약한 암살자 같은 보스
+e,21~25,120000,100,0.5,20,45,legendary,1,legendary,3,"unnormal_m, rare","2, 1",,탱커
+f,26~30,300000,60,4,60,45,legendary,3,"legendary, myth","1, 1","unnormal_m, rare","1, 2",,암살
