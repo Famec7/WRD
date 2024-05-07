@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Limjinwoo_Scene.unity
     guid: 790c7190a99802b4d9d08629e0ccef0b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LimDongGeon.unity
     guid: da4f4e5cdbc884c4099e34641a7a800a
   m_configObjects:
