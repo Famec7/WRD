@@ -224,14 +224,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d906544e1bee28a49b0402edf8194b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSort: 0
+  closeButton: {fileID: 540035922843626420}
   weaponId: 0
   subCombinationPrefab:
   - {fileID: 2819138451684737218, guid: e00e9dce2fd7cae43a5ac037be52cf30, type: 3}
   - {fileID: 4003132967249665417, guid: a6f4e125c231fad41a63c53cbe0f1f9d, type: 3}
   - {fileID: 4003132967249665417, guid: 88912aaa61328a949a73700bdb54afdb, type: 3}
-  descriptionButton: {fileID: 0}
-  closeButton: {fileID: 540035922843626420}
+  descriptionButton: {fileID: 7420907536589623846}
   weaponName: {fileID: 3303318242507846515}
   weaponIcon: {fileID: 3993512865637773340}
 --- !u!1 &5922377919550284186
