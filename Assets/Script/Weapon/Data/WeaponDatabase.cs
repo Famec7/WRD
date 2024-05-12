@@ -4,13 +4,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponDatabase", menuName = "Scriptable Object/WeaponDatabase", order = 1)]
 public class WeaponDatabase : ScriptableObject
 {
-    public List<WeaponData> weaponDataList;
+    private List<WeaponData> _weaponDataList;
 
     [ContextMenu("Load")]
     public void Load()
     {
         List<Dictionary<string, object>> csvData = CSVReader.Read("Weapon");
-        weaponDataList = new List<WeaponData>(csvData.Count);
+        _weaponDataList = new List<WeaponData>(csvData.Count);
         
         for (int i = 0; i < csvData.Count; i++)
         {
@@ -36,7 +36,7 @@ public class WeaponDatabase : ScriptableObject
     
     public WeaponData GetWeaponData(int id)
     {
-        foreach (var data in weaponDataList)
+        foreach (var data in _weaponDataList)
         {
             if (data.id == id)
             {

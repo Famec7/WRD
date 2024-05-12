@@ -42,7 +42,7 @@ public class SlowDown : StatusEffect
         if(target.TryGetComponent(out Status status))
         {
             _originalSpeed = status.moveSpeed;
-            status.moveSpeed *= _slowDownRate;
+            status.moveSpeed *= _slowDownRate / 100;
 
             if(Math.Abs(duration - 0f) > 0.01f)
             {

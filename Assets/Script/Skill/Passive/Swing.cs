@@ -9,9 +9,6 @@ public class Swing : PassiveSkillBase
         {
             // 왜 localscale로 방향을 판단하였는가...
             int xDirection = ownerTransform.localScale.x > 0 ? 1 : -1;
-            /*List<Collider2D> targets =
-                GetAttackTargets(ownerTransform.position + new Vector3(xDirection, 0),
-                    new Vector2(skillData.scopeRange, skillData.scopeRange * 3));*/
             List<Collider2D> targets =
                 GetAttackTargets(ownerTransform.position + new Vector3(xDirection, 0),
                     new Vector2(1,3));
@@ -20,9 +17,8 @@ public class Swing : PassiveSkillBase
             {
                 if (tar.TryGetComponent(out Status status) && tar.TryGetComponent(out Monster monster))
                 {
-                    Debug.Log("Swing Activate");
                     StatusEffectManager.Instance.AddStatusEffect(status, new Wound(tar.gameObject));
-                    monster.HasAttacked(skillData.skillDamage);
+                    monster.HasAttacked(data.values[1]);
                     // Todo : 이펙트 추가
                 }
             }

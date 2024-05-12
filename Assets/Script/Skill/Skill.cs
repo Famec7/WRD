@@ -17,7 +17,7 @@ public enum SkillState
 [System.Serializable]
 public class Skill : MonoBehaviour, ISkill
 {
-    public SkillData data;
+    public ActiveSkillData data;
     public GameObject user;
     public GameObject target;
     public GameObject projectile;
@@ -49,7 +49,7 @@ public class Skill : MonoBehaviour, ISkill
 
     public void SetSkill(int skillNumber)
     {
-        data = SkillDataManager.Instance.GetPassiveSkillData(skillNumber);
+        // 스킬 데이터를 불러오는 코드 추가 필요
     }
 
     public virtual void UseSkill()

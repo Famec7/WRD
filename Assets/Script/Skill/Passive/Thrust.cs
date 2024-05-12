@@ -9,13 +9,13 @@ public class Thrust : PassiveSkillBase
         {
             int xDirection = ownerTransform.localScale.x > 0 ? 1 : -1;
             List<Collider2D> targets = GetAttackTargets(ownerTransform.position + new Vector3(xDirection, 0),
-                new Vector2(skillData.scopeRange, 1));
+                new Vector2(3, 1));
 
             foreach (var tar in targets)
             {
                 if (tar.TryGetComponent(out Monster monster))
                 {
-                    monster.HasAttacked(skillData.skillDamage);
+                    monster.HasAttacked(data.values[1]);
                     //Todo : 이펙트 추가
                 }
             }

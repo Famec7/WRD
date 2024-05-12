@@ -15,7 +15,6 @@ public abstract class WeaponBase : MonoBehaviour
     private WeaponData _data;
     protected GameObject target = null;
     
-    protected SkillData skillData;
     protected bool isAttack = false;
     
     [Header("Passive Skill")]
@@ -51,7 +50,6 @@ public abstract class WeaponBase : MonoBehaviour
     /// </summary>
     protected virtual void Init()
     {
-        skillData = SkillDataManager.Instance.GetPassiveSkillData(_data.skillA);
         _data = WeaponDataManager.instance.GetWeaponData(_id);
     }
     

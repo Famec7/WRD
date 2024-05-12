@@ -14,11 +14,7 @@ public class Weapon : MonoBehaviour
     public bool hasAttacked;
     public GameObject target;
     public string type;
-    public ActiveSkill activeSkill;
-    public PassiveSkill passiveSkill;
     public AutoAttack autoAttack;
-
-    public SkillData skillData;
 
     public void SetWeapon(int range, int damage, int attack_speed)
     {
@@ -29,8 +25,6 @@ public class Weapon : MonoBehaviour
 
     void Awake()
     {
-        activeSkill = GetComponent<ActiveSkill>();
-        passiveSkill = GetComponent<PassiveSkill>();
         autoAttack = GetComponent<AutoAttack>();
         hasAttacked = false;
     }
@@ -45,20 +39,6 @@ public class Weapon : MonoBehaviour
             autoAttack.data.skillRange = 2;
             autoAttack.data.skillCooltime = 1;
             autoAttack.data.canUse = true;
-
-            passiveSkill.data.skillNumber = 200;
-            passiveSkill.data.skillType = SkillType.PASSIVE;
-            passiveSkill.data.skillDamage = 2;
-            passiveSkill.data.skillCooltime = 2;
-            passiveSkill.data.skillChance = 0.5f;
-
-            activeSkill.data.skillNumber = 402;
-            activeSkill.data.skillType = SkillType.ACTIVE;
-            activeSkill.data.skillDamage = 5;
-            activeSkill.data.skillRange = 2;
-            activeSkill.data.scopeRange = 1;
-            activeSkill.data.skillCooltime = 1;
-            activeSkill.data.skillUptime = 10;
         }
         else if (weaponCode == 1)
         {
@@ -68,12 +48,6 @@ public class Weapon : MonoBehaviour
             autoAttack.data.skillRange = 2;
             autoAttack.data.skillCooltime = 1;
             autoAttack.data.canUse = true;
-
-            passiveSkill.data.skillNumber = 200;
-            passiveSkill.data.skillType = SkillType.PASSIVE;
-            passiveSkill.data.skillDamage = 2;
-            passiveSkill.data.skillCooltime = 2;
-            passiveSkill.data.skillChance = 0.5f;
         }
     }
 
@@ -81,18 +55,11 @@ public class Weapon : MonoBehaviour
     {
         if (skillList.Count != 0)
             return;
-        skillList.Add(activeSkill);
-        skillList.Add(passiveSkill);
         skillList.Add(autoAttack); // 임시
-        activeSkill.skillIndicator = GameObject.Find("skill_indicator");
     }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.T) && activeSkill.data.skillNumber == 402)
-        {
-            activeSkill.UseSkill();
-        }
 
         Attack();
     }

@@ -17,7 +17,7 @@ public class VisionStrike : PassiveSkillBase
             {
                 if (tar.TryGetComponent(out Status status))
                 {
-                    StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(tar.gameObject, 0f, 10));
+                    StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(tar.gameObject, 0f, data.values[1]));
                 }
             }
 
