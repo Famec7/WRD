@@ -15,9 +15,4 @@ public abstract class RangedWeapon : WeaponBase
             target = null;
         }
     }
-
-    protected override void PassiveAura()
-    {
-        ;
-    }
 }

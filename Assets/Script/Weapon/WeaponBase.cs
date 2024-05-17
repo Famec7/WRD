@@ -19,6 +19,8 @@ public abstract class WeaponBase : MonoBehaviour
     
     [Header("Passive Skill")]
     public PassiveSkillBase passiveSkill;
+
+    private WaitForSeconds attackDelay;
     
     public WeaponData Data
     {
@@ -38,9 +40,8 @@ public abstract class WeaponBase : MonoBehaviour
 
     private void Update()
     {
-        if (isAttack)
+        if (isAttack is false)
             StartCoroutine(CoroutineAttack());
-        PassiveAura();
     }
 
     #endregion
@@ -51,13 +52,14 @@ public abstract class WeaponBase : MonoBehaviour
     protected virtual void Init()
     {
         _data = WeaponDataManager.instance.GetWeaponData(_id);
+        attackDelay = new WaitForSeconds(_data.attackSpeed);
     }
     
     private IEnumerator CoroutineAttack()
     {
         isAttack = true;
         Attack();
-        yield return new WaitForSeconds(Data.attackSpeed);
+        yield return attackDelay;
         isAttack = false;
     }
 
@@ -66,12 +68,7 @@ public abstract class WeaponBase : MonoBehaviour
     /// Ex. 총 구현 시 총알 생성 후 적에게 쏘기 / 탐지 범위 다르게 설정
     /// </summary>
     protected abstract void Attack();
-    
-    /// <summary>
-    /// 버프 / 디버프 효과
-    /// </summary>
-    protected abstract void PassiveAura();
-    
+
     public void EquipWeapon(Transform ownerTransform)
     {
         // 무기 장착

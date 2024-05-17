@@ -18,19 +18,14 @@ public class WeaponDatabase : ScriptableObject
             weaponData.id = int.Parse(csvData[i]["id"].ToString());
             weaponData.weaponClass = (csvData[i]["class"].ToString());
             weaponData.weaponName = (csvData[i]["name"].ToString());
-            //Data[i].type = int.Parse(csvData[i]["type"].ToString());
             weaponData.rType = int.Parse(csvData[i]["r_type"].ToString());
             weaponData.reload = int.Parse(csvData[i]["reload"].ToString());
             weaponData.reloadS = int.Parse(csvData[i]["reload_s"].ToString());
             weaponData.attackDamage = int.Parse(csvData[i]["attack"].ToString());
             weaponData.attackSpeed = float.Parse(csvData[i]["attack_speed"].ToString());
             weaponData.attackRange = float.Parse(csvData[i]["range"].ToString());
-            // Data[i].attackAoe = float.Parse(csvData[i]["attack_AOE"].ToString());
-            // Data[i].skillA = int.Parse(csvData[i]["skill_a"].ToString());
-            //Data[i].skillP = int.Parse(csvData[i]["skill_p"].ToString());
             weaponData.combi = (csvData[i]["combi"].ToString());
             weaponData.mainCombi = (csvData[i]["comb1"].ToString());
-            //Data[i].description = (csvData[i]["description"].ToString());
         }
     }
     

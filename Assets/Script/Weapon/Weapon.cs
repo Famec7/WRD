@@ -14,7 +14,6 @@ public class Weapon : MonoBehaviour
     public bool hasAttacked;
     public GameObject target;
     public string type;
-    public AutoAttack autoAttack;
 
     public void SetWeapon(int range, int damage, int attack_speed)
     {
@@ -25,37 +24,13 @@ public class Weapon : MonoBehaviour
 
     void Awake()
     {
-        autoAttack = GetComponent<AutoAttack>();
         hasAttacked = false;
-    }
-
-    public void InitSkill(int weaponCode) // 실제 코드에서는 csv파일에서 다 가져옴
-    {
-        if (weaponCode == 0)
-        {
-            autoAttack.data.skillNumber = 101;
-            autoAttack.data.skillType = SkillType.BASIC;
-            autoAttack.data.skillDamage = 4;
-            autoAttack.data.skillRange = 2;
-            autoAttack.data.skillCooltime = 1;
-            autoAttack.data.canUse = true;
-        }
-        else if (weaponCode == 1)
-        {
-            autoAttack.data.skillNumber = 103;
-            autoAttack.data.skillType = SkillType.BASIC;
-            autoAttack.data.skillDamage = 2;
-            autoAttack.data.skillRange = 2;
-            autoAttack.data.skillCooltime = 1;
-            autoAttack.data.canUse = true;
-        }
     }
 
     public void AddToSkillList()
     {
         if (skillList.Count != 0)
             return;
-        skillList.Add(autoAttack); // 임시
     }
 
     void Update()

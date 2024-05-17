@@ -8,16 +8,14 @@ public class VisionStrike : PassiveSkillBase
     {
         if (CheckTrigger())
         {
-            /*List<Collider2D> targets = GetAttackTargets(target.transform.position,
-                new Vector2(skillData.scopeRange, skillData.scopeRange));*/
-            List<Collider2D> targets = GetAttackTargets(this.transform.position,
-                new Vector2(3, 3));
+            List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(target.transform.position,
+                new Vector2(3f, 3f));
 
             foreach (var tar in targets)
             {
                 if (tar.TryGetComponent(out Status status))
                 {
-                    StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(tar.gameObject, 0f, data.values[1]));
+                    StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(tar.gameObject, 0f, 0.3f));
                 }
             }
 

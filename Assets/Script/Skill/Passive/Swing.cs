@@ -9,9 +9,7 @@ public class Swing : PassiveSkillBase
         {
             // 왜 localscale로 방향을 판단하였는가...
             int xDirection = ownerTransform.localScale.x > 0 ? 1 : -1;
-            List<Collider2D> targets =
-                GetAttackTargets(ownerTransform.position + new Vector3(xDirection, 0),
-                    new Vector2(1,3));
+            List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(ownerTransform.position, new Vector2(1f, 3f), new Vector2(xDirection, 0));
 
             foreach (var tar in targets)
             {

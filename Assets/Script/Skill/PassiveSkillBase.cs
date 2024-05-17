@@ -26,19 +26,6 @@ public abstract class PassiveSkillBase : SkillBase
     {
         base.Init();
         data = SkillDataManager.Instance.GetPassiveSkillData(GetType().Name);
-    }
-    
-    /// <summary>
-    ///  무기 공격 범위 내의 적 탐지
-    /// </summary>
-    /// <param name="position"> 탐지 범위 중심 </param>
-    /// <param name="size"> 가로 세로 사이즈 (벡터)</param>
-    /// <returns></returns>
-    protected virtual List<Collider2D> GetAttackTargets(Vector2 position, Vector2 size)
-    {
-        LayerMask layerMask = LayerMask.GetMask("Monster", "Boss");
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(position, size, layerMask);
-
-        return colliders.ToList();
+        Debug.Log(data.values[0]);
     }
 }

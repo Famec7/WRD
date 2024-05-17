@@ -11,12 +11,13 @@ public class PassiveSkillDataBase : ScriptableObject
     [ContextMenu("Load")]
     public void Load()
     {
-        List<Dictionary<string, object>> csvData = CSVReader.Read("PassiveSkill");
+        List<Dictionary<string, object>> csvData = CSVReader.Read("PassiveSkillData");
         _passiveSkillDataList = new List<PassiveSkillData>(csvData.Count);
+        _passiveAuraSkillDataList = new List<PassiveSkillData>(csvData.Count);
 
         for (int i = 0; i < csvData.Count; i++)
         {
-            if (String.Compare(csvData[i]["skill_type_2"].ToString(), "p", StringComparison.Ordinal) == 0)
+            if (String.Compare(csvData[i]["skill_type_1"].ToString(), "p", StringComparison.Ordinal) == 0)
             {
                 PassiveSkillData passiveSkillData = new PassiveSkillData();
                 passiveSkillData.name = (csvData[i]["skill_name"].ToString());
@@ -25,12 +26,12 @@ public class PassiveSkillDataBase : ScriptableObject
                 var values = csvData[i]["skill_value"].ToString().Split(',');
                 foreach (var value in values)
                 {
-                    passiveSkillData.values.Add(int.Parse(value));
+                    passiveSkillData.values.Add(int.TryParse(value, out int result) ? result : 0);
                 }
 
                 _passiveSkillDataList.Add(passiveSkillData);
             }
-            else
+            /*else
             {
                 PassiveSkillData passiveSkillData = new PassiveSkillData();
                 passiveSkillData.name = (csvData[i]["skill_name"].ToString());
@@ -44,7 +45,7 @@ public class PassiveSkillDataBase : ScriptableObject
 
                 _passiveAuraSkillDataList.Add(passiveSkillData);
             
-            }
+            }*/
         }
     }
 

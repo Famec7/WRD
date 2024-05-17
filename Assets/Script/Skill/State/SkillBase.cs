@@ -11,6 +11,7 @@ public abstract class SkillBase : MonoBehaviour
     public WeaponBase weaponBase;
     
     // 스킬을 장착한 플레이어 또는 펫의 위치
+    [SerializeField]
     protected Transform ownerTransform;
     public void SetOwnerTransform(Transform ownerTransform)
     {
@@ -20,6 +21,9 @@ public abstract class SkillBase : MonoBehaviour
     protected virtual void Init()
     {
         skillName = GetType().Name;
-        weaponBase = ownerTransform.GetComponent<WeaponBase>();
+        if (TryGetComponent(out weaponBase))
+        {
+            ;
+        }
     }
 }

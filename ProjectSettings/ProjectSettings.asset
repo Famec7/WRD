@@ -791,7 +791,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: DEBUG
+    Android: STATUS_EFFECT_LOG;DETECTION_DRAW
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

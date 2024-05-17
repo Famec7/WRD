@@ -71,8 +71,6 @@ public class PetManager : MonoBehaviour
     {
         playerPos = player.transform.position;
         pet[i].SetActive(true);
-        weapon[i].InitSkill(1);
-        pet[i].GetComponent<Pet>().range = weapon[i].autoAttack.data.skillRange;
         weapon[i].AddToSkillList();
         string weaponIconPath = "WeaponIcon/" + weaponSlot[i].GetComponent<WeaponSlotUI>().weaponID;
         SpriteRenderer sr = petWeaponImage[i].GetComponent<SpriteRenderer>();

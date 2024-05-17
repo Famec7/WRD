@@ -25,8 +25,4 @@ public class MeleeWeapon : WeaponBase
     {
         ;
     }
-    protected override void PassiveAura()
-    {
-        ;
-    }
 }

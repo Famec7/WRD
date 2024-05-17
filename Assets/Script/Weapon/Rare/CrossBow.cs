@@ -7,9 +7,4 @@ public class CrossBow : RangedWeapon
     {
         base.Attack();
     }
-
-    protected override void PassiveAura()
-    {
-        throw new System.NotImplementedException();
-    }
 }

@@ -66,7 +66,6 @@ public class PlayerManager : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.R))
         {
-            weaponScript.InitSkill(0);
             weaponScript.AddToSkillList();
             foreach(Skill s in weaponScript.skillList)
             {
