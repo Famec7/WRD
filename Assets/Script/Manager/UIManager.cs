@@ -208,6 +208,7 @@ public class UIManager : MonoBehaviour
     public void ChangeBottomUI()
     {
         missionUI.gameObject.SetActive(!missionUI.activeSelf);
+    }
 
     public void SetActiveBlockImage(bool isBlock)
     {

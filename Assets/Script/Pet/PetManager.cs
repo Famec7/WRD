@@ -74,7 +74,7 @@ public class PetManager : MonoBehaviour
         weapon[i].InitSkill(1);
         pet[i].GetComponent<Pet>().range = weapon[i].autoAttack.data.skillRange;
         weapon[i].AddToSkillList();
-        string weaponIconPath = "WeaponIcon/" + weaponSlot[i].GetComponent<WeaponSlotUI>().weaponCode;
+        string weaponIconPath = "WeaponIcon/" + weaponSlot[i].GetComponent<WeaponSlotUI>().weaponID;
         SpriteRenderer sr = petWeaponImage[i].GetComponent<SpriteRenderer>();
         sr.sprite = Resources.Load(weaponIconPath, typeof(Sprite)) as Sprite;
     }
