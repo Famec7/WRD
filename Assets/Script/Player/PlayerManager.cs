@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerStay stayScript;
     public PlayerStop stopScript;
     public GameObject target = null;
-    public Vector3 angleToTarget;
+    public Vector3 DirToTarget;
     public GameObject highlight = null;
     private Vector3 touchpos;
     public float range;
@@ -71,7 +71,7 @@ public class PlayerManager : MonoBehaviour
             weaponScript.isAttackable = false;
         if (target)
         {
-            angleToTarget = (target.transform.position - transform.position).normalized;
+            DirToTarget = (target.transform.position - transform.position).normalized;
             if ((target.transform.position.x > transform.position.x) && isWeaponStateChanged)
             {
                 transform.localScale = new Vector3(Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);

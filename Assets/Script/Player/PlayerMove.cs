@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public float characterFootOffset = 0.3f;
     public bool isMove = false;
     public void Move(Vector3 touchpos)
     {
@@ -22,6 +23,7 @@ public class PlayerMove : MonoBehaviour
     IEnumerator CoRoutineMove(Vector3 targetpos, float distance)
     {
         Vector3 des = targetpos;
+        des.y += characterFootOffset;
         while (true)
         {
             if (Vector3.Distance(transform.position, des) > distance)
@@ -32,6 +34,7 @@ public class PlayerMove : MonoBehaviour
             else
             {
                 PlayerManager.instance.state = State.STAY;
+                isMove = false;
                 break;
             }
             yield return null;

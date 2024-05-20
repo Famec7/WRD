@@ -44,7 +44,7 @@ public class PlayerChase : MonoBehaviour
                 PlayerManager.instance.state = State.STAY;
                 break;
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return null;
         }
     }
 }
