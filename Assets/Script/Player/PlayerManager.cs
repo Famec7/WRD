@@ -14,13 +14,32 @@ public enum State
 }
 public class PlayerManager : MonoBehaviour
 {
+    public static PlayerManager instance = null;
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+    }
     Vector3 pos;
     public State state;
     public float moveSpeed = 2f;
     public bool isAttackable;
     public GameObject weapon;
-    Weapon weaponScript;
+    public Weapon weaponScript;
+    public PlayerChase chaseScript;
+    public PlayerHold holdScript;
+    public PlayerMove moveScript;
+    public PlayerStay stayScript;
+    public PlayerStop stopScript;
     public GameObject target = null;
+    public Vector3 DirToTarget;
     public GameObject highlight = null;
     private Vector3 touchpos;
     public float range;
@@ -33,6 +52,11 @@ public class PlayerManager : MonoBehaviour
         state = State.STAY;
         weapon = GameObject.Find("weapon");
         weaponScript = weapon.GetComponent<Weapon>();
+        chaseScript = GetComponent<PlayerChase>();
+        holdScript = GetComponent<PlayerHold>();
+        moveScript = GetComponent<PlayerMove>();
+        stayScript = GetComponent<PlayerStay>();
+        stopScript = GetComponent<PlayerStop>();
         highlight = GameObject.Find("highlight");
     }
     void Update()
@@ -47,6 +71,7 @@ public class PlayerManager : MonoBehaviour
             weaponScript.isAttackable = false;
         if (target)
         {
+            DirToTarget = (target.transform.position - transform.position).normalized;
             if ((target.transform.position.x > transform.position.x) && isWeaponStateChanged)
             {
                 transform.localScale = new Vector3(Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
@@ -78,16 +103,20 @@ public class PlayerManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
+            StopCurrentDo();
             state = State.HOLD;
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
+            StopCurrentDo();
             state = State.STOP;
         }
         if (Input.GetMouseButtonDown(0))
         {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
-
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
             touchpos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             touchpos.z = -1;
             target = null;
@@ -106,161 +135,36 @@ public class PlayerManager : MonoBehaviour
             if (col && (col.CompareTag("Monster") || col.CompareTag("Boss") || col.CompareTag("Mission")))
             {
                 target = col.gameObject;
+                StopCurrentDo();
                 state = State.CHASE;
             }
             else
             {
+                StopCurrentDo();
                 state = State.MOVE;
             }
         }
         switch (state)
         {
             case State.CHASE:
-                Chase(target);
+                chaseScript.Chase(target);
                 break;
             case State.MOVE:
-                Move(touchpos);
+                moveScript.Move(touchpos);
                 break;
             case State.HOLD:
-                Hold();
+                holdScript.Hold();
                 break;
             case State.STAY:
-                Stay();
+                stayScript.Stay();
                 break;
             case State.STOP:
-                Stop();
+                stopScript.Stop();
                 break;
-        }
-    }
-
-    void Hold()
-    {
-        StopAllCoroutines();
-        StartCoroutine(CoRoutineHold());
-    }
-    IEnumerator CoRoutineHold()
-    {
-        while (true)
-        {
-            if (target == null)
-            {
-                isAttackable = false;
-                FindTarget();
-            }
-            if (target && Vector3.Distance(transform.position, target.transform.position) > range)
-            {
-                target = null;
-                weaponScript.target = null;
-            }
-            else if (target)
-            {
-                isAttackable = true;
-            }
-            yield return null;
-        }
-    }
-    void Stop()
-    {
-        StopAllCoroutines();
-        StartCoroutine(CoRoutineStop());
-    }
-    IEnumerator CoRoutineStop()
-    {
-        while (true)
-        {
-            target = null;
-            weaponScript.target = null;
-            isAttackable = false;
-            yield return null;
-        }
-    }
-
-    //추적: 타겟 존재 & 액티브 상태일 때 사거리 밖이면 이동 후 공격
-    //타겟이 사라지면 Stay상태로 전환
-    void Chase(GameObject target)
-    {
-        StopAllCoroutines();
-        StartCoroutine(CoRoutineChase(target));
-    }
-
-    IEnumerator CoRoutineChase(GameObject target)
-    {
-        Vector3 targetpos = target.transform.position;
-        while (true)
-        {
-            if (target && target.activeSelf)
-            {
-                if (Vector3.Distance(transform.position, targetpos) > range)
-                {
-                    isAttackable = false;
-                    Vector3 dir = (targetpos - transform.position).normalized;
-                    transform.position += dir * (moveSpeed * Time.deltaTime * 2);
-                }
-                else
-                {
-                    isAttackable = true;
-                }
-            }
-            else
-            {
-                isAttackable = false;
-                state = State.STAY;
-                break;
-            }
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-    //이동, 매개변수 두번째는 targetpos와 거리가 distance가 될 때까지 이동한다는 의미
-    void Move(Vector3 touchpos)
-    {
-        StopAllCoroutines();
-        StartCoroutine(CoRoutineMove(touchpos, 0.05f));
-    }
-    IEnumerator CoRoutineMove(Vector3 targetpos, float distance)
-    {
-        Vector3 des = targetpos;
-        while (true)
-        {
-            if (Vector3.Distance(transform.position, des) > distance)
-            {
-                Vector3 dir = (des - transform.position).normalized;
-                transform.position += dir * (moveSpeed * Time.deltaTime);
-            }
-            else
-            {
-                state = State.STAY;
-                break;
-            }
-            yield return null;
-        }
-    }
-
-    //Stop: 그냥 가만히서 타겟 찾다 찾으면 체이스 상태로 전환
-    void Stay()
-    {
-        StopAllCoroutines();
-        StartCoroutine(CoRoutineStay());
-    }
-    IEnumerator CoRoutineStay()
-    {
-        while (true)
-        {
-            if (target == null || target.activeSelf == false)
-            {
-                isAttackable = false;
-                FindTarget();
-            }
-            else
-            {
-                state = State.CHASE;
-                Chase(target);
-                break;
-            }
-            yield return new WaitForSeconds(0.1f);
         }
     }
     //타겟 찾기: 원 범위 안에서 적 발견하면 걔가 타겟됨, 발견 못할시 target은 null인 상태 그대로
-    void FindTarget()
+    public void FindTarget()
     {
         float shortestDistant = 10000;
         GameObject shortestTarget = null;
@@ -278,5 +182,26 @@ public class PlayerManager : MonoBehaviour
         }
         weaponScript.target = shortestTarget;
         target = shortestTarget;
+    }
+    void StopCurrentDo()
+    {
+        switch(state)
+        {
+            case State.STAY:
+                stayScript.StopDoing();
+                break;
+            case State.STOP:
+                stopScript.StopDoing();
+                break;
+            case State.CHASE:
+                chaseScript.StopDoing();
+                break;
+            case State.MOVE:
+                moveScript.StopDoing();
+                break;
+            case State.HOLD:
+                holdScript.StopDoing();
+                break;
+        }
     }
 }

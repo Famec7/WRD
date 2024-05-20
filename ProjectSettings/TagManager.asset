@@ -17,6 +17,7 @@ TagManager:
   - InventorySlot
   - LongClickPopUpUI
   - BlockImage
+  - UI
   layers:
   - Default
   - TransparentFX

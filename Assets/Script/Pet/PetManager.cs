@@ -48,7 +48,7 @@ public class PetManager : MonoBehaviour
             }
         }
         WaitEquipWeapon();
-        DoingwithState(playerState);
+        DoingWithState(playerState);
     }
 
     void WaitEquipWeapon()
@@ -84,7 +84,7 @@ public class PetManager : MonoBehaviour
         pet[i].SetActive(false);
     }
 
-    void DoingwithState(State playerState)
+    void DoingWithState(State playerState)
     {
         switch(playerState)
         {
