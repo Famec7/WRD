@@ -6,10 +6,13 @@ public class VisionStrike : PassiveSkillBase
 {
     public override bool Activate(GameObject target = null)
     {
+        if (target is null)
+            return false;
+        
         if (CheckTrigger())
         {
             List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(target.transform.position,
-                new Vector2(3f, 3f));
+                new Vector2(1f, 1f));
 
             foreach (var tar in targets)
             {

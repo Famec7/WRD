@@ -11,7 +11,7 @@ public class PassiveSkillDataBase : ScriptableObject
     [ContextMenu("Load")]
     public void Load()
     {
-        List<Dictionary<string, object>> csvData = CSVReader.Read("PassiveSkillData");
+        List<Dictionary<string, object>> csvData = CSVReader.Read("DataTable/Skill/PassiveSkillData");
         _passiveSkillDataList = new List<PassiveSkillData>(csvData.Count);
         _passiveAuraSkillDataList = new List<PassiveSkillData>(csvData.Count);
 

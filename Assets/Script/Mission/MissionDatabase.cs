@@ -10,7 +10,7 @@ public class MissionDatabase : ScriptableObject
     [ContextMenu("Load MissionData")]
     public void Load()
     {
-        List<Dictionary<string, object>> data = CSVReader.Read("MissionData");
+        List<Dictionary<string, object>> data = CSVReader.Read("DataTable/MissionData");
 
         _missionDataList = new();
         for (int i = 0; i < data.Count; i++)

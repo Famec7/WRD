@@ -17,11 +17,6 @@ public class CoroutineHandler : Singleton<CoroutineHandler>
     {
         base.StopCoroutine(routine);
     }
-    
-    public new void StopAllCoroutines()
-    {
-        base.StopAllCoroutines();
-    }
 
     private void OnDestroy()
     {

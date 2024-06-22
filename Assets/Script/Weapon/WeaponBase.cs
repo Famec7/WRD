@@ -6,21 +6,26 @@ using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
 {
+    #region private variable
     [Header("Weapon Info")]
     [SerializeField]
     private string _name;
     [SerializeField]
     private int _id;
-    
+    private WaitForSeconds attackDelay;
     private WeaponData _data;
-    protected GameObject target = null;
+    #endregion
     
+    # region protected variable
+    protected GameObject target = null;
     protected bool isAttack = false;
+    protected GameObject owner;
+    # endregion
     
     [Header("Passive Skill")]
     public PassiveSkillBase passiveSkill;
-
-    private WaitForSeconds attackDelay;
+    [Header("Active Skill")]
+    public GameObject activeSkill; // 임시로 GameObject로 선언, 추후 스킬 구현 시 변경 필요
     
     public WeaponData Data
     {
@@ -28,11 +33,7 @@ public abstract class WeaponBase : MonoBehaviour
         set => _data = value;
     }
 
-    #region Callback Function
-
-    /// <summary>
-    /// Callback Function
-    /// </summary>
+    #region Event Function
     protected virtual void Start()
     {
         Init();
@@ -54,14 +55,6 @@ public abstract class WeaponBase : MonoBehaviour
         _data = WeaponDataManager.instance.GetWeaponData(_id);
         attackDelay = new WaitForSeconds(_data.attackSpeed);
     }
-    
-    private IEnumerator CoroutineAttack()
-    {
-        isAttack = true;
-        Attack();
-        yield return attackDelay;
-        isAttack = false;
-    }
 
     /// <summary>
     /// 무기 공격 구현
@@ -69,14 +62,26 @@ public abstract class WeaponBase : MonoBehaviour
     /// </summary>
     protected abstract void Attack();
 
+    /// <summary>
+    /// 무기 장착
+    /// </summary>
+    /// <param name="ownerTransform"> 무기를 가지고 있는 주체의 transform </param>
     public void EquipWeapon(Transform ownerTransform)
     {
-        // 무기 장착
+        owner = ownerTransform.gameObject;
         passiveSkill.SetOwnerTransform(ownerTransform);
     }
     
     public void UnequipWeapon()
     {
         // 무기 해제
+    }
+    
+    private IEnumerator CoroutineAttack()
+    {
+        isAttack = true;
+        Attack();
+        yield return attackDelay;
+        isAttack = false;
     }
 }

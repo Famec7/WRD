@@ -19,7 +19,7 @@ public class LesserOrb : RangedWeapon
     protected override void Attack()
     {
         /*base.Attack();*/
-        passiveSkill.Activate();
+        passiveSkill.Activate(target);
     }
 
     /// <summary>
