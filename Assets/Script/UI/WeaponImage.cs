@@ -74,20 +74,12 @@ public class WeaponImage : MonoBehaviour
 
         var ped = new PointerEventData(null);
         ped.position = Input.mousePosition;
+        
         var results = new List<RaycastResult>();
         gr.Raycast(ped, results);
-        // ¾øÀ¸¸é return
+        
         if (results.Count <= 0) return;
-
-        foreach (var result in results)
-        {
-            if ((result.gameObject.CompareTag("WeaponSlot")))
-                GetComponent<RectTransform>().sizeDelta = new Vector2(250, 250);
-
-            if ((result.gameObject.CompareTag("RecentEarnSlot")))
-                GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
-
-        }
+      
     }
 
     public void ButtonDrop()
@@ -99,23 +91,20 @@ public class WeaponImage : MonoBehaviour
         };
         var results = new List<RaycastResult>();
         gr.Raycast(ped, results);
-        // ¾øÀ¸¸é return
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ return
         if (results.Count <= 0) return;
 
         GameObject targetSlotObject = null;
-        //slotÃ£¾Æ¼­ GameObject ÇÒ´ç½ÃÅ°±â
+        
         foreach (var result in results)
         {
-            if ((result.gameObject.CompareTag("WeaponSlot") || result.gameObject.CompareTag("RecentEarnSlot")) && result.gameObject != transform.parent.gameObject)
+            if (result.gameObject.CompareTag(transform.parent.gameObject.tag)  && result.gameObject != transform.parent.gameObject)
                 targetSlotObject = result.gameObject;
-
-            if ((result.gameObject.CompareTag("WeaponSlot")))
-                GetComponent<RectTransform>().sizeDelta = new Vector2(250, 250);
 
             if (isInventory && result.gameObject.CompareTag("InventorySlot"))
                 targetSlotObject = result.gameObject;
         }
-        //³» ÀÌ¹ÌÁö¶û ÇØ´çÀÌ¹ÌÁö º¯°æÇÏ°í ÀÌ°ÍÀú°Í ¸â¹öº¯¼ö ¹Ù²ãÁÜ
+        
         if (!isInventory)
         {
             if (targetSlotObject != null)
@@ -130,8 +119,8 @@ public class WeaponImage : MonoBehaviour
                 Sprite targetSprite = targetSlotImage.sprite;
                 Sprite mySprite = gameObject.GetComponent<Image>().sprite;
 
-                //Å¸°Ù ½½·ÔÀÇ º¯¼ö º¯°æ
                 targetSlot.hasWeapon = true;
+                targetSlot.transform.GetChild(0).GetComponent<LongClickComponenet>().weaponID = weaponID;
                 targetSlot.weaponID = weaponID;
                 targetSlotImage.enabled = true;
 
@@ -151,36 +140,24 @@ public class WeaponImage : MonoBehaviour
                 targetSlotImage.sprite = mySprite;
                 targetSlotImage.color = new Color32(255, 255, 255, 255);
 
-              //  gameObject.GetComponent<Button>().onClick.RemoveAllListeners(); // ÇöÀç ¿ÀºêÁ§Æ® ¸®½ºÅÍ »èÁ¦
 
                 if (alreadyHasWeapon)
                 {
                     gameObject.GetComponent<Image>().sprite = targetSprite;
                     gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-                    transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID = targetweaponID;
                     gameObject.GetComponent<Image>().enabled = true;
                     transform.parent.gameObject.GetComponent<WeaponSlotUI>().hasWeapon = true;
-
-                    // targetSlot.transform.GetChild(0).gameObject.GetComponent<Button>().onClick.RemoveAllListeners();
-                    // targetSlot.transform.GetChild(0).gameObject.GetComponent<Button>().onClick
-                    //     .AddListener(() => UIManager.instance.CreateCombineUI(targetweaponID));
                 }
 
                 else
                     transform.parent.GetComponent<WeaponSlotUI>().Init();
 
+                transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID = targetweaponID;
+                transform.gameObject.GetComponent<LongClickComponenet>().weaponID = targetweaponID;
                 UIManager.instance.touchPos = Input.mousePosition;
-                // targetSlot.transform.GetChild(0).gameObject.GetComponent<Button>().onClick
-                //     .AddListener(() => UIManager.instance.CreateCombineUI(weaponID));
             }
         }
-        else
-        {
-            if (targetSlotObject != null)
-            {
-                
-            }
-        }
+    
         transform.position = originalPos;
         isDrag = false;
 

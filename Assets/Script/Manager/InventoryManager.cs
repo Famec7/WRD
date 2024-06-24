@@ -25,18 +25,16 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]
     AllShowInventorySlot[] notHeldslots;
 
-
-
     public GameObject inventorySlotsPrefab;
     public GameObject allShowInventoryContent;
     public GameObject normalInventoryContent;
     public GameObject allShowButton;
     public GameObject classShowButton;
-
+    public GameObject inventorySelectUI;
     public GameObject allShowClassSelectButtons;
     public GameObject classShowClassSelectButtons;
     public GameObject[] sortButtons;
-
+    
 
     public Toggle allShowToggle;
 
@@ -79,11 +77,23 @@ public class InventoryManager : MonoBehaviour
     {
         int i = 0;
         int j = 0;
+        List<int> tmpList = new List<int>(GameManager.instance.useWeapon);
         for (; i < items.Count && j < slots.Length; i++)
         {
             slots[j].weapon = items[i];
             slots[j].hasItem = true;
             slots[j].gameObject.GetComponent<LongClickComponenet>().weaponID = items[i].data.id;
+            
+            for (int k = tmpList.Count - 1; k >= 0; k--) {
+
+                if (tmpList[k] == slots[j].weapon.data.id)
+                {
+                    slots[j].isEquiped = true;
+                    slots[j].equipText.gameObject.SetActive(true);
+                    tmpList.Remove(tmpList[k]);
+                }
+            }
+            
             j++;
         }
         for (; j < slots.Length; j++)
@@ -91,6 +101,7 @@ public class InventoryManager : MonoBehaviour
             slots[j].weapon = null;
             slots[j].hasItem = false;
             slots[j].gameObject.GetComponent<LongClickComponenet>().weaponID = -1;
+            
         }
     }
 
@@ -99,7 +110,7 @@ public class InventoryManager : MonoBehaviour
         int i = 0;
         int j = 0;
         string cmp="";
-
+        List<int> tmpList = new List<int>(GameManager.instance.useWeapon);
         switch(grade)
         {
             case 0:
@@ -125,15 +136,24 @@ public class InventoryManager : MonoBehaviour
                 continue;
                    
             slots[j].weapon = items[i];
+            
+            
+            for (int k = tmpList.Count - 1; k >= 0; k--) {
+
+                if (tmpList[k] == slots[j].weapon.data.id)
+                {
+                    slots[j].isEquiped = true;
+                    slots[j].equipText.gameObject.SetActive(true);
+                    tmpList.Remove(tmpList[k]);
+                }
+            }
+            
             slots[j].gameObject.GetComponent<LongClickComponenet>().weaponID = items[i].data.id;
             j++;
         }
 
         for (; j < slots.Length; j++)
-        {
-            slots[j].weapon = null;
-        }
-        
+            slots[j].Init();
     }
 
     public void AddItem(InventoryItem _item, bool refresh = true)
@@ -290,11 +310,16 @@ public class InventoryManager : MonoBehaviour
             {
                 
                 string path = "WeaponIcon/" + WeaponDataManager.instance.Data[j].id.ToString();
+                
                 notHeldslots[i].gameObject.SetActive(true);
                 notHeldslots[i].GetComponent<AllShowInventorySlot>().weaponID = WeaponDataManager.instance.Data[j].id;
                 notHeldslots[i].transform.GetChild(0).GetComponent<InventorySlot>().weapon = new InventoryItem();
                 notHeldslots[i].transform.GetChild(0).GetComponent<InventorySlot>().weapon.AssignWeapon(WeaponDataManager.instance.Data[j].id);
                 notHeldslots[i].transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
+                
+                bool isEquiped = GameManager.instance.isUsing(j);
+                notHeldslots[i].gameObject.transform.GetChild(0).GetComponent<InventorySlot>().isEquiped = isEquiped;
+                notHeldslots[i].gameObject.transform.GetChild(0).GetComponent<InventorySlot>().equipText.gameObject.SetActive(isEquiped); 
                 i++;
             }
         }

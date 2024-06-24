@@ -10,6 +10,7 @@ public class SubCombinationUI : MonoBehaviour
 {
     // Start is called before the first frame update
     public int mainweaponID;
+    public Vector3 originPosition;
     public int[] materialWeapons;
     public GameObject canCombineBorder;
     void Start()
@@ -84,7 +85,7 @@ public class SubCombinationUI : MonoBehaviour
 
             UIManager.instance.CreateCombineUI(mainweaponID);
             GameManager.instance.weaponCnt[mainweaponID - 1]++;
-            
+               
        }
     }
 

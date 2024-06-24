@@ -43,29 +43,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
             string weaponIconPath = "WeaponIcon/" + weaponId.ToString();
 
             detailedDescriptionUI.weaponImage.sprite = ResourceManager.Instance.Load<Sprite>(weaponIconPath);
-
-            string classEngText = WeaponDataManager.instance.Data[weaponId - 1].weaponClass;
-            string classKorText = "";
-            switch (classEngText)
-            {
-                case "unnormal":
-                    classKorText = "안흔함";
-                    break;
-                case "rare":
-                    classKorText = "특별함";
-                    break;
-                case "epic":
-                    classKorText = "희귀함";
-                    break;
-                case "legendary":
-                    classKorText = "전설";
-                    break;
-                case "myth":
-                    classKorText = "신화";
-                    break;
-            }
-
-            detailedDescriptionUI.weaponClassText.text = classKorText;
+            detailedDescriptionUI.weaponClassText.text = WeaponDataManager.instance.GetKorWeaponClassText(weaponId);
 
             int idx = 0;
 

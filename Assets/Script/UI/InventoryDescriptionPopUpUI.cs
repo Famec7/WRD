@@ -14,16 +14,19 @@ public class InventoryDescriptionPopUpUI : UIPopUp
     public TextMeshProUGUI weaponClassText;
     public TextMeshProUGUI weaponTypeText;
     public TextMeshProUGUI[] weaponStatText;
+
+    public int weaponId;
     void Start()
     {
         SetClosePopUp();
     }
 
     // Update is called once per frame
-    void Update()
+    public void ClickDescriptionButton()
     {
-        
+        UIManager.instance.CreateDetailedDescriptionUI(weaponId);
     }
+
     
     protected override void SetClosePopUp()
     {
