@@ -10,6 +10,10 @@ public class MeleeWeapon : WeaponBase
         if (target is null)
             return;
         
+        Debug.Log("MeleeWeapon Attack");
+        if (passiveSkill.Activate())
+            return;
+        
         //Todo: Add attack animation and effect
         if (target.TryGetComponent(out Monster monster))
         {
@@ -19,10 +23,5 @@ public class MeleeWeapon : WeaponBase
         {
             target = null;
         }
-    }
-
-    protected virtual void PassiveAttack()
-    {
-        ;
     }
 }

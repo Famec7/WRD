@@ -2,30 +2,25 @@
 
 public class FSM<T>
 {
-    private IState<T> currentState;
-    private T owner;
+    private IState<T> _currentState;
+    private readonly T _owner;
 
     public FSM(T owner)
     {
-        this.owner = owner;
+        this._owner = owner;
     }
 
     public void ChangeState(IState<T> newState)
     {
-        if (currentState != null)
-        {
-            currentState.Exit(owner);
-        }
+        // currentState가 null이 아니면 Exit 호출
+        _currentState?.Exit(_owner);
 
-        currentState = newState;
-        currentState.Enter(owner);
+        _currentState = newState;
+        _currentState.Enter(_owner);
     }
 
     public void Update()
     {
-        if (currentState != null)
-        {
-            currentState.Execute(owner);
-        }
+        _currentState?.Execute(_owner);
     }
 }

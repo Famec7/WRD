@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PassiveSkillDatabase", menuName = "Scriptable Object/Skill/PassiveSkillDatabase", order = 1)]
+[CreateAssetMenu(fileName = "PassiveSkillDatabase", menuName = "Scriptable Object/Skill/PassiveSkillDatabase",
+    order = 1)]
 public class PassiveSkillDataBase : ScriptableObject
 {
     private List<PassiveSkillData> _passiveSkillDataList;
@@ -17,11 +18,14 @@ public class PassiveSkillDataBase : ScriptableObject
 
         for (int i = 0; i < csvData.Count; i++)
         {
+            // 패시브 스킬
             if (String.Compare(csvData[i]["skill_type_1"].ToString(), "p", StringComparison.Ordinal) == 0)
             {
-                PassiveSkillData passiveSkillData = new PassiveSkillData();
-                passiveSkillData.name = (csvData[i]["skill_name"].ToString());
-                passiveSkillData.values = new();
+                PassiveSkillData passiveSkillData = new PassiveSkillData
+                {
+                    name = (csvData[i]["skill_name"].ToString()),
+                    values = new()
+                };
 
                 var values = csvData[i]["skill_value"].ToString().Split(',');
                 foreach (var value in values)
@@ -31,29 +35,36 @@ public class PassiveSkillDataBase : ScriptableObject
 
                 _passiveSkillDataList.Add(passiveSkillData);
             }
-            /*else
+            // 패시브 오라 스킬
+            else
             {
-                PassiveSkillData passiveSkillData = new PassiveSkillData();
-                passiveSkillData.name = (csvData[i]["skill_name"].ToString());
-                passiveSkillData.values = new();
+                PassiveSkillData passiveSkillData = new PassiveSkillData
+                {
+                    name = (csvData[i]["skill_name"].ToString()),
+                    values = new()
+                };
 
                 var values = csvData[i]["skill_value"].ToString().Split(',');
                 foreach (var value in values)
                 {
-                    passiveSkillData.values.Add(int.Parse(value));
+                    passiveSkillData.values.Add(int.TryParse(value, out int result) ? result : 0);
                 }
 
                 _passiveAuraSkillDataList.Add(passiveSkillData);
-            
-            }*/
+            }
         }
     }
 
-    public PassiveSkillData GetPassiveSkillData(string name)
+    /// <summary>
+    /// 패시브 스킬 데이터 반환
+    /// </summary>
+    /// <param name="skillName"> 스킬 이름 </param>
+    /// <returns> 스킬 데이터 반환 (이름이랑 일치하는 스킬 없으면 null) </returns>
+    public PassiveSkillData GetPassiveSkillData(string skillName)
     {
         foreach (var data in _passiveSkillDataList)
         {
-            if (data.name == name)
+            if (data.name == skillName)
             {
                 return data;
             }
@@ -61,7 +72,12 @@ public class PassiveSkillDataBase : ScriptableObject
 
         return null;
     }
-    
+
+    /// <summary>
+    /// 패시브 오라 스킬 데이터 반환
+    /// </summary>
+    /// <param name="name"> 스킬 이름 </param>
+    /// <returns> 스킬 데이터 반환 (이름이랑 일치하는 스킬 없으면 null) </returns>
     public PassiveSkillData GetPassiveAuraSkillData(string name)
     {
         foreach (var data in _passiveAuraSkillDataList)
@@ -79,6 +95,6 @@ public class PassiveSkillDataBase : ScriptableObject
 [Serializable]
 public class PassiveSkillData
 {
-    public string name;
-    public List<int> values;
+    public string name; // 스킬 이름
+    public List<int> values; // 스킬 데이터 관련된 값
 }

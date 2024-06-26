@@ -2,7 +2,6 @@
 {
     private PassiveSkillDataBase passiveDataBase;
     private ActiveSkillDataBase activeDataBase;
-    private Skill _currentSkill;
     protected override void Init()
     {
         passiveDataBase = ResourceManager.Instance.Load<PassiveSkillDataBase>("Database/Skill/PassiveSkillDataBase");

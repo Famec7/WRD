@@ -3,27 +3,39 @@ using UnityEngine;
 
 public class Swing : PassiveSkillBase
 {
-    public override bool Activate(GameObject target)
+    private int _skillDamage;
+    private Vector2 _hitSize;
+    
+    protected override void Init()
     {
-        if (CheckTrigger())
+        base.Init();
+        
+        _skillDamage = data.values[1];
+        _hitSize = new Vector2(1f, 3f);
+    }
+    
+    public override bool Activate(GameObject target = null)
+    {
+        if (!CheckTrigger()) return false;
+        
+        Vector3 dir = PlayerManager.instance.DirToTarget;
+        if (dir == Vector3.zero)
+            return false;
+            
+        Debug.Log("Swing Activate");
+        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(ownerTransform.position, _hitSize, dir);
+
+        foreach (var tar in targets)
         {
-            // 왜 localscale로 방향을 판단하였는가...
-            int xDirection = ownerTransform.localScale.x > 0 ? 1 : -1;
-            List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(ownerTransform.position, new Vector2(1f, 3f), new Vector2(xDirection, 0));
-
-            foreach (var tar in targets)
+            if (tar.TryGetComponent(out Status status) && tar.TryGetComponent(out Monster monster))
             {
-                if (tar.TryGetComponent(out Status status) && tar.TryGetComponent(out Monster monster))
-                {
-                    StatusEffectManager.Instance.AddStatusEffect(status, new Wound(tar.gameObject));
-                    monster.HasAttacked(data.values[1]);
-                    // Todo : 이펙트 추가
-                }
+                StatusEffectManager.Instance.AddStatusEffect(status, new Wound(tar.gameObject));
+                monster.HasAttacked(_skillDamage);
+                // Todo : 이펙트 추가
             }
-
-            return true;
         }
 
-        return false;
+        return true;
+
     }
 }

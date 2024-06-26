@@ -6,7 +6,6 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public int weaponNumber;
-    public List<Skill> skillList;
     public float range;
     public float damage;
     public float attackSpeed;
@@ -29,8 +28,7 @@ public class Weapon : MonoBehaviour
 
     public void AddToSkillList()
     {
-        if (skillList.Count != 0)
-            return;
+        ;
     }
 
     void Update()
@@ -89,18 +87,6 @@ public class Weapon : MonoBehaviour
     {
         if (!hasAttacked && target)
         {
-            foreach (Skill s in skillList)
-            {
-                if (s.data.skillType == SkillType.BASIC || s.data.skillType == SkillType.PASSIVE)
-                {
-                    s.target = this.target;
-                    s.UseSkill();
-                }
-
-                if (s.data.skillType == SkillType.BASIC)
-                    attackSpeed = s.data.skillCooltime;
-            }
-
             hasAttacked = true;
             yield return new WaitForSeconds(1f / attackSpeed);
             hasAttacked = false;

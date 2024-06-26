@@ -41,4 +41,17 @@ public class WeaponDatabase : ScriptableObject
 
         return null;
     }
+    
+    public WeaponData GetWeaponData(string weaponName)
+    {
+        foreach (var data in _weaponDataList)
+        {
+            if (data.weaponName == weaponName)
+            {
+                return data;
+            }
+        }
+
+        return null;
+    }
 }

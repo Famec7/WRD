@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class SkillBase : MonoBehaviour
 {
     [HideInInspector]
-    public string skillName;
+    public  string skillName;
     
     [HideInInspector]
     public WeaponBase weaponBase;
@@ -16,6 +16,7 @@ public abstract class SkillBase : MonoBehaviour
     public void SetOwnerTransform(Transform ownerTransform)
     {
         this.ownerTransform = ownerTransform;
+        this.transform.SetParent(ownerTransform);
     }
     
     protected virtual void Init()

@@ -7,18 +7,13 @@ using UnityEngine;
 public abstract class WeaponBase : MonoBehaviour
 {
     #region private variable
-    [Header("Weapon Info")]
-    [SerializeField]
-    private string _name;
-    [SerializeField]
-    private int _id;
     private WaitForSeconds attackDelay;
     private WeaponData _data;
+    private bool _isAttack = false;
     #endregion
     
     # region protected variable
     protected GameObject target = null;
-    protected bool isAttack = false;
     protected GameObject owner;
     # endregion
     
@@ -41,7 +36,7 @@ public abstract class WeaponBase : MonoBehaviour
 
     private void Update()
     {
-        if (isAttack is false)
+        if (_isAttack is false)
             StartCoroutine(CoroutineAttack());
     }
 
@@ -52,7 +47,7 @@ public abstract class WeaponBase : MonoBehaviour
     /// </summary>
     protected virtual void Init()
     {
-        _data = WeaponDataManager.instance.GetWeaponData(_id);
+        _data = WeaponDataManager.instance.GetWeaponData(GetType().Name);
         attackDelay = new WaitForSeconds(_data.attackSpeed);
     }
 
@@ -72,16 +67,16 @@ public abstract class WeaponBase : MonoBehaviour
         passiveSkill.SetOwnerTransform(ownerTransform);
     }
     
-    public void UnequipWeapon()
+    public void DetachWeapon()
     {
         // 무기 해제
     }
     
     private IEnumerator CoroutineAttack()
     {
-        isAttack = true;
+        _isAttack = true;
         Attack();
         yield return attackDelay;
-        isAttack = false;
+        _isAttack = false;
     }
 }
