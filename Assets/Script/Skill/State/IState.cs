@@ -1,4 +1,4 @@
-﻿public interface IState<T>
+﻿public interface IState<in T>
 {
     void Enter(T entity);
     void Execute(T entity);

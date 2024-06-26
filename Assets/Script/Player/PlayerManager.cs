@@ -87,19 +87,12 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
+            DirToTarget = Vector3.zero;
             highlight.SetActive(false);
         }
         if(Input.GetKeyDown(KeyCode.R))
         {
-            weaponScript.InitSkill(0);
             weaponScript.AddToSkillList();
-            foreach(Skill s in weaponScript.skillList)
-            {
-                if(s.data.skillType == SkillType.ACTIVE)
-                {
-                    range = s.data.skillRange;
-                }
-            }
         }
         if (Input.GetKeyDown(KeyCode.H))
         {

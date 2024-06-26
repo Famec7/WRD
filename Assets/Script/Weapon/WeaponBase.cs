@@ -6,20 +6,21 @@ using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
 {
-    [Header("Weapon Info")]
-    [SerializeField]
-    private string _name;
-    [SerializeField]
-    private int _id;
-    
+    #region private variable
+    private WaitForSeconds attackDelay;
     private WeaponData _data;
-    protected GameObject target = null;
+    private bool _isAttack = false;
+    #endregion
     
-    protected SkillData skillData;
-    protected bool isAttack = false;
+    # region protected variable
+    protected GameObject target = null;
+    protected GameObject owner;
+    # endregion
     
     [Header("Passive Skill")]
     public PassiveSkillBase passiveSkill;
+    [Header("Active Skill")]
+    public GameObject activeSkill; // 임시로 GameObject로 선언, 추후 스킬 구현 시 변경 필요
     
     public WeaponData Data
     {
@@ -27,11 +28,7 @@ public abstract class WeaponBase : MonoBehaviour
         set => _data = value;
     }
 
-    #region Callback Function
-
-    /// <summary>
-    /// Callback Function
-    /// </summary>
+    #region Event Function
     protected virtual void Start()
     {
         Init();
@@ -39,9 +36,8 @@ public abstract class WeaponBase : MonoBehaviour
 
     private void Update()
     {
-        if (isAttack)
+        if (_isAttack is false)
             StartCoroutine(CoroutineAttack());
-        PassiveAura();
     }
 
     #endregion
@@ -51,16 +47,8 @@ public abstract class WeaponBase : MonoBehaviour
     /// </summary>
     protected virtual void Init()
     {
-        skillData = SkillDataManager.Instance.GetPassiveSkillData(_data.skillA);
-        _data = WeaponDataManager.instance.GetWeaponData(_id);
-    }
-    
-    private IEnumerator CoroutineAttack()
-    {
-        isAttack = true;
-        Attack();
-        yield return new WaitForSeconds(Data.attackSpeed);
-        isAttack = false;
+        _data = WeaponDataManager.instance.GetWeaponData(GetType().Name);
+        attackDelay = new WaitForSeconds(_data.attackSpeed);
     }
 
     /// <summary>
@@ -68,20 +56,27 @@ public abstract class WeaponBase : MonoBehaviour
     /// Ex. 총 구현 시 총알 생성 후 적에게 쏘기 / 탐지 범위 다르게 설정
     /// </summary>
     protected abstract void Attack();
-    
+
     /// <summary>
-    /// 버프 / 디버프 효과
+    /// 무기 장착
     /// </summary>
-    protected abstract void PassiveAura();
-    
+    /// <param name="ownerTransform"> 무기를 가지고 있는 주체의 transform </param>
     public void EquipWeapon(Transform ownerTransform)
     {
-        // 무기 장착
+        owner = ownerTransform.gameObject;
         passiveSkill.SetOwnerTransform(ownerTransform);
     }
     
-    public void UnequipWeapon()
+    public void DetachWeapon()
     {
         // 무기 해제
+    }
+    
+    private IEnumerator CoroutineAttack()
+    {
+        _isAttack = true;
+        Attack();
+        yield return attackDelay;
+        _isAttack = false;
     }
 }

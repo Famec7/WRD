@@ -16,7 +16,7 @@ public class SlowDown : StatusEffect
     public override void ApplyEffect()
     {
         _slowDownCoroutine = CoroutineHandler.Instance.StartCoroutine(SlowDownCoroutine());
-#if DEBUG
+#if STATUS_EFFECT_LOG
         Debug.Log("SlowDown Effect Applied");
 #endif
     }
@@ -32,7 +32,7 @@ public class SlowDown : StatusEffect
             CoroutineHandler.Instance.StopCoroutine(_slowDownCoroutine);
         }
         
-#if DEBUG
+#if STATUS_EFFECT_LOG
         Debug.Log("SlowDown Effect Removed");
 #endif
     }
@@ -42,7 +42,7 @@ public class SlowDown : StatusEffect
         if(target.TryGetComponent(out Status status))
         {
             _originalSpeed = status.moveSpeed;
-            status.moveSpeed *= _slowDownRate;
+            status.moveSpeed *= 1 - _slowDownRate / 100;
 
             if(Math.Abs(duration - 0f) > 0.01f)
             {

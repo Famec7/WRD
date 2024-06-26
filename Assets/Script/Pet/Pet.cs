@@ -55,7 +55,6 @@ public class Pet : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.W))
         {
-            weaponScript.InitSkill(1);
             weaponScript.AddToSkillList();
         }
     }

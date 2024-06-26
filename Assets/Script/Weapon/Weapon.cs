@@ -6,7 +6,6 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public int weaponNumber;
-    public List<Skill> skillList;
     public float range;
     public float damage;
     public float attackSpeed;
@@ -14,11 +13,6 @@ public class Weapon : MonoBehaviour
     public bool hasAttacked;
     public GameObject target;
     public string type;
-    public ActiveSkill activeSkill;
-    public PassiveSkill passiveSkill;
-    public AutoAttack autoAttack;
-
-    public SkillData skillData;
 
     public void SetWeapon(int range, int damage, int attack_speed)
     {
@@ -29,70 +23,16 @@ public class Weapon : MonoBehaviour
 
     void Awake()
     {
-        activeSkill = GetComponent<ActiveSkill>();
-        passiveSkill = GetComponent<PassiveSkill>();
-        autoAttack = GetComponent<AutoAttack>();
         hasAttacked = false;
-    }
-
-    public void InitSkill(int weaponCode) // 실제 코드에서는 csv파일에서 다 가져옴
-    {
-        if (weaponCode == 0)
-        {
-            autoAttack.data.skillNumber = 101;
-            autoAttack.data.skillType = SkillType.BASIC;
-            autoAttack.data.skillDamage = 4;
-            autoAttack.data.skillRange = 2;
-            autoAttack.data.skillCooltime = 1;
-            autoAttack.data.canUse = true;
-
-            passiveSkill.data.skillNumber = 200;
-            passiveSkill.data.skillType = SkillType.PASSIVE;
-            passiveSkill.data.skillDamage = 2;
-            passiveSkill.data.skillCooltime = 2;
-            passiveSkill.data.skillChance = 0.5f;
-
-            activeSkill.data.skillNumber = 402;
-            activeSkill.data.skillType = SkillType.ACTIVE;
-            activeSkill.data.skillDamage = 5;
-            activeSkill.data.skillRange = 2;
-            activeSkill.data.scopeRange = 1;
-            activeSkill.data.skillCooltime = 1;
-            activeSkill.data.skillUptime = 10;
-        }
-        else if (weaponCode == 1)
-        {
-            autoAttack.data.skillNumber = 103;
-            autoAttack.data.skillType = SkillType.BASIC;
-            autoAttack.data.skillDamage = 2;
-            autoAttack.data.skillRange = 2;
-            autoAttack.data.skillCooltime = 1;
-            autoAttack.data.canUse = true;
-
-            passiveSkill.data.skillNumber = 200;
-            passiveSkill.data.skillType = SkillType.PASSIVE;
-            passiveSkill.data.skillDamage = 2;
-            passiveSkill.data.skillCooltime = 2;
-            passiveSkill.data.skillChance = 0.5f;
-        }
     }
 
     public void AddToSkillList()
     {
-        if (skillList.Count != 0)
-            return;
-        skillList.Add(activeSkill);
-        skillList.Add(passiveSkill);
-        skillList.Add(autoAttack); // 임시
-        activeSkill.skillIndicator = GameObject.Find("skill_indicator");
+        ;
     }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.T) && activeSkill.data.skillNumber == 402)
-        {
-            activeSkill.UseSkill();
-        }
 
         Attack();
     }
@@ -147,18 +87,6 @@ public class Weapon : MonoBehaviour
     {
         if (!hasAttacked && target)
         {
-            foreach (Skill s in skillList)
-            {
-                if (s.data.skillType == SkillType.BASIC || s.data.skillType == SkillType.PASSIVE)
-                {
-                    s.target = this.target;
-                    s.UseSkill();
-                }
-
-                if (s.data.skillType == SkillType.BASIC)
-                    attackSpeed = s.data.skillCooltime;
-            }
-
             hasAttacked = true;
             yield return new WaitForSeconds(1f / attackSpeed);
             hasAttacked = false;

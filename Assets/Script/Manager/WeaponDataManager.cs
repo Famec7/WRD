@@ -84,4 +84,9 @@ public class WeaponDataManager : MonoBehaviour
     {
         return _weaponDatabase.GetWeaponData(id);
     }
+    
+    public WeaponData GetWeaponData(string weaponName)
+    {
+        return _weaponDatabase.GetWeaponData(weaponName);
+    }
 }
