@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public static UIManager instance;
-
+    
     public TextMeshProUGUI waveNum;
     public TextMeshProUGUI currentMonsterNum;
     public TextMeshProUGUI limitMonsterNum;
@@ -21,8 +21,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI[] elementCnt;
 
     public Toggle autoSkipToggle;
-    public Stack<CombinePopUpUI> combinePopupUIStack;
+    public Stack<CombinePopUpUI>combinePopupUIStack;
     public Stack<DetailedDescriptionUI> descriptionPopUpUIStack;
+    public Stack<InventoryDescriptionPopUpUI> inventoryDescriptionPopUpUiStack;
 
     public Vector3 touchPos;
     public GameObject[] PopUpPrefabs;
@@ -31,14 +32,19 @@ public class UIManager : MonoBehaviour
     public GameObject normalInventoryContent;
     public GameObject backButton;
     public GameObject longClickPopUpUI;
-
+    public GameObject WeaponSlotSelectUI;
+    
+    public Button[] elementUI;
+    
     private Stack<UIPopUp> popUpStack;
-    [SerializeField] private Canvas _popupCanvas;
-    [SerializeField] private Image _blockImage;
+    [SerializeField]
+    private Canvas _popupCanvas;
+    [SerializeField]
+    private Image _blockImage;
     private UIPopUp[] _popups;
 
     [SerializeField] private GameObject missionUI;
-
+    
     private void Awake()
     {
         if (instance == null)
@@ -46,6 +52,13 @@ public class UIManager : MonoBehaviour
 
         combinePopupUIStack = new Stack<CombinePopUpUI>();
         descriptionPopUpUIStack = new Stack<DetailedDescriptionUI>();
+        inventoryDescriptionPopUpUiStack = new Stack<InventoryDescriptionPopUpUI>();
+
+        for (int i = 0; i < 5; i++)
+        {
+            int index = i;
+            elementUI[i].GetComponent<Button>().onClick.AddListener(() => CreateCombineUI(index+1));
+        }
     }
 
     private void Start()
@@ -64,51 +77,58 @@ public class UIManager : MonoBehaviour
         {
             elementCnt[i].text = GameManager.instance.weaponCnt[i].ToString();
         }
+
     }
 
-    public void CreateCombineUI(int weaponID, bool isBlock = true)
+    public void CreateCombineUI(int weaponID, bool isBlock = true, bool isInventory = false, bool isEquiped = false)
     {
-        if (Mathf.Abs(touchPos.x - Input.mousePosition.x) >= 20 ||
-            Mathf.Abs(touchPos.y - Input.mousePosition.y) >= 20) return;
+        if (Mathf.Abs(touchPos.x - Input.mousePosition.x) >= 20 || Mathf.Abs(touchPos.y - Input.mousePosition.y) >= 20) return;
         //if (inventory.activeSelf) return;
         if (descriptionPopUpUIStack.Count > 0) return;
-
+        
         CloseCombinePopUpUI();
-        Debug.Log("dd");
         GameObject combineUI = WeaponCombinationUIGenerator.Instance.combineWeaponUIList[weaponID - 1];
-
+        combineUI.GetComponent<CombinePopUpUI>().ChangeInventoryMode(isInventory);
         combinePopupUIStack.Push(combineUI.GetComponent<CombinePopUpUI>());
         combineUI.SetActive(true);
         _blockImage.gameObject.SetActive(isBlock);
     }
+    
+    public void CreateInventoryDescriptionUI(int weaponID , bool isBlock = true)
+    {
+        CloseDetailedDescriptionPopUpUI();
+        longClickPopUpUI.SetActive(true);
 
-    public void CreateDetailedDescriptionUI(int weaponID, bool isBlock = true)
+        GameObject inventoryDescriptionUI = InventoryDescriptionUIGenerator.Instance.inventoryDescriptionUIList[weaponID - 1];
+        
+        inventoryDescriptionPopUpUiStack.Push(inventoryDescriptionUI.GetComponent<InventoryDescriptionPopUpUI>());
+        inventoryDescriptionUI.SetActive(true);
+        _blockImage.gameObject.SetActive(isBlock);
+    }
+    
+    public void CreateDetailedDescriptionUI(int weaponID , bool isBlock = true)
     {
         CloseCombinePopUpUI();
-
-        GameObject detailedDescriptionUI =
-            DetailedDescriptionUIGenerator.Instance.detailedDescriptionUIList[weaponID - 1];
+        GameObject detailedDescriptionUI = DetailedDescriptionUIGenerator.Instance.detailedDescriptionUIList[weaponID - 1];
         detailedDescriptionUI.transform.SetAsLastSibling();
         detailedDescriptionUI.SetActive((true));
         descriptionPopUpUIStack.Push(detailedDescriptionUI.GetComponent<DetailedDescriptionUI>());
-
-        if (descriptionPopUpUIStack.Count > 1)
-        {
+        
+        if(descriptionPopUpUIStack.Count > 1) {
             backButton.SetActive(true);
             backButton.transform.SetAsLastSibling();
 
             foreach (var popup in descriptionPopUpUIStack)
             {
                 if (popup == descriptionPopUpUIStack.Peek()) continue;
-
+                
                 GameObject current = popup.gameObject;
                 current.SetActive((false));
             }
         }
-
+        
         _blockImage.gameObject.SetActive(isBlock);
     }
-
     public void CloseCombinePopUpUI()
     {
         if (combinePopupUIStack.Count > 0)
@@ -117,10 +137,10 @@ public class UIManager : MonoBehaviour
             current.SetActive(false);
             combinePopupUIStack.Pop();
         }
-
         _blockImage.gameObject.SetActive(false);
+        longClickPopUpUI.SetActive(false);
     }
-
+    
     public void CloseDetailedDescriptionPopUpUI()
     {
         foreach (var popup in descriptionPopUpUIStack)
@@ -128,13 +148,30 @@ public class UIManager : MonoBehaviour
             GameObject current = popup.gameObject;
             current.SetActive((false));
         }
-
+        
         descriptionPopUpUIStack.Clear();
         backButton.SetActive(false);
         _blockImage.gameObject.SetActive(false);
+        longClickPopUpUI.SetActive(false);
+    }
+    
+    public void CloseInventoryDescriptionPopUpUI()
+    {
+        CloseCombinePopUpUI();
+        InventoryManager.instance.inventorySelectUI.SetActive(false);
+        foreach (var popup in inventoryDescriptionPopUpUiStack)
+        {
+            GameObject current = popup.gameObject;
+            current.SetActive((false));
+        }
+        
+        inventoryDescriptionPopUpUiStack.Clear();
+        backButton.SetActive(false);
+        _blockImage.gameObject.SetActive(false);
+        longClickPopUpUI.SetActive(false);
     }
 
-    public void ChangeAutoSkipToggle()
+   public void ChangeAutoSkipToggle()
     {
         GameManager.instance.isSKip = autoSkipToggle.isOn;
     }
@@ -142,9 +179,11 @@ public class UIManager : MonoBehaviour
     public void OpenInventory()
     {
         inventory.SetActive(true);
+        InventoryManager.instance.FreshSlot();
+        
         CloseCombinePopUpUI();
 
-        if (InventoryManager.instance.isLastAllShow)
+        if (InventoryManager.instance.isLastAllShow) 
             allShowInventoryContent.SetActive(true);
         else
             normalInventoryContent.SetActive(true);
@@ -156,15 +195,15 @@ public class UIManager : MonoBehaviour
     public void ClickBackButton()
     {
         GameObject top = descriptionPopUpUIStack.Peek().gameObject;
-
+        
         top.SetActive(false);
         descriptionPopUpUIStack.Pop();
         descriptionPopUpUIStack.Peek().gameObject.SetActive(true);
-
+        
         if (descriptionPopUpUIStack.Count < 2)
             backButton.SetActive(false);
     }
-
+    
     /// <summary>
     ///    리소스 디렉토리에서 해당하는 팝업을 찾아서 생성한다.
     /// </summary>
@@ -177,23 +216,22 @@ public class UIManager : MonoBehaviour
         if (popUp == null)
         {
             string path = "UI/PopUp/" + type.ToString();
-            _popups[type.GetHashCode()] = ResourceManager.Instance.Instantiate(path, _popupCanvas.transform)
-                .GetComponent<UIPopUp>();
+            _popups[type.GetHashCode()] = ResourceManager.Instance.Instantiate(path, _popupCanvas.transform).GetComponent<UIPopUp>();
         }
-
+        
         _blockImage.gameObject.SetActive(isBlock);
         // 팝업을 생성하고 스택에 넣는다.
         popUp.Init();
         popUpStack.Push(popUp);
         _popupCanvas.sortingOrder = popUpStack.Count;
     }
-
+    
     public UIPopUp GetPopUpUI()
     {
         if (popUpStack.Count == 0) return null;
         return popUpStack.Peek();
     }
-
+    
     /// <summary>
     ///     스택에 있는 팝업을 닫는다.
     /// </summary>
@@ -206,12 +244,11 @@ public class UIManager : MonoBehaviour
         popUp.gameObject.SetActive(false);
         _blockImage.gameObject.SetActive(false);
     }
-
+    
     public void ChangeBottomUI()
     {
         missionUI.gameObject.SetActive(!missionUI.activeSelf);
     }
-
     public void SetActiveBlockImage(bool isBlock)
     {
         _blockImage.gameObject.SetActive(isBlock);

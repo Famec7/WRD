@@ -28,17 +28,14 @@ public class DetailedDescriptionUI : UIPopUp
     {
       SetClosePopUp();
     }
-    void Update()
-    {
-    }
-    
+ 
+
     protected override void SetClosePopUp()
     {
         closeButton.onClick.AddListener(() =>
         {
             UIManager.instance.CloseDetailedDescriptionPopUpUI();
         });
-        
     }
 
     // Update is called once per frame

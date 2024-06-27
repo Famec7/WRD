@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
@@ -5,7 +6,9 @@ public class InventorySlot : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] Image image;
     public bool hasItem;
+    public bool isEquiped;
     private InventoryItem _weapon;
+    public TextMeshProUGUI equipText;
     public InventoryItem weapon
     {
         get { return _weapon; }
@@ -23,21 +26,21 @@ public class InventorySlot : MonoBehaviour
             }
         }
     }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void CreateCombineUI()
     {
         if (weapon == null) return;
         UIManager.instance.CreateCombineUI(weapon.data.id);
+        UIManager.instance.CreateInventoryDescriptionUI(weapon.data.id);
+
+    }
+
+    public void Init()
+    {
+        weapon = null;
+        hasItem = false;
+        isEquiped = false;
+        equipText.gameObject.SetActive(false);
     }
 }

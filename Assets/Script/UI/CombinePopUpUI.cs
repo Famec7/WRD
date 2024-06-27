@@ -15,7 +15,6 @@ public class CombinePopUpUI : UIPopUp
     public GameObject descriptionButton;
     public TextMeshProUGUI weaponName;
     public Image weaponIcon;
-    
     private int canCombineCnt;
     // Start is called before the first frame update
     void Start()
@@ -26,12 +25,45 @@ public class CombinePopUpUI : UIPopUp
     // Update is called once per frame
     void Update()
     {
-        transform.SetAsLastSibling();
+      
     }
 
     public void ClickDescriptionButton()
     {
         UIManager.instance.CreateDetailedDescriptionUI(weaponId);
+    }
+
+    public void ChangeInventoryMode(bool isInventory)
+    {
+        weaponName.gameObject.SetActive(!isInventory);
+        weaponIcon.gameObject.SetActive(!isInventory);
+        closeButton.gameObject.SetActive(!isInventory);
+        descriptionButton.gameObject.SetActive(!isInventory);
+        Transform[] subCombinationUIs = transform.GetComponentsInChildren<Transform>();
+        if (isInventory)
+        {
+            GetComponent<RectTransform>().anchoredPosition = new Vector3(165, -1266);
+            GetComponent<RectTransform>().sizeDelta = new Vector2(500,300);
+            foreach (var subCombinationUI in subCombinationUIs)
+            {
+                
+                if (subCombinationUI.GetComponent<SubCombinationUI>() != null)
+                    subCombinationUI.GetComponent<RectTransform>().anchoredPosition = subCombinationUI.GetComponent<SubCombinationUI>().originPosition + new Vector3(0, 160);
+            }
+        }
+        else
+        {
+            GetComponent<RectTransform>().anchoredPosition = new Vector3(239, -780);
+            GetComponent<RectTransform>().sizeDelta = new Vector2(500,490);
+            foreach (var subCombinationUI in subCombinationUIs)
+            {
+                if (subCombinationUI.GetComponent<SubCombinationUI>() != null)
+                    subCombinationUI.GetComponent<RectTransform>().anchoredPosition = subCombinationUI.GetComponent<SubCombinationUI>().originPosition;
+            }
+        }
+
+      
+
     }
 
     protected override void SetClosePopUp()
@@ -40,6 +72,5 @@ public class CombinePopUpUI : UIPopUp
         {
             UIManager.instance.CloseCombinePopUpUI();
         });
-        
     }
 }

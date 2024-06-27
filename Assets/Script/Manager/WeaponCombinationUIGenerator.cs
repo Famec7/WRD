@@ -75,6 +75,7 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
                 subCombi.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 1f);
 
                 subCombi.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -230 - 150 * j, 0);
+                subCombi.GetComponent<SubCombinationUI>().originPosition =new Vector3(0, -230 - 150 * j, 0);
                 subCombi.GetComponent<SubCombinationUI>().mainweaponID = targetCode;
 
                 string path = "WeaponIcon/" + targetCode.ToString();

@@ -11,6 +11,7 @@ public class InventoryItem
     public WeaponData data;
     public Sprite image;
     public DateTime earnTime;
+    public int equipPos = -1;
     
     public void AssignWeapon(int code)
     {

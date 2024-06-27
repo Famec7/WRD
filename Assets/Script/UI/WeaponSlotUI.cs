@@ -11,7 +11,8 @@ public class WeaponSlotUI : MonoBehaviour
     public GameObject weaponImage;
     public bool hasWeapon = false;
     public int weaponID;
-   
+    public InventorySlot inventorySlot;
+    
     void Start()
     {
         if (hasWeapon)

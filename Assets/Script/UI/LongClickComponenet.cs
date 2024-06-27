@@ -20,7 +20,7 @@ public class LongClickComponenet : MonoBehaviour
     private RectTransform rectTransform;
 
     public GameObject LongClickPopUpUI;
-
+    
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -39,37 +39,46 @@ public class LongClickComponenet : MonoBehaviour
 
     public void MouseUp()
     {
-        if (!isLongClick)
+        if (!isLongClick && weaponID > 0 )
         {
-            UIManager.instance.CreateCombineUI(weaponID);
-        }
+            UIManager.instance.CreateCombineUI(weaponID,true,isInventory,GetComponent<InventorySlot>().isEquiped);
+            
+            LongClickPopUpUI = UIManager.instance.longClickPopUpUI;
+            LongClickPopUpUI.SetActive(true);
+            LongClickPopUpUI.GetComponent<LongClickPopUpUi>().weaponID = weaponID;
+            
+            if (isInventory)
+            {
+                UIManager.instance.CreateInventoryDescriptionUI(weaponID);
+                InventoryManager.instance.inventorySelectUI.SetActive(true);
+                
+                LongClickPopUpUI.GetComponent<LongClickPopUpUi>()._bookmarkButton.SetActive(true);
+                LongClickPopUpUI.GetComponent<LongClickPopUpUi>()._equipButton.SetActive(true);
+                
+                InventoryManager.instance.inventorySelectUI.GetComponent<RectTransform>().position = transform.position;
+                UIManager.instance.SetActiveBlockImage(true);
+                LongClickPopUpUI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-420,162);
+            }
 
+            if (isWeaponSlot)
+            {
+                LongClickPopUpUI.GetComponent<LongClickPopUpUi>()._bookmarkButton.SetActive(false);
+                LongClickPopUpUI.GetComponent<LongClickPopUpUi>()._equipButton.SetActive(true);
+                LongClickPopUpUI.GetComponent<RectTransform>().anchoredPosition = new Vector3(88,352);
+            }
+            
+            if(!isInventory) 
+                LongClickPopUpUI.GetComponent<LongClickPopUpUi>().weaponID = transform.parent.GetComponent<WeaponSlotUI>().weaponID;
+            else
+                LongClickPopUpUI.GetComponent<LongClickPopUpUi>().inventorySlot = GetComponent<InventorySlot>();
+            
+            LongClickPopUpUI.GetComponent<LongClickPopUpUi>().SetFavoriteButtonText(isBookmarked, isInventory,isWeaponSlot);
+        }
+    
         isClicked = false;
         isLongClick = false;
         elapsedTime = 0.0f;
     }
 
-    void Update()
-    {
-        if (isClicked)
-        {
-            elapsedTime += Time.deltaTime;
-            if (longClickTime < elapsedTime)
-            {
-                isLongClick = true;
-                isNormalClick = false;
-            }
-        }
-        
-        if (isLongClick)
-        {
-            LongClickPopUpUI = UIManager.instance.longClickPopUpUI;
-            
-            LongClickPopUpUI.SetActive(true);
-            LongClickPopUpUI.GetComponent<LongClickPopUpUi>().weaponID = weaponID;
-            UIManager.instance.SetActiveBlockImage(true);
-            LongClickPopUpUI.GetComponent<RectTransform>().position = transform.position + new Vector3(5,40);
-            LongClickPopUpUI.GetComponent<LongClickPopUpUi>().SetFavoriteButtonText(isBookmarked, isInventory,isWeaponSlot);
-        }
-    }
+   
 }
