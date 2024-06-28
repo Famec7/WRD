@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3105534117469219610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7910505930557667378}
+  - component: {fileID: 1436282673005287719}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7910505930557667378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3105534117469219610}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1436282673005287719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3105534117469219610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d324b62754e93479107f0c93d357ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveNum: {fileID: 0}
+  currentMonsterNum: {fileID: 0}
+  limitMonsterNum: {fileID: 0}
+  currentWaveTime: {fileID: 0}
+  elementCnt:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  autoSkipToggle: {fileID: 0}
+  touchPos: {x: 0, y: 0, z: 0}
+  PopUpPrefabs:
+  - {fileID: 5661500982852928913, guid: 56a91730d8641d5478647e46ba5dbb9c, type: 3}
+  - {fileID: 3888809352829731799, guid: 4298f61f1e7bd9849be92b865f5337f2, type: 3}
+  inventory: {fileID: 0}
+  allShowInventoryContent: {fileID: 0}
+  normalInventoryContent: {fileID: 0}
+  backButton: {fileID: 0}
+  longClickPopUpUI: {fileID: 0}
+  WeaponSlotSelectUI: {fileID: 0}
+  elementUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _popupCanvas: {fileID: 0}
+  _blockImage: {fileID: 0}
+  missionUI: {fileID: 0}
