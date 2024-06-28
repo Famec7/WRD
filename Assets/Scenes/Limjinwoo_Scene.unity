@@ -18663,6 +18663,7 @@ MonoBehaviour:
   stayScript: {fileID: 0}
   stopScript: {fileID: 0}
   target: {fileID: 0}
+  DirToTarget: {x: 0, y: 0, z: 0}
   highlight: {fileID: 0}
   range: 0
   isWeaponStateChanged: 0
@@ -18678,6 +18679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80646c27c1a2851429df8ee67708879d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStop: 0
 --- !u!114 &1383032776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18690,6 +18692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e4ca825ccec8c4b9d4b733e9e47d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStay: 0
 --- !u!114 &1383032777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18702,6 +18705,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283cd36850d82be49b4cabd30dae2460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterFootOffset: 0.3
+  isMove: 0
 --- !u!114 &1383032778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18714,6 +18719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520eb67bb52f10446a119969aec02139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHold: 0
 --- !u!114 &1383032779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18726,6 +18732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3002765effc153442b0c7f1c578e5687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isChase: 0
 --- !u!1 &1385673460
 GameObject:
   m_ObjectHideFlags: 0
@@ -28315,15 +28322,15 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1231596138}
+  - {fileID: 889175378}
   - {fileID: 2026116724}
   - {fileID: 158548134}
   - {fileID: 1383032769}
   - {fileID: 986538562}
   - {fileID: 1371148873}
+  - {fileID: 680596023}
   - {fileID: 1994650667}
   - {fileID: 163074662}
   - {fileID: 2018091619}
-  - {fileID: 2039414998}
   - {fileID: 2065062654}
-  - {fileID: 889175378}
-  - {fileID: 680596023}
+  - {fileID: 2039414998}
