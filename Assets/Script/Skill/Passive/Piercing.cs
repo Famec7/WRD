@@ -8,7 +8,7 @@ public class Pierce : PassiveSkillBase
         {
             if(target.TryGetComponent(out Monster monster))
             {
-                monster.HasAttacked(data.values[1]);
+                monster.HasAttacked(Data.GetValue(0));
                 return true;
             }
         }

@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class Swing : PassiveSkillBase
 {
-    private int _skillDamage;
+    private float _skillDamage;
     private Vector2 _hitSize;
     
     protected override void Init()
     {
         base.Init();
         
-        _skillDamage = data.values[1];
+        _skillDamage = Data.GetValue(0);
         _hitSize = new Vector2(1f, 3f);
     }
     

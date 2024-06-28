@@ -15,14 +15,19 @@ public class PlayerController : MonoBehaviour
 
     #region Status
 
+    // 이동 속도
     [Header("Move Speed")] [SerializeField]
     private float _moveSpeed = 2f;
-
     public float MoveSpeed
     {
         get => _moveSpeed;
         private set => _moveSpeed = value;
     }
+    
+    // 현재 무기 데이터
+    [SerializeField]
+    private WeaponBase _currentWeapon;
+    public WeaponBase CurrentWeapon => _currentWeapon;
 
     #endregion
 
@@ -59,10 +64,11 @@ public class PlayerController : MonoBehaviour
     public GameObject Target
     {
         get => _target;
-        private set
+        set
         {
             _target = value;
             _targetUI.Target = value != null ? value.transform : null;
+            ChangeState(State.CHASE);
         }
     }
 
@@ -91,8 +97,8 @@ public class PlayerController : MonoBehaviour
             case State.IDLE:
                 break;
             case State.CHASE:
-                if (IsTargetNullOrInactive() || !IsTargetInRange())
-                    ChangeState(State.IDLE);
+                /*if (IsTargetNullOrInactive() || !IsTargetInRange())
+                    ChangeState(State.IDLE);*/
                 break;
             case State.MOVE:
                 if (IsPlayerAtTouchPos())
@@ -110,6 +116,7 @@ public class PlayerController : MonoBehaviour
 
     private void ChangeState(State state)
     {
+        Debug.Log($"Change State : {_currentState} -> {state}");
         _currentState = state;
 
         switch (state)
@@ -149,7 +156,6 @@ public class PlayerController : MonoBehaviour
             if (col && (col.CompareTag("Monster") || col.CompareTag("Boss") || col.CompareTag("Mission")))
             {
                 Target = col.gameObject;
-                ChangeState(State.CHASE);
             }
             else
             {
@@ -179,8 +185,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsTargetInRange()
     {
-        // Todo: Change this to a more appropriate value 무기 사거리로 바꾸기
-        return Vector3.Distance(transform.position, Target.transform.position) < 5.0f;
+        return Vector3.Distance(transform.position, Target.transform.position) < CurrentWeapon.Data.attackRange;
     }
 
     #endregion

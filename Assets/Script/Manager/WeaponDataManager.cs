@@ -50,6 +50,8 @@ public class WeaponDataManager : MonoBehaviour
             Data[i].mainCombi = (csvData[i]["comb1"].ToString());
             //Data[i].description = (csvData[i]["description"].ToString());
         }
+        
+        _weaponDatabase = ResourceManager.Instance.Load<WeaponDatabase>("Database/WeaponDatabase");
     }
 
     private void Start()

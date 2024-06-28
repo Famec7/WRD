@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WeaponDatabase", menuName = "Scriptable Object/WeaponDatabase", order = 1)]
@@ -26,6 +27,8 @@ public class WeaponDatabase : ScriptableObject
             weaponData.attackRange = float.Parse(csvData[i]["range"].ToString());
             weaponData.combi = (csvData[i]["combi"].ToString());
             weaponData.mainCombi = (csvData[i]["comb1"].ToString());
+            
+            _weaponDataList.Add(weaponData);
         }
     }
     
@@ -46,12 +49,14 @@ public class WeaponDatabase : ScriptableObject
     {
         foreach (var data in _weaponDataList)
         {
-            if (data.weaponName == weaponName)
+            // 대소문자, 공백 없이 비교
+            if (string.Compare(data.weaponName.Replace(" ", "").ToLower(), weaponName.Replace(" ", "").ToLower(), StringComparison.Ordinal) == 0)
             {
                 return data;
             }
         }
 
+        Debug.LogError($"WeaponData {weaponName} is not found");
         return null;
     }
 }

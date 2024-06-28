@@ -15,7 +15,7 @@ public class Thrust : PassiveSkillBase
             {
                 if (tar.TryGetComponent(out Monster monster))
                 {
-                    monster.HasAttacked(data.values[1]);
+                    monster.HasAttacked(Data.GetValue(0));
                     //Todo : 이펙트 추가
                 }
             }

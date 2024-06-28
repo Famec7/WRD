@@ -49,6 +49,7 @@ public abstract class WeaponBase : MonoBehaviour
     {
         _data = WeaponDataManager.instance.GetWeaponData(GetType().Name);
         attackDelay = new WaitForSeconds(_data.attackSpeed);
+        this.gameObject.SetActive(false);
     }
 
     /// <summary>

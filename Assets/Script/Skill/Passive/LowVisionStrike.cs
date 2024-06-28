@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VisionStrike : PassiveSkillBase
+public class LowVisionStrike : PassiveSkillBase
 {
     public override bool Activate(GameObject target = null)
     {

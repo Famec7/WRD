@@ -1,4 +1,7 @@
-﻿public class IdleState : ControlState
+﻿using System.Linq;
+using UnityEngine;
+
+public class IdleState : ControlState
 {
     public override void Enter(PlayerController entity)
     {
@@ -7,7 +10,17 @@
 
     public override void Execute(PlayerController entity)
     {
-        ;
+        var colliders = RangeDetectionUtility.GetAttackTargets(entity.transform.position, Vector2.zero, entity.CurrentWeapon.Data.attackRange);
+        
+        foreach (var collider in colliders.Where(collider => collider.CompareTag("Monster") || collider.CompareTag("Boss") || collider.CompareTag("Mission")))
+        {
+            // 가장 가까운 적을 타겟으로 설정
+            if (entity.Target == null)
+                entity.Target = collider.transform.gameObject;
+            else if (Vector3.Distance(entity.transform.position, entity.Target.transform.position) >
+                     Vector3.Distance(entity.transform.position, collider.transform.position))
+                entity.Target = collider.transform.gameObject;
+        }
     }
 
     public override void Exit(PlayerController entity)

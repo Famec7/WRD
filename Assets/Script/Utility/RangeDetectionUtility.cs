@@ -6,7 +6,7 @@ using UnityEngine;
 public static class RangeDetectionUtility
 {
     /// <summary>
-    /// 무기 공격 범위 내의 적 탐지 (부채꼴 모양)
+    /// 무기 공격 범위 내의 적 탐지 (원, 부채꼴 모양)
     /// <param name="position"> 탐지 범위 중심 </param>
     /// <param name="direction"> 탐지 범위 방향 </param>
     /// <param name="radius"> 반지름 </param>

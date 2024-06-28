@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class PassiveSkillBase : SkillBase
 {
-    [HideInInspector] public PassiveSkillData data;
+    private PassiveSkillData _data;
+    public PassiveSkillData Data => _data;
 
     private void Awake()
     {
@@ -13,7 +14,7 @@ public abstract class PassiveSkillBase : SkillBase
 
     protected virtual bool CheckTrigger()
     {
-        return Random.Range(0, 100) <= data.values[0];
+        return Random.Range(0, 100) <= _data.Chance;
     }
 
     /// <summary>
@@ -25,6 +26,6 @@ public abstract class PassiveSkillBase : SkillBase
     protected override void Init()
     {
         base.Init();
-        data = SkillDataManager.Instance.GetPassiveSkillData(GetType().Name);
+        _data = SkillDataManager.Instance.GetPassiveSkillData(GetType().Name);
     }
 }
