@@ -18,15 +18,15 @@ public class PlayerController : MonoBehaviour
     // 이동 속도
     [Header("Move Speed")] [SerializeField]
     private float _moveSpeed = 2f;
+
     public float MoveSpeed
     {
         get => _moveSpeed;
         private set => _moveSpeed = value;
     }
-    
+
     // 현재 무기 데이터
-    [SerializeField]
-    private WeaponBase _currentWeapon;
+    [SerializeField] private WeaponBase _currentWeapon;
     public WeaponBase CurrentWeapon => _currentWeapon;
 
     #endregion
@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
     #region Target
 
     private GameObject _target;
+
     public GameObject Target
     {
         get => _target;
@@ -116,7 +117,9 @@ public class PlayerController : MonoBehaviour
 
     private void ChangeState(State state)
     {
+#if FSM_DEBUG
         Debug.Log($"Change State : {_currentState} -> {state}");
+#endif
         _currentState = state;
 
         switch (state)
