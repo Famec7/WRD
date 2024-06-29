@@ -10,7 +10,6 @@ public class MeleeWeapon : WeaponBase
         if (target is null)
             return;
         
-        Debug.Log("MeleeWeapon Attack");
         if (passiveSkill.Activate())
             return;
         

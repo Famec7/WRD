@@ -1,45 +1,20 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CharacterController
 {
+    /***********************Variables*****************************/
     private FSM<PlayerController> _fsm;
 
-    private Vector3 _moveDir;
     public Vector3 TouchPos { get; private set; }
 
     private Camera _mainCam;
 
-    /***********************Variables*****************************/
-
-    #region Status
-
-    // 이동 속도
-    [Header("Move Speed")] [SerializeField]
-    private float _moveSpeed = 2f;
-
-    public float MoveSpeed
-    {
-        get => _moveSpeed;
-        private set => _moveSpeed = value;
-    }
-
-    // 현재 무기 데이터
-    [SerializeField] private WeaponBase _currentWeapon;
-    public WeaponBase CurrentWeapon => _currentWeapon;
-
-    #endregion
-
-    #region Components
-
-    private SpriteRenderer _spriteRenderer;
-
-    #endregion
-
     #region State
 
-    private enum State
+    protected enum State
     {
         IDLE,
         CHASE,
@@ -47,7 +22,12 @@ public class PlayerController : MonoBehaviour
         HOLD,
     }
 
-    private State _currentState;
+    protected State currentState;
+
+    private readonly IdleState _idleState = new();
+    private readonly ChaseState _chaseState = new();
+    private readonly MoveState _moveState = new();
+    private readonly HoldState _holdState = new();
 
     #endregion
 
@@ -60,29 +40,26 @@ public class PlayerController : MonoBehaviour
 
     #region Target
 
-    private GameObject _target;
-
-    public GameObject Target
+    public override GameObject Target
     {
-        get => _target;
+        get => base.Target;
         set
         {
-            _target = value;
-            _targetUI.Target = value != null ? value.transform : null;
+            base.Target = value;
+
+            if(value == null || !value.activeSelf)
+                return;
+            
             ChangeState(State.CHASE);
+            _targetUI.Target = value.transform;
         }
     }
 
-    /****Target UI****/
     [Header("Target UI")] [SerializeField] private TargetUI _targetUI;
 
     #endregion
 
-    private void Awake()
-    {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
+    /***********************Method*****************************/
     private void Start()
     {
         _fsm = new FSM<PlayerController>(this);
@@ -93,13 +70,13 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        switch (_currentState)
+        switch (currentState)
         {
             case State.IDLE:
                 break;
             case State.CHASE:
-                /*if (IsTargetNullOrInactive() || !IsTargetInRange())
-                    ChangeState(State.IDLE);*/
+                if (IsTargetNullOrInactive())
+                    ChangeState(State.IDLE);
                 break;
             case State.MOVE:
                 if (IsPlayerAtTouchPos())
@@ -115,31 +92,6 @@ public class PlayerController : MonoBehaviour
         OnClickMove();
     }
 
-    private void ChangeState(State state)
-    {
-#if FSM_DEBUG
-        Debug.Log($"Change State : {_currentState} -> {state}");
-#endif
-        _currentState = state;
-
-        switch (state)
-        {
-            case State.IDLE:
-                _fsm.ChangeState(new IdleState());
-                break;
-            case State.CHASE:
-                _fsm.ChangeState(new ChaseState());
-                break;
-            case State.MOVE:
-                _fsm.ChangeState(new MoveState());
-                break;
-            case State.HOLD:
-                _fsm.ChangeState(new HoldState());
-                break;
-            default:
-                break;
-        }
-    }
 
     private void OnClickMove()
     {
@@ -151,8 +103,7 @@ public class PlayerController : MonoBehaviour
             pos.z = 0f;
             TouchPos = pos;
 
-            _moveDir = (TouchPos - transform.position).normalized;
-            _spriteRenderer.flipX = !(_moveDir.x > 0);
+            Data.MoveDir = (TouchPos - transform.position).normalized;
 
             Collider2D col = Physics2D.OverlapPoint(TouchPos);
             // 몬스터 클릭 시 추적
@@ -165,6 +116,31 @@ public class PlayerController : MonoBehaviour
                 Target = null;
                 ChangeState(State.MOVE);
             }
+        }
+    }
+
+    private void ChangeState(State state)
+    {
+#if FSM_DEBUG
+        Debug.Log($"Change State : {_currentState} -> {state}");
+#endif
+        switch (state)
+        {
+            case State.IDLE:
+                _fsm.ChangeState(_idleState);
+                break;
+            case State.CHASE:
+                _fsm.ChangeState(_chaseState);
+                break;
+            case State.MOVE:
+                _fsm.ChangeState(_moveState);
+                break;
+            case State.HOLD:
+                _fsm.ChangeState(_holdState);
+                break;
+            default:
+                Debug.LogError($"{state} is not exist in {nameof(State)}");
+                break;
         }
     }
 
@@ -188,7 +164,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsTargetInRange()
     {
-        return Vector3.Distance(transform.position, Target.transform.position) < CurrentWeapon.Data.attackRange;
+        return Vector3.Distance(transform.position, Target.transform.position) < Data.CurrentWeapon.Data.attackRange;
     }
 
     #endregion

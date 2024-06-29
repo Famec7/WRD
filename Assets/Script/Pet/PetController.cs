@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class PetController : MonoBehaviour
+public class PetController : CharacterController
 {
+    
 }
