@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
-public class PlayerController : CharacterController
+public class PlayerController : CharacterController, ISubject
 {
     /***********************Variables*****************************/
     private FSM<PlayerController> _fsm;
@@ -14,7 +15,7 @@ public class PlayerController : CharacterController
 
     #region State
 
-    protected enum State
+    public enum State
     {
         IDLE,
         CHASE,
@@ -23,6 +24,7 @@ public class PlayerController : CharacterController
     }
 
     protected State currentState;
+    public State CurrentState => currentState;
 
     private readonly IdleState _idleState = new();
     private readonly ChaseState _chaseState = new();
@@ -47,11 +49,13 @@ public class PlayerController : CharacterController
         {
             base.Target = value;
 
-            if(value == null || !value.activeSelf)
+            if (value == null || !value.activeSelf)
                 return;
-            
+
+            // 상태를 추적으로 변경후 UI에 타겟을 전달 그리고 옵저버에게 알림
             ChangeState(State.CHASE);
             _targetUI.Target = value.transform;
+            Notify();
         }
     }
 
@@ -103,7 +107,7 @@ public class PlayerController : CharacterController
             pos.z = 0f;
             TouchPos = pos;
 
-            Data.MoveDir = (TouchPos - transform.position).normalized;
+            MoveDir = (TouchPos - transform.position).normalized;
 
             Collider2D col = Physics2D.OverlapPoint(TouchPos);
             // 몬스터 클릭 시 추적
@@ -142,6 +146,8 @@ public class PlayerController : CharacterController
                 Debug.LogError($"{state} is not exist in {nameof(State)}");
                 break;
         }
+        
+        Notify();
     }
 
     /******************************bool Method******************************************/
@@ -165,6 +171,34 @@ public class PlayerController : CharacterController
     private bool IsTargetInRange()
     {
         return Vector3.Distance(transform.position, Target.transform.position) < Data.CurrentWeapon.Data.attackRange;
+    }
+
+    #endregion
+
+    /******************************Observer******************************************/
+    #region Observer
+
+    private readonly List<IObserver> _observers = new();
+
+    public void AddObserver(IObserver observer)
+    {
+        _observers.Add(observer);
+    }
+
+    public void RemoveObserver(IObserver observer)
+    {
+        if (_observers.Contains(observer))
+            _observers.Remove(observer);
+        else
+            Debug.LogError($"{observer} is not exist in {_observers}");
+    }
+
+    public void Notify()
+    {
+        foreach (var observer in _observers)
+        {
+            observer.OnNotify();
+        }
     }
 
     #endregion
