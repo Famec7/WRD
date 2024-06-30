@@ -19,6 +19,6 @@ public class ChaseState : IState<PlayerController>
 
     public void Exit(PlayerController entity)
     {
-        ;
+        entity.Target = null;
     }
 }

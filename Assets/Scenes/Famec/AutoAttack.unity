@@ -332,6 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efea78c8367c4a84967944d1a5566244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   passiveSkill: {fileID: 553746780}
   activeSkill: {fileID: 0}
 --- !u!1 &158548131
@@ -433,7 +434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   weaponBase: {fileID: 0}
-  ownerTransform: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!4 &386709247
 Transform:
   m_ObjectHideFlags: 0
@@ -688,7 +689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Thrust
   weaponBase: {fileID: 0}
-  ownerTransform: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!1 &636461296
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,7 +706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &636461297
 Transform:
   m_ObjectHideFlags: 0
@@ -735,7 +736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Swing
   weaponBase: {fileID: 0}
-  ownerTransform: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!114 &643565130 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3777330873912263473, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
@@ -1157,7 +1158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   weaponBase: {fileID: 0}
-  ownerTransform: {fileID: 0}
+  owner: {fileID: 0}
 --- !u!1 &1387734084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,6 +1204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4846d9a5f824aa6ac1e46df3e5e07a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 4968344058892174480}
   passiveSkill: {fileID: 636461298}
   activeSkill: {fileID: 0}
 --- !u!114 &1439575406 stripped
@@ -1261,6 +1263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8553798bc1ac4c3e9e5adf77fa0d8834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   passiveSkill: {fileID: 386709246}
   activeSkill: {fileID: 0}
 --- !u!114 &1735844244 stripped

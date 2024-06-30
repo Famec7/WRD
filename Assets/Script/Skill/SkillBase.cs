@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class SkillBase : MonoBehaviour
 {
@@ -10,13 +11,13 @@ public abstract class SkillBase : MonoBehaviour
     [HideInInspector]
     public WeaponBase weaponBase;
     
-    // 스킬을 장착한 플레이어 또는 펫의 위치
+    // 스킬을 장착한 플레이어 또는 펫
     [SerializeField]
-    protected Transform ownerTransform;
-    public void SetOwnerTransform(Transform ownerTransform)
+    protected CharacterController owner;
+    public void SetOwner(CharacterController owner)
     {
-        this.ownerTransform = ownerTransform;
-        this.transform.SetParent(ownerTransform);
+        this.owner = owner;
+        this.transform.SetParent(owner.gameObject.transform);
     }
     
     protected virtual void Init()

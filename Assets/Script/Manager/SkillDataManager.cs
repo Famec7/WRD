@@ -8,8 +8,8 @@
         activeDataBase = ResourceManager.Instance.Load<ActiveSkillDataBase>("Database/Skill/ActiveSkillDataBase");
     }
     
-    public PassiveSkillData GetPassiveSkillData(string name)
+    public PassiveSkillData GetPassiveSkillData(string skillName)
     {
-        return passiveDataBase.GetPassiveSkillData(name);
+        return passiveDataBase.GetPassiveSkillData(skillName);
     }
 }

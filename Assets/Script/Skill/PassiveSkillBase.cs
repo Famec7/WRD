@@ -14,6 +14,14 @@ public abstract class PassiveSkillBase : SkillBase
 
     protected virtual bool CheckTrigger()
     {
+#if PASSIVE_SKILL_DEBUG
+        Debug.Log($"{GetType().Name} 발동 확률: {_data.Chance}");
+        if (Random.Range(0, 100) <= _data.Chance)
+        {
+            Debug.Log($"{GetType().Name} 발동");
+            return true;
+        }
+#endif
         return Random.Range(0, 100) <= _data.Chance;
     }
 

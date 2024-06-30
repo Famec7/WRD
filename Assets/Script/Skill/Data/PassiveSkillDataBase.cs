@@ -26,7 +26,7 @@ public class PassiveSkillDataBase : ScriptableObject
                     Name = (data["skill_name"].ToString()),
                     Chance = int.Parse(data["skill_chance"].ToString())
                 };
-
+                
                 var values = data["skill_value"].ToString().Split(',');
                 foreach (var value in values)
                 {

@@ -50,11 +50,16 @@ public class PlayerController : CharacterController, ISubject
             base.Target = value;
 
             if (value == null || !value.activeSelf)
+            {
+                _targetUI.gameObject.SetActive(false);
                 return;
+            }
 
             // 상태를 추적으로 변경후 UI에 타겟을 전달 그리고 옵저버에게 알림
             ChangeState(State.CHASE);
+            
             _targetUI.Target = value.transform;
+            _targetUI.gameObject.SetActive(true);
             Notify();
         }
     }

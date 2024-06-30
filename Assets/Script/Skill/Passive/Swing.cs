@@ -18,12 +18,11 @@ public class Swing : PassiveSkillBase
     {
         if (!CheckTrigger()) return false;
         
-        Vector3 dir = PlayerManager.instance.DirToTarget;
+        Vector3 dir = owner.Target.transform.position - owner.transform.position;
         if (dir == Vector3.zero)
             return false;
-            
-        Debug.Log("Swing Activate");
-        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(ownerTransform.position, _hitSize, dir);
+        
+        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(owner.transform.position, _hitSize, dir);
 
         foreach (var tar in targets)
         {

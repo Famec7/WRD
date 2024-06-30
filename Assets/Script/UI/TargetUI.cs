@@ -3,21 +3,13 @@ using UnityEngine;
 
 public class TargetUI : MonoBehaviour
 {
-    private Transform _target;
-
-    public Transform Target
-    {
-        get => _target;
-        set
-        {
-            _target = value;
-            this.gameObject.SetActive(value != null);
-        }
-    }
+    public Transform Target { get; set; }
 
     private void Update()
     {
-        if (_target != null)
+        if (Target != null)
             this.transform.position = Target.position;
+        if (Target.gameObject.activeSelf is false)
+            this.gameObject.SetActive(false);
     }
 }

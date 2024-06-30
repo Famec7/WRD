@@ -13,7 +13,7 @@ public class SkillData
     {
         if (index < 0 || index >= _values.Count)
         {
-            Debug.LogError("Index out of range");
+            Debug.LogError($"{Name}'s {index} is out of range");
         }
         
         return _values[index];
