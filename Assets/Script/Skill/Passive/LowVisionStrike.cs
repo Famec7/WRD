@@ -8,23 +8,21 @@ public class LowVisionStrike : PassiveSkillBase
     {
         if (target is null)
             return false;
+
+        if (!CheckTrigger()) return false;
         
-        if (CheckTrigger())
+        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(target.transform.position,
+            new Vector2(1f, 1f), targetLayer);
+
+        foreach (var tar in targets)
         {
-            List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(target.transform.position,
-                new Vector2(1f, 1f));
-
-            foreach (var tar in targets)
+            if (tar.TryGetComponent(out Status status))
             {
-                if (tar.TryGetComponent(out Status status))
-                {
-                    StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(tar.gameObject, 0f, 0.3f));
-                }
+                StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(tar.gameObject, 0f, 0.3f));
             }
-
-            return true;
         }
 
-        return false;
+        return true;
+
     }
 }

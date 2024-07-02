@@ -9,7 +9,7 @@ public class Thrust : PassiveSkillBase
         {
             Vector3 dir = owner.Target.transform.position - owner.transform.position;
             List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(owner.transform.position,
-                new Vector2(3f, 1f), dir);
+                new Vector2(3f, 1f), dir, targetLayer);
 
             foreach (var tar in targets)
             {

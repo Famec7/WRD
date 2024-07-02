@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class WeaponBase : MonoBehaviour
+public abstract class WeaponBase : MonoBehaviour, IObserver
 {
     #region private variable
 
@@ -70,11 +70,10 @@ public abstract class WeaponBase : MonoBehaviour
         if (IsTargetNullOrNotInRange())
             return;
 
-        if (IsPassiveSkillNull)
-        {
-            if (passiveSkill.Activate())
-                return;
-        }
+        if (IsPassiveSkillNull) return;
+        
+        if (passiveSkill.Activate(owner.Target))
+            return;
     }
 
     /// <summary>
@@ -110,5 +109,11 @@ public abstract class WeaponBase : MonoBehaviour
     {
         return owner.Target is null || Vector3.Distance(owner.Target.transform.position, owner.transform.position) >
             Data.attackRange;
+    }
+
+    public void OnNotify()
+    {
+        if(owner.Target is not null)
+            StartCoroutine(CoroutineAttack());
     }
 }

@@ -53,22 +53,22 @@ public abstract class CharacterController : MonoBehaviour
     public void FindNearestTarget()
     {
         var colliders = RangeDetectionUtility.GetAttackTargets(transform.position, Vector2.zero,
-            Data.CurrentWeapon.Data.attackRange, LayerMask.GetMask("Monster", "Boss", "Mission"));
+            Data.CurrentWeapon.Data.attackRange, default, LayerMask.GetMask("Monster", "Boss", "Mission"));
 
         if(colliders is null)
             return;
         
-        foreach (var collider in colliders)
+        foreach (var col in colliders)
         {
-            var distanceFromEntityToCollider = Vector3.Distance(transform.position, collider.transform.position);
+            var distanceFromEntityToCollider = Vector3.Distance(transform.position, col.transform.position);
             var distanceFromEntityToTarget =
                 Target == null ? 0.0f : Vector3.Distance(transform.position, Target.transform.position);
 
             // 가장 가까운 적을 타겟으로 설정
             if (Target == null)
-                Target = collider.transform.gameObject;
+                Target = col.transform.gameObject;
             else if (distanceFromEntityToCollider < distanceFromEntityToTarget)
-                Target = collider.transform.gameObject;
+                Target = col.transform.gameObject;
         }
     }
 }

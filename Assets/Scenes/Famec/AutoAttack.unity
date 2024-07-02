@@ -297,6 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 139062259}
   - component: {fileID: 139062260}
+  - component: {fileID: 139062261}
   m_Layer: 0
   m_Name: IronSpear
   m_TagString: Untagged
@@ -316,8 +317,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 386709247}
+  m_Children: []
   m_Father: {fileID: 553569202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &139062260
@@ -333,8 +333,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  passiveSkill: {fileID: 553746780}
+  passiveSkill: {fileID: 139062261}
   activeSkill: {fileID: 0}
+--- !u!114 &139062261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139062258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3a70ccd57814fab91095efdd49392df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  weaponBase: {fileID: 0}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  owner: {fileID: 0}
 --- !u!1 &158548131
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,53 +420,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &386709245
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 386709247}
-  - component: {fileID: 386709246}
-  m_Layer: 0
-  m_Name: Pierce
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &386709246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386709245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3a70ccd57814fab91095efdd49392df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  weaponBase: {fileID: 0}
-  owner: {fileID: 0}
---- !u!4 &386709247
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386709245}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 139062259}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &454837058 stripped
 MonoBehaviour:
@@ -640,56 +611,10 @@ Transform:
   m_Children:
   - {fileID: 139062259}
   - {fileID: 1674747815}
+  - {fileID: 1339518911}
   - {fileID: 825609724}
   m_Father: {fileID: 529245000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &553746778
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 553746779}
-  - component: {fileID: 553746780}
-  m_Layer: 0
-  m_Name: Thrust
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &553746779
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553746778}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1674747815}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &553746780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553746778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a9def45197442459aafe4cdb97887e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: Thrust
-  weaponBase: {fileID: 0}
-  owner: {fileID: 0}
 --- !u!114 &643565130 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3777330873912263473, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
@@ -711,6 +636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 825609724}
   - component: {fileID: 825609725}
+  - component: {fileID: 825609726}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -730,8 +656,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1339518911}
+  m_Children: []
   m_Father: {fileID: 553569202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &825609725
@@ -754,6 +679,24 @@ MonoBehaviour:
   hasAttacked: 0
   target: {fileID: 0}
   type: 
+--- !u!114 &825609726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825609723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9cb03cbfb74d5092ca0dc6dd428ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  weaponBase: {fileID: 0}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  owner: {fileID: 0}
 --- !u!1 &940696516 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3793811150291560224, guid: 9a5f5beed56332d418342b03f8fd041a, type: 3}
@@ -1074,7 +1017,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1339518911}
-  - component: {fileID: 1339518912}
   m_Layer: 0
   m_Name: VisionStrike
   m_TagString: Untagged
@@ -1095,23 +1037,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 825609724}
+  m_Father: {fileID: 553569202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1339518912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339518910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad9cb03cbfb74d5092ca0dc6dd428ba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  weaponBase: {fileID: 0}
-  owner: {fileID: 0}
 --- !u!1 &1387734084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,6 +1101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   weaponBase: {fileID: 0}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
   owner: {fileID: 4968344058892174480}
 --- !u!114 &1439575406 stripped
 MonoBehaviour:
@@ -1196,6 +1126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1674747815}
   - component: {fileID: 1674747816}
+  - component: {fileID: 1674747817}
   m_Layer: 0
   m_Name: CrossBow
   m_TagString: Untagged
@@ -1215,8 +1146,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 553746779}
+  m_Children: []
   m_Father: {fileID: 553569202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1674747816
@@ -1232,8 +1162,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  passiveSkill: {fileID: 386709246}
+  passiveSkill: {fileID: 1674747817}
   activeSkill: {fileID: 0}
+--- !u!114 &1674747817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674747814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9def45197442459aafe4cdb97887e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: Thrust
+  weaponBase: {fileID: 0}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  owner: {fileID: 0}
 --- !u!114 &1735844244 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 779759849995931969, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
@@ -2952,8 +2900,6 @@ GameObject:
   - component: {fileID: 565473790090392765}
   - component: {fileID: 586739097707977020}
   - component: {fileID: 4968344058892174480}
-  - component: {fileID: 4968344058892174482}
-  - component: {fileID: 4968344058892174481}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -2977,78 +2923,6 @@ MonoBehaviour:
     _moveSpeed: 2
     _currentWeapon: {fileID: 1387734086}
   _targetUI: {fileID: 5158480489665815291}
---- !u!61 &4968344058892174481
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4968344058892174479}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
-  m_EdgeRadius: 0
---- !u!50 &4968344058892174482
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4968344058892174479}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &5030863373132064546
 GameObject:
   m_ObjectHideFlags: 0

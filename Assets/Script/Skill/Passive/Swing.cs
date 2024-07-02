@@ -22,13 +22,13 @@ public class Swing : PassiveSkillBase
         if (dir == Vector3.zero)
             return false;
         
-        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(owner.transform.position, _hitSize, dir);
+        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(owner.transform.position, _hitSize, dir, targetLayer);
 
         foreach (var tar in targets)
         {
-            if (tar.TryGetComponent(out Status status) && tar.TryGetComponent(out Monster monster))
+            if (tar.TryGetComponent(out Monster monster))
             {
-                StatusEffectManager.Instance.AddStatusEffect(status, new Wound(tar.gameObject));
+                SetStatusEffect(monster, new Wound(tar.gameObject));
                 monster.HasAttacked(_skillDamage);
                 // Todo : 이펙트 추가
             }

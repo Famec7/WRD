@@ -36,4 +36,9 @@ public abstract class PassiveSkillBase : SkillBase
         base.Init();
         _data = SkillDataManager.Instance.GetPassiveSkillData(GetType().Name);
     }
+
+    protected void SetStatusEffect(Monster target, StatusEffect statusEffect)
+    {
+        StatusEffectManager.Instance.AddStatusEffect(target.status, statusEffect);
+    }
 }

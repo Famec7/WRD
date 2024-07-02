@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 4237621740357577367}
   - component: {fileID: 1632383280569964468}
   - component: {fileID: 8473728470306036902}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: CenterPoint
   m_TagString: MonsterCenter
   m_Icon: {fileID: 0}

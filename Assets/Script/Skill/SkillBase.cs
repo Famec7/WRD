@@ -10,6 +10,8 @@ public abstract class SkillBase : MonoBehaviour
     
     [HideInInspector]
     public WeaponBase weaponBase;
+
+    [SerializeField] protected LayerMask targetLayer;
     
     // 스킬을 장착한 플레이어 또는 펫
     [SerializeField]
@@ -23,5 +25,6 @@ public abstract class SkillBase : MonoBehaviour
     protected virtual void Init()
     {
         skillName = GetType().Name;
+        targetLayer = LayerMask.GetMask("Monster");
     }
 }
