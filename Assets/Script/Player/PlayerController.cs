@@ -23,8 +23,7 @@ public class PlayerController : CharacterController, ISubject
         HOLD,
     }
 
-    protected State currentState;
-    public State CurrentState => currentState;
+    public State CurrentState { get; private set; }
 
     private readonly IdleState _idleState = new();
     private readonly ChaseState _chaseState = new();
@@ -36,7 +35,7 @@ public class PlayerController : CharacterController, ISubject
     #region Offset
 
     private const float _characterFootOffset = 0.3f;
-    private const float _distanceThreshold = 0.05f;
+    private const float _distanceThreshold = 0.07f;
 
     #endregion
 
@@ -79,7 +78,7 @@ public class PlayerController : CharacterController, ISubject
 
     private void Update()
     {
-        switch (currentState)
+        switch (CurrentState)
         {
             case State.IDLE:
                 break;
@@ -131,8 +130,10 @@ public class PlayerController : CharacterController, ISubject
     private void ChangeState(State state)
     {
 #if FSM_DEBUG
-        Debug.Log($"Change State : {_currentState} -> {state}");
+        Debug.Log($"Change State : {CurrentState} -> {state}");
 #endif
+        
+        CurrentState = state;
         switch (state)
         {
             case State.IDLE:
@@ -168,14 +169,14 @@ public class PlayerController : CharacterController, ISubject
         return Vector3.Distance(transform.position, TouchPos) < _distanceThreshold;
     }
 
-    private bool IsTargetNullOrInactive()
+    public bool IsTargetNullOrInactive()
     {
         return Target == null || !Target.activeSelf;
     }
 
-    private bool IsTargetInRange()
+    public bool IsTargetInRange()
     {
-        return Vector3.Distance(transform.position, Target.transform.position) < Data.CurrentWeapon.Data.attackRange;
+        return Vector3.Distance(transform.position, Target.transform.position) <= Data.CurrentWeapon.Data.attackRange;
     }
 
     #endregion

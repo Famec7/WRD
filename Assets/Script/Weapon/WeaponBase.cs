@@ -22,8 +22,8 @@ public abstract class WeaponBase : MonoBehaviour
 
     # region Skill
 
-    [Header("Passive Skill")] public PassiveSkillBase passiveSkill;
-    [Header("Active Skill")] public GameObject activeSkill; // 임시로 GameObject로 선언, 추후 스킬 구현 시 변경 필요
+    [Header("Passive Skill")] public PassiveSkillBase passiveSkill = null;
+    [Header("Active Skill")] public GameObject activeSkill = null; // 임시로 GameObject로 선언, 추후 스킬 구현 시 변경 필요
 
     public bool IsPassiveSkillNull => passiveSkill == null;
     public bool IsActiveSkillNull => activeSkill == null;
@@ -45,7 +45,7 @@ public abstract class WeaponBase : MonoBehaviour
 
     private void Update()
     {
-        if (_isAttack is false)
+        if (_isAttack is false && !IsTargetNullOrNotInRange())
             StartCoroutine(CoroutineAttack());
     }
 
@@ -94,6 +94,8 @@ public abstract class WeaponBase : MonoBehaviour
     public void DetachWeapon()
     {
         // 무기 해제
+        this.owner = null;
+        _isAttack = false;
     }
 
     private IEnumerator CoroutineAttack()
@@ -104,7 +106,7 @@ public abstract class WeaponBase : MonoBehaviour
         _isAttack = false;
     }
 
-    public bool IsTargetNullOrNotInRange()
+    private bool IsTargetNullOrNotInRange()
     {
         return owner.Target is null || Vector3.Distance(owner.Target.transform.position, owner.transform.position) >
             Data.attackRange;

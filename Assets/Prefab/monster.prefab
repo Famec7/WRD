@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6432071037866064084}
   - component: {fileID: 7244248914210091522}
   - component: {fileID: 4455428403941024235}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: monster
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -189,6 +189,8 @@ MonoBehaviour:
   resist: 0
   defense: 0
   monsterName: 
+  woundStack: 0
+  markStack: 0
 --- !u!50 &4455428403941024235
 Rigidbody2D:
   serializedVersion: 4
@@ -227,7 +229,7 @@ GameObject:
   - component: {fileID: 4237621740357577367}
   - component: {fileID: 1632383280569964468}
   - component: {fileID: 8473728470306036902}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CenterPoint
   m_TagString: MonsterCenter
   m_Icon: {fileID: 0}

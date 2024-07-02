@@ -52,6 +52,7 @@ public class WeaponDataManager : MonoBehaviour
         }
         
         _weaponDatabase = ResourceManager.Instance.Load<WeaponDatabase>("Database/WeaponDatabase");
+        _weaponDatabase.Load();
     }
 
     private void Start()

@@ -23,9 +23,5 @@ public abstract class SkillBase : MonoBehaviour
     protected virtual void Init()
     {
         skillName = GetType().Name;
-        if (TryGetComponent(out weaponBase))
-        {
-            ;
-        }
     }
 }

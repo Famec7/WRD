@@ -19,15 +19,16 @@ public class PassiveSkillDataBase : ScriptableObject
         foreach (var data in csvData)
         {
             // 패시브 스킬
-            if (String.Compare(data["skill_type_1"].ToString(), "p", StringComparison.Ordinal) == 0)
+            if (string.Compare(data["skill_type_1"].ToString(), "p", StringComparison.Ordinal) == 0)
             {
                 PassiveSkillData passiveSkillData = new PassiveSkillData
                 {
                     Name = (data["skill_name"].ToString()),
                     Chance = int.Parse(data["skill_chance"].ToString())
                 };
-                
+
                 var values = data["skill_value"].ToString().Split(',');
+                
                 foreach (var value in values)
                 {
                     if (float.TryParse(value, out var result))
@@ -36,7 +37,7 @@ public class PassiveSkillDataBase : ScriptableObject
                     }
                     else
                     {
-                        Debug.LogError( $"{passiveSkillData.Name } { value } can't parse" );
+                        Debug.LogError($"{passiveSkillData.Name} {value} can't parse");
                     }
                 }
 
@@ -51,7 +52,7 @@ public class PassiveSkillDataBase : ScriptableObject
                 };
 
                 var values = data["skill_value"].ToString().Split(',');
-                
+
                 foreach (var value in values)
                 {
                     if (float.TryParse(value, out var result))
@@ -60,7 +61,7 @@ public class PassiveSkillDataBase : ScriptableObject
                     }
                     else
                     {
-                        Debug.LogError( $"{passiveAuraSkillData.Name } { value } can't parse" );
+                        Debug.LogError($"{passiveAuraSkillData.Name} {value} can't parse");
                     }
                 }
 

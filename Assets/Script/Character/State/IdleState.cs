@@ -5,7 +5,7 @@ public class IdleState : IState<PlayerController>
 {
     public void Enter(PlayerController entity)
     {
-        ;
+        entity.Target = null;
     }
 
     public void Execute(PlayerController entity)

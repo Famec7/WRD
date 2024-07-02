@@ -22,7 +22,7 @@ public class ActiveSkillDataBase : ScriptableObject
             var values = data["skill_value"].ToString().Split(',');
             foreach (var value in values)
             {
-                if(int.TryParse(value, out var result))
+                if(float.TryParse(value, out var result))
                 {
                     activeSkillData.AddValue(result);
                 }

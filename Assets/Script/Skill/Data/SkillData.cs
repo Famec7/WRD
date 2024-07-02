@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class SkillData
 {
-    private readonly List<float> _values = new();
+    private List<float> _values = new();
 
     public string Name { get; set; }
 
