@@ -131,6 +131,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 938181490769147599, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: parentTransform
+      value: 
+      objectReference: {fileID: 1109643351}
+    - target: {fileID: 1498652523391941501, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: parentTransform
+      value: 
+      objectReference: {fileID: 1109643351}
     - target: {fileID: 1743793772114758584, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: m_Name
       value: Managers
@@ -179,6 +187,10 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 940696516}
+    - target: {fileID: 6650071735411779139, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: parentTransform
+      value: 
+      objectReference: {fileID: 1109643351}
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: waveNum
       value: 
@@ -780,6 +792,11 @@ GameObject:
 --- !u!1 &1109643350 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5281567204712675553, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+  m_PrefabInstance: {fileID: 1109643346}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1109643351 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7584946276397718611, guid: 1485981702313414aa36d998bb951cc0, type: 3}
   m_PrefabInstance: {fileID: 1109643346}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1137448534 stripped
