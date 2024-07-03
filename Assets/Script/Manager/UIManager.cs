@@ -85,7 +85,8 @@ public class UIManager : MonoBehaviour
         if (Mathf.Abs(touchPos.x - Input.mousePosition.x) >= 20 || Mathf.Abs(touchPos.y - Input.mousePosition.y) >= 20) return;
         //if (inventory.activeSelf) return;
         if (descriptionPopUpUIStack.Count > 0) return;
-        
+        Debug.Log("여기");
+
         CloseCombinePopUpUI();
         GameObject combineUI = WeaponCombinationUIGenerator.Instance.combineWeaponUIList[weaponID - 1];
         combineUI.GetComponent<CombinePopUpUI>().ChangeInventoryMode(isInventory);
