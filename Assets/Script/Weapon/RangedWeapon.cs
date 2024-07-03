@@ -7,6 +7,5 @@ public abstract class RangedWeapon : WeaponBase
     {
         base.Attack();
         //Todo: Add attack animation and effect
-        //Todo: Add bullet
     }
 }

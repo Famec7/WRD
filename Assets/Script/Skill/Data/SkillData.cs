@@ -8,6 +8,8 @@ public class SkillData
     private List<float> _values = new();
 
     public string Name { get; set; }
+    
+    public float Range { get; set; }
 
     public float GetValue(int index)
     {
@@ -50,7 +52,7 @@ public class ActiveSkillData : SkillData
 }
 
 [Serializable]
-public class PassiveAuraSkill : SkillData
+public class PassiveAuraSkillData : SkillData
 {
     // PassiveAuraSkill은 SkillData와 동일한 구조이므로 별도의 변수 없음
 }

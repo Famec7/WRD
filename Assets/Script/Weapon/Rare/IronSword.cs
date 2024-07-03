@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class IronSword : MeleeWeapon
 {
-    
+    protected override void Attack()
+    {
+        base.Attack();
+    }
 }

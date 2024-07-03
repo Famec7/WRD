@@ -7,14 +7,14 @@ using UnityEngine;
 public class PassiveSkillDataBase : ScriptableObject
 {
     private List<PassiveSkillData> _passiveSkillDataList;
-    private List<PassiveAuraSkill> _passiveAuraSkillDataList;
+    private List<PassiveAuraSkillData> _passiveAuraSkillDataList;
 
     [ContextMenu("Load")]
     public void Load()
     {
         var csvData = CSVReader.Read("DataTable/Skill/PassiveSkillData");
         _passiveSkillDataList = new List<PassiveSkillData>(csvData.Count);
-        _passiveAuraSkillDataList = new List<PassiveAuraSkill>(csvData.Count);
+        _passiveAuraSkillDataList = new List<PassiveAuraSkillData>(csvData.Count);
 
         foreach (var data in csvData)
         {
@@ -24,14 +24,23 @@ public class PassiveSkillDataBase : ScriptableObject
                 PassiveSkillData passiveSkillData = new PassiveSkillData
                 {
                     Name = (data["skill_name"].ToString()),
-                    Chance = int.Parse(data["skill_chance"].ToString())
+                    Chance = int.Parse(data["skill_chance"].ToString()),
                 };
+                
+                if (float.TryParse(data["range"].ToString(), out var result))
+                {
+                    passiveSkillData.Range = result;
+                }
+                else
+                {
+                    Debug.LogError($"{passiveSkillData.Name} {data["range"].ToString()} can't parse");
+                }
 
                 var values = data["skill_value"].ToString().Split(',');
-                
+
                 foreach (var value in values)
                 {
-                    if (float.TryParse(value, out var result))
+                    if (float.TryParse(value, out result))
                     {
                         passiveSkillData.AddValue(result);
                     }
@@ -46,26 +55,35 @@ public class PassiveSkillDataBase : ScriptableObject
             // 패시브 오라 스킬
             else
             {
-                PassiveAuraSkill passiveAuraSkillData = new PassiveAuraSkill
+                PassiveAuraSkillData passiveAuraSkillDataData = new PassiveAuraSkillData
                 {
                     Name = (data["skill_name"].ToString()),
                 };
+                
+                if(float.TryParse(data["range"].ToString(), out var result))
+                {
+                    passiveAuraSkillDataData.Range = result;
+                }
+                else
+                {
+                    Debug.LogError($"{passiveAuraSkillDataData.Name} {data["range"].ToString()} can't parse");
+                }
 
                 var values = data["skill_value"].ToString().Split(',');
 
                 foreach (var value in values)
                 {
-                    if (float.TryParse(value, out var result))
+                    if (float.TryParse(value, out result))
                     {
-                        passiveAuraSkillData.AddValue(result);
+                        passiveAuraSkillDataData.AddValue(result);
                     }
                     else
                     {
-                        Debug.LogError($"{passiveAuraSkillData.Name} {value} can't parse");
+                        Debug.LogError($"{passiveAuraSkillDataData.Name} {value} can't parse");
                     }
                 }
 
-                _passiveAuraSkillDataList.Add(passiveAuraSkillData);
+                _passiveAuraSkillDataList.Add(passiveAuraSkillDataData);
             }
         }
     }
@@ -80,7 +98,7 @@ public class PassiveSkillDataBase : ScriptableObject
         foreach (var data in _passiveSkillDataList)
         {
             // 대소문자, 공백 구분 없이 비교
-            if (string.Compare(data.Name, skillName, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(data.Name.Replace(" ",""), skillName, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return data;
             }
@@ -95,12 +113,12 @@ public class PassiveSkillDataBase : ScriptableObject
     /// </summary>
     /// <param name="skillName"> 스킬 이름 </param>
     /// <returns> 스킬 데이터 반환 (이름이랑 일치하는 스킬 없으면 null) </returns>
-    public PassiveAuraSkill GetPassiveAuraSkillData(string skillName)
+    public PassiveAuraSkillData GetPassiveAuraSkillData(string skillName)
     {
         foreach (var data in _passiveAuraSkillDataList)
         {
             // 대소문자, 공백 구분 없이 비교
-            if (string.Compare(data.Name, skillName, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(data.Name.Replace(" ",""), skillName, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return data;
             }

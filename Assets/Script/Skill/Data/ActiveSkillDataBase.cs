@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ActiveSkillDataBase", menuName = "Scriptable Object/Skill/ActiveSkillDataBase")]
@@ -46,7 +47,7 @@ public class ActiveSkillDataBase : ScriptableObject
     {
         foreach (var data in _activeSkillDataList)
         {
-            if (data.Name == skillName)
+            if (string.Compare(data.Name.Replace(" ",""), skillName, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return data;
             }

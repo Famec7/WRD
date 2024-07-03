@@ -15,4 +15,9 @@
     {
         return passiveDataBase.GetPassiveSkillData(skillName);
     }
+    
+    public PassiveAuraSkillData GetPassiveAuraSkillData(string skillName)
+    {
+        return passiveDataBase.GetPassiveAuraSkillData(skillName);
+    }
 }
