@@ -31,8 +31,8 @@ public class InventorySlot : MonoBehaviour
     public void CreateCombineUI()
     {
         if (weapon == null) return;
-        UIManager.instance.CreateCombineUI(weapon.data.id);
-        UIManager.instance.CreateInventoryDescriptionUI(weapon.data.id);
+        UIManager.instance.CreateCombineUI(weapon.data.ID);
+        UIManager.instance.CreateInventoryDescriptionUI(weapon.data.ID);
 
     }
 

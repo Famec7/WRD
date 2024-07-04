@@ -13,9 +13,9 @@ public class MeleeWeapon : WeaponBase
         if (owner.Target.TryGetComponent(out Monster monster))
         {
 #if WEAPON_DEBUG
-            Debug.Log($"{Data.attackDamage}의 데미지를 입힘");
+            Debug.Log($"{Data.AttackDamage}의 데미지를 입힘");
 #endif
-            monster.HasAttacked(Data.attackDamage);
+            monster.HasAttacked(Data.AttackDamage);
         }
     }
 }

@@ -5,74 +5,29 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class WeaponDataManager : MonoBehaviour
+public class WeaponDataManager : Singleton<WeaponDataManager>
 {
-    // Start is called before the first frame update
+    public WeaponDatabase Database { get; private set; }
 
-    public WeaponData[] Data;
-    public static WeaponDataManager instance;
-    public WeaponBase[] weapons;
-    
-    private WeaponDatabase _weaponDatabase;
-    private Dictionary<int, WeaponBase> _currentWeapons = new Dictionary<int, WeaponBase>();
-
-    void Awake()
+    protected override void Init()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        
-        List<Dictionary<string, object>> csvData = CSVReader.Read("Weapon");
-        Data = new WeaponData[csvData.Count];
-        
-        for (int i = 0; i < csvData.Count; i++)
-        {
-            Data[i] = new WeaponData();
-            Data[i].id = int.Parse(csvData[i]["id"].ToString());
-            Data[i].weaponClass = (csvData[i]["class"].ToString());
-            Data[i].weaponName = (csvData[i]["name"].ToString());
-            /*Data[i].type = int.Parse(csvData[i]["type"].ToString());*/
-            Data[i].rType = int.Parse(csvData[i]["r_type"].ToString());
-            Data[i].reload = int.Parse(csvData[i]["reload"].ToString());
-            Data[i].reloadS = int.Parse(csvData[i]["reload_s"].ToString());
-            Data[i].attackDamage = int.Parse(csvData[i]["attack"].ToString());
-            Data[i].attackSpeed = float.Parse(csvData[i]["attack_speed"].ToString());
-            Data[i].attackRange = float.Parse(csvData[i]["range"].ToString());
-            // Data[i].attackAoe = float.Parse(csvData[i]["attack_AOE"].ToString());
-            // Data[i].skillA = int.Parse(csvData[i]["skill_a"].ToString());
-            //Data[i].skillP = int.Parse(csvData[i]["skill_p"].ToString());
-            Data[i].combi = (csvData[i]["combi"].ToString());
-            Data[i].mainCombi = (csvData[i]["comb1"].ToString());
-            //Data[i].description = (csvData[i]["description"].ToString());
-        }
-        
-        _weaponDatabase = ResourceManager.Instance.Load<WeaponDatabase>("Database/WeaponDatabase");
-        _weaponDatabase.Load();
-    }
-
-    private void Start()
-    {
-        _weaponDatabase = ResourceManager.Instance.Load<WeaponDatabase>("Database/WeaponDatabase");
+        Database = ResourceManager.Instance.Load<WeaponDatabase>("Database/WeaponDatabase");
+        Database.Load();
     }
     
     public WeaponData GetWeaponData(int id)
     {
-        return _weaponDatabase.GetWeaponData(id);
+        return Database.GetWeaponData(id);
     }
     
     public WeaponData GetWeaponData(string weaponName)
     {
-        return _weaponDatabase.GetWeaponData(weaponName);
+        return Database.GetWeaponData(weaponName);
 	}
 
     public string GetKorWeaponClassText(int weaponId)
     {
-        string classEngText = Data[weaponId - 1].weaponClass;
+        string classEngText = Database.GetWeaponData(weaponId).WeaponClass;
         string classKorText = "";
         switch (classEngText)
         {
@@ -99,7 +54,7 @@ public class WeaponDataManager : MonoBehaviour
     public string GetKorWeaponTypeText(int weaponId)
     {
         string typeKorText = "";
-        int weaponType = WeaponDataManager.instance.Data[weaponId - 1].type;
+        int weaponType = Database.GetWeaponData(weaponId).Type1;
 
         switch (weaponType)
         {
@@ -120,7 +75,7 @@ public class WeaponDataManager : MonoBehaviour
     public string GetKorWeaponRTypeText(int weaponId)
     {
         string typeKorText = "";
-        int weaponType = WeaponDataManager.instance.Data[weaponId - 1].type;
+        int weaponType = Database.GetWeaponData(weaponId).Type1;
 
         switch (weaponType)
         {

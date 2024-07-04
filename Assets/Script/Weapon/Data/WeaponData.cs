@@ -6,25 +6,25 @@ using UnityEngine;
 [Serializable]
 public class WeaponData 
 {
-    public int id;
+    public int ID { get; set; }
 
-    public string weaponName;
-    public int type;
-    public int attackDamage;
+    public string WeaponName { get; set; }
+    public int Type1 { get; }
+    public int AttackDamage { get; set; }
     public int skillA;
     public int skillP;
     public int rType;
     public int reload;
     public int reloadS;
 
-    public float attackSpeed;
-    public float attackRange;
+    public float AttackSpeed { get; set; }
+    public float AttackRange { get; set; }
     public float attackAoe;
     public float dps;
 
-    public string weaponClass;
-    public string combi;
-    public string mainCombi;
+    public string WeaponClass { get; set; }
+    public string Combi { get; set; }
+    public string MainCombi { get; set; }
     public string description;
     public WeaponTier tier;
 }

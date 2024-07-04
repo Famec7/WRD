@@ -6,7 +6,7 @@
         
         if (owner.Target.TryGetComponent(out Monster monster))
         {
-            monster.HasAttacked(Data.attackDamage);
+            monster.HasAttacked(Data.AttackDamage);
         }
     }
 }

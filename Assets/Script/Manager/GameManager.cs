@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        weaponCnt = new int[WeaponDataManager.instance.Data.Length];
+        weaponCnt = new int[WeaponDataManager.Instance.Database.GetWeaponDataCount()];
         GameManager.instance.weaponCnt[6]++;
         useWeapon.Add(7);
         ElementManager.instance.GetElement(100);

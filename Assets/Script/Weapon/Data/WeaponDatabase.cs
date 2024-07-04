@@ -17,17 +17,17 @@ public class WeaponDatabase : ScriptableObject
         {
             WeaponData weaponData = new WeaponData
             {
-                id = int.Parse(data["id"].ToString()),
-                weaponClass = (data["class"].ToString()),
-                weaponName = (data["name"].ToString()),
+                ID = int.Parse(data["id"].ToString()),
+                WeaponClass = (data["class"].ToString()),
+                WeaponName = (data["name"].ToString()),
                 rType = int.Parse(data["r_type"].ToString()),
                 reload = int.Parse(data["reload"].ToString()),
                 reloadS = int.Parse(data["reload_s"].ToString()),
-                attackDamage = int.Parse(data["attack"].ToString()),
-                attackSpeed = float.Parse(data["attack_speed"].ToString()),
-                attackRange = float.Parse(data["range"].ToString()),
-                combi = (data["combi"].ToString()),
-                mainCombi = (data["comb1"].ToString())
+                AttackDamage = int.Parse(data["attack"].ToString()),
+                AttackSpeed = float.Parse(data["attack_speed"].ToString()),
+                AttackRange = float.Parse(data["range"].ToString()),
+                Combi = (data["combi"].ToString()),
+                MainCombi = (data["comb1"].ToString())
             };
 
             _weaponDataList.Add(weaponData);
@@ -38,7 +38,7 @@ public class WeaponDatabase : ScriptableObject
     {
         foreach (var data in _weaponDataList)
         {
-            if (data.id == id)
+            if (data.ID == id)
             {
                 return data;
             }
@@ -52,7 +52,7 @@ public class WeaponDatabase : ScriptableObject
         foreach (var data in _weaponDataList)
         {
             // 대소문자, 공백 없이 비교
-            if (string.Compare(data.weaponName.Replace(" ",""), weaponName, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(data.WeaponName.Replace(" ",""), weaponName, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return data;
             }
@@ -60,5 +60,10 @@ public class WeaponDatabase : ScriptableObject
 
         Debug.LogError($"WeaponData {weaponName} is not found");
         return null;
+    }
+    
+    public int GetWeaponDataCount()
+    {
+        return _weaponDataList.Count;
     }
 }

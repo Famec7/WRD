@@ -53,7 +53,7 @@ public abstract class CharacterController : MonoBehaviour
     public void FindNearestTarget()
     {
         var colliders = RangeDetectionUtility.GetAttackTargets(transform.position, Vector2.zero,
-            Data.CurrentWeapon.Data.attackRange, default, LayerMask.GetMask("Monster", "Boss", "Mission"));
+            Data.CurrentWeapon.Data.AttackRange, default, LayerMask.GetMask("Monster", "Boss", "Mission"));
 
         if(colliders is null)
             return;

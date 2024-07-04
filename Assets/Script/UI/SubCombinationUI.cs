@@ -24,14 +24,14 @@ public class SubCombinationUI : MonoBehaviour
         int i = 2;
         int cnt = 0;
        
-        Color32 mainColor = GetClassColor(WeaponDataManager.instance.Data[mainweaponID-1].weaponClass);
+        Color32 mainColor = GetClassColor(WeaponDataManager.Instance.Database.GetWeaponData(mainweaponID).WeaponClass);
         
         if (GameManager.instance.weaponCnt[mainweaponID - 1] > 0)
             transform.GetChild(0).GetComponent<Image>().color = mainColor;
         
         foreach (var weapon in materialWeapons) 
         {
-            string weaponClassStr = WeaponDataManager.instance.Data[weapon-1].weaponClass;
+            string weaponClassStr = WeaponDataManager.Instance.Database.GetWeaponData(weapon).WeaponClass;
 
             if (GameManager.instance.weaponCnt[weapon - 1] > 0)
             {

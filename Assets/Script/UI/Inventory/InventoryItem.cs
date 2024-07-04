@@ -15,8 +15,8 @@ public class InventoryItem
     
     public void AssignWeapon(int code)
     {
-        data = WeaponDataManager.instance.Data[code-1];
-        if(Enum.TryParse<WeaponTier>(data.weaponClass, true, out data.tier))
+        data = WeaponDataManager.Instance.Database.GetWeaponData(code);
+        if(Enum.TryParse<WeaponTier>(data.WeaponClass, true, out data.tier))
         {
             //Debug.Log("Success");
         }

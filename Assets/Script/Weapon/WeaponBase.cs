@@ -51,8 +51,8 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     /// </summary>
     protected virtual void Init()
     {
-        Data = WeaponDataManager.instance.GetWeaponData(GetType().Name);
-        attackDelay = new WaitForSeconds(Data.attackSpeed);
+        Data = WeaponDataManager.Instance.GetWeaponData(GetType().Name);
+        attackDelay = new WaitForSeconds(Data.AttackSpeed);
         /*this.gameObject.SetActive(false);*/
     }
 
@@ -103,7 +103,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     private bool IsTargetNullOrNotInRange()
     {
         return owner.Target is null || Vector3.Distance(owner.Target.transform.position, owner.transform.position) >
-            Data.attackRange;
+            Data.AttackRange;
     }
 
     public void OnNotify()

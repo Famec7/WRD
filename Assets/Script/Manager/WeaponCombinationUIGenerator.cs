@@ -20,19 +20,21 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
     {
         combineWeaponUIList = new List<GameObject>();
         
-        for (int i =1; i <= WeaponDataManager.instance.Data.Length; i++)
+        int weaponDataCount = WeaponDataManager.Instance.Database.GetWeaponDataCount();
+        for (int i =1; i <= weaponDataCount; i++)
             ResourceManager.Instance.Load<Sprite>("WeaponIcon/"+i.ToString());
 
-        for (int i = 1; i <= WeaponDataManager.instance.Data.Length; i++)
+        for (int i = 1; i <= weaponDataCount; i++)
         { 
             List<int> canCombinWeaponsList = new List<int>();
             int canCombineCnt = 0;
              
-            for (int j = 0; j < WeaponDataManager.instance.Data.Length; j++)
+            for (int j = 0; j < weaponDataCount; j++)
             {
-                 string combi = WeaponDataManager.instance.Data[j].combi;
+                var data = WeaponDataManager.Instance.GetWeaponData(j + 1);
+                 string combi = data.Combi;
                  string[] combis = combi.Split('\x020');
-                 string mainCombi = WeaponDataManager.instance.Data[j].mainCombi;
+                 string mainCombi = data.MainCombi;
                  
                  if (mainCombi == i.ToString())
                  {
@@ -42,7 +44,7 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
                          int id = Convert.ToInt32(s);
                          if (id == i)
                          {
-                             canCombinWeaponsList.Add(WeaponDataManager.instance.Data[j].id);
+                             canCombinWeaponsList.Add(data.ID);
                              break;
                          }
                      }
@@ -54,7 +56,7 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
             combineWeaponUIList.Add((combinationUI));
             canCombineCnt = canCombinWeaponsList.Count;
             var weaponName = combinationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            weaponName.text = WeaponDataManager.instance.Data[i - 1].weaponName;
+            weaponName.text = WeaponDataManager.Instance.Database.GetWeaponData(i).WeaponName;
 
             var weaponIcon = combinationUI.transform.GetChild(0).GetComponent<Image>();
             string weaponIconPath = "WeaponIcon/" + i.ToString();
@@ -66,7 +68,7 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
             for (int j = 0; j < canCombineCnt; j++)
             {
                 int targetCode = canCombinWeaponsList[j];
-                string combi = WeaponDataManager.instance.Data[targetCode - 1].combi;
+                string combi = WeaponDataManager.Instance.Database.GetWeaponData(targetCode).Combi;
                 string[] combis = combi.Split('\x020');
 
                 var subCombi = Instantiate(subCombinationPrefab[combis.Length - 2], combinationUI.transform) as GameObject;
