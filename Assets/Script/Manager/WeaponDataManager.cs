@@ -36,7 +36,7 @@ public class WeaponDataManager : MonoBehaviour
             Data[i].id = int.Parse(csvData[i]["id"].ToString());
             Data[i].weaponClass = (csvData[i]["class"].ToString());
             Data[i].weaponName = (csvData[i]["name"].ToString());
-            Data[i].type = int.Parse(csvData[i]["type"].ToString());
+            /*Data[i].type = int.Parse(csvData[i]["type"].ToString());*/
             Data[i].rType = int.Parse(csvData[i]["r_type"].ToString());
             Data[i].reload = int.Parse(csvData[i]["reload"].ToString());
             Data[i].reloadS = int.Parse(csvData[i]["reload_s"].ToString());
@@ -50,34 +50,14 @@ public class WeaponDataManager : MonoBehaviour
             Data[i].mainCombi = (csvData[i]["comb1"].ToString());
             //Data[i].description = (csvData[i]["description"].ToString());
         }
+        
+        _weaponDatabase = ResourceManager.Instance.Load<WeaponDatabase>("Database/WeaponDatabase");
+        _weaponDatabase.Load();
     }
 
     private void Start()
     {
         _weaponDatabase = ResourceManager.Instance.Load<WeaponDatabase>("Database/WeaponDatabase");
-    }
-
-    public void SwitchWeapon(int id)
-    {
-        _currentWeapons[id].gameObject.SetActive(false);
-        
-        WeaponData weaponData = _weaponDatabase.GetWeaponData(id);
-
-        foreach (var weapon in weapons)
-        {
-            if (weapon.Data == weaponData)
-            {
-                _currentWeapons[id] = weapon;
-                break;
-            }
-        }
-        
-        if (_currentWeapons == null)
-        {
-            _currentWeapons[id] = gameObject.GetOrAddComponent<WeaponBase>();
-            _currentWeapons[id].Data = weaponData;
-            _currentWeapons[id].gameObject.SetActive(true);
-        }
     }
     
     public WeaponData GetWeaponData(int id)

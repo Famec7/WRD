@@ -1391,6 +1391,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 50092980}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &55232395
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,7 +2289,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 145809989}
   m_Father: {fileID: 1352991083}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &108944859
@@ -2302,8 +2305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efea78c8367c4a84967944d1a5566244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
-  _id: 12
   passiveSkill: {fileID: 1507964229}
   activeSkill: {fileID: 0}
 --- !u!1 &109743220
@@ -2765,7 +2766,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1235212907}
+  m_Father: {fileID: 108944858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &145809990
 MonoBehaviour:
@@ -3491,10 +3492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1009698918292624907, guid: 63355d3256cb9a24eba6768e1fddf3bb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 337959206}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5559911592255874617, guid: 63355d3256cb9a24eba6768e1fddf3bb, type: 3}
       insertIndex: -1
@@ -3583,11 +3581,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isChase: 0
---- !u!4 &209777749 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1009698918292624907, guid: 63355d3256cb9a24eba6768e1fddf3bb, type: 3}
-  m_PrefabInstance: {fileID: 209777740}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &210128700
 GameObject:
   m_ObjectHideFlags: 0
@@ -3814,6 +3807,7 @@ MonoBehaviour:
   weaponImage: {fileID: 1418989206}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1001 &253329117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4108,6 +4102,7 @@ MonoBehaviour:
   weaponImage: {fileID: 1665286981}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1 &337959205
 GameObject:
   m_ObjectHideFlags: 0
@@ -4134,12 +4129,12 @@ Transform:
   m_GameObject: {fileID: 337959205}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1595621817}
-  m_Father: {fileID: 209777749}
+  m_Father: {fileID: 1352991083}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &337959207
 MonoBehaviour:
@@ -4153,8 +4148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4846d9a5f824aa6ac1e46df3e5e07a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Iron Sword
-  _id: 11
   passiveSkill: {fileID: 1595621818}
   activeSkill: {fileID: 0}
 --- !u!1 &353386003
@@ -4333,6 +4326,7 @@ MonoBehaviour:
   weaponImage: {fileID: 1065296161}
   hasWeapon: 1
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1 &383192809
 GameObject:
   m_ObjectHideFlags: 0
@@ -4755,6 +4749,7 @@ MonoBehaviour:
   weaponImage: {fileID: 1123506761}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1 &406558605
 GameObject:
   m_ObjectHideFlags: 0
@@ -6270,6 +6265,7 @@ MonoBehaviour:
   weaponImage: {fileID: 588418679}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1 &496907016
 GameObject:
   m_ObjectHideFlags: 0
@@ -6542,6 +6538,7 @@ MonoBehaviour:
   weaponImage: {fileID: 1686561584}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1 &529213545
 GameObject:
   m_ObjectHideFlags: 0
@@ -6634,6 +6631,7 @@ MonoBehaviour:
   weaponImage: {fileID: 50092978}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1 &538985323
 GameObject:
   m_ObjectHideFlags: 0
@@ -6982,6 +6980,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 582396016}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &587255062
 GameObject:
   m_ObjectHideFlags: 0
@@ -7312,6 +7312,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 588418683}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &592372597
 GameObject:
   m_ObjectHideFlags: 0
@@ -7459,6 +7461,8 @@ MonoBehaviour:
   normalInventoryContent: {fileID: 2023268956}
   backButton: {fileID: 2087171650}
   longClickPopUpUI: {fileID: 0}
+  WeaponSlotSelectUI: {fileID: 0}
+  elementUI: []
   _popupCanvas: {fileID: 1698398373}
   _blockImage: {fileID: 2002333903}
   missionUI: {fileID: 1662196444}
@@ -9892,6 +9896,7 @@ MonoBehaviour:
   weaponImage: {fileID: 1293816856}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!224 &841087786 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7584946276397718611, guid: 1485981702313414aa36d998bb951cc0, type: 3}
@@ -10581,7 +10586,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1203323367}
   m_Father: {fileID: 1352991083}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &922412355
@@ -12182,6 +12188,7 @@ MonoBehaviour:
   weaponImage: {fileID: 1331880420}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!224 &1063029623 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1121721442918416808, guid: 679143ce868c60c44834854d94160150, type: 3}
@@ -12397,6 +12404,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1065296163}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &1097062688
 GameObject:
   m_ObjectHideFlags: 0
@@ -12531,37 +12540,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &1098454134
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1098454135}
-  m_Layer: 0
-  m_Name: -------Skill------
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1098454135
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098454134}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1107092902
 GameObject:
   m_ObjectHideFlags: 0
@@ -12621,6 +12599,7 @@ MonoBehaviour:
   normalInventoryContent: {fileID: 2023268956}
   allShowButton: {fileID: 441388306}
   classShowButton: {fileID: 1850870946}
+  inventorySelectUI: {fileID: 0}
   allShowClassSelectButtons: {fileID: 931653684}
   classShowClassSelectButtons: {fileID: 1656661940}
   sortButtons:
@@ -13018,6 +12997,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1123506763}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &1129260159
 GameObject:
   m_ObjectHideFlags: 0
@@ -13376,6 +13357,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1167616678}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &1180297732
 GameObject:
   m_ObjectHideFlags: 0
@@ -13644,7 +13627,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1235212907}
+  m_Father: {fileID: 922412354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1203323368
 MonoBehaviour:
@@ -13868,40 +13851,6 @@ Transform:
   - {fileID: 149277646}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1235212906
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1235212907}
-  m_Layer: 0
-  m_Name: PassiveSkillList
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1235212907
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235212906}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 145809989}
-  - {fileID: 1507964228}
-  - {fileID: 1203323367}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1236024802
 GameObject:
   m_ObjectHideFlags: 0
@@ -14123,6 +14072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5908a747069f44093a10c6d0e3c2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: []
   weapons: []
 --- !u!1 &1293816856
 GameObject:
@@ -14322,6 +14272,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1293816858}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1001 &1295750140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14958,6 +14910,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1331880422}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &1352991082
 GameObject:
   m_ObjectHideFlags: 0
@@ -14987,6 +14941,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 337959206}
   - {fileID: 108944858}
   - {fileID: 1560226194}
   - {fileID: 922412354}
@@ -15084,6 +15039,7 @@ MonoBehaviour:
   weaponImage: {fileID: 582396014}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1 &1371148872
 GameObject:
   m_ObjectHideFlags: 0
@@ -15509,6 +15465,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1381999369}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &1390701621
 GameObject:
   m_ObjectHideFlags: 0
@@ -16191,6 +16149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1418989210}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &1430510545
 GameObject:
   m_ObjectHideFlags: 0
@@ -16895,6 +16855,7 @@ MonoBehaviour:
   weaponImage: {fileID: 1685601295}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1 &1458774367
 GameObject:
   m_ObjectHideFlags: 0
@@ -17414,6 +17375,7 @@ MonoBehaviour:
   weaponImage: {fileID: 1167616674}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1 &1488865221
 GameObject:
   m_ObjectHideFlags: 0
@@ -17710,7 +17672,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1235212907}
+  m_Father: {fileID: 1560226194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1507964229
 MonoBehaviour:
@@ -17893,7 +17855,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1507964228}
   m_Father: {fileID: 1352991083}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1560226195
@@ -17908,8 +17871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8553798bc1ac4c3e9e5adf77fa0d8834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: 
-  _id: 13
   passiveSkill: {fileID: 145809990}
   activeSkill: {fileID: 0}
 --- !u!1001 &1563824282
@@ -18251,6 +18212,7 @@ MonoBehaviour:
   weaponImage: {fileID: 2139817415}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1 &1595621816
 GameObject:
   m_ObjectHideFlags: 0
@@ -19606,6 +19568,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1665286985}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &1665309131
 GameObject:
   m_ObjectHideFlags: 0
@@ -19938,6 +19902,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1685601297}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &1686561584
 GameObject:
   m_ObjectHideFlags: 0
@@ -20136,6 +20102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1686561586}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &1691184683
 GameObject:
   m_ObjectHideFlags: 0
@@ -20642,6 +20610,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1732942573}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1 &1738335231
 GameObject:
   m_ObjectHideFlags: 0
@@ -20916,6 +20886,7 @@ MonoBehaviour:
   weaponImage: {fileID: 1732942571}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1 &1832235695
 GameObject:
   m_ObjectHideFlags: 0
@@ -21441,6 +21412,7 @@ MonoBehaviour:
   weaponImage: {fileID: 0}
   hasWeapon: 0
   weaponID: 0
+  inventorySlot: {fileID: 0}
 --- !u!1 &1862675830
 GameObject:
   m_ObjectHideFlags: 0
@@ -23228,6 +23200,7 @@ MonoBehaviour:
   wave: 1
   isSKip: 0
   weaponCnt: 
+  useWeapon: 
 --- !u!1 &2065062652
 GameObject:
   m_ObjectHideFlags: 0
@@ -24171,6 +24144,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2139817419}
   hasItem: 0
+  isEquiped: 0
+  equipText: {fileID: 0}
 --- !u!1001 &2141717181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24453,5 +24428,3 @@ SceneRoots:
   - {fileID: 2065062654}
   - {fileID: 325578507}
   - {fileID: 768087857}
-  - {fileID: 1098454135}
-  - {fileID: 1235212907}

@@ -6,10 +6,18 @@
     {
         passiveDataBase = ResourceManager.Instance.Load<PassiveSkillDataBase>("Database/Skill/PassiveSkillDataBase");
         activeDataBase = ResourceManager.Instance.Load<ActiveSkillDataBase>("Database/Skill/ActiveSkillDataBase");
+        
+        passiveDataBase.Load();
+        /*activeDataBase.Load();*/
     }
     
-    public PassiveSkillData GetPassiveSkillData(string name)
+    public PassiveSkillData GetPassiveSkillData(string skillName)
     {
-        return passiveDataBase.GetPassiveSkillData(name);
+        return passiveDataBase.GetPassiveSkillData(skillName);
+    }
+    
+    public PassiveAuraSkillData GetPassiveAuraSkillData(string skillName)
+    {
+        return passiveDataBase.GetPassiveAuraSkillData(skillName);
     }
 }

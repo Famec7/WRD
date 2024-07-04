@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class PassiveSkillBase : SkillBase
 {
-    [HideInInspector] public PassiveSkillData data;
+    private PassiveSkillData _data;
+    public PassiveSkillData Data => _data;
 
     private void Awake()
     {
@@ -13,7 +14,15 @@ public abstract class PassiveSkillBase : SkillBase
 
     protected virtual bool CheckTrigger()
     {
-        return Random.Range(0, 100) <= data.values[0];
+#if PASSIVE_SKILL_DEBUG
+        Debug.Log($"{GetType().Name} 발동 확률: {_data.Chance}");
+        if (Random.Range(0, 100) <= _data.Chance)
+        {
+            Debug.Log($"{GetType().Name} 발동");
+            return true;
+        }
+#endif
+        return Random.Range(0, 100) <= _data.Chance;
     }
 
     /// <summary>
@@ -25,6 +34,11 @@ public abstract class PassiveSkillBase : SkillBase
     protected override void Init()
     {
         base.Init();
-        data = SkillDataManager.Instance.GetPassiveSkillData(GetType().Name);
+        _data = SkillDataManager.Instance.GetPassiveSkillData(GetType().Name);
+    }
+
+    protected void SetStatusEffect(Monster target, StatusEffect statusEffect)
+    {
+        StatusEffectManager.Instance.AddStatusEffect(target.status, statusEffect);
     }
 }

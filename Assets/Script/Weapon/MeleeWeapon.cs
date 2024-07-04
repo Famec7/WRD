@@ -7,21 +7,15 @@ public class MeleeWeapon : WeaponBase
 {
     protected override void Attack()
     {
-        if (target is null)
-            return;
-        
-        Debug.Log("MeleeWeapon Attack");
-        if (passiveSkill.Activate())
-            return;
+        base.Attack();
         
         //Todo: Add attack animation and effect
-        if (target.TryGetComponent(out Monster monster))
+        if (owner.Target.TryGetComponent(out Monster monster))
         {
+#if WEAPON_DEBUG
+            Debug.Log($"{Data.attackDamage}의 데미지를 입힘");
+#endif
             monster.HasAttacked(Data.attackDamage);
-        }
-        else
-        {
-            target = null;
         }
     }
 }

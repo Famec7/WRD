@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WeaponDatabase", menuName = "Scriptable Object/WeaponDatabase", order = 1)]
@@ -12,20 +13,24 @@ public class WeaponDatabase : ScriptableObject
         List<Dictionary<string, object>> csvData = CSVReader.Read("Weapon");
         _weaponDataList = new List<WeaponData>(csvData.Count);
         
-        for (int i = 0; i < csvData.Count; i++)
+        foreach (var data in csvData)
         {
-            WeaponData weaponData = new WeaponData();
-            weaponData.id = int.Parse(csvData[i]["id"].ToString());
-            weaponData.weaponClass = (csvData[i]["class"].ToString());
-            weaponData.weaponName = (csvData[i]["name"].ToString());
-            weaponData.rType = int.Parse(csvData[i]["r_type"].ToString());
-            weaponData.reload = int.Parse(csvData[i]["reload"].ToString());
-            weaponData.reloadS = int.Parse(csvData[i]["reload_s"].ToString());
-            weaponData.attackDamage = int.Parse(csvData[i]["attack"].ToString());
-            weaponData.attackSpeed = float.Parse(csvData[i]["attack_speed"].ToString());
-            weaponData.attackRange = float.Parse(csvData[i]["range"].ToString());
-            weaponData.combi = (csvData[i]["combi"].ToString());
-            weaponData.mainCombi = (csvData[i]["comb1"].ToString());
+            WeaponData weaponData = new WeaponData
+            {
+                id = int.Parse(data["id"].ToString()),
+                weaponClass = (data["class"].ToString()),
+                weaponName = (data["name"].ToString()),
+                rType = int.Parse(data["r_type"].ToString()),
+                reload = int.Parse(data["reload"].ToString()),
+                reloadS = int.Parse(data["reload_s"].ToString()),
+                attackDamage = int.Parse(data["attack"].ToString()),
+                attackSpeed = float.Parse(data["attack_speed"].ToString()),
+                attackRange = float.Parse(data["range"].ToString()),
+                combi = (data["combi"].ToString()),
+                mainCombi = (data["comb1"].ToString())
+            };
+
+            _weaponDataList.Add(weaponData);
         }
     }
     
@@ -46,12 +51,14 @@ public class WeaponDatabase : ScriptableObject
     {
         foreach (var data in _weaponDataList)
         {
-            if (data.weaponName == weaponName)
+            // 대소문자, 공백 없이 비교
+            if (string.Compare(data.weaponName.Replace(" ",""), weaponName, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return data;
             }
         }
 
+        Debug.LogError($"WeaponData {weaponName} is not found");
         return null;
     }
 }

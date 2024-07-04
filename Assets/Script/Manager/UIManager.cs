@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
         descriptionPopUpUIStack = new Stack<DetailedDescriptionUI>();
         inventoryDescriptionPopUpUiStack = new Stack<InventoryDescriptionPopUpUI>();
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < elementUI.Length; i++)
         {
             int index = i;
             elementUI[i].GetComponent<Button>().onClick.AddListener(() => CreateCombineUI(index+1));
