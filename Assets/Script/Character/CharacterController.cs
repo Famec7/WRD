@@ -61,11 +61,10 @@ public abstract class CharacterController : MonoBehaviour
         foreach (var col in colliders)
         {
             var distanceFromEntityToCollider = Vector3.Distance(transform.position, col.transform.position);
-            var distanceFromEntityToTarget =
-                Target == null ? 0.0f : Vector3.Distance(transform.position, Target.transform.position);
+            var distanceFromEntityToTarget = Target is null ? 0.0f : Vector3.Distance(transform.position, Target.transform.position);
 
             // 가장 가까운 적을 타겟으로 설정
-            if (Target == null)
+            if (Target is null)
                 Target = col.transform.gameObject;
             else if (distanceFromEntityToCollider < distanceFromEntityToTarget)
                 Target = col.transform.gameObject;

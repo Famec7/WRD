@@ -31,7 +31,7 @@ public class PetController : CharacterController, IObserver
     {
         if (_playerController.Target == null)
         {
-            if (_playerController.CurrentState == PlayerController.State.IDLE)
+            if (IsPlayerStateIdleAndWeaponNotNull())
             {
                 FindNearestTarget();
             }
@@ -40,5 +40,10 @@ public class PetController : CharacterController, IObserver
         }
 
         Target = _playerController.Target;
+    }
+    
+    private bool IsPlayerStateIdleAndWeaponNotNull()
+    {
+        return _playerController.CurrentState is PlayerController.State.IDLE && Data.CurrentWeapon is not null;
     }
 }

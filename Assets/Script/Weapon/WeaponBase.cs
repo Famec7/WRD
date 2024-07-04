@@ -9,7 +9,6 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     #region private variable
 
     private WaitForSeconds attackDelay;
-    private WeaponData _data;
     private bool _isAttack = false;
 
     #endregion
@@ -30,11 +29,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
 
     #endregion
 
-    public WeaponData Data
-    {
-        get => _data;
-        set => _data = value;
-    }
+    public WeaponData Data { get; private set; }
 
     #region Event Function
 
@@ -56,8 +51,8 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     /// </summary>
     protected virtual void Init()
     {
-        _data = WeaponDataManager.instance.GetWeaponData(GetType().Name);
-        attackDelay = new WaitForSeconds(_data.attackSpeed);
+        Data = WeaponDataManager.instance.GetWeaponData(GetType().Name);
+        attackDelay = new WaitForSeconds(Data.attackSpeed);
         /*this.gameObject.SetActive(false);*/
     }
 

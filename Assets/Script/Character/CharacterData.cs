@@ -15,6 +15,7 @@ public class CharacterData
     /*************************Attack******************************/
     [Header("Weapon")]
     // 현재 무기 데이터
-    [SerializeField] private WeaponBase _currentWeapon;
+    [SerializeField]
+    private WeaponBase _currentWeapon = null;
     public WeaponBase CurrentWeapon => _currentWeapon;
 }

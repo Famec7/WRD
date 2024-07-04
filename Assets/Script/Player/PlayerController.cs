@@ -11,8 +11,6 @@ public class PlayerController : CharacterController, ISubject
 
     public Vector3 TouchPos { get; private set; }
 
-    private Camera _mainCam;
-
     #region State
 
     public enum State
@@ -72,8 +70,6 @@ public class PlayerController : CharacterController, ISubject
     {
         _fsm = new FSM<PlayerController>(this);
         ChangeState(State.IDLE);
-
-        _mainCam = Camera.main;
     }
 
     private void Update()
@@ -105,7 +101,7 @@ public class PlayerController : CharacterController, ISubject
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            TouchPos = _mainCam.ScreenToWorldPoint(Input.mousePosition);
+            TouchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             var pos = TouchPos;
             pos.z = 0f;

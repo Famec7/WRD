@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class LowVisionStrike : PassiveSkillBase
 {
-    private Vector2 _range = new Vector2(1f, 1f);
-    
+    private Vector2 _range;
+
+    protected override void Init()
+    {
+        base.Init();
+        _range = new Vector2(Data.Range, Data.Range);
+    }
+
     public override bool Activate(GameObject target = null)
     {
         if (!CheckTrigger()) return false;
