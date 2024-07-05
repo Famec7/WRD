@@ -6,6 +6,9 @@ public class Swing : PassiveSkillBase
     private float _skillDamage;
     private Vector2 _hitSize;
     
+    /*******Effect*******/
+    [SerializeField] private SwingEffect _swingEffect;
+    
     protected override void Init()
     {
         base.Init();
@@ -24,6 +27,12 @@ public class Swing : PassiveSkillBase
         
         List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(owner.transform.position, _hitSize, dir, targetLayer);
 
+        if(targets.Count == 0)
+            return false;
+        
+        _swingEffect.SetPosition(owner.transform.position + dir);
+        _swingEffect.PlayEffect();
+        
         foreach (var tar in targets)
         {
             if (tar.TryGetComponent(out Monster monster))
