@@ -331,7 +331,7 @@ public class InventoryManager : MonoBehaviour
                 notHeldSlotItem.GetComponent<InventorySlot>().weapon.AssignWeapon(data.ID);
                 notHeldSlotItem.GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
                 
-                bool isEquiped = GameManager.instance.isUsing(j);
+                bool isEquiped = GameManager.instance.isUsing(j+1);
                 notHeldSlotItem.GetComponent<InventorySlot>().isEquiped = isEquiped;
                 notHeldSlotItem.GetComponent<InventorySlot>().equipText.gameObject.SetActive(isEquiped);
                 notHeldSlotItem.GetComponent<LongClickComponenet>().weaponID = data.ID;
