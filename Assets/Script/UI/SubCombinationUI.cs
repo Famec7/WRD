@@ -85,7 +85,7 @@ public class SubCombinationUI : MonoBehaviour
 
             UIManager.instance.CreateCombineUI(mainweaponID);
             GameManager.instance.weaponCnt[mainweaponID - 1]++;
-               
+            GameManager.instance.UpdateUseableWeaponCnt();
        }
     }
 

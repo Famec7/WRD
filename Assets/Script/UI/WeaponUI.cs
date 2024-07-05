@@ -44,7 +44,10 @@ public class WeaponUI : Singleton<WeaponUI>
             image =  ResourceManager.Instance.Load<Sprite>(weaponIconPath)
         };
         item.AssignWeapon(weaponID);
-        
+
+        GameManager.instance.useWeapon.Add(weaponID);
+        GameManager.instance.UpdateUseableWeaponCnt();
+
         if (isSlotFull)
             targetSlot = weaponSlots[0];
 

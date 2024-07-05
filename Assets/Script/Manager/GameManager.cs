@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int wave = 1;
     public bool isSKip = false;
     public int[] weaponCnt;
+    public int[] useAbleWeaponCnt;
 
     public List<int> useWeapon;
 
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
         weaponCnt = new int[WeaponDataManager.Instance.Database.GetWeaponDataCount()];
         GameManager.instance.weaponCnt[6]++;
         useWeapon.Add(7);
+        UpdateUseableWeaponCnt();
         ElementManager.instance.GetElement(100);
     }
 
@@ -53,9 +55,20 @@ public class GameManager : MonoBehaviour
         {
             if (id == weaponID)
             {
+                useAbleWeaponCnt[id - 1]++;
                 useWeapon.Remove(id);
                 break;
             }
+        }
+    }
+
+    public void UpdateUseableWeaponCnt()
+    {
+        useAbleWeaponCnt = (int[])weaponCnt.Clone();
+
+        foreach (var id in useWeapon)
+        {
+            useAbleWeaponCnt[id - 1]--;
         }
     }
 

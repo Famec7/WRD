@@ -87,8 +87,11 @@ public class LongClickPopUpUi : MonoBehaviour
         if (!isBookmarked)
         {
             BookMakredSlotUI.Instance.AddItem(weaponID);
-            gameObject.SetActive(false);
             UIManager.instance.SetActiveBlockImage(false);
+        }
+        else
+        {
+            BookMakredSlotUI.Instance.RemoveItem(inventorySlot);
         }
       
     }

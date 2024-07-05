@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 776883615826217320}
   - component: {fileID: 5575209324376212633}
   - component: {fileID: 3921193529087743502}
+  - component: {fileID: 3666864531468585793}
   m_Layer: 5
   m_Name: Slot Item
   m_TagString: Untagged
@@ -138,9 +139,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1693913705648442397}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InventorySlot, Assembly-CSharp
-        m_MethodName: CreateCombineUI
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -165,9 +166,54 @@ MonoBehaviour:
   elapsedTime: 0
   weaponID: 0
   isWeaponSlot: 0
-  isInventory: 0
+  isInventory: 1
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUI: {fileID: 5090459737672536117, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
+--- !u!114 &3666864531468585793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22229009840190324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3921193529087743502}
+          m_TargetAssemblyTypeName: LongClickComponenet, Assembly-CSharp
+          m_MethodName: MouseDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3921193529087743502}
+          m_TargetAssemblyTypeName: LongClickComponenet, Assembly-CSharp
+          m_MethodName: MouseUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &559510248274282653
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +496,7 @@ GameObject:
   - component: {fileID: 8973913114215532202}
   - component: {fileID: 3895506689943072268}
   - component: {fileID: 5275266841965973682}
+  - component: {fileID: 3386696967987813500}
   m_Layer: 5
   m_Name: Slot Item
   m_TagString: Untagged
@@ -574,9 +621,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5298907843478110644}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InventorySlot, Assembly-CSharp
-        m_MethodName: CreateCombineUI
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -601,9 +648,54 @@ MonoBehaviour:
   elapsedTime: 0
   weaponID: 0
   isWeaponSlot: 0
-  isInventory: 0
+  isInventory: 1
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUI: {fileID: 5090459737672536117, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
+--- !u!114 &3386696967987813500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678365865959610305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5275266841965973682}
+          m_TargetAssemblyTypeName: LongClickComponenet, Assembly-CSharp
+          m_MethodName: MouseDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5275266841965973682}
+          m_TargetAssemblyTypeName: LongClickComponenet, Assembly-CSharp
+          m_MethodName: MouseUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2376660892204176593
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,6 +710,7 @@ GameObject:
   - component: {fileID: 4268978871324364053}
   - component: {fileID: 3842458623273396714}
   - component: {fileID: 2421953470130423704}
+  - component: {fileID: 6643693871186751014}
   m_Layer: 5
   m_Name: Slot Item
   m_TagString: Untagged
@@ -742,9 +835,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6317252302449846087}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InventorySlot, Assembly-CSharp
-        m_MethodName: CreateCombineUI
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -769,9 +862,54 @@ MonoBehaviour:
   elapsedTime: 0
   weaponID: 0
   isWeaponSlot: 0
-  isInventory: 0
+  isInventory: 1
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUI: {fileID: 5090459737672536117, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
+--- !u!114 &6643693871186751014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376660892204176593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2421953470130423704}
+          m_TargetAssemblyTypeName: LongClickComponenet, Assembly-CSharp
+          m_MethodName: MouseDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2421953470130423704}
+          m_TargetAssemblyTypeName: LongClickComponenet, Assembly-CSharp
+          m_MethodName: MouseUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2416568141922743090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,6 +1747,7 @@ GameObject:
   - component: {fileID: 786108508924549981}
   - component: {fileID: 7609914236909356201}
   - component: {fileID: 6256715628173194515}
+  - component: {fileID: 3502970504252324586}
   m_Layer: 5
   m_Name: Slot Item
   m_TagString: Untagged
@@ -1733,9 +1872,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4671061800645560446}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InventorySlot, Assembly-CSharp
-        m_MethodName: CreateCombineUI
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1760,9 +1899,54 @@ MonoBehaviour:
   elapsedTime: 0
   weaponID: 0
   isWeaponSlot: 0
-  isInventory: 0
+  isInventory: 1
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUI: {fileID: 5090459737672536117, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
+--- !u!114 &3502970504252324586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5909427310603381909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6256715628173194515}
+          m_TargetAssemblyTypeName: LongClickComponenet, Assembly-CSharp
+          m_MethodName: MouseDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6256715628173194515}
+          m_TargetAssemblyTypeName: LongClickComponenet, Assembly-CSharp
+          m_MethodName: MouseUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6557149084587565337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,6 +1961,7 @@ GameObject:
   - component: {fileID: 6570511838134006847}
   - component: {fileID: 5604980498673575485}
   - component: {fileID: 4046602021697470388}
+  - component: {fileID: 7837234023652822024}
   m_Layer: 5
   m_Name: Slot Item
   m_TagString: Untagged
@@ -1901,9 +2086,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6474578788836390737}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: InventorySlot, Assembly-CSharp
-        m_MethodName: CreateCombineUI
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1928,9 +2113,54 @@ MonoBehaviour:
   elapsedTime: 0
   weaponID: 0
   isWeaponSlot: 0
-  isInventory: 0
+  isInventory: 1
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUI: {fileID: 5090459737672536117, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
+--- !u!114 &7837234023652822024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557149084587565337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4046602021697470388}
+          m_TargetAssemblyTypeName: LongClickComponenet, Assembly-CSharp
+          m_MethodName: MouseDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4046602021697470388}
+          m_TargetAssemblyTypeName: LongClickComponenet, Assembly-CSharp
+          m_MethodName: MouseUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7903023390697734563
 GameObject:
   m_ObjectHideFlags: 0

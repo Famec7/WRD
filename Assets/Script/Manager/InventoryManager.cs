@@ -191,6 +191,16 @@ public class InventoryManager : MonoBehaviour
             }   
         }
 
+        foreach (ClassSelectButton button in classShowClassSelectButtons.GetComponentsInChildren<ClassSelectButton>())
+        {
+            if (button.select)
+            {
+                NotHeldSort(button.grade);
+                InventorySort(button.grade);
+                isSelect = true;
+            }
+        }
+
         if (!isSelect)
         {
             NotHeldSort(-1);
@@ -307,27 +317,34 @@ public class InventoryManager : MonoBehaviour
         for (; i < notHeldslots.Length && j <WeaponDataManager.Instance.Database.GetWeaponDataCount(); j++)
         {
             var data = WeaponDataManager.Instance.GetWeaponData(j + 1);
+
             if (data.WeaponClass == cmp || grade == -1)
             {
+                GameObject notHeldSlotItem = notHeldslots[i].transform.GetChild(0).gameObject;
+
                 string path = "WeaponIcon/" + data.ID.ToString();
-                
+
                 notHeldslots[i].gameObject.SetActive(true);
                 notHeldslots[i].GetComponent<AllShowInventorySlot>().weaponID = data.ID;
-                notHeldslots[i].transform.GetChild(0).GetComponent<InventorySlot>().weapon = new InventoryItem();
-                notHeldslots[i].transform.GetChild(0).GetComponent<InventorySlot>().weapon.AssignWeapon(data.ID);
-                notHeldslots[i].transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
+
+                notHeldSlotItem.GetComponent<InventorySlot>().weapon = new InventoryItem();
+                notHeldSlotItem.GetComponent<InventorySlot>().weapon.AssignWeapon(data.ID);
+                notHeldSlotItem.GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
                 
                 bool isEquiped = GameManager.instance.isUsing(j);
-                notHeldslots[i].gameObject.transform.GetChild(0).GetComponent<InventorySlot>().isEquiped = isEquiped;
-                notHeldslots[i].gameObject.transform.GetChild(0).GetComponent<InventorySlot>().equipText.gameObject.SetActive(isEquiped); 
+                notHeldSlotItem.GetComponent<InventorySlot>().isEquiped = isEquiped;
+                notHeldSlotItem.GetComponent<InventorySlot>().equipText.gameObject.SetActive(isEquiped);
+                notHeldSlotItem.GetComponent<LongClickComponenet>().weaponID = data.ID;
                 i++;
             }
+         
         }
 
         for (;  i < notHeldslots.Length; i++)
         {
             notHeldslots[i].transform.GetChild(0).GetComponent<Image>().sprite = null;
             notHeldslots[i].gameObject.SetActive(false);
+            notHeldslots[i].transform.GetChild(0).gameObject.GetComponent<LongClickComponenet>().weaponID = 0;
         }
 
     }

@@ -17,6 +17,7 @@ public class LongClickComponenet : MonoBehaviour
     public bool isWeaponSlot;
     public bool isInventory;
     public bool isBookmarked;
+    private bool hasItem;
     private RectTransform rectTransform;
 
     public GameObject LongClickPopUpUI;
@@ -39,8 +40,11 @@ public class LongClickComponenet : MonoBehaviour
 
     public void MouseUp()
     {
+
         if (!isLongClick && weaponID > 0 )
         {
+            hasItem = GameManager.instance.useAbleWeaponCnt[weaponID - 1] > 0;
+
             UIManager.instance.CreateCombineUI(weaponID,true,isInventory,GetComponent<InventorySlot>().isEquiped);
             
             LongClickPopUpUI = UIManager.instance.longClickPopUpUI;
@@ -53,7 +57,7 @@ public class LongClickComponenet : MonoBehaviour
                 InventoryManager.instance.inventorySelectUI.SetActive(true);
                 
                 LongClickPopUpUI.GetComponent<LongClickPopUpUi>()._bookmarkButton.SetActive(true);
-                LongClickPopUpUI.GetComponent<LongClickPopUpUi>()._equipButton.SetActive(true);
+                LongClickPopUpUI.GetComponent<LongClickPopUpUi>()._equipButton.SetActive(hasItem);
                 
                 InventoryManager.instance.inventorySelectUI.GetComponent<RectTransform>().position = transform.position;
                 UIManager.instance.SetActiveBlockImage(true);
@@ -69,9 +73,9 @@ public class LongClickComponenet : MonoBehaviour
             
             if(!isInventory) 
                 LongClickPopUpUI.GetComponent<LongClickPopUpUi>().weaponID = transform.parent.GetComponent<WeaponSlotUI>().weaponID;
-            else
-                LongClickPopUpUI.GetComponent<LongClickPopUpUi>().inventorySlot = GetComponent<InventorySlot>();
-            
+        
+                
+            LongClickPopUpUI.GetComponent<LongClickPopUpUi>().inventorySlot = GetComponent<InventorySlot>();      
             LongClickPopUpUI.GetComponent<LongClickPopUpUi>().SetFavoriteButtonText(isBookmarked, isInventory,isWeaponSlot);
         }
     
