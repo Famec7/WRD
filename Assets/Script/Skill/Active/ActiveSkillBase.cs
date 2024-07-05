@@ -6,7 +6,8 @@ public abstract class ActiveSkillBase : SkillBase
     private SkillState<ActiveSkillBase> _castingState;
     private SkillState<ActiveSkillBase> _coolTimeState;
     private SkillState<ActiveSkillBase> _activeState;
-    
+    public string skillType;
+    public bool buttonClicked = false;
     protected override void Init()
     {
         base.Init();
