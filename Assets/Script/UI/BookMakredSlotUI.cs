@@ -51,9 +51,13 @@ public class BookMakredSlotUI : Singleton<BookMakredSlotUI>
         targetSlot.transform.GetChild(0).GetComponent<LongClickComponenet>().weaponID = weaponID;
     }
 
-    public void RemoveItem(int[] itemCode)
+    public void RemoveItem(InventorySlot slot)
     {
-        
 
+        GameObject targetSlot = slot.gameObject;
+        targetSlot.GetComponent<LongClickComponenet>().weaponID = 0;
+        targetSlot.GetComponent<Image>().sprite = null;
+
+        UIManager.instance.CloseCombinePopUpUI();
     }
 }
