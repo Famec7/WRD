@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3656507640395904915
 Transform:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
-  _swingEffect: {fileID: 7930587464925105623}
+  _effect: {fileID: 7930587464925105623}
 --- !u!1 &8347200258792436115
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,8 +138,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 977560319
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f95b4df8ed5677d4882b646563609705, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -164,3 +164,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad125073cd1b3f148a00133c530c06e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _effectSpeed: 5

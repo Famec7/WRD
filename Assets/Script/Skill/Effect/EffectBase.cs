@@ -24,6 +24,11 @@ public abstract class EffectBase : MonoBehaviour
     {
         transform.rotation = rotation;
     }
+    
+    public void SetScale(Vector3 scale)
+    {
+        transform.localScale = scale;
+    }
 
     #endregion
 }
