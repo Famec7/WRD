@@ -1853,6 +1853,14 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 710404064353723064}
+    - target: {fileID: 3598860328224715236, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
+      propertyPath: _hitSize.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3598860328224715236, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
+      propertyPath: _hitSize.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3656507640395904915, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1900,6 +1908,14 @@ PrefabInstance:
     - target: {fileID: 3656507640395904915, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713977209073149809, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713977209073149809, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

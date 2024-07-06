@@ -25,8 +25,9 @@ public class LowVisionStrike : PassiveSkillBase
         if(targets.Count == 0)
             return false;
         
+        // 이펙트 재생
         _effect.SetPosition(target.transform.position);
-        _effect.SetScale(_range / 2);
+        _effect.SetScale(_range);
         _effect.PlayEffect();
 
         foreach (var tar in targets)

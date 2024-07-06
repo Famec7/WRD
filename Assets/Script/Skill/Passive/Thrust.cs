@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Thrust : PassiveSkillBase
 {
-    private Vector2 _range = new Vector2(3f, 1f);
+    private Vector2 _range = new Vector2(1.5f, 0.5f);
     
     [SerializeField]
     private EffectBase _effect;
@@ -18,8 +18,10 @@ public class Thrust : PassiveSkillBase
         if(targets.Count == 0)
             return false;
         
+        // 이펙트 재생
         _effect.SetPosition(owner.transform.position + dir);
         _effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
+        _effect.SetScale(_range);
         _effect.PlayEffect();
         
         foreach (var tar in targets)
