@@ -26,7 +26,7 @@ public class LowVisionStrike : PassiveSkillBase
             return false;
         
         _effect.SetPosition(target.transform.position);
-        _effect.SetScale(_range);
+        _effect.SetScale(_range / 2);
         _effect.PlayEffect();
 
         foreach (var tar in targets)
