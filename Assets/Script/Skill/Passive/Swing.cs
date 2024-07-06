@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Swing : PassiveSkillBase
 {
@@ -7,7 +8,7 @@ public class Swing : PassiveSkillBase
     private Vector2 _hitSize;
     
     /*******Effect*******/
-    [SerializeField] private SwingEffect _swingEffect;
+    [SerializeField] private EffectBase _effect;
     
     protected override void Init()
     {
@@ -30,8 +31,9 @@ public class Swing : PassiveSkillBase
         if(targets.Count == 0)
             return false;
         
-        _swingEffect.SetPosition(owner.transform.position + dir);
-        _swingEffect.PlayEffect();
+        _effect.SetPosition(owner.transform.position + dir);
+        _effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
+        _effect.PlayEffect();
         
         foreach (var tar in targets)
         {
