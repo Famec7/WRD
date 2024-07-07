@@ -14,7 +14,6 @@ public abstract class SkillBase : MonoBehaviour
     [SerializeField] protected LayerMask targetLayer;
     
     // 스킬을 장착한 플레이어 또는 펫
-    [SerializeField]
     protected CharacterController owner;
     public void SetOwner(CharacterController owner)
     {

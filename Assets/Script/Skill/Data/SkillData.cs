@@ -8,8 +8,9 @@ public class SkillData
     private List<float> _values = new();
 
     public string Name { get; set; }
-    
-    public float Range { get; set; }
+
+    private float _range;
+    public float Range { get => _range; set => _range = value / 2; }
 
     public float GetValue(int index)
     {
