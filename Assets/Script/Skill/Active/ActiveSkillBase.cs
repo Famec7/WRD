@@ -1,11 +1,13 @@
 ﻿using System;
+using UnityEngine;
 
 public abstract class ActiveSkillBase : SkillBase
 {
-    private FSM<ActiveSkillBase> _fsm;
-    private SkillState<ActiveSkillBase> _castingState;
-    private SkillState<ActiveSkillBase> _coolTimeState;
-    private SkillState<ActiveSkillBase> _activeState;
+    protected FSM<ActiveSkillBase> _fsm;
+    protected SkillState<ActiveSkillBase> _idleState;
+    protected SkillState<ActiveSkillBase> _castingState;
+    protected SkillState<ActiveSkillBase> _coolTimeState;
+    protected SkillState<ActiveSkillBase> _activeState;
     public string skillType;
     public bool buttonClicked = false;
     protected override void Init()
@@ -13,11 +15,12 @@ public abstract class ActiveSkillBase : SkillBase
         base.Init();
         
         _fsm = new FSM<ActiveSkillBase>(this);
+        _idleState = new SkillState<ActiveSkillBase>(OnIdleEnter, OnIdleExecute, OnIdleExit);
         _castingState = new SkillState<ActiveSkillBase>(OnCastingEnter, OnCastingExecute, OnCastingExit);
         _coolTimeState = new SkillState<ActiveSkillBase>(OnCoolTimeEnter, OnCoolTimeExecute, OnCoolTimeExit);
         _activeState = new SkillState<ActiveSkillBase>(OnActiveEnter, OnActiveExecute, OnActiveExit);
         
-        _fsm.ChangeState(_castingState);
+        _fsm.ChangeState(_idleState);
     }
 
     private void Update()
@@ -29,6 +32,14 @@ public abstract class ActiveSkillBase : SkillBase
     /// 아래 3개의 메서드는 상속받은 클래스에서 구현 필수!!!
     /// </summary>
     /// <param name="skill"></param>
+    # region Idle State
+
+    protected abstract void OnIdleEnter(ActiveSkillBase skill);
+    protected abstract void OnIdleExecute(ActiveSkillBase skill);
+    protected abstract void OnIdleExit(ActiveSkillBase skill);
+
+    # endregion
+
     # region Casting State
 
     protected abstract void OnCastingEnter(ActiveSkillBase skill);
