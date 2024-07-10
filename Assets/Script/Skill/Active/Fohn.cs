@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using TMPro;
 
-public class EyesOfSnake : ActiveSkillBase
+public class Fohn : ActiveSkillBase
 {
-    public GameObject nP;
+    public GameObject noticePrefab;
     public Transform canvasTransform;
     protected Vector3 textPos;
+    protected GameObject nP;
     protected GameObject target = null;      
     
-    void Awake()
-    {
-        Init();
-    }
 
     # region Idle State
 
@@ -38,12 +34,8 @@ public class EyesOfSnake : ActiveSkillBase
 
     protected override void OnCastingEnter(ActiveSkillBase skill)
     {
-        Debug.Log("On Casting Enter");
-        // textPos = new Vector3(0, 500, 0);
-        // nP = Instantiate(noticePrefab, canvasTransform);
-        // nP.transform.localPosition = textPos;
-        nP.SetActive(true);
-        nP.GetComponent<TextMeshProUGUI>().text = "적을 지정하세요.";
+        nP.transform.localPosition = textPos;
+        nP.GetComponent<Text>().text = "적을 지정하세요.";
     }
     protected override void OnCastingExecute(ActiveSkillBase skill)
     {
@@ -60,21 +52,22 @@ public class EyesOfSnake : ActiveSkillBase
             if (col && (col.CompareTag("Monster") || col.CompareTag("Boss") || col.CompareTag("Mission")))
             {
                 target = col.gameObject;
-                nP.SetActive(false);
-                _fsm.ChangeState(_activeState);
+                Destroy(nP, 0f);
             }
             else
             {
-                nP.GetComponent<TextMeshProUGUI>().text = "올바른 적을 지정하세요.";
-                Invoke("UnActiveText", 1f);
-                _fsm.ChangeState(_idleState);
+                nP.GetComponent<Text>().text = "올바른 적을 지정하세요.";
+                Destroy(nP, 3f);
             }
         }
     }
     protected override void OnCastingExit(ActiveSkillBase skill)
     {
-        Debug.Log("casting End");
         buttonClicked = false;
+        if(target)
+            _fsm.ChangeState(_activeState);
+        else
+            _fsm.ChangeState(_idleState);
     }
 
     # endregion
@@ -101,15 +94,9 @@ public class EyesOfSnake : ActiveSkillBase
         //debuffManager.Debuff(target, "amplify", 50f);
         //debuffManager.Debuff(target, "slow", 70f);
         //해당 타겟에게 디버프 검. Debuff함수는 (GameObject target, str string, float debuffTime);
-        _fsm.ChangeState(_idleState);
     }
     protected override void OnActiveExit(ActiveSkillBase skill)
     {}
     
     # endregion
-
-    void UnActiveText()
-    {
-        nP.SetActive(false);
-    }
 }

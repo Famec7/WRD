@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class ActiveSkillBase : SkillBase
 {
-    protected FSM<ActiveSkillBase> _fsm;
+    [SerializeField] protected FSM<ActiveSkillBase> _fsm;
     protected SkillState<ActiveSkillBase> _idleState;
     protected SkillState<ActiveSkillBase> _castingState;
     protected SkillState<ActiveSkillBase> _coolTimeState;

@@ -47,7 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   passiveSkill: {fileID: 2452180783916213287}
-  activeSkill: {fileID: 0}
+  activeSkill:
+  - {fileID: 0}
 --- !u!114 &2452180783916213287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   passiveSkill: {fileID: 0}
-  activeSkill: {fileID: 0}
+  activeSkill:
+  - {fileID: 0}
 --- !u!1 &1723974733066140127
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   passiveSkill: {fileID: 3522584524259818800}
-  activeSkill: {fileID: 0}
+  activeSkill:
+  - {fileID: 0}
 --- !u!114 &3522584524259818800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +330,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   passiveSkill: {fileID: 863529215846507513}
-  activeSkill: {fileID: 0}
+  activeSkill:
+  - {fileID: 0}
 --- !u!114 &863529215846507513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +350,38 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   owner: {fileID: 0}
+--- !u!1 &5385391287382982588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7410546527204335436}
+  m_Layer: 0
+  m_Name: Legendary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7410546527204335436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5385391287382982588}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7071647789498386309}
+  m_Father: {fileID: 8399103689644940}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5911088006560727736
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +412,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8433324878331515741}
+  - {fileID: 7410546527204335436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6953346076694510990
@@ -425,7 +462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   passiveSkill: {fileID: 8293827011730529213}
-  activeSkill: {fileID: 0}
+  activeSkill:
+  - {fileID: 0}
 --- !u!114 &8293827011730529213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,3 +482,76 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   owner: {fileID: 0}
+--- !u!1 &7859350706602952722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7071647789498386309}
+  - component: {fileID: 8717832516243667241}
+  - component: {fileID: 8647423382894163754}
+  m_Layer: 0
+  m_Name: Kerykeion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7071647789498386309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7859350706602952722}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7410546527204335436}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8717832516243667241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7859350706602952722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb88bc413886959428b6e0f9c88af423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  passiveSkill: {fileID: 0}
+  activeSkill:
+  - {fileID: 8647423382894163754}
+  fohnBtn: {fileID: 0}
+  eyesOfSnakeBtn: {fileID: 0}
+--- !u!114 &8647423382894163754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7859350706602952722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7acb42e7f3851304c849bcd3854d8892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  weaponBase: {fileID: 0}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  owner: {fileID: 0}
+  skillType: 
+  buttonClicked: 0
+  noticePrefab: {fileID: 0}
+  canvasTransform: {fileID: 0}

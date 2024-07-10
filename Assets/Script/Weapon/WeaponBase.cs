@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +22,10 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     # region Skill
 
     [Header("Passive Skill")] public PassiveSkillBase passiveSkill = null;
-    [Header("Active Skill")] public GameObject activeSkill = null; // 임시로 GameObject로 선언, 추후 스킬 구현 시 변경 필요
+    [Header("Active Skill")] public List<ActiveSkillBase> activeSkill; // 액티브스킬 여러개일 수 있음
 
     public bool IsPassiveSkillNull => passiveSkill == null;
-    public bool IsActiveSkillNull => activeSkill == null;
+    public bool IsActiveSkillNull => activeSkill.Count == 0;
 
     #endregion
 
@@ -40,6 +40,10 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
 
     private void Update()
     {
+        if (owner is PlayerController)
+        {
+            
+        }
         if (_isAttack is false && !IsTargetNullOrNotInRange())
             StartCoroutine(CoroutineAttack());
     }
