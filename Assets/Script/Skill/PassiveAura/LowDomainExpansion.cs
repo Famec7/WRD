@@ -12,10 +12,10 @@ public class LowDomainExpansion : PassiveAuraSkillBase
         // 범위 조정
         _collider = GetComponent<BoxCollider2D>();
         _collider.isTrigger = true;
-        _collider.size = new Vector2(data.Range, data.Range);
+        _collider.size = new Vector2(Data.Range, Data.Range);
         
         // 슬로우 비율 값
-        _slowDownValue = data.GetValue(0);
+        _slowDownValue = Data.GetValue(0);
     }
     
     private void OnTriggerEnter2D(Collider2D other)

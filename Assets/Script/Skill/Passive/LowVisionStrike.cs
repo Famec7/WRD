@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
 public class LowVisionStrike : PassiveSkillBase
 {
@@ -19,8 +21,8 @@ public class LowVisionStrike : PassiveSkillBase
     {
         if (!CheckTrigger()) return false;
         
-        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(target.transform.position, Vector2.zero,
-            _range, targetLayer);
+        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(target.transform.position, _range,
+            default, targetLayer);
         
         if(targets.Count == 0)
             return false;
