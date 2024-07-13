@@ -27,6 +27,7 @@ public class PassiveSkillDataBase : ScriptableObject
                     Chance = int.Parse(data["skill_chance"].ToString()),
                 };
                 
+                /****************Range Parse****************/
                 if (float.TryParse(data["range"].ToString(), out var result))
                 {
                     passiveSkillData.Range = result;
@@ -36,6 +37,7 @@ public class PassiveSkillDataBase : ScriptableObject
                     Debug.LogError($"{passiveSkillData.Name} {data["range"].ToString()} can't parse");
                 }
 
+                /****************Value Parse****************/
                 var values = data["skill_value"].ToString().Split(',');
 
                 foreach (var value in values)
@@ -60,6 +62,7 @@ public class PassiveSkillDataBase : ScriptableObject
                     Name = (data["skill_name"].ToString()),
                 };
                 
+                /****************Range Parse****************/
                 if(float.TryParse(data["range"].ToString(), out var result))
                 {
                     passiveAuraSkillDataData.Range = result;
@@ -69,6 +72,7 @@ public class PassiveSkillDataBase : ScriptableObject
                     Debug.LogError($"{passiveAuraSkillDataData.Name} {data["range"].ToString()} can't parse");
                 }
 
+                /****************Value Parse****************/
                 var values = data["skill_value"].ToString().Split(',');
 
                 foreach (var value in values)

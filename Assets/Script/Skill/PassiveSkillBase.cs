@@ -50,7 +50,7 @@ public abstract class PassiveSkillBase : SkillBase
     protected override void Init()
     {
         base.Init();
-        _data = SkillDataManager.Instance.GetPassiveSkillData(GetType().Name);
+        _data = SkillManager.Instance.GetPassiveSkillData(GetType().Name);
     }
 
     protected void SetStatusEffect(Monster target, StatusEffect statusEffect)

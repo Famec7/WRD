@@ -19,7 +19,28 @@ public class ActiveSkillDataBase : ScriptableObject
             {
                 Name = (data["skill_name"].ToString())
             };
+            
+            /************cooltime Parse*************/
+            if(float.TryParse(data["skill_cooltime"].ToString(), out var coolTime))
+            {
+                activeSkillData.CoolTime = coolTime;
+            }
+            else
+            {
+                Debug.LogError("${activeSkillData.Name}'s cooltime is not float");
+            }
+            
+            /****************active type Parse****************/
+            if(Enum.TryParse(data["skill_type"].ToString(), out ActiveSkillData.ActiveType activeType))
+            {
+                activeSkillData.Type = activeType;
+            }
+            else
+            {
+                Debug.LogError($"{activeSkillData.Name}'s type is not ActiveType");
+            }
 
+            /****************skill value Parse****************/
             var values = data["skill_value"].ToString().Split(',');
             foreach (var value in values)
             {
@@ -29,11 +50,10 @@ public class ActiveSkillDataBase : ScriptableObject
                 }
                 else
                 {
-                    Debug.LogError("Value is not integer");
+                    Debug.LogError($"{activeSkillData.Name}'s value is not float");
                 }
             }
-
-            activeSkillData.CoolTime = float.Parse(data["skill_cooltime"].ToString());
+            
             _activeSkillDataList.Add(activeSkillData);
         }
     }
