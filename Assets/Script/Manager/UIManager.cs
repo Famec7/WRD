@@ -33,8 +33,11 @@ public class UIManager : MonoBehaviour
     public GameObject backButton;
     public GameObject longClickPopUpUI;
     public GameObject WeaponSlotSelectUI;
-    
+    public GameObject BookmarkSlotSelectUI;
+
+
     public Button[] elementUI;
+    public WeaponSlotUI[] weaponSlotUI;
     
     private Stack<UIPopUp> popUpStack;
     [SerializeField]
@@ -70,22 +73,16 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-            touchPos = Input.mousePosition;
-
         for (int i = 0; i < 5; i++)
         {
             elementCnt[i].text = GameManager.instance.weaponCnt[i].ToString();
         }
-
     }
 
     public void CreateCombineUI(int weaponID, bool isBlock = true, bool isInventory = false, bool isEquiped = false)
     {
-        if (Mathf.Abs(touchPos.x - Input.mousePosition.x) >= 20 || Mathf.Abs(touchPos.y - Input.mousePosition.y) >= 20) return;
         //if (inventory.activeSelf) return;
         if (descriptionPopUpUIStack.Count > 0) return;
-        Debug.Log("여기");
 
         CloseCombinePopUpUI();
         GameObject combineUI = WeaponCombinationUIGenerator.Instance.combineWeaponUIList[weaponID - 1];
@@ -98,6 +95,7 @@ public class UIManager : MonoBehaviour
     public void CreateInventoryDescriptionUI(int weaponID , bool isBlock = true)
     {
         CloseDetailedDescriptionPopUpUI();
+
         longClickPopUpUI.SetActive(true);
 
         GameObject inventoryDescriptionUI = InventoryDescriptionUIGenerator.Instance.inventoryDescriptionUIList[weaponID - 1];
@@ -110,6 +108,8 @@ public class UIManager : MonoBehaviour
     public void CreateDetailedDescriptionUI(int weaponID , bool isBlock = true)
     {
         CloseCombinePopUpUI();
+        if (Mathf.Abs(touchPos.x - Input.mousePosition.x) >= 2 || Mathf.Abs(touchPos.y - Input.mousePosition.y) >= 2) return;
+
         GameObject detailedDescriptionUI = DetailedDescriptionUIGenerator.Instance.detailedDescriptionUIList[weaponID - 1];
         detailedDescriptionUI.transform.SetAsLastSibling();
         detailedDescriptionUI.SetActive((true));

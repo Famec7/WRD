@@ -7,7 +7,7 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] Image image;
     public bool hasItem;
     public bool isEquiped;
-    private InventoryItem _weapon;
+    public InventoryItem _weapon;
     public TextMeshProUGUI equipText;
     public InventoryItem weapon
     {
@@ -32,8 +32,8 @@ public class InventorySlot : MonoBehaviour
     {
         if (weapon == null) return;
         UIManager.instance.CreateCombineUI(weapon.data.ID);
+        Debug.Log("¿ä±â¿ë");
         UIManager.instance.CreateInventoryDescriptionUI(weapon.data.ID);
-
     }
 
     public void Init()

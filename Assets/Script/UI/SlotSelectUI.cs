@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class WeaponSlotSelectUI : Singleton<WeaponSlotSelectUI>
+public class SlotSelectUI : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform[] slots;
     public GraphicRaycaster gr;
-    protected override void Init()
-    {
-        return;
-    }
+
+    public bool isBookmarked = false;
+    private InventoryItem _item;
+  
     void Start()
     {
         slots =  GetComponentsInChildren<Transform>();
@@ -33,17 +33,33 @@ public class WeaponSlotSelectUI : Singleton<WeaponSlotSelectUI>
             bool isAnotherTouch = true;
             
             foreach (var result in results)
-            {
-                if (result.gameObject.CompareTag("WeaponSlotSelectUI"))
+            {               
+                if (result.gameObject.CompareTag("WeaponSlotSelectUI") && !isBookmarked)
                     order = int.Parse(result.gameObject.name);
-                Debug.Log(result.gameObject.name);
+                else if (result.gameObject.CompareTag("BookMarkedSelectSlot") && isBookmarked)
+                    order = int.Parse(result.gameObject.name);               
+
             }
 
             if (order >= 0)
             {
-                WeaponUI.Instance.AddItem(order);
-                gameObject.SetActive(false);
+                if (!isBookmarked)
+                {
+                    GameManager.instance.UpdateUseableWeaponCnt();
+                    WeaponUI.Instance.AddItem(order,_item);
+                }
+                else 
+                    BookMakredSlotUI.Instance.AddItem(order);
+
             }
+
+            gameObject.SetActive(false);
+
         }
+    }
+
+    public void SetItem(InventoryItem item)
+    {
+        _item = item;
     }
 }

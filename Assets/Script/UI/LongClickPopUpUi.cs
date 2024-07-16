@@ -12,12 +12,14 @@ public class LongClickPopUpUi : MonoBehaviour
     public GameObject _bookmarkButton;
     public GameObject _equipButton;
     public InventorySlot inventorySlot;
+
     public WeaponSlotUI weaponSlot;
+
     public int weaponID;
     
-    private bool isBookmarked;
-    private bool isInventory;
-    private bool isWeaponSlot;
+    public bool isBookmarked;
+    public bool isInventory;
+    public bool isWeaponSlot;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,17 +49,14 @@ public class LongClickPopUpUi : MonoBehaviour
         transform.SetAsLastSibling();
     }
 
-    public void SetFavoriteButtonText(bool isBookmarked, bool isInventory, bool isWeaponSlot)
+    public void SetBookmarkedButtonText(bool isBookmarked, bool isInventory, bool isWeaponSlot)
     {
-        this.isBookmarked = isBookmarked;
-        this.isInventory = isInventory;
-        this.isWeaponSlot = isWeaponSlot;
-        
+      
         var bookmarkButtonTMP = _bookmarkButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         var equipButtonTMP = _equipButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
         
-        if (!isWeaponSlot && GameManager.instance.weaponCnt[weaponID-1] > 0)
+        if (!isWeaponSlot && GameManager.instance.useAbleWeaponCnt[weaponID-1] > 0)
             equipButtonTMP.text = "장착";
         
         if (isBookmarked)
@@ -69,7 +68,7 @@ public class LongClickPopUpUi : MonoBehaviour
             bookmarkButtonTMP.text = "즐겨찾기 등록";
         }
         
-        if (isWeaponSlot)
+        if (isWeaponSlot || isInventory && inventorySlot.isEquiped)
         {
             equipButtonTMP.text = "장착 해제";
         }
@@ -86,8 +85,8 @@ public class LongClickPopUpUi : MonoBehaviour
     {
         if (!isBookmarked)
         {
-            BookMakredSlotUI.Instance.AddItem(weaponID);
-            UIManager.instance.SetActiveBlockImage(false);
+            BookMakredSlotUI.Instance.weaponID = weaponID;
+            UIManager.instance.BookmarkSlotSelectUI.SetActive(true);
         }
         else
         {
@@ -99,19 +98,56 @@ public class LongClickPopUpUi : MonoBehaviour
     public void ClickEquipButton()
     {
         if (isWeaponSlot || (isInventory && inventorySlot.isEquiped))
-            UnEuqip();
-        
-        WeaponUI.Instance.weaponID = weaponID;
-        UIManager.instance.WeaponSlotSelectUI.SetActive(true);
-        if (isInventory)
+            UnEuqip(isInventory);
+        else
         {
-            inventorySlot.isEquiped = true;
-            inventorySlot.equipText.gameObject.SetActive(true);
+            WeaponUI.Instance.weaponID = weaponID;
+            UIManager.instance.WeaponSlotSelectUI.SetActive(true);
+
+            if(!isBookmarked)
+                UIManager.instance.WeaponSlotSelectUI.GetComponent<SlotSelectUI>().SetItem(inventorySlot._weapon);
+            else
+            {
+                InventoryItem item = InventoryManager.instance.FindUnEquipedItem(weaponID);
+                if (item != null)
+                    UIManager.instance.WeaponSlotSelectUI.GetComponent<SlotSelectUI>().SetItem(item);
+            }
         }
     }
-    public void UnEuqip()
+    public void UnEuqip(bool isInventory = false)
     {
-        inventorySlot.isEquiped = false;
+        //인벤토리 아닌데서 키면
+        if (!isInventory) 
+            weaponSlot.hasWeapon = false;
+        else
+            inventorySlot.isEquiped = false;
+        //인벤토리 다시 그리기
+        InventoryManager.instance.FreshSlot();
+        // 장착하고 있는 무기 줄이기
+        GameManager.instance.RemoveUseWeaponList(weaponID);
+        //만약 웨폰 슬롯이 널이면
+        if (isInventory || weaponSlot == null)
+        {
+            for (int weapnUIIDX = 0; weapnUIIDX < UIManager.instance.weaponSlotUI.Length; weapnUIIDX++)
+            {
+                //하단 웨폰슬롯ui중에 무기 같은 거 찾아서 웨폰슬롯으로 넣어줌
+                WeaponSlotUI targetWeaponSlot = UIManager.instance.weaponSlotUI[weapnUIIDX];
+                if (targetWeaponSlot.hasWeapon)
+                {
+                    if (targetWeaponSlot.inventorySlot.weapon == inventorySlot.weapon)
+                    {
+                        weaponSlot = targetWeaponSlot;
+                        break;
+                    }
+                }
+            }
+        }
+        //장착무기 ui 초기화
+        weaponSlot.Init();
+        weaponSlot = null;
+        inventorySlot = null;
+
+        gameObject.SetActive(false);
     }
 }
     

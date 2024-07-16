@@ -76,16 +76,19 @@ public class SubCombinationUI : MonoBehaviour
                 image = transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite
             };
             item.AssignWeapon(mainweaponID);
-            
-            InventoryManager.instance.RemoveItem(materialWeapons);
-            InventoryManager.instance.AddItem(item);
+            WeaponUI.Instance.weaponID = mainweaponID;
 
+            InventoryManager.instance.AddItem(item);
+            InventoryManager.instance.RemoveItem(materialWeapons,mainweaponID,item);
+            
             if (InventoryManager.instance.isClassSorted)
                 InventoryManager.instance.ClickClassShowButton();
 
+            InventoryManager.instance.FreshSlot();
             UIManager.instance.CreateCombineUI(mainweaponID);
             GameManager.instance.weaponCnt[mainweaponID - 1]++;
             GameManager.instance.UpdateUseableWeaponCnt();
+            BookMakredSlotUI.Instance.UpdateAllSlot();
        }
     }
 

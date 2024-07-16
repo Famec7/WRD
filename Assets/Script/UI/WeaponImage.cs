@@ -19,12 +19,15 @@ public class WeaponImage : MonoBehaviour
     public bool isInventory;
     private RectTransform rectTransform;
     private RectTransform rectTransform1;
+    private LongClickComponenet longClickComponenet;
 
     void Start()
     {
         rectTransform1 = GetComponent<RectTransform>();
         rectTransform = GetComponent<RectTransform>();
         originalPos = transform.position;
+
+        longClickComponenet = GetComponent<LongClickComponenet>();
     }
 
     // Update is called once per frame
@@ -69,6 +72,8 @@ public class WeaponImage : MonoBehaviour
         var parent = transform.parent;
         parent.GetComponent<RectTransform>().SetAsLastSibling();
         parent.parent.GetComponent<RectTransform>().SetAsLastSibling();
+
+        UIManager.instance.touchPos = Input.mousePosition;
 
         isDrag = true;
 
@@ -118,6 +123,7 @@ public class WeaponImage : MonoBehaviour
 
                 Sprite targetSprite = targetSlotImage.sprite;
                 Sprite mySprite = gameObject.GetComponent<Image>().sprite;
+                Color myColor = gameObject.GetComponent<Image>().color;
 
                 targetSlot.hasWeapon = true;
                 targetSlot.transform.GetChild(0).GetComponent<LongClickComponenet>().weaponID = weaponID;
@@ -138,7 +144,7 @@ public class WeaponImage : MonoBehaviour
                 targetSlot.transform.GetChild(0).gameObject.GetComponent<InventorySlot>().weapon =
                     gameObject.GetComponent<InventorySlot>().weapon;
                 targetSlotImage.sprite = mySprite;
-                targetSlotImage.color = new Color32(255, 255, 255, 255);
+                targetSlotImage.color = myColor;
 
 
                 if (alreadyHasWeapon)
@@ -157,9 +163,10 @@ public class WeaponImage : MonoBehaviour
                 UIManager.instance.touchPos = Input.mousePosition;
             }
         }
-    
+        
         transform.position = originalPos;
         isDrag = false;
+        UIManager.instance.CloseCombinePopUpUI();
 
     }
 }

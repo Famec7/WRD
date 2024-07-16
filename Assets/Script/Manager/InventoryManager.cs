@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq.Expressions;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -63,7 +64,7 @@ public class InventoryManager : MonoBehaviour
         };
         item.AssignWeapon(7);
         AddItem(item);
-        
+        WeaponUI.Instance.weaponSlots[4].transform.GetChild(0).GetComponent<InventorySlot>().weapon = item;
     }
 
     // Update is called once per frame
@@ -73,26 +74,63 @@ public class InventoryManager : MonoBehaviour
         isAllShow = allShowInventoryContent.activeSelf;
     }
 
+    public void SyncWeaponSlotInventorySlot()
+    {
+        for (int j = 0; j < slots.Length; j++)
+        {
+            if (slots[j].weapon == null)
+            {
+                slots[j].isEquiped = false;
+                slots[j].equipText.gameObject.SetActive(false);
+                continue;
+            };
+
+            for (int weapnUIIDX = 0; weapnUIIDX < UIManager.instance.weaponSlotUI.Length; weapnUIIDX++)
+            {
+                WeaponSlotUI weaponSlotUI = UIManager.instance.weaponSlotUI[weapnUIIDX];
+
+                if (weaponSlotUI.hasWeapon)
+                {
+                    if (weaponSlotUI.transform.GetChild(0).GetComponent<InventorySlot>().weapon == slots[j].weapon)
+                    {
+                        weaponSlotUI.inventorySlot.equipText.gameObject.SetActive(true);
+                        weaponSlotUI.inventorySlot.isEquiped = true;
+                        weaponSlotUI.inventorySlot = slots[j];
+                        break;
+                    }
+                }
+
+            }
+        }
+    }
     public void FreshSlot()
     {
         int i = 0;
         int j = 0;
-        List<int> tmpList = new List<int>(GameManager.instance.useWeapon);
         for (; i < items.Count && j < slots.Length; i++)
         {
+            slots[j].equipText.gameObject.SetActive(false);
+
+            //for (int weapnUIIDX = 0; weapnUIIDX < UIManager.instance.weaponSlotUI.Length; weapnUIIDX++)
+            //{
+            //    WeaponSlotUI weaponSlotUI = UIManager.instance.weaponSlotUI[weapnUIIDX];
+            //    if (weaponSlotUI.hasWeapon)
+            //    {
+
+            //        if (weaponSlotUI.inventorySlot.weapon == items[i] && slots[j].isEquiped)
+            //        {
+            //            weaponSlotUI.inventorySlot.equipText.gameObject.SetActive(true);
+            //            weaponSlotUI.inventorySlot.isEquiped = true;
+            //            weaponSlotUI.inventorySlot = slots[j];
+            //            break;
+            //        }
+            //    }
+          
+            //}
+
             slots[j].weapon = items[i];
             slots[j].hasItem = true;
             slots[j].gameObject.GetComponent<LongClickComponenet>().weaponID = items[i].data.ID;
-            
-            for (int k = tmpList.Count - 1; k >= 0; k--) {
-
-                if (tmpList[k] == slots[j].weapon.data.ID)
-                {
-                    slots[j].isEquiped = true;
-                    slots[j].equipText.gameObject.SetActive(true);
-                    tmpList.Remove(tmpList[k]);
-                }
-            }
             
             j++;
         }
@@ -101,8 +139,10 @@ public class InventoryManager : MonoBehaviour
             slots[j].weapon = null;
             slots[j].hasItem = false;
             slots[j].gameObject.GetComponent<LongClickComponenet>().weaponID = -1;
-            
         }
+
+        SyncWeaponSlotInventorySlot();
+
     }
 
     public void InventorySort(int grade)
@@ -136,24 +176,14 @@ public class InventoryManager : MonoBehaviour
                 continue;
                    
             slots[j].weapon = items[i];
-            
-            
-            for (int k = tmpList.Count - 1; k >= 0; k--) {
-
-                if (tmpList[k] == slots[j].weapon.data.ID)
-                {
-                    slots[j].isEquiped = true;
-                    slots[j].equipText.gameObject.SetActive(true);
-                    tmpList.Remove(tmpList[k]);
-                }
-            }
-            
             slots[j].gameObject.GetComponent<LongClickComponenet>().weaponID = items[i].data.ID;
             j++;
         }
 
         for (; j < slots.Length; j++)
             slots[j].Init();
+
+        SyncWeaponSlotInventorySlot();
     }
 
     public void AddItem(InventoryItem _item, bool refresh = true)
@@ -276,17 +306,107 @@ public class InventoryManager : MonoBehaviour
 
     }
 
-    public void RemoveItem(int[] itemCode)
+    public bool RemoveItem(int[] itemIDs, int mainWeaponID, InventoryItem item)
     {
-        foreach (int i in itemCode)
+        bool returnValue = false;
+        LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
+        InventorySlot pressSlot = null;
+
+        if (longClickPopUpUi.inventorySlot != null)
+            pressSlot = longClickPopUpUi.inventorySlot;
+        if (longClickPopUpUi.weaponSlot != null && longClickPopUpUi.weaponSlot.inventorySlot != null)
+            pressSlot = longClickPopUpUi.weaponSlot.inventorySlot;
+
+        Dictionary<int, int> materialCounts = new Dictionary<int, int>();
+        foreach (int itemID in itemIDs) 
+        {
+            if (materialCounts.ContainsKey(itemID))
+                materialCounts[itemID]++;
+            else
+                materialCounts[itemID] = 1;
+        }
+        //WeaponSlotUI targetSlot = UIManager.instance.Wea;
+        foreach (int i in itemIDs)
         {
             var itemToRemove = items.Find(item => item.data.ID == i);
+            
+            foreach (var slot in slots)
+            {
+                if (!slot.hasItem) continue;
+
+                if (pressSlot == null)
+                {
+                    if (itemToRemove == slot.weapon && slot.isEquiped && GameManager.instance.weaponCnt[i - 1] + materialCounts[i] == materialCounts[i])
+                    {
+                        UnEquipMaterialWeapon(slot, itemToRemove, pressSlot, materialCounts);
+                        materialCounts[i]--;
+                    }
+                }
+
+                else
+                {
+                    if (pressSlot.isEquiped && pressSlot.weapon == itemToRemove && !returnValue && slot == pressSlot)
+                    {
+                        for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)
+                        {
+                            var weaponSlot = UIManager.instance.weaponSlotUI[j];
+
+                            if (slot == weaponSlot.inventorySlot)
+                            {
+                                WeaponUI.Instance.ChangeItem(j,item);
+                                materialCounts[i]--;
+                                //targetSlot = weaponSlot;
+                                pressSlot = weaponSlot.inventorySlot;
+                                returnValue = true;
+                            }
+                        }
+                    }
+
+                    if (itemToRemove != pressSlot.weapon && itemToRemove == slot.weapon && slot.isEquiped && GameManager.instance.useAbleWeaponCnt[i] < materialCounts[i])
+                    {
+                        UnEquipMaterialWeapon(slot, itemToRemove, pressSlot, materialCounts);
+                        materialCounts[i]--;
+                    }
+
+                }
+            }
 
             if (itemToRemove != null)
+            {
                 items.Remove(itemToRemove);
+                GameManager.instance.useAbleWeaponCnt[item.data.ID - 1]++;
+            }
+
+           
         }
 
+        //if (pressSlot != null)
+        //{
+        //    foreach (var slot in slots)
+        //    {
+        //        if (slot.hasItem) continue;
+        //        targetSlot.inventorySlot = slot;
+        //        targetSlot.inventorySlot.isEquiped = true;
+        //        break;
+        //    }
+        //}
         FreshSlot();
+        return returnValue;
+    }
+
+    public void UnEquipMaterialWeapon(InventorySlot slot , InventoryItem itemToRemove, InventorySlot pressSlot, Dictionary<int,int>materialCounts)
+    {
+        slot.isEquiped = false;
+
+        for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)
+        {
+            var weaponSlot = UIManager.instance.weaponSlotUI[j];
+            if (slot == weaponSlot.inventorySlot)
+            {
+                weaponSlot.Init();
+                slot.hasItem = false;
+            }
+        }
     }
 
     public void NotHeldSort(int grade)
@@ -371,6 +491,42 @@ public class InventoryManager : MonoBehaviour
         }
         
         return new WeaponTuple<WeaponTier, int>(highest, items.FindAll(item => item.data.tier == highest).Count);
+    }
+
+    public InventorySlot FindInventorySlot(int id)
+    {
+        InventorySlot targetSlot = null;
+
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.hasItem)
+            {
+                if (!slot.isEquiped && slot.weapon.data.ID == id)
+                {
+                    targetSlot = slot;
+                    break;
+                }
+            }
+        }
+
+        return targetSlot;
+
+    }
+
+    public InventoryItem FindUnEquipedItem(int id)
+    {
+        InventoryItem findItem = null;
+
+        foreach (InventorySlot slot in slots)
+        {
+            if (!slot.isEquiped  && slot.hasItem)
+            {
+                if (slot.weapon.data.ID == id)
+                findItem = slot.weapon;
+            }
+        }
+
+        return findItem;
     }
 }
 
