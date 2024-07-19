@@ -65,6 +65,7 @@ public class InventoryManager : MonoBehaviour
         item.AssignWeapon(7);
         AddItem(item);
         WeaponUI.Instance.weaponSlots[4].transform.GetChild(0).GetComponent<InventorySlot>().weapon = item;
+        slots[0].isEquiped = true;
     }
 
     // Update is called once per frame
@@ -78,13 +79,11 @@ public class InventoryManager : MonoBehaviour
     {
         for (int j = 0; j < slots.Length; j++)
         {
-            if (slots[j].weapon == null)
-            {
-                slots[j].isEquiped = false;
-                slots[j].equipText.gameObject.SetActive(false);
-                continue;
-            };
+            slots[j].isEquiped = false;
+            slots[j].equipText.gameObject.SetActive(false);
 
+            if (slots[j].weapon == null) continue;
+            
             for (int weapnUIIDX = 0; weapnUIIDX < UIManager.instance.weaponSlotUI.Length; weapnUIIDX++)
             {
                 WeaponSlotUI weaponSlotUI = UIManager.instance.weaponSlotUI[weapnUIIDX];
@@ -93,9 +92,9 @@ public class InventoryManager : MonoBehaviour
                 {
                     if (weaponSlotUI.transform.GetChild(0).GetComponent<InventorySlot>().weapon == slots[j].weapon)
                     {
+                        weaponSlotUI.inventorySlot = slots[j];
                         weaponSlotUI.inventorySlot.equipText.gameObject.SetActive(true);
                         weaponSlotUI.inventorySlot.isEquiped = true;
-                        weaponSlotUI.inventorySlot = slots[j];
                         break;
                     }
                 }
@@ -103,31 +102,12 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
-    public void FreshSlot()
+    public void FreshSlot(bool isSync = true)
     {
         int i = 0;
         int j = 0;
         for (; i < items.Count && j < slots.Length; i++)
         {
-            slots[j].equipText.gameObject.SetActive(false);
-
-            //for (int weapnUIIDX = 0; weapnUIIDX < UIManager.instance.weaponSlotUI.Length; weapnUIIDX++)
-            //{
-            //    WeaponSlotUI weaponSlotUI = UIManager.instance.weaponSlotUI[weapnUIIDX];
-            //    if (weaponSlotUI.hasWeapon)
-            //    {
-
-            //        if (weaponSlotUI.inventorySlot.weapon == items[i] && slots[j].isEquiped)
-            //        {
-            //            weaponSlotUI.inventorySlot.equipText.gameObject.SetActive(true);
-            //            weaponSlotUI.inventorySlot.isEquiped = true;
-            //            weaponSlotUI.inventorySlot = slots[j];
-            //            break;
-            //        }
-            //    }
-          
-            //}
-
             slots[j].weapon = items[i];
             slots[j].hasItem = true;
             slots[j].gameObject.GetComponent<LongClickComponenet>().weaponID = items[i].data.ID;
@@ -141,8 +121,8 @@ public class InventoryManager : MonoBehaviour
             slots[j].gameObject.GetComponent<LongClickComponenet>().weaponID = -1;
         }
 
+        if(isSync)
         SyncWeaponSlotInventorySlot();
-
     }
 
     public void InventorySort(int grade)
@@ -191,7 +171,9 @@ public class InventoryManager : MonoBehaviour
         if (items.Count < slots.Length)
         {
             items.Add(_item);
-            FreshSlot();
+
+            if(refresh)
+                FreshSlot();
         }
         else
         {
@@ -306,7 +288,7 @@ public class InventoryManager : MonoBehaviour
 
     }
 
-    public bool RemoveItem(int[] itemIDs, int mainWeaponID, InventoryItem item)
+    public bool RemoveItem(List<int> itemIDs, int mainWeaponID, InventoryItem item)
     {
         bool returnValue = false;
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
@@ -317,97 +299,106 @@ public class InventoryManager : MonoBehaviour
         if (longClickPopUpUi.weaponSlot != null && longClickPopUpUi.weaponSlot.inventorySlot != null)
             pressSlot = longClickPopUpUi.weaponSlot.inventorySlot;
 
-        Dictionary<int, int> materialCounts = new Dictionary<int, int>();
-        foreach (int itemID in itemIDs) 
+        if (pressSlot == null)
         {
-            if (materialCounts.ContainsKey(itemID))
-                materialCounts[itemID]++;
-            else
-                materialCounts[itemID] = 1;
-        }
-        //WeaponSlotUI targetSlot = UIManager.instance.Wea;
-        foreach (int i in itemIDs)
-        {
-            var itemToRemove = items.Find(item => item.data.ID == i);
-            
+            InventorySlot equippedSlot = null;
+            InventorySlot firstMatchingSlot = null;
+
             foreach (var slot in slots)
             {
                 if (!slot.hasItem) continue;
 
-                if (pressSlot == null)
+                if (slot.weapon.data.ID != itemIDs[0]) continue;
+
+                if (slot.isEquiped)
                 {
-                    if (itemToRemove == slot.weapon && slot.isEquiped && GameManager.instance.weaponCnt[i - 1] + materialCounts[i] == materialCounts[i])
-                    {
-                        UnEquipMaterialWeapon(slot, itemToRemove, pressSlot, materialCounts);
-                        materialCounts[i]--;
-                    }
+                    equippedSlot = slot;
+                    break;
                 }
 
-                else
+                if (firstMatchingSlot == null)
                 {
-                    if (pressSlot.isEquiped && pressSlot.weapon == itemToRemove && !returnValue && slot == pressSlot)
-                    {
-                        for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)
-                        {
-                            var weaponSlot = UIManager.instance.weaponSlotUI[j];
-
-                            if (slot == weaponSlot.inventorySlot)
-                            {
-                                WeaponUI.Instance.ChangeItem(j,item);
-                                materialCounts[i]--;
-                                //targetSlot = weaponSlot;
-                                pressSlot = weaponSlot.inventorySlot;
-                                returnValue = true;
-                            }
-                        }
-                    }
-
-                    if (itemToRemove != pressSlot.weapon && itemToRemove == slot.weapon && slot.isEquiped && GameManager.instance.useAbleWeaponCnt[i] < materialCounts[i])
-                    {
-                        UnEquipMaterialWeapon(slot, itemToRemove, pressSlot, materialCounts);
-                        materialCounts[i]--;
-                    }
-
+                    firstMatchingSlot = slot;
                 }
-            }
 
-            if (itemToRemove != null)
-            {
-                items.Remove(itemToRemove);
-                GameManager.instance.useAbleWeaponCnt[item.data.ID - 1]++;
             }
-
-           
+            pressSlot = equippedSlot ?? firstMatchingSlot;
         }
 
-        //if (pressSlot != null)
-        //{
-        //    foreach (var slot in slots)
-        //    {
-        //        if (slot.hasItem) continue;
-        //        targetSlot.inventorySlot = slot;
-        //        targetSlot.inventorySlot.isEquiped = true;
-        //        break;
-        //    }
-        //}
-        FreshSlot();
+        if (pressSlot != null)
+        {
+            // 만약에 장착중인 무기면
+            if (pressSlot.isEquiped)
+            {
+                for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)
+                {
+                    var weaponSlot = UIManager.instance.weaponSlotUI[j];
+
+                    if (pressSlot == weaponSlot.inventorySlot)
+                    {
+                        // 인벤토리 아이템에서 누른 메인재료 무기 삭제
+                        items.Remove(pressSlot.weapon);
+                        //장착UI에서 아이템 바꾸기
+                        WeaponUI.Instance.ChangeItem(j, item);
+                        // 재료 리스트에서 삭제
+                        GameManager.instance.weaponCnt[itemIDs[0] - 1]--;
+
+                        itemIDs.Remove(itemIDs[0]);
+                        break;
+                    }
+                }
+            }
+        }
+
+        foreach (int i in itemIDs)
+        {
+            InventoryItem removeToItem = null;
+            if (i>5)
+            {
+                
+                // 안 장착중인 재료가 있을 때
+                if (GameManager.instance.useAbleWeaponCnt[i-1] > 0)
+                {
+                    foreach (var slot in slots)
+                    {
+                        if (!slot.hasItem) continue;
+
+                        if (!slot.isEquiped && slot.weapon.data.ID == i)
+                        {
+                            removeToItem = slot.weapon;
+                            break;
+                        }
+                    }
+                    GameManager.instance.useAbleWeaponCnt[i-1]--;
+                }
+                // 장착중인 재료일 떄
+                else
+                {
+                    for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)
+                    {
+                        var weaponSlot = UIManager.instance.weaponSlotUI[j];
+
+                        if (!weaponSlot.hasWeapon) continue;
+                        removeToItem = weaponSlot.transform.GetChild(0).GetComponent<InventorySlot>().weapon;
+
+                        if (removeToItem.data.ID == i)
+                        {
+                            weaponSlot.Init();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            items.Remove(removeToItem);
+            GameManager.instance.weaponCnt[i - 1]--;
+        }
+        
+        FreshSlot(pressSlot != null);
         return returnValue;
     }
 
-    public void UnEquipMaterialWeapon(InventorySlot slot , InventoryItem itemToRemove, InventorySlot pressSlot, Dictionary<int,int>materialCounts)
-    {
-        slot.isEquiped = false;
-
-        for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)
-        {
-            var weaponSlot = UIManager.instance.weaponSlotUI[j];
-            if (slot == weaponSlot.inventorySlot)
-            {
-                weaponSlot.Init();
-                slot.hasItem = false;
-            }
-        }
-    }
+   
 
     public void NotHeldSort(int grade)
     {

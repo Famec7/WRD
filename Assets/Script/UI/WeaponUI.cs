@@ -82,7 +82,6 @@ public class WeaponUI : Singleton<WeaponUI>
 
         //쓰고있는 무기 배열에 추가하고 사용할 수 있는 무기 개수 배열 업데이트
         GameManager.instance.useWeapon.Add(weaponID);
-        GameManager.instance.UpdateUseableWeaponCnt();
 
         //즐겨찾기에서 시작하고 사용가능한 무기에 해당 하는 무기 없을 시 장착 버튼 비활성화
         if (longClickPopUpUi.isBookmarked && GameManager.instance.useAbleWeaponCnt[weaponID - 1] <= 0)

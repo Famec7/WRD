@@ -108,7 +108,6 @@ public class UIManager : MonoBehaviour
     public void CreateDetailedDescriptionUI(int weaponID , bool isBlock = true)
     {
         CloseCombinePopUpUI();
-        if (Mathf.Abs(touchPos.x - Input.mousePosition.x) >= 2 || Mathf.Abs(touchPos.y - Input.mousePosition.y) >= 2) return;
 
         GameObject detailedDescriptionUI = DetailedDescriptionUIGenerator.Instance.detailedDescriptionUIList[weaponID - 1];
         detailedDescriptionUI.transform.SetAsLastSibling();
@@ -140,6 +139,7 @@ public class UIManager : MonoBehaviour
         }
         _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
+        InitLongClickPopupUI();
     }
     
     public void CloseDetailedDescriptionPopUpUI()
@@ -154,6 +154,7 @@ public class UIManager : MonoBehaviour
         backButton.SetActive(false);
         _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
+        InitLongClickPopupUI();
     }
     
     public void CloseInventoryDescriptionPopUpUI()
@@ -170,6 +171,7 @@ public class UIManager : MonoBehaviour
         backButton.SetActive(false);
         _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
+        InitLongClickPopupUI();
     }
 
    public void ChangeAutoSkipToggle()
@@ -253,5 +255,11 @@ public class UIManager : MonoBehaviour
     public void SetActiveBlockImage(bool isBlock)
     {
         _blockImage.gameObject.SetActive(isBlock);
+    }
+
+    public void InitLongClickPopupUI()
+    {
+        longClickPopUpUI.GetComponent<LongClickPopUpUi>().inventorySlot = null;
+        longClickPopUpUI.GetComponent<LongClickPopUpUi>().weaponSlot = null;
     }
 }

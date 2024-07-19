@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using static Unity.Burst.Intrinsics.X86.Avx;
@@ -51,10 +52,14 @@ public class SubCombinationUI : MonoBehaviour
 
     public void CraftWeapon()
     {
+        // 갖고있는 재료의 개수를 나타내는 변수
         int hasMaterialCnt = 0;
+        // 복사용 배열
         int[] tmpCnt = new int[GameManager.instance.weaponCnt.Length];
+        // 갖고있는 무기 개수 배열을 복사
         Array.Copy(GameManager.instance.weaponCnt, tmpCnt, tmpCnt.Length);
 
+       //재료 배열을 돌면서 만약에 갖고 있는게 더 많으면 복사한 배열에서 빼주고 필요한 갯수에서 빼줌
        foreach (int i in materialWeapons)
        {
             if (tmpCnt[i - 1] >= 1)
@@ -64,27 +69,29 @@ public class SubCombinationUI : MonoBehaviour
             }                
        }
 
+       // 그래서 갖고있는개수랑 있는거랑 같으면 (재료가 다있으면)
        if (hasMaterialCnt == materialWeapons.Length) 
        {
-            foreach (int i in materialWeapons)
-            {
-                GameManager.instance.weaponCnt[i - 1]--;
-            }
-
+            //// 갖고있는 무기 배열에서 빼줌
+            //foreach (int i in materialWeapons)
+            //{
+            //    GameManager.instance.weaponCnt[i - 1]--;
+            //}
+            // 아이템 데이터 생성
+            List<int>materialsList = materialWeapons.ToList();
             InventoryItem item = new InventoryItem
             {
                 image = transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite
             };
-            item.AssignWeapon(mainweaponID);
+            item.AssignWeapon(mainweaponID); // 아이템에 무기데이터 넣어줌
             WeaponUI.Instance.weaponID = mainweaponID;
-
-            InventoryManager.instance.AddItem(item);
-            InventoryManager.instance.RemoveItem(materialWeapons,mainweaponID,item);
+            
+            InventoryManager.instance.AddItem(item,false);
+            InventoryManager.instance.RemoveItem(materialsList, mainweaponID,item);
             
             if (InventoryManager.instance.isClassSorted)
                 InventoryManager.instance.ClickClassShowButton();
 
-            InventoryManager.instance.FreshSlot();
             UIManager.instance.CreateCombineUI(mainweaponID);
             GameManager.instance.weaponCnt[mainweaponID - 1]++;
             GameManager.instance.UpdateUseableWeaponCnt();

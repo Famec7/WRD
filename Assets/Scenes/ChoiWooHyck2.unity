@@ -816,6 +816,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1193910061892177284, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: hasItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193910061892177284, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: isEquiped
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1294105297197682328, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -972,6 +980,10 @@ PrefabInstance:
       propertyPath: inventorySlot
       value: 
       objectReference: {fileID: 1604014086}
+    - target: {fileID: 4518583698245467629, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: hasItem
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4518583698245467629, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: isEquiped
       value: 1
@@ -1248,6 +1260,22 @@ PrefabInstance:
       propertyPath: gr
       value: 
       objectReference: {fileID: 1109643354}
+    - target: {fileID: 8477870296653802982, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -45.955
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477870296653802982, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -1159.561
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477870296653802982, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -22.978027
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477870296653802982, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 117.65405
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
