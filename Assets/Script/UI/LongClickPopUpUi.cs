@@ -121,6 +121,8 @@ public class LongClickPopUpUi : MonoBehaviour
             weaponSlot.hasWeapon = false;
         else
             inventorySlot.isEquiped = false;
+
+
         //인벤토리 다시 그리기
         InventoryManager.instance.FreshSlot();
         // 장착하고 있는 무기 줄이기
@@ -142,6 +144,8 @@ public class LongClickPopUpUi : MonoBehaviour
                 }
             }
         }
+        inventorySlot.GetComponent<InventorySlot>().equipText.gameObject.SetActive(false);
+
         //장착무기 ui 초기화
         weaponSlot.Init();
         weaponSlot = null;

@@ -120,39 +120,32 @@ public class WeaponImage : MonoBehaviour
                 int weaponID = transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID;
                 int targetweaponID = targetSlot.weaponID;
                 bool alreadyHasWeapon = targetSlot.GetComponent<WeaponSlotUI>().hasWeapon;
+                InventoryItem targetItem = targetSlot.transform.GetChild(0).gameObject.GetComponent<InventorySlot>().weapon;
+                InventorySlot targetInventorySlot = targetSlot.inventorySlot;
 
                 Sprite targetSprite = targetSlotImage.sprite;
                 Sprite mySprite = gameObject.GetComponent<Image>().sprite;
                 Color myColor = gameObject.GetComponent<Image>().color;
+                InventoryItem myItem = gameObject.GetComponent<InventorySlot>().weapon;
+                InventorySlot myInventorySlot = gameObject.transform.parent.GetComponent<WeaponSlotUI>().inventorySlot;
 
                 targetSlot.hasWeapon = true;
                 targetSlot.transform.GetChild(0).GetComponent<LongClickComponenet>().weaponID = weaponID;
                 targetSlot.weaponID = weaponID;
                 targetSlotImage.enabled = true;
-
-                if (gameObject.GetComponent<InventorySlot>().weapon == null)
-                {
-                    InventoryItem item = new InventoryItem
-                    {
-                        image = gameObject.GetComponent<Image>().sprite
-                    };
-                    item.AssignWeapon(weaponID);
-
-                    gameObject.GetComponent<InventorySlot>().weapon = item;
-                }
-
-                targetSlot.transform.GetChild(0).gameObject.GetComponent<InventorySlot>().weapon =
-                    gameObject.GetComponent<InventorySlot>().weapon;
+                targetSlot.transform.GetChild(0).gameObject.GetComponent<InventorySlot>().weapon = gameObject.GetComponent<InventorySlot>().weapon;
                 targetSlotImage.sprite = mySprite;
                 targetSlotImage.color = myColor;
-
+                targetSlot.inventorySlot = myInventorySlot;
 
                 if (alreadyHasWeapon)
                 {
                     gameObject.GetComponent<Image>().sprite = targetSprite;
                     gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
                     gameObject.GetComponent<Image>().enabled = true;
+                    gameObject.GetComponent<InventorySlot>().weapon = targetItem;
                     transform.parent.gameObject.GetComponent<WeaponSlotUI>().hasWeapon = true;
+                    transform.parent.gameObject.GetComponent<WeaponSlotUI>().inventorySlot = targetInventorySlot; 
                 }
 
                 else
