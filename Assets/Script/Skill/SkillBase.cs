@@ -13,14 +13,13 @@ public abstract class SkillBase : MonoBehaviour
 
     [SerializeField] protected LayerMask targetLayer;
     
-    // 스킬을 장착한 플레이어 또는 펫
     protected CharacterController owner;
-    public void SetOwner(CharacterController owner)
+    public void SetWeapon(WeaponBase weapon)
     {
-        this.owner = owner;
-        this.transform.SetParent(owner.gameObject.transform);
+        weaponBase = weapon;
+        owner = weapon.owner;
     }
-    
+
     protected virtual void Init()
     {
         skillName = GetType().Name;

@@ -56,6 +56,9 @@ public class ActiveSkillData : SkillData
         get => _coolTime;
         set => _coolTime = value;
     }
+
+    private float _availableRange;
+    public float AvailableRange { get => _availableRange; set => _availableRange = value; }
     
     public enum ActiveType
     {

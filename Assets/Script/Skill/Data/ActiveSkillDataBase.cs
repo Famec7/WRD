@@ -39,6 +39,26 @@ public class ActiveSkillDataBase : ScriptableObject
             {
                 Debug.LogError($"{activeSkillData.Name}'s type is not ActiveType");
             }
+            
+            /****************skill available range Parse****************/
+            if(float.TryParse(data["range"].ToString(), out var range))
+            {
+                activeSkillData.AvailableRange = range;
+            }
+            else
+            {
+                Debug.LogError($"{activeSkillData.Name}'s range is not float");
+            }
+            
+            /****************skill range Parse****************/
+            if(float.TryParse(data["area"].ToString(), out var skillRange))
+            {
+                activeSkillData.Range = skillRange;
+            }
+            else
+            {
+                Debug.LogError($"{activeSkillData.Name}'s skill range is not float");
+            }
 
             /****************skill value Parse****************/
             var values = data["skill_value"].ToString().Split(',');
