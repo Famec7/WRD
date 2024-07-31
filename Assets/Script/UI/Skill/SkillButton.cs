@@ -18,7 +18,7 @@ public class SkillButton : MonoBehaviour
 
     private void Update()
     {
-        if (_currentSkill != null)
+        if (_currentSkill != null && _currentSkill.IsCoolTime)
         {
             _image.fillAmount = _currentSkill.CurrentCoolTime / _currentSkill.Data.CoolTime;
         }

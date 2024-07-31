@@ -9,6 +9,13 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     #region private variable
 
     private WaitForSeconds attackDelay;
+    
+    public WaitForSeconds AttackDelay
+    {
+        get => attackDelay;
+        set => attackDelay = value;
+    }
+    
     private bool _isAttack = false;
 
     #endregion
@@ -48,7 +55,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     protected virtual void Init()
     {
         Data = WeaponDataManager.Instance.GetWeaponData(GetType().Name);
-        attackDelay = new WaitForSeconds(Data.AttackSpeed);
+        attackDelay = new WaitForSeconds(1 / Data.AttackSpeed);
         /*this.gameObject.SetActive(false);*/
 
         if (IsPassiveSkillNull is false)

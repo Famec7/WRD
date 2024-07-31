@@ -12,8 +12,9 @@ public class SkillUIManager : Singleton<SkillUIManager>
     [SerializeField] private SkillPopup _popupPanel;
 
     /********************************Active Skill UI********************************/
+
     #region Active Skill UI
-    
+
     [SerializeField] private List<SkillButton> _skillButtons = new();
     private int _activedButton = 0;
 
@@ -41,7 +42,7 @@ public class SkillUIManager : Singleton<SkillUIManager>
     private void OnClickSkillButton(int num)
     {
         var currentActiveSkill = SkillManager.Instance.GetActiveSkill(num);
-        
+
         // 스킬 사용 방식에 따라 다르게 처리 -> 여기서 뭔가 할게 없어서 일단 비워둠
         switch (SettingManager.Instance.CurrentActiveSettingType)
         {
@@ -57,7 +58,7 @@ public class SkillUIManager : Singleton<SkillUIManager>
             default:
                 break;
         }
-        
+
         currentActiveSkill.UseSkill();
     }
 
@@ -70,22 +71,26 @@ public class SkillUIManager : Singleton<SkillUIManager>
     {
         _popupPanel.HidePopup();
     }
-    
+
     public void NextPhase()
     {
         _popupPanel.NextPhase();
     }
 
     #endregion
-    
+
     /*******************************Skill Setting*******************************/
+
     #region Skill Setting
-    
+
     public void OnClickSettingButton(int type)
     {
+#if UNITY_EDITOR
+        Debug.Log("Setting Type : " + (SettingManager.ActiveSettingType)type);
+#endif
         SettingManager.Instance.CurrentActiveSettingType = (SettingManager.ActiveSettingType)type;
     }
-    
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -101,6 +106,6 @@ public class SkillUIManager : Singleton<SkillUIManager>
             OnClickSettingButton(2);
         }
     }
-    
+
     #endregion
 }

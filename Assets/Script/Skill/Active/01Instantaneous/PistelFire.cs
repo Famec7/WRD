@@ -3,43 +3,56 @@ using UnityEngine;
 
 public class PistelFire : InstantaneousSkill, IObserver
 {
-    private float _attackOriginSpeed;
     private int _attackCount = 0;
+    private bool _isEnter = false;
 
     private void StatInit()
     {
         _attackCount = 0;
-        _attackOriginSpeed = owner.Data.CurrentWeapon.Data.AttackSpeed;
-    }
-    
-    public override void OnActiveEnter()
-    {
-        StatInit();
-        owner.Data.CurrentWeapon.Data.AttackSpeed = Data.GetValue(1);
-        
-        if(owner.Data.CurrentWeapon is ISubject subject)
-        {
-            subject.AddObserver(this);
-        }
+        _isEnter = false;
+        owner.Data.CurrentWeapon.AttackDelay = new WaitForSeconds(1 / owner.Data.CurrentWeapon.Data.AttackSpeed);
     }
 
-    public override void OnActiveExecute()
+    protected override INode.ENodeState OnActiveEnter()
+    {
+        if (_isEnter is false)
+        {
+            owner.Data.CurrentWeapon.AttackDelay = new WaitForSeconds(1 / Data.GetValue(1));
+
+            if (owner.Data.CurrentWeapon is ISubject subject)
+            {
+                subject.AddObserver(this);
+            }
+
+            _isEnter = true;
+        }
+
+        return INode.ENodeState.Success;
+    }
+
+    protected override INode.ENodeState OnActiveExecute()
     {
         if (_attackCount >= Data.GetValue(0))
         {
-            ChangeState(new CoolTimeState());
+            return INode.ENodeState.Success;
         }
+
+        return INode.ENodeState.Running;
     }
 
-    public override void OnActiveExit()
+    protected override INode.ENodeState OnActiveExit()
     {
-        owner.Data.CurrentWeapon.Data.AttackSpeed = _attackOriginSpeed;
+        StatInit();
         owner.StartCoroutine(DisableAttack());
-        
-        if(owner.Data.CurrentWeapon is ISubject subject)
+
+        if (owner.Data.CurrentWeapon is ISubject subject)
         {
             subject.RemoveObserver(this);
         }
+
+        IsActive = false;
+
+        return INode.ENodeState.Success;
     }
 
     private IEnumerator DisableAttack()
@@ -52,5 +65,6 @@ public class PistelFire : InstantaneousSkill, IObserver
     public void OnNotify()
     {
         _attackCount++;
+        Debug.Log(_attackCount);
     }
 }

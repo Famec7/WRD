@@ -1,34 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public abstract class ActiveSkillBase : SkillBase
 {
-    #region State
-
-    private FSM<ActiveSkillBase> _fsm;
-
-    public enum ActiveStateType
-    {
-        Preparing,
-        Casting,
-        CoolTime,
-        Active,
-    }
-
-    #endregion
-
     #region Data
-
-    private float _currentCoolTime;
-    public float CurrentCoolTime => _currentCoolTime;
-
+    
     public ActiveSkillData Data { get; private set; }
 
     private void DataInit()
     {
         Data = SkillManager.Instance.GetActiveSkillData(GetType().Name);
+        CurrentCoolTime = Data.CoolTime;
     }
 
     #endregion
@@ -40,7 +25,7 @@ public abstract class ActiveSkillBase : SkillBase
     {
         base.Init();
         DataInit();
-        StateInit();
+        BTInit();
         IndicatorInit();
     }
 
@@ -51,14 +36,14 @@ public abstract class ActiveSkillBase : SkillBase
 
     private void Update()
     {
-        _fsm.Update();
+        _btRunner.Operator();
     }
 
     public abstract void UseSkill();
 
     public void CancelSkill()
     {
-        ChangeState(new CoolTimeState());
+        IsCoolTime = true;
     }
 
     public void AddTargetMonster(Monster monster)
@@ -66,78 +51,131 @@ public abstract class ActiveSkillBase : SkillBase
         targetMonsters.Add(monster);
     }
 
-    protected Vector2 GetMousePosition()
+    /***************************Behaviour Tree***************************/
+
+    #region Behaviour Tree
+    
+    private BehaviourTreeRunner _btRunner;
+
+    private void BTInit()
     {
-        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        _btRunner = new BehaviourTreeRunner(SettingBT());
     }
 
-    /***************************State Method***************************/
+    protected abstract INode SettingBT();
 
-    #region State Method
+    #region CoolTime Node
 
-    protected virtual void StateInit()
+    protected virtual List<INode> CoolTimeNodes()
     {
-        _fsm = new FSM<ActiveSkillBase>(this);
-
-        ChangeState(new CoolTimeState());
-    }
-
-    protected void ChangeState(IState<ActiveSkillBase> state)
-    {
-        _fsm.ChangeState(state);
-    }
-
-    # region CoolTime State
-
-    public virtual void OnCoolTimeEnter()
-    {
-        SkillUIManager.Instance.ClosePopupPanel();
-    }
-
-    public virtual void OnCoolTimeExecute()
-    {
-        _currentCoolTime -= Time.deltaTime;
-
-        if (_currentCoolTime <= 0)
+        return new List<INode>
         {
-            _currentCoolTime = Data.CoolTime;
+            new ActionNode(CheckCoolTimeState),
+            new ActionNode(CheckCoolTime),
+        };
+    }
 
-            if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
+    private bool _isCoolTime = true;
+
+    public bool IsCoolTime
+    {
+        set
+        {
+            _isCoolTime = value;
+            
+            if (value is true)
             {
-                SkillUIManager.Instance.ShowPopupPanel((int)ActiveStateType.Active);
-                ChangeState(new ActiveState());
+                SkillUIManager.Instance.ClosePopupPanel();
+            }
+        }
+        get => _isCoolTime;
+    }
+    
+    private float _currentCoolTime;
+
+    public float CurrentCoolTime
+    {
+        get => _currentCoolTime;
+        set
+        {
+            _currentCoolTime = value;
+            if (value <= 0)
+            {
+                IsCoolTime = false;
+                _currentCoolTime = Data.CoolTime;
+                
+                if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
+                {
+                    IsActive = true;
+                }
             }
         }
     }
 
-    public virtual void OnCoolTimeExit()
+    private INode.ENodeState CheckCoolTimeState()
     {
-        ;
+        return IsCoolTime is true ? INode.ENodeState.Success : INode.ENodeState.Failure;
     }
 
-    # endregion
-
-    #region Preparing
-
-    private float _preparingTime;
-
-    public virtual void OnPreparingEnter()
+    private INode.ENodeState CheckCoolTime()
     {
-        SkillUIManager.Instance.ShowPopupPanel((int)ActiveStateType.Preparing);
-        
-        _preparingTime = 3f;
-        pivotPosition = default;
+        CurrentCoolTime -= Time.deltaTime;
 
-        ShowUsableRange();
+        return CurrentCoolTime <= 0 ? INode.ENodeState.Failure : INode.ENodeState.Running;
     }
 
-    public virtual void OnPreparingExecute()
+    #endregion
+    
+    #region Indicator Node
+    protected float preparingTime;
+
+    protected virtual List<INode> IndicatorNodes()
     {
-        // 준비 시간 3초 이상 넘기면 취소
-        _preparingTime -= Time.deltaTime;
-        if (_preparingTime <= 0f)
+        return new List<INode>
+        {
+            new ActionNode(CheckIndicatorState),
+            new ActionNode(TouchIndicator),
+        };
+    }
+
+    private bool _isIndicatorState = false;
+
+    protected bool IsIndicatorState
+    {
+        set
+        {
+            _isIndicatorState = value;
+
+            if (_isIndicatorState is false)
+            {
+                indicator.HideIndicator();
+            }
+            else
+            {
+                preparingTime = 3f;
+
+                indicator.ShowIndicator(pivotPosition);
+                targetMonsters.Clear();
+
+                SkillUIManager.Instance.ShowPopupPanel(1);
+            }
+        }
+
+        get => _isIndicatorState;
+    }
+
+    private INode.ENodeState CheckIndicatorState()
+    {
+        return IsIndicatorState is true ? INode.ENodeState.Success : INode.ENodeState.Failure;
+    }
+
+    private INode.ENodeState TouchIndicator()
+    {
+        preparingTime -= Time.deltaTime;
+        if (preparingTime <= 0f)
         {
             CancelSkill();
+            return INode.ENodeState.Failure;
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -146,89 +184,62 @@ public abstract class ActiveSkillBase : SkillBase
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 CancelSkill();
+                return INode.ENodeState.Failure;
             }
 
-            pivotPosition = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
+            IsIndicatorState = false;
+            IsActive = true;
 
-            float distanceFromPlayerToPivot = Vector2.Distance(owner.transform.position, pivotPosition);
+            return INode.ENodeState.Success;
+        }
 
-            // 스킬 범위 벗어나면 취소
-            if (distanceFromPlayerToPivot > Data.AvailableRange)
+        return INode.ENodeState.Running;
+    }
+
+    #endregion
+
+    #region Active Nodes
+
+    protected virtual List<INode> ActiveNodes()
+    {
+        return new List<INode>
+        {
+            new ActionNode(CheckActiveState),
+            new ActionNode(OnActiveEnter),
+            new ActionNode(OnActiveExecute),
+            new ActionNode(OnActiveExit),
+        };
+    }
+
+    private bool _isActive = false;
+    protected bool IsActive
+    {
+        set
+        {
+            _isActive = value;
+            
+            if(_isActive is true)
             {
-                CancelSkill();
+                SkillUIManager.Instance.ShowPopupPanel(3);
             }
             else
             {
-                ChangeState(new CastingState());
+                IsCoolTime = true;
             }
         }
+        get => _isActive;
+    }
+    
+    private INode.ENodeState CheckActiveState()
+    {
+        return IsActive is true ? INode.ENodeState.Success : INode.ENodeState.Failure;
     }
 
-    public virtual void OnPreparingExit()
-    {
-        HideUsableRange();
-        SkillUIManager.Instance.NextPhase();
-    }
+    protected abstract INode.ENodeState OnActiveEnter();
+    protected abstract INode.ENodeState OnActiveExecute();
+    protected abstract INode.ENodeState OnActiveExit();
 
     #endregion
-
-    #region Casting State
-
-    private float _castingTime = 3f;
-
-    public virtual void OnCastingEnter()
-    {
-        SkillUIManager.Instance.ShowPopupPanel((int)ActiveStateType.Casting);
-        
-        _castingTime = 3f;
-
-        indicator.ShowIndicator(pivotPosition);
-        targetMonsters.Clear();
-    }
-
-    public virtual void OnCastingExecute()
-    {
-        // 캐스팅 시간 3초이상 넘기면 취소
-        _castingTime -= Time.deltaTime;
-        if (_castingTime <= 0f)
-        {
-            ChangeState(new CoolTimeState());
-        }
-
-        if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
-        {
-            ChangeState(new CoolTimeState());
-        }
-        else
-        {
-            if (Input.GetMouseButtonUp(0))
-            {
-                // UI 터치 시 스킬 취소
-                if (EventSystem.current.IsPointerOverGameObject())
-                {
-                    ChangeState(new CoolTimeState());
-                }
-
-                ChangeState(new ActiveState());
-            }
-        }
-    }
-
-    public virtual void OnCastingExit()
-    {
-        indicator.HideIndicator();
-        SkillUIManager.Instance.NextPhase();
-    }
-
-    #endregion
-
-    # region Active State
-
-    public abstract void OnActiveEnter();
-    public abstract void OnActiveExecute();
-    public abstract void OnActiveExit();
-
-    # endregion
 
     #endregion
 

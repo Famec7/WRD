@@ -1,25 +1,45 @@
-﻿public abstract class InstantaneousSkill : ActiveSkillBase
+﻿using System.Collections.Generic;
+
+public abstract class InstantaneousSkill : ActiveSkillBase
 {
     public override void UseSkill()
     {
-        SkillUIManager.Instance.ShowPopupPanel((int)ActiveStateType.Active);
-        
         var currentSettingType = SettingManager.Instance.CurrentActiveSettingType;
+        
         switch (currentSettingType)
         {
             case SettingManager.ActiveSettingType.Auto:
-                ChangeState(new CastingState());
+                IsIndicatorState = true;
                 break;
             case SettingManager.ActiveSettingType.SemiAuto:
-                ChangeState(new ActiveState());
+                IsCoolTime = false;
+                IsActive = true;
                 break;
             case SettingManager.ActiveSettingType.Manual:
-                ChangeState(new CastingState());
+                IsCoolTime = false;
+                IsIndicatorState = true;
                 break;
             default:
                 break;
         }
     }
 
-    /***************************State***************************/
+    /***************************Behaviour Tree***************************/
+    protected override INode SettingBT()
+    {
+        return new SelectorNode(
+            new List<INode>()
+            {
+                new SequenceNode(
+                    CoolTimeNodes()
+                ),
+                new SequenceNode(
+                    IndicatorNodes()
+                ),
+                new SequenceNode(
+                    ActiveNodes()
+                )
+            }
+        );
+    }
 }
