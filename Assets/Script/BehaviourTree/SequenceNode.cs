@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 
+/// <summary>
+/// 하위 노드에서 Failure이 나올 때까지 실행하는 노드
+/// </summary>
 public sealed class SequenceNode : INode
 {
     private readonly List<INode> _childs;

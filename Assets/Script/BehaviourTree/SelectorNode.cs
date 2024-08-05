@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 
+/// <summary>
+/// 하위 노드 중 하나만 선택하는 노드
+/// </summary>
 public sealed class SelectorNode : INode
 {
     private readonly List<INode> _childs;

@@ -7,13 +7,12 @@ using UnityEngine.EventSystems;
 public abstract class ActiveSkillBase : SkillBase
 {
     #region Data
-    
+
     public ActiveSkillData Data { get; private set; }
 
     private void DataInit()
     {
         Data = SkillManager.Instance.GetActiveSkillData(GetType().Name);
-        CurrentCoolTime = Data.CoolTime;
     }
 
     #endregion
@@ -54,7 +53,7 @@ public abstract class ActiveSkillBase : SkillBase
     /***************************Behaviour Tree***************************/
 
     #region Behaviour Tree
-    
+
     private BehaviourTreeRunner _btRunner;
 
     private void BTInit()
@@ -62,10 +61,27 @@ public abstract class ActiveSkillBase : SkillBase
         _btRunner = new BehaviourTreeRunner(SettingBT());
     }
 
+    /// <summary>
+    /// 스킬 타입마다 다른 행동트리를 설정
+    /// </summary>
+    /// <returns></returns>
     protected abstract INode SettingBT();
+
+    /*******************행동 노드*******************/
+    /*
+     * 행동 노드는 스킬의 행동을 정의하는 노드
+     * 각 노드마다 CheckState함수들을 만들어 노드 상태 체크 -> 안하면 피곤해짐
+     * 쿭타임과 실제 스킬범위를 표시하는 노드는 기본적으로 구현되어 있음
+     * 액티브 노드는 스킬에서 직접 구현해야 함
+     */
 
     #region CoolTime Node
 
+    /// <summary>
+    /// 스킬 쿨타임 노드
+    /// 쿨타임 관련 노드들을 재설정할 수 있음
+    /// </summary>
+    /// <returns></returns>
     protected virtual List<INode> CoolTimeNodes()
     {
         return new List<INode>
@@ -82,7 +98,7 @@ public abstract class ActiveSkillBase : SkillBase
         set
         {
             _isCoolTime = value;
-            
+
             if (value is true)
             {
                 SkillUIManager.Instance.ClosePopupPanel();
@@ -90,8 +106,8 @@ public abstract class ActiveSkillBase : SkillBase
         }
         get => _isCoolTime;
     }
-    
-    private float _currentCoolTime;
+
+    private float _currentCoolTime = 0f;
 
     public float CurrentCoolTime
     {
@@ -103,7 +119,7 @@ public abstract class ActiveSkillBase : SkillBase
             {
                 IsCoolTime = false;
                 _currentCoolTime = Data.CoolTime;
-                
+
                 if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
                 {
                     IsActive = true;
@@ -125,10 +141,14 @@ public abstract class ActiveSkillBase : SkillBase
     }
 
     #endregion
-    
-    #region Indicator Node
-    protected float preparingTime;
 
+    #region Indicator Node
+    
+    /// <summary>
+    /// 스킬 실제 사용 범위 표시 노드
+    /// 재정의 가능
+    /// </summary>
+    /// <returns></returns>
     protected virtual List<INode> IndicatorNodes()
     {
         return new List<INode>
@@ -138,6 +158,7 @@ public abstract class ActiveSkillBase : SkillBase
         };
     }
 
+    protected float preparingTime;
     private bool _isIndicatorState = false;
 
     protected bool IsIndicatorState
@@ -200,44 +221,67 @@ public abstract class ActiveSkillBase : SkillBase
 
     #region Active Nodes
 
+    /// <summary>
+    /// 액티브 노드 재정의 가능
+    /// OnActiveExecute에서 코드가 너무 많으면
+    /// 다른 함수로 나눠서 구현하는 것이 좋을듯
+    /// </summary>
+    /// <returns></returns>
     protected virtual List<INode> ActiveNodes()
     {
         return new List<INode>
         {
             new ActionNode(CheckActiveState),
-            new ActionNode(OnActiveEnter),
             new ActionNode(OnActiveExecute),
-            new ActionNode(OnActiveExit),
         };
     }
 
     private bool _isActive = false;
+
     protected bool IsActive
     {
         set
         {
             _isActive = value;
-            
-            if(_isActive is true)
+
+            if (_isActive is true)
             {
                 SkillUIManager.Instance.ShowPopupPanel(3);
+                OnActiveEnter();
             }
             else
             {
+                OnActiveExit();
                 IsCoolTime = true;
             }
         }
         get => _isActive;
     }
-    
+
     private INode.ENodeState CheckActiveState()
     {
         return IsActive is true ? INode.ENodeState.Success : INode.ENodeState.Failure;
     }
 
-    protected abstract INode.ENodeState OnActiveEnter();
+    /// <summary>
+    /// 스킬 실행 시 한 번만 호출되는 진입 함수
+    /// </summary>
+    protected abstract void OnActiveEnter();
+    
+    /// <summary>
+    /// 스킬 Update함수
+    /// INode.Running 반환 시 계속 실행
+    /// 스킬 종료 시 아래 조건 지켜야함
+    /// 1. IsActive = false
+    /// 2. INode.ENodeState.Success 반환
+    /// </summary>
+    /// <returns> Running과 Success 중 하나 반환</returns>
     protected abstract INode.ENodeState OnActiveExecute();
-    protected abstract INode.ENodeState OnActiveExit();
+    
+    /// <summary>
+    /// 스킬 종료 시 한 번만 호출되는 함수
+    /// </summary>
+    protected abstract void OnActiveExit();
 
     #endregion
 

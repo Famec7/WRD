@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class WeaponBase : MonoBehaviour, IObserver
 {
@@ -120,4 +121,20 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
         if (owner.Target is not null)
             StartCoroutine(CoroutineAttack());
     }
+    
+    #region Observer Action (Skill)
+
+    protected UnityAction notifyAction;
+    
+    public void AddAction(UnityAction action)
+    {
+        notifyAction += action;
+    }
+    
+    public void RemoveAction(UnityAction action)
+    {
+        notifyAction -= action;
+    }
+
+    #endregion
 }
