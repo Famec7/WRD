@@ -9,7 +9,7 @@ public class Monster : MonoBehaviour
     public float speed;
     public float armor;
     public bool isMovable;
-
+    public bool isDead = false;
     public Status status;
     // Start is called before the first frame update
     void Start()
@@ -26,12 +26,13 @@ public class Monster : MonoBehaviour
     {
         hp -= damage;
         status.HP -= damage;
-        if (status.HP <= 0)
+        if (status.HP <= 0 && !isDead)
             IsDead();
     }
 
     public void IsDead()
     {
+        isDead = true;
         MonsterPool.instance.ReturnObject(gameObject);
     }
 }

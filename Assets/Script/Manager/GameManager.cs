@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public int wave = 1;
     public bool isSKip = false;
+    public bool isGameOver = false;
     public int[] weaponCnt;
     public int[] useAbleWeaponCnt;
 

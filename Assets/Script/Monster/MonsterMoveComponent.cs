@@ -12,7 +12,6 @@ public class MonsterMoveComponent : MonoBehaviour
     public Vector3 returnMoveDir;
     public int roadNum;
     public Status status;
-    public  UnitCode unitCode;
 
     public bool isRoad = true;
     void Start()

@@ -25,6 +25,9 @@ public class MonsterPool : MonoBehaviour
     {
         for (int i = 0; i < monsterPrefab.Length; i++)
         {
+            if (i > 5) 
+                poolingCount = 1;
+
             for (int j = 0; j < poolingCount; j++)
             {
                 if (!pooledObjects.ContainsKey(monsterPrefab[i].GetComponent<Status>().unitCode))
@@ -48,7 +51,16 @@ public class MonsterPool : MonoBehaviour
             {
                 if (!pooledObjects[code][i].activeSelf)
                 {
-                    pooledObjects[code][i].GetComponent<Status>().SetUnitStatus(code);
+                    if (code >= UnitCode.MISSIONBOSS1)
+                        pooledObjects[code][i].GetComponent<Status>().SetMissionUnitStatus(code);
+                    else
+                        pooledObjects[code][i].GetComponent<Status>().SetUnitStatus(code);
+
+                    if ((int)code > 5)                    
+                        MonsterSpawnManager.instance.targetBossStatus = pooledObjects[code][i].GetComponent<Status>();
+                    
+
+                    pooledObjects[code][i].GetComponent<Basic_Monster>().isDead = false;
                     pooledObjects[code][i].transform.SetParent(null);
                     pooledObjects[code][i].gameObject.SetActive(true);
 
@@ -59,7 +71,13 @@ public class MonsterPool : MonoBehaviour
             int beforeCreateCount = pooledObjects[code].Count;
 
             CreateMultiplePoolObjects();
-            pooledObjects[code][beforeCreateCount].GetComponent<Status>().SetUnitStatus(code);
+
+            if (code >= UnitCode.MISSIONBOSS1)
+                pooledObjects[code][beforeCreateCount].GetComponent<Status>().SetMissionUnitStatus(code);
+            else
+                pooledObjects[code][beforeCreateCount].GetComponent<Status>().SetUnitStatus(code);
+
+            pooledObjects[code][beforeCreateCount].GetComponent<Basic_Monster>().isDead = false;
             pooledObjects[code][beforeCreateCount].transform.SetParent(null);
             pooledObjects[code][beforeCreateCount].gameObject.SetActive(true);
 

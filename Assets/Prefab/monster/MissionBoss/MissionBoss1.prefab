@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7244248914210091522}
   - component: {fileID: 4455428403941024235}
   m_Layer: 3
-  m_Name: monster
+  m_Name: MissionBoss1
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 88794fc5febd16e40a94cacbf542b65b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,7 +107,6 @@ MonoBehaviour:
   returnMoveDir: {x: 0, y: 0, z: 0}
   roadNum: 0
   status: {fileID: 7244248914210091522}
-  unitCode: 0
   isRoad: 1
 --- !u!61 &590058144891316833
 BoxCollider2D:
@@ -170,6 +169,7 @@ MonoBehaviour:
   speed: 0
   armor: 0
   isMovable: 0
+  isDead: 0
   status: {fileID: 7244248914210091522}
 --- !u!114 &7244248914210091522
 MonoBehaviour:
@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451224ee50acf4244871aacff3bdb1c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitCode: 12
   maxHP: 0
   HP: 0
   moveSpeed: 0

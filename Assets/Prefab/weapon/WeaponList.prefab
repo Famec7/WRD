@@ -378,69 +378,65 @@ Transform:
   - {fileID: 8433324878331515741}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6953346076694510990
-GameObject:
+--- !u!1001 &360857628293989285
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2993921899513021069}
-  - component: {fileID: 8115896368238174248}
-  - component: {fileID: 8293827011730529213}
-  m_Layer: 0
-  m_Name: IronSword
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2993921899513021069
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6953346076694510990}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8433324878331515741}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8115896368238174248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8433324878331515741}
+    m_Modifications:
+    - target: {fileID: 3210655330745221416, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210655330745221416, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210655330745221416, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210655330745221416, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210655330745221416, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210655330745221416, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210655330745221416, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210655330745221416, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210655330745221416, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210655330745221416, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313064537233522219, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+      propertyPath: m_Name
+      value: IronSword
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+--- !u!4 &2993921899513021069 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3210655330745221416, guid: c9ee921a98fcb7a48b40b05cbd3b1908, type: 3}
+  m_PrefabInstance: {fileID: 360857628293989285}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6953346076694510990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4846d9a5f824aa6ac1e46df3e5e07a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  owner: {fileID: 0}
-  passiveSkill: {fileID: 8293827011730529213}
-  activeSkill: {fileID: 0}
---- !u!114 &8293827011730529213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6953346076694510990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96b2bcc8d2d34a67a8db8bda0af66653, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillName: 
-  weaponBase: {fileID: 0}
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  owner: {fileID: 0}

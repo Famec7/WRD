@@ -4,15 +4,27 @@ using UnityEngine;
 
 public enum UnitCode
 {
-    TMPENEMY1,
-    TMPENEMY2,
-    TMPENEMY3,
-    TMPENEMY4,
-    TMPENEMY5,
-    TMPENEMY6,
-    TMPENEMY7
-
+    SLIME,
+    WOLF,
+    SKELETON,
+    GHOST,
+    GOLEM,
+    SPROUN,
+    SLIMEBOSS,
+    WOLFBOSS,
+    SKELETONBOSS,
+    GHOSTBOSS,
+    GOLEMBOSS,
+    SPROUNBOSS,    
+    MISSIONBOSS1, 
+    MISSIONBOSS2,
+    MISSIONBOSS3,
+    MISSIONBOSS4,
+    MISSIONBOSS5,
+    MISSIONBOSS6,
 }
+
+
 
 public enum SkillType
 {
