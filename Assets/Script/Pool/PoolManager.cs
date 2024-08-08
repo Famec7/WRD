@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -17,28 +18,35 @@ public class PoolData
 
 public class PoolManager : MonoBehaviour
 {
-    [SerializeField] private List<PoolData> _poolDatas = new();
+    [SerializeField] private List<PoolData> _poolDatas;
     
-    private readonly List<Pool<Component>> _pools = new();
+    private readonly List<IPool<Component>> _pools = new();
     
     private void Awake()
     {
+        var poolsType = typeof(List<IPool<Component>>);
+        var poolsAddMethod = poolsType.GetMethod("Add");
+        var genericPoolType = typeof(Pool<>);
+        
         foreach (var poolData in _poolDatas)
         {
-            var pool = Pool.CreatePool(poolData.Prefab, poolData.Count);
-            pool.Create();
-            _pools.Add(pool);
+            var poolType = genericPoolType.MakeGenericType(poolData.Prefab.GetType());
+            var createMethod = poolType.GetMethod("CreatePool", BindingFlags.Static | BindingFlags.NonPublic);
+            
+            var pool = createMethod.Invoke(null, new object[] {poolData.Prefab, poolData.Count});
+            
+            poolsAddMethod.Invoke(_pools, new[] {pool});
         }
     }
 
-    #region GetPool
+    #region Get Pool
 
     /// <summary>
     /// T 타입의 Pool을 반환
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public Pool<T> GetPool<T>() where T : Component => _pools.Find(pool => pool.Prefab is T) as Pool<T>;
+    public IPool<T> GetPool<T>() where T : Component => _pools.Find(pool => pool.Component is T) as IPool<T>;
     
     /// <summary>
     /// name에 해당하는 Pool을 반환
@@ -46,7 +54,7 @@ public class PoolManager : MonoBehaviour
     /// <param name="name"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public Pool<T> GetPool<T>(string name) where T : Component  => _pools[_poolDatas.FindIndex(poolData => poolData.Name == name)] as Pool<T>;
+    public IPool<T> GetPool<T>(string name) where T : Component  => _pools[_poolDatas.FindIndex(poolData => poolData.Name == name)] as IPool<T>;
     
     /// <summary>
     /// index에 해당하는 Pool을 반환
@@ -54,7 +62,7 @@ public class PoolManager : MonoBehaviour
     /// <param name="index"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public Pool<T> GetPool<T>(int index) where T : Component => _pools[index] as Pool<T>;
+    public IPool<T> GetPool<T>(int index) where T : Component => _pools[index] as IPool<T>;
 
     #endregion
 

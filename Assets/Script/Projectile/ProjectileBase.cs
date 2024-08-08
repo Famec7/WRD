@@ -8,20 +8,18 @@ public abstract class ProjectileBase : MonoBehaviour, IPoolObject
     public float Speed => _speed;
     public float Damage { get; set; }
     public Vector3 Direction { get; set; }
-    public Vector3 TargetPosition { get; set; }
     
     private void Update()
     {
         MoveToTarget();
     }
-    
-    private void MoveToTarget()
-    {
-        Direction = TargetPosition - transform.position;
-        Direction.Normalize();
-        transform.position += Direction * (Speed * Time.deltaTime);
-    }
 
+    /// <summary>
+    /// 타겟 이동하는 방식 투사체마다 다르게 처리
+    /// Update에서 호출 중
+    /// </summary>
+    protected abstract void MoveToTarget();
+    
     public abstract void GetFromPool();
 
     public abstract void ReturnToPool();

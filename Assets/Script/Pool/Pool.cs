@@ -18,15 +18,13 @@ public static class Pool
     }
 }
 
-public class Pool<T> where T : Component
+public class Pool<T> : IPool<T> where T : Component
 {
-    private T _prefab;
+    Component IPool.Component => Component;
+    
+    public T Component { get; private set; }
 
-    public T Prefab => _prefab;
-
-    private int _count;
-
-    public int Count => _count;
+    public int Count { get; private set; }
 
     private List<T> _clones = new List<T>();
 
@@ -38,8 +36,8 @@ public class Pool<T> where T : Component
 
         Pool<T> pool = new Pool<T>
         {
-            _prefab = prefab,
-            _count = count,
+            Component = prefab,
+            Count = count,
             _clones = new(count)
         };
 
@@ -48,9 +46,9 @@ public class Pool<T> where T : Component
 
     public Pool<T> Create()
     {
-        while (_clones.Count < _count)
+        while (_clones.Count < Count)
         {
-            T clone = Object.Instantiate(_prefab);
+            T clone = Object.Instantiate(Component, Vector3.zero, Quaternion.identity);
             clone.gameObject.SetActive(false);
             
             _clones.Add(clone);
@@ -59,7 +57,9 @@ public class Pool<T> where T : Component
         return this;
     }
 
-    public Pool<T> Clear()
+    Component IPool.Get() => Get();
+    
+    public IPool<T> Clear()
     {
         foreach (var clone in _clones)
         {
@@ -88,12 +88,12 @@ public class Pool<T> where T : Component
         // 오브젝트가 부족하면 새로 생성 / 생성된 오브젝트가 최대치면 null 반환
         if (clone == null)
         {
-            if (_clones.Count >= _count)
+            if (_clones.Count >= Count)
             {
                 return null;
             }
 
-            clone = Object.Instantiate(_prefab);
+            clone = Object.Instantiate(Component);
             _clones.Add(clone);
         }
 
@@ -106,6 +106,8 @@ public class Pool<T> where T : Component
         return clone;
     }
 
+    void IPool.Return(Component clone) => Return(clone as T);
+    
     public void Return(T clone)
     {
         // 오브젝트가 풀에 없으면 예외 발생

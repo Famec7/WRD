@@ -55,7 +55,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     /// </summary>
     protected virtual void Init()
     {
-        Data = WeaponDataManager.Instance.GetWeaponData(GetType().Name);
+        Data = WeaponDataManager.Instance.GetWeaponData(this.name);
         attackDelay = new WaitForSeconds(1 / Data.AttackSpeed);
         /*this.gameObject.SetActive(false);*/
 

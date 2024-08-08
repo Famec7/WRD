@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class RangedWeapon : WeaponBase
+public class RangedWeapon : WeaponBase
 {
 
     protected override void Attack()
@@ -12,7 +12,11 @@ public abstract class RangedWeapon : WeaponBase
 
         if (owner.Target.TryGetComponent(out Monster monster))
         {
-            monster.HasAttacked(Data.AttackDamage);
+            var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>("BasicProjectile", owner.transform.position);
+
+            projectile.Target = owner.Target.gameObject;
+            projectile.Damage = Data.AttackDamage;
+            
             notifyAction?.Invoke();
         }
     }
