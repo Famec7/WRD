@@ -11,7 +11,7 @@ public abstract class SkillBase : MonoBehaviour
     [HideInInspector]
     public WeaponBase weaponBase;
 
-    [SerializeField] protected LayerMask targetLayer;
+    protected LayerMask targetLayer;
     
     protected CharacterController owner;
     public void SetWeapon(WeaponBase weapon)
@@ -23,6 +23,6 @@ public abstract class SkillBase : MonoBehaviour
     protected virtual void Init()
     {
         skillName = GetType().Name;
-        targetLayer = LayerMask.GetMask("Monster");
+        targetLayer = LayerMaskManager.Instance.MonsterLayerMask;
     }
 }

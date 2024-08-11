@@ -17,14 +17,7 @@ public class SkySwordProjectile : FallingSwordProjectile
         
         transform.position = targetPosition + (Vector3)offset;
 
-        if (direction.x < 0)
-        {
-            transform.Rotate(Vector3.back, _degree);
-        }
-        else
-        {
-            transform.Rotate(Vector3.forward, _degree);
-        }
+        transform.Rotate(direction.x < 0 ? Vector3.back : Vector3.forward, _degree);
     }
     
     /********************************Data********************************/
@@ -37,8 +30,7 @@ public class SkySwordProjectile : FallingSwordProjectile
         Damage = data.GetValue(0);
         _slowRate = data.GetValue(2);
         
-        if(Dealy is null)
-            Dealy = new WaitForSeconds(data.GetValue(1));
+        Dealy ??= new WaitForSeconds(data.GetValue(1));
     }
     
     /********************************Sword Impact********************************/
@@ -52,11 +44,7 @@ public class SkySwordProjectile : FallingSwordProjectile
             if (target.TryGetComponent(out Monster monster))
             {
                 monster.HasAttacked(Damage);
-            }
-            
-            if (target.TryGetComponent(out Status status))
-            {
-                StatusEffectManager.Instance.AddStatusEffect(status, new Wound(target.gameObject));
+                StatusEffectManager.Instance.AddStatusEffect(monster.status, new Wound(target.gameObject));
             }
         }
     }
@@ -65,24 +53,24 @@ public class SkySwordProjectile : FallingSwordProjectile
 
     #region SlowDown Effect
     
-    private List<Status> _monsters = new List<Status>();
+    private List<Monster> _monsters = new List<Monster>();
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Status monster))
+        if (other.TryGetComponent(out Monster monster))
         {
             // monster에게 slowEffect를 적용
-            StatusEffectManager.Instance.AddStatusEffect(monster, new SlowDown(other.gameObject, _slowRate));
+            StatusEffectManager.Instance.AddStatusEffect(monster.status, new SlowDown(other.gameObject, _slowRate));
             _monsters.Add(monster);
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Status monster))
+        if (other.TryGetComponent(out Monster monster))
         {
             // monster에게 slowEffect를 해제
-            StatusEffectManager.Instance.RemoveStatusEffect(monster, typeof(SlowDown));
+            StatusEffectManager.Instance.RemoveStatusEffect(monster.status, typeof(SlowDown));
             _monsters.Remove(monster);
         }
     }
@@ -103,7 +91,7 @@ public class SkySwordProjectile : FallingSwordProjectile
         
         foreach (var monster in _monsters)
         {
-            StatusEffectManager.Instance.RemoveStatusEffect(monster, typeof(SlowDown));
+            StatusEffectManager.Instance.RemoveStatusEffect(monster.status, typeof(SlowDown));
         }
     }
 }

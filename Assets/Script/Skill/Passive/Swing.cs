@@ -42,7 +42,7 @@ public class Swing : PassiveSkillBase
         {
             if (tar.TryGetComponent(out Monster monster))
             {
-                SetStatusEffect(monster, new Wound(tar.gameObject));
+                StatusEffectManager.Instance.AddStatusEffect(monster.status, new Wound(tar.gameObject));
                 monster.HasAttacked(_skillDamage);
                 // Todo : 이펙트 추가
             }
