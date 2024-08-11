@@ -9,7 +9,7 @@ public abstract class ProjectileBase : MonoBehaviour, IPoolObject
     public float Damage { get; set; }
     public Vector3 Direction { get; set; }
     
-    private void Update()
+    protected virtual void Update()
     {
         MoveToTarget();
     }

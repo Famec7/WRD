@@ -31,7 +31,7 @@ public abstract class PassiveSkillBase : SkillBase
 
     protected virtual bool CheckTrigger()
     {
-#if PASSIVE_SKILL_DEBUG
+#if UNITY_EDITOR
         if (Random.Range(0, 100) <= _data.Chance || _isTest)
         {
             Debug.Log($"{GetType().Name} 발동");

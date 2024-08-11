@@ -4,7 +4,6 @@ using UnityEngine.Events;
 
 public class RangedWeapon : WeaponBase
 {
-
     protected override void Attack()
     {
         base.Attack();
@@ -12,11 +11,11 @@ public class RangedWeapon : WeaponBase
 
         if (owner.Target.TryGetComponent(out Monster monster))
         {
-            var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>("BasicProjectile", owner.transform.position);
+            var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, owner.transform.position);
 
             projectile.Target = owner.Target.gameObject;
             projectile.Damage = Data.AttackDamage;
-            
+
             notifyAction?.Invoke();
         }
     }

@@ -31,9 +31,12 @@ public class PoolManager : MonoBehaviour
         foreach (var poolData in _poolDatas)
         {
             var poolType = genericPoolType.MakeGenericType(poolData.Prefab.GetType());
-            var createMethod = poolType.GetMethod("CreatePool", BindingFlags.Static | BindingFlags.NonPublic);
+            var createPoolMethod = poolType.GetMethod("CreatePool", BindingFlags.Static | BindingFlags.NonPublic);
             
-            var pool = createMethod.Invoke(null, new object[] {poolData.Prefab, poolData.Count});
+            var pool = createPoolMethod.Invoke(null, new object[] {poolData.Prefab, poolData.Count});
+            
+            var createMethod = poolType.GetMethod("Create");
+            createMethod.Invoke(pool, null);
             
             poolsAddMethod.Invoke(_pools, new[] {pool});
         }

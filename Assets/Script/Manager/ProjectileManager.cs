@@ -11,16 +11,14 @@ public class ProjectileManager : Singleton<ProjectileManager>
 
     public T CreateProjectile<T>(string projectileName = default, Vector2 position = default) where T : ProjectileBase
     {
-        T projectile = null;
-        
-        projectile = projectileName == default ? _poolManager.GetFromPool<T>() : _poolManager.GetFromPool<T>(projectileName);
+        var projectile = projectileName == default ? _poolManager.GetFromPool<T>() : _poolManager.GetFromPool<T>(projectileName);
 
         projectile.transform.position = position;
 
         return projectile;
     }
 
-    public void ReturnProjectileToPool(ProjectileBase projectile)
+    public void ReturnProjectileToPool<T>(T projectile) where T : ProjectileBase
     {
         _poolManager.ReturnToPool(projectile);
     }
