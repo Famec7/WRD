@@ -31,7 +31,10 @@ public class WeaponSlotUI : MonoBehaviour
         hasWeapon = false;
         weaponID = 0;
         transform.GetChild(0).GetComponent<InventorySlot>().weapon = null;
-        inventorySlot.isEquiped = false;
+
+        if(inventorySlot)
+            inventorySlot.isEquiped = false;
+
         inventorySlot = null;
         transform.GetChild(0).GetComponent<Image>().sprite = null;
         transform.GetChild(0).GetComponent<Image>().enabled = false;

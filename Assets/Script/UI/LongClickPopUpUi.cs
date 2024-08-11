@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class LongClickPopUpUi : MonoBehaviour
 {
-    public GraphicRaycaster gr;
-
     public GameObject _bookmarkButton;
     public GameObject _equipButton;
     public InventorySlot inventorySlot;
@@ -16,14 +14,14 @@ public class LongClickPopUpUi : MonoBehaviour
     public WeaponSlotUI weaponSlot;
 
     public int weaponID;
-    
+
     public bool isBookmarked;
     public bool isInventory;
     public bool isWeaponSlot;
     // Start is called before the first frame update
     void Start()
     {
-      
+
     }
 
     // Update is called once per frame
@@ -31,35 +29,34 @@ public class LongClickPopUpUi : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var ped = new PointerEventData(null);
-            ped.position = Input.mousePosition;
-            var results = new List<RaycastResult>();
-            gr.Raycast(ped, results);
+     
+            var results = UIManager.instance.GetRayCastResult(true);
             // 없으면 return
             if (results.Count <= 0) return;
+
             bool isAnotherTouch = true;
             foreach (var result in results)
-            {   
+            {
                 if ((result.gameObject.CompareTag("LongClickPopUpUI")))
                     isAnotherTouch = false;
             }
-      
+
         }
-        
+
         transform.SetAsLastSibling();
     }
 
     public void SetBookmarkedButtonText(bool isBookmarked, bool isInventory, bool isWeaponSlot)
     {
-      
+
         var bookmarkButtonTMP = _bookmarkButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         var equipButtonTMP = _equipButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+ 
 
-        
-        if (!isWeaponSlot && GameManager.instance.useAbleWeaponCnt[weaponID-1] > 0)
+        if (!isWeaponSlot && GameManager.instance.useAbleWeaponCnt[weaponID - 1] > 0)
             equipButtonTMP.text = "장착";
-        
-        if (isBookmarked)
+
+        if (isBookmarked || (isInventory && BookMakredSlotUI.Instance.GetSlotWithWeaponID(weaponID)))
         {
             bookmarkButtonTMP.text = "즐겨찾기 해제";
         }
@@ -83,16 +80,17 @@ public class LongClickPopUpUi : MonoBehaviour
 
     public void ClickBookMarkButton()
     {
-        if (!isBookmarked)
+        if (!isBookmarked && !BookMakredSlotUI.Instance.GetSlotWithWeaponID(weaponID))
         {
             BookMakredSlotUI.Instance.weaponID = weaponID;
             UIManager.instance.BookmarkSlotSelectUI.SetActive(true);
         }
-        else
+        else if (BookMakredSlotUI.Instance.GetSlotWithWeaponID(weaponID))
         {
-            BookMakredSlotUI.Instance.RemoveItem(inventorySlot);
+            BookMakredSlotUI.Instance.RemoveItem(BookMakredSlotUI.Instance.GetSlotWithWeaponID(weaponID).transform.GetChild(0).GetComponent<InventorySlot>());
         }
       
+        gameObject.SetActive(false);
     }
     
     public void ClickEquipButton()
@@ -113,6 +111,8 @@ public class LongClickPopUpUi : MonoBehaviour
                     UIManager.instance.WeaponSlotSelectUI.GetComponent<SlotSelectUI>().SetItem(item);
             }
         }
+
+        gameObject.SetActive(false);
     }
     public void UnEuqip(bool isInventory = false)
     {

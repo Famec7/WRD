@@ -8,7 +8,6 @@ public class SlotSelectUI : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform[] slots;
-    public GraphicRaycaster gr;
 
     public bool isBookmarked = false;
     private InventoryItem _item;
@@ -23,10 +22,9 @@ public class SlotSelectUI : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var ped = new PointerEventData(null);
-            ped.position = Input.mousePosition;
-            var results = new List<RaycastResult>();
-            gr.Raycast(ped, results);
+           
+            var results = UIManager.instance.GetRayCastResult(true);
+           
             // 없으면 return
             if (results.Count <= 0) return;
             int order = -1;

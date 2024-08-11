@@ -10,7 +10,6 @@ public class WeaponImage : MonoBehaviour
 
     public float minClickTime = 0.3f;
 
-    public GraphicRaycaster gr;
     private float clickTime;
     private bool isClick;
 
@@ -76,27 +75,15 @@ public class WeaponImage : MonoBehaviour
         UIManager.instance.touchPos = Input.mousePosition;
 
         isDrag = true;
+        var results = UIManager.instance.GetRayCastResult();
 
-        var ped = new PointerEventData(null);
-        ped.position = Input.mousePosition;
-        
-        var results = new List<RaycastResult>();
-        gr.Raycast(ped, results);
-        
         if (results.Count <= 0) return;
       
     }
 
     public void ButtonDrop()
     {
-        //UGUI RayCast
-        var ped = new PointerEventData(null)
-        {
-            position = Input.mousePosition
-        };
-        var results = new List<RaycastResult>();
-        gr.Raycast(ped, results);
-        // ������ return
+        var results = UIManager.instance.GetRayCastResult();
         if (results.Count <= 0) return;
 
         GameObject targetSlotObject = null;
@@ -141,7 +128,7 @@ public class WeaponImage : MonoBehaviour
                 if (alreadyHasWeapon)
                 {
                     gameObject.GetComponent<Image>().sprite = targetSprite;
-                    gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                    gameObject.GetComponent<Image>().color = new Color32(0, 255, 255, 255);
                     gameObject.GetComponent<Image>().enabled = true;
                     gameObject.GetComponent<InventorySlot>().weapon = targetItem;
                     transform.parent.gameObject.GetComponent<WeaponSlotUI>().hasWeapon = true;

@@ -69,17 +69,32 @@ public class BookMakredSlotUI : Singleton<BookMakredSlotUI>
 
         targetSlot.weaponID = weaponID;
         targetSlot.transform.GetChild(0).GetComponent<LongClickComponenet>().weaponID = weaponID;
-
+        targetSlot.transform.GetChild(0).GetComponent<InventorySlot>().weapon =item;
         targetSlot.ChangeWeaponUseable();
     }
 
+    public WeaponSlotUI GetSlotWithWeaponID(int id)
+    {
+        WeaponSlotUI result = null;
 
+        foreach(var slot in weaponSlots)
+        {
+            if(slot.weaponID == id)
+            {
+                result = slot;
+                break;
+            }
+        }
+
+        return result;
+
+    }
 
     public void RemoveItem(InventorySlot slot)
     {
 
         GameObject targetSlot = slot.gameObject;
-        slot.transform.parent.GetComponent<WeaponSlotUI>().hasWeapon = false;
+        slot.transform.parent.GetComponent<WeaponSlotUI>().Init();
         targetSlot.GetComponent<LongClickComponenet>().weaponID = 0;
         targetSlot.GetComponent<Image>().enabled = false; ;
         targetSlot.GetComponent<Image>().sprite = null;

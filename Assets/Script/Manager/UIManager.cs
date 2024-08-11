@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static ElementManager;
 
@@ -35,6 +36,8 @@ public class UIManager : MonoBehaviour
     public GameObject WeaponSlotSelectUI;
     public GameObject BookmarkSlotSelectUI;
 
+    public GraphicRaycaster PopUpGr;
+    public GraphicRaycaster Gr;
 
     public Button[] elementUI;
     public WeaponSlotUI[] weaponSlotUI;
@@ -48,6 +51,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject missionUI;
     
+
     private void Awake()
     {
         if (instance == null)
@@ -83,30 +87,29 @@ public class UIManager : MonoBehaviour
     {
         //if (inventory.activeSelf) return;
         if (descriptionPopUpUIStack.Count > 0) return;
-
+        CloseInventoryDescriptionPopUpUI();
         CloseCombinePopUpUI();
         GameObject combineUI = WeaponCombinationUIGenerator.Instance.combineWeaponUIList[weaponID - 1];
         combineUI.GetComponent<CombinePopUpUI>().ChangeInventoryMode(isInventory);
         combinePopupUIStack.Push(combineUI.GetComponent<CombinePopUpUI>());
         combineUI.SetActive(true);
-        _blockImage.gameObject.SetActive(isBlock);
+       // _blockImage.gameObject.SetActive(isBlock);
     }
     
     public void CreateInventoryDescriptionUI(int weaponID , bool isBlock = true)
     {
-        CloseDetailedDescriptionPopUpUI();
-
         longClickPopUpUI.SetActive(true);
 
         GameObject inventoryDescriptionUI = InventoryDescriptionUIGenerator.Instance.inventoryDescriptionUIList[weaponID - 1];
         
         inventoryDescriptionPopUpUiStack.Push(inventoryDescriptionUI.GetComponent<InventoryDescriptionPopUpUI>());
         inventoryDescriptionUI.SetActive(true);
-        _blockImage.gameObject.SetActive(isBlock);
+       // _blockImage.gameObject.SetActive(isBlock);
     }
     
     public void CreateDetailedDescriptionUI(int weaponID , bool isBlock = true)
     {
+
         CloseCombinePopUpUI();
 
         GameObject detailedDescriptionUI = DetailedDescriptionUIGenerator.Instance.detailedDescriptionUIList[weaponID - 1];
@@ -127,7 +130,7 @@ public class UIManager : MonoBehaviour
             }
         }
         
-        _blockImage.gameObject.SetActive(isBlock);
+      //  _blockImage.gameObject.SetActive(isBlock);
     }
     public void CloseCombinePopUpUI()
     {
@@ -137,7 +140,7 @@ public class UIManager : MonoBehaviour
             current.SetActive(false);
             combinePopupUIStack.Pop();
         }
-        _blockImage.gameObject.SetActive(false);
+       // _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
         InitLongClickPopupUI();
     }
@@ -152,7 +155,7 @@ public class UIManager : MonoBehaviour
         
         descriptionPopUpUIStack.Clear();
         backButton.SetActive(false);
-        _blockImage.gameObject.SetActive(false);
+      //  _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
         InitLongClickPopupUI();
     }
@@ -160,6 +163,7 @@ public class UIManager : MonoBehaviour
     public void CloseInventoryDescriptionPopUpUI()
     {
         CloseCombinePopUpUI();
+
         InventoryManager.instance.inventorySelectUI.SetActive(false);
         foreach (var popup in inventoryDescriptionPopUpUiStack)
         {
@@ -169,7 +173,7 @@ public class UIManager : MonoBehaviour
         
         inventoryDescriptionPopUpUiStack.Clear();
         backButton.SetActive(false);
-        _blockImage.gameObject.SetActive(false);
+     //   _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
         InitLongClickPopupUI();
     }
@@ -245,7 +249,7 @@ public class UIManager : MonoBehaviour
         if (popUp == null) return;
         popUpStack.Pop();
         popUp.gameObject.SetActive(false);
-        _blockImage.gameObject.SetActive(false);
+       // _blockImage.gameObject.SetActive(false);
     }
     
     public void ChangeBottomUI()
@@ -254,12 +258,25 @@ public class UIManager : MonoBehaviour
     }
     public void SetActiveBlockImage(bool isBlock)
     {
-        _blockImage.gameObject.SetActive(isBlock);
+       // _blockImage.gameObject.SetActive(isBlock);
     }
 
     public void InitLongClickPopupUI()
     {
         longClickPopUpUI.GetComponent<LongClickPopUpUi>().inventorySlot = null;
         longClickPopUpUI.GetComponent<LongClickPopUpUi>().weaponSlot = null;
+    }
+
+    public List<RaycastResult> GetRayCastResult(bool isPopUp = false)
+    {
+        var ped = new PointerEventData(null);
+        ped.position = Input.mousePosition;
+        var results = new List<RaycastResult>();
+        if(!isPopUp)
+            Gr.Raycast(ped, results);
+        else
+            PopUpGr.Raycast(ped, results);
+
+        return results;
     }
 }

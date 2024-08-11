@@ -23,10 +23,7 @@ public class CombinePopUpUI : UIPopUp
     }
 
     // Update is called once per frame
-    void Update()
-    {
-      
-    }
+  
 
     public void ClickDescriptionButton()
     {

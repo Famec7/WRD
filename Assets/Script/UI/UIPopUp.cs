@@ -16,7 +16,25 @@ public class UIPopUp : MonoBehaviour
         this.gameObject.SetActive(true);
         SetClosePopUp();
     }
-    
+
+    public void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            var popUPresults = UIManager.instance.GetRayCastResult(true);
+            var results = UIManager.instance.GetRayCastResult(false);
+            // 없으면 return
+
+            if (popUPresults.Count == 0 && results.Count == 0)
+            {               
+                UIManager.instance.CloseCombinePopUpUI();
+                UIManager.instance.CloseInventoryDescriptionPopUpUI();
+                UIManager.instance.CloseDetailedDescriptionPopUpUI();
+                Debug.Log("여기");
+            }
+        }
+    }
+
     /// <summary>
     /// 닫기 버튼 이벤트 설정
     /// 닫기 버튼을 눌렀을 때 팝업을 닫는 이벤트를 설정한다.

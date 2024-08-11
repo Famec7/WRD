@@ -61,7 +61,7 @@ public class LongClickComponenet : MonoBehaviour
                 InventoryManager.instance.inventorySelectUI.GetComponent<RectTransform>().position = transform.position;
                 //장착,즐겨찾기 버튼 활성화
                 longClickPopUpUI._bookmarkButton.SetActive(true);
-                longClickPopUpUI._equipButton.SetActive(true);
+                longClickPopUpUI._equipButton.SetActive(GameManager.instance.weaponCnt[weaponID - 1] > 0);
                 // 뒤에 안눌리게 블락이미지 키고 롱클릭 팝업 UI 고정 위치에 위치
                 UIManager.instance.SetActiveBlockImage(true);
                 LongClickPopUpUIObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(-420,162);
@@ -76,6 +76,7 @@ public class LongClickComponenet : MonoBehaviour
                 longClickPopUpUI._equipButton.SetActive(true);
                 LongClickPopUpUIObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(88,352);
                 longClickPopUpUI.weaponSlot = transform.parent.GetComponent<WeaponSlotUI>();
+                longClickPopUpUI.inventorySlot = longClickPopUpUI.weaponSlot.inventorySlot;
             }
             //인벤토리 아니면 부모에서 weaponid 넣어주기
             if (!isInventory)

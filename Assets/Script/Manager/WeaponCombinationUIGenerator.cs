@@ -101,6 +101,8 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
                     subCombi.transform.GetChild(index).GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
                     index +=2;
                 }
+
+                subCombi.GetComponent<SubCombinationUI>().SetCraftButtons();
             }
             
             combinationUI.SetActive((false));
