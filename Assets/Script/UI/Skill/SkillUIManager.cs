@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class SkillUIManager : Singleton<SkillUIManager>
 {
@@ -15,17 +17,17 @@ public class SkillUIManager : Singleton<SkillUIManager>
 
     #region Active Skill UI
 
-    [SerializeField] private List<SkillButton> _skillButtons = new();
-    private int _activedButton = 0;
+    [SerializeField] private List<SkillButton> _skillButtons;
+    private int _activeButton = 0;
 
     /*
      * Active Skill Button 추가
      */
     public void AddSkillButton(ActiveSkillBase skill)
     {
-        _skillButtons[_activedButton].gameObject.SetActive(true);
-        _skillButtons[_activedButton].SetSkill(skill);
-        _activedButton++;
+        _skillButtons[_activeButton].gameObject.SetActive(true);
+        _skillButtons[_activeButton].SetSkill(skill);
+        _activeButton++;
     }
 
     /*
@@ -33,9 +35,9 @@ public class SkillUIManager : Singleton<SkillUIManager>
      */
     public void RemoveSkillButton(ActiveSkillBase skill)
     {
-        _skillButtons[_activedButton].gameObject.SetActive(false);
-        _skillButtons[_activedButton].RemoveSkill(skill);
-        _activedButton--;
+        _skillButtons[_activeButton].gameObject.SetActive(false);
+        _skillButtons[_activeButton].RemoveSkill(skill);
+        _activeButton--;
     }
 
     // num번째 스킬 버튼 클릭
@@ -91,6 +93,7 @@ public class SkillUIManager : Singleton<SkillUIManager>
         SettingManager.Instance.CurrentActiveSettingType = (SettingManager.ActiveSettingType)type;
     }
 
+    [Conditional("UNITY_EDITOR")]
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))

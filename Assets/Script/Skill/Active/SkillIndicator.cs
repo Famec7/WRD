@@ -5,17 +5,21 @@ using UnityEngine;
 public class SkillIndicator : MonoBehaviour
 {
     private ActiveSkillBase _skill;
-    
+    private CircleCollider2D _collider;
+
     public void SetSkill(ActiveSkillBase skill)
     {
         _skill = skill;
+
+        this.transform.localScale = new Vector3(skill.Data.Range, skill.Data.Range, 0);
     }
-    
+
     public void ShowIndicator(Vector3 position = default)
     {
+        gameObject.SetActive(true);
         transform.position = position;
     }
-    
+
     public void HideIndicator()
     {
         gameObject.SetActive(false);
@@ -23,18 +27,15 @@ public class SkillIndicator : MonoBehaviour
 
     private void Awake()
     {
-        Collider2D collider = GetComponent<Collider2D>();
-        collider.isTrigger = true;
+        _collider = GetComponent<CircleCollider2D>();
+        _collider.isTrigger = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Monster"))
+        if (other.TryGetComponent(out Monster monster))
         {
-            if(other.TryGetComponent(out Monster monster))
-            {
-                _skill.AddTargetMonster(monster);
-            }
+            _skill.AddTargetMonster(monster);
         }
     }
 }

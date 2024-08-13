@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public abstract class ClickTypeSkill : ActiveSkillBase
 {
@@ -42,12 +40,13 @@ public abstract class ClickTypeSkill : ActiveSkillBase
     {
         return new List<INode>
         {
+            new ActionNode(CheckUsuableRangeState),
             new ActionNode(TouchUsableRange),
             new ActionNode(CheckingUsableRange),
         };
     }
 
-    private bool _isUsuableRangeState;
+    private bool _isUsuableRangeState = false;
 
     protected bool IsUsuableRangeState
     {
@@ -87,10 +86,15 @@ public abstract class ClickTypeSkill : ActiveSkillBase
             return INode.ENodeState.Failure;
         }
 
+        if (UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("SkillUI")))
+        {
+            return INode.ENodeState.Running;
+        }
+
         if (Input.GetMouseButtonUp(0))
         {
             // UI 터치 시 스킬 취소
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("UI")))
             {
                 CancelSkill();
                 return INode.ENodeState.Failure;
@@ -115,7 +119,7 @@ public abstract class ClickTypeSkill : ActiveSkillBase
         }
 
         indicator.transform.position = pivotPosition;
-        
+
         var currentSettingType = SettingManager.Instance.CurrentActiveSettingType;
         switch (currentSettingType)
         {
@@ -138,4 +142,10 @@ public abstract class ClickTypeSkill : ActiveSkillBase
     #endregion
 
     #endregion
+    
+    public override void CancelSkill()
+    {
+        base.CancelSkill();
+        IsUsuableRangeState = false;
+    }
 }

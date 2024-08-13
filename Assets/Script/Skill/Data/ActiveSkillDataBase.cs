@@ -27,7 +27,7 @@ public class ActiveSkillDataBase : ScriptableObject
             }
             else
             {
-                Debug.LogError("${activeSkillData.Name}'s cooltime is not float");
+                Debug.LogError($"{activeSkillData.Name}'s cooltime is not float");
             }
             
             /****************active type Parse****************/

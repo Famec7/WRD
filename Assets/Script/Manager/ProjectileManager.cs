@@ -18,8 +18,11 @@ public class ProjectileManager : Singleton<ProjectileManager>
         return projectile;
     }
 
-    public void ReturnProjectileToPool<T>(T projectile) where T : ProjectileBase
+    public void ReturnProjectileToPool<T>(T projectile, string projectileName = default) where T : ProjectileBase
     {
-        _poolManager.ReturnToPool(projectile);
+        if(projectileName == default)
+            _poolManager.ReturnToPool(projectile);
+        else
+            _poolManager.ReturnToPool(projectileName, projectile);
     }
 }

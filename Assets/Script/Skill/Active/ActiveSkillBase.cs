@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public abstract class ActiveSkillBase : SkillBase
 {
@@ -13,15 +11,18 @@ public abstract class ActiveSkillBase : SkillBase
     private void DataInit()
     {
         Data = SkillManager.Instance.GetActiveSkillData(GetType().Name);
+
+        _currentCoolTime = Data.CoolTime;
     }
 
     #endregion
 
     protected List<Monster> targetMonsters = new List<Monster>();
-    protected Vector2 pivotPosition = default;
+    protected Vector2 pivotPosition = Vector2.zero;
 
     protected override void Init()
     {
+        SkillManager.Instance.AddActiveSkill(this);
         base.Init();
         DataInit();
         BTInit();
@@ -40,9 +41,11 @@ public abstract class ActiveSkillBase : SkillBase
 
     public abstract void UseSkill();
 
-    public void CancelSkill()
+    public virtual void CancelSkill()
     {
         IsCoolTime = true;
+        IsActive = false;
+        IsIndicatorState = false;
     }
 
     public void AddTargetMonster(Monster monster)
@@ -59,6 +62,8 @@ public abstract class ActiveSkillBase : SkillBase
     private void BTInit()
     {
         _btRunner = new BehaviourTreeRunner(SettingBT());
+
+        IsCoolTime = true;
     }
 
     /// <summary>
@@ -91,6 +96,9 @@ public abstract class ActiveSkillBase : SkillBase
         };
     }
 
+    // 스킬 버튼 활성화 이벤트
+    public Action<bool> OnButtonActivate;
+
     private bool _isCoolTime = true;
 
     public bool IsCoolTime
@@ -101,7 +109,16 @@ public abstract class ActiveSkillBase : SkillBase
 
             if (value is true)
             {
+                owner.enabled = true;
+                
                 SkillUIManager.Instance.ClosePopupPanel();
+                OnButtonActivate?.Invoke(false);
+            }
+            else
+            {
+                owner.enabled = false;
+                
+                OnButtonActivate?.Invoke(true);
             }
         }
         get => _isCoolTime;
@@ -115,10 +132,11 @@ public abstract class ActiveSkillBase : SkillBase
         set
         {
             _currentCoolTime = value;
+
             if (value <= 0)
             {
+                _currentCoolTime = 0;
                 IsCoolTime = false;
-                _currentCoolTime = Data.CoolTime;
 
                 if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
                 {
@@ -137,13 +155,23 @@ public abstract class ActiveSkillBase : SkillBase
     {
         CurrentCoolTime -= Time.deltaTime;
 
+#if UNITY_EDITOR
+
+        // T 입력 시 쿨타임 초기화
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            CurrentCoolTime = 0;
+        }
+
+#endif
+
         return CurrentCoolTime <= 0 ? INode.ENodeState.Failure : INode.ENodeState.Running;
     }
 
     #endregion
 
     #region Indicator Node
-    
+
     /// <summary>
     /// 스킬 실제 사용 범위 표시 노드
     /// 재정의 가능
@@ -198,15 +226,23 @@ public abstract class ActiveSkillBase : SkillBase
             CancelSkill();
             return INode.ENodeState.Failure;
         }
+        
+        if(UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("SkillUI")))
+        {
+            return INode.ENodeState.Running;
+        }
+        
 
         if (Input.GetMouseButtonUp(0))
         {
             // UI 터치 시 스킬 취소
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("UI")))
             {
                 CancelSkill();
                 return INode.ENodeState.Failure;
             }
+            
+            pivotPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             IsIndicatorState = false;
             IsActive = true;
@@ -252,6 +288,8 @@ public abstract class ActiveSkillBase : SkillBase
             else
             {
                 OnActiveExit();
+
+                _currentCoolTime = Data.CoolTime;
                 IsCoolTime = true;
             }
         }
@@ -267,7 +305,7 @@ public abstract class ActiveSkillBase : SkillBase
     /// 스킬 실행 시 한 번만 호출되는 진입 함수
     /// </summary>
     protected abstract void OnActiveEnter();
-    
+
     /// <summary>
     /// 스킬 Update함수
     /// INode.Running 반환 시 계속 실행
@@ -277,7 +315,7 @@ public abstract class ActiveSkillBase : SkillBase
     /// </summary>
     /// <returns> Running과 Success 중 하나 반환</returns>
     protected abstract INode.ENodeState OnActiveExecute();
-    
+
     /// <summary>
     /// 스킬 종료 시 한 번만 호출되는 함수
     /// </summary>

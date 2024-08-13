@@ -19,6 +19,8 @@ public class Status : MonoBehaviour
     public bool woundStack;
     [HideInInspector]
     public bool markStack;
+    [HideInInspector]
+    public float damageAmplification;
     
     public void SetUnitStatus(UnitCode unitCode)
     {
@@ -33,5 +35,6 @@ public class Status : MonoBehaviour
         moveSpeed = MonsterDataManager.instance.speedData[wave];
         woundStack = false;
         markStack = false;
+        damageAmplification = 0;
     }
 }

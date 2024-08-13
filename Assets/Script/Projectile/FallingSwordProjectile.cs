@@ -6,12 +6,14 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public abstract class FallingSwordProjectile : Projectile
 {
+    [SerializeField] private string _projectileName;
+    
     #region Data
     
     protected float Range { get; set; }
     protected WaitForSeconds Dealy { get; set; }
 
-    public virtual void SetData(PassiveSkillData data)
+    public virtual void SetData(SkillData data)
     {
         Range = data.Range;
         _collider.radius = data.Range;
@@ -52,7 +54,7 @@ public abstract class FallingSwordProjectile : Projectile
     {
         yield return Dealy;
         
-        ProjectileManager.Instance.ReturnProjectileToPool<FallingSwordProjectile>(this);
+        ProjectileManager.Instance.ReturnProjectileToPool(this, _projectileName);
     }
 
     public override void GetFromPool()

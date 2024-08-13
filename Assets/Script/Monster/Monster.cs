@@ -25,7 +25,7 @@ public class Monster : MonoBehaviour
     public void HasAttacked(float damage)
     {
         hp -= damage;
-        status.HP -= damage;
+        status.HP -= damage + damage * status.damageAmplification;
         if (status.HP <= 0)
             IsDead();
     }

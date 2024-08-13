@@ -23,7 +23,7 @@ public class SkySwordProjectile : FallingSwordProjectile
     /********************************Data********************************/
     private float _slowRate = 0.0f;
     
-    public override void SetData(PassiveSkillData data)
+    public override void SetData(SkillData data)
     {
         base.SetData(data);
         
