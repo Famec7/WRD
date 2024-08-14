@@ -93,9 +93,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 1
 --- !u!114 &8431344996871724976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +244,19 @@ MonoBehaviour:
   image: {fileID: 1608929690919236280}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &3532979371458633674
 MonoBehaviour:
@@ -262,7 +275,7 @@ MonoBehaviour:
   isWeaponSlot: 0
   isInventory: 0
   isBookmarked: 1
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &217857053511979826
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,19 +302,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217857053511979826}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9067866296105244904}
-  m_Father: {fileID: 8584707691565285168}
+  m_Father: {fileID: 8816823330339830268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 160, y: 320}
-  m_SizeDelta: {x: 160, y: 160}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 34.999992, y: 150}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &6101922460524087042
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -356,6 +369,7 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
 --- !u!1 &226570124635346466
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +410,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 250}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6011543841502166284
 CanvasRenderer:
@@ -449,9 +463,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 0
 --- !u!114 &1450981331742569123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,6 +602,19 @@ MonoBehaviour:
   image: {fileID: 425491726533105220}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &1548378328094888566
 MonoBehaviour:
@@ -606,7 +633,7 @@ MonoBehaviour:
   isWeaponSlot: 1
   isInventory: 0
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &436724733069233243
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +646,7 @@ GameObject:
   - component: {fileID: 1759366056763394969}
   - component: {fileID: 3449624821333699349}
   - component: {fileID: 5755951268720671368}
+  - component: {fileID: 6264301746579810098}
   m_Layer: 5
   m_Name: PetSlot2
   m_TagString: WeaponSlot
@@ -641,11 +669,11 @@ RectTransform:
   - {fileID: 1436941559759895536}
   m_Father: {fileID: 1142721168159012576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 506.6, y: 234.4}
-  m_SizeDelta: {x: 253.3, y: 233.3}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 310, y: 100}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1759366056763394969
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -700,6 +728,52 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
+--- !u!114 &6264301746579810098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436724733069233243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5755951268720671368}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5755951268720671368}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &549506463068710040
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +814,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 250}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8984834717664307640
 CanvasRenderer:
@@ -793,9 +867,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 0
 --- !u!114 &3834007991479783488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -932,6 +1006,19 @@ MonoBehaviour:
   image: {fileID: 5403815644904960178}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &1872195027050510116
 MonoBehaviour:
@@ -950,7 +1037,7 @@ MonoBehaviour:
   isWeaponSlot: 1
   isInventory: 0
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &823895948065195481
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,7 +1078,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 250}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1837487541654122059
 CanvasRenderer:
@@ -1044,9 +1131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 0
 --- !u!114 &7488118074976126098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1183,6 +1270,19 @@ MonoBehaviour:
   image: {fileID: 1393455543642497706}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &1302433187164796248
 MonoBehaviour:
@@ -1201,7 +1301,7 @@ MonoBehaviour:
   isWeaponSlot: 1
   isInventory: 0
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &910540193966965276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,7 +1342,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 250}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &420920938408400601
 CanvasRenderer:
@@ -1295,9 +1395,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 0
 --- !u!114 &6180813504296698309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1434,6 +1534,19 @@ MonoBehaviour:
   image: {fileID: 8129160191520463158}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &2344620006201991176
 MonoBehaviour:
@@ -1452,7 +1565,7 @@ MonoBehaviour:
   isWeaponSlot: 1
   isInventory: 0
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &1021089562089387130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,19 +1592,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021089562089387130}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4816409775915793999}
-  m_Father: {fileID: 8584707691565285168}
+  m_Father: {fileID: 8816823330339830268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 160, y: 160}
-  m_SizeDelta: {x: 160, y: 160}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 34.999992, y: 30.000061}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &4922023839739979725
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1546,6 +1659,7 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
 --- !u!1 &1520729805690006300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1558,6 +1672,7 @@ GameObject:
   - component: {fileID: 7085306421510954875}
   - component: {fileID: 8964673036599318828}
   - component: {fileID: 42116699362830340}
+  - component: {fileID: 1665751601885004743}
   m_Layer: 5
   m_Name: PetSlot4
   m_TagString: WeaponSlot
@@ -1580,11 +1695,11 @@ RectTransform:
   - {fileID: 6819692608104663955}
   m_Father: {fileID: 1142721168159012576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 506.6, y: 0}
-  m_SizeDelta: {x: 253.3, y: 233.3}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 330, y: -60}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7085306421510954875
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1639,6 +1754,52 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
+--- !u!114 &1665751601885004743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520729805690006300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 42116699362830340}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 42116699362830340}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1542207023774331660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,7 +1840,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 250}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3779971207450760280
 CanvasRenderer:
@@ -1732,9 +1893,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 0
 --- !u!114 &7871770274989425417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1871,6 +2032,19 @@ MonoBehaviour:
   image: {fileID: 1523088413641794342}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &6738411704592266253
 MonoBehaviour:
@@ -1889,7 +2063,7 @@ MonoBehaviour:
   isWeaponSlot: 1
   isInventory: 0
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &1768163400599125466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,8 +2103,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 250}
+  m_AnchoredPosition: {x: 0, y: -0.00012207031}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3209039571681068122
 CanvasRenderer:
@@ -1983,9 +2157,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 1
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 0
 --- !u!114 &8447561702767785176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2122,6 +2296,19 @@ MonoBehaviour:
   image: {fileID: 7315449614780527910}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &2291440682536296312
 MonoBehaviour:
@@ -2140,7 +2327,7 @@ MonoBehaviour:
   isWeaponSlot: 1
   isInventory: 0
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &2122639562635275529
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,9 +2421,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 1
 --- !u!114 &2848719025260726639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2385,6 +2572,19 @@ MonoBehaviour:
   image: {fileID: 2732318825646762355}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &5442519936042355275
 MonoBehaviour:
@@ -2403,7 +2603,7 @@ MonoBehaviour:
   isWeaponSlot: 0
   isInventory: 0
   isBookmarked: 1
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &2299643333018405843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2416,6 +2616,7 @@ GameObject:
   - component: {fileID: 591906531342347228}
   - component: {fileID: 9140383948715577140}
   - component: {fileID: 4262947707877375720}
+  - component: {fileID: 704513029758593244}
   m_Layer: 5
   m_Name: PetSlot3
   m_TagString: WeaponSlot
@@ -2438,11 +2639,11 @@ RectTransform:
   - {fileID: 1145419010544715887}
   m_Father: {fileID: 1142721168159012576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 253.3, y: 233.3}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -10, y: -60}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &591906531342347228
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2497,6 +2698,52 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
+--- !u!114 &704513029758593244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299643333018405843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4262947707877375720}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4262947707877375720}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2318526409263915324
 GameObject:
   m_ObjectHideFlags: 0
@@ -2591,9 +2838,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 1
 --- !u!114 &267838544234539660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2755,6 +3002,19 @@ MonoBehaviour:
   image: {fileID: 8501374445664904306}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &3630426905477989316
 MonoBehaviour:
@@ -2773,7 +3033,7 @@ MonoBehaviour:
   isWeaponSlot: 0
   isInventory: 0
   isBookmarked: 1
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &2331227138997049025
 GameObject:
   m_ObjectHideFlags: 0
@@ -2800,19 +3060,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2331227138997049025}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 385441188305233168}
-  m_Father: {fileID: 8584707691565285168}
+  m_Father: {fileID: 8816823330339830268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 320}
-  m_SizeDelta: {x: 160, y: 160}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -84.99998, y: 150}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &8933515207724721247
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2867,6 +3127,7 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
 --- !u!1 &3070383900083671798
 GameObject:
   m_ObjectHideFlags: 0
@@ -2961,9 +3222,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 1
 --- !u!114 &8415308124706183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3125,6 +3386,19 @@ MonoBehaviour:
   image: {fileID: 3184022287688383613}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &5208448814383812382
 MonoBehaviour:
@@ -3143,7 +3417,7 @@ MonoBehaviour:
   isWeaponSlot: 0
   isInventory: 0
   isBookmarked: 1
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &3234218963614950279
 GameObject:
   m_ObjectHideFlags: 0
@@ -3238,9 +3512,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 1
 --- !u!114 &6751269089313271880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3402,6 +3676,19 @@ MonoBehaviour:
   image: {fileID: 4337461091776888833}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &4291648653238255898
 MonoBehaviour:
@@ -3420,7 +3707,50 @@ MonoBehaviour:
   isWeaponSlot: 0
   isInventory: 0
   isBookmarked: 1
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
+--- !u!1 &3433659867472701414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8816823330339830268}
+  m_Layer: 5
+  m_Name: BookMarkedGroup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &8816823330339830268
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3433659867472701414}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6867716779719666443}
+  - {fileID: 6608238039005454518}
+  - {fileID: 8232256284621661627}
+  - {fileID: 3522729965160030072}
+  - {fileID: 3786779090827756575}
+  - {fileID: 7710736322536370194}
+  - {fileID: 630575000990789798}
+  - {fileID: 5877874851426223724}
+  m_Father: {fileID: 8584707691565285168}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3505418846960037646
 GameObject:
   m_ObjectHideFlags: 0
@@ -3433,6 +3763,7 @@ GameObject:
   - component: {fileID: 5503092484476421295}
   - component: {fileID: 1195591609658860454}
   - component: {fileID: 4434136151509692404}
+  - component: {fileID: 5703026514568185380}
   m_Layer: 5
   m_Name: MainWeaponSlot
   m_TagString: WeaponSlot
@@ -3447,7 +3778,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3505418846960037646}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3455,11 +3786,11 @@ RectTransform:
   - {fileID: 5857245479283086376}
   m_Father: {fileID: 1142721168159012576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 253.3, y: 0}
-  m_SizeDelta: {x: 253.3, y: 233.3}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 160, y: -60}
+  m_SizeDelta: {x: 180, y: 180}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5503092484476421295
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3481,7 +3812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9150943, g: 0.7528893, b: 0.23740657, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3514,6 +3845,52 @@ MonoBehaviour:
   hasWeapon: 1
   weaponID: 7
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
+--- !u!114 &5703026514568185380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3505418846960037646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4434136151509692404}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4434136151509692404}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3575322731478979759
 GameObject:
   m_ObjectHideFlags: 0
@@ -3540,19 +3917,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3575322731478979759}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3080079259636695150}
-  m_Father: {fileID: 8584707691565285168}
+  m_Father: {fileID: 8816823330339830268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 160}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -84.99998, y: -90}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &4966519381959467342
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3607,6 +3984,7 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
 --- !u!1 &3934658758643902083
 GameObject:
   m_ObjectHideFlags: 0
@@ -3701,9 +4079,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 1
 --- !u!114 &2047311349429203501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3865,6 +4243,19 @@ MonoBehaviour:
   image: {fileID: 3322127086609003264}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &7635268490148106163
 MonoBehaviour:
@@ -3883,7 +4274,7 @@ MonoBehaviour:
   isWeaponSlot: 0
   isInventory: 0
   isBookmarked: 1
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &4110854282196571484
 GameObject:
   m_ObjectHideFlags: 0
@@ -3896,6 +4287,7 @@ GameObject:
   - component: {fileID: 7512984512657019258}
   - component: {fileID: 7098684656852340292}
   - component: {fileID: 3737752919518959738}
+  - component: {fileID: 5885947347079368420}
   m_Layer: 5
   m_Name: PetSlot6
   m_TagString: WeaponSlot
@@ -3918,11 +4310,11 @@ RectTransform:
   - {fileID: 9113381245326816456}
   m_Father: {fileID: 1142721168159012576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 253.3, y: -234.4}
-  m_SizeDelta: {x: 253.3, y: 233.3}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 160, y: -240}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7512984512657019258
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3977,6 +4369,185 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
+--- !u!114 &5885947347079368420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110854282196571484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3737752919518959738}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3737752919518959738}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!1 &4302119696089070603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5877874851426223724}
+  - component: {fileID: 7151943707382402927}
+  - component: {fileID: 472506106053189207}
+  - component: {fileID: 2905523802626664915}
+  m_Layer: 5
+  m_Name: BookmarkedCloseButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5877874851426223724
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302119696089070603}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6659457915271115997}
+  m_Father: {fileID: 8816823330339830268}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 155, y: 270.00006}
+  m_SizeDelta: {x: 50, y: 120}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &7151943707382402927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302119696089070603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2905523802626664915}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3433659867472701414}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!222 &472506106053189207
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302119696089070603}
+  m_CullTransparentMesh: 1
+--- !u!114 &2905523802626664915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302119696089070603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4537897602949351634
 GameObject:
   m_ObjectHideFlags: 0
@@ -4017,7 +4588,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 250}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3626705163985099169
 CanvasRenderer:
@@ -4070,9 +4641,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 0
 --- !u!114 &8003005303094385340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4209,6 +4780,19 @@ MonoBehaviour:
   image: {fileID: 2132752179709711071}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &294481827899108309
 MonoBehaviour:
@@ -4227,7 +4811,7 @@ MonoBehaviour:
   isWeaponSlot: 1
   isInventory: 0
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &5114899346171744747
 GameObject:
   m_ObjectHideFlags: 0
@@ -4320,8 +4904,142 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 45
+  m_fontSizeBase: 45
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &5301774896151101123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6659457915271115997}
+  - component: {fileID: 1775306267060969237}
+  - component: {fileID: 5940924068178080633}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6659457915271115997
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5301774896151101123}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5877874851426223724}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 77.44, y: 96.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1775306267060969237
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5301774896151101123}
+  m_CullTransparentMesh: 1
+--- !u!114 &5940924068178080633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5301774896151101123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "\uB2EB\n\uAE30"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 02f3de7e2bfde754caa0916f26487519, type: 2}
+  m_sharedMaterial: {fileID: -3841224631870627235, guid: 02f3de7e2bfde754caa0916f26487519, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4374,6 +5092,7 @@ GameObject:
   - component: {fileID: 3071185237169453869}
   - component: {fileID: 7314493821244480464}
   - component: {fileID: 3821672703919766348}
+  - component: {fileID: 355619020433609741}
   m_Layer: 5
   m_Name: PetSlot0
   m_TagString: WeaponSlot
@@ -4396,11 +5115,11 @@ RectTransform:
   - {fileID: 2000160724577094779}
   m_Father: {fileID: 1142721168159012576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 234.4}
-  m_SizeDelta: {x: 253.3, y: 233.3}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 10, y: 100}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3071185237169453869
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4455,6 +5174,52 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
+--- !u!114 &355619020433609741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5517765974100288936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3821672703919766348}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3821672703919766348}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5523479165336721436
 GameObject:
   m_ObjectHideFlags: 0
@@ -4481,19 +5246,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5523479165336721436}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8392995965990310287}
-  m_Father: {fileID: 8584707691565285168}
+  m_Father: {fileID: 8816823330339830268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 160}
-  m_SizeDelta: {x: 160, y: 160}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -84.99998, y: 30.000061}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &4761951813629727703
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4548,6 +5313,139 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
+--- !u!1 &6210712672108718543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1257441011459139354}
+  - component: {fileID: 9205692606722465579}
+  - component: {fileID: 3652366070061414108}
+  - component: {fileID: 2379173990822134915}
+  m_Layer: 5
+  m_Name: BookmarkedOpenButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1257441011459139354
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210712672108718543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8584707691565285168}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: 25, y: 120}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &9205692606722465579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210712672108718543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2379173990822134915}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3433659867472701414}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!222 &3652366070061414108
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210712672108718543}
+  m_CullTransparentMesh: 1
+--- !u!114 &2379173990822134915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6210712672108718543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6524424349269821082
 GameObject:
   m_ObjectHideFlags: 0
@@ -4579,13 +5477,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6608238039005454518}
-  - {fileID: 8232256284621661627}
-  - {fileID: 3522729965160030072}
-  - {fileID: 3786779090827756575}
-  - {fileID: 7710736322536370194}
-  - {fileID: 630575000990789798}
-  - {fileID: 6867716779719666443}
+  - {fileID: 1257441011459139354}
+  - {fileID: 8816823330339830268}
   m_Father: {fileID: 4299322926997213531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
@@ -4608,13 +5501,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6524424349269821082}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4645,6 +5538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSlots: []
   slotParent: {fileID: 8584707691565285168}
+  weaponID: 0
 --- !u!1 &6601764414087391471
 GameObject:
   m_ObjectHideFlags: 0
@@ -4675,8 +5569,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8584707691565285168}
   - {fileID: 1142721168159012576}
+  - {fileID: 8584707691565285168}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4699,13 +5593,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6601764414087391471}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5372549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4747,19 +5641,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7221867034821106444}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2347868860455232312}
-  m_Father: {fileID: 8584707691565285168}
+  m_Father: {fileID: 8816823330339830268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 320, y: 220}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -84.99998, y: 270.00006}
+  m_SizeDelta: {x: 240, y: 120}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &7851073402160033472
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4840,11 +5734,11 @@ RectTransform:
   - {fileID: 829699683015646305}
   m_Father: {fileID: 4299322926997213531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 695.6, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 760, y: 700}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &678885376182856181
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4938,7 +5832,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 250}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7735589664579674898
 CanvasRenderer:
@@ -4991,9 +5885,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 0
 --- !u!114 &7546742085385524199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5130,6 +6024,19 @@ MonoBehaviour:
   image: {fileID: 1361567970435246970}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &8737584294208241750
 MonoBehaviour:
@@ -5148,7 +6055,7 @@ MonoBehaviour:
   isWeaponSlot: 1
   isInventory: 0
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &7999623134745488461
 GameObject:
   m_ObjectHideFlags: 0
@@ -5161,6 +6068,7 @@ GameObject:
   - component: {fileID: 2233061661352106025}
   - component: {fileID: 7270223058235331743}
   - component: {fileID: 5917049633718264304}
+  - component: {fileID: 8341622976177268605}
   m_Layer: 5
   m_Name: PetSlot5
   m_TagString: WeaponSlot
@@ -5183,11 +6091,11 @@ RectTransform:
   - {fileID: 5842502905859795139}
   m_Father: {fileID: 1142721168159012576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -234.4}
-  m_SizeDelta: {x: 253.3, y: 233.3}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 10, y: -220}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2233061661352106025
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5242,6 +6150,52 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
+--- !u!114 &8341622976177268605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7999623134745488461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5917049633718264304}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5917049633718264304}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8050877135053608824
 GameObject:
   m_ObjectHideFlags: 0
@@ -5282,7 +6236,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 250}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8992922477759191854
 CanvasRenderer:
@@ -5335,9 +6289,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
-  gr: {fileID: 0}
   isDrag: 0
   isInventory: 0
+  isBookmarked: 0
 --- !u!114 &2336300790749292112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5474,6 +6428,19 @@ MonoBehaviour:
   image: {fileID: 5244739829688879492}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 0}
 --- !u!114 &9043075184258403007
 MonoBehaviour:
@@ -5492,7 +6459,7 @@ MonoBehaviour:
   isWeaponSlot: 1
   isInventory: 0
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 0}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!1 &8051758632232361787
 GameObject:
   m_ObjectHideFlags: 0
@@ -5505,6 +6472,7 @@ GameObject:
   - component: {fileID: 4234815797741111843}
   - component: {fileID: 8515932045238701675}
   - component: {fileID: 8481084281250267903}
+  - component: {fileID: 3087245009273214832}
   m_Layer: 5
   m_Name: PetSlot1
   m_TagString: WeaponSlot
@@ -5527,11 +6495,11 @@ RectTransform:
   - {fileID: 2131938669275616795}
   m_Father: {fileID: 1142721168159012576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 253.3, y: 234.4}
-  m_SizeDelta: {x: 253.3, y: 233.3}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 160, y: 120}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4234815797741111843
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5586,6 +6554,52 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
+--- !u!114 &3087245009273214832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8051758632232361787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8481084281250267903}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8481084281250267903}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8233032185633170638
 GameObject:
   m_ObjectHideFlags: 0
@@ -5612,19 +6626,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8233032185633170638}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3309637773480704658}
-  m_Father: {fileID: 8584707691565285168}
+  m_Father: {fileID: 8816823330339830268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 160, y: 0}
-  m_SizeDelta: {x: 160, y: 160}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 34.999992, y: -90}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &2641924591146480548
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5679,6 +6693,7 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
 --- !u!1 &8236754669796142933
 GameObject:
   m_ObjectHideFlags: 0
@@ -5691,6 +6706,7 @@ GameObject:
   - component: {fileID: 4073853698168912793}
   - component: {fileID: 2605898294402307969}
   - component: {fileID: 6899468328489874878}
+  - component: {fileID: 4419506767643072165}
   m_Layer: 5
   m_Name: PetSlot7
   m_TagString: WeaponSlot
@@ -5713,11 +6729,11 @@ RectTransform:
   - {fileID: 1969553668115258353}
   m_Father: {fileID: 1142721168159012576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 506.6, y: -234.4}
-  m_SizeDelta: {x: 253.3, y: 233.3}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 310, y: -220}
+  m_SizeDelta: {x: 120, y: 120}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4073853698168912793
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5772,3 +6788,49 @@ MonoBehaviour:
   hasWeapon: 0
   weaponID: 0
   inventorySlot: {fileID: 0}
+  isWeaponUseable: 1
+--- !u!114 &4419506767643072165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8236754669796142933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6899468328489874878}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6899468328489874878}
+          m_TargetAssemblyTypeName: WeaponSlotUI, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

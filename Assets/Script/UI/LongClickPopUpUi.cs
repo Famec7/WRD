@@ -84,6 +84,7 @@ public class LongClickPopUpUi : MonoBehaviour
         {
             BookMakredSlotUI.Instance.weaponID = weaponID;
             UIManager.instance.BookmarkSlotSelectUI.SetActive(true);
+            UIManager.instance.BookmarkSlotUI.SetActive(true);
         }
         else if (BookMakredSlotUI.Instance.GetSlotWithWeaponID(weaponID))
         {
@@ -151,6 +152,7 @@ public class LongClickPopUpUi : MonoBehaviour
         weaponSlot = null;
         inventorySlot = null;
 
+        BookMakredSlotUI.Instance.UpdateAllSlot();
         gameObject.SetActive(false);
     }
 }

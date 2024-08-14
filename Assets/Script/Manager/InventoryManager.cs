@@ -36,6 +36,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject classShowClassSelectButtons;
     public GameObject[] sortButtons;
     
+    public ScrollRect scrollRect;
 
     public Toggle allShowToggle;
 
@@ -286,6 +287,8 @@ public class InventoryManager : MonoBehaviour
             sortButtons[i].gameObject.SetActive(false);
         }
 
+        normalInventoryContent.transform.GetChild(0).transform.GetChild(0).GetComponent<RectTransform>().anchoredPosition = new Vector2(20,-200);
+        allShowInventoryContent.transform.GetChild(0).transform.GetChild(0).GetComponent<RectTransform>().anchoredPosition = new Vector2(20, -200);
     }
 
     public bool RemoveItem(List<int> itemIDs, int mainWeaponID, InventoryItem item)

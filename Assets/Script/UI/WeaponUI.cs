@@ -26,7 +26,8 @@ public class WeaponUI : Singleton<WeaponUI>
     public void AddItem(int order, InventoryItem item)
     {
         // 만약 가득차면 리턴
-        
+        if (item == null) return;
+
         WeaponSlotUI targetSlot = null;
         
         if (!weaponSlots[order].hasWeapon)

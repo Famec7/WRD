@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
@@ -80,7 +81,8 @@ public class MonsterSpawnManager : MonoBehaviour
             limitMonsterNum = 50;
 
         UIManager.instance.limitMonsterNum.text = limitMonsterNum.ToString();
-        UIManager.instance.currentWaveTime.text = wavePlayTime[0].ToString();
+        TimeSpan timeSpan = TimeSpan.FromSeconds(wavePlayTime[0]);
+        UIManager.instance.currentWaveTime.text = timeSpan.ToString(@"mm\:ss"); 
     }
 
     // Update is called once per frame
@@ -105,7 +107,8 @@ public class MonsterSpawnManager : MonoBehaviour
         if (waveSecTimer >= 1f) // 1초 단위로 웨이브 시간 텍스트 변경
         {
             waveTimer++;
-            UIManager.instance.currentWaveTime.text = (wavePlayTime[idx] - waveTimer).ToString();
+            TimeSpan timeSpan = TimeSpan.FromSeconds(wavePlayTime[idx]-waveTimer);
+            UIManager.instance.currentWaveTime.text = timeSpan.ToString(@"mm\:ss");
             waveSecTimer = 0f;
         }
         // 웨이브 시간이 끝나면
@@ -134,7 +137,7 @@ public class MonsterSpawnManager : MonoBehaviour
             }
             // 웨이브 및 텍스트 업데이트
             GameManager.instance.wave++;
-            UIManager.instance.waveNum.text = GameManager.instance.wave.ToString();
+            UIManager.instance.waveNum.text = "Wave " + GameManager.instance.wave.ToString();
             // 모든 스테이지 기본 보상 3개 지급
             ElementManager.instance.GetElement(3);
             // 다시 생성을 위한 변수 초기화

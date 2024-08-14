@@ -1,8 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
+using static UnityEditor.Timeline.Actions.MenuPriority;
 
 public class WeaponImage : MonoBehaviour
 {
@@ -16,6 +21,7 @@ public class WeaponImage : MonoBehaviour
     private Vector3 originalPos;
     public bool isDrag = false;
     public bool isInventory;
+    public bool isBookmarked;
     private RectTransform rectTransform;
     private RectTransform rectTransform1;
     private LongClickComponenet longClickComponenet;
@@ -46,10 +52,14 @@ public class WeaponImage : MonoBehaviour
         if (!isDrag)
         {
             transform.position = originalPos;
+        }
+        else
+        {
+            float sizeOffset = transform.parent.gameObject.name == "MainWeaponSlot" ? 1.5f : 1f;
             if ((transform.parent.gameObject.CompareTag("WeaponSlot")))
-                rectTransform1.sizeDelta = new Vector2(250, 250);
+                rectTransform1.sizeDelta = new Vector2(120, 120) * sizeOffset;
 
-            if ((transform.parent.gameObject.CompareTag("RecentEarnSlot")))
+            if ((transform.parent.gameObject.CompareTag("BookMarkedSlot")))
                 rectTransform.sizeDelta = new Vector2(100, 100);
         }
     }
@@ -67,10 +77,15 @@ public class WeaponImage : MonoBehaviour
 
     public void ButtonDrag()
     {
+        if (!transform.parent.GetComponent<WeaponSlotUI>().isWeaponUseable && transform.parent.CompareTag("BookMarkedSlot")) return;
+
         transform.position = Input.mousePosition;
         var parent = transform.parent;
         parent.GetComponent<RectTransform>().SetAsLastSibling();
         parent.parent.GetComponent<RectTransform>().SetAsLastSibling();
+        
+        if (isBookmarked)
+            parent.parent.parent.GetComponent<RectTransform>().SetAsLastSibling();
 
         UIManager.instance.touchPos = Input.mousePosition;
 
@@ -95,9 +110,15 @@ public class WeaponImage : MonoBehaviour
 
             if (isInventory && result.gameObject.CompareTag("InventorySlot"))
                 targetSlotObject = result.gameObject;
+
+            if(result.gameObject.CompareTag("WeaponSlot"))
+                targetSlotObject = result.gameObject;
+
+            if (result.gameObject.CompareTag("BookMarkedSlot"))
+                targetSlotObject = result.gameObject;
         }
         
-        if (!isInventory)
+        if (!isInventory && !gameObject.transform.parent.CompareTag("BookMarkedSlot") && !targetSlotObject.gameObject.CompareTag("BookMarkedSlot"))
         {
             if (targetSlotObject != null)
             {
@@ -143,7 +164,69 @@ public class WeaponImage : MonoBehaviour
                 UIManager.instance.touchPos = Input.mousePosition;
             }
         }
-        
+
+        if (gameObject.transform.parent.CompareTag("BookMarkedSlot"))
+        {
+            if (targetSlotObject.gameObject.CompareTag("WeaponSlot"))
+            {
+                int targetWeaponID = targetSlotObject.GetComponent<WeaponSlotUI>().weaponID;
+                int myWeaponID = transform.parent.GetComponent<WeaponSlotUI>().weaponID;
+
+                if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon)
+                {
+                  
+                    LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
+                    longClickPopUpUi.weaponID = targetWeaponID;
+                    longClickPopUpUi.weaponSlot = targetSlotObject.GetComponent<WeaponSlotUI>();
+                    longClickPopUpUi.inventorySlot = targetSlotObject.GetComponent<WeaponSlotUI>().inventorySlot;
+                    longClickPopUpUi.UnEuqip();
+
+                    BookMakredSlotUI.Instance.RemoveItem(BookMakredSlotUI.Instance.GetSlotWithWeaponID(transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID).transform.GetChild(0).GetComponent<InventorySlot>());
+                    BookMakredSlotUI.Instance.weaponID = targetWeaponID;
+                    BookMakredSlotUI.Instance.AddItem(int.Parse(transform.parent.name));
+                }
+
+                string numberString = Regex.Replace(targetSlotObject.gameObject.name, @"\D", "");
+                int order = numberString == "" ? 4: int.Parse(numberString);
+
+                WeaponUI.Instance.AddItem(order, InventoryManager.instance.FindUnEquipedItem(myWeaponID));
+                transform.parent.GetComponent<WeaponSlotUI>().ChangeWeaponUseable();
+                
+            }
+                      
+        }
+
+        //if (gameObject.transform.parent.CompareTag("WeaponSlot") && targetSlotObject.gameObject.CompareTag("BookMarkedSlot"))
+        //{
+        //    int targetWeaponID = targetSlotObject.GetComponent<WeaponSlotUI>().weaponID;
+        //    int myWeaponID = transform.parent.GetComponent<WeaponSlotUI>().weaponID;
+
+        //    if (!BookMakredSlotUI.Instance.isDuplicatedID(myWeaponID))
+        //    {
+        //        if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon)
+        //            BookMakredSlotUI.Instance.RemoveItem(targetSlotObject.transform.GetChild(0).GetComponent<InventorySlot>());
+
+
+        //        BookMakredSlotUI.Instance.weaponID = myWeaponID;
+        //        BookMakredSlotUI.Instance.AddItem(int.Parse(targetSlotObject.name));
+        //    }
+
+        //    if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon && GameManager.instance.useAbleWeaponCnt[targetWeaponID - 1] > 0)
+        //    {
+        //        LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
+        //        longClickPopUpUi.weaponID = myWeaponID;
+        //        longClickPopUpUi.weaponSlot = transform.parent.GetComponent<WeaponSlotUI>();
+        //        longClickPopUpUi.inventorySlot = transform.parent.GetComponent<WeaponSlotUI>().inventorySlot;
+        //        longClickPopUpUi.UnEuqip();
+
+        //        longClickPopUpUi.isBookmarked = true;
+        //        string numberString = Regex.Replace(transform.parent.gameObject.name, @"\D", "");
+        //        int order = numberString == "" ? 4 : int.Parse(numberString);
+        //        WeaponUI.Instance.AddItem(order, InventoryManager.instance.FindUnEquipedItem(targetWeaponID));
+        //    }
+
+        //}
+
         transform.position = originalPos;
         isDrag = false;
         UIManager.instance.CloseCombinePopUpUI();

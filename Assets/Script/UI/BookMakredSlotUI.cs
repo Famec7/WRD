@@ -112,4 +112,15 @@ public class BookMakredSlotUI : Singleton<BookMakredSlotUI>
         }
          
     }
+
+    public bool isDuplicatedID(int weaponID)
+    {
+        foreach(WeaponSlotUI slot in weaponSlots)
+        {
+            if (slot.weaponID == weaponID)
+                return true;
+        }
+
+        return false;
+    }
 }

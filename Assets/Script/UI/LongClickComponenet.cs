@@ -78,6 +78,10 @@ public class LongClickComponenet : MonoBehaviour
                 longClickPopUpUI.weaponSlot = transform.parent.GetComponent<WeaponSlotUI>();
                 longClickPopUpUI.inventorySlot = longClickPopUpUI.weaponSlot.inventorySlot;
             }
+
+            if (isBookmarked)
+                longClickPopUpUI._bookmarkButton.SetActive(true);
+
             //인벤토리 아니면 부모에서 weaponid 넣어주기
             if (!isInventory)
                 longClickPopUpUI.weaponID = transform.parent.GetComponent<WeaponSlotUI>().weaponID;

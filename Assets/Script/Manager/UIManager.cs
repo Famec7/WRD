@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
     public GameObject normalInventoryContent;
     public GameObject backButton;
     public GameObject longClickPopUpUI;
+    public GameObject BookmarkSlotUI;
     public GameObject WeaponSlotSelectUI;
     public GameObject BookmarkSlotSelectUI;
 

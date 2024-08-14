@@ -13,9 +13,7 @@ public class WeaponSlotUI : MonoBehaviour
     public bool hasWeapon = false;
     public int weaponID;
     public InventorySlot inventorySlot;
-
-    [SerializeField]
-    private bool isWeaponUseable;
+    public bool isWeaponUseable = true;
     void Start()
     {
         if (hasWeapon)
@@ -43,11 +41,25 @@ public class WeaponSlotUI : MonoBehaviour
 
     public void ChangeWeaponUseable()
     {
-        isWeaponUseable = GameManager.instance.weaponCnt[weaponID-1] > 0;
+        isWeaponUseable = GameManager.instance.useAbleWeaponCnt[weaponID-1] > 0;
 
         if (isWeaponUseable)
             transform.GetChild(0).GetComponent<Image>().color = Color.white;
         else
             transform.GetChild(0).GetComponent<Image>().color = Color.white * 0.5f;
+    }
+
+    public void OnPointerEnter()
+    {
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        rectTransform.sizeDelta = rectTransform.sizeDelta * 1.1f;
+        transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = rectTransform.sizeDelta;
+    }
+
+    public void OnPointerExit()
+    {
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        rectTransform.sizeDelta = rectTransform.sizeDelta / 1.1f;
+        transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = rectTransform.sizeDelta;
     }
 }

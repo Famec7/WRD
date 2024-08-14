@@ -52,7 +52,6 @@ public class SlotSelectUI : MonoBehaviour
             }
 
             gameObject.SetActive(false);
-
         }
     }
 
