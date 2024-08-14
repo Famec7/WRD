@@ -19,7 +19,7 @@ public class PetController : CharacterController, IObserver
 
     private void Update()
     {
-        Vector3 newPos = Vector3.Lerp(transform.position, _offsetFromPlayer, Data.MoveSpeed * Time.deltaTime);
+        Vector3 newPos = _playerController.transform.position + (Vector3)_offsetFromPlayer;
         //화면 밖으로 나가지 않게 하기
         newPos.x = Mathf.Clamp(newPos.x, -screenBound.x, screenBound.x);
         newPos.y = Mathf.Clamp(newPos.y, -screenBound.y, screenBound.y);

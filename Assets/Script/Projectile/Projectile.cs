@@ -6,7 +6,7 @@ public class Projectile : ProjectileBase
     
     protected override void MoveToTarget()
     {
-        transform.position  = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
+        transform.position = Vector3.Lerp(this.transform.position, Target, curve.Evaluate(Time.time));
     }
 
     public override void GetFromPool()

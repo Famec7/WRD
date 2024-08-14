@@ -11,9 +11,7 @@ public class GuidedProjectile : ProjectileBase
             return;
         }
 
-        var direction = Target.transform.position - transform.position;
-        direction.Normalize();
-        transform.position += direction.normalized * (Speed * Time.deltaTime);
+        transform.position = Vector3.Lerp(this.transform.position, Target.transform.position, curve.Evaluate(Time.time));
     }
 
     public override void GetFromPool()

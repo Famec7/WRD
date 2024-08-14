@@ -32,7 +32,7 @@ public abstract class FallingSwordProjectile : Projectile
     {
         base.Update();
 
-        if (Target - transform.position == Vector3.zero && _collider.enabled is false)
+        if (Vector3.Distance(transform.position, Target) < Threshold && _collider.enabled is false)
         {
             _collider.enabled = true;
             

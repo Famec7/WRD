@@ -3,9 +3,11 @@
 [RequireComponent(typeof(SpriteRenderer), typeof(Collider2D))]
 public abstract class ProjectileBase : MonoBehaviour, IPoolObject
 {
-    [SerializeField] private float _speed;
-    
-    public float Speed => _speed;
+    [SerializeField]
+    protected AnimationCurve curve;
+
+    protected float Threshold { get; } = 0.1f;
+
     public float Damage { get; set; }
     public Vector3 Direction { get; set; }
     
