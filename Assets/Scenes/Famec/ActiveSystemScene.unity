@@ -1737,12 +1737,15 @@ MonoBehaviour:
   - _name: BasicProjectile
     _prefab: {fileID: 3572647122379184993, guid: 481104bacbf9ac7429cdd08bb13f46f2, type: 3}
     _count: 30
+    _preloadOnStart: 1
   - _name: SkySword
     _prefab: {fileID: 8197228752605292094, guid: d818ed9b594294b44bb57285a643a08b, type: 3}
     _count: 5
+    _preloadOnStart: 0
   - _name: HolySword
     _prefab: {fileID: 8168608869911393430, guid: 6d7c196752cb3254fa7b2d0256522998, type: 3}
     _count: 3
+    _preloadOnStart: 0
 --- !u!114 &843290880
 MonoBehaviour:
   m_ObjectHideFlags: 0
