@@ -14,6 +14,9 @@ public class PoolData
 
     [SerializeField] [Min(0)] private int _count;
     public int Count => _count;
+
+    [SerializeField] private bool _preloadOnStart;
+    public bool PreloadOnStart => _preloadOnStart;
 }
 
 public class PoolManager : MonoBehaviour
@@ -35,8 +38,11 @@ public class PoolManager : MonoBehaviour
             
             var pool = createPoolMethod.Invoke(null, new object[] {poolData.Prefab, poolData.Count});
             
-            var createMethod = poolType.GetMethod("Create");
-            createMethod.Invoke(pool, null);
+            if(poolData.PreloadOnStart)
+            {
+                var createMethod = poolType.GetMethod("Create");
+                createMethod.Invoke(pool, null);
+            }
             
             poolsAddMethod.Invoke(_pools, new[] {pool});
         }
