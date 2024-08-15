@@ -1,11 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class PassiveSkillBase : SkillBase
 {
     private PassiveSkillData _data;
     public PassiveSkillData Data => _data;
+
+    #region DEBUG
+
+    private bool _isTest = false;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _isTest = !_isTest;
+            Debug.Log($"{GetType().Name} 테스트 모드 : {_isTest}");
+        }
+    }
+
+    #endregion
 
     private void Awake()
     {
@@ -14,9 +31,8 @@ public abstract class PassiveSkillBase : SkillBase
 
     protected virtual bool CheckTrigger()
     {
-#if PASSIVE_SKILL_DEBUG
-        Debug.Log($"{GetType().Name} 발동 확률: {_data.Chance}");
-        if (Random.Range(0, 100) <= _data.Chance)
+#if UNITY_EDITOR
+        if (Random.Range(0, 100) <= _data.Chance || _isTest)
         {
             Debug.Log($"{GetType().Name} 발동");
             return true;
@@ -34,7 +50,7 @@ public abstract class PassiveSkillBase : SkillBase
     protected override void Init()
     {
         base.Init();
-        _data = SkillDataManager.Instance.GetPassiveSkillData(GetType().Name);
+        _data = SkillManager.Instance.GetPassiveSkillData(GetType().Name);
     }
 
     protected void SetStatusEffect(Monster target, StatusEffect statusEffect)

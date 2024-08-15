@@ -1,12 +1,10 @@
-﻿public class Pistol : RangedWeapon
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+public class Pistol : RangedWeapon
 {
     protected override void Attack()
     {
         base.Attack();
-        
-        if (owner.Target.TryGetComponent(out Monster monster))
-        {
-            monster.HasAttacked(Data.AttackDamage);
-        }
     }
 }

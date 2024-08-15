@@ -1,30 +1,19 @@
 ﻿using System;
 
-public class SkillState<T> : IState<T>
+public class SkillState<ActiveSkillBase> : IState<ActiveSkillBase>
 {
-    private readonly Action<T> _enterAction;
-    private readonly Action<T> _executeAction;
-    private readonly Action<T> _exitAction;
-    
-    public SkillState(Action<T> enterAction, Action<T> executeAction, Action<T> exitAction)
+    public void Enter(ActiveSkillBase entity)
     {
-        _enterAction = enterAction;
-        _executeAction = executeAction;
-        _exitAction = exitAction;
-    }
-    
-    public void Enter(T entity)
-    {
-        _enterAction?.Invoke(entity);
+        ;
     }
 
-    public void Execute(T entity)
+    public void Execute(ActiveSkillBase entity)
     {
-        _executeAction?.Invoke(entity);
+        ;
     }
 
-    public void Exit(T entity)
+    public void Exit(ActiveSkillBase entity)
     {
-        _exitAction?.Invoke(entity);
+        ;
     }
 }

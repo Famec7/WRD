@@ -9,7 +9,11 @@ public class TargetUI : MonoBehaviour
     {
         if (Target != null)
             this.transform.position = Target.position;
+        
         if (Target.gameObject.activeSelf is false)
+        {
+            Target = null;
             this.gameObject.SetActive(false);
+        }
     }
 }

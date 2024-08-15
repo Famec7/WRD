@@ -3,26 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class WeaponBase : MonoBehaviour, IObserver
 {
     #region private variable
 
     private WaitForSeconds attackDelay;
+    
+    public WaitForSeconds AttackDelay
+    {
+        get => attackDelay;
+        set => attackDelay = value;
+    }
+    
     private bool _isAttack = false;
 
     #endregion
 
-    # region protected variable
-
-    [SerializeField] protected CharacterController owner;
-
-    # endregion
+    public CharacterController owner;
 
     # region Skill
 
     [Header("Passive Skill")] public PassiveSkillBase passiveSkill = null;
-    [Header("Active Skill")] public GameObject activeSkill = null; // 임시로 GameObject로 선언, 추후 스킬 구현 시 변경 필요
+    [Header("Active Skill")] public ActiveSkillBase activeSkill = null; // 임시로 GameObject로 선언, 추후 스킬 구현 시 변경 필요
 
     public bool IsPassiveSkillNull => passiveSkill == null;
     public bool IsActiveSkillNull => activeSkill == null;
@@ -51,9 +55,14 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     /// </summary>
     protected virtual void Init()
     {
-        Data = WeaponDataManager.Instance.GetWeaponData(GetType().Name);
-        attackDelay = new WaitForSeconds(Data.AttackSpeed);
+        Data = WeaponDataManager.Instance.GetWeaponData(this.name);
+        attackDelay = new WaitForSeconds(1 / Data.AttackSpeed);
         /*this.gameObject.SetActive(false);*/
+
+        if (IsPassiveSkillNull is false)
+            passiveSkill.SetWeapon(this);
+        if(IsActiveSkillNull is false)
+            activeSkill.SetWeapon(this);
     }
 
     /// <summary>
@@ -66,7 +75,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
             return;
 
         if (IsPassiveSkillNull) return;
-        
+
         if (passiveSkill.Activate(owner.Target))
             return;
     }
@@ -78,9 +87,10 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     public void EquipWeapon(CharacterController owner)
     {
         this.owner = owner;
+        this.transform.SetParent(this.owner.transform);
 
         if (passiveSkill != null)
-            passiveSkill.SetOwner(owner);
+            passiveSkill.SetWeapon(this);
         /*if(activeSkill != null)
             activeSkill.GetComponent<SkillBase>().SetOwner(owner);*/
     }
@@ -108,7 +118,23 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
 
     public void OnNotify()
     {
-        if(owner.Target is not null)
+        if (owner.Target is not null)
             StartCoroutine(CoroutineAttack());
     }
+    
+    #region Observer Action (Skill)
+
+    protected UnityAction notifyAction;
+    
+    public void AddAction(UnityAction action)
+    {
+        notifyAction += action;
+    }
+    
+    public void RemoveAction(UnityAction action)
+    {
+        notifyAction -= action;
+    }
+
+    #endregion
 }

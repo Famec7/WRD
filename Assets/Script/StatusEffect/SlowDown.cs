@@ -17,7 +17,7 @@ public class SlowDown : StatusEffect
     {
         _slowDownCoroutine = CoroutineHandler.Instance.StartCoroutine(SlowDownCoroutine());
 #if STATUS_EFFECT_LOG
-        Debug.Log("SlowDown Effect Applied");
+        Debug.Log("${SlowDown Effect Applied} - SlowDown Rate: {_slowDownRate}");
 #endif
     }
 
@@ -33,7 +33,7 @@ public class SlowDown : StatusEffect
         }
         
 #if STATUS_EFFECT_LOG
-        Debug.Log("SlowDown Effect Removed");
+        Debug.Log("${SlowDown Effect Removed} - SlowDown Rate: {_slowDownRate}");
 #endif
     }
 

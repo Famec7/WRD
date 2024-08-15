@@ -8,8 +8,9 @@ public class SkillData
     private List<float> _values = new();
 
     public string Name { get; set; }
-    
-    public float Range { get; set; }
+
+    private float _range;
+    public float Range { get => _range; set => _range = value; }
 
     public float GetValue(int index)
     {
@@ -40,6 +41,12 @@ public class PassiveSkillData : SkillData
 }
 
 [Serializable]
+public class PassiveAuraSkillData : SkillData
+{
+    // PassiveAuraSkill은 SkillData와 동일한 구조이므로 별도의 변수 없음
+}
+
+[Serializable]
 public class ActiveSkillData : SkillData
 {
     private float _coolTime;
@@ -49,10 +56,24 @@ public class ActiveSkillData : SkillData
         get => _coolTime;
         set => _coolTime = value;
     }
+
+    private float _availableRange;
+    public float AvailableRange { get => _availableRange; set => _availableRange = value; }
+    
+    public enum ActiveType
+    {
+        None,
+        Immediate,
+        Click,
+        DoubleClick,
+    }
+    
+    private ActiveType _type;
+    
+    public ActiveType Type
+    {
+        get => _type;
+        set => _type = value;
+    }
 }
 
-[Serializable]
-public class PassiveAuraSkillData : SkillData
-{
-    // PassiveAuraSkill은 SkillData와 동일한 구조이므로 별도의 변수 없음
-}

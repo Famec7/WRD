@@ -28,7 +28,7 @@ TagManager:
   - Monster
   - Water
   - UI
-  - 
+  - SkillUI
   - 
   - 
   - 
@@ -60,4 +60,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3996567745
+    locked: 0
+  - name: Effect
+    uniqueID: 977560319
+    locked: 0
+  - name: UI
+    uniqueID: 1242507459
     locked: 0
