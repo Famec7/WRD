@@ -28,13 +28,13 @@ public class PassiveSkillDataBase : ScriptableObject
                 };
                 
                 /****************Range Parse****************/
-                if (float.TryParse(data["range"].ToString(), out var result))
+                if (float.TryParse(data["area"].ToString(), out var result))
                 {
                     passiveSkillData.Range = result;
                 }
                 else
                 {
-                    Debug.LogError($"{passiveSkillData.Name} {data["range"].ToString()} can't parse");
+                    Debug.LogError($"{passiveSkillData.Name} {data["area"].ToString()} can't parse");
                 }
 
                 /****************Value Parse****************/
@@ -63,13 +63,13 @@ public class PassiveSkillDataBase : ScriptableObject
                 };
                 
                 /****************Range Parse****************/
-                if(float.TryParse(data["range"].ToString(), out var result))
+                if(float.TryParse(data["area"].ToString(), out var result))
                 {
                     passiveAuraSkillDataData.Range = result;
                 }
                 else
                 {
-                    Debug.LogError($"{passiveAuraSkillDataData.Name} {data["range"].ToString()} can't parse");
+                    Debug.LogError($"{passiveAuraSkillDataData.Name} {data["area"].ToString()} can't parse");
                 }
 
                 /****************Value Parse****************/

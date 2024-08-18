@@ -22,7 +22,6 @@ public abstract class ActiveSkillBase : SkillBase
 
     protected override void Init()
     {
-        SkillManager.Instance.AddActiveSkill(this);
         base.Init();
         DataInit();
         BTInit();

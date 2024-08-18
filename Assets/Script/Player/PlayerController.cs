@@ -172,8 +172,7 @@ public class PlayerController : CharacterController, ISubject
 
     public bool IsTargetInRange()
     {
-        //return Vector3.Distance(transform.position, Target.transform.position) <= Data.CurrentWeapon.Data.AttackRange;
-        return false;
+        return Vector3.Distance(transform.position, Target.transform.position) <= Data.CurrentWeapon.Data.AttackRange;
     }
 
     #endregion
