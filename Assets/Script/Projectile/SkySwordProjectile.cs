@@ -7,6 +7,10 @@ public class SkySwordProjectile : FallingSwordProjectile
     [Header("Offset")]
     [SerializeField] private float _radius;
     [SerializeField] private float _degree;
+    
+    /********************************Effect********************************/
+    private EffectBase _auraEffect;
+    
 
     public void SetPosition(Vector3 ownerPosition, Vector3 targetPosition)
     {
@@ -47,6 +51,11 @@ public class SkySwordProjectile : FallingSwordProjectile
                 StatusEffectManager.Instance.AddStatusEffect(monster.status, new Wound(target.gameObject));
             }
         }
+        
+        // 슬로우 장판 생성
+        _auraEffect = EffectManager.Instance.CreateEffect<EffectBase>("SkySwordAura");
+        _auraEffect.SetPosition(transform.position);
+        _auraEffect.SetScale(new Vector3(Range, Range, 1));
     }
     
     /********************************SlowDown Effect********************************/
@@ -93,5 +102,7 @@ public class SkySwordProjectile : FallingSwordProjectile
         {
             StatusEffectManager.Instance.RemoveStatusEffect(monster.status, typeof(SlowDown));
         }
+        
+        EffectManager.Instance.ReturnEffectToPool(_auraEffect);
     }
 }
