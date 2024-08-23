@@ -222,7 +222,7 @@ PrefabInstance:
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: SlotSelectUI
       value: 
-      objectReference: {fileID: 1109643348}
+      objectReference: {fileID: 0}
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _popupCanvas
       value: 
@@ -254,7 +254,7 @@ PrefabInstance:
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: WeaponSlotSelectUI
       value: 
-      objectReference: {fileID: 1109643348}
+      objectReference: {fileID: 0}
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: BookmarkSlotSelectUI
       value: 
@@ -2269,11 +2269,6 @@ PrefabInstance:
 --- !u!223 &1109643347 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 7883197609065667983, guid: 1485981702313414aa36d998bb951cc0, type: 3}
-  m_PrefabInstance: {fileID: 1109643346}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1109643348 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3615688290989691692, guid: 1485981702313414aa36d998bb951cc0, type: 3}
   m_PrefabInstance: {fileID: 1109643346}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1109643349 stripped
