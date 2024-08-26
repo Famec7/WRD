@@ -113,7 +113,7 @@ public class BookMakredSlotUI : Singleton<BookMakredSlotUI>
          
     }
 
-    public bool isDuplicatedID(int weaponID)
+    public bool IsDuplicatedID(int weaponID)
     {
         foreach(WeaponSlotUI slot in weaponSlots)
         {

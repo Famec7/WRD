@@ -74,7 +74,7 @@ public class LongClickComponenet : MonoBehaviour
                 //무기 슬롯이면 즐겨찾기 비활성화 하고 장착해제 버튼만 킴 그리고 위치 바꾸고 longClickPopUpUI에 weaponSlot 전달
                 longClickPopUpUI._bookmarkButton.SetActive(false);
                 longClickPopUpUI._equipButton.SetActive(true);
-                LongClickPopUpUIObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(88,352);
+                LongClickPopUpUIObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(128,126);
                 longClickPopUpUI.weaponSlot = transform.parent.GetComponent<WeaponSlotUI>();
                 longClickPopUpUI.inventorySlot = longClickPopUpUI.weaponSlot.inventorySlot;
             }

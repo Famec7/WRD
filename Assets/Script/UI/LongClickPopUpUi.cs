@@ -90,7 +90,8 @@ public class LongClickPopUpUi : MonoBehaviour
         {
             BookMakredSlotUI.Instance.RemoveItem(BookMakredSlotUI.Instance.GetSlotWithWeaponID(weaponID).transform.GetChild(0).GetComponent<InventorySlot>());
         }
-      
+
+        UIManager.instance.CloseInventoryDescriptionPopUpUI();
         gameObject.SetActive(false);
     }
     
@@ -113,6 +114,7 @@ public class LongClickPopUpUi : MonoBehaviour
             }
         }
 
+        UIManager.instance.CloseInventoryDescriptionPopUpUI();
         gameObject.SetActive(false);
     }
     public void UnEuqip(bool isInventory = false)
@@ -154,6 +156,16 @@ public class LongClickPopUpUi : MonoBehaviour
 
         BookMakredSlotUI.Instance.UpdateAllSlot();
         gameObject.SetActive(false);
+    }
+
+    public void SetLongClickPopUpUI(int _weaponID, bool _isBookmarked, bool _isInventory,bool _isWeaponSlot, InventorySlot _inventorySlot, WeaponSlotUI _weaponSlot)
+    {
+        weaponID = _weaponID;
+        isBookmarked = _isBookmarked;
+        isInventory = _isInventory;
+        isWeaponSlot = _isWeaponSlot;
+        inventorySlot = _inventorySlot;
+        weaponSlot = _weaponSlot;
     }
 }
     

@@ -30,14 +30,13 @@ public class WeaponUI : Singleton<WeaponUI>
 
         WeaponSlotUI targetSlot = null;
         
-        if (!weaponSlots[order].hasWeapon)
+        if (weaponSlots[order].hasWeapon)
         {
-            targetSlot = weaponSlots[order];
+            GameManager.instance.RemoveUseWeaponList(weaponSlots[order].weaponID);
+            weaponSlots[order].Init();
         }
-        
-        else
-            return;
-        
+
+        targetSlot = weaponSlots[order];
         targetSlot.gameObject.transform.GetChild(0).GetComponent<InventorySlot>().weapon = item;
 
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
@@ -70,7 +69,7 @@ public class WeaponUI : Singleton<WeaponUI>
         //"E" 활성화 및 해당 슬롯이 있는 슬롯 isEquiped true (다시 못끼게)
         targetSlot.inventorySlot.equipText.gameObject.SetActive(true);
         targetSlot.inventorySlot.isEquiped = true;
-        
+        InventoryManager.instance.SyncWeaponSlotInventorySlot();
     }
 
     public void ChangeItem(int order, InventoryItem item)

@@ -522,5 +522,28 @@ public class InventoryManager : MonoBehaviour
 
         return findItem;
     }
+
+    public void CreateAllItem()
+    {
+        for (int i = 5; i < 31; i++)
+        {
+
+            string weaponIconPath = "WeaponIcon/" + i.ToString();
+
+            InventoryItem item = new InventoryItem
+            {
+                image = ResourceManager.Instance.Load<Sprite>(weaponIconPath)
+            };
+            item.AssignWeapon(i);
+
+
+            GameManager.instance.weaponCnt[i - 1]++;
+            GameManager.instance.UpdateUseableWeaponCnt();
+            InventoryManager.instance.AddItem(item, false);
+        }
+
+        BookMakredSlotUI.Instance.UpdateAllSlot();
+
+    }
 }
 
