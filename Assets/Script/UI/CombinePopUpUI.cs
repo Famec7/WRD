@@ -50,8 +50,8 @@ public class CombinePopUpUI : UIPopUp
         }
         else
         {
-            GetComponent<RectTransform>().anchoredPosition = new Vector3(239, -780);
-            GetComponent<RectTransform>().sizeDelta = new Vector2(500,490);
+            GetComponent<RectTransform>().anchoredPosition = new Vector3(288, -980);
+            GetComponent<RectTransform>().sizeDelta = new Vector2(401, 240f);
             foreach (var subCombinationUI in subCombinationUIs)
             {
                 if (subCombinationUI.GetComponent<SubCombinationUI>() != null)

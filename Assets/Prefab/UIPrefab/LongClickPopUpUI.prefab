@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 213.6, y: -104.19}
-  m_SizeDelta: {x: 200, y: 80}
+  m_SizeDelta: {x: 150, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4032934379178678391
 CanvasRenderer:
@@ -417,7 +417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6243572636318183938
 RectTransform:
   m_ObjectHideFlags: 0
@@ -451,12 +451,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfc92030666af546be248f0796bb3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gr: {fileID: 0}
   _bookmarkButton: {fileID: 7801206316166666094}
   _equipButton: {fileID: 2749186681422805832}
   inventorySlot: {fileID: 0}
   weaponSlot: {fileID: 0}
   weaponID: 0
+  isBookmarked: 0
+  isInventory: 0
+  isWeaponSlot: 0
 --- !u!1 &7801206316166666094
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +496,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 213.6, y: -200.1}
-  m_SizeDelta: {x: 200, y: 80}
+  m_SizeDelta: {x: 180, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3201087694049391361
 CanvasRenderer:

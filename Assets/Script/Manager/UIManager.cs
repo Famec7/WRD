@@ -143,7 +143,6 @@ public class UIManager : MonoBehaviour
         }
        // _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
-        InitLongClickPopupUI();
     }
     
     public void CloseDetailedDescriptionPopUpUI()
@@ -158,7 +157,6 @@ public class UIManager : MonoBehaviour
         backButton.SetActive(false);
       //  _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
-        InitLongClickPopupUI();
     }
     
     public void CloseInventoryDescriptionPopUpUI()
@@ -176,7 +174,6 @@ public class UIManager : MonoBehaviour
         backButton.SetActive(false);
      //   _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
-        InitLongClickPopupUI();
     }
 
    public void ChangeAutoSkipToggle()

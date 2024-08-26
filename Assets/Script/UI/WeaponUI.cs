@@ -25,34 +25,33 @@ public class WeaponUI : Singleton<WeaponUI>
 
     public void AddItem(int order, InventoryItem item)
     {
-        // ¸¸¾à °¡µæÂ÷¸é ¸®ÅÏ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (item == null) return;
 
         WeaponSlotUI targetSlot = null;
         
-        if (!weaponSlots[order].hasWeapon)
+        if (weaponSlots[order].hasWeapon)
         {
-            targetSlot = weaponSlots[order];
+            GameManager.instance.RemoveUseWeaponList(weaponSlots[order].weaponID);
+            weaponSlots[order].Init();
         }
-        
-        else
-            return;
-        
+
+        targetSlot = weaponSlots[order];
         targetSlot.gameObject.transform.GetChild(0).GetComponent<InventorySlot>().weapon = item;
 
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
-        //·ÕÅ¬¸¯ ÆË¾÷ ui °¡Á®¿Í¼­ ±ÛÀÚ ÃÖ½ÅÈ­¸¦ À§ÇØ setFavoritevbutton ÇÔ¼ö ½ÇÇà
+        //ï¿½ï¿½Å¬ï¿½ï¿½ ï¿½Ë¾ï¿½ ui ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ setFavoritevbutton ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         longClickPopUpUi.SetBookmarkedButtonText(longClickPopUpUi.isBookmarked, false, true);
 
-        //¾²°íÀÖ´Â ¹«±â ¹è¿­¿¡ Ãß°¡ÇÏ°í »ç¿ëÇÒ ¼ö ÀÖ´Â ¹«±â °³¼ö ¹è¿­ ¾÷µ¥ÀÌÆ®
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         GameManager.instance.useWeapon.Add(weaponID);
         GameManager.instance.UpdateUseableWeaponCnt();
 
-        //Áñ°ÜÃ£±â¿¡¼­ ½ÃÀÛÇÏ°í »ç¿ë°¡´ÉÇÑ ¹«±â¿¡ ÇØ´ç ÇÏ´Â ¹«±â ¾øÀ» ½Ã ÀåÂø ¹öÆ° ºñÈ°¼ºÈ­
+        //ï¿½ï¿½ï¿½Ã£ï¿½â¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ë°¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½Ø´ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½È°ï¿½ï¿½È­
         if (longClickPopUpUi.isBookmarked && GameManager.instance.useAbleWeaponCnt[weaponID - 1] <= 0)
             longClickPopUpUi._equipButton.SetActive(false);
 
-        //ÇØ´ç ½½·Ô¿¡ ÀÌ¹ÌÁö ¼³Á¤ ¹× id ¼³Á¤
+        //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ id ï¿½ï¿½ï¿½ï¿½
         targetSlot.hasWeapon = true;
         targetSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = item.image;
         targetSlot.gameObject.transform.GetChild(0).GetComponent<Image>().enabled = true;
@@ -61,17 +60,18 @@ public class WeaponUI : Singleton<WeaponUI>
 
         
 
-        // Áñ°ÜÃ£±â¿¡¼­ ½ÃÀÛÇßÀ¸¸é ÇØ´ç ½½·ÔÀÌ ÀÖ´Â ÀÎº¥Åä¸® ½½·Ô, ÀÎº¥Åä¸®¿¡¼­ ½ÃÀÛÇßÀ¸¸é ±×³É ÀÚ±â ÀÎº¥Åä¸® ½½·Ô
+        // ï¿½ï¿½ï¿½Ã£ï¿½â¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½, ï¿½Îºï¿½ï¿½ä¸®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½Ú±ï¿½ ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½
         if (!longClickPopUpUi.isBookmarked)
             targetSlot.inventorySlot = longClickPopUpUi.inventorySlot;
         else
             targetSlot.inventorySlot = InventoryManager.instance.FindInventorySlot(weaponID);
 
-        //"E" È°¼ºÈ­ ¹× ÇØ´ç ½½·ÔÀÌ ÀÖ´Â ½½·Ô isEquiped true (´Ù½Ã ¸ø³¢°Ô)
+        //"E" È°ï¿½ï¿½È­ ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ isEquiped true (ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
         targetSlot.inventorySlot.equipText.gameObject.SetActive(true);
         targetSlot.inventorySlot.isEquiped = true;
+        InventoryManager.instance.SyncWeaponSlotInventorySlot();
         
-        //½ÇÁ¦ ÀÎ°ÔÀÓ ¹«±â ÀåÂø
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Î°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         WeaponManager.Instance.AddWeapon(order, weaponID);
     }
 
@@ -80,17 +80,17 @@ public class WeaponUI : Singleton<WeaponUI>
         WeaponSlotUI targetSlot = weaponSlots[order];
        
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
-        //·ÕÅ¬¸¯ ÆË¾÷ ui °¡Á®¿Í¼­ ±ÛÀÚ ÃÖ½ÅÈ­¸¦ À§ÇØ setFavoritevbutton ÇÔ¼ö ½ÇÇà
+        //ï¿½ï¿½Å¬ï¿½ï¿½ ï¿½Ë¾ï¿½ ui ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ setFavoritevbutton ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
         longClickPopUpUi.SetBookmarkedButtonText(longClickPopUpUi.isBookmarked, false, true);
 
-        //¾²°íÀÖ´Â ¹«±â ¹è¿­¿¡ Ãß°¡ÇÏ°í »ç¿ëÇÒ ¼ö ÀÖ´Â ¹«±â °³¼ö ¹è¿­ ¾÷µ¥ÀÌÆ®
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         GameManager.instance.useWeapon.Add(weaponID);
 
-        //Áñ°ÜÃ£±â¿¡¼­ ½ÃÀÛÇÏ°í »ç¿ë°¡´ÉÇÑ ¹«±â¿¡ ÇØ´ç ÇÏ´Â ¹«±â ¾øÀ» ½Ã ÀåÂø ¹öÆ° ºñÈ°¼ºÈ­
+        //ï¿½ï¿½ï¿½Ã£ï¿½â¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ë°¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½Ø´ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½È°ï¿½ï¿½È­
         if (longClickPopUpUi.isBookmarked && GameManager.instance.useAbleWeaponCnt[weaponID - 1] <= 0)
             longClickPopUpUi._equipButton.SetActive(false);
 
-        //ÇØ´ç ½½·Ô¿¡ ÀÌ¹ÌÁö ¼³Á¤ ¹× id ¼³Á¤
+        //ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ id ï¿½ï¿½ï¿½ï¿½
         targetSlot.hasWeapon = true;
         targetSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = item.image;
         targetSlot.gameObject.transform.GetChild(0).GetComponent<Image>().enabled = true;

@@ -14,7 +14,7 @@ public class SlotSelectUI : MonoBehaviour
   
     void Start()
     {
-        slots =  GetComponentsInChildren<Transform>();
+        //slots =  GetComponentsInChildren<Transform>();
     }
 
     // Update is called once per frame
@@ -51,6 +51,7 @@ public class SlotSelectUI : MonoBehaviour
 
             }
 
+            UIManager.instance.InitLongClickPopupUI();
             gameObject.SetActive(false);
         }
     }

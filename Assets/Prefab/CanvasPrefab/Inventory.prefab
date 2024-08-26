@@ -3964,6 +3964,7 @@ MonoBehaviour:
   sortButtons:
   - {fileID: 2988955220051224458}
   - {fileID: 7633914210548822838}
+  scrollRect: {fileID: 0}
   allShowToggle: {fileID: 2493724784431569226}
   isLastAllShow: 0
   isClassSorted: 0
@@ -6752,8 +6753,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6860028502660144474, guid: 679143ce868c60c44834854d94160150, type: 3}
+      propertyPath: hasItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860028502660144474, guid: 679143ce868c60c44834854d94160150, type: 3}
       propertyPath: isEquiped
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7571109851689854668, guid: 679143ce868c60c44834854d94160150, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
