@@ -57,12 +57,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     {
         Data = WeaponDataManager.Instance.GetWeaponData(this.name);
         attackDelay = new WaitForSeconds(1 / Data.AttackSpeed);
-        /*this.gameObject.SetActive(false);*/
-
-        if (IsPassiveSkillNull is false)
-            passiveSkill.SetWeapon(this);
-        if(IsActiveSkillNull is false)
-            activeSkill.SetWeapon(this);
+        this.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -88,11 +83,14 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     {
         this.owner = owner;
         this.transform.SetParent(this.owner.transform);
-
-        if (passiveSkill != null)
+        
+        owner.Data.SetCurrentWeapon(this);
+        
+        // 스킬 설정 (owner도 같이 설정됨)
+        if (IsPassiveSkillNull is false)
             passiveSkill.SetWeapon(this);
-        /*if(activeSkill != null)
-            activeSkill.GetComponent<SkillBase>().SetOwner(owner);*/
+        if(IsActiveSkillNull is false)
+            activeSkill.SetWeapon(this);
     }
 
     public void DetachWeapon()

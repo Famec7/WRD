@@ -18,4 +18,9 @@ public class CharacterData
     [SerializeField]
     private WeaponBase _currentWeapon = null;
     public WeaponBase CurrentWeapon => _currentWeapon;
+    
+    public void SetCurrentWeapon(WeaponBase weapon)
+    {
+        _currentWeapon = weapon;
+    }
 }

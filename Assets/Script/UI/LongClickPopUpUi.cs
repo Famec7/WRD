@@ -154,6 +154,9 @@ public class LongClickPopUpUi : MonoBehaviour
 
         BookMakredSlotUI.Instance.UpdateAllSlot();
         gameObject.SetActive(false);
+        
+        // 장착중인 무기 해제
+        WeaponManager.Instance.RemoveWeapon(weaponID);
     }
 }
     

@@ -330,7 +330,7 @@ public class InventoryManager : MonoBehaviour
 
         if (pressSlot != null)
         {
-            // ¸¸¾à¿¡ ÀåÂøÁßÀÎ ¹«±â¸é
+            // ï¿½ï¿½ï¿½à¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
             if (pressSlot.isEquiped)
             {
                 for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)
@@ -339,11 +339,11 @@ public class InventoryManager : MonoBehaviour
 
                     if (pressSlot == weaponSlot.inventorySlot)
                     {
-                        // ÀÎº¥Åä¸® ¾ÆÀÌÅÛ¿¡¼­ ´©¸¥ ¸ÞÀÎÀç·á ¹«±â »èÁ¦
+                        // ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         items.Remove(pressSlot.weapon);
-                        //ÀåÂøUI¿¡¼­ ¾ÆÀÌÅÛ ¹Ù²Ù±â
+                        //ï¿½ï¿½ï¿½ï¿½UIï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½
                         WeaponUI.Instance.ChangeItem(j, item);
-                        // Àç·á ¸®½ºÆ®¿¡¼­ »èÁ¦
+                        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         GameManager.instance.weaponCnt[itemIDs[0] - 1]--;
 
                         itemIDs.Remove(itemIDs[0]);
@@ -359,7 +359,7 @@ public class InventoryManager : MonoBehaviour
             if (i>5)
             {
                 
-                // ¾È ÀåÂøÁßÀÎ Àç·á°¡ ÀÖÀ» ¶§
+                // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½á°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
                 if (GameManager.instance.useAbleWeaponCnt[i-1] > 0)
                 {
                     foreach (var slot in slots)
@@ -374,7 +374,7 @@ public class InventoryManager : MonoBehaviour
                     }
                     GameManager.instance.useAbleWeaponCnt[i-1]--;
                 }
-                // ÀåÂøÁßÀÎ Àç·áÀÏ ‹š
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
                 else
                 {
                     for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)
@@ -445,7 +445,7 @@ public class InventoryManager : MonoBehaviour
                 notHeldSlotItem.GetComponent<InventorySlot>().weapon.AssignWeapon(data.ID);
                 notHeldSlotItem.GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
                 
-                bool isEquiped = GameManager.instance.isUsing(j+1);
+                bool isEquiped = GameManager.instance.IsUsing(j+1);
                 notHeldSlotItem.GetComponent<InventorySlot>().isEquiped = isEquiped;
                 notHeldSlotItem.GetComponent<InventorySlot>().equipText.gameObject.SetActive(isEquiped);
                 notHeldSlotItem.GetComponent<LongClickComponenet>().weaponID = data.ID;

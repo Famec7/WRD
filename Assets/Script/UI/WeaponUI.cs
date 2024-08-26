@@ -71,6 +71,8 @@ public class WeaponUI : Singleton<WeaponUI>
         targetSlot.inventorySlot.equipText.gameObject.SetActive(true);
         targetSlot.inventorySlot.isEquiped = true;
         
+        //실제 인게임 무기 장착
+        WeaponManager.Instance.AddWeapon(order, weaponID);
     }
 
     public void ChangeItem(int order, InventoryItem item)

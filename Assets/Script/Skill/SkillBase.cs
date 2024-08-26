@@ -8,16 +8,14 @@ public abstract class SkillBase : MonoBehaviour
     [HideInInspector]
     public  string skillName;
     
-    [HideInInspector]
-    public WeaponBase weaponBase;
+    [FormerlySerializedAs("currentWeapon")] [HideInInspector]
+    public WeaponBase weapon;
 
     protected LayerMask targetLayer;
     
-    protected CharacterController owner;
     public void SetWeapon(WeaponBase weapon)
     {
-        weaponBase = weapon;
-        owner = weapon.owner;
+        this.weapon = weapon;
     }
 
     protected virtual void Init()

@@ -110,7 +110,7 @@ public abstract class ClickTypeSkill : ActiveSkillBase
     private INode.ENodeState CheckingUsableRange()
     {
         IsUsuableRangeState = false;
-        float distanceFromPlayerToPivot = Vector2.Distance(owner.transform.position, pivotPosition);
+        float distanceFromPlayerToPivot = Vector2.Distance(weapon.owner.transform.position, pivotPosition);
 
         if (distanceFromPlayerToPivot > Data.AvailableRange)
         {
