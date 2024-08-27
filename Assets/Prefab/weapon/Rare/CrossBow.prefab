@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3029163855283557184
 Transform:
   m_ObjectHideFlags: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b373136225d446f699fb8370bb6c5bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponId: 13
   owner: {fileID: 0}
   passiveSkill: {fileID: 9218373063751830235}
   activeSkill: {fileID: 0}
@@ -61,4 +62,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 
-  weaponBase: {fileID: 0}
+  weapon: {fileID: 0}

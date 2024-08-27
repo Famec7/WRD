@@ -169,7 +169,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbae18b5c5267cb4ab9bb0edf336d767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots: []
+  slots:
+  - {fileID: 5122486989096102273}
+  - {fileID: 5553805096359298957}
+  - {fileID: 6742747025056031558}
+  - {fileID: 3803344958463356112}
+  - {fileID: 5910938709276525135}
+  - {fileID: 6270234586155083820}
   isBookmarked: 1
 --- !u!1 &1630325636397956367
 GameObject:
@@ -184,7 +190,7 @@ GameObject:
   - component: {fileID: 7607349786219291267}
   m_Layer: 5
   m_Name: 1
-  m_TagString: WeaponSlotSelectUI
+  m_TagString: BookMarkedSelectSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,8 +211,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 160, y: 50}
-  m_SizeDelta: {x: 160, y: 160}
+  m_AnchoredPosition: {x: 150.2, y: 140}
+  m_SizeDelta: {x: 121, y: 121}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5067153413414221550
 CanvasRenderer:
@@ -409,7 +415,7 @@ GameObject:
   - component: {fileID: 215328619708518519}
   m_Layer: 5
   m_Name: 2
-  m_TagString: WeaponSlotSelectUI
+  m_TagString: BookMarkedSelectSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -430,8 +436,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -110}
-  m_SizeDelta: {x: 160, y: 160}
+  m_AnchoredPosition: {x: 30.4, y: 20}
+  m_SizeDelta: {x: 121, y: 121}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1197013268549233377
 CanvasRenderer:
@@ -778,15 +784,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8497956300796630562}
+  - {fileID: 5637799339403315462}
+  - {fileID: 2527740296269727673}
+  - {fileID: 751118067622625900}
+  - {fileID: 7379789502277043949}
+  - {fileID: 507274536389039265}
+  - {fileID: 1732720652328243626}
+  - {fileID: 3460148769173154822}
+  - {fileID: 1690116468732826130}
   isBookmarked: 0
 --- !u!1 &4010724544344218348
 GameObject:
@@ -908,7 +914,7 @@ GameObject:
   - component: {fileID: 4974212793618104746}
   m_Layer: 5
   m_Name: 5
-  m_TagString: WeaponSlotSelectUI
+  m_TagString: BookMarkedSelectSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -929,8 +935,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 160, y: -270}
-  m_SizeDelta: {x: 160, y: 160}
+  m_AnchoredPosition: {x: 150.2, y: -100}
+  m_SizeDelta: {x: 121, y: 121}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &971195743995917890
 CanvasRenderer:
@@ -1341,7 +1347,7 @@ GameObject:
   - component: {fileID: 6872180476017518576}
   m_Layer: 5
   m_Name: 0
-  m_TagString: WeaponSlotSelectUI
+  m_TagString: BookMarkedSelectSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1362,8 +1368,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 160, y: 160}
+  m_AnchoredPosition: {x: 30.4, y: 140}
+  m_SizeDelta: {x: 121, y: 121}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &8953275183040085082
 CanvasRenderer:
@@ -1566,7 +1572,7 @@ GameObject:
   - component: {fileID: 2094983116465722069}
   m_Layer: 5
   m_Name: 3
-  m_TagString: WeaponSlotSelectUI
+  m_TagString: BookMarkedSelectSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1587,8 +1593,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 160, y: -110}
-  m_SizeDelta: {x: 160, y: 160}
+  m_AnchoredPosition: {x: 150.2, y: 20}
+  m_SizeDelta: {x: 121, y: 121}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5162941606579353496
 CanvasRenderer:
@@ -1716,7 +1722,7 @@ GameObject:
   - component: {fileID: 4572796185800913596}
   m_Layer: 5
   m_Name: 4
-  m_TagString: WeaponSlotSelectUI
+  m_TagString: BookMarkedSelectSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1737,8 +1743,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -270}
-  m_SizeDelta: {x: 160, y: 160}
+  m_AnchoredPosition: {x: 30.4, y: -100}
+  m_SizeDelta: {x: 121, y: 121}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &2563719989603695796
 CanvasRenderer:
@@ -1868,6 +1874,10 @@ PrefabInstance:
     - target: {fileID: 5090459737672536117, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
       propertyPath: m_Name
       value: LongClickPopUpUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090459737672536117, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6243572636318183938, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
       propertyPath: m_Pivot.x

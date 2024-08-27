@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be42261473d4a3babdeb4f0c7746612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponId: 21
   owner: {fileID: 0}
   passiveSkill: {fileID: 1332253320541190210}
   activeSkill: {fileID: 6299760244683842465}
@@ -281,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 
-  weaponBase: {fileID: 0}
+  weapon: {fileID: 0}
 --- !u!114 &6299760244683842465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 
-  weaponBase: {fileID: 0}
+  weapon: {fileID: 0}
   indicator: {fileID: 7749860798571302501}
   usableRange: {fileID: 6484908689669868283}
   _offset: {x: 0, y: 2}

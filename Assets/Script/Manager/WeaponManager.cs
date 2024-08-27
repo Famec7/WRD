@@ -4,37 +4,61 @@ using UnityEngine.Serialization;
 
 public class WeaponManager : Singleton<WeaponManager>
 {
-    [SerializeField] private List<CharacterController> _characters;
-    
     private PoolManager _poolManager;
-    private readonly List<WeaponBase> _equippedWeapons = new List<WeaponBase>();
+    private WeaponBase[] _equippedWeapons;
     
     protected override void Init()
     {
         _poolManager = GetComponent<PoolManager>();
         
-        // 캐릭터 수만큼 무기 리스트 초기화
-        _equippedWeapons.Capacity = _characters.Count;
+        _equippedWeapons = new WeaponBase[CharacterManager.Instance.CharacterCount];
     }
     
     public void AddWeapon(int characterIndex, int weaponId)
     {
         // 장착할 캐릭터와 무기 찾기
-        CharacterController owner = _characters[characterIndex];
+        CharacterController owner = CharacterManager.Instance.GetCharacter(characterIndex);
         WeaponBase weapon = FindWeapon(weaponId);
         
         // 무기 장착
         weapon.EquipWeapon(owner);
         _equippedWeapons[characterIndex] = weapon;
+        
+        // 액티브 스킬 UI 추가
+        if (characterIndex == (int)CharacterManager.CharacterType.Player)
+        {
+            SkillUIManager.Instance.AddSkillButton(weapon.GetComponent<ActiveSkillBase>());
+        }
     }
     
     public void RemoveWeapon(int characterIndex)
     {
         _equippedWeapons[characterIndex].DetachWeapon();
+        
+        if (characterIndex == (int)CharacterManager.CharacterType.Player)
+        {
+            SkillUIManager.Instance.RemoveSkillButton(_equippedWeapons[characterIndex].GetComponent<ActiveSkillBase>());
+        }
     }
     
     private WeaponBase FindWeapon(int weaponId)
     {
-        return _poolManager.GetFromPool<WeaponBase>(weaponId);
+        var weaponData = WeaponDataManager.Instance.GetWeaponData(weaponId);
+
+        if (weaponData is null)
+        {
+            Debug.LogError($"WeaponData is null. WeaponId: {weaponId}");
+            return null;
+        }
+
+        var weapon = _poolManager.GetFromPool<WeaponBase>(weaponData.WeaponName);
+        
+        if (weapon is null)
+        {
+            Debug.LogError($"Weapon is null. WeaponName: {weaponData.WeaponName}");
+            return null;
+        }
+
+        return weapon;
     }
 }

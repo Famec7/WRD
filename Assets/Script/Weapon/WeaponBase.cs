@@ -8,6 +8,8 @@ using UnityEngine.Events;
 public abstract class WeaponBase : MonoBehaviour, IObserver
 {
     #region private variable
+    [SerializeField]
+    private int weaponId;
 
     private WaitForSeconds attackDelay;
     
@@ -55,9 +57,8 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     /// </summary>
     protected virtual void Init()
     {
-        Data = WeaponDataManager.Instance.GetWeaponData(this.name);
+        Data = WeaponDataManager.Instance.GetWeaponData(weaponId);
         attackDelay = new WaitForSeconds(1 / Data.AttackSpeed);
-        this.gameObject.SetActive(false);
     }
 
     /// <summary>
