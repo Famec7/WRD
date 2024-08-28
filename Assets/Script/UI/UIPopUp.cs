@@ -32,6 +32,30 @@ public class UIPopUp : MonoBehaviour
                 UIManager.instance.CloseDetailedDescriptionPopUpUI();
                 Debug.Log("여기");
             }
+
+            bool isButton = false;
+            foreach (var result in popUPresults)
+            {
+                if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count == 3)
+                    isButton = true;
+
+                Debug.Log(result.gameObject.name);
+
+            }
+
+            if (isButton) return;
+
+            foreach (var result in results)
+            {
+                Debug.Log(result.gameObject.name);
+
+                if ((result.gameObject.name == "Slot" && !result.gameObject.transform.GetChild(0).GetComponent<InventorySlot>().isEquiped) ||
+                    results.Count < 4)
+                {
+                    UIManager.instance.CloseAllPopUpUI();
+                    break;
+                }
+            }
         }
     }
 

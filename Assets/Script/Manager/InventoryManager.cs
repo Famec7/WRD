@@ -302,52 +302,55 @@ public class InventoryManager : MonoBehaviour
         if (longClickPopUpUi.weaponSlot != null && longClickPopUpUi.weaponSlot.inventorySlot != null)
             pressSlot = longClickPopUpUi.weaponSlot.inventorySlot;
 
-        if (pressSlot == null)
+        if (WeaponDataManager.Instance.GetKorWeaponClassText(mainWeaponID) != "안흔함")
         {
-            InventorySlot equippedSlot = null;
-            InventorySlot firstMatchingSlot = null;
-
-            foreach (var slot in slots)
+            if (pressSlot == null)
             {
-                if (!slot.hasItem) continue;
+                InventorySlot equippedSlot = null;
+                InventorySlot firstMatchingSlot = null;
 
-                if (slot.weapon.data.ID != itemIDs[0]) continue;
-
-                if (slot.isEquiped)
+                foreach (var slot in slots)
                 {
-                    equippedSlot = slot;
-                    break;
-                }
+                    if (!slot.hasItem) continue;
 
-                if (firstMatchingSlot == null)
-                {
-                    firstMatchingSlot = slot;
-                }
+                    if (slot.weapon.data.ID != itemIDs[0]) continue;
 
-            }
-            pressSlot = equippedSlot ?? firstMatchingSlot;
-        }
-
-        if (pressSlot != null)
-        {
-            // 만약에 장착중인 무기면
-            if (pressSlot.isEquiped)
-            {
-                for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)
-                {
-                    var weaponSlot = UIManager.instance.weaponSlotUI[j];
-
-                    if (pressSlot == weaponSlot.inventorySlot)
+                    if (slot.isEquiped)
                     {
-                        // 인벤토리 아이템에서 누른 메인재료 무기 삭제
-                        items.Remove(pressSlot.weapon);
-                        //장착UI에서 아이템 바꾸기
-                        WeaponUI.Instance.ChangeItem(j, item);
-                        // 재료 리스트에서 삭제
-                        GameManager.instance.weaponCnt[itemIDs[0] - 1]--;
-
-                        itemIDs.Remove(itemIDs[0]);
+                        equippedSlot = slot;
                         break;
+                    }
+
+                    if (firstMatchingSlot == null)
+                    {
+                        firstMatchingSlot = slot;
+                    }
+
+                }
+                pressSlot = equippedSlot ?? firstMatchingSlot;
+            }
+
+            if (pressSlot != null)
+            {
+                // 만약에 장착중인 무기면
+                if (pressSlot.isEquiped)
+                {
+                    for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)
+                    {
+                        var weaponSlot = UIManager.instance.weaponSlotUI[j];
+
+                        if (pressSlot == weaponSlot.inventorySlot)
+                        {
+                            // 인벤토리 아이템에서 누른 메인재료 무기 삭제
+                            items.Remove(pressSlot.weapon);
+                            //장착UI에서 아이템 바꾸기
+                            WeaponUI.Instance.ChangeItem(j, item);
+                            // 재료 리스트에서 삭제
+                            GameManager.instance.weaponCnt[itemIDs[0] - 1]--;
+
+                            itemIDs.Remove(itemIDs[0]);
+                            break;
+                        }
                     }
                 }
             }

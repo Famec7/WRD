@@ -16,7 +16,7 @@ public class MissionSlot : MonoBehaviour
     {
         _icon = GetComponent<Image>();
         _button = GetComponent<Button>();
-        _name = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        //_name = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
     }
 
     public void InitMissionSlot(int index)
@@ -40,7 +40,7 @@ public class MissionSlot : MonoBehaviour
         string bossName = MissionDataManager.Instance.GetName(_index);
         if (bossName == null)
             return;
-        _name.text = bossName;
+        //_name.text = bossName;
         _button.onClick.AddListener(OpenMissionUI);
     }
 

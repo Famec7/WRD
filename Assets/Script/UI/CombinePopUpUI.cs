@@ -39,8 +39,9 @@ public class CombinePopUpUI : UIPopUp
         Transform[] subCombinationUIs = transform.GetComponentsInChildren<Transform>();
         if (isInventory)
         {
-            GetComponent<RectTransform>().anchoredPosition = new Vector3(165, -1266);
+            GetComponent<RectTransform>().anchoredPosition = new Vector3(130, -1266);
             GetComponent<RectTransform>().sizeDelta = new Vector2(500,300);
+            GetComponent<Image>().enabled = false;
             foreach (var subCombinationUI in subCombinationUIs)
             {
                 
@@ -52,6 +53,7 @@ public class CombinePopUpUI : UIPopUp
         {
             GetComponent<RectTransform>().anchoredPosition = new Vector3(288, -980);
             GetComponent<RectTransform>().sizeDelta = new Vector2(401, 240f);
+            GetComponent<Image>().enabled = true;
             foreach (var subCombinationUI in subCombinationUIs)
             {
                 if (subCombinationUI.GetComponent<SubCombinationUI>() != null)

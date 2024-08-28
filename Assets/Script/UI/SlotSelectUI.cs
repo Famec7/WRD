@@ -24,9 +24,14 @@ public class SlotSelectUI : MonoBehaviour
         {
            
             var results = UIManager.instance.GetRayCastResult(true);
-           
-            // 없으면 return
-            if (results.Count <= 0) return;
+
+            // 없으면 끄기
+            if (results.Count <= 0)
+            {
+                UIManager.instance.InitLongClickPopupUI();
+                gameObject.SetActive(false);
+            }
+            
             int order = -1;
             bool isAnotherTouch = true;
             

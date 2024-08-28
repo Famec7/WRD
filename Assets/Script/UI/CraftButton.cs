@@ -10,13 +10,13 @@ public class CraftButton : MonoBehaviour
     // Start is called before the first frame update
     public int weaponID;
     public int[] materialWeapons;
-
+    public bool isElement = false;
 
     public GameObject canCombineBorder;
 
     void Start()
     {
-        
+        isElement = weaponID < 5 ? true : false;
     }
 
     // Update is called once per frame

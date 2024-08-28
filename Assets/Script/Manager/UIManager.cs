@@ -175,7 +175,14 @@ public class UIManager : MonoBehaviour
      //   _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
     }
-
+    
+    public void CloseAllPopUpUI()
+    {
+        CloseCombinePopUpUI();
+        CloseInventoryDescriptionPopUpUI();
+        CloseDetailedDescriptionPopUpUI();
+        InitLongClickPopupUI();
+    }
    public void ChangeAutoSkipToggle()
     {
         GameManager.instance.isSKip = autoSkipToggle.isOn;
