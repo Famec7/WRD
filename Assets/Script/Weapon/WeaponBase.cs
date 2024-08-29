@@ -97,8 +97,14 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     public void DetachWeapon()
     {
         // 무기 해제
+        owner.Target = null;
+        
         this.owner = null;
         _isAttack = false;
+        
+        this.transform.SetParent(null);
+        
+        StopAllCoroutines();
     }
 
     private IEnumerator CoroutineAttack()

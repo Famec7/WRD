@@ -27,18 +27,32 @@ public class WeaponManager : Singleton<WeaponManager>
         // 액티브 스킬 UI 추가
         if (characterIndex == (int)CharacterManager.CharacterType.Player)
         {
-            SkillUIManager.Instance.AddSkillButton(weapon.GetComponent<ActiveSkillBase>());
+            if(weapon.TryGetComponent(out ActiveSkillBase activeSkill))
+            {
+                activeSkill.enabled = true;
+                SkillManager.Instance.AddActiveSkill(activeSkill);
+            }
         }
     }
     
     public void RemoveWeapon(int characterIndex)
     {
-        _equippedWeapons[characterIndex].DetachWeapon();
+        WeaponBase detachedWeapon = _equippedWeapons[characterIndex];
+        detachedWeapon.DetachWeapon();
         
+        // 플레이어 장착 해제면 액티브 스킬 해제
         if (characterIndex == (int)CharacterManager.CharacterType.Player)
         {
-            SkillUIManager.Instance.RemoveSkillButton(_equippedWeapons[characterIndex].GetComponent<ActiveSkillBase>());
+            if(detachedWeapon.TryGetComponent(out ActiveSkillBase activeSkill))
+            {
+                activeSkill.enabled = false;
+                SkillManager.Instance.RemoveActiveSkill(activeSkill);
+            }
         }
+        
+        _poolManager.ReturnToPool(detachedWeapon.Data.WeaponName, detachedWeapon);
+        
+        _equippedWeapons[characterIndex] = null;
     }
     
     private WeaponBase FindWeapon(int weaponId)

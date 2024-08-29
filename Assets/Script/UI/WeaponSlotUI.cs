@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class WeaponSlotUI : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField]
+    private int slotIndex;
+    public int SlotIndex => slotIndex;
 
     public GameObject weaponImage;
     public bool hasWeapon = false;

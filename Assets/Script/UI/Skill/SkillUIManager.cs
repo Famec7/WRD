@@ -35,9 +35,9 @@ public class SkillUIManager : Singleton<SkillUIManager>
      */
     public void RemoveSkillButton(ActiveSkillBase skill)
     {
+        _activeButton--;
         _skillButtons[_activeButton].gameObject.SetActive(false);
         _skillButtons[_activeButton].RemoveSkill(skill);
-        _activeButton--;
     }
 
     // num번째 스킬 버튼 클릭
