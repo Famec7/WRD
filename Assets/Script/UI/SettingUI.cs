@@ -9,21 +9,6 @@ public class SettingUI : MonoBehaviour
     
     [SerializeField] private GameObject _settingUI;
     
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (_isSettingUIOpen)
-            {
-                CloseSettingUI();
-            }
-            else
-            {
-                OpenSettingUI();
-            }
-        }
-    }
-    
     private void OpenSettingUI()
     {
         _isSettingUIOpen = true;

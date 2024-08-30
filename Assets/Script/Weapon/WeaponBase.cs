@@ -7,7 +7,12 @@ using UnityEngine.Events;
 
 public abstract class WeaponBase : MonoBehaviour, IObserver
 {
-    #region private variable
+    public CharacterController owner;
+    
+    private bool _isAttack = false;
+    
+    #region Data
+    
     [SerializeField]
     private int weaponId;
 
@@ -19,11 +24,12 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
         set => attackDelay = value;
     }
     
-    private bool _isAttack = false;
+    public WeaponData Data { get; private set; }
+    
+    private float _originalAttackDamage;
+    private float _originalAttackSpeed;
 
     #endregion
-
-    public CharacterController owner;
 
     # region Skill
 
@@ -34,9 +40,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     public bool IsActiveSkillNull => activeSkill == null;
 
     #endregion
-
-    public WeaponData Data { get; private set; }
-
+    
     #region Event Function
 
     protected virtual void Start()
@@ -104,7 +108,15 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
         
         this.transform.SetParent(null);
         
+        ResetStats();
+        
         StopAllCoroutines();
+    }
+    
+    private void ResetStats()
+    {
+        Data.AttackDamage = _originalAttackDamage;
+        attackDelay = new WaitForSeconds(1 / _originalAttackSpeed);
     }
 
     private IEnumerator CoroutineAttack()

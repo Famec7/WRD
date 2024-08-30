@@ -18,6 +18,7 @@ public class CharacterManager : Singleton<CharacterManager>
         Pet6,
         Pet7,
         Pet8,
+        Count,
     }
     
     [SerializeField]
@@ -28,5 +29,10 @@ public class CharacterManager : Singleton<CharacterManager>
     public CharacterController GetCharacter(int index)
     {
         return _characters[index];
+    }
+    
+    public CharacterController GetCharacter(CharacterType type)
+    {
+        return _characters[(int) type];
     }
 }

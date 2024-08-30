@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 5527195158287732755}
   - component: {fileID: 4489820946998548868}
   - component: {fileID: 1332253320541190210}
+  - component: {fileID: 7926419819972194322}
   - component: {fileID: 6299760244683842465}
   m_Layer: 0
   m_Name: Excalibur
@@ -265,8 +266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4be42261473d4a3babdeb4f0c7746612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponId: 21
   owner: {fileID: 0}
+  weaponId: 21
   passiveSkill: {fileID: 1332253320541190210}
   activeSkill: {fileID: 6299760244683842465}
 --- !u!114 &1332253320541190210
@@ -279,6 +280,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b24234fc421477c8588d951ad8df5d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  weapon: {fileID: 0}
+--- !u!114 &7926419819972194322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8534504255012625708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe41e97b8a7946b98c5fe89f236397a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 
