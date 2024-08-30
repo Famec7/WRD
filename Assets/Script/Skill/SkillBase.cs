@@ -8,7 +8,7 @@ public abstract class SkillBase : MonoBehaviour
     [HideInInspector]
     public  string skillName;
     
-    [FormerlySerializedAs("currentWeapon")] [HideInInspector]
+    [HideInInspector]
     public WeaponBase weapon;
 
     protected LayerMask targetLayer;

@@ -3,7 +3,8 @@ using UnityEngine;
 
 public abstract class PassiveAuraSkillBase : SkillBase
 {
-    [HideInInspector] public PassiveAuraSkillData data;
+    public PassiveAuraSkillData Data { get; private set; }
+
     protected HashSet<string> tags = new HashSet<string> { "Monster", "Boss", "Mission" };
 
     private void Awake()
@@ -14,6 +15,6 @@ public abstract class PassiveAuraSkillBase : SkillBase
     protected override void Init()
     {
         base.Init();
-        data = SkillManager.Instance.GetPassiveAuraSkillData(GetType().Name);
+        Data = SkillManager.Instance.GetPassiveAuraSkillData(GetType().Name);
     }
 }
