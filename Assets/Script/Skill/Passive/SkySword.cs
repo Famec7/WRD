@@ -17,7 +17,7 @@ public class SkySword : PassiveSkillBase
         {
             var manager = ProjectileManager.Instance;
 
-            var projectile = manager.CreateProjectile<SkySwordProjectile>("SkySword");
+            var projectile = manager.CreateProjectile<SkyProjectile>("SkySword");
 
             if (projectile is null)
             {

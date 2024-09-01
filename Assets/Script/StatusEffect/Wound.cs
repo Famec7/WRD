@@ -21,7 +21,7 @@ public class Wound : StatusEffect
         {
             if(target.TryGetComponent(out Status status))
             {
-                status.woundStack = false;
+                status.IsWound = false;
             }
             CoroutineHandler.Instance.StopCoroutine(_woundCoroutine);
         }
@@ -31,13 +31,13 @@ public class Wound : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.woundStack = true;
+            status.IsWound = true;
             
             if(Math.Abs(duration - 0f) > 0.01f)
             {
                 yield return waitTime;
 
-                status.woundStack = false;
+                status.IsWound = false;
             }
             else
             {

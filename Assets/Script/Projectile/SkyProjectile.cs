@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class SkySwordProjectile : FallingSwordProjectile
+public class SkyProjectile : FallingProjectile
 {
     /********************************Target********************************/
     [Header("Offset")]

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Status : MonoBehaviour
 {
@@ -14,13 +15,23 @@ public class Status : MonoBehaviour
     public float defense;
 
     public string monsterName;
+
+    #region StatusEffect
+
+    [HideInInspector]
+    public bool IsWound; // 자상
     
     [HideInInspector]
-    public bool woundStack;
+    public bool IsMark; // 표식
+    
     [HideInInspector]
-    public bool markStack;
+    public float damageAmplification; // 데미지 증폭
+    
     [HideInInspector]
-    public float damageAmplification;
+    public bool IsElectricShock; // 감전
+
+    #endregion
+    
     
     public void SetUnitStatus(UnitCode unitCode)
     {
@@ -43,9 +54,10 @@ public class Status : MonoBehaviour
         resist = MonsterDataManager.instance.resistData[wave];
         monsterName = MonsterDataManager.instance.monsterNameData[wave];
         moveSpeed = MonsterDataManager.instance.speedData[wave];
-        woundStack = false;
-        markStack = false;
+        IsWound = false;
+        IsMark = false;
         damageAmplification = 0;
+        IsElectricShock = false;
     }
 
     public void SetMissionUnitStatus(UnitCode unitCode)
@@ -58,7 +70,7 @@ public class Status : MonoBehaviour
         resist = MissionMonsterManager.instance.resistData[idx];
         monsterName = MissionMonsterManager.instance.monsterNameData[idx];
         moveSpeed = MissionMonsterManager.instance.speedData[idx];
-        woundStack = false;
-        markStack = false;
+        IsWound = false;
+        IsMark = false;
     }
 }
