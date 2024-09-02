@@ -46,6 +46,9 @@ public class MonsterSpawnManager : MonoBehaviour
     bool isBossSpawn = false;
     bool isSpawnStop = false;
     
+    [SerializeField]
+    private Canvas _hpBarCanvas;
+    
     private void Awake()
     {
         if (instance == null)
@@ -89,32 +92,32 @@ public class MonsterSpawnManager : MonoBehaviour
     void Update()
     {
         int idx = GameManager.instance.wave - 1;
-        //Boss°¡ ³ª¿À´Â WaveÀÎÁö È®ÀÎÇÏ´Â bool º¯¼ö
+        //Bossï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Waveï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ bool ï¿½ï¿½ï¿½ï¿½
         isBossWave = bossSpawnNum[idx] >= 1;
 
         if (idx >= 34)
             idx = 34;
 
-        // ½ºÆù µô·¹ÀÌ½Ã°£ ¼¼±â
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
         spawnDelayTimer += Time.deltaTime;
 
-        // ÇöÀç ¸ó½ºÅÍ ¼ö°¡ ÃÑ ¸ó½ºÅÍ ¼ýÀÚ¸¦ ³ÑÀ¸¸é »ý¼º ÁßÁö
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (currentMonsterNum >= limitMonsterNum)
             isNormalSpawnStop = true;
-        else // ¾Æ´Ò °æ¿ì ¿þÀÌºê ½Ã°£À» ¿Ã·ÁÁÜ
+        else // ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
             waveSecTimer += Time.deltaTime;
 
-        if (waveSecTimer >= 1f) // 1ÃÊ ´ÜÀ§·Î ¿þÀÌºê ½Ã°£ ÅØ½ºÆ® º¯°æ
+        if (waveSecTimer >= 1f) // 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Ã°ï¿½ ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         {
             waveTimer++;
             TimeSpan timeSpan = TimeSpan.FromSeconds(wavePlayTime[idx]-waveTimer);
             UIManager.instance.currentWaveTime.text = timeSpan.ToString(@"mm\:ss");
             waveSecTimer = 0f;
         }
-        // ¿þÀÌºê ½Ã°£ÀÌ ³¡³ª¸é
+        // ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (waveTimer >= wavePlayTime[idx])
         {
-            //Á¦ÇÑ ¸ó½ºÅÍ ¼ö °è»ê 
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ 
             int limitMonsterNum = 80;
 
             if (GameManager.instance.wave >= 11 && GameManager.instance.wave <= 20)
@@ -126,21 +129,21 @@ public class MonsterSpawnManager : MonoBehaviour
 
             UIManager.instance.limitMonsterNum.text = limitMonsterNum.ToString();
 
-            // º¸½º ¿þÀÌºêÀÎµ¥ º¸½º¸¦ ÀâÁö ¸øÇßÀ» °æ¿ì or ÇöÀç ¸ó½ºÅÍº¸´Ù Á¦ÇÑ ¸ó½ºÅÍ°¡ ¸¹À» °æ¿ì GameOver
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ or ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Íºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ GameOver
             if ((isBossWave && targetBossStatus.HP < 0) && currentMonsterNum > limitMonsterNum)
             {
                 GameManager.instance.isGameOver = true;
             }
-            else if (isBossWave) // º¸½º º¸»ó Áö±Þ
+            else if (isBossWave) // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             {
-                Debug.Log("º¸»ó Áö±Þ");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
             }
-            // ¿þÀÌºê ¹× ÅØ½ºÆ® ¾÷µ¥ÀÌÆ®
+            // ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
             GameManager.instance.wave++;
             UIManager.instance.waveNum.text = "Wave " + GameManager.instance.wave.ToString();
-            // ¸ðµç ½ºÅ×ÀÌÁö ±âº» º¸»ó 3°³ Áö±Þ
+            // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             ElementManager.instance.GetElement(3);
-            // ´Ù½Ã »ý¼ºÀ» À§ÇÑ º¯¼ö ÃÊ±âÈ­
+            // ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
             waveTimer = 0;
             isNormalSpawnStop = false;
             currentWaveMonsterNum = 0;
@@ -152,18 +155,18 @@ public class MonsterSpawnManager : MonoBehaviour
 
         if (isSpawnStop) return;
 
-        // ÀÏ¹Ý ¸ó½ºÅÍ ½ºÆù ¸ØÃß±â
+        // ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß±ï¿½
         if (currentWaveMonsterNum == monsterSpawnNum[idx])
             isNormalSpawnStop = true;
 
-        // ÀÏ¹Ý ¸ó½ºÅÍ ¼ÒÈ¯
+        // ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
         if (spawnDelayTimer >= monsterSpawnTime[idx] && !isNormalSpawnStop)
         {
             UnitCode code = (UnitCode)((int)GameManager.instance.wave / 6);
             SpawnMonster(code);
         }
 
-        // º¸½º ¸ó½ºÅÍ ¼ÒÈ¯
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
         if (isBossWave && !isBossSpawn)
         {
             UnitCode code = (UnitCode)((int)GameManager.instance.wave / 6) + 6;
@@ -185,10 +188,10 @@ public class MonsterSpawnManager : MonoBehaviour
     void SpawnMonster(UnitCode code)
     {
         GameObject monster = MonsterPool.instance.GetPooledObject(code);
-        monster.GetComponent<MonsterMoveComponent>().roadNum = 1; // *ÀÓ½ÃÄÚµå* »ý¼º À§Ä¡ ¹Ù²Ù¸é ÄÚµå ¼öÁ¤ÇØ¾ßÇÔ
+        monster.GetComponent<MonsterMoveComponent>().roadNum = 1; // *ï¿½Ó½ï¿½ï¿½Úµï¿½* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ù²Ù¸ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
         monster.transform.position = spawnPoints[spawnPointsCount - 1].transform.position;
 
-        GameObject hpBar = Instantiate(hpBarPrefab, GameObject.Find("HPBarCanvas").transform);
+        GameObject hpBar = Instantiate(hpBarPrefab, _hpBarCanvas.transform);
         hpBar.GetComponent<MonsterHPBar>().owner = monster;
         hpBar.GetComponent<MonsterHPBar>().ownerStatus = monster.GetComponent<Status>();
         hpBar.transform.SetAsFirstSibling();
