@@ -13,7 +13,9 @@ public class MonsterHPBar : MonoBehaviour
     public Status ownerStatus;
     public GameObject owner = null;
 
-    public Image hpBarFillImage;
+    public Transform hpBarFillTransform;
+
+    public SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -23,32 +25,28 @@ public class MonsterHPBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        hpBarFillImage.fillAmount = ownerStatus.HP / ownerStatus.maxHP;
-     
-        //Camera mainCamera = Camera.main;
 
-        //Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(mainCamera, owner.transform.position + new Vector3(0.01f, 0.1f, 0));
-        //RectTransform canvasRectTransForm = GameObject.Find("Canvas").GetComponent<RectTransform>();
-        //Vector2 localPoint;
-
-        //if (RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRectTransForm, screenPoint, mainCamera, out localPoint))
-        //    GetComponent<RectTransform>().localPosition = localPoint;
-
-        Vector3 hpBarPos = Camera.main.WorldToScreenPoint(new Vector3(owner.transform.position.x, owner.transform.position.y + 0.1f, 0));
-        transform.position = hpBarPos;
+        hpBarFillTransform.localScale = new Vector2(ownerStatus.HP / ownerStatus.maxHP,1);
+        transform.position = transform.parent.position + new Vector3(0,0.2f,0);
 
         if (ownerStatus.HP >= ownerStatus.maxHP * 0.5f)
-                hpBarFillImage.color = Color.green;
+            spriteRenderer.color = Color.green;
 
             else if (ownerStatus.HP >= ownerStatus.maxHP * 0.25f)
-                hpBarFillImage.color = Color.yellow;
+            spriteRenderer.color = Color.yellow;
             else
-                hpBarFillImage.color = Color.red;
+            spriteRenderer.color = Color.red;
 
         if (ownerStatus.HP <= 0)
         {
             MonsterHPBarPool.ReturnObject(this);
         }
+    }
+
+    public void Init()
+    {
+        owner = null;
+        ownerStatus = null;
+        hpBarFillTransform.localScale = new Vector2(1, 1);
     }
 }

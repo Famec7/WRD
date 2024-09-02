@@ -33,6 +33,7 @@ public class Monster : MonoBehaviour
     public void IsDead()
     {
         isDead = true;
+        MonsterHPBarPool.ReturnObject(transform.GetChild(1).GetComponent<MonsterHPBar>()); 
         MonsterPool.instance.ReturnObject(gameObject);
     }
 }

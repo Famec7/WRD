@@ -191,11 +191,12 @@ public class MonsterSpawnManager : MonoBehaviour
         monster.GetComponent<MonsterMoveComponent>().roadNum = 1; // *�ӽ��ڵ�* ���� ��ġ �ٲٸ� �ڵ� �����ؾ���
         monster.transform.position = spawnPoints[spawnPointsCount - 1].transform.position;
 
-        GameObject hpBar = Instantiate(hpBarPrefab, _hpBarCanvas.transform);
+        GameObject hpBar = MonsterHPBarPool.GetObject();
+        hpBar.transform.parent = monster.transform;
+        hpBar.transform.position = new Vector3(0, 0.2f);
+        hpBar.SetActive(true);
         hpBar.GetComponent<MonsterHPBar>().owner = monster;
         hpBar.GetComponent<MonsterHPBar>().ownerStatus = monster.GetComponent<Status>();
-        hpBar.transform.SetAsFirstSibling();
-        hpBar.transform.position = Camera.main.WorldToScreenPoint(new Vector3(monster.transform.position.x, monster.transform.position.y + 0.1f, 0));
 
         spawnDelayTimer = 0;
         currentMonsterNum++;
