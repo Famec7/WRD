@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3656507640395904915}
-  - component: {fileID: 2117871660823164108}
+  - component: {fileID: 1725306334580153423}
   - component: {fileID: 3598860328224715236}
   m_Layer: 0
   m_Name: IronSword
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 6713977209073149809}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2117871660823164108
+--- !u!114 &1725306334580153423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,9 +43,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1562499871069127646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4846d9a5f824aa6ac1e46df3e5e07a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 4be42261473d4a3babdeb4f0c7746612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponId: 11
   owner: {fileID: 0}
   passiveSkill: {fileID: 3598860328224715236}
   activeSkill: {fileID: 0}
@@ -62,11 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 
-  weaponBase: {fileID: 0}
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  _hitSize: {x: 1, y: 3}
+  weapon: {fileID: 0}
+  _hitSize: {x: 0.5, y: 1.5}
   _effect: {fileID: 7930587464925105623}
 --- !u!1 &8347200258792436115
 GameObject:

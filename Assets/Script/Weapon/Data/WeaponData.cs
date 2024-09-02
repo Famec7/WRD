@@ -10,7 +10,7 @@ public class WeaponData
 
     public string WeaponName { get; set; }
     public int Type1 { get; }
-    public int AttackDamage { get; set; }
+    public float AttackDamage { get; set; }
     public int skillA;
     public int skillP;
     public int rType;

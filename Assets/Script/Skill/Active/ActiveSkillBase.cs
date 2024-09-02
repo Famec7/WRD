@@ -108,14 +108,14 @@ public abstract class ActiveSkillBase : SkillBase
 
             if (value is true)
             {
-                owner.enabled = true;
+                weapon.owner.enabled = true;
                 
                 SkillUIManager.Instance.ClosePopupPanel();
                 OnButtonActivate?.Invoke(false);
             }
             else
             {
-                owner.enabled = false;
+                weapon.owner.enabled = false;
                 
                 OnButtonActivate?.Invoke(true);
             }
@@ -352,7 +352,7 @@ public abstract class ActiveSkillBase : SkillBase
     {
         if (position == default)
         {
-            usableRange.transform.position = owner.transform.position;
+            usableRange.transform.position = weapon.owner.transform.position;
         }
         else
         {

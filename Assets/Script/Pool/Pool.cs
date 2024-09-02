@@ -76,11 +76,11 @@ public class Pool<T> : IPool<T> where T : Component
         T clone = null;
 
         // 비활성화된 오브젝트를 찾아서 반환
-        for (int i = 0; i < _clones.Count; i++)
+        foreach (var disabledClone in _clones)
         {
-            if (!_activeClones.Contains(_clones[i]))
+            if (!_activeClones.Contains(disabledClone))
             {
-                clone = _clones[i];
+                clone = disabledClone;
                 break;
             }
         }

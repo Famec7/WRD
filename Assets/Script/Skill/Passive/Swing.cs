@@ -23,17 +23,17 @@ public class Swing : PassiveSkillBase
     {
         if (!CheckTrigger()) return false;
         
-        Vector3 dir = owner.Target.transform.position - owner.transform.position;
+        Vector3 dir = weapon.owner.Target.transform.position - weapon.owner.transform.position;
         if (dir == Vector3.zero)
             return false;
         
-        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(owner.transform.position, _hitSize, dir, targetLayer);
+        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, _hitSize, dir, targetLayer);
 
         if(targets.Count == 0)
             return false;
         
         // 이펙트 재생
-        _effect.SetPosition(owner.transform.position + dir);
+        _effect.SetPosition(weapon.owner.transform.position + dir);
         _effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
         _effect.SetScale(_hitSize);
         _effect.PlayEffect();

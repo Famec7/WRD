@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5022070873806279858}
-  - component: {fileID: 6067965566396231346}
+  - component: {fileID: 6394924959683496480}
   - component: {fileID: 3779694955444831281}
   - component: {fileID: 3717776549680903724}
   - component: {fileID: 1406391928098889164}
@@ -36,7 +36,7 @@ Transform:
   - {fileID: 390261363612344670}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6067965566396231346
+--- !u!114 &6394924959683496480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,9 +45,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1889552758968130592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88d6a921f8404d428c405c1aa7c64a9f, type: 3}
+  m_Script: {fileID: 11500000, guid: b373136225d446f699fb8370bb6c5bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponId: 15
   owner: {fileID: 0}
   passiveSkill: {fileID: 3779694955444831281}
   activeSkill: {fileID: 0}
@@ -64,10 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 
-  weaponBase: {fileID: 0}
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  weapon: {fileID: 0}
   _effect: {fileID: 4166863695024856193}
 --- !u!114 &3717776549680903724
 MonoBehaviour:
@@ -82,10 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 
-  weaponBase: {fileID: 0}
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  weapon: {fileID: 0}
 --- !u!61 &1406391928098889164
 BoxCollider2D:
   m_ObjectHideFlags: 0

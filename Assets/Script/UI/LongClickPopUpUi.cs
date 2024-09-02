@@ -148,6 +148,9 @@ public class LongClickPopUpUi : MonoBehaviour
             }
         }
         inventorySlot.GetComponent<InventorySlot>().equipText.gameObject.SetActive(false);
+        
+        // 장착중인 무기 해제
+        WeaponManager.Instance.RemoveWeapon(weaponSlot.SlotIndex);
 
         //장착무기 ui 초기화
         weaponSlot.Init();
@@ -156,6 +159,7 @@ public class LongClickPopUpUi : MonoBehaviour
 
         BookMakredSlotUI.Instance.UpdateAllSlot();
         gameObject.SetActive(false);
+        
     }
 
     public void SetLongClickPopUpUI(int _weaponID, bool _isBookmarked, bool _isInventory,bool _isWeaponSlot, InventorySlot _inventorySlot, WeaponSlotUI _weaponSlot)

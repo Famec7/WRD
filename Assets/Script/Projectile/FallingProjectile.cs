@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public abstract class FallingSwordProjectile : Projectile
+public abstract class FallingProjectile : Projectile
 {
     [SerializeField] private string _projectileName;
     

@@ -19,7 +19,7 @@ public class EffectManager : Singleton<EffectManager>
             return null;
         }
         
-        return effect as T;
+        return effect;
     }
     
     public void ReturnEffectToPool(EffectBase effect, string effectName = default)

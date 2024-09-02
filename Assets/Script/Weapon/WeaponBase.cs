@@ -7,7 +7,14 @@ using UnityEngine.Events;
 
 public abstract class WeaponBase : MonoBehaviour, IObserver
 {
-    #region private variable
+    public CharacterController owner;
+    
+    private bool _isAttack = false;
+    
+    #region Data
+    
+    [SerializeField]
+    private int weaponId;
 
     private WaitForSeconds attackDelay;
     
@@ -17,11 +24,12 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
         set => attackDelay = value;
     }
     
-    private bool _isAttack = false;
+    public WeaponData Data { get; private set; }
+    
+    private float _originalAttackDamage;
+    private float _originalAttackSpeed;
 
     #endregion
-
-    public CharacterController owner;
 
     # region Skill
 
@@ -32,9 +40,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     public bool IsActiveSkillNull => activeSkill == null;
 
     #endregion
-
-    public WeaponData Data { get; private set; }
-
+    
     #region Event Function
 
     protected virtual void Start()
@@ -55,14 +61,8 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     /// </summary>
     protected virtual void Init()
     {
-        Data = WeaponDataManager.Instance.GetWeaponData(this.name);
+        Data = WeaponDataManager.Instance.GetWeaponData(weaponId);
         attackDelay = new WaitForSeconds(1 / Data.AttackSpeed);
-        /*this.gameObject.SetActive(false);*/
-
-        if (IsPassiveSkillNull is false)
-            passiveSkill.SetWeapon(this);
-        if(IsActiveSkillNull is false)
-            activeSkill.SetWeapon(this);
     }
 
     /// <summary>
@@ -88,18 +88,35 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     {
         this.owner = owner;
         this.transform.SetParent(this.owner.transform);
-
-        if (passiveSkill != null)
+        
+        owner.Data.SetCurrentWeapon(this);
+        
+        // 스킬 설정 (owner도 같이 설정됨)
+        if (IsPassiveSkillNull is false)
             passiveSkill.SetWeapon(this);
-        /*if(activeSkill != null)
-            activeSkill.GetComponent<SkillBase>().SetOwner(owner);*/
+        if(IsActiveSkillNull is false)
+            activeSkill.SetWeapon(this);
     }
 
     public void DetachWeapon()
     {
         // 무기 해제
+        owner.Target = null;
+        
         this.owner = null;
         _isAttack = false;
+        
+        this.transform.SetParent(null);
+        
+        ResetStats();
+        
+        StopAllCoroutines();
+    }
+    
+    private void ResetStats()
+    {
+        Data.AttackDamage = _originalAttackDamage;
+        attackDelay = new WaitForSeconds(1 / _originalAttackSpeed);
     }
 
     private IEnumerator CoroutineAttack()

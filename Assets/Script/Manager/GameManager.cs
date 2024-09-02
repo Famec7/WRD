@@ -35,19 +35,17 @@ public class GameManager : MonoBehaviour
         ElementManager.instance.GetElement(100);
     }
 
-    public bool isUsing(int _weaponID)
+    public bool IsUsing(int weaponID)
     {
-        bool result = false;
-        
-        foreach (var weaponID in useWeapon)
+        foreach (var usingWeapon in useWeapon)
         {
-            if (weaponID == _weaponID)
+            if (usingWeapon == weaponID)
             {
-                result = true;
-                break;
+                return true;
             }
         }
-        return result;
+        
+        return false;
     }
 
     public void RemoveUseWeaponList(int weaponID)
@@ -71,11 +69,5 @@ public class GameManager : MonoBehaviour
         {
             useAbleWeaponCnt[id - 1]--;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HolySwordProjectile : FallingSwordProjectile
+public class HolyProjectile : FallingProjectile
 {
     #region Data
 

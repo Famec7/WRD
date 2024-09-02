@@ -9,7 +9,7 @@ public class HeavenFalling : ClickTypeSkill
     protected override void OnActiveEnter()
     {
         // 성검 소환
-        var holySword = ProjectileManager.Instance.CreateProjectile<HolySwordProjectile>();
+        var holySword = ProjectileManager.Instance.CreateProjectile<HolyProjectile>();
         
         holySword.SetData(Data);
         holySword.transform.position = (Vector3)pivotPosition + (Vector3)_offset;

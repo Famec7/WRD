@@ -1,17 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
 public class SkillUIManager : Singleton<SkillUIManager>
 {
     protected override void Init()
     {
-        ;
+        _settingDropdown.onValueChanged.AddListener(OnClickSettingButton);
     }
 
-    [SerializeField] private SkillPopup _popupPanel;
 
     /********************************Active Skill UI********************************/
 
@@ -19,6 +17,8 @@ public class SkillUIManager : Singleton<SkillUIManager>
 
     [SerializeField] private List<SkillButton> _skillButtons;
     private int _activeButton = 0;
+    
+    [SerializeField] private SkillPopup _popupPanel;
 
     /*
      * Active Skill Button 추가
@@ -35,9 +35,9 @@ public class SkillUIManager : Singleton<SkillUIManager>
      */
     public void RemoveSkillButton(ActiveSkillBase skill)
     {
+        _activeButton--;
         _skillButtons[_activeButton].gameObject.SetActive(false);
         _skillButtons[_activeButton].RemoveSkill(skill);
-        _activeButton--;
     }
 
     // num번째 스킬 버튼 클릭
@@ -84,6 +84,9 @@ public class SkillUIManager : Singleton<SkillUIManager>
     /*******************************Skill Setting*******************************/
 
     #region Skill Setting
+    
+    [SerializeField]
+    private TMP_Dropdown _settingDropdown;
 
     public void OnClickSettingButton(int type)
     {
@@ -91,23 +94,6 @@ public class SkillUIManager : Singleton<SkillUIManager>
         Debug.Log("Setting Type : " + (SettingManager.ActiveSettingType)type);
 #endif
         SettingManager.Instance.CurrentActiveSettingType = (SettingManager.ActiveSettingType)type;
-    }
-
-    [Conditional("UNITY_EDITOR")]
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            OnClickSettingButton(0);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            OnClickSettingButton(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            OnClickSettingButton(2);
-        }
     }
 
     #endregion

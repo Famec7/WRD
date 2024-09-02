@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7532056971248366043}
+  - component: {fileID: 5823808155564251743}
   - component: {fileID: 5571679544942119043}
   m_Layer: 0
   m_Name: Pistol
@@ -16,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7532056971248366043
 Transform:
   m_ObjectHideFlags: 0
@@ -33,7 +34,7 @@ Transform:
   - {fileID: 543738865477402172}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5571679544942119043
+--- !u!114 &5823808155564251743
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,14 +43,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 113596503222121041}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b373136225d446f699fb8370bb6c5bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponId: 14
+  owner: {fileID: 0}
+  passiveSkill: {fileID: 0}
+  activeSkill: {fileID: 5571679544942119043}
+--- !u!114 &5571679544942119043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113596503222121041}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c935df2c722946b2bb201842ce376d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 
-  weaponBase: {fileID: 0}
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  weapon: {fileID: 0}
   indicator: {fileID: 980932940555536127}
   usableRange: {fileID: 0}
 --- !u!1 &4189963290742946792

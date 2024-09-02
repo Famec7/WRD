@@ -162,13 +162,16 @@ public class WeaponImage : MonoBehaviour
                 transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID = targetweaponID;
                 transform.gameObject.GetComponent<LongClickComponenet>().weaponID = targetweaponID;
                 UIManager.instance.touchPos = Input.mousePosition;
+                
+                WeaponManager.Instance.RemoveWeapon(transform.parent.GetComponent<WeaponSlotUI>().SlotIndex);
+                WeaponManager.Instance.AddWeapon(targetSlot.SlotIndex, weaponID);
             }
         }
 
-        //Áñ°ÜÃ£±â -> ¹«±â ÀåÂø UI
+        //ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ -> ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ UI
         if (gameObject.transform.parent.CompareTag("BookMarkedSlot"))
         {
-            // ´©¸¥ °÷ÀÌ ÀåÂø UIÀÏ °æ¿ì
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ UIï¿½ï¿½ ï¿½ï¿½ï¿½
             if (targetSlotObject.gameObject.CompareTag("WeaponSlot"))
             {
                 int targetWeaponID = targetSlotObject.GetComponent<WeaponSlotUI>().weaponID;
@@ -176,7 +179,7 @@ public class WeaponImage : MonoBehaviour
                 LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
                 InventorySlot targetInventorySlot = targetSlotObject.GetComponent<WeaponSlotUI>().inventorySlot;
                 WeaponSlotUI targetWeaponSlot = targetSlotObject.GetComponent<WeaponSlotUI>();
-                // ¹«±â¸¦ °®°í ÀÖÀ¸¸é 
+                // ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
                 if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon)
                 {
                     longClickPopUpUi.SetLongClickPopUpUI(targetWeaponID, false, false, false, targetInventorySlot, targetWeaponSlot);
@@ -197,14 +200,14 @@ public class WeaponImage : MonoBehaviour
             }
                       
         }
-        // ¹«±â ÀåÂø UI -> Áñ°ÜÃ£±â 
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ UI -> ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ 
         if (gameObject.transform.parent.CompareTag("WeaponSlot") && targetSlotObject.gameObject.CompareTag("BookMarkedSlot"))
         {
             int targetWeaponID = targetSlotObject.GetComponent<WeaponSlotUI>().weaponID;
             int myWeaponID = transform.parent.GetComponent<WeaponSlotUI>().weaponID;
             LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
 
-            //  Áñ°ÜÃ£±âÄ­¿¡ ¹«±â°¡ ÀÖÀ» ¶§
+            //  ï¿½ï¿½ï¿½Ã£ï¿½ï¿½Ä­ï¿½ï¿½ ï¿½ï¿½ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
             if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon && GameManager.instance.useAbleWeaponCnt[targetWeaponID - 1] > 0)
             {
                 longClickPopUpUi.SetLongClickPopUpUI(myWeaponID, false, false, false, transform.parent.GetComponent<WeaponSlotUI>().inventorySlot, transform.parent.GetComponent<WeaponSlotUI>());
@@ -219,7 +222,7 @@ public class WeaponImage : MonoBehaviour
                 targetSlotObject.GetComponent<WeaponSlotUI>().ChangeWeaponUseable();
             }
 
-            // ¹Ù²Ù·Á´Â ¹«±â°¡ ¶È°°Àº ¹«±â°¡ ¾Æ´Ò ¶§
+            // ï¿½Ù²Ù·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â°¡ ï¿½È°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â°¡ ï¿½Æ´ï¿½ ï¿½ï¿½
             if (!BookMakredSlotUI.Instance.IsDuplicatedID(myWeaponID))
             {
                 BookMakredSlotUI.Instance.weaponID = myWeaponID;
