@@ -22,7 +22,14 @@ public class CraftButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (weaponID < 5) return;
+        if (GameManager.instance.weaponCnt[weaponID-1] > 0)
+        {
+            gameObject.GetComponent<Button>().enabled = false;
+            canCombineBorder.SetActive(false);
+            return;
+        }
+
+
         int i = 2;
         int cnt = 0;
 

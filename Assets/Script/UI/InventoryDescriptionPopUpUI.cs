@@ -19,6 +19,7 @@ public class InventoryDescriptionPopUpUI : UIPopUp
     void Start()
     {
         SetClosePopUp();
+        gameObject.tag = "InventoryDescriptionUI";
     }
 
     // Update is called once per frame

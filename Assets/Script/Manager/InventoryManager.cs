@@ -162,7 +162,10 @@ public class InventoryManager : MonoBehaviour
         }
 
         for (; j < slots.Length; j++)
+        {
             slots[j].Init();
+            slots[j].gameObject.GetComponent<LongClickComponenet>().weaponID = 0;
+        }
 
         SyncWeaponSlotInventorySlot();
     }

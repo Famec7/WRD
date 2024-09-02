@@ -36,7 +36,7 @@ public class UIPopUp : MonoBehaviour
             bool isButton = false;
             foreach (var result in popUPresults)
             {
-                if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count == 3)
+                if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count >= 3 || result.gameObject.CompareTag("DetailedDescriptionUI")) 
                     isButton = true;
 
                 Debug.Log(result.gameObject.name);

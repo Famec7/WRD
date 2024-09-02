@@ -190,18 +190,23 @@ public class UIManager : MonoBehaviour
 
     public void OpenInventory()
     {
-        inventory.SetActive(true);
-        InventoryManager.instance.FreshSlot();
-        
-        CloseCombinePopUpUI();
+        if (!inventory.activeSelf)
+        {
+            inventory.SetActive(true);
+            InventoryManager.instance.FreshSlot();
 
-        if (InventoryManager.instance.isLastAllShow) 
-            allShowInventoryContent.SetActive(true);
+            CloseCombinePopUpUI();
+
+            if (InventoryManager.instance.isLastAllShow)
+                allShowInventoryContent.SetActive(true);
+            else
+                normalInventoryContent.SetActive(true);
+
+            if (InventoryManager.instance.isClassSorted)
+                InventoryManager.instance.ClickClassShowButton();
+        }
         else
-            normalInventoryContent.SetActive(true);
-
-        if (InventoryManager.instance.isClassSorted)
-            InventoryManager.instance.ClickClassShowButton();
+            InventoryManager.instance.CloseButton();
     }
 
     public void ClickBackButton()

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5575209324376212633}
   - component: {fileID: 3921193529087743502}
   - component: {fileID: 3666864531468585793}
+  - component: {fileID: 3068386176652706963}
   m_Layer: 5
   m_Name: Slot Item
   m_TagString: Untagged
@@ -56,6 +57,19 @@ MonoBehaviour:
   image: {fileID: 776883615826217320}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 2875665502917959176}
 --- !u!222 &8960536065324472824
 CanvasRenderer:
@@ -168,7 +182,7 @@ MonoBehaviour:
   isWeaponSlot: 0
   isInventory: 1
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 5090459737672536117, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!114 &3666864531468585793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +228,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &3068386176652706963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22229009840190324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf3237d850eedd4d85ae7ba8d73c1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentSR: {fileID: 0}
 --- !u!1 &559510248274282653
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +524,7 @@ GameObject:
   - component: {fileID: 3895506689943072268}
   - component: {fileID: 5275266841965973682}
   - component: {fileID: 3386696967987813500}
+  - component: {fileID: 6344490768461577637}
   m_Layer: 5
   m_Name: Slot Item
   m_TagString: Untagged
@@ -538,6 +566,19 @@ MonoBehaviour:
   image: {fileID: 8973913114215532202}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 8741966016067249887}
 --- !u!222 &6251511369510777997
 CanvasRenderer:
@@ -650,7 +691,7 @@ MonoBehaviour:
   isWeaponSlot: 0
   isInventory: 1
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 5090459737672536117, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!114 &3386696967987813500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,6 +737,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &6344490768461577637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678365865959610305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf3237d850eedd4d85ae7ba8d73c1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentSR: {fileID: 0}
 --- !u!1 &2376660892204176593
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +765,7 @@ GameObject:
   - component: {fileID: 3842458623273396714}
   - component: {fileID: 2421953470130423704}
   - component: {fileID: 6643693871186751014}
+  - component: {fileID: 4929755272635324400}
   m_Layer: 5
   m_Name: Slot Item
   m_TagString: Untagged
@@ -752,6 +807,19 @@ MonoBehaviour:
   image: {fileID: 4268978871324364053}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 7798193690353663720}
 --- !u!222 &7336114608496859310
 CanvasRenderer:
@@ -864,7 +932,7 @@ MonoBehaviour:
   isWeaponSlot: 0
   isInventory: 1
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 5090459737672536117, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!114 &6643693871186751014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,6 +978,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &4929755272635324400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376660892204176593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf3237d850eedd4d85ae7ba8d73c1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentSR: {fileID: 0}
 --- !u!1 &2416568141922743090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,6 +1829,7 @@ GameObject:
   - component: {fileID: 7609914236909356201}
   - component: {fileID: 6256715628173194515}
   - component: {fileID: 3502970504252324586}
+  - component: {fileID: 5013967845794742648}
   m_Layer: 5
   m_Name: Slot Item
   m_TagString: Untagged
@@ -1789,6 +1871,19 @@ MonoBehaviour:
   image: {fileID: 786108508924549981}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 5605017230282658945}
 --- !u!222 &6727312089534353046
 CanvasRenderer:
@@ -1901,7 +1996,7 @@ MonoBehaviour:
   isWeaponSlot: 0
   isInventory: 1
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 5090459737672536117, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!114 &3502970504252324586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1947,6 +2042,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &5013967845794742648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5909427310603381909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf3237d850eedd4d85ae7ba8d73c1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentSR: {fileID: 0}
 --- !u!1 &6557149084587565337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,6 +2070,7 @@ GameObject:
   - component: {fileID: 5604980498673575485}
   - component: {fileID: 4046602021697470388}
   - component: {fileID: 7837234023652822024}
+  - component: {fileID: 3303698400457666309}
   m_Layer: 5
   m_Name: Slot Item
   m_TagString: Untagged
@@ -2003,6 +2112,19 @@ MonoBehaviour:
   image: {fileID: 6570511838134006847}
   hasItem: 0
   isEquiped: 0
+  _weapon:
+    data:
+      skillA: 0
+      skillP: 0
+      rType: 0
+      reload: 0
+      reloadS: 0
+      attackAoe: 0
+      dps: 0
+      description: 
+      tier: 0
+    image: {fileID: 0}
+    equipPos: -1
   equipText: {fileID: 4021539697819887026}
 --- !u!222 &3157685095811706401
 CanvasRenderer:
@@ -2115,7 +2237,7 @@ MonoBehaviour:
   isWeaponSlot: 0
   isInventory: 1
   isBookmarked: 0
-  LongClickPopUpUI: {fileID: 5090459737672536117, guid: 6df3fc04029fe4145879e67b5c57878a, type: 3}
+  LongClickPopUpUIObject: {fileID: 0}
 --- !u!114 &7837234023652822024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2161,6 +2283,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &3303698400457666309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557149084587565337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf3237d850eedd4d85ae7ba8d73c1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentSR: {fileID: 0}
 --- !u!1 &7903023390697734563
 GameObject:
   m_ObjectHideFlags: 0

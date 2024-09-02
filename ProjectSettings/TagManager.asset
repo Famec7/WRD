@@ -21,6 +21,8 @@ TagManager:
   - UI
   - BookMarkedSlot
   - BookMarkedSelectSlot
+  - InventoryDescriptionUI
+  - DetailedDescriptionUI
   layers:
   - Default
   - TransparentFX

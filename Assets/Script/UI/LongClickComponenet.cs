@@ -21,6 +21,7 @@ public class LongClickComponenet : MonoBehaviour
     private RectTransform rectTransform;
 
     public GameObject LongClickPopUpUIObject;
+
     
     private void Start()
     {
@@ -41,6 +42,10 @@ public class LongClickComponenet : MonoBehaviour
         // 만약 롱클릭이 아니고 웨폰 아이디가 0보다 크면
         if (!isLongClick && weaponID > 0 )
         {
+            //if (isInventory)
+            //{
+            //    if (!GetComponent<InventorySlot>().hasItem) return;
+            //}
             // 착용가능한 무기가 있으면
             hasItem = GameManager.instance.useAbleWeaponCnt[weaponID-1] > 0;
             // 조합창 만들고
@@ -57,8 +62,12 @@ public class LongClickComponenet : MonoBehaviour
             {
                 //UI 설명창 만들고 선택됐는지 확인하는 하이라이트 UI 키고 위치 조절
                 UIManager.instance.CreateInventoryDescriptionUI(weaponID);
+                
+                
                 InventoryManager.instance.inventorySelectUI.SetActive(true);
                 InventoryManager.instance.inventorySelectUI.GetComponent<RectTransform>().position = transform.position;
+                InventoryManager.instance.inventorySelectUI.GetComponent<InventorySelectUI>().enabled = true;
+                InventoryManager.instance.inventorySelectUI.GetComponent<InventorySelectUI>().targetInventory = gameObject;
                 //장착,즐겨찾기 버튼 활성화
                 longClickPopUpUI._bookmarkButton.SetActive(true);
                 longClickPopUpUI._equipButton.SetActive(GameManager.instance.weaponCnt[weaponID - 1] > 0);

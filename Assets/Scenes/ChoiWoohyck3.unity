@@ -3211,6 +3211,14 @@ PrefabInstance:
       propertyPath: slots.Array.data[8]
       value: 
       objectReference: {fileID: 667344389}
+    - target: {fileID: 780118037942106478, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1368729969}
+    - target: {fileID: 780118037942106478, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickBackButton
+      objectReference: {fileID: 0}
     - target: {fileID: 876058498735198713, guid: 1485981702313414aa36d998bb951cc0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4699,6 +4707,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 202889643126424914, guid: 1d2cedab6562f8e4abcdd86bc8f9195a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.20320773
+      objectReference: {fileID: 0}
+    - target: {fileID: 202889643126424914, guid: 1d2cedab6562f8e4abcdd86bc8f9195a, type: 3}
+      propertyPath: m_Size.y
+      value: 0.18002915
+      objectReference: {fileID: 0}
+    - target: {fileID: 202889643126424914, guid: 1d2cedab6562f8e4abcdd86bc8f9195a, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.007151723
+      objectReference: {fileID: 0}
+    - target: {fileID: 202889643126424914, guid: 1d2cedab6562f8e4abcdd86bc8f9195a, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.03677523
+      objectReference: {fileID: 0}
     - target: {fileID: 1220511838271794026, guid: 1d2cedab6562f8e4abcdd86bc8f9195a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
