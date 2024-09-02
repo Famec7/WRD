@@ -190,8 +190,10 @@ MonoBehaviour:
   resist: 0
   defense: 0
   monsterName: 
-  woundStack: 0
-  markStack: 0
+  IsWound: 0
+  IsMark: 0
+  damageAmplification: 0
+  IsElectricShock: 0
 --- !u!50 &4455428403941024235
 Rigidbody2D:
   serializedVersion: 4

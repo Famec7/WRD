@@ -37,25 +37,24 @@ public class MonsterHPBarPool : MonoBehaviour
     public static void ReturnObject(MonsterHPBar obj)
     {
         obj.gameObject.SetActive(false);
-        obj.owner = null;
-        obj.ownerStatus = null;
+        obj.Init();
         obj.transform.SetParent(Instance.transform);
         Instance.hpBarQueue.Enqueue(obj);
     }
 
-    public static MonsterHPBar GetObject()
+    public static GameObject GetObject()
     {
         if (Instance.hpBarQueue.Count > 0)
         {
             var obj = Instance.hpBarQueue.Dequeue();
-            return obj;
+            return obj.gameObject;
         }
         else
         {
             var newObj = Instance.CreateNewObject();
             newObj.gameObject.SetActive(true);
             newObj.transform.SetParent(null);
-            return newObj;
+            return newObj.gameObject;
         }
     }
 }

@@ -1649,6 +1649,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 780118037942106478, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1368729969}
+    - target: {fileID: 780118037942106478, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickBackButton
+      objectReference: {fileID: 0}
     - target: {fileID: 3741036365564435295, guid: 1485981702313414aa36d998bb951cc0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2793,6 +2801,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4515531161734457313, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: poolingObjectPrefab
+      value: 
+      objectReference: {fileID: 891715821529741324, guid: f14c730de3c334e46bb7417b5d5275c2, type: 3}
     - target: {fileID: 4670769764877021290, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.8541291
