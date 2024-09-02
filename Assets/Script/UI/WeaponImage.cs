@@ -26,12 +26,12 @@ public class WeaponImage : MonoBehaviour
     private RectTransform rectTransform1;
     private LongClickComponenet longClickComponenet;
 
+    private Sprite mySprite;
     void Start()
     {
         rectTransform1 = GetComponent<RectTransform>();
         rectTransform = GetComponent<RectTransform>();
         originalPos = transform.position;
-
         longClickComponenet = GetComponent<LongClickComponenet>();
     }
 
@@ -165,20 +165,21 @@ public class WeaponImage : MonoBehaviour
             }
         }
 
+        //즐겨찾기 -> 무기 장착 UI
         if (gameObject.transform.parent.CompareTag("BookMarkedSlot"))
         {
+            // 누른 곳이 장착 UI일 경우
             if (targetSlotObject.gameObject.CompareTag("WeaponSlot"))
             {
                 int targetWeaponID = targetSlotObject.GetComponent<WeaponSlotUI>().weaponID;
                 int myWeaponID = transform.parent.GetComponent<WeaponSlotUI>().weaponID;
-
+                LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
+                InventorySlot targetInventorySlot = targetSlotObject.GetComponent<WeaponSlotUI>().inventorySlot;
+                WeaponSlotUI targetWeaponSlot = targetSlotObject.GetComponent<WeaponSlotUI>();
+                // 무기를 갖고 있으면 
                 if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon)
                 {
-                  
-                    LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
-                    longClickPopUpUi.weaponID = targetWeaponID;
-                    longClickPopUpUi.weaponSlot = targetSlotObject.GetComponent<WeaponSlotUI>();
-                    longClickPopUpUi.inventorySlot = targetSlotObject.GetComponent<WeaponSlotUI>().inventorySlot;
+                    longClickPopUpUi.SetLongClickPopUpUI(targetWeaponID, false, false, false, targetInventorySlot, targetWeaponSlot);
                     longClickPopUpUi.UnEuqip();
 
                     BookMakredSlotUI.Instance.RemoveItem(BookMakredSlotUI.Instance.GetSlotWithWeaponID(transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID).transform.GetChild(0).GetComponent<InventorySlot>());
@@ -189,43 +190,43 @@ public class WeaponImage : MonoBehaviour
                 string numberString = Regex.Replace(targetSlotObject.gameObject.name, @"\D", "");
                 int order = numberString == "" ? 4: int.Parse(numberString);
 
+                longClickPopUpUi.inventorySlot = InventoryManager.instance.FindInventorySlot(myWeaponID);
+                WeaponUI.Instance.weaponID = myWeaponID;
                 WeaponUI.Instance.AddItem(order, InventoryManager.instance.FindUnEquipedItem(myWeaponID));
                 transform.parent.GetComponent<WeaponSlotUI>().ChangeWeaponUseable();
-                
             }
                       
         }
+        // 무기 장착 UI -> 즐겨찾기 
+        if (gameObject.transform.parent.CompareTag("WeaponSlot") && targetSlotObject.gameObject.CompareTag("BookMarkedSlot"))
+        {
+            int targetWeaponID = targetSlotObject.GetComponent<WeaponSlotUI>().weaponID;
+            int myWeaponID = transform.parent.GetComponent<WeaponSlotUI>().weaponID;
+            LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
 
-        //if (gameObject.transform.parent.CompareTag("WeaponSlot") && targetSlotObject.gameObject.CompareTag("BookMarkedSlot"))
-        //{
-        //    int targetWeaponID = targetSlotObject.GetComponent<WeaponSlotUI>().weaponID;
-        //    int myWeaponID = transform.parent.GetComponent<WeaponSlotUI>().weaponID;
+            //  즐겨찾기칸에 무기가 있을 때
+            if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon && GameManager.instance.useAbleWeaponCnt[targetWeaponID - 1] > 0)
+            {
+                longClickPopUpUi.SetLongClickPopUpUI(myWeaponID, false, false, false, transform.parent.GetComponent<WeaponSlotUI>().inventorySlot, transform.parent.GetComponent<WeaponSlotUI>());
+                longClickPopUpUi.UnEuqip();
+               
+                string numberString = Regex.Replace(transform.parent.gameObject.name, @"\D", "");
+                int order = numberString == "" ? 4 : int.Parse(numberString);
 
-        //    if (!BookMakredSlotUI.Instance.isDuplicatedID(myWeaponID))
-        //    {
-        //        if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon)
-        //            BookMakredSlotUI.Instance.RemoveItem(targetSlotObject.transform.GetChild(0).GetComponent<InventorySlot>());
+                longClickPopUpUi.inventorySlot = InventoryManager.instance.FindInventorySlot(targetWeaponID);
+                WeaponUI.Instance.weaponID = targetWeaponID;
+                WeaponUI.Instance.AddItem(order, InventoryManager.instance.FindUnEquipedItem(targetWeaponID));
+                targetSlotObject.GetComponent<WeaponSlotUI>().ChangeWeaponUseable();
+            }
 
+            // 바꾸려는 무기가 똑같은 무기가 아닐 때
+            if (!BookMakredSlotUI.Instance.IsDuplicatedID(myWeaponID))
+            {
+                BookMakredSlotUI.Instance.weaponID = myWeaponID;
+                BookMakredSlotUI.Instance.AddItem(int.Parse(targetSlotObject.name));
+            }
 
-        //        BookMakredSlotUI.Instance.weaponID = myWeaponID;
-        //        BookMakredSlotUI.Instance.AddItem(int.Parse(targetSlotObject.name));
-        //    }
-
-        //    if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon && GameManager.instance.useAbleWeaponCnt[targetWeaponID - 1] > 0)
-        //    {
-        //        LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
-        //        longClickPopUpUi.weaponID = myWeaponID;
-        //        longClickPopUpUi.weaponSlot = transform.parent.GetComponent<WeaponSlotUI>();
-        //        longClickPopUpUi.inventorySlot = transform.parent.GetComponent<WeaponSlotUI>().inventorySlot;
-        //        longClickPopUpUi.UnEuqip();
-
-        //        longClickPopUpUi.isBookmarked = true;
-        //        string numberString = Regex.Replace(transform.parent.gameObject.name, @"\D", "");
-        //        int order = numberString == "" ? 4 : int.Parse(numberString);
-        //        WeaponUI.Instance.AddItem(order, InventoryManager.instance.FindUnEquipedItem(targetWeaponID));
-        //    }
-
-        //}
+        }
 
         transform.position = originalPos;
         isDrag = false;

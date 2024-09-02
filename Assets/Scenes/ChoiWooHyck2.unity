@@ -993,6 +993,10 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4278190080
       objectReference: {fileID: 0}
+    - target: {fileID: 694557279069873866, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: isInventory
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 753959715650141303, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: LongClickPopUpUIObject
       value: 

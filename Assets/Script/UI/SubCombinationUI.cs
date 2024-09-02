@@ -129,14 +129,16 @@ public class SubCombinationUI : MonoBehaviour
         craftButtons[0].materialWeapons = materialWeapons;
 
         int i = 1;
+        int index = 1;
 
         foreach (int materialID in materialWeapons)
         {
+            craftButtons[index++].weaponID = materialID;
+
             if (materialID < 6) continue;
 
             string combi = WeaponDataManager.Instance.Database.GetWeaponData(materialID).Combi;
             string[] combis = combi.Split('\x020');
-            craftButtons[i].weaponID = materialID;
             craftButtons[i].materialWeapons = new int[combis.Length];
 
             Array.Sort(combis, (x, y) =>

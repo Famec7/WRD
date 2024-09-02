@@ -188,7 +188,7 @@ public class MonsterSpawnManager : MonoBehaviour
         monster.GetComponent<MonsterMoveComponent>().roadNum = 1; // *임시코드* 생성 위치 바꾸면 코드 수정해야함
         monster.transform.position = spawnPoints[spawnPointsCount - 1].transform.position;
 
-        GameObject hpBar = Instantiate(hpBarPrefab, GameObject.Find("Canvas").transform);
+        GameObject hpBar = Instantiate(hpBarPrefab, GameObject.Find("HPBarCanvas").transform);
         hpBar.GetComponent<MonsterHPBar>().owner = monster;
         hpBar.GetComponent<MonsterHPBar>().ownerStatus = monster.GetComponent<Status>();
         hpBar.transform.SetAsFirstSibling();

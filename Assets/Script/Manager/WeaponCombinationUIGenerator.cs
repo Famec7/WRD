@@ -72,12 +72,12 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
                 string[] combis = combi.Split('\x020');
 
                 var subCombi = Instantiate(subCombinationPrefab[combis.Length - 2], combinationUI.transform) as GameObject;
-                subCombi.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 1f);
-                subCombi.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 1f);
+                subCombi.GetComponent<RectTransform>().anchorMax = new Vector2(1f, 1f);
+                subCombi.GetComponent<RectTransform>().anchorMin = new Vector2(1f, 1f);
                 subCombi.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 1f);
 
-                subCombi.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -230 - 150 * j, 0);
-                subCombi.GetComponent<SubCombinationUI>().originPosition =new Vector3(0, -230 - 150 * j, 0);
+                subCombi.GetComponent<RectTransform>().anchoredPosition = new Vector3(-220, -300 - 150 * j, -60);
+                subCombi.GetComponent<SubCombinationUI>().originPosition =new Vector3(-220, -300 - 150 * j, -60);
                 subCombi.GetComponent<SubCombinationUI>().mainweaponID = targetCode;
 
                 string path = "WeaponIcon/" + targetCode.ToString();

@@ -143,7 +143,6 @@ public class UIManager : MonoBehaviour
         }
        // _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
-        InitLongClickPopupUI();
     }
     
     public void CloseDetailedDescriptionPopUpUI()
@@ -158,7 +157,6 @@ public class UIManager : MonoBehaviour
         backButton.SetActive(false);
       //  _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
-        InitLongClickPopupUI();
     }
     
     public void CloseInventoryDescriptionPopUpUI()
@@ -176,9 +174,15 @@ public class UIManager : MonoBehaviour
         backButton.SetActive(false);
      //   _blockImage.gameObject.SetActive(false);
         longClickPopUpUI.SetActive(false);
+    }
+    
+    public void CloseAllPopUpUI()
+    {
+        CloseCombinePopUpUI();
+        CloseInventoryDescriptionPopUpUI();
+        CloseDetailedDescriptionPopUpUI();
         InitLongClickPopupUI();
     }
-
    public void ChangeAutoSkipToggle()
     {
         GameManager.instance.isSKip = autoSkipToggle.isOn;
@@ -186,18 +190,23 @@ public class UIManager : MonoBehaviour
 
     public void OpenInventory()
     {
-        inventory.SetActive(true);
-        InventoryManager.instance.FreshSlot();
-        
-        CloseCombinePopUpUI();
+        if (!inventory.activeSelf)
+        {
+            inventory.SetActive(true);
+            InventoryManager.instance.FreshSlot();
 
-        if (InventoryManager.instance.isLastAllShow) 
-            allShowInventoryContent.SetActive(true);
+            CloseCombinePopUpUI();
+
+            if (InventoryManager.instance.isLastAllShow)
+                allShowInventoryContent.SetActive(true);
+            else
+                normalInventoryContent.SetActive(true);
+
+            if (InventoryManager.instance.isClassSorted)
+                InventoryManager.instance.ClickClassShowButton();
+        }
         else
-            normalInventoryContent.SetActive(true);
-
-        if (InventoryManager.instance.isClassSorted)
-            InventoryManager.instance.ClickClassShowButton();
+            InventoryManager.instance.CloseButton();
     }
 
     public void ClickBackButton()

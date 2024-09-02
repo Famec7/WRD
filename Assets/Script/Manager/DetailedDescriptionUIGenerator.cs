@@ -55,7 +55,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
                 highLevelWeaponIcon.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(highLevelweaponID).WeaponName;
                 var path = "WeaponIcon/" + highLevelweaponID;
                 highLevelWeaponIcon.GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
-                highLevelWeaponIcon.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(()=>UIManager.instance.CreateDetailedDescriptionUI(highLevelweaponID));
+                highLevelWeaponIcon.transform.GetComponent<Button>().onClick.AddListener(()=>UIManager.instance.CreateDetailedDescriptionUI(highLevelweaponID));
                 idx++;
             }
 
@@ -73,7 +73,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
                         highLevelWeaponIcon.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(j).WeaponName;
                         var path = "WeaponIcon/" + j;
                         highLevelWeaponIcon.GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
-                        highLevelWeaponIcon.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(()=>UIManager.instance.CreateDetailedDescriptionUI(highLevelweaponID));
+                        highLevelWeaponIcon.transform.GetComponent<Button>().onClick.AddListener(()=>UIManager.instance.CreateDetailedDescriptionUI(highLevelweaponID));
                         idx++;
                     }
                 }
