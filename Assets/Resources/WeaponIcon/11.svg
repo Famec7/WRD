@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #333;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke: #000;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-1, .cls-3 {
+        stroke-width: 27.04px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #e6e6e6;
+      }
+
+      .cls-2, .cls-4 {
+        stroke-width: 32px;
+      }
+
+      .cls-4 {
+        fill: #919191;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" x="1592.16" y="190.25" width="154.58" height="455.89" transform="translate(2554.22 1894.38) rotate(-135)"/>
+  <polygon class="cls-3" points="1775.97 202.36 1830.63 257.01 1885.28 311.66 1934.21 305.17 1941.03 211.74 1908.47 179.17 1875.9 146.61 1782.46 153.43 1775.97 202.36"/>
+  <polygon class="cls-2" points="130.97 1964.02 1419.58 675.41 1318.3 491.22 195.97 1649.37 130.97 1964.02"/>
+  <polygon class="cls-4" points="130.97 1964.02 1419.58 675.41 1603.77 776.7 445.63 1899.03 130.97 1964.02"/>
+  <polygon class="cls-2" points="1220.69 455.14 1382.76 712.24 1639.86 874.3 1858.27 956.95 1626.54 668.66 1526.44 568.55 1426.34 468.45 1138.04 236.72 1220.69 455.14"/>
+</svg>
