@@ -9,7 +9,6 @@ public class MeleeWeapon : WeaponBase
     {
         base.Attack();
         
-        //Todo: Add attack animation and effect
         if (owner.Target.TryGetComponent(out Monster monster))
         {
 #if WEAPON_DEBUG

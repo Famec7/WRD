@@ -11,6 +11,8 @@ public class PlayerController : CharacterController, ISubject
 
     public Vector3 TouchPos { get; private set; }
 
+    [SerializeField] private Transform _arm;
+
     #region State
 
     public enum State
@@ -48,20 +50,15 @@ public class PlayerController : CharacterController, ISubject
 
             if (value == null || !value.activeSelf)
             {
-                _targetUI.gameObject.SetActive(false);
                 return;
             }
 
             // 상태를 추적으로 변경후 UI에 타겟을 전달 그리고 옵저버에게 알림
             ChangeState(State.CHASE);
             
-            _targetUI.Target = value.transform;
-            _targetUI.gameObject.SetActive(true);
             Notify();
         }
     }
-
-    [Header("Target UI")] [SerializeField] private TargetUI _targetUI;
 
     #endregion
 
@@ -204,4 +201,17 @@ public class PlayerController : CharacterController, ISubject
     }
 
     #endregion
+    
+    /******************************Weapon******************************************/
+    public override void AttachWeapon(WeaponBase weapon)
+    {
+        Data.SetCurrentWeapon(weapon);
+        Data.CurrentWeapon.transform.SetParent(_arm);
+    }
+    
+    public override void DetachWeapon()
+    {
+        Target = null;
+        Data.CurrentWeapon.transform.SetParent(null);
+    }
 }

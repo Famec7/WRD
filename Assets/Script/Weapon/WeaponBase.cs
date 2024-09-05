@@ -87,9 +87,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     public void EquipWeapon(CharacterController owner)
     {
         this.owner = owner;
-        this.transform.SetParent(this.owner.transform);
-        
-        owner.Data.SetCurrentWeapon(this);
+        owner.AttachWeapon(this);
         
         // 스킬 설정 (owner도 같이 설정됨)
         if (IsPassiveSkillNull is false)
@@ -101,12 +99,10 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     public void DetachWeapon()
     {
         // 무기 해제
-        owner.Target = null;
+        owner.DetachWeapon();
         
         this.owner = null;
         _isAttack = false;
-        
-        this.transform.SetParent(null);
         
         ResetStats();
         

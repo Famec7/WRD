@@ -46,4 +46,16 @@ public class PetController : CharacterController, IObserver
     {
         return _playerController.CurrentState is PlayerController.State.IDLE && Data.CurrentWeapon is not null;
     }
+
+    public override void AttachWeapon(WeaponBase weapon)
+    {
+        Data.SetCurrentWeapon(weapon);
+        Data.CurrentWeapon.transform.SetParent(this.transform);
+    }
+
+    public override void DetachWeapon()
+    {
+        Target = null;
+        Data.CurrentWeapon.transform.SetParent(null);
+    }
 }
