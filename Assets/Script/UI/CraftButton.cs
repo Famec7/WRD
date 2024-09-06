@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class CraftButton : MonoBehaviour
 {
     // Start is called before the first frame update
+    public bool isMain = false;
     public int weaponID;
     public int[] materialWeapons;
     public bool isElement = false;
@@ -22,7 +23,7 @@ public class CraftButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.weaponCnt[weaponID-1] > 0)
+        if (GameManager.instance.weaponCnt[weaponID-1] > 0 && !isMain)
         {
             gameObject.GetComponent<Button>().enabled = false;
             canCombineBorder.SetActive(false);

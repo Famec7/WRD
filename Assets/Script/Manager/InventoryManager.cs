@@ -181,8 +181,37 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            GameObject newSlots = Instantiate(inventorySlotsPrefab,slotParent);
+            // Instantiate new GameObject which contains multiple slots (5 in this case)
+            GameObject newSlots = Instantiate(inventorySlotsPrefab, slotParent);
 
+            // Get all InventorySlot components from the newly instantiated GameObject's children
+            InventorySlot[] newInventorySlots = newSlots.GetComponentsInChildren<InventorySlot>();
+
+            if (newInventorySlots.Length > 0)
+            {
+                // Resize the slots array to accommodate the new slots
+                InventorySlot[] newSlotsArray = new InventorySlot[slots.Length + newInventorySlots.Length];
+
+                // Copy existing slots to the new array
+                for (int i = 0; i < slots.Length; i++)
+                {
+                    newSlotsArray[i] = slots[i];
+                }
+
+                // Add the new slots to the array
+                for (int i = 0; i < newInventorySlots.Length; i++)
+                {
+                    newSlotsArray[slots.Length + i] = newInventorySlots[i];
+                }
+
+                // Assign the new array to the slots field
+                slots = newSlotsArray;
+            }
+            else
+            {
+                Debug.LogError("No InventorySlot components found in the new slots!");
+            }
+        
         }
     }
 
@@ -531,7 +560,7 @@ public class InventoryManager : MonoBehaviour
 
     public void CreateAllItem()
     {
-        for (int i = 5; i < 31; i++)
+        for (int i = 6; i < 31; i++)
         {
 
             string weaponIconPath = "WeaponIcon/" + i.ToString();
