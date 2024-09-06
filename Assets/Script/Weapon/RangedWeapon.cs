@@ -7,7 +7,8 @@ public class RangedWeapon : WeaponBase
     protected override void Attack()
     {
         base.Attack();
-        //Todo: Add attack animation and effect
+        
+        anim.PlayAnimation();
 
         if (owner.Target.TryGetComponent(out Monster monster))
         {

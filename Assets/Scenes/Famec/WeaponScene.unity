@@ -2240,6 +2240,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: IronSword
       objectReference: {fileID: 0}
+    - target: {fileID: 1725306334580153423, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
+      propertyPath: animationBase
+      value: 
+      objectReference: {fileID: 1329965990}
     - target: {fileID: 3656507640395904915, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3
@@ -2283,13 +2287,58 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1562499871069127646, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1329965990}
   m_SourcePrefab: {fileID: 100100000, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
 --- !u!4 &1329965988 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3656507640395904915, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
   m_PrefabInstance: {fileID: 1329965987}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1329965989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1562499871069127646, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
+  m_PrefabInstance: {fileID: 1329965987}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1329965990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329965989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d809b1c5aa44dc59e4c261c9d36c804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _degree: 60
 --- !u!114 &1368729969 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}

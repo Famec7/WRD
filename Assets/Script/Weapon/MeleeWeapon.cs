@@ -9,6 +9,8 @@ public class MeleeWeapon : WeaponBase
     {
         base.Attack();
         
+        anim.PlayAnimation();
+        
         if (owner.Target.TryGetComponent(out Monster monster))
         {
 #if WEAPON_DEBUG
