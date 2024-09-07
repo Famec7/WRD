@@ -6,6 +6,8 @@ public class PetController : CharacterController, IObserver
     [SerializeField] private PlayerController _playerController;
     [SerializeField] private Vector2 _offsetFromPlayer;
 
+    [Space] [SerializeField] private Transform _arm;
+
     private Vector3 screenBound;
 
     private void Start()
@@ -69,13 +71,17 @@ public class PetController : CharacterController, IObserver
         weapon.transform.position = this.transform.position;
         
         /******************무기 부모 설정********************/
-        weapon.transform.SetParent(this.transform);
+        weapon.transform.SetParent(_arm);
         
         /******************무기 크기 조정********************/
         this.transform.localScale = new Vector3(0.6f, 0.6f, 0f);
         
         /******************무기 위치 조정********************/
         weapon.transform.localRotation = weapon.Pivot.GetOriginRotation();
+        
+        FloatingIdleMotion floatingIdleMotion = GetComponent<FloatingIdleMotion>();
+        floatingIdleMotion.PlayFloatingIdle(weapon.transform);
+        floatingIdleMotion.ShowShadow(true);
     }
 
     public override void DetachWeapon()
@@ -84,5 +90,9 @@ public class PetController : CharacterController, IObserver
         Data.CurrentWeapon.transform.SetParent(null);
         
         this.transform.localScale = new Vector3(1.0f, 1.0f, 0f);
+        
+        FloatingIdleMotion floatingIdleMotion = GetComponent<FloatingIdleMotion>();
+        floatingIdleMotion.StopFloatingIdle();
+        floatingIdleMotion.ShowShadow(false);
     }
 }
