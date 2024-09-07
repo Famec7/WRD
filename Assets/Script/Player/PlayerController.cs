@@ -76,7 +76,7 @@ public class PlayerController : CharacterController, ISubject
             case State.IDLE:
                 break;
             case State.CHASE:
-                if (IsTargetNullOrInactive())
+                if (!IsWeaponEquipped() || IsTargetNullOrInactive())
                     ChangeState(State.IDLE);
                 break;
             case State.MOVE:
@@ -120,7 +120,7 @@ public class PlayerController : CharacterController, ISubject
         }
     }
 
-    private void ChangeState(State state)
+    public void ChangeState(State state)
     {
 #if FSM_DEBUG
         Debug.Log($"Change State : {CurrentState} -> {state}");
@@ -171,6 +171,11 @@ public class PlayerController : CharacterController, ISubject
     {
         return Vector3.Distance(transform.position, Target.transform.position) <= Data.CurrentWeapon.Data.AttackRange;
     }
+    
+    public bool IsWeaponEquipped()
+    {
+        return Data.CurrentWeapon != null;
+    }
 
     #endregion
 
@@ -206,7 +211,16 @@ public class PlayerController : CharacterController, ISubject
     public override void AttachWeapon(WeaponBase weapon)
     {
         Data.SetCurrentWeapon(weapon);
-        Data.CurrentWeapon.transform.SetParent(_arm);
+
+
+        Vector3 weaponPos = weapon.transform.position;
+        weaponPos += transform.position;
+        weapon.transform.position = weaponPos;
+        
+        weapon.transform.SetParent(_arm);
+
+        Vector3 playerRotation = transform.rotation.eulerAngles;
+        _arm.rotation = Quaternion.Euler(0, Mathf.Approximately(playerRotation.y, -180) ? 180 : 0, 0);
     }
     
     public override void DetachWeapon()

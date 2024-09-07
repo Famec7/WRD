@@ -2,19 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-public abstract class WeaponBase : MonoBehaviour, IObserver
+public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 {
     public CharacterController owner;
 
     private bool _isAttack = false;
 
+    #region pivot
+
+    [Header("피봇")]
+    [SerializeField] private Pivot _pivot;
+    
+    public Pivot Pivot => _pivot;
+
+    #endregion
 
     #region Data
 
+    [Space]
     [SerializeField] private int weaponId;
 
     public WaitForSeconds AttackDelay { get; private set; }
@@ -66,7 +76,11 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     protected virtual void Init()
     {
         Data = WeaponDataManager.Instance.GetWeaponData(weaponId);
-        AttackDelay = new WaitForSeconds(1 / Data.AttackSpeed);
+        SetAttackDelay(Data.AttackSpeed);
+        _originalAttackDamage = Data.AttackDamage;
+        _originalAttackSpeed = Data.AttackSpeed;
+        
+        _pivot.Init(this.transform);
     }
 
     /// <summary>
@@ -81,7 +95,10 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
         if (IsPassiveSkillNull) return;
 
         if (passiveSkill.Activate(owner.Target))
-            return;
+        {
+            _isAttack = false;
+            StopCoroutine(CoroutineAttack());
+        }
     }
 
     /// <summary>
@@ -157,4 +174,15 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     }
 
     #endregion
+
+    public void GetFromPool()
+    {
+        _pivot.ResetPivot();
+    }
+
+    public void ReturnToPool()
+    {
+        StopAllCoroutines();
+        ResetStats();
+    }
 }

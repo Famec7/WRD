@@ -15,7 +15,7 @@ public class FloatingIdleMotion : MonoBehaviour
     
     private void Start()
     {
-        _startPos = transform.localPosition;
+        _startPos = transform.position;
         StartCoroutine(IE_FloatingIdle());
     }
     
@@ -24,7 +24,7 @@ public class FloatingIdleMotion : MonoBehaviour
         while (true)
         {
             float dy = Mathf.Sin(Time.time * _floatingSpeed) * _floatingHeight;
-            transform.localPosition = _startPos + new Vector3(0, dy, 0);
+            transform.position += new Vector3(0, dy, 0);
             
             yield return null;
         }

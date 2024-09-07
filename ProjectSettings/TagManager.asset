@@ -60,7 +60,10 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
+  - name: Map
+    uniqueID: 2297652227
+    locked: 0
+  - name: Character
     uniqueID: 3996567745
     locked: 0
   - name: Weapon

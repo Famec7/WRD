@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SwingAnimation : AnimationBase
 {
+    [Space] [Header("휘두르는 각도")]
     [SerializeField]
     private float _degree = 60.0f;
     
@@ -20,28 +21,38 @@ public class SwingAnimation : AnimationBase
     {
         var elapsedTime = 0.0f;
         var startRotation = Owner.localRotation;
-        var targetRotation = Quaternion.Euler(0.0f, 0.0f, _degree);
         
-        while (elapsedTime < endTime / 2.0f)
+        if(startRotation.eulerAngles.y >= 180.0f || startRotation.eulerAngles.y <= -180.0f)
+            _degree *= -Mathf.Abs(_degree);
+        
+        var targetRotation = Quaternion.Euler(startRotation.eulerAngles.x, startRotation.eulerAngles.y, _degree);
+        
+        float hitdownTime = endTime / 4.0f;
+        
+        while (elapsedTime < hitdownTime)
         {
-            elapsedTime += Time.deltaTime * animationSpeed.Evaluate(elapsedTime);
-            elapsedTime = Mathf.Clamp01(elapsedTime);
+            float t = CalculateElapsedTime(ref elapsedTime);
             
-            Owner.localRotation = Quaternion.Lerp(startRotation, targetRotation, elapsedTime);
+            Owner.localRotation = Quaternion.Lerp(startRotation, targetRotation, t);
             yield return null;
         }
         
-        elapsedTime = 0.0f;
-        
-        while (elapsedTime < endTime / 2.0f)
+        while (elapsedTime < endTime)
         {
-            elapsedTime += Time.deltaTime * animationSpeed.Evaluate(elapsedTime);
-            elapsedTime = Mathf.Clamp01(elapsedTime);
+            float t = CalculateElapsedTime(ref elapsedTime);
             
-            Owner.localRotation = Quaternion.Lerp(targetRotation, startRotation, elapsedTime);
+            Owner.localRotation = Quaternion.Lerp(targetRotation, startRotation, t);
             yield return null;
         }
         
         Owner.localRotation = startRotation;
+    }
+
+    private float CalculateElapsedTime(ref float elaspseTime)
+    {
+        elaspseTime += Time.deltaTime;
+        float t = elaspseTime / endTime;
+        
+        return animationSpeed.Evaluate(t);
     }
 }
