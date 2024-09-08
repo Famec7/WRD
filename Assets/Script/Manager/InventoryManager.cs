@@ -67,6 +67,10 @@ public class InventoryManager : MonoBehaviour
         AddItem(item);
         WeaponUI.Instance.weaponSlots[4].transform.GetChild(0).GetComponent<InventorySlot>().weapon = item;
         slots[0].isEquiped = true;
+        
+#if ADD_ALL_ITEM
+        CreateAllItem();
+#endif
     }
 
     // Update is called once per frame
