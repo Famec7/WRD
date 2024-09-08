@@ -99,6 +99,11 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
             _isAttack = false;
             StopCoroutine(CoroutineAttack());
         }
+
+        if (anim != null)
+        {
+            anim.PlayAnimation();
+        }
     }
 
     /// <summary>
