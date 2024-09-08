@@ -11,6 +11,8 @@ public class PlayerController : CharacterController, ISubject
 
     public Vector3 TouchPos { get; private set; }
 
+    [SerializeField] private Transform _arm;
+
     #region State
 
     public enum State
@@ -48,20 +50,15 @@ public class PlayerController : CharacterController, ISubject
 
             if (value == null || !value.activeSelf)
             {
-                _targetUI.gameObject.SetActive(false);
                 return;
             }
 
             // 상태를 추적으로 변경후 UI에 타겟을 전달 그리고 옵저버에게 알림
             ChangeState(State.CHASE);
             
-            _targetUI.Target = value.transform;
-            _targetUI.gameObject.SetActive(true);
             Notify();
         }
     }
-
-    [Header("Target UI")] [SerializeField] private TargetUI _targetUI;
 
     #endregion
 
@@ -79,7 +76,7 @@ public class PlayerController : CharacterController, ISubject
             case State.IDLE:
                 break;
             case State.CHASE:
-                if (IsTargetNullOrInactive())
+                if (!IsWeaponEquipped() || IsTargetNullOrInactive())
                     ChangeState(State.IDLE);
                 break;
             case State.MOVE:
@@ -123,7 +120,7 @@ public class PlayerController : CharacterController, ISubject
         }
     }
 
-    private void ChangeState(State state)
+    public void ChangeState(State state)
     {
 #if FSM_DEBUG
         Debug.Log($"Change State : {CurrentState} -> {state}");
@@ -174,6 +171,11 @@ public class PlayerController : CharacterController, ISubject
     {
         return Vector3.Distance(transform.position, Target.transform.position) <= Data.CurrentWeapon.Data.AttackRange;
     }
+    
+    public bool IsWeaponEquipped()
+    {
+        return Data.CurrentWeapon != null;
+    }
 
     #endregion
 
@@ -204,4 +206,26 @@ public class PlayerController : CharacterController, ISubject
     }
 
     #endregion
+    
+    /******************************Weapon******************************************/
+    public override void AttachWeapon(WeaponBase weapon)
+    {
+        Data.SetCurrentWeapon(weapon);
+
+
+        Vector3 weaponPos = weapon.transform.position;
+        weaponPos += transform.position;
+        weapon.transform.position = weaponPos;
+        
+        weapon.transform.SetParent(_arm);
+
+        Vector3 playerRotation = transform.rotation.eulerAngles;
+        _arm.rotation = Quaternion.Euler(0, Mathf.Approximately(playerRotation.y, -180) ? 180 : 0, 0);
+    }
+    
+    public override void DetachWeapon()
+    {
+        Target = null;
+        Data.CurrentWeapon.transform.SetParent(null);
+    }
 }

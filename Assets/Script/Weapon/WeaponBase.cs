@@ -2,30 +2,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
-public abstract class WeaponBase : MonoBehaviour, IObserver
+public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 {
     public CharacterController owner;
-    
-    private bool _isAttack = false;
-    
-    #region Data
-    
-    [SerializeField]
-    private int weaponId;
 
-    private WaitForSeconds attackDelay;
+    private bool _isAttack = false;
+
+    #region pivot
+
+    [Header("피봇")]
+    [SerializeField] private Pivot _pivot;
     
-    public WaitForSeconds AttackDelay
-    {
-        get => attackDelay;
-        set => attackDelay = value;
-    }
-    
+    public Pivot Pivot => _pivot;
+
+    #endregion
+
+    #region Data
+
+    [Space]
+    [SerializeField] private int weaponId;
+
+    public WaitForSeconds AttackDelay { get; private set; }
+
     public WeaponData Data { get; private set; }
     
+    public void SetAttackDelay(float attackSpeed)
+    {
+        AttackDelay = new WaitForSeconds(1 / attackSpeed);
+        anim.SetTime(1 / attackSpeed);
+    }
+
     private float _originalAttackDamage;
     private float _originalAttackSpeed;
 
@@ -40,7 +51,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     public bool IsActiveSkillNull => activeSkill == null;
 
     #endregion
-    
+
     #region Event Function
 
     protected virtual void Start()
@@ -56,13 +67,20 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
 
     #endregion
 
+    [Space] [SerializeField]
+    protected AnimationBase anim;
+
     /// <summary>
     /// 무기 초기화 함수
     /// </summary>
     protected virtual void Init()
     {
         Data = WeaponDataManager.Instance.GetWeaponData(weaponId);
-        attackDelay = new WaitForSeconds(1 / Data.AttackSpeed);
+        SetAttackDelay(Data.AttackSpeed);
+        _originalAttackDamage = Data.AttackDamage;
+        _originalAttackSpeed = Data.AttackSpeed;
+        
+        _pivot.Init(this.transform);
     }
 
     /// <summary>
@@ -77,7 +95,15 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
         if (IsPassiveSkillNull) return;
 
         if (passiveSkill.Activate(owner.Target))
-            return;
+        {
+            _isAttack = false;
+            StopCoroutine(CoroutineAttack());
+        }
+
+        if (anim != null)
+        {
+            anim.PlayAnimation();
+        }
     }
 
     /// <summary>
@@ -87,43 +113,42 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
     public void EquipWeapon(CharacterController owner)
     {
         this.owner = owner;
-        this.transform.SetParent(this.owner.transform);
-        
-        owner.Data.SetCurrentWeapon(this);
-        
+        owner.AttachWeapon(this);
+
         // 스킬 설정 (owner도 같이 설정됨)
         if (IsPassiveSkillNull is false)
             passiveSkill.SetWeapon(this);
-        if(IsActiveSkillNull is false)
+        if (IsActiveSkillNull is false)
             activeSkill.SetWeapon(this);
+
+        // 애니메이션 설정
+        anim.Owner = this.transform.parent;
     }
 
     public void DetachWeapon()
     {
         // 무기 해제
-        owner.Target = null;
-        
+        owner.DetachWeapon();
+
         this.owner = null;
         _isAttack = false;
-        
-        this.transform.SetParent(null);
-        
+
         ResetStats();
-        
+
         StopAllCoroutines();
     }
-    
+
     private void ResetStats()
     {
         Data.AttackDamage = _originalAttackDamage;
-        attackDelay = new WaitForSeconds(1 / _originalAttackSpeed);
+        SetAttackDelay(_originalAttackSpeed);
     }
 
     private IEnumerator CoroutineAttack()
     {
         _isAttack = true;
         Attack();
-        yield return attackDelay;
+        yield return AttackDelay;
         _isAttack = false;
     }
 
@@ -138,20 +163,31 @@ public abstract class WeaponBase : MonoBehaviour, IObserver
         if (owner.Target is not null)
             StartCoroutine(CoroutineAttack());
     }
-    
+
     #region Observer Action (Skill)
 
     protected UnityAction notifyAction;
-    
+
     public void AddAction(UnityAction action)
     {
         notifyAction += action;
     }
-    
+
     public void RemoveAction(UnityAction action)
     {
         notifyAction -= action;
     }
 
     #endregion
+
+    public void GetFromPool()
+    {
+        _pivot.ResetPivot();
+    }
+
+    public void ReturnToPool()
+    {
+        StopAllCoroutines();
+        ResetStats();
+    }
 }

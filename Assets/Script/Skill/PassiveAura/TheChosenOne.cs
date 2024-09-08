@@ -49,7 +49,7 @@ public class TheChosenOne : PassiveAuraSkillBase
 
             // 플레이어와 펫의 공격속도 변경
             var attackSpeed = character.Data.CurrentWeapon.Data.AttackSpeed;
-            character.Data.CurrentWeapon.AttackDelay = new WaitForSeconds(1 / attackSpeed * attackSpeedMultiplier);
+            character.Data.CurrentWeapon.SetAttackDelay(attackSpeed * attackSpeedMultiplier);
         }
     }
 }

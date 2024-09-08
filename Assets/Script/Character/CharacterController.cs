@@ -2,7 +2,6 @@
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public abstract class CharacterController : MonoBehaviour
 {
     /***********************Variables*****************************/
@@ -41,7 +40,7 @@ public abstract class CharacterController : MonoBehaviour
 
     public void FlipSprite(bool isRight)
     {
-        _spriteRenderer.flipX = !isRight;
+        this.transform.rotation = Quaternion.Euler(0, isRight ? 180 : 0, 0);
     }
 
     protected virtual void Awake()
@@ -70,4 +69,8 @@ public abstract class CharacterController : MonoBehaviour
                 Target = col.transform.gameObject;
         }
     }
+    
+    /*************************Weapon******************************/
+    public abstract void AttachWeapon(WeaponBase weapon);
+    public abstract void DetachWeapon();
 }

@@ -9,7 +9,11 @@ public class ChaseState : IState<PlayerController>
 
     public void Execute(PlayerController entity)
     {
-        if (entity.IsTargetInRange()) return;
+        if (entity.IsTargetInRange())
+        {
+            entity.ChangeState(PlayerController.State.IDLE);
+            return;
+        }
         
         // 타겟이 범위 밖에 있으면 이동
         Vector3 targetPos = entity.Target.transform.position;

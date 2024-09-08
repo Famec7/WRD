@@ -8,12 +8,12 @@ public class PistelFire : InstantaneousSkill, IObserver
     private void StatInit()
     {
         _attackCount = 0;
-        weapon.owner.Data.CurrentWeapon.AttackDelay = new WaitForSeconds(1 / weapon.owner.Data.CurrentWeapon.Data.AttackSpeed);
+        weapon.owner.Data.CurrentWeapon.SetAttackDelay(weapon.owner.Data.CurrentWeapon.Data.AttackSpeed);
     }
 
     protected override void OnActiveEnter()
     {
-        weapon.owner.Data.CurrentWeapon.AttackDelay = new WaitForSeconds(1 / Data.GetValue(1));
+        weapon.owner.Data.CurrentWeapon.SetAttackDelay(Data.GetValue(1));
         weapon.owner.Data.CurrentWeapon.AddAction(OnNotify);
     }
 
