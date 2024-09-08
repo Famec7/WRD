@@ -26,7 +26,7 @@ public class Monster : MonoBehaviour
     {
         hp -= damage;
         status.HP -= damage + damage * status.damageAmplification;
-        if (status.HP <= 0)
+        if (status.HP <= 0 && !isDead)
             IsDead();
     }
 
