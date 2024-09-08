@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 1332253320541190210}
   - component: {fileID: 7926419819972194322}
   - component: {fileID: 6299760244683842465}
+  - component: {fileID: 3007410353314918847}
   m_Layer: 0
   m_Name: Excalibur
   m_TagString: Untagged
@@ -246,15 +247,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8534504255012625708}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.136, y: 0.013, z: 0}
+  m_LocalScale: {x: 0.0136757, y: 0.0136757, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4907818902327701312}
   - {fileID: 4889119313812011108}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &3340646471654870393
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -293,18 +294,18 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 351608095
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 94ceebcb63bab7648ad52f4811883315, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 32, y: 32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4489820946998548868
@@ -321,13 +322,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   _pivot:
-    _pivot: {x: 0, y: 0, z: 0}
-    _originRotation: {x: 0, y: 0, z: 0}
-    _originScale: {x: 0, y: 0, z: 0}
+    _pivot: {x: -0.136, y: 0.013, z: 0}
+    _originRotation: {x: 0, y: 0, z: -90}
+    _originScale: {x: 0.0136757, y: 0.0136757, z: 0}
   weaponId: 21
   passiveSkill: {fileID: 1332253320541190210}
   activeSkill: {fileID: 6299760244683842465}
-  anim: {fileID: 0}
+  anim: {fileID: 3007410353314918847}
 --- !u!114 &1332253320541190210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,3 +374,40 @@ MonoBehaviour:
   indicator: {fileID: 7749860798571302501}
   usableRange: {fileID: 6484908689669868283}
   _offset: {x: 0, y: 2}
+--- !u!114 &3007410353314918847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8534504255012625708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d809b1c5aa44dc59e4c261c9d36c804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _degree: 60

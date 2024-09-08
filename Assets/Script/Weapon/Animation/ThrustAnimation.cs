@@ -23,8 +23,6 @@ public class ThrustAnimation : AnimationBase
         
         float breakTime = endTime / 4.0f;
         
-        Debug.Log(transform.right);
-        
         while (elapsedTime < breakTime)
         {
             float t = CalculateElapsedTime(ref elapsedTime);
