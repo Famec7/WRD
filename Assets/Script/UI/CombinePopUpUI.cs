@@ -39,7 +39,7 @@ public class CombinePopUpUI : UIPopUp
         Transform[] subCombinationUIs = transform.GetComponentsInChildren<Transform>();
         if (isInventory)
         {
-            GetComponent<RectTransform>().anchoredPosition = new Vector3(130, -1266);
+            GetComponent<RectTransform>().anchoredPosition = new Vector3(130, -1070);
             GetComponent<RectTransform>().sizeDelta = new Vector2(500,300);
             GetComponent<Image>().enabled = false;
             foreach (var subCombinationUI in subCombinationUIs)
