@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PopUpSlide : MonoBehaviour
 {
@@ -12,7 +13,13 @@ public class PopUpSlide : MonoBehaviour
     private RectTransform _currentRectTransform;
 
     private bool _isPopUp = false;
-    
+    [SerializeField]
+    private Sprite rightImage;
+    [SerializeField]
+    private Sprite leftImage;
+    [SerializeField]
+    private Image openButton;
+
     [SerializeField]
     private AnimationCurve _animationCurve;
 
@@ -29,6 +36,7 @@ public class PopUpSlide : MonoBehaviour
     public void OnClick()
     {
         StartCoroutine(_isPopUp ? IE_ClosePopUp() : IE_OpenPopUp());
+        openButton.sprite = _isPopUp ? leftImage : rightImage ;
     }
 
     private IEnumerator IE_OpenPopUp()

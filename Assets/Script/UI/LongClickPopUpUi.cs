@@ -13,6 +13,12 @@ public class LongClickPopUpUi : MonoBehaviour
 
     public WeaponSlotUI weaponSlot;
 
+    public Sprite unBookMarkImage;
+    public Sprite bookMarkImage;
+    public Sprite equipImage;
+    public Sprite unEquipImage;
+
+
     public int weaponID;
 
     public bool isBookmarked;
@@ -49,25 +55,25 @@ public class LongClickPopUpUi : MonoBehaviour
     public void SetBookmarkedButtonText(bool isBookmarked, bool isInventory, bool isWeaponSlot)
     {
 
-        var bookmarkButtonTMP = _bookmarkButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        var equipButtonTMP = _equipButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
- 
+        //var bookmarkButtonTMP = _bookmarkButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        //var equipButtonTMP = _equipButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
 
         if (!isWeaponSlot && GameManager.instance.useAbleWeaponCnt[weaponID - 1] > 0)
-            equipButtonTMP.text = "장착";
+            _equipButton.GetComponent<Image>().sprite = equipImage;
 
         if (isBookmarked || (isInventory && BookMakredSlotUI.Instance.GetSlotWithWeaponID(weaponID)))
         {
-            bookmarkButtonTMP.text = "즐겨찾기 해제";
+            _bookmarkButton.GetComponent<Image>().sprite = unBookMarkImage;
         }
         else if (isInventory || isWeaponSlot)
         {
-            bookmarkButtonTMP.text = "즐겨찾기 등록";
+            _bookmarkButton.GetComponent<Image>().sprite = bookMarkImage;
         }
-        
+
         if (isWeaponSlot || isInventory && inventorySlot.isEquiped)
         {
-            equipButtonTMP.text = "장착 해제";
+            _equipButton.GetComponent<Image>().sprite = unEquipImage;
         }
     }
 

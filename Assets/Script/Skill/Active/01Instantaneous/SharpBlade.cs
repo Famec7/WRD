@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SharpBlade : ClickTypeSkill
+public class SharpBlade : InstantaneousSkill
 {
     #region Data
     private float _damage;
     private float _woundDamge;
-    private Vector2 _range = new Vector2(0.75f, 1.75f);
+    private Vector3 _range = new Vector3(0.75f, 1.75f,1);
     #endregion
 
     /*******Effect*******/
     [SerializeField] private EffectBase _effect;
+
+    protected override void Init()
+    {
+        base.Init();
+        SetData();   
+    }
 
     private void SetData()
     {
@@ -22,16 +28,13 @@ public class SharpBlade : ClickTypeSkill
     // Start is called before the first frame update
     protected override void OnActiveEnter()
     {
-            Debug.Log("ø‰±‚ø‰5");
     }
 
     protected override INode.ENodeState OnActiveExecute()
     {
-        Debug.Log("ø‰±‚ø‰");
 
         if (weapon.owner.Target == null)
         {
-            Debug.Log("ø‰±‚ø‰");
             IsActive = false;
             return INode.ENodeState.Failure;
         }
@@ -39,7 +42,6 @@ public class SharpBlade : ClickTypeSkill
         Vector3 dir = weapon.owner.Target.transform.position - weapon.owner.transform.position;
         if (dir == Vector3.zero)
         {
-            Debug.Log("ø‰±‚ø‰2");
 
             IsActive = false;
             return INode.ENodeState.Failure;
@@ -49,13 +51,11 @@ public class SharpBlade : ClickTypeSkill
 
         if (targets.Count == 0)
         {
-            Debug.Log("ø‰±‚ø‰3");
-
             IsActive = false;
+            return INode.ENodeState.Failure;
         }
-        Debug.Log("ø‰±‚ø‰4");
 
-        // ¿Ã∆Â∆Æ ¿Áª˝
+        // Ïù¥ÌéôÌä∏ Ïû¨ÏÉù
         _effect.SetPosition(weapon.owner.transform.position + dir);
         _effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
         _effect.SetScale(_range);
@@ -65,7 +65,10 @@ public class SharpBlade : ClickTypeSkill
         {
             if (tar.TryGetComponent(out Monster monster))
             {
+                Debug.Log("ÏöîÍ∏∞Ïöî3");
+
                 var wound = StatusEffectManager.Instance.GetStatusEffect(monster.status, typeof(Wound));
+                monster.HasAttacked(_damage);
 
                 if (wound is null) continue;
 
