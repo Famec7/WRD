@@ -159,7 +159,7 @@ public abstract class ActiveSkillBase : SkillBase
         // T 입력 시 쿨타임 초기화
         if (Input.GetKeyDown(KeyCode.T))
         {
-            CurrentCoolTime = 0;
+            CurrentCoolTime = 1f;
         }
 
 #endif
@@ -334,17 +334,18 @@ public abstract class ActiveSkillBase : SkillBase
 
     private void IndicatorInit()
     {
+        float range = Data.Range * 100;
+        float availableRange = Data.AvailableRange * 100;
+        
         if (indicator != null)
         {
             indicator.gameObject.SetActive(false);
-            indicator.transform.localScale = new Vector3(Data.Range, Data.Range, 0);
             indicator.SetSkill(this);
         }
 
         if (usableRange != null)
         {
             usableRange.SetActive(false);
-            usableRange.transform.localScale = new Vector3(Data.AvailableRange, Data.AvailableRange, 0);
         }
     }
 

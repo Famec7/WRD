@@ -10,7 +10,23 @@ public class HeavenFalling : ClickTypeSkill
     {
         // 성검 소환
         var holySword = ProjectileManager.Instance.CreateProjectile<HolyProjectile>();
-        
+
+        if (pivotPosition == Vector2.zero)
+        {
+            // 스킬 범위 안에 적이 있으면 타겟을 적으로 설정
+            var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Vector2.zero, Data.Range, default, LayerMaskManager.Instance.MonsterLayerMask);
+            
+            if (targets.Count > 0)
+            {
+                pivotPosition = targets[0].transform.position;
+            }
+            else
+            {
+                IsActive = false;
+                return;
+            }
+        }
+
         holySword.SetData(Data);
         holySword.transform.position = (Vector3)pivotPosition + (Vector3)_offset;
 

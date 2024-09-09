@@ -10,8 +10,6 @@ public class SkillIndicator : MonoBehaviour
     public void SetSkill(ActiveSkillBase skill)
     {
         _skill = skill;
-
-        this.transform.localScale = new Vector3(skill.Data.Range, skill.Data.Range, 0);
     }
 
     public void ShowIndicator(Vector3 position = default)
