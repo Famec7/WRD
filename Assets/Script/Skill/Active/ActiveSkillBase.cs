@@ -241,7 +241,11 @@ public abstract class ActiveSkillBase : SkillBase
                 return INode.ENodeState.Failure;
             }
             
-            pivotPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (Vector2.Distance(pivotPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Data.Range)
+            {
+                CancelSkill();
+                return INode.ENodeState.Failure;
+            }
 
             IsIndicatorState = false;
             IsActive = true;
@@ -334,17 +338,19 @@ public abstract class ActiveSkillBase : SkillBase
 
     private void IndicatorInit()
     {
-        float range = Data.Range * 100;
-        float availableRange = Data.AvailableRange * 100;
+        float range = Data.Range * 65;
+        float availableRange = Data.AvailableRange * 65;
         
         if (indicator != null)
         {
+            indicator.transform.localScale = new Vector3(range, range, 1);
             indicator.gameObject.SetActive(false);
             indicator.SetSkill(this);
         }
 
         if (usableRange != null)
         {
+            usableRange.transform.localScale = new Vector3(availableRange, availableRange, 1);
             usableRange.SetActive(false);
         }
     }
