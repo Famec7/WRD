@@ -9,6 +9,7 @@ public class SwingAnimation : AnimationBase
     
     public override void PlayAnimation()
     {
+        Owner.localRotation = Quaternion.Euler(0, 0, 0);
         StartCoroutine(IE_Swing());
     }
 
