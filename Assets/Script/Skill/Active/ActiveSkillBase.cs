@@ -241,6 +241,7 @@ public abstract class ActiveSkillBase : SkillBase
                 return INode.ENodeState.Failure;
             }
             
+            // TODO: 스킬 범위랑 실제 적용 범위 맞추기
             if (Vector2.Distance(pivotPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Data.Range)
             {
                 CancelSkill();
@@ -338,8 +339,8 @@ public abstract class ActiveSkillBase : SkillBase
 
     private void IndicatorInit()
     {
-        float range = Data.Range * 65;
-        float availableRange = Data.AvailableRange * 65;
+        float range = Data.Range * 70;
+        float availableRange = Data.AvailableRange * 70;
         
         if (indicator != null)
         {
