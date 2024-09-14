@@ -2455,6 +2455,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1198213732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7598795965865050377, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+  m_PrefabInstance: {fileID: 2595859246574223357}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1198213734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198213732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04785cd8cdb5433fa445003fa7e07530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolDatas:
+  - _name: SLIME
+    _prefab: {fileID: 6432071037866064084, guid: 03e6f6c7080d9dd49be3e0ae6b078171, type: 3}
+    _count: 50
+    _preloadOnStart: 0
 --- !u!1 &1285544307
 GameObject:
   m_ObjectHideFlags: 0
@@ -3430,7 +3452,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7598795965865050377, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1198213734}
   m_SourcePrefab: {fileID: 100100000, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
 --- !u!1001 &3031334275617223635
 PrefabInstance:

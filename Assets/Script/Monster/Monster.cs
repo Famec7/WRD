@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IPoolObject
 {
     public float hp;
     public float speed;
@@ -11,17 +11,7 @@ public class Monster : MonoBehaviour
     public bool isMovable;
     public bool isDead = false;
     public Status status;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     public void HasAttacked(float damage)
     {
         hp -= damage;
@@ -30,10 +20,20 @@ public class Monster : MonoBehaviour
             IsDead();
     }
 
-    public void IsDead()
+    private void IsDead()
     {
         isDead = true;
         MonsterHPBarPool.ReturnObject(transform.GetChild(1).GetComponent<MonsterHPBar>()); 
-        MonsterPool.instance.ReturnObject(gameObject);
+        MonsterPoolManager.Instance.ReturnObject(gameObject);
+    }
+
+    public void GetFromPool()
+    {
+        ;
+    }
+
+    public void ReturnToPool()
+    {
+        ;
     }
 }

@@ -2,23 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterPool : MonoBehaviour
+public class MonsterPoolManager : Singleton<MonsterPoolManager>
 {
     // Start is called before the first frame update
 
     public GameObject[] monsterPrefab;
-
-    public static MonsterPool instance;
+    
     private Dictionary<UnitCode, List<GameObject>> pooledObjects = new Dictionary<UnitCode, List<GameObject>>();
     int poolingCount = 100;
+    
+    private PoolManager _poolManager;
 
-    private void Awake()
+    protected override void Init()
     {
-        if(instance == null)
-            instance = this;
-
-        CreateMultiplePoolObjects();
-
+        _poolManager = GetComponent<PoolManager>();
     }
 
     public void CreateMultiplePoolObjects()
@@ -43,9 +40,9 @@ public class MonsterPool : MonoBehaviour
         }
     }
 
-    public GameObject GetPooledObject(UnitCode code)
+    public Monster GetPooledObject(UnitCode code)
     {
-        if (pooledObjects.ContainsKey(code))
+        /*if (pooledObjects.ContainsKey(code))
         {
             for (int i = 0; i < pooledObjects[code].Count; i++)
             {
@@ -88,21 +85,39 @@ public class MonsterPool : MonoBehaviour
         else
         {
             return null;
+        }*/
+
+        var pooledObject = _poolManager.GetFromPool<Monster>(code.ToString());
+
+        if (pooledObjects is null)
+        {
+            Debug.LogError("${code} is not found in the pool.");
+            return null;
         }
+        
+        if(code >= UnitCode.MISSIONBOSS1)
+            pooledObject.GetComponent<Status>().SetMissionUnitStatus(code);
+        else
+            pooledObject.GetComponent<Status>().SetUnitStatus(code);
+
+        if ((int)code > 5)
+        {
+            MonsterSpawnManager.instance.targetBossStatus = pooledObject.GetComponent<Status>();
+        }
+        
+        pooledObject.GetComponent<Basic_Monster>().isDead = false;
+        pooledObject.transform.SetParent(null);
+
+        return pooledObject;
     }
 
     public void ReturnObject(GameObject obj)
     {
-        obj.gameObject.SetActive(false);
-        obj.transform.SetParent(instance.transform);
-        pooledObjects[obj.GetComponent<Status>().unitCode].Add(obj);
-        MonsterSpawnManager.instance.currentMonsterNum--;
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
+        /*obj.gameObject.SetActive(false);
+        obj.transform.SetParent(Instance.transform);
+        pooledObjects[obj.GetComponent<Status>().unitCode].Add(obj);*/
         
+        _poolManager.ReturnToPool(obj.GetComponent<Monster>());
+        MonsterSpawnManager.instance.currentMonsterNum--;
     }
 }
