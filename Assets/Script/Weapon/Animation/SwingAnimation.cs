@@ -9,7 +9,7 @@ public class SwingAnimation : AnimationBase
     
     public override void PlayAnimation()
     {
-        Owner.localRotation = Quaternion.Euler(0, 0, 0);
+        Owner.localRotation = Quaternion.Euler(Owner.localRotation.eulerAngles.x, Owner.localRotation.eulerAngles.y, 0.0f);
         StartCoroutine(IE_Swing());
     }
 
@@ -20,13 +20,16 @@ public class SwingAnimation : AnimationBase
 
     private IEnumerator IE_Swing()
     {
-        var elapsedTime = 0.0f;
-        var startRotation = Owner.localRotation;
+        float elapsedTime = 0.0f;
+        Quaternion startRotation = Owner.localRotation;
         
-        if(startRotation.eulerAngles.y >= 180.0f || startRotation.eulerAngles.y <= -180.0f)
-            _degree *= -Mathf.Abs(_degree);
-        
-        var targetRotation = Quaternion.Euler(startRotation.eulerAngles.x, startRotation.eulerAngles.y, _degree);
+        if (startRotation.eulerAngles.y == 180.0f)
+        {
+            Debug.Log("180도 이상");
+            _degree = -Mathf.Abs(_degree);
+        }
+
+        Quaternion targetRotation = Quaternion.Euler(startRotation.eulerAngles.x, startRotation.eulerAngles.y, _degree);
         
         float hitdownTime = endTime / 4.0f;
         
@@ -34,7 +37,19 @@ public class SwingAnimation : AnimationBase
         {
             float t = CalculateElapsedTime(ref elapsedTime);
             
+            if (float.IsNaN(t))
+            {
+                Debug.LogError("Invalid elapsed time calculation");
+                yield break;
+            }
+            
             Owner.localRotation = Quaternion.Lerp(startRotation, targetRotation, t);
+            if (IsInvalidQuaternion(Owner.localRotation))
+            {
+                Debug.LogError("Invalid rotation detected");
+                yield break;
+            }
+            
             yield return null;
         }
         
@@ -42,18 +57,35 @@ public class SwingAnimation : AnimationBase
         {
             float t = CalculateElapsedTime(ref elapsedTime);
             
+            if (float.IsNaN(t))
+            {
+                Debug.LogError("Invalid elapsed time calculation");
+                yield break;
+            }
+            
             Owner.localRotation = Quaternion.Lerp(targetRotation, startRotation, t);
+            if (IsInvalidQuaternion(Owner.localRotation))
+            {
+                Debug.LogError("Invalid rotation detected");
+                yield break;
+            }
+            
             yield return null;
         }
         
         Owner.localRotation = startRotation;
     }
-
-    private float CalculateElapsedTime(ref float elaspseTime)
+    
+    private float CalculateElapsedTime(ref float elapsedTime)
     {
-        elaspseTime += Time.deltaTime;
-        float t = elaspseTime / endTime;
+        elapsedTime += Time.deltaTime;
+        float t = elapsedTime / endTime;
         
         return animationSpeed.Evaluate(t);
+    }
+    
+    private bool IsInvalidQuaternion(Quaternion ownerLocalRotation)
+    {
+        return float.IsNaN(ownerLocalRotation.x) || float.IsNaN(ownerLocalRotation.y) || float.IsNaN(ownerLocalRotation.z) || float.IsNaN(ownerLocalRotation.w);
     }
 }
