@@ -42,7 +42,7 @@ public abstract class FallingProjectile : Projectile
     }
     
     // 충돌 처리를 위한 콜라이더
-    private CircleCollider2D _collider = null;
+    private CircleCollider2D _collider;
     
     /********************************Sword Impact********************************/
     protected abstract void OnSwordImpact();

@@ -142,6 +142,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[1]._count
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[2]._count
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 938181490769147599, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: parentTransform
       value: 
@@ -300,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[0]._count
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[1]._count
@@ -2683,6 +2691,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 2193758156834168197, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2197932182171927170, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 296
@@ -2787,6 +2799,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7613276148012162102, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
+      propertyPath: m_CaptionImage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613276148012162102, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613276148012162102, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613276148012162102, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613276148012162102, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Image
+      value: 
+      objectReference: {fileID: 21300000, guid: 85f1d10c143cac24baa469c3708b3ada, type: 3}
+    - target: {fileID: 7613276148012162102, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Image
+      value: 
+      objectReference: {fileID: 21300000, guid: 55758a57978f28045b95604cb3bff8cf, type: 3}
+    - target: {fileID: 7613276148012162102, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Image
+      value: 
+      objectReference: {fileID: 21300000, guid: 996cbcc0e6efbb045861c82520e76f9b, type: 3}
     - target: {fileID: 9097398428304150928, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
       propertyPath: _settingDropdown
       value: 
