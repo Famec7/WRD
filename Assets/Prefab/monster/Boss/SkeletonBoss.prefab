@@ -183,15 +183,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451224ee50acf4244871aacff3bdb1c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitCode: 8
+  unitCode: 0
   maxHP: 0
   HP: 0
   moveSpeed: 0
   resist: 0
   defense: 0
   monsterName: 
-  woundStack: 0
-  markStack: 0
+  IsWound: 0
+  IsMark: 0
+  damageAmplification: 0
+  IsElectricShock: 0
 --- !u!50 &4455428403941024235
 Rigidbody2D:
   serializedVersion: 4

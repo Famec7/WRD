@@ -26,7 +26,7 @@ public class UIPopUp : MonoBehaviour
             // 없으면 return
 
             if (popUPresults.Count == 0 && results.Count == 0)
-            {               
+            {
                 UIManager.instance.CloseCombinePopUpUI();
                 UIManager.instance.CloseInventoryDescriptionPopUpUI();
                 UIManager.instance.CloseDetailedDescriptionPopUpUI();
@@ -36,7 +36,7 @@ public class UIPopUp : MonoBehaviour
             bool isButton = false;
             foreach (var result in popUPresults)
             {
-                if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count >= 3 || result.gameObject.CompareTag("DetailedDescriptionUI")) 
+                if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count >= 3 || result.gameObject.CompareTag("DetailedDescriptionUI") || result.gameObject.CompareTag("Mission"))
                     isButton = true;
 
                 Debug.Log(result.gameObject.name);

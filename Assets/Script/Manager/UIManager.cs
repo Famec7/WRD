@@ -207,6 +207,9 @@ public class UIManager : MonoBehaviour
         }
         else
             InventoryManager.instance.CloseButton();
+
+        if (missionUI.activeSelf)
+            ToggleMissionUI();
     }
 
     public void ClickBackButton()
@@ -259,7 +262,7 @@ public class UIManager : MonoBehaviour
         if (popUp == null) return;
         popUpStack.Pop();
         popUp.gameObject.SetActive(false);
-       // _blockImage.gameObject.SetActive(false);
+        _blockImage.gameObject.SetActive(false);
     }
     
     public void ChangeBottomUI()
@@ -268,7 +271,7 @@ public class UIManager : MonoBehaviour
     }
     public void SetActiveBlockImage(bool isBlock)
     {
-       // _blockImage.gameObject.SetActive(isBlock);
+       //_blockImage.gameObject.SetActive(isBlock);
     }
 
     public void InitLongClickPopupUI()
@@ -288,5 +291,12 @@ public class UIManager : MonoBehaviour
             PopUpGr.Raycast(ped, results);
 
         return results;
+    }
+
+    public void ToggleMissionUI()
+    {
+        missionUI.SetActive(!missionUI.activeSelf);
+        if (inventory.activeSelf)
+            InventoryManager.instance.CloseButton();
     }
 }

@@ -1,13 +1,15 @@
-﻿using System;
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MissionUI : UIPopUp
 {
     [SerializeField] private TextMeshProUGUI missionDescription;
     private int _index;
     private MissionSlot _missionSlot;
-    
+    [SerializeField] private Button ChallengeButton;
+
     public MissionSlot MissionSlot
     {
         set => _missionSlot = value;
@@ -41,5 +43,11 @@ public class MissionUI : UIPopUp
     private void OnDisable()
     {
         _missionSlot.ChangeOriginColor();
+    }
+
+    public void ClickChallengeButton()
+    {
+        MonsterPool.instance.GetPooledObject(UnitCode.MISSIONBOSS1 + _index);
+        UIManager.instance.ClosePopUp();
     }
 }

@@ -89,8 +89,7 @@ public class LongClickPopUpUi : MonoBehaviour
         if (!isBookmarked && !BookMakredSlotUI.Instance.GetSlotWithWeaponID(weaponID))
         {
             BookMakredSlotUI.Instance.weaponID = weaponID;
-            UIManager.instance.BookmarkSlotSelectUI.SetActive(true);
-            UIManager.instance.BookmarkSlotUI.SetActive(true);
+            StartCoroutine(WaitForSlideAndActivateBookmarkSlotUI());
         }
         else if (BookMakredSlotUI.Instance.GetSlotWithWeaponID(weaponID))
         {
@@ -176,6 +175,19 @@ public class LongClickPopUpUi : MonoBehaviour
         isWeaponSlot = _isWeaponSlot;
         inventorySlot = _inventorySlot;
         weaponSlot = _weaponSlot;
+    }
+
+    private IEnumerator WaitForSlideAndActivateBookmarkSlotUI()
+    {
+        // PopUpSlide의 OnClick 호출하여 슬라이드 시작
+        var popUpSlide = UIManager.instance.BookmarkSlotUI.transform.GetChild(0).GetComponent<PopUpSlide>();
+        popUpSlide.OnClick();
+
+        // 슬라이드 완료를 기다림 (애니메이션 시간)
+        yield return new WaitForSeconds(0.7f);
+        
+        // 슬라이드가 완료되면 BookmarkSlotSelectUI 활성화
+        UIManager.instance.BookmarkSlotSelectUI.SetActive(true);
     }
 }
     
