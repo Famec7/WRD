@@ -220,12 +220,15 @@ public class PlayerController : CharacterController, ISubject
         weapon.transform.SetParent(_arm);
 
         Vector3 playerRotation = transform.rotation.eulerAngles;
-        _arm.rotation = Quaternion.Euler(0, Mathf.Approximately(playerRotation.y, -180) ? 180 : 0, 0);
+        
+        _arm.rotation = Quaternion.Euler(0, playerRotation.y == -180 ? 180 : 0, 0);
     }
     
     public override void DetachWeapon()
     {
         Target = null;
         Data.CurrentWeapon.transform.SetParent(null);
+        
+        _arm.localRotation = Quaternion.Euler(0, 0, 0);
     }
 }

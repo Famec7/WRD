@@ -26,12 +26,10 @@ public class SkyProjectile : FallingProjectile
         
         // SpriteRenderer의 flip을 이용하여 방향을 조절
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        spriteRenderer.flipX = direction.x < 0;
+        spriteRenderer.flipX = direction.x > 0;
         
         // 위치와 회전을 조절
         transform.position = targetPosition + (Vector3)offset;
-        transform.Rotate(direction.x < 0 ? Vector3.back : Vector3.forward, _degree);
     }
     
     /********************************Data********************************/

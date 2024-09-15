@@ -187,7 +187,7 @@ public class MonsterSpawnManager : MonoBehaviour
     
     void SpawnMonster(UnitCode code)
     {
-        GameObject monster = MonsterPool.instance.GetPooledObject(code);
+        var monster = MonsterPoolManager.Instance.GetPooledObject(code);
         monster.GetComponent<MonsterMoveComponent>().roadNum = 1; // *�ӽ��ڵ�* ���� ��ġ �ٲٸ� �ڵ� �����ؾ���
         monster.transform.position = spawnPoints[spawnPointsCount - 1].transform.position;
 
@@ -195,7 +195,7 @@ public class MonsterSpawnManager : MonoBehaviour
         hpBar.transform.parent = monster.transform;
         hpBar.transform.position = monster.transform.position + new Vector3(0,0.2f);
         hpBar.SetActive(true);
-        hpBar.GetComponent<MonsterHPBar>().owner = monster;
+        hpBar.GetComponent<MonsterHPBar>().owner = monster.gameObject;
         hpBar.GetComponent<MonsterHPBar>().ownerStatus = monster.GetComponent<Status>();
 
         spawnDelayTimer = 0;
@@ -203,7 +203,7 @@ public class MonsterSpawnManager : MonoBehaviour
         currentWaveMonsterNum++;
 
         UIManager.instance.currentMonsterNum.text = currentMonsterNum.ToString();
-        UnitManager.instance.monsterList.Add(monster);
+        UnitManager.instance.monsterList.Add(monster.gameObject);
     }
 
 
