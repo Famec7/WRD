@@ -169,6 +169,9 @@ public class PlayerController : CharacterController, ISubject
 
     public bool IsTargetInRange()
     {
+        if(IsTargetNullOrInactive())
+            return false;
+        
         return Vector3.Distance(transform.position, Target.transform.position) <= Data.CurrentWeapon.Data.AttackRange;
     }
     

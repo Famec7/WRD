@@ -15,22 +15,20 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
     #region pivot
 
-    [Header("피봇")]
-    [SerializeField] private Pivot _pivot;
-    
+    [Header("피봇")] [SerializeField] private Pivot _pivot;
+
     public Pivot Pivot => _pivot;
 
     #endregion
 
     #region Data
 
-    [Space]
-    [SerializeField] private int weaponId;
+    [Space] [SerializeField] private int weaponId;
 
     public WaitForSeconds AttackDelay { get; private set; }
 
     public WeaponData Data { get; private set; }
-    
+
     public void SetAttackDelay(float attackSpeed)
     {
         AttackDelay = new WaitForSeconds(1 / attackSpeed);
@@ -67,8 +65,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
     #endregion
 
-    [Space] [SerializeField]
-    protected AnimationBase anim;
+    [Space] [SerializeField] protected AnimationBase anim;
 
     /// <summary>
     /// 무기 초기화 함수
@@ -79,7 +76,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
         SetAttackDelay(Data.AttackSpeed);
         _originalAttackDamage = Data.AttackDamage;
         _originalAttackSpeed = Data.AttackSpeed;
-        
+
         _pivot.Init(this.transform);
     }
 
@@ -154,8 +151,12 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
     private bool IsTargetNullOrNotInRange()
     {
-        return owner.Target is null || Vector3.Distance(owner.Target.transform.position, owner.transform.position) >
-            Data.AttackRange;
+        if (owner.Target is null || owner.Target.gameObject.activeSelf is false)
+            return true;
+
+        float distance = Vector3.Distance(owner.Target.transform.position, owner.transform.position);
+        
+        return distance > Data.AttackRange;
     }
 
     public void OnNotify()
