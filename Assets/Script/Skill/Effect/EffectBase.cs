@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class EffectBase : MonoBehaviour
+public abstract class EffectBase : MonoBehaviour, IPoolObject
 {
     /*************Methods that need to be implemented*************/
     
@@ -24,7 +24,6 @@ public abstract class EffectBase : MonoBehaviour
     private void Awake()
     {
         Init();
-        StopEffect();
     }
 
     /// <summary>
@@ -55,4 +54,14 @@ public abstract class EffectBase : MonoBehaviour
     }
 
     #endregion
+
+    public virtual void GetFromPool()
+    {
+        ;
+    }
+
+    public virtual void ReturnToPool()
+    {
+        ;
+    }
 }

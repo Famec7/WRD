@@ -33,11 +33,13 @@ public class ElectricEffect : EffectBase
     public override void StopEffect()
     {
         RemoveAllStatus();
+        
+        EffectManager.Instance.ReturnEffectToPool(this, "ElectricEffect");
     }
 
     #region StatusEffect
 
-    private List<Status> _statusList = new List<Status>();
+    private readonly List<Status> _statusList = new List<Status>();
     
     private void AddStatus(Status status, StatusEffect statusEffect)
     {

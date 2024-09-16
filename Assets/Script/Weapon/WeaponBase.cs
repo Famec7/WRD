@@ -32,7 +32,9 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
     public void SetAttackDelay(float attackSpeed)
     {
         AttackDelay = new WaitForSeconds(1 / attackSpeed);
-        anim.SetTime(1 / attackSpeed);
+
+        if (anim != null)
+            anim.SetTime(1 / attackSpeed);
     }
 
     private float _originalAttackDamage;
@@ -119,7 +121,8 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
             activeSkill.SetWeapon(this);
 
         // 애니메이션 설정
-        anim.Owner = this.transform.parent;
+        if (anim != null)
+            anim.Owner = this.transform.parent;
     }
 
     public void DetachWeapon()
@@ -155,7 +158,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
             return true;
 
         float distance = Vector3.Distance(owner.Target.transform.position, owner.transform.position);
-        
+
         return distance > Data.AttackRange;
     }
 

@@ -52,6 +52,11 @@ public abstract class ActiveSkillBase : SkillBase
         targetMonsters.Add(monster);
     }
 
+    private void OnDisable()
+    {
+        CancelSkill();
+    }
+
     /***************************Behaviour Tree***************************/
 
     #region Behaviour Tree
@@ -88,11 +93,7 @@ public abstract class ActiveSkillBase : SkillBase
     /// <returns></returns>
     protected virtual List<INode> CoolTimeNodes()
     {
-        return new List<INode>
-        {
-            new ActionNode(CheckCoolTimeState),
-            new ActionNode(CheckCoolTime),
-        };
+        return new List<INode> { new ActionNode(CheckCoolTimeState), new ActionNode(CheckCoolTime), };
     }
 
     // 스킬 버튼 활성화 이벤트
@@ -109,14 +110,15 @@ public abstract class ActiveSkillBase : SkillBase
             if (value is true)
             {
                 weapon.owner.enabled = true;
-                
+
                 SkillUIManager.Instance.ClosePopupPanel();
                 OnButtonActivate?.Invoke(false);
             }
             else
             {
-                weapon.owner.enabled = false;
-                
+                if (this is ClickTypeSkill)
+                    weapon.owner.enabled = false;
+
                 OnButtonActivate?.Invoke(true);
             }
         }
@@ -178,11 +180,7 @@ public abstract class ActiveSkillBase : SkillBase
     /// <returns></returns>
     protected virtual List<INode> IndicatorNodes()
     {
-        return new List<INode>
-        {
-            new ActionNode(CheckIndicatorState),
-            new ActionNode(TouchIndicator),
-        };
+        return new List<INode> { new ActionNode(CheckIndicatorState), new ActionNode(TouchIndicator), };
     }
 
     protected float preparingTime;
@@ -225,12 +223,12 @@ public abstract class ActiveSkillBase : SkillBase
             CancelSkill();
             return INode.ENodeState.Failure;
         }
-        
-        if(UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("SkillUI")))
+
+        if (UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("SkillUI")))
         {
             return INode.ENodeState.Running;
         }
-        
+
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -240,7 +238,7 @@ public abstract class ActiveSkillBase : SkillBase
                 CancelSkill();
                 return INode.ENodeState.Failure;
             }
-            
+
             // TODO: 스킬 범위랑 실제 적용 범위 맞추기
             if (Vector2.Distance(pivotPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Data.Range)
             {
@@ -269,11 +267,7 @@ public abstract class ActiveSkillBase : SkillBase
     /// <returns></returns>
     protected virtual List<INode> ActiveNodes()
     {
-        return new List<INode>
-        {
-            new ActionNode(CheckActiveState),
-            new ActionNode(OnActiveExecute),
-        };
+        return new List<INode> { new ActionNode(CheckActiveState), new ActionNode(OnActiveExecute), };
     }
 
     private bool _isActive = false;
@@ -341,7 +335,7 @@ public abstract class ActiveSkillBase : SkillBase
     {
         float range = Data.Range * 70;
         float availableRange = Data.AvailableRange * 70;
-        
+
         if (indicator != null)
         {
             indicator.transform.localScale = new Vector3(range, range, 1);

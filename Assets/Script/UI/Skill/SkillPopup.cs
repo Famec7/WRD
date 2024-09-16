@@ -34,7 +34,7 @@ public class SkillPopup : MonoBehaviour
         // 마지막 텍스트일 경우 텍스트 창을 닫음
         if (_curGuideTextIndex >= _guideTexts.Count)
         {
-            _guideText.gameObject.SetActive(false);
+            HidePopup();
             return;
         }
         

@@ -51,25 +51,37 @@ public abstract class CharacterController : MonoBehaviour
     /*************************Find Target******************************/
     public void FindNearestTarget()
     {
-        var colliders = RangeDetectionUtility.GetAttackTargets(transform.position, Vector2.zero,
-            Data.CurrentWeapon.Data.AttackRange, default, LayerMask.GetMask("Monster", "Boss", "Mission"));
-
-        if(colliders is null)
-            return;
+        LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
+        float attackRange = Data.CurrentWeapon.Data.AttackRange;
         
+        var colliders = RangeDetectionUtility.GetAttackTargets(transform.position, Vector2.zero, attackRange, default, layerMask);
+
+        if (colliders is null)
+            return;
+
         foreach (var col in colliders)
         {
-            var distanceFromEntityToCollider = Vector3.Distance(transform.position, col.transform.position);
-            var distanceFromEntityToTarget = Target is null ? 0.0f : Vector3.Distance(transform.position, Target.transform.position);
+            float distanceFromEntityToCollider = Vector3.Distance(transform.position, col.transform.position);
+
+            if (IsTargetNullOrInactive())
+            {
+                Target = col.transform.gameObject;
+                continue;
+            }
+
+            float distanceFromEntityToTarget = Vector3.Distance(transform.position, Target.transform.position);
 
             // 가장 가까운 적을 타겟으로 설정
-            if (Target is null)
-                Target = col.transform.gameObject;
-            else if (distanceFromEntityToCollider < distanceFromEntityToTarget)
+            if (distanceFromEntityToCollider < distanceFromEntityToTarget)
                 Target = col.transform.gameObject;
         }
     }
-    
+
+    public bool IsTargetNullOrInactive()
+    {
+        return Target == null || !Target.activeSelf;
+    }
+
     /*************************Weapon******************************/
     public abstract void AttachWeapon(WeaponBase weapon);
     public abstract void DetachWeapon();

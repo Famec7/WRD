@@ -14,6 +14,6 @@ public class SkySwordEffect : EffectBase
 
     public override void StopEffect()
     {
-        ;
+        EffectManager.Instance.ReturnEffectToPool(this, "SkySwordAura");
     }
 }

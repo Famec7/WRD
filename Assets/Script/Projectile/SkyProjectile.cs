@@ -111,6 +111,6 @@ public class SkyProjectile : FallingProjectile
             StatusEffectManager.Instance.RemoveStatusEffect(monster.status, typeof(SlowDown));
         }
         
-        EffectManager.Instance.ReturnEffectToPool(_auraEffect);
+        _auraEffect.StopEffect();
     }
 }

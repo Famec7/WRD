@@ -162,11 +162,6 @@ public class PlayerController : CharacterController, ISubject
         return Vector3.Distance(transform.position, TouchPos) < _distanceThreshold;
     }
 
-    public bool IsTargetNullOrInactive()
-    {
-        return Target == null || !Target.activeSelf;
-    }
-
     public bool IsTargetInRange()
     {
         if(IsTargetNullOrInactive())

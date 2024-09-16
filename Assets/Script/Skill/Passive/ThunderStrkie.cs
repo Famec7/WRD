@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class ThunderStrkie : PassiveSkillBase
 {
-    [Header("낙뢰")] [SerializeField] private ThunderStrikeEffect _thunderEffect;
-
     private WaitForSeconds _delay = null;
     private float _range = 0f;
     private float _damage = 0f;
@@ -25,7 +23,7 @@ public class ThunderStrkie : PassiveSkillBase
     {
         if (CheckTrigger())
         {
-            OnThunderStrike();
+            OnThunderStrike(target);
 
             return true;
         }
@@ -33,16 +31,18 @@ public class ThunderStrkie : PassiveSkillBase
         return false;
     }
 
-    private void OnThunderStrike()
+    private void OnThunderStrike(GameObject target)
     {
+        var thunderEffect = EffectManager.Instance.CreateEffect<ThunderStrikeEffect>("ThunderStrike");
+        
         // 낙뢰 이펙트 발생
-        _thunderEffect.SetPosition(transform.position);
-        _thunderEffect.PlayEffect();
+        thunderEffect.SetPosition(target.transform.position);
+        thunderEffect.PlayEffect();
         
         Attack();
 
         // 전류 잔존 이펙트
-        StartCoroutine(IE_ElectricEffect(gameObject));
+        StartCoroutine(IE_ElectricEffect(target));
     }
     
     private IEnumerator IE_ElectricEffect(GameObject target)
