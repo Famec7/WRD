@@ -10,6 +10,8 @@ public class Status : MonoBehaviour
     public float maxHP;
     public float HP;
     public float moveSpeed;
+    
+    public float originalSpeed;
 
     public float resist;
     public float defense;
@@ -54,6 +56,8 @@ public class Status : MonoBehaviour
         resist = MonsterDataManager.instance.resistData[wave];
         monsterName = MonsterDataManager.instance.monsterNameData[wave];
         moveSpeed = MonsterDataManager.instance.speedData[wave];
+        originalSpeed = moveSpeed;
+        
         IsWound = false;
         IsMark = false;
         damageAmplification = 0;
@@ -70,7 +74,16 @@ public class Status : MonoBehaviour
         resist = MissionMonsterManager.instance.resistData[idx];
         monsterName = MissionMonsterManager.instance.monsterNameData[idx];
         moveSpeed = MissionMonsterManager.instance.speedData[idx];
+        originalSpeed = moveSpeed;
+        
         IsWound = false;
         IsMark = false;
+        damageAmplification = 0;
+        IsElectricShock = false;
+    }
+    
+    public void ResetSpeed()
+    {
+        moveSpeed = originalSpeed;
     }
 }

@@ -5,8 +5,7 @@ using UnityEngine;
 public class SlowDown : StatusEffect
 {
     private Coroutine _slowDownCoroutine;
-    private float _slowDownRate;
-    private float _originalSpeed;
+    private readonly float _slowDownRate;
 
     public SlowDown(GameObject target, float slowDownRate, float duration = 0f) : base(target, duration)
     {
@@ -27,7 +26,7 @@ public class SlowDown : StatusEffect
         {
             if(target.TryGetComponent(out Status status))
             {
-                status.moveSpeed = _originalSpeed;
+                status.ResetSpeed();
             }
             CoroutineHandler.Instance.StopCoroutine(_slowDownCoroutine);
         }
@@ -41,8 +40,7 @@ public class SlowDown : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            _originalSpeed = status.moveSpeed;
-            status.moveSpeed *= 1 - _slowDownRate / 100;
+            status.moveSpeed = status.originalSpeed * (1 - _slowDownRate / 100);
 
             if(Math.Abs(duration - 0f) > 0.01f)
             {
