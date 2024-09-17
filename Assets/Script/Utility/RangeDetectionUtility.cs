@@ -30,7 +30,7 @@ public static class RangeDetectionUtility
         foreach (var col in colliders)
         {
             Vector3 targetDirection = col.transform.position - (Vector3)position;
-            float angle = Vector3.Angle(Vector2.right, targetDirection);
+            float angle = Vector3.Angle(Vector2.zero ,targetDirection);
             if (angle <= degree / 2)
             {
                 targets.Add(col);

@@ -134,6 +134,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
         _isAttack = false;
 
         ResetStats();
+        activeSkill.CancelSkill();
 
         StopAllCoroutines();
     }

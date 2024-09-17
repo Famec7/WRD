@@ -48,10 +48,11 @@ public class ThunderStrkie : PassiveSkillBase
     private IEnumerator IE_ElectricEffect(GameObject target)
     {
         var electricEffect = EffectManager.Instance.CreateEffect<ElectricEffect>("ElectricEffect");
-        electricEffect.SetData(Data.GetValue(2), Data.GetValue(3), Data.GetValue(4));
         
+        electricEffect.SetData(Data.GetValue(2), Data.GetValue(3), Data.GetValue(4));
         electricEffect.SetPosition(target.transform.position);
         electricEffect.SetScale(new Vector3(_range, _range, 0f));
+        
         electricEffect.PlayEffect();
 
         yield return _delay;

@@ -1,13 +1,17 @@
 ﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.VFX;
 
 public class ThunderStrikeEffect : EffectBase
 {
     private VisualEffect _visualEffect = null;
     
+    private WaitForSeconds _delay = null;
+    
     protected override void Init()
     {
         _visualEffect = GetComponent<VisualEffect>();
+        _delay = new WaitForSeconds(0.1f);
     }
 
     public override void PlayEffect()
@@ -24,7 +28,7 @@ public class ThunderStrikeEffect : EffectBase
     
     private IEnumerator IE_WaitForStop()
     {
-        yield return null;
+        yield return _delay;
         
         while (_visualEffect.HasAnySystemAwake())
         {

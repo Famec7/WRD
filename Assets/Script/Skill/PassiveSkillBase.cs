@@ -32,7 +32,6 @@ public abstract class PassiveSkillBase : SkillBase
     protected virtual bool CheckTrigger()
     {
         float chance = Random.Range(0, 100);
-        Debug.Log($"{GetType().Name} 확률 : {chance}");
         
 #if UNITY_EDITOR
         if (chance <= _data.Chance || _isTest)
