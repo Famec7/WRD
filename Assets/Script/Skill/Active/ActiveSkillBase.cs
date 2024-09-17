@@ -239,11 +239,14 @@ public abstract class ActiveSkillBase : SkillBase
                 return INode.ENodeState.Failure;
             }
 
-            // TODO: 스킬 범위랑 실제 적용 범위 맞추기
-            if (Vector2.Distance(pivotPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Data.Range)
+            if (this is ClickTypeSkill)
             {
-                CancelSkill();
-                return INode.ENodeState.Failure;
+                // TODO: 스킬 범위랑 실제 적용 범위 맞추기
+                if (Vector2.Distance(pivotPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Data.Range)
+                {
+                    CancelSkill();
+                    return INode.ENodeState.Failure;
+                }
             }
 
             IsIndicatorState = false;

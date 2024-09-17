@@ -27,6 +27,9 @@ public class GodOfThunder : InstantaneousSkill
     {
         base.Init();
         
+        _originPassiveChance = weapon.passiveSkill.Data.Chance;
+        _originAttackRange = weapon.Data.AttackRange;
+        
         _duration = Data.GetValue(0);
         _range = Data.GetValue(1);
         _passiveChance = (int)Data.GetValue(2);
@@ -39,11 +42,10 @@ public class GodOfThunder : InstantaneousSkill
         _timer = 0.0f;
 
         // 패시브 스킬 확률을 변경
-        _originPassiveChance = weapon.passiveSkill.Data.Chance;
         weapon.passiveSkill.Data.Chance = _passiveChance;
         
         // 무기의 공격 범위를 변경
-        weapon.Data.AttackRange = _range;
+        weapon.SetAttackDelay(_range);
     }
 
     protected override INode.ENodeState OnActiveExecute()
@@ -76,14 +78,14 @@ public class GodOfThunder : InstantaneousSkill
         weapon.passiveSkill.Data.Chance = _originPassiveChance;
         
         // 무기의 공격 범위를 원래대로 변경
-        weapon.Data.AttackRange = _originAttackRange;
+        weapon.SetAttackDelay(_originAttackRange);
     }
 
     #region ChainAttack
 
     private void ChainAttack()
     {
-        var targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, Vector2.zero, _chainAttackRange, default, LayerMaskManager.Instance.MonsterLayerMask);
+        var targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, Vector2.zero, _chainAttackRange, default, targetLayer);
 
         StopCoroutine(IE_ChainAttack(targets));
     }
