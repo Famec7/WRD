@@ -49,7 +49,7 @@ public class SkyProjectile : FallingProjectile
 
     protected override void OnSwordImpact()
     {
-        var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Vector2.zero, Range, default, LayerMaskManager.Instance.MonsterLayerMask);
+        var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Range, default, LayerMaskManager.Instance.MonsterLayerMask);
         
         foreach (var target in targets)
         {

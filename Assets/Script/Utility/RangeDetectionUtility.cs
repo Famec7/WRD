@@ -6,7 +6,7 @@ using UnityEngine;
 public static class RangeDetectionUtility
 {
     private static int _colliderSize = 100;
-    
+
     /// <summary>
     /// 무기 공격 범위 내의 적 탐지 (원, 부채꼴 모양)
     /// <param name="position"> 탐지 범위 중심 </param>
@@ -16,21 +16,21 @@ public static class RangeDetectionUtility
     /// <param name="layerMask"> 탐지할 레이어 </param>
     /// <returns> 탐지된 적 몬스터 리스트 </returns>
     /// </summary>
-    public static List<Collider2D> GetAttackTargets(Vector2 position, Vector2 direction, float radius,
+    public static List<Collider2D> GetAttackTargets(Vector2 position, float radius,
         float degree = 360f, LayerMask layerMask = default)
     {
         radius /= 2;
-        
+
         var colliders = Physics2D.OverlapCircleAll(position, radius, layerMask);
-        
+
         if (Math.Abs(degree - 360f) < float.Epsilon)
             return colliders.ToList();
-        
+
         List<Collider2D> targets = new List<Collider2D>();
         foreach (var col in colliders)
         {
             Vector3 targetDirection = col.transform.position - (Vector3)position;
-            float angle = Vector3.Angle(direction, targetDirection);
+            float angle = Vector3.Angle(Vector2.right, targetDirection);
             if (angle <= degree / 2)
             {
                 targets.Add(col);
@@ -56,7 +56,7 @@ public static class RangeDetectionUtility
         LayerMask layerMask = default)
     {
         var colliders = new Collider2D[_colliderSize];
-        
+
         if (direction == default)
         {
             colliders = Physics2D.OverlapBoxAll(position, size, 0, layerMask);
@@ -66,7 +66,7 @@ public static class RangeDetectionUtility
         {
             Vector2 pos = position + direction.normalized * size / 2;
             colliders = Physics2D.OverlapBoxAll(pos, size, Vector2.SignedAngle(Vector2.right, direction), layerMask);
-            
+
 #if DETECTION_DRAW
             foreach (var col in colliders)
             {

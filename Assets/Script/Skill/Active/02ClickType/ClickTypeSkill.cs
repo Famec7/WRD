@@ -112,7 +112,7 @@ public abstract class ClickTypeSkill : ActiveSkillBase
         IsUsuableRangeState = false;
         float distanceFromPlayerToPivot = Vector2.Distance(weapon.owner.transform.position, pivotPosition);
 
-        if (distanceFromPlayerToPivot > Data.AvailableRange)
+        if (distanceFromPlayerToPivot > Data.AvailableRange / 2)
         {
             CancelSkill();
             return INode.ENodeState.Failure;

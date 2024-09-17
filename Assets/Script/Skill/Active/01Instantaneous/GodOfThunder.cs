@@ -85,7 +85,8 @@ public class GodOfThunder : InstantaneousSkill
 
     private void ChainAttack()
     {
-        var targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, Vector2.zero, _chainAttackRange, default, targetLayer);
+        Vector3 pos = weapon.owner.Target.transform.position;
+        var targets = RangeDetectionUtility.GetAttackTargets(pos, _chainAttackRange, default, targetLayer);
 
         StopCoroutine(IE_ChainAttack(targets));
     }

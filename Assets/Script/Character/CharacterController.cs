@@ -54,7 +54,7 @@ public abstract class CharacterController : MonoBehaviour
         LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
         float attackRange = Data.CurrentWeapon.Data.AttackRange;
         
-        var colliders = RangeDetectionUtility.GetAttackTargets(transform.position, Vector2.zero, attackRange, default, layerMask);
+        var colliders = RangeDetectionUtility.GetAttackTargets(transform.position, attackRange, default, layerMask);
 
         if (colliders is null)
             return;

@@ -31,14 +31,17 @@ public abstract class PassiveSkillBase : SkillBase
 
     protected virtual bool CheckTrigger()
     {
+        float chance = Random.Range(0, 100);
+        Debug.Log($"{GetType().Name} 확률 : {chance}");
+        
 #if UNITY_EDITOR
-        if (Random.Range(0, 100) <= _data.Chance || _isTest)
+        if (chance <= _data.Chance || _isTest)
         {
             Debug.Log($"{GetType().Name} 발동");
             return true;
         }
 #endif
-        return Random.Range(0, 100) <= _data.Chance;
+        return chance <= _data.Chance;
     }
 
     /// <summary>

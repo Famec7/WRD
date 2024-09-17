@@ -61,7 +61,7 @@ public class ThunderStrkie : PassiveSkillBase
 
     private void Attack()
     {
-        var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Vector2.zero, _range, default,
+        var targets = RangeDetectionUtility.GetAttackTargets(transform.position, _range, default,
             LayerMaskManager.Instance.MonsterLayerMask);
 
         foreach (var target in targets)

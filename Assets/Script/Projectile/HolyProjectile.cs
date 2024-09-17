@@ -32,7 +32,7 @@ public class HolyProjectile : FallingProjectile
     
     protected override void OnSwordImpact()
     {
-        var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Vector2.zero, Range, default, LayerMaskManager.Instance.MonsterLayerMask);
+        var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Range, default, LayerMaskManager.Instance.MonsterLayerMask);
 
         foreach (var target in targets)
         {
@@ -78,7 +78,7 @@ public class HolyProjectile : FallingProjectile
     {
         while (true)
         {
-            var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Vector2.zero, 0.5f, default, LayerMaskManager.Instance.MonsterLayerMask);
+            var targets = RangeDetectionUtility.GetAttackTargets(transform.position, 0.5f, default, LayerMaskManager.Instance.MonsterLayerMask);
 
             _maxTargetCount = Mathf.Min(_maxTargetCount, targets.Count);
             for(int i = 0; i < _maxTargetCount; i++)

@@ -14,7 +14,7 @@ public class HeavenFalling : ClickTypeSkill
         if (pivotPosition == Vector2.zero)
         {
             // 스킬 범위 안에 적이 있으면 타겟을 적으로 설정
-            var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Vector2.zero, Data.Range, default, targetLayer);
+            var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Data.Range, default, targetLayer);
             
             if (targets.Count > 0)
             {

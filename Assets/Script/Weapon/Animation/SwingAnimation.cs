@@ -25,7 +25,6 @@ public class SwingAnimation : AnimationBase
         
         if (startRotation.eulerAngles.y == 180.0f)
         {
-            Debug.Log("180도 이상");
             _degree = -Mathf.Abs(_degree);
         }
 

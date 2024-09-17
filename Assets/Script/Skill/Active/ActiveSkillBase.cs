@@ -241,8 +241,7 @@ public abstract class ActiveSkillBase : SkillBase
 
             if (this is ClickTypeSkill)
             {
-                // TODO: 스킬 범위랑 실제 적용 범위 맞추기
-                if (Vector2.Distance(pivotPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Data.Range)
+                if (Vector2.Distance(pivotPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Data.Range / 2)
                 {
                     CancelSkill();
                     return INode.ENodeState.Failure;
@@ -336,8 +335,11 @@ public abstract class ActiveSkillBase : SkillBase
 
     private void IndicatorInit()
     {
-        float range = Data.Range * 70;
-        float availableRange = Data.AvailableRange * 70;
+        // 72.5f
+        const float scaleAdjustmentFactor = 72.5f;
+        
+        float range = Data.Range * scaleAdjustmentFactor;
+        float availableRange = Data.AvailableRange * scaleAdjustmentFactor;
 
         if (indicator != null)
         {
