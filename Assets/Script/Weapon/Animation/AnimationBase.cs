@@ -32,4 +32,12 @@ public abstract class AnimationBase : MonoBehaviour
     /// 애니메이션을 중지하는 함수
     /// </summary>
     public abstract void StopAnimation();
+    
+    protected float CalculateElapsedTime(ref float elapsedTime)
+    {
+        elapsedTime += Time.deltaTime;
+        float t = elapsedTime / endTime;
+        
+        return animationSpeed.Evaluate(t);
+    }
 }

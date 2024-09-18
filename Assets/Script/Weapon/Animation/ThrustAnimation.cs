@@ -8,6 +8,7 @@ public class ThrustAnimation : AnimationBase
     
     public override void PlayAnimation()
     {
+        Owner.localRotation = Quaternion.Euler(Owner.localRotation.eulerAngles.x, Owner.localRotation.eulerAngles.y, 0.0f);
         StartCoroutine(IE_Thrust());
     }
 
@@ -42,13 +43,5 @@ public class ThrustAnimation : AnimationBase
         }
         
         Owner.localPosition = startPosition;
-    }
-    
-    private float CalculateElapsedTime(ref float elaspseTime)
-    {
-        elaspseTime += Time.deltaTime;
-        float t = elaspseTime / endTime;
-        
-        return animationSpeed.Evaluate(t);
     }
 }
