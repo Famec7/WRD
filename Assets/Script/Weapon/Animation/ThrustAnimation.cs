@@ -8,7 +8,6 @@ public class ThrustAnimation : AnimationBase
     
     public override void PlayAnimation()
     {
-        Owner.localRotation = Quaternion.Euler(Owner.localRotation.eulerAngles.x, Owner.localRotation.eulerAngles.y, 0.0f);
         StartCoroutine(IE_Thrust());
     }
 
@@ -19,8 +18,10 @@ public class ThrustAnimation : AnimationBase
     
     private IEnumerator IE_Thrust()
     {
-        var elapsedTime = 0.0f;
-        var startPosition = Owner.localPosition;
+        float elapsedTime = 0.0f;
+        Vector3 startPosition = Owner.localPosition;
+        
+        Vector3 adjustedEndPosition = startPosition + (_endPosition / Owner.parent.localScale.x);
         
         float breakTime = endTime / 4.0f;
         
@@ -28,7 +29,7 @@ public class ThrustAnimation : AnimationBase
         {
             float t = CalculateElapsedTime(ref elapsedTime);
             
-            float newX = Mathf.Lerp(startPosition.x, _endPosition.x, t);
+            float newX = Mathf.Lerp(startPosition.x, adjustedEndPosition.x, t);
             Owner.localPosition = new Vector3(newX, startPosition.y, startPosition.z);
             yield return null;
         }
@@ -37,7 +38,7 @@ public class ThrustAnimation : AnimationBase
         {
             float t = CalculateElapsedTime(ref elapsedTime);
             
-            float newX = Mathf.Lerp(_endPosition.x, startPosition.x, t);
+            float newX = Mathf.Lerp(adjustedEndPosition.x, startPosition.x, t);
             Owner.localPosition = new Vector3(newX, startPosition.y, startPosition.z);
             yield return null;
         }
