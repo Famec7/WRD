@@ -8,7 +8,10 @@ public class Piercing : PassiveSkillBase
         
         if(target.TryGetComponent(out Monster monster))
         {
-            monster.HasAttacked(Data.GetValue(0));
+            var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
+
+            projectile.Target = target.gameObject;
+            projectile.Damage = Data.GetValue(0);
         }
 
         return false;

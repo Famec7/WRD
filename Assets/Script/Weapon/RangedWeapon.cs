@@ -12,7 +12,7 @@ public class RangedWeapon : WeaponBase
 
         if (owner.Target.TryGetComponent(out Monster monster))
         {
-            var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, owner.transform.position);
+            var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
 
             projectile.Target = owner.Target.gameObject;
             projectile.Damage = Data.AttackDamage;

@@ -30,6 +30,7 @@ public class GuidedProjectile : ProjectileBase
     {
         if (Target is null || !Target.activeSelf)
         {
+            ProjectileManager.Instance.ReturnProjectileToPool(this);
             return;
         }
         
