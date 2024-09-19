@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ThrustAnimation : AnimationBase
+public class DirectionalMoveAnimation : AnimationBase
 {
     [SerializeField]
     private Vector3 _endPosition;
@@ -21,7 +21,7 @@ public class ThrustAnimation : AnimationBase
         float elapsedTime = 0.0f;
         Vector3 startPosition = Owner.localPosition;
         
-        Vector3 adjustedEndPosition = startPosition + (_endPosition / Owner.parent.localScale.x);
+        Vector3 adjustedEndPosition = _endPosition / Owner.parent.localScale.x;
         
         float breakTime = endTime / 4.0f;
         
