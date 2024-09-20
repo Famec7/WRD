@@ -95,7 +95,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
         {
             anim.PlayAnimation();
         }
-        
+
         if (IsPassiveSkillNull) return;
 
         if (passiveSkill.Activate(owner.Target))
@@ -103,7 +103,6 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
             _isAttack = false;
             StopCoroutine(CoroutineAttack());
         }
-
     }
 
     /// <summary>
@@ -130,9 +129,11 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
     {
         // 무기 해제
         owner.DetachWeapon();
-        
+
         ResetStats();
-        activeSkill.CancelSkill();
+
+        if (!IsActiveSkillNull)
+            activeSkill.CancelSkill();
 
         this.owner = null;
         _isAttack = false;
