@@ -45,9 +45,11 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
     # region Skill
 
     [Header("Passive Skill")] public PassiveSkillBase passiveSkill = null;
-    [Header("Active Skill")] public ActiveSkillBase activeSkill = null; // 임시로 GameObject로 선언, 추후 스킬 구현 시 변경 필요
+    [Header("Passive Aura Skill")] public PassiveAuraSkillBase passiveAuraSkill = null;
+    [Header("Active Skill")] public ActiveSkillBase activeSkill = null;
 
     public bool IsPassiveSkillNull => passiveSkill == null;
+    public bool IsPassiveAuraSkillNull => passiveAuraSkill == null;
     public bool IsActiveSkillNull => activeSkill == null;
 
     #endregion
@@ -117,6 +119,8 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
         // 스킬 설정 (owner도 같이 설정됨)
         if (IsPassiveSkillNull is false)
             passiveSkill.SetWeapon(this);
+        if (IsPassiveAuraSkillNull is false)
+            passiveAuraSkill.SetWeapon(this);
         if (IsActiveSkillNull is false)
             activeSkill.SetWeapon(this);
 

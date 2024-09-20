@@ -23,7 +23,7 @@ public class LowVisionStrike : PassiveSkillBase
             return false;
         
         // 이펙트 재생
-        HitEffect effect = EffectManager.Instance.CreateEffect<HitEffect>("OrbHit");
+        ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("OrbHit");
         effect.SetPosition(target.transform.position);
         effect.SetScale(_range);
         effect.PlayEffect();

@@ -60,8 +60,8 @@ public class GuidedProjectile : ProjectileBase
         {
             monster.HasAttacked(Damage);
             
-            HitEffect hitEffect = EffectManager.Instance.CreateEffect<HitEffect>(_hitEffectName);
-            hitEffect.SetPosition(transform.position);
+            ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>(_hitEffectName);
+            particleEffect.SetPosition(transform.position);
             
             ProjectileManager.Instance.ReturnProjectileToPool(this);
         }

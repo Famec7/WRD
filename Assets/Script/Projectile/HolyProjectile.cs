@@ -29,6 +29,8 @@ public class HolyProjectile : FallingProjectile
     }
 
     #endregion
+
+    private EffectBase _auraEffect;
     
     protected override void OnSwordImpact()
     {
@@ -44,6 +46,10 @@ public class HolyProjectile : FallingProjectile
                 StartCoroutine(IE_Lightning());
             }
         }
+        
+        _auraEffect = EffectManager.Instance.CreateEffect<EffectBase>("HolySwordAura");
+        _auraEffect.SetPosition(transform.position);
+        _auraEffect.PlayEffect();
     }
 
     #region Damage Increase Effect
@@ -115,5 +121,7 @@ public class HolyProjectile : FallingProjectile
             StatusEffectManager.Instance.RemoveStatusEffect(monster.status, typeof(SlowDown));
             StatusEffectManager.Instance.RemoveStatusEffect(monster.status, typeof(DamageAmplification));
         }
+        
+        _auraEffect.StopEffect();
     }
 }

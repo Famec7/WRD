@@ -32,7 +32,7 @@ public class Swing : PassiveSkillBase
             return false;
         
         // 이펙트 재생
-        HitEffect effect = EffectManager.Instance.CreateEffect<HitEffect>("SwingEffect");
+        ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("SwingEffect");
         
         effect.SetPosition(weapon.owner.transform.position);
         effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));

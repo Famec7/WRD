@@ -5,6 +5,8 @@ public class TheChosenOne : PassiveAuraSkillBase
     private float _damageMultiplier;
     private float _attackSpeedMultiplier;
     
+    private ParticleEffect _auraEffect;
+    
     protected override void Init()
     {
         base.Init();
@@ -21,6 +23,17 @@ public class TheChosenOne : PassiveAuraSkillBase
         }
         
         ApplyBuff(_damageMultiplier, _attackSpeedMultiplier);
+        
+        Transform playerTransform = CharacterManager.Instance.GetCharacter((int)CharacterManager.CharacterType.Player).transform;
+        
+        _auraEffect = EffectManager.Instance.CreateEffect<ParticleEffect>("AuraEffect");
+        
+        _auraEffect.transform.SetParent(playerTransform);
+        
+        _auraEffect.SetPosition(playerTransform.position + Vector3.down * 0.5f);
+        _auraEffect.SetScale(1 / playerTransform.localScale.x * Vector3.one);
+        
+        _auraEffect.PlayEffect();
     }
 
     private void OnDisable()
@@ -31,6 +44,8 @@ public class TheChosenOne : PassiveAuraSkillBase
         }
         
         ApplyBuff(1 / _damageMultiplier, 1 / _attackSpeedMultiplier);
+        
+        _auraEffect.StopEffect();
     }
     
     private void ApplyBuff(float damageMultiplier, float attackSpeedMultiplier)

@@ -26,21 +26,21 @@ public class MeleeWeapon : WeaponBase
 #endif
             monster.HasAttacked(Data.AttackDamage);
             
-            HitEffect hitEffect = GetHitEffect();
-            hitEffect.SetPosition(owner.Target.transform.position);
+            ParticleEffect particleEffect = GetHitEffect();
+            particleEffect.SetPosition(owner.Target.transform.position);
         }
     }
     
-    public HitEffect GetHitEffect()
+    public ParticleEffect GetHitEffect()
     {
         switch (type)
         {
             case Type.Sword:
-                return EffectManager.Instance.CreateEffect<HitEffect>("NormalHit");
+                return EffectManager.Instance.CreateEffect<ParticleEffect>("NormalHit");
             case Type.Spear:
-                return EffectManager.Instance.CreateEffect<HitEffect>("NormalHit");
+                return EffectManager.Instance.CreateEffect<ParticleEffect>("NormalHit");
             case Type.Club:
-                return EffectManager.Instance.CreateEffect<HitEffect>("ClubHit");
+                return EffectManager.Instance.CreateEffect<ParticleEffect>("ClubHit");
             default:
                 break;
         }

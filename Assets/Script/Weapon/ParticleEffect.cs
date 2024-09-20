@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class HitEffect : EffectBase
+public class ParticleEffect : EffectBase
 {
     [SerializeField]
     private string effectName;
@@ -27,6 +27,11 @@ public class HitEffect : EffectBase
         _hitEffect.Stop();
         EffectManager.Instance.ReturnEffectToPool(this, effectName);
         
+        SetScale(_originScale);
+    }
+    
+    public void ResetScale()
+    {
         SetScale(_originScale);
     }
 
