@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using UnityEngine;
 
 public class GuidedProjectile : ProjectileBase
@@ -18,6 +19,8 @@ public class GuidedProjectile : ProjectileBase
     private float _startTime;
     private Vector3 _startPosition;
     private float _journeyLength;
+    
+    private string _hitEffectName;
 
     private void Start()
     {
@@ -56,6 +59,10 @@ public class GuidedProjectile : ProjectileBase
         if (other.TryGetComponent(out Monster monster))
         {
             monster.HasAttacked(Damage);
+            
+            HitEffect hitEffect = EffectManager.Instance.CreateEffect<HitEffect>(_hitEffectName);
+            hitEffect.SetPosition(transform.position);
+            
             ProjectileManager.Instance.ReturnProjectileToPool(this);
         }
     }
@@ -67,5 +74,27 @@ public class GuidedProjectile : ProjectileBase
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 180;
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         transform.rotation = rotation;
+    }
+    
+    public void SetType(RangedWeapon.Type type)
+    {
+        StringBuilder sb = new StringBuilder();
+        
+        switch (type)
+        {
+            case RangedWeapon.Type.Bow:
+                sb.Append("NormalHit");
+                break;
+            case RangedWeapon.Type.Gun:
+                sb.Append("BulletHit");
+                break;
+            case RangedWeapon.Type.Orb:
+                sb.Append("NormalHit");
+                break;
+            default:
+                break;
+        }
+        
+        _hitEffectName = sb.ToString();
     }
 }

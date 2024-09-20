@@ -107,6 +107,7 @@ MonoBehaviour:
   passiveSkill: {fileID: 0}
   activeSkill: {fileID: 0}
   anim: {fileID: 3385712454500711690}
+  type: 1
 --- !u!114 &3385712454500711690
 MonoBehaviour:
   m_ObjectHideFlags: 0

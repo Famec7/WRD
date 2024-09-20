@@ -4,6 +4,16 @@ using UnityEngine.Events;
 
 public class RangedWeapon : WeaponBase
 {
+    public enum Type
+    {
+        Bow,
+        Gun,
+        Orb,
+    }
+    
+    [SerializeField]
+    private Type type;
+    
     protected override void Attack()
     {
         base.Attack();
@@ -16,6 +26,8 @@ public class RangedWeapon : WeaponBase
 
             projectile.Target = owner.Target.gameObject;
             projectile.Damage = Data.AttackDamage;
+            
+            projectile.SetType(type);
 
             notifyAction?.Invoke();
         }

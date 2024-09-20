@@ -102,9 +102,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
+  _pivot:
+    _pivot: {x: 0, y: 0, z: 0}
+    _originRotation: {x: 0, y: 0, z: 0}
+    _originScale: {x: 0, y: 0, z: 0}
   weaponId: 15
   passiveSkill: {fileID: 3779694955444831281}
   activeSkill: {fileID: 0}
+  anim: {fileID: 0}
+  type: 3
 --- !u!114 &3779694955444831281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +176,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 20.48, y: 20.48}
+    oldSize: {x: 32, y: 32}
     newSize: {x: 20.48, y: 20.48}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -251,7 +257,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 977560319
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 0.9961348, b: 0.60188675, a: 1}

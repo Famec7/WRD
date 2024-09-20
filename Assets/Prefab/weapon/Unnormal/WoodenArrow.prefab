@@ -106,3 +106,4 @@ MonoBehaviour:
   passiveSkill: {fileID: 0}
   activeSkill: {fileID: 0}
   anim: {fileID: 0}
+  type: 0
