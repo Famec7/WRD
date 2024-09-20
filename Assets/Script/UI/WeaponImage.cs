@@ -169,10 +169,8 @@ public class WeaponImage : MonoBehaviour
             }
         }
 
-        //���ã�� -> ���� ���� UI
         if (gameObject.transform.parent.CompareTag("BookMarkedSlot"))
         {
-            // ���� ���� ���� UI�� ���
             if (targetSlotObject.gameObject.CompareTag("WeaponSlot"))
             {
                 int targetWeaponID = targetSlotObject.GetComponent<WeaponSlotUI>().weaponID;
@@ -180,7 +178,7 @@ public class WeaponImage : MonoBehaviour
                 LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
                 InventorySlot targetInventorySlot = targetSlotObject.GetComponent<WeaponSlotUI>().inventorySlot;
                 WeaponSlotUI targetWeaponSlot = targetSlotObject.GetComponent<WeaponSlotUI>();
-                // ���⸦ ���� ������ 
+
                 if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon)
                 {
                     longClickPopUpUi.SetLongClickPopUpUI(targetWeaponID, false, false, false, targetInventorySlot, targetWeaponSlot);
@@ -201,14 +199,12 @@ public class WeaponImage : MonoBehaviour
             }
                       
         }
-        // ���� ���� UI -> ���ã�� 
         if (gameObject.transform.parent.CompareTag("WeaponSlot") && targetSlotObject.gameObject.CompareTag("BookMarkedSlot"))
         {
             int targetWeaponID = targetSlotObject.GetComponent<WeaponSlotUI>().weaponID;
             int myWeaponID = transform.parent.GetComponent<WeaponSlotUI>().weaponID;
             LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
 
-            //  ���ã��ĭ�� ���Ⱑ ���� ��
             if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon && GameManager.instance.useAbleWeaponCnt[targetWeaponID - 1] > 0)
             {
                 longClickPopUpUi.SetLongClickPopUpUI(myWeaponID, false, false, false, transform.parent.GetComponent<WeaponSlotUI>().inventorySlot, transform.parent.GetComponent<WeaponSlotUI>());
@@ -223,7 +219,6 @@ public class WeaponImage : MonoBehaviour
                 targetSlotObject.GetComponent<WeaponSlotUI>().ChangeWeaponUseable();
             }
 
-            // �ٲٷ��� ���Ⱑ �Ȱ��� ���Ⱑ �ƴ� ��
             if (!BookMakredSlotUI.Instance.IsDuplicatedID(myWeaponID))
             {
                 BookMakredSlotUI.Instance.weaponID = myWeaponID;
