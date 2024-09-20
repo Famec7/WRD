@@ -9,7 +9,7 @@ public class MissionDataManager : Singleton<MissionDataManager>
     protected override void Init()
     {
         _missionDatabase = Resources.Load<MissionDatabase>("Database/MissionDatabase");
-        /*_missionDatabase.Load();*/
+        _missionDatabase.Load();
     }
     
 

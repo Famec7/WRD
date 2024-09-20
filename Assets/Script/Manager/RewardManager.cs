@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RewardManager : MonoBehaviour
+public class RewardManager : Singleton<RewardManager>
 {
     // Start is called before the first frame update
 
-    public static RewardManager instance;
 
     public int[] elementRewardCnt;
     public int[] unnormalRewardCnt;
@@ -15,6 +14,10 @@ public class RewardManager : MonoBehaviour
     public int[] legendaryRewardCnt;
     public int[] mythRewardCnt;
 
+    protected override void Init()
+    {
+        ;
+    }
     void Start()
     {
         List<Dictionary<string, object>> data = CSVReader.Read("WaveReward");
@@ -37,11 +40,6 @@ public class RewardManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void GetReward(int wave)
     {
@@ -56,6 +54,6 @@ public class RewardManager : MonoBehaviour
 
     public void GetReward(UnitCode code)
     {
-
+          ElementManager.instance.GetElement(3);
     }
 }

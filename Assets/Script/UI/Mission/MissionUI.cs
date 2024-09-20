@@ -55,5 +55,6 @@ public class MissionUI : UIPopUp
         MissionCheckUI checkUI = UIManager.instance.GetPopUpUI() as MissionCheckUI;
         checkUI.Index = _index;
         checkUI.Init();
+        checkUI.gameObject.SetActive(true);
     }
 }

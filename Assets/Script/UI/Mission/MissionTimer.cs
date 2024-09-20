@@ -1,17 +1,15 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class MissionTimer : MonoBehaviour
 {
     public TextMeshProUGUI timerText; // 타이머를 표시할 TextMeshProUGUI
     private float currentTime;
     private bool isRunning;
+    private int missionIndex;
+    public event Action OnTimerEnd; // 타이머 종료 시 호출되는 이벤트
 
-    void Start()
-    {
-        // 타이머 초기화
-        ResetTimer();
-    }
 
     void Update()
     {
@@ -22,8 +20,11 @@ public class MissionTimer : MonoBehaviour
             {
                 // 타이머 종료
                 currentTime = 0;
+                MissionManager.Instance.missionInfo._missionSlots[missionIndex].Clear(false);
                 isRunning = false;
-                timerText.gameObject.SetActive(false); // 타이머 텍스트 비활성화
+                gameObject.SetActive(false);
+
+                OnTimerEnd?.Invoke();
             }
 
             UpdateTimerText();
@@ -31,11 +32,12 @@ public class MissionTimer : MonoBehaviour
     }
 
     // 타이머 시작 메서드
-    public void StartTimer(float currentTime)
+    public void StartTimer(float currentTime, int missionIndex)
     {
-        this.currentTime = currentTime; // 10초로 설정
+        this.currentTime = currentTime;
+        this.missionIndex = missionIndex;
         isRunning = true;
-        timerText.gameObject.SetActive(true); // 타이머 텍스트 활성화
+        gameObject.SetActive(true);
         UpdateTimerText();
     }
 
@@ -44,12 +46,14 @@ public class MissionTimer : MonoBehaviour
     {
         currentTime = 0f;
         isRunning = false;
-        timerText.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     // 타이머 텍스트 업데이트 메서드
     private void UpdateTimerText()
     {
-        timerText.text = Mathf.Ceil(currentTime).ToString(); // 남은 시간을 정수로 표시
+        string timeText = currentTime.ToString("F2");
+        timerText.text = $"미션 {missionIndex + 1}({timeText}초)";
+        
     }
 }

@@ -71,4 +71,10 @@ public class MonsterPoolManager : Singleton<MonsterPoolManager>
         _poolManager.ReturnToPool(obj.GetComponent<Monster>());
         MonsterSpawnManager.instance.currentMonsterNum--;
     }
+
+    public void ReturnObject(string name, GameObject obj)
+    {
+        _poolManager.ReturnToPool(name, obj.GetComponent<Monster>());
+        MonsterSpawnManager.instance.currentMonsterNum--;
+    }
 }

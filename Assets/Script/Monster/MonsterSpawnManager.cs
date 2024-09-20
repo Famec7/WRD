@@ -173,7 +173,7 @@ public class MonsterSpawnManager : MonoBehaviour
         }
     }
     
-    public void SpawnMonster(UnitCode code)
+    public Monster SpawnMonster(UnitCode code)
     {
         var monster = MonsterPoolManager.Instance.GetPooledObject(code);
         monster.GetComponent<MonsterMoveComponent>().roadNum = 1; 
@@ -192,6 +192,8 @@ public class MonsterSpawnManager : MonoBehaviour
 
         UIManager.instance.currentMonsterNum.text = currentMonsterNum.ToString();
         UnitManager.instance.monsterList.Add(monster.gameObject);
+
+        return monster;
     }
 
 
