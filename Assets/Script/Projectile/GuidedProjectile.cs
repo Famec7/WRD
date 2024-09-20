@@ -89,7 +89,7 @@ public class GuidedProjectile : ProjectileBase
                 sb.Append("BulletHit");
                 break;
             case RangedWeapon.Type.Orb:
-                sb.Append("NormalHit");
+                sb.Append("OrbHit");
                 break;
             default:
                 break;

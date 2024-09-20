@@ -10,23 +10,21 @@ public class RangedWeapon : WeaponBase
         Gun,
         Orb,
     }
-    
-    [SerializeField]
-    private Type type;
-    
+
+    [SerializeField] private Type type;
+
     protected override void Attack()
     {
         base.Attack();
-        
-        anim.PlayAnimation();
 
         if (owner.Target.TryGetComponent(out Monster monster))
         {
-            var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
+            var projectile =
+                ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
 
             projectile.Target = owner.Target.gameObject;
             projectile.Damage = Data.AttackDamage;
-            
+
             projectile.SetType(type);
 
             notifyAction?.Invoke();
