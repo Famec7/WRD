@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour
     {
         combinePopupUIStack = new Stack<CombinePopUpUI>();
         popUpStack = new Stack<UIPopUp>();
-        _popups = new UIPopUp[UIType.COUNT.GetHashCode() + 1];
+        _popups = new UIPopUp[UIType.MissionCheck.GetHashCode() + 1];
     }
 
     private void Update()

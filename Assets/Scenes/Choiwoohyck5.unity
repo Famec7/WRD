@@ -2285,6 +2285,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ClickBackButton
       objectReference: {fileID: 0}
+    - target: {fileID: 2527740296269727673, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527740296269727673, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 130
+      objectReference: {fileID: 0}
     - target: {fileID: 3741036365564435295, guid: 1485981702313414aa36d998bb951cc0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2292,6 +2300,22 @@ PrefabInstance:
     - target: {fileID: 4010724544344218348, guid: 1485981702313414aa36d998bb951cc0, type: 3}
       propertyPath: m_Name
       value: PopUpCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637799339403315462, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637799339403315462, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923970925443401205, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923970925443401205, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -821.32
       objectReference: {fileID: 0}
     - target: {fileID: 7584946276397718611, guid: 1485981702313414aa36d998bb951cc0, type: 3}
       propertyPath: m_Pivot.x
@@ -2372,6 +2396,14 @@ PrefabInstance:
     - target: {fileID: 7584946276397718611, guid: 1485981702313414aa36d998bb951cc0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497956300796630562, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497956300796630562, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 130
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3464,6 +3496,94 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.size
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[6]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: 39276584bdf42d147a7262912660601a, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[7]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: 6df066638a10a17429a93f7fe3207f7d, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[8]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: 37facf61d42157e41be4ba89552674c7, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[9]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: c788a739b2dda2743b2f3908f66baf76, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[10]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: d68bca55d07778f459aba0e601242973, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[11]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: e448b74cd4daecf4c8eb26c7c8cf4c20, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[12]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: b1347e0dea2b28b48a9374cbd98c537c, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[13]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: bba62dea72806cb4594fdcaf054ad7ea, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[14]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: 74fc21f0b249a2e4abd93b2ae3bdb8c2, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[15]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: 2ec371c8491ef4f49812503eef5b8143, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[16]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: 03c5be41c2e89014e98582da53b2eff0, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[17]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: abad6341995a1114ebe599301cdfb9eb, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[18]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: 3b7fa26a9f52d0a4ab9fac01533b5035, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[19]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: 8c571a0c1a1dc8847b408e5809cfdd1a, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[20]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: 3196f465b457665499aba2f4a3bb721e, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[21]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: 2d433e63d4d74614d9ef93497bde2365, type: 3}
+    - target: {fileID: 50693294119618270, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: monsterPrefab.Array.data[22]
+      value: 
+      objectReference: {fileID: 2314913400453204438, guid: 1cc189973ed58824e9442c143280ed40, type: 3}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[0]._name
+      value: MONSTER1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[0]._count
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[17]._name
+      value: MISSIONBOSS1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[17]._count
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4515531161734457313, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
       propertyPath: poolingObjectPrefab
       value: 

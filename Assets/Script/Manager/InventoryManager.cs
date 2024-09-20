@@ -564,7 +564,7 @@ public class InventoryManager : MonoBehaviour
 
     public void CreateAllItem()
     {
-        for (int i = 6; i < 31; i++)
+        for (int i = 6; i < 21; i++)
         {
 
             string weaponIconPath = "WeaponIcon/" + i.ToString();

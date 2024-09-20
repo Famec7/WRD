@@ -673,6 +673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8453957073280872842}
   - component: {fileID: 50693294119618270}
+  - component: {fileID: 1349269234215623802}
   m_Layer: 0
   m_Name: MonsterPool
   m_TagString: Untagged
@@ -713,19 +714,129 @@ MonoBehaviour:
   - {fileID: 2314913400453204438, guid: 5bf1d377b4587aa4ab3f33ba212d53ce, type: 3}
   - {fileID: 2314913400453204438, guid: fefb3e312cd8fda4ea808dcd5d6c94ec, type: 3}
   - {fileID: 2314913400453204438, guid: 5211f814387a3e24c8d3f5b27f36b185, type: 3}
-  - {fileID: 2314913400453204438, guid: 77c8ea76f49b883438cf85a356b6f0d1, type: 3}
-  - {fileID: 2314913400453204438, guid: 561b4909d20605845a57cc1f9cda6b86, type: 3}
-  - {fileID: 2314913400453204438, guid: 77d4a39f520b1ee4dae6ba8ff1509801, type: 3}
-  - {fileID: 2314913400453204438, guid: 37facf61d42157e41be4ba89552674c7, type: 3}
+  - {fileID: 2314913400453204438, guid: bfa7a12198bce854f86e9f200ed3b319, type: 3}
   - {fileID: 2314913400453204438, guid: 39276584bdf42d147a7262912660601a, type: 3}
   - {fileID: 2314913400453204438, guid: 6df066638a10a17429a93f7fe3207f7d, type: 3}
+  - {fileID: 2314913400453204438, guid: 37facf61d42157e41be4ba89552674c7, type: 3}
+  - {fileID: 2314913400453204438, guid: c788a739b2dda2743b2f3908f66baf76, type: 3}
   - {fileID: 2314913400453204438, guid: d68bca55d07778f459aba0e601242973, type: 3}
+  - {fileID: 2314913400453204438, guid: e448b74cd4daecf4c8eb26c7c8cf4c20, type: 3}
+  - {fileID: 2314913400453204438, guid: b1347e0dea2b28b48a9374cbd98c537c, type: 3}
+  - {fileID: 2314913400453204438, guid: bba62dea72806cb4594fdcaf054ad7ea, type: 3}
+  - {fileID: 2314913400453204438, guid: 74fc21f0b249a2e4abd93b2ae3bdb8c2, type: 3}
+  - {fileID: 2314913400453204438, guid: 2ec371c8491ef4f49812503eef5b8143, type: 3}
+  - {fileID: 2314913400453204438, guid: 03c5be41c2e89014e98582da53b2eff0, type: 3}
   - {fileID: 2314913400453204438, guid: abad6341995a1114ebe599301cdfb9eb, type: 3}
   - {fileID: 2314913400453204438, guid: 3b7fa26a9f52d0a4ab9fac01533b5035, type: 3}
   - {fileID: 2314913400453204438, guid: 8c571a0c1a1dc8847b408e5809cfdd1a, type: 3}
   - {fileID: 2314913400453204438, guid: 3196f465b457665499aba2f4a3bb721e, type: 3}
   - {fileID: 2314913400453204438, guid: 2d433e63d4d74614d9ef93497bde2365, type: 3}
   - {fileID: 2314913400453204438, guid: 1cc189973ed58824e9442c143280ed40, type: 3}
+--- !u!114 &1349269234215623802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598795965865050377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04785cd8cdb5433fa445003fa7e07530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolDatas:
+  - _name: MONSTER1
+    _prefab: {fileID: 6432071037866064084, guid: 03e6f6c7080d9dd49be3e0ae6b078171, type: 3}
+    _count: 50
+    _preloadOnStart: 0
+  - _name: MONSTER2
+    _prefab: {fileID: 6432071037866064084, guid: 5bf1d377b4587aa4ab3f33ba212d53ce, type: 3}
+    _count: 50
+    _preloadOnStart: 0
+  - _name: MONSTER3
+    _prefab: {fileID: 6432071037866064084, guid: 03430392335defe4f8be5b890ad2da3e, type: 3}
+    _count: 50
+    _preloadOnStart: 0
+  - _name: MONSTER4
+    _prefab: {fileID: 6432071037866064084, guid: fefb3e312cd8fda4ea808dcd5d6c94ec, type: 3}
+    _count: 50
+    _preloadOnStart: 0
+  - _name: MONSTER5
+    _prefab: {fileID: 6432071037866064084, guid: 5211f814387a3e24c8d3f5b27f36b185, type: 3}
+    _count: 50
+    _preloadOnStart: 0
+  - _name: MONSTER6
+    _prefab: {fileID: 6432071037866064084, guid: bfa7a12198bce854f86e9f200ed3b319, type: 3}
+    _count: 50
+    _preloadOnStart: 0
+  - _name: BOSS1
+    _prefab: {fileID: 6432071037866064084, guid: 39276584bdf42d147a7262912660601a, type: 3}
+    _count: 1
+    _preloadOnStart: 0
+  - _name: BOSS2
+    _prefab: {fileID: 6432071037866064084, guid: 03e6f6c7080d9dd49be3e0ae6b078171, type: 3}
+    _count: 1
+    _preloadOnStart: 0
+  - _name: BOSS3
+    _prefab: {fileID: 6432071037866064084, guid: 03e6f6c7080d9dd49be3e0ae6b078171, type: 3}
+    _count: 1
+    _preloadOnStart: 0
+  - _name: BOSS4
+    _prefab: {fileID: 6432071037866064084, guid: c788a739b2dda2743b2f3908f66baf76, type: 3}
+    _count: 1
+    _preloadOnStart: 0
+  - _name: BOSS5
+    _prefab: {fileID: 6432071037866064084, guid: d68bca55d07778f459aba0e601242973, type: 3}
+    _count: 1
+    _preloadOnStart: 0
+  - _name: BOSS6
+    _prefab: {fileID: 6432071037866064084, guid: e448b74cd4daecf4c8eb26c7c8cf4c20, type: 3}
+    _count: 1
+    _preloadOnStart: 0
+  - _name: ELITEMONSTER1
+    _prefab: {fileID: 6432071037866064084, guid: b1347e0dea2b28b48a9374cbd98c537c, type: 3}
+    _count: 80
+    _preloadOnStart: 0
+  - _name: ELITEMONSTER2
+    _prefab: {fileID: 6432071037866064084, guid: bba62dea72806cb4594fdcaf054ad7ea, type: 3}
+    _count: 80
+    _preloadOnStart: 0
+  - _name: ELITEMONSTER3
+    _prefab: {fileID: 6432071037866064084, guid: 74fc21f0b249a2e4abd93b2ae3bdb8c2, type: 3}
+    _count: 50
+    _preloadOnStart: 0
+  - _name: ELITEMONSTER4
+    _prefab: {fileID: 6432071037866064084, guid: 2ec371c8491ef4f49812503eef5b8143, type: 3}
+    _count: 80
+    _preloadOnStart: 0
+  - _name: ELITEMONSTER5
+    _prefab: {fileID: 6432071037866064084, guid: 03c5be41c2e89014e98582da53b2eff0, type: 3}
+    _count: 80
+    _preloadOnStart: 0
+  - _name: MISSIONBOSS1
+    _prefab: {fileID: 6432071037866064084, guid: abad6341995a1114ebe599301cdfb9eb, type: 3}
+    _count: 1
+    _preloadOnStart: 0
+  - _name: MISSIONBOSS2
+    _prefab: {fileID: 6432071037866064084, guid: 3b7fa26a9f52d0a4ab9fac01533b5035, type: 3}
+    _count: 1
+    _preloadOnStart: 0
+  - _name: MISSIONBOSS3
+    _prefab: {fileID: 6432071037866064084, guid: 8c571a0c1a1dc8847b408e5809cfdd1a, type: 3}
+    _count: 50
+    _preloadOnStart: 0
+  - _name: MISSIONBOSS4
+    _prefab: {fileID: 6432071037866064084, guid: 3196f465b457665499aba2f4a3bb721e, type: 3}
+    _count: 1
+    _preloadOnStart: 0
+  - _name: MISSIONBOSS5
+    _prefab: {fileID: 6432071037866064084, guid: 2d433e63d4d74614d9ef93497bde2365, type: 3}
+    _count: 1
+    _preloadOnStart: 0
+  - _name: MISSIONBOSS6
+    _prefab: {fileID: 6432071037866064084, guid: 1cc189973ed58824e9442c143280ed40, type: 3}
+    _count: 1
+    _preloadOnStart: 0
 --- !u!1 &8001200527904598332
 GameObject:
   m_ObjectHideFlags: 0

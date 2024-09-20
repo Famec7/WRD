@@ -53,4 +53,9 @@ public class RewardManager : MonoBehaviour
 
         }
     }
+
+    public void GetReward(UnitCode code)
+    {
+
+    }
 }

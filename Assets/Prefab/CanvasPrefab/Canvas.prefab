@@ -600,6 +600,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissionSlot (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4467294087050500287, guid: 0eee92b3f0b12224a8c0df3dcd9ed42b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1b863f5e680066348b933661c288e811, type: 3}
     - target: {fileID: 7696307284388707940, guid: 0eee92b3f0b12224a8c0df3dcd9ed42b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1108,6 +1112,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissionSlot (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4467294087050500287, guid: 0eee92b3f0b12224a8c0df3dcd9ed42b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: af763f647fa6c4748a0dcc80869dd15c, type: 3}
     - target: {fileID: 7696307284388707940, guid: 0eee92b3f0b12224a8c0df3dcd9ed42b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1711,6 +1719,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissionSlot (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4467294087050500287, guid: 0eee92b3f0b12224a8c0df3dcd9ed42b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e1db9ad041d59394088c3929c216809a, type: 3}
     - target: {fileID: 7696307284388707940, guid: 0eee92b3f0b12224a8c0df3dcd9ed42b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1915,6 +1927,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissionSlot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4467294087050500287, guid: 0eee92b3f0b12224a8c0df3dcd9ed42b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4b7c33038949f5b46b4ae43d30c793ad, type: 3}
     - target: {fileID: 7696307284388707940, guid: 0eee92b3f0b12224a8c0df3dcd9ed42b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2017,6 +2033,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissionSlot
       objectReference: {fileID: 0}
+    - target: {fileID: 4467294087050500287, guid: 0eee92b3f0b12224a8c0df3dcd9ed42b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 56c6aa6bae3260e44986dc7cb56597d8, type: 3}
     - target: {fileID: 7696307284388707940, guid: 0eee92b3f0b12224a8c0df3dcd9ed42b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2119,6 +2139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MissionSlot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4467294087050500287, guid: 0eee92b3f0b12224a8c0df3dcd9ed42b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e00cd01aeebb3a46980ecba6074d2bb, type: 3}
     - target: {fileID: 7696307284388707940, guid: 0eee92b3f0b12224a8c0df3dcd9ed42b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2243,11 +2267,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3293204061454212982, guid: 63c4b94df9483974a9422e3b7b1172a4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 150
+      value: 118
       objectReference: {fileID: 0}
     - target: {fileID: 3293204061454212982, guid: 63c4b94df9483974a9422e3b7b1172a4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 150
+      value: 61
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293204061454212982, guid: 63c4b94df9483974a9422e3b7b1172a4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293204061454212982, guid: 63c4b94df9483974a9422e3b7b1172a4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3293204061454212982, guid: 63c4b94df9483974a9422e3b7b1172a4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2279,11 +2311,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3293204061454212982, guid: 63c4b94df9483974a9422e3b7b1172a4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 922
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3293204061454212982, guid: 63c4b94df9483974a9422e3b7b1172a4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1475
+      value: -2190
       objectReference: {fileID: 0}
     - target: {fileID: 3293204061454212982, guid: 63c4b94df9483974a9422e3b7b1172a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
