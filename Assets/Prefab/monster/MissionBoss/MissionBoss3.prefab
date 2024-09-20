@@ -152,7 +152,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25944382, y: 0.32}
+  m_Size: {x: 6.227226, y: 3.725749}
   m_EdgeRadius: 0
 --- !u!114 &6432071037866064084
 MonoBehaviour:
@@ -184,10 +184,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451224ee50acf4244871aacff3bdb1c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitCode: 0
+  unitCode: 19
   maxHP: 0
   HP: 0
   moveSpeed: 0
+  originalSpeed: 0
   resist: 0
   defense: 0
   monsterName: 
@@ -319,7 +320,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.03487909, y: 0.055070758}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &8473728470306036902
 Rigidbody2D:

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MissionInfo : MonoBehaviour
 {
-    private List<MissionSlot> _missionSlots;
+    public List<MissionSlot> _missionSlots;
 
     private void Awake()
     {

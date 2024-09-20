@@ -38,9 +38,6 @@ public class UIPopUp : MonoBehaviour
             {
                 if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count >= 3 || result.gameObject.CompareTag("DetailedDescriptionUI") || result.gameObject.CompareTag("Mission"))
                     isButton = true;
-
-                Debug.Log(result.gameObject.name);
-
             }
 
             if (isButton) return;

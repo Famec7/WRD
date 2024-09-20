@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MessageManager : Singleton<MessageManager>
 {
-    
-
     public Message messagePrefab; // 메시지 프리팹
     public int poolSize = 10; // 초기 풀 크기
     public Transform messageParent; // 메시지 오브젝트의 부모
