@@ -42,7 +42,6 @@ public abstract class ActiveSkillBase : SkillBase
 
     public virtual void CancelSkill()
     {
-        IsCoolTime = true;
         IsActive = false;
         IsIndicatorState = false;
     }
@@ -50,11 +49,6 @@ public abstract class ActiveSkillBase : SkillBase
     public void AddTargetMonster(Monster monster)
     {
         targetMonsters.Add(monster);
-    }
-
-    private void OnDisable()
-    {
-        CancelSkill();
     }
 
     /***************************Behaviour Tree***************************/

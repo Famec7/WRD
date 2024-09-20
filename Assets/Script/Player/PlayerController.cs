@@ -226,6 +226,7 @@ public class PlayerController : CharacterController, ISubject
     {
         Target = null;
         Data.CurrentWeapon.transform.SetParent(null);
+        Data.SetCurrentWeapon(null);
         
         _arm.localRotation = Quaternion.Euler(0, 0, 0);
     }
