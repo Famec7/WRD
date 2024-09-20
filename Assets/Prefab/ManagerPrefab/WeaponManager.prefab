@@ -45,16 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34cce9a96c54343963674f49922fff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characters:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &6174703270386120938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,27 +58,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _poolDatas:
-  - _name: IronSword
-    _prefab: {fileID: 0}
+  - _name: rusty sword
+    _prefab: {fileID: 8762204504337995533, guid: 3dbeaebb982ea4c458c021bbcdab74f4, type: 3}
     _count: 9
     _preloadOnStart: 0
-  - _name: IronSpear
-    _prefab: {fileID: 0}
+  - _name: wooden axe
+    _prefab: {fileID: 1449586260276531997, guid: 2103586ff177972479ef5aa5772a0a99, type: 3}
     _count: 9
     _preloadOnStart: 0
-  - _name: CrossBow
-    _prefab: {fileID: 0}
+  - _name: slingshot
+    _prefab: {fileID: 7982690866960277039, guid: f846b9aef53c38e4ea361c403ba49843, type: 3}
     _count: 9
     _preloadOnStart: 0
-  - _name: LowOrb
-    _prefab: {fileID: 0}
+  - _name: wooden arrow
+    _prefab: {fileID: 8340806176406979027, guid: 98856c8c35fb1a144a8db0177f5c8ea7, type: 3}
     _count: 9
     _preloadOnStart: 0
-  - _name: Pistol
-    _prefab: {fileID: 0}
+  - _name: wooden spear
+    _prefab: {fileID: 1520371911871682592, guid: 3f93c92014b35b04599fb7ea7fbafe3e, type: 3}
     _count: 9
     _preloadOnStart: 0
-  - _name: Excalibur
-    _prefab: {fileID: 0}
+  - _name: iron sword
+    _prefab: {fileID: 1725306334580153423, guid: 809d482357333dc4fb7aa08dcf952e38, type: 3}
+    _count: 9
+    _preloadOnStart: 0
+  - _name: iron spear
+    _prefab: {fileID: 6620615878372865885, guid: 9a9e44703ef9bbe4c910300c2bd8cb50, type: 3}
+    _count: 9
+    _preloadOnStart: 0
+  - _name: cross bow
+    _prefab: {fileID: 5472390895983883270, guid: 5a3b826284a9c714ba24307402ecffa2, type: 3}
+    _count: 9
+    _preloadOnStart: 0
+  - _name: pistol
+    _prefab: {fileID: 5823808155564251743, guid: 1096e4498a56c3d4db5e3c5d356b6608, type: 3}
+    _count: 9
+    _preloadOnStart: 0
+  - _name: low orb
+    _prefab: {fileID: 6394924959683496480, guid: d5ac4ca9bdbc495469aea38d67e49ab0, type: 3}
+    _count: 9
+    _preloadOnStart: 0
+  - _name: excalibur
+    _prefab: {fileID: 4489820946998548868, guid: 71e0cdba486c808478b933cdc729feac, type: 3}
+    _count: 9
+    _preloadOnStart: 0
+  - _name: mjolnir
+    _prefab: {fileID: 4354140859558254631, guid: 16f41333a180b0443bfc8023e25e3b2d, type: 3}
     _count: 9
     _preloadOnStart: 0
