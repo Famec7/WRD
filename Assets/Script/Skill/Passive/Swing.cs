@@ -8,9 +8,8 @@ public class Swing : PassiveSkillBase
     
     [SerializeField]
     private Vector2 _hitSize;
-    
-    /*******Effect*******/
-    [SerializeField] private EffectBase _effect;
+
+    [SerializeField] private Color _color;
     
     protected override void Init()
     {
@@ -33,10 +32,11 @@ public class Swing : PassiveSkillBase
             return false;
         
         // 이펙트 재생
-        _effect.SetPosition(weapon.owner.transform.position + dir);
-        _effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
-        _effect.SetScale(_hitSize);
-        _effect.PlayEffect();
+        HitEffect effect = EffectManager.Instance.CreateEffect<HitEffect>("SwingEffect");
+        
+        effect.SetPosition(weapon.owner.transform.position);
+        effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
+        effect.PlayEffect();
         
         foreach (var tar in targets)
         {
