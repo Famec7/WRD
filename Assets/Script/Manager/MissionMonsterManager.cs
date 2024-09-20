@@ -30,7 +30,7 @@ public class MissionMonsterManager : MonoBehaviour
         resistData = new float[data.Count];
         HPData = new float[data.Count];
         monsterNameData = new string[data.Count];
-        
+        playTimeData = new float[data.Count];
         for (int i = 0; i < data.Count; i++)
         {
             defenseData[i] = int.Parse((data[i]["defense"]).ToString());

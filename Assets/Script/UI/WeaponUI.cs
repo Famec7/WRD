@@ -31,6 +31,7 @@ public class WeaponUI : Singleton<WeaponUI>
         
         if (weaponSlots[order].hasWeapon)
         {
+            WeaponManager.Instance.RemoveWeapon(order);
             GameManager.instance.RemoveUseWeaponList(weaponSlots[order].weaponID);
             weaponSlots[order].Init();
         }
