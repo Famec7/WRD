@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class LowVisionStrike : PassiveSkillBase
 {
-    private Vector2 _range;
-    
-    [SerializeField]
-    private EffectBase _effect;
+    private Vector3 _range;
 
     protected override void Init()
     {
         base.Init();
-        _range = new Vector2(Data.Range, Data.Range);
+        _range = new Vector3(Data.Range, Data.Range, Data.Range);
     }
 
     public override bool Activate(GameObject target = null)
@@ -26,9 +23,10 @@ public class LowVisionStrike : PassiveSkillBase
             return false;
         
         // 이펙트 재생
-        _effect.SetPosition(target.transform.position);
-        _effect.SetScale(_range);
-        _effect.PlayEffect();
+        HitEffect effect = EffectManager.Instance.CreateEffect<HitEffect>("OrbHit");
+        effect.SetPosition(target.transform.position);
+        effect.SetScale(_range);
+        effect.PlayEffect();
 
         foreach (var tar in targets)
         {

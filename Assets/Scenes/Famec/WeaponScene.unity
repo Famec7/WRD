@@ -244,7 +244,7 @@ PrefabInstance:
       objectReference: {fileID: 1109643351}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[0]._name
@@ -264,10 +264,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[4]._name
-      value: SkySwordAura
+      value: HighOrbHit
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[5]._name
+      value: SkySwordAura
+      objectReference: {fileID: 0}
+    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[6]._name
       value: ElectricEffect
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
@@ -288,10 +292,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[4]._count
-      value: 5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[5]._count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[6]._count
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
@@ -313,9 +321,13 @@ PrefabInstance:
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[4]._prefab
       value: 
-      objectReference: {fileID: -5694933062032469738, guid: 6278275767bf0584f84b4b2a49cdb334, type: 3}
+      objectReference: {fileID: 6487501840110601943, guid: 0b10423fceb027f4db920646d6ba2770, type: 3}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[5]._prefab
+      value: 
+      objectReference: {fileID: -5694933062032469738, guid: 6278275767bf0584f84b4b2a49cdb334, type: 3}
+    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[6]._prefab
       value: 
       objectReference: {fileID: 4608603500574545661, guid: 18c062162f7f9a34da09744aa18ed50a, type: 3}
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}

@@ -91,6 +91,9 @@ public class GuidedProjectile : ProjectileBase
             case RangedWeapon.Type.Orb:
                 sb.Append("OrbHit");
                 break;
+            case RangedWeapon.Type.HighOrb:
+                sb.Append("HighOrbHit");
+                break;
             default:
                 break;
         }

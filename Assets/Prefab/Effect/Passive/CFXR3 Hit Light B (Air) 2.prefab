@@ -14904,7 +14904,7 @@ GameObject:
   - component: {fileID: 8771972552311404739}
   - component: {fileID: 6487501840110601943}
   m_Layer: 0
-  m_Name: CFXR3 Hit Light B (Air)
+  m_Name: CFXR3 Hit Light B (Air) 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14920,7 +14920,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1800347497806655306}
@@ -20002,4 +20002,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552afd9778a44d7eb24ec8a2f5b3507a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectName: OrbHit
+  effectName: LowVisionStrike
