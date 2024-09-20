@@ -25,7 +25,6 @@ public class WeaponUI : Singleton<WeaponUI>
 
     public void AddItem(int order, InventoryItem item)
     {
-        // ���� �������� ����
         if (item == null) return;
 
         WeaponSlotUI targetSlot = null;
@@ -40,18 +39,14 @@ public class WeaponUI : Singleton<WeaponUI>
         targetSlot.gameObject.transform.GetChild(0).GetComponent<InventorySlot>().weapon = item;
 
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
-        //��Ŭ�� �˾� ui �����ͼ� ���� �ֽ�ȭ�� ���� setFavoritevbutton �Լ� ����
         longClickPopUpUi.SetBookmarkedButtonText(longClickPopUpUi.isBookmarked, false, true);
 
-        //�����ִ� ���� �迭�� �߰��ϰ� ����� �� �ִ� ���� ���� �迭 ������Ʈ
         GameManager.instance.useWeapon.Add(weaponID);
         GameManager.instance.UpdateUseableWeaponCnt();
 
-        //���ã�⿡�� �����ϰ� ��밡���� ���⿡ �ش� �ϴ� ���� ���� �� ���� ��ư ��Ȱ��ȭ
         if (longClickPopUpUi.isBookmarked && GameManager.instance.useAbleWeaponCnt[weaponID - 1] <= 0)
             longClickPopUpUi._equipButton.SetActive(false);
 
-        //�ش� ���Կ� �̹��� ���� �� id ����
         targetSlot.hasWeapon = true;
         targetSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = item.image;
         targetSlot.gameObject.transform.GetChild(0).GetComponent<Image>().enabled = true;
@@ -60,18 +55,15 @@ public class WeaponUI : Singleton<WeaponUI>
 
         
 
-        // ���ã�⿡�� ���������� �ش� ������ �ִ� �κ��丮 ����, �κ��丮���� ���������� �׳� �ڱ� �κ��丮 ����
         if (!longClickPopUpUi.isBookmarked)
             targetSlot.inventorySlot = longClickPopUpUi.inventorySlot;
         else
             targetSlot.inventorySlot = InventoryManager.instance.FindInventorySlot(weaponID);
 
-        //"E" Ȱ��ȭ �� �ش� ������ �ִ� ���� isEquiped true (�ٽ� ������)
         targetSlot.inventorySlot.equipText.gameObject.SetActive(true);
         targetSlot.inventorySlot.isEquiped = true;
         InventoryManager.instance.SyncWeaponSlotInventorySlot();
         
-        //���� �ΰ��� ���� ����
         WeaponManager.Instance.AddWeapon(order, weaponID);
     }
 

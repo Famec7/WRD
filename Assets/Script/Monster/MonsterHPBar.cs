@@ -27,7 +27,7 @@ public class MonsterHPBar : MonoBehaviour
     {
 
         hpBarFillTransform.localScale = new Vector2(ownerStatus.HP / ownerStatus.maxHP,1);
-        transform.position = transform.parent.position + new Vector3(0,0.2f,0);
+        transform.position = transform.parent.position + new Vector3(0,0.2f,-1);
 
         if (ownerStatus.HP >= ownerStatus.maxHP * 0.5f)
             spriteRenderer.color = Color.green;

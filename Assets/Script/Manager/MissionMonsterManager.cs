@@ -14,6 +14,7 @@ public class MissionMonsterManager : MonoBehaviour
     public float[] speedData;
     public float[] resistData;
     public float[] HPData;
+    public float[] playTimeData;
     public string[] monsterNameData;
 
     private void Awake()
@@ -37,6 +38,8 @@ public class MissionMonsterManager : MonoBehaviour
             resistData[i] = float.Parse((data[i]["resist"]).ToString());
             HPData[i] = float.Parse((data[i]["hp"]).ToString());
             monsterNameData[i] = data[i]["monster_name"].ToString();
+            playTimeData[i] = float.Parse((data[i]["mission_playtime"]).ToString());
+
             unitCodeData[i] = UnitCode.MISSIONBOSS1 + i;
         }
     }

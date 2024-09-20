@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -450,7 +450,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1703838652388824378}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3813868353803413959}
+        m_TargetAssemblyTypeName: MissionUI, Assembly-CSharp
+        m_MethodName: ClickChallengeButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4349219431359026227
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,7 +954,7 @@ GameObject:
   - component: {fileID: 3813868353803413959}
   m_Layer: 5
   m_Name: MissionDescription
-  m_TagString: Untagged
+  m_TagString: Mission
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1024,3 +1036,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closeButton: {fileID: 5226091229296017913}
   missionDescription: {fileID: 5931425883210497432}
+  _missionImage: {fileID: 8719134955227313115}
+  ChallengeButton: {fileID: 931717155450436757}

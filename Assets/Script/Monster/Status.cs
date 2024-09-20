@@ -40,7 +40,7 @@ public class Status : MonoBehaviour
         int wave = GameManager.instance.wave-1;
         unitCode = MonsterDataManager.instance.unitCodeData[wave];
 
-        if (unitCode <= UnitCode.SPROUN)
+        if (unitCode < UnitCode.ELITEMONSTER1)
         {
             HP = MonsterDataManager.instance.HPData[wave];
             defense = MonsterDataManager.instance.defenseData[wave];

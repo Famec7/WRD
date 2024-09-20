@@ -6,12 +6,17 @@ using UnityEngine.UI;
 public class MissionSlot : MonoBehaviour
 {
     private int _index;
+    
     private Image _icon;
     private TextMeshProUGUI _name;
     private Button _button;
 
+    [SerializeField]
+    private TextMeshProUGUI _clearText;
+
     private Color originColor;
 
+    public bool _isClaer;
     private void Awake()
     {
         _icon = GetComponent<Image>();

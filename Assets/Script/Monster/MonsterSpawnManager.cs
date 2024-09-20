@@ -92,32 +92,27 @@ public class MonsterSpawnManager : MonoBehaviour
     void Update()
     {
         int idx = GameManager.instance.wave - 1;
-        //Boss�� ������ Wave���� Ȯ���ϴ� bool ����
         isBossWave = bossSpawnNum[idx] >= 1;
 
         if (idx >= 34)
             idx = 34;
 
-        // ���� �����̽ð� ����
         spawnDelayTimer += Time.deltaTime;
 
-        // ���� ���� ���� �� ���� ���ڸ� ������ ���� ����
         if (currentMonsterNum >= limitMonsterNum)
             isNormalSpawnStop = true;
-        else // �ƴ� ��� ���̺� �ð��� �÷���
+        else
             waveSecTimer += Time.deltaTime;
 
-        if (waveSecTimer >= 1f) // 1�� ������ ���̺� �ð� �ؽ�Ʈ ����
+        if (waveSecTimer >= 1f) 
         {
             waveTimer++;
             TimeSpan timeSpan = TimeSpan.FromSeconds(wavePlayTime[idx]-waveTimer);
             UIManager.instance.currentWaveTime.text = timeSpan.ToString(@"mm\:ss");
             waveSecTimer = 0f;
         }
-        // ���̺� �ð��� ������
         if (waveTimer >= wavePlayTime[idx])
         {
-            //���� ���� �� ��� 
             int limitMonsterNum = 80;
 
             if (GameManager.instance.wave >= 11 && GameManager.instance.wave <= 20)
@@ -129,7 +124,6 @@ public class MonsterSpawnManager : MonoBehaviour
 
             UIManager.instance.limitMonsterNum.text = limitMonsterNum.ToString();
 
-            // ���� ���̺��ε� ������ ���� ������ ��� or ���� ���ͺ��� ���� ���Ͱ� ���� ��� GameOver
             if ((isBossWave && targetBossStatus.HP < 0) && currentMonsterNum > limitMonsterNum)
             {
                 GameManager.instance.isGameOver = true;
@@ -138,12 +132,9 @@ public class MonsterSpawnManager : MonoBehaviour
             {
                 Debug.Log("���� ����");
             }
-            // ���̺� �� �ؽ�Ʈ ������Ʈ
             GameManager.instance.wave++;
             UIManager.instance.waveNum.text = "Wave " + GameManager.instance.wave.ToString();
-            // ��� �������� �⺻ ���� 3�� ����
             ElementManager.instance.GetElement(3);
-            // �ٽ� ������ ���� ���� �ʱ�ȭ
             waveTimer = 0;
             isNormalSpawnStop = false;
             currentWaveMonsterNum = 0;
@@ -155,18 +146,15 @@ public class MonsterSpawnManager : MonoBehaviour
 
         if (isSpawnStop) return;
 
-        // �Ϲ� ���� ���� ���߱�
         if (currentWaveMonsterNum == monsterSpawnNum[idx])
             isNormalSpawnStop = true;
 
-        // �Ϲ� ���� ��ȯ
         if (spawnDelayTimer >= monsterSpawnTime[idx] && !isNormalSpawnStop)
         {
             UnitCode code = (UnitCode)((int)GameManager.instance.wave / 6);
             SpawnMonster(code);
         }
 
-        // ���� ���� ��ȯ
         if (isBossWave && !isBossSpawn)
         {
             UnitCode code = (UnitCode)((int)GameManager.instance.wave / 6) + 6;
@@ -185,10 +173,10 @@ public class MonsterSpawnManager : MonoBehaviour
         }
     }
     
-    void SpawnMonster(UnitCode code)
+    public void SpawnMonster(UnitCode code)
     {
         var monster = MonsterPoolManager.Instance.GetPooledObject(code);
-        monster.GetComponent<MonsterMoveComponent>().roadNum = 1; // *�ӽ��ڵ�* ���� ��ġ �ٲٸ� �ڵ� �����ؾ���
+        monster.GetComponent<MonsterMoveComponent>().roadNum = 1; 
         monster.transform.position = spawnPoints[spawnPointsCount - 1].transform.position;
 
         GameObject hpBar = MonsterHPBarPool.GetObject();

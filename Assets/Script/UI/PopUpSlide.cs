@@ -5,44 +5,42 @@ using UnityEngine.UI;
 
 public class PopUpSlide : MonoBehaviour
 {
-    private Vector3 originalPosition;
+    protected Vector3 originalPosition;
 
     [Header("PopUp Slide Position")] [SerializeField]
-    private Vector3 popUpPosition;
+    protected Vector3 popUpPosition;
 
-    private RectTransform _currentRectTransform;
+    protected RectTransform _currentRectTransform;
+    protected bool _isPopUp = false;
+    [SerializeField]
+    protected Sprite rightImage;
+    [SerializeField]
+    protected Sprite leftImage;
+    [SerializeField]
+    protected Image openButton;
 
-    private bool _isPopUp = false;
     [SerializeField]
-    private Sprite rightImage;
-    [SerializeField]
-    private Sprite leftImage;
-    [SerializeField]
-    private Image openButton;
+    protected AnimationCurve _animationCurve;
 
-    [SerializeField]
-    private AnimationCurve _animationCurve;
-
-    private void Awake()
+    protected virtual void Awake()
     {
         _currentRectTransform = GetComponent<RectTransform>();
     }
 
-    private void Start()
+    protected void Start()
     {
         originalPosition = _currentRectTransform.anchoredPosition;
     }
 
-    public void OnClick()
+    public virtual void OnClick()
     {
         StartCoroutine(_isPopUp ? IE_ClosePopUp() : IE_OpenPopUp());
         openButton.sprite = _isPopUp ? leftImage : rightImage ;
     }
 
-    private IEnumerator IE_OpenPopUp()
+    protected virtual IEnumerator IE_OpenPopUp()
     {
         _isPopUp = true;
-        
         float duration = 1.0f;
         float elapsedTime = 0.0f;
 
@@ -57,9 +55,10 @@ public class PopUpSlide : MonoBehaviour
 
             yield return null;
         }
+      
     }
 
-    private IEnumerator IE_ClosePopUp()
+    protected virtual IEnumerator IE_ClosePopUp()
     {
         _isPopUp = false;
         
@@ -79,8 +78,10 @@ public class PopUpSlide : MonoBehaviour
         }
     }
 
-    private bool IsTransformEqual(Vector3 compare, float threshold = 0.01f)
+    protected bool IsTransformEqual(Vector3 compare, float threshold = 0.01f)
     {
         return Vector3.Distance(_currentRectTransform.anchoredPosition, compare) < threshold;
     }
+
+
 }

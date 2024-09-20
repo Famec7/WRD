@@ -23,6 +23,13 @@ public class Monster : MonoBehaviour, IPoolObject
     private void IsDead()
     {
         isDead = true;
+
+        if (status.unitCode >= UnitCode.MISSIONBOSS1 && status.unitCode <= UnitCode.MISSIONBOSS6)
+        {
+            MissionManager.Instance.TargetMonsterList.Remove(this);
+            RewardManager.instance.GetReward(status.unitCode);
+        }
+
         MonsterHPBarPool.ReturnObject(transform.GetChild(1).GetComponent<MonsterHPBar>()); 
         MonsterPoolManager.Instance.ReturnObject(gameObject);
     }

@@ -18,8 +18,9 @@ public class WeaponImage : MonoBehaviour
     private float clickTime;
     private bool isClick;
 
-    private Vector3 originalPos;
+    public Vector3 originalPos;
     public bool isDrag = false;
+    public bool isSlide = false;
     public bool isInventory;
     public bool isBookmarked;
     private RectTransform rectTransform;
@@ -49,7 +50,7 @@ public class WeaponImage : MonoBehaviour
             transform.position = Input.mousePosition;
         }
 
-        if (!isDrag)
+        if (!isDrag && !isSlide)
         {
             transform.position = originalPos;
         }

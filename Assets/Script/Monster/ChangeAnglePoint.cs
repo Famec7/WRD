@@ -37,10 +37,11 @@ public class ChangeAnglePoint : MonoBehaviour
             collision.transform.parent.gameObject.GetComponent<MonsterMoveComponent>().moveDir = monsterMoveDir;
             collision.transform.parent.gameObject.GetComponent<MonsterMoveComponent>().roadNum = pointNum;
             collision.transform.parent.gameObject.GetComponent<MonsterMoveComponent>().returnPos = transform.position;
+            Vector3 collisionScale = collision.transform.parent.localScale;
             if (monsterMoveDir.x < 0 || monsterMoveDir.y < 0)
-                collision.transform.parent.localScale = new Vector3(-1, 1, 1);
+                collision.transform.parent.localScale = new Vector3(-1* collisionScale.x, 1* collisionScale.y, 1* collisionScale.z);
             else
-                collision.transform.parent.localScale = new Vector3(1, 1, 1);
+                collision.transform.parent.localScale = new Vector3(1* collisionScale.x, 1* collisionScale.y, 1* collisionScale.z);
 
             
         }
