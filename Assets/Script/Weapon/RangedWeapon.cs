@@ -12,7 +12,7 @@ public class RangedWeapon : WeaponBase
         HighOrb,
     }
 
-    [SerializeField] private Type type;
+    [SerializeField] protected Type type;
 
     protected override void Attack()
     {

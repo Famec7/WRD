@@ -58,23 +58,22 @@ public abstract class CharacterController : MonoBehaviour
 
         if (colliders is null)
             return;
+        
+        GameObject nearestTarget = null;
+        float minDistance = float.MaxValue;
 
         foreach (var col in colliders)
         {
-            float distanceFromEntityToCollider = Vector3.Distance(transform.position, col.transform.position);
-
-            if (IsTargetNullOrInactive())
+            float distance = Vector3.Distance(transform.position, col.transform.position);
+            
+            if(distance < minDistance)
             {
-                Target = col.transform.gameObject;
-                continue;
+                minDistance = distance;
+                nearestTarget = col.gameObject;
             }
-
-            float distanceFromEntityToTarget = Vector3.Distance(transform.position, Target.transform.position);
-
-            // 가장 가까운 적을 타겟으로 설정
-            if (distanceFromEntityToCollider < distanceFromEntityToTarget)
-                Target = col.transform.gameObject;
         }
+        
+        Target = nearestTarget;
     }
 
     public bool IsTargetNullOrInactive()
