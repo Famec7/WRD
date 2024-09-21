@@ -106,14 +106,14 @@ public abstract class ActiveSkillBase : SkillBase
                 weapon.owner.enabled = true;
 
                 SkillUIManager.Instance.ClosePopupPanel();
-                OnButtonActivate?.Invoke(false);
+                OnButtonActivate?.Invoke(true);
             }
             else
             {
                 if (this is ClickTypeSkill)
                     weapon.owner.enabled = false;
 
-                OnButtonActivate?.Invoke(true);
+                OnButtonActivate?.Invoke(false);
             }
         }
         get => _isCoolTime;

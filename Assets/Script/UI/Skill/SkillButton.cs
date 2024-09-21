@@ -51,5 +51,6 @@ public class SkillButton : MonoBehaviour
     private void SetActive(bool active)
     {
         _trigger.enabled = active;
+        GetComponent<Button>().interactable = active;
     }
 }

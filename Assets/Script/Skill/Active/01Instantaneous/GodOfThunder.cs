@@ -13,6 +13,8 @@ public class GodOfThunder : InstantaneousSkill
     [SerializeField]
     private float _chainAttackRange = 7.0f;
     
+    private ParticleEffect _electricAura = null;
+    
     #region Data
 
     private float _duration;
@@ -46,6 +48,12 @@ public class GodOfThunder : InstantaneousSkill
         
         // 무기의 공격 범위를 변경
         weapon.SetAttackDelay(_range);
+        
+        _electricAura = EffectManager.Instance.CreateEffect<ParticleEffect>("ElectricAura");
+        _electricAura.SetPosition(weapon.owner.transform.position);
+        _electricAura.transform.SetParent(weapon.owner.transform, false);
+        
+        _electricAura.PlayEffect();
     }
 
     protected override INode.ENodeState OnActiveExecute()
@@ -70,6 +78,9 @@ public class GodOfThunder : InstantaneousSkill
     protected override void OnActiveExit()
     {
         ResetStat();
+        
+        _electricAura.StopEffect();
+        _electricAura = null;
     }
 
     private void ResetStat()
