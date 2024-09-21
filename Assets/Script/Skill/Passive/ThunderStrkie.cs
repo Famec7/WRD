@@ -33,7 +33,7 @@ public class ThunderStrkie : PassiveSkillBase
 
     private void OnThunderStrike(GameObject target)
     {
-        var thunderEffect = EffectManager.Instance.CreateEffect<ThunderStrikeEffect>("ThunderStrike");
+        var thunderEffect = EffectManager.Instance.CreateEffect<ThunderStrikeEffect>("ThunderEffect");
         
         // 낙뢰 이펙트 발생
         thunderEffect.SetPosition(target.transform.position);
