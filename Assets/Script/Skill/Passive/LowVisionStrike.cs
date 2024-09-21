@@ -30,9 +30,12 @@ public class LowVisionStrike : PassiveSkillBase
 
         foreach (var tar in targets)
         {
-            if (tar.TryGetComponent(out Status status))
+            if (tar.TryGetComponent(out Monster monster))
             {
-                StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(tar.gameObject, 100f, 0.3f));
+                monster.HasAttacked(Data.GetValue(0));
+                
+                float slowDuration = Data.GetValue(1);
+                StatusEffectManager.Instance.AddStatusEffect(monster.status, new SlowDown(tar.gameObject, 100f, slowDuration));
             }
         }
 
