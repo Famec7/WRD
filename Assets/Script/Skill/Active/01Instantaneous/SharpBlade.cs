@@ -5,18 +5,18 @@ using UnityEngine;
 public class SharpBlade : InstantaneousSkill
 {
     #region Data
+
     private float _damage;
     private float _woundDamge;
-    private Vector3 _range = new Vector3(0.75f, 1.75f,1);
-    #endregion
 
-    /*******Effect*******/
-    [SerializeField] private EffectBase _effect;
+    [SerializeField] private Vector3 _range = new Vector3(0.75f, 1.75f, 1);
+
+    #endregion
 
     protected override void Init()
     {
         base.Init();
-        SetData();   
+        SetData();
     }
 
     private void SetData()
@@ -32,7 +32,6 @@ public class SharpBlade : InstantaneousSkill
 
     protected override INode.ENodeState OnActiveExecute()
     {
-
         if (weapon.owner.Target == null)
         {
             IsActive = false;
@@ -42,12 +41,12 @@ public class SharpBlade : InstantaneousSkill
         Vector3 dir = weapon.owner.Target.transform.position - weapon.owner.transform.position;
         if (dir == Vector3.zero)
         {
-
             IsActive = false;
             return INode.ENodeState.Failure;
         }
 
-        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, _range, dir, targetLayer);
+        List<Collider2D> targets =
+            RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, _range, dir, targetLayer);
 
         if (targets.Count == 0)
         {
@@ -56,24 +55,28 @@ public class SharpBlade : InstantaneousSkill
         }
 
         // 이펙트 재생
-        _effect.SetPosition(weapon.owner.transform.position + dir);
-        _effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
-        _effect.SetScale(_range);
-        _effect.PlayEffect();
+        ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("SharpBladeEffect");
+
+        effect.SetPosition(weapon.owner.transform.position + dir);
+        effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
+        effect.SetScale(_range);
+        effect.PlayEffect();
 
         foreach (var tar in targets)
         {
             if (tar.TryGetComponent(out Monster monster))
             {
-                Debug.Log("요기요3");
-
                 var wound = StatusEffectManager.Instance.GetStatusEffect(monster.status, typeof(Wound));
-                monster.HasAttacked(_damage);
 
-                if (wound is null) continue;
-
-                StatusEffectManager.Instance.RemoveStatusEffect(monster.status, typeof(Wound));
-                monster.HasAttacked(_woundDamge);
+                if (wound is null)
+                {
+                    monster.HasAttacked(_damage);
+                }
+                else
+                {
+                    StatusEffectManager.Instance.RemoveStatusEffect(monster.status, typeof(Wound));
+                    monster.HasAttacked(_woundDamge);
+                }
             }
         }
 
@@ -85,7 +88,4 @@ public class SharpBlade : InstantaneousSkill
     {
         ;
     }
-
-  
-
 }

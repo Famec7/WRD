@@ -8,8 +8,6 @@ public class Swing : PassiveSkillBase
     
     [SerializeField]
     private Vector2 _hitSize;
-
-    [SerializeField] private Color _color;
     
     protected override void Init()
     {
@@ -32,7 +30,7 @@ public class Swing : PassiveSkillBase
             return false;
         
         // 이펙트 재생
-        ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("SwingEffect");
+        ParticleEffect effect = GetSwingEffect();
         
         effect.SetPosition(weapon.owner.transform.position);
         effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
@@ -50,5 +48,10 @@ public class Swing : PassiveSkillBase
 
         return true;
 
+    }
+
+    protected virtual ParticleEffect GetSwingEffect()
+    {
+        return EffectManager.Instance.CreateEffect<ParticleEffect>("SwingEffect");
     }
 }

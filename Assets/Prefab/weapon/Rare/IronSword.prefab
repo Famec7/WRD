@@ -106,6 +106,7 @@ MonoBehaviour:
     _originScale: {x: 0.01204671, y: 0.01204671, z: 0}
   weaponId: 11
   passiveSkill: {fileID: 3598860328224715236}
+  passiveAuraSkill: {fileID: 0}
   activeSkill: {fileID: 0}
   anim: {fileID: -9069958465059359203}
   type: 0
@@ -123,8 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   weapon: {fileID: 0}
-  _hitSize: {x: 0.5, y: 1.5}
-  _effect: {fileID: 0}
+  _hitSize: {x: 1, y: 3}
 --- !u!114 &-9069958465059359203
 MonoBehaviour:
   m_ObjectHideFlags: 0

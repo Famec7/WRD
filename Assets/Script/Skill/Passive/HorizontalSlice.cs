@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class HorizontalSlice : Swing
 {
-   
+    protected override ParticleEffect GetSwingEffect()
+    {
+        return EffectManager.Instance.CreateEffect<ParticleEffect>("HorizontalSliceEffect");
+    }
 }
