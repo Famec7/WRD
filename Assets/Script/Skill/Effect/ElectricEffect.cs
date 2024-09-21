@@ -34,7 +34,7 @@ public class ElectricEffect : EffectBase
     {
         RemoveAllStatus();
         
-        EffectManager.Instance.ReturnEffectToPool(this, "ElectricEffect");
+        EffectManager.Instance.ReturnEffectToPool(this, "ThunderEffect");
     }
 
     #region StatusEffect

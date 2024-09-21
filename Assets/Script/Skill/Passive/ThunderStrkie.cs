@@ -33,31 +33,27 @@ public class ThunderStrkie : PassiveSkillBase
 
     private void OnThunderStrike(GameObject target)
     {
-        var thunderEffect = EffectManager.Instance.CreateEffect<ThunderStrikeEffect>("ThunderEffect");
-        
-        // 낙뢰 이펙트 발생
-        thunderEffect.SetPosition(target.transform.position);
-        thunderEffect.PlayEffect();
-        
         Attack();
 
-        // 전류 잔존 이펙트
+        // 전류 이펙트
         StartCoroutine(IE_ElectricEffect(target));
     }
     
     private IEnumerator IE_ElectricEffect(GameObject target)
     {
-        var electricEffect = EffectManager.Instance.CreateEffect<ElectricEffect>("ElectricEffect");
+        var thunderEffect = EffectManager.Instance.CreateEffect<ElectricEffect>("ThunderEffect");
         
-        electricEffect.SetData(Data.GetValue(2), Data.GetValue(3), Data.GetValue(4));
-        electricEffect.SetPosition(target.transform.position);
-        electricEffect.SetScale(new Vector3(_range, _range, 0f));
+        // 낙뢰 이펙트 발생
+        thunderEffect.SetPosition(target.transform.position);
+        thunderEffect.SetData(Data.GetValue(2), Data.GetValue(3), Data.GetValue(4));
+        thunderEffect.SetScale(new Vector3(_range, _range, _range));
+        thunderEffect.PlayEffect();
         
-        electricEffect.PlayEffect();
+        thunderEffect.PlayEffect();
 
         yield return _delay;
 
-        electricEffect.StopEffect();
+        thunderEffect.StopEffect();
     }
 
     private void Attack()
