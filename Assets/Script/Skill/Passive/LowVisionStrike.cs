@@ -14,10 +14,11 @@ public class LowVisionStrike : PassiveSkillBase
 
     public override bool Activate(GameObject target = null)
     {
-        if (!CheckTrigger()) return false;
+        if (!CheckTrigger() || target == null)
+            return false;
         
-        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(target.transform.position, Vector2.zero,
-            _range, targetLayer);
+        Vector3 targetPosition = target.transform.position;
+        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(targetPosition, Vector2.zero, _range, targetLayer);
         
         if(targets.Count == 0)
             return false;

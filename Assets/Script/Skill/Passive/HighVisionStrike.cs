@@ -20,7 +20,7 @@ public class HighVisionStrike : PassiveSkillBase
                 ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("HighOrbHit");
                 effect.SetPosition(target.transform.position);
                 
-                Vector3 range = new Vector3(Data.Range, Data.Range, Data.Range);
+                Vector3 range = new Vector3(Data.Range / 2, Data.Range / 2, Data.Range / 2);
                 effect.SetScale(range);
                 effect.PlayEffect();
             }
