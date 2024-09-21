@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -6,6 +7,8 @@ public class WeaponManager : Singleton<WeaponManager>
 {
     private PoolManager _poolManager;
     private WeaponBase[] _equippedWeapons;
+    
+    public event Action<CharacterController> OnWeaponEquipped;
     
     protected override void Init()
     {
@@ -33,6 +36,8 @@ public class WeaponManager : Singleton<WeaponManager>
                 SkillManager.Instance.AddActiveSkill(activeSkill);
             }
         }
+        
+        OnWeaponEquipped?.Invoke(owner);
     }
     
     public void RemoveWeapon(int characterIndex)

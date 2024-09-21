@@ -37,7 +37,7 @@ public class Status : MonoBehaviour
     
     public void SetUnitStatus(UnitCode unitCode)
     {
-        int wave = GameManager.instance.wave-1;
+        int wave = GameManager.Instance.wave-1;
         unitCode = MonsterDataManager.instance.unitCodeData[wave];
 
         if (unitCode < UnitCode.ELITEMONSTER1)

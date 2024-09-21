@@ -32,7 +32,7 @@ public class WeaponUI : Singleton<WeaponUI>
         if (weaponSlots[order].hasWeapon)
         {
             WeaponManager.Instance.RemoveWeapon(order);
-            GameManager.instance.RemoveUseWeaponList(weaponSlots[order].weaponID);
+            GameManager.Instance.RemoveUseWeaponList(weaponSlots[order].weaponID);
             weaponSlots[order].Init();
         }
 
@@ -42,10 +42,10 @@ public class WeaponUI : Singleton<WeaponUI>
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
         longClickPopUpUi.SetBookmarkedButtonText(longClickPopUpUi.isBookmarked, false, true);
 
-        GameManager.instance.useWeapon.Add(weaponID);
-        GameManager.instance.UpdateUseableWeaponCnt();
+        GameManager.Instance.useWeapon.Add(weaponID);
+        GameManager.Instance.UpdateUseableWeaponCnt();
 
-        if (longClickPopUpUi.isBookmarked && GameManager.instance.useAbleWeaponCnt[weaponID - 1] <= 0)
+        if (longClickPopUpUi.isBookmarked && GameManager.Instance.useAbleWeaponCnt[weaponID - 1] <= 0)
             longClickPopUpUi._equipButton.SetActive(false);
 
         targetSlot.hasWeapon = true;
@@ -77,10 +77,10 @@ public class WeaponUI : Singleton<WeaponUI>
         longClickPopUpUi.SetBookmarkedButtonText(longClickPopUpUi.isBookmarked, false, true);
 
         //�����ִ� ���� �迭�� �߰��ϰ� ����� �� �ִ� ���� ���� �迭 ������Ʈ
-        GameManager.instance.useWeapon.Add(weaponID);
+        GameManager.Instance.useWeapon.Add(weaponID);
 
         //���ã�⿡�� �����ϰ� ��밡���� ���⿡ �ش� �ϴ� ���� ���� �� ���� ��ư ��Ȱ��ȭ
-        if (longClickPopUpUi.isBookmarked && GameManager.instance.useAbleWeaponCnt[weaponID - 1] <= 0)
+        if (longClickPopUpUi.isBookmarked && GameManager.Instance.useAbleWeaponCnt[weaponID - 1] <= 0)
             longClickPopUpUi._equipButton.SetActive(false);
 
         //�ش� ���Կ� �̹��� ���� �� id ����

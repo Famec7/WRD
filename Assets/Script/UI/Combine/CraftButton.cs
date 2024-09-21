@@ -23,7 +23,7 @@ public class CraftButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.weaponCnt[weaponID-1] > 0 && !isMain)
+        if (GameManager.Instance.weaponCnt[weaponID-1] > 0 && !isMain)
         {
             gameObject.GetComponent<Button>().enabled = false;
             canCombineBorder.SetActive(false);
@@ -36,12 +36,12 @@ public class CraftButton : MonoBehaviour
 
         Color32 mainColor = GetClassColor(WeaponDataManager.Instance.Database.GetWeaponData(weaponID).WeaponClass);
 
-        if (GameManager.instance.weaponCnt[weaponID - 1] > 0)
+        if (GameManager.Instance.weaponCnt[weaponID - 1] > 0)
             transform.GetChild(0).GetComponent<Image>().color = mainColor;
 
         foreach (var weapon in materialWeapons)
         {
-            if (GameManager.instance.weaponCnt[weapon - 1] > 0)
+            if (GameManager.Instance.weaponCnt[weapon - 1] > 0)
               cnt++;   
         }
 
@@ -53,14 +53,14 @@ public class CraftButton : MonoBehaviour
 
     public void CraftWeapon(bool isMainWeapon = false)
     {
-        // °®°íÀÖ´Â Àç·áÀÇ °³¼ö¸¦ ³ªÅ¸³»´Â º¯¼ö
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         int hasMaterialCnt = 0;
-        // º¹»ç¿ë ¹è¿­
-        int[] tmpCnt = new int[GameManager.instance.weaponCnt.Length];
-        // °®°íÀÖ´Â ¹«±â °³¼ö ¹è¿­À» º¹»ç
-        Array.Copy(GameManager.instance.weaponCnt, tmpCnt, tmpCnt.Length);
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­
+        int[] tmpCnt = new int[GameManager.Instance.weaponCnt.Length];
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Array.Copy(GameManager.Instance.weaponCnt, tmpCnt, tmpCnt.Length);
 
-        //Àç·á ¹è¿­À» µ¹¸é¼­ ¸¸¾à¿¡ °®°í ÀÖ´Â°Ô ´õ ¸¹À¸¸é º¹»çÇÑ ¹è¿­¿¡¼­ »©ÁÖ°í ÇÊ¿äÇÑ °¹¼ö¿¡¼­ »©ÁÜ
+        //ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½é¼­ ï¿½ï¿½ï¿½à¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â°ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         foreach (int i in materialWeapons)
         {
             if (tmpCnt[i - 1] >= 1)
@@ -70,16 +70,16 @@ public class CraftButton : MonoBehaviour
             }
         }
 
-        // ±×·¡¼­ °®°íÀÖ´Â°³¼ö¶û ÀÖ´Â°Å¶û °°À¸¸é (Àç·á°¡ ´ÙÀÖÀ¸¸é)
+        // ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´Â°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Â°Å¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½á°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
         if (hasMaterialCnt == materialWeapons.Length)
         {
-            // ¾ÆÀÌÅÛ µ¥ÀÌÅÍ »ý¼º
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             List<int> materialsList = materialWeapons.ToList();
             InventoryItem item = new InventoryItem
             {
                 image = transform.GetChild(0).GetComponent<Image>().sprite
             };
-            item.AssignWeapon(weaponID); // ¾ÆÀÌÅÛ¿¡ ¹«±âµ¥ÀÌÅÍ ³Ö¾îÁÜ
+            item.AssignWeapon(weaponID); // ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½âµ¥ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½
             WeaponUI.Instance.weaponID = weaponID;
 
             InventoryManager.instance.AddItem(item, false);
@@ -91,8 +91,8 @@ public class CraftButton : MonoBehaviour
             if(isMainWeapon)
                 UIManager.instance.CreateCombineUI(weaponID);
 
-            GameManager.instance.weaponCnt[weaponID - 1]++;
-            GameManager.instance.UpdateUseableWeaponCnt();
+            GameManager.Instance.weaponCnt[weaponID - 1]++;
+            GameManager.Instance.UpdateUseableWeaponCnt();
             BookMakredSlotUI.Instance.UpdateAllSlot();
         }
     }

@@ -59,7 +59,7 @@ public class LongClickPopUpUi : MonoBehaviour
         //var equipButtonTMP = _equipButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
 
-        if (!isWeaponSlot && GameManager.instance.useAbleWeaponCnt[weaponID - 1] > 0)
+        if (!isWeaponSlot && GameManager.Instance.useAbleWeaponCnt[weaponID - 1] > 0)
             _equipButton.GetComponent<Image>().sprite = equipImage;
 
         if (isBookmarked || (isInventory && BookMakredSlotUI.Instance.GetSlotWithWeaponID(weaponID)))
@@ -134,7 +134,7 @@ public class LongClickPopUpUi : MonoBehaviour
         //인벤토리 다시 그리기
         InventoryManager.instance.FreshSlot();
         // 장착하고 있는 무기 줄이기
-        GameManager.instance.RemoveUseWeaponList(weaponID);
+        GameManager.Instance.RemoveUseWeaponList(weaponID);
         //만약 웨폰 슬롯이 널이면
         if (isInventory || weaponSlot == null)
         {

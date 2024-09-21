@@ -47,7 +47,7 @@ public class SlotSelectUI : MonoBehaviour
             {
                 if (!isBookmarked)
                 {
-                    GameManager.instance.UpdateUseableWeaponCnt();
+                    GameManager.Instance.UpdateUseableWeaponCnt();
                     WeaponUI.Instance.AddItem(order,_item);
                 }
                 else 

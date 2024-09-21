@@ -40,7 +40,7 @@ public class ElementManager : MonoBehaviour
         for (int i =0; i <cnt; i++)
         {
             int elementType = Random.Range(0, 5);
-            GameManager.instance.weaponCnt[elementType]++;
+            GameManager.Instance.weaponCnt[elementType]++;
         }
 
     }

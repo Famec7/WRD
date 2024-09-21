@@ -56,7 +56,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
     #region Event Function
 
-    protected virtual void Start()
+    protected void Awake()
     {
         Init();
     }

@@ -359,7 +359,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   weapon: {fileID: 0}
-  _auraEffect: {fileID: 0}
 --- !u!114 &6299760244683842465
 MonoBehaviour:
   m_ObjectHideFlags: 0

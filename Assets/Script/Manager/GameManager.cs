@@ -4,12 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    // Start is called before the first frame update
-
-    public static GameManager instance;
-
     public int wave = 1;
     public bool isSKip = false;
     public bool isGameOver = false;
@@ -18,18 +14,15 @@ public class GameManager : MonoBehaviour
 
     public List<int> useWeapon;
 
-    private void Awake()
+    protected override void Init()
     {
-        if (instance == null)
-            instance = this;
-
         useWeapon = new List<int>();
+        weaponCnt = new int[WeaponDataManager.Instance.Database.GetWeaponDataCount()];
     }
 
-    void Start()
+    private void Start()
     {
-        weaponCnt = new int[WeaponDataManager.Instance.Database.GetWeaponDataCount()];
-        GameManager.instance.weaponCnt[6]++;
+        GameManager.Instance.weaponCnt[6]++;
         useWeapon.Add(7);
         UpdateUseableWeaponCnt();
         ElementManager.instance.GetElement(100);

@@ -36,31 +36,31 @@ public class LongClickComponenet : MonoBehaviour
         if (weaponID > 0) 
             isClicked = true;
     }
-    // ¸¶¿ì½º ¶®À» ‹š
+    // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     public void MouseUp()
     {
-        // ¸¸¾à ·ÕÅ¬¸¯ÀÌ ¾Æ´Ï°í ¿þÆù ¾ÆÀÌµð°¡ 0º¸´Ù Å©¸é
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ 0ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
         if (!isLongClick && weaponID > 0 )
         {
             //if (isInventory)
             //{
             //    if (!GetComponent<InventorySlot>().hasItem) return;
             //}
-            // Âø¿ë°¡´ÉÇÑ ¹«±â°¡ ÀÖÀ¸¸é
-            hasItem = GameManager.instance.useAbleWeaponCnt[weaponID-1] > 0;
-            // Á¶ÇÕÃ¢ ¸¸µé°í
+            // ï¿½ï¿½ï¿½ë°¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            hasItem = GameManager.Instance.useAbleWeaponCnt[weaponID-1] > 0;
+            // ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½
             UIManager.instance.CreateCombineUI(weaponID,true,isInventory,GetComponent<InventorySlot>().isEquiped);
-            // ·ÕÅ¬¸¯ÆË¾÷ ui ¼¼ÆÃÇÏ°í
+            // ï¿½ï¿½Å¬ï¿½ï¿½ï¿½Ë¾ï¿½ ui ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
             LongClickPopUpUIObject = UIManager.instance.longClickPopUpUI;
             LongClickPopUpUi longClickPopUpUI = LongClickPopUpUIObject.GetComponent<LongClickPopUpUi>();
             LongClickPopUpUIObject.SetActive(true);
             longClickPopUpUI.weaponID = weaponID;
             longClickPopUpUI.inventorySlot = GetComponent<InventorySlot>();
             longClickPopUpUI._equipButton.SetActive(hasItem);
-            // ¸¸¾à ÀÎº¥¿¡¼­ ´­·¶À¸¸é
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (isInventory)
             {
-                //UI ¼³¸íÃ¢ ¸¸µé°í ¼±ÅÃµÆ´ÂÁö È®ÀÎÇÏ´Â ÇÏÀÌ¶óÀÌÆ® UI Å°°í À§Ä¡ Á¶Àý
+                //UI ï¿½ï¿½ï¿½ï¿½Ã¢ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÆ´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½Æ® UI Å°ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
                 UIManager.instance.CreateInventoryDescriptionUI(weaponID);
                 
                 
@@ -68,19 +68,19 @@ public class LongClickComponenet : MonoBehaviour
                 InventoryManager.instance.inventorySelectUI.GetComponent<RectTransform>().position = transform.position;
                 InventoryManager.instance.inventorySelectUI.GetComponent<InventorySelectUI>().enabled = true;
                 InventoryManager.instance.inventorySelectUI.GetComponent<InventorySelectUI>().targetInventory = gameObject;
-                //ÀåÂø,Áñ°ÜÃ£±â ¹öÆ° È°¼ºÈ­
+                //ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ ï¿½ï¿½Æ° È°ï¿½ï¿½È­
                 longClickPopUpUI._bookmarkButton.SetActive(true);
-                longClickPopUpUI._equipButton.SetActive(GameManager.instance.weaponCnt[weaponID - 1] > 0);
-                // µÚ¿¡ ¾È´­¸®°Ô ºí¶ôÀÌ¹ÌÁö Å°°í ·ÕÅ¬¸¯ ÆË¾÷ UI °íÁ¤ À§Ä¡¿¡ À§Ä¡
+                longClickPopUpUI._equipButton.SetActive(GameManager.Instance.weaponCnt[weaponID - 1] > 0);
+                // ï¿½Ú¿ï¿½ ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½Å¬ï¿½ï¿½ ï¿½Ë¾ï¿½ UI ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½Ä¡
                 UIManager.instance.SetActiveBlockImage(true);
                 LongClickPopUpUIObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(-420,162);
-                // ÃßÈÄ ¼¼ÆÃÀ» À§ÇØ ÇØ´ç ½½·ÔÀ» longclickpopupui¿¡ ³Ö¾îÁÜ
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ longclickpopupuiï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½
                 longClickPopUpUI.inventorySlot = GetComponent<InventorySlot>();
             }
 
             if (isWeaponSlot)
             {
-                //¹«±â ½½·ÔÀÌ¸é Áñ°ÜÃ£±â ºñÈ°¼ºÈ­ ÇÏ°í ÀåÂøÇØÁ¦ ¹öÆ°¸¸ Å´ ±×¸®°í À§Ä¡ ¹Ù²Ù°í longClickPopUpUI¿¡ weaponSlot Àü´Þ
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ Å´ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ù²Ù°ï¿½ longClickPopUpUIï¿½ï¿½ weaponSlot ï¿½ï¿½ï¿½ï¿½
                 longClickPopUpUI._bookmarkButton.SetActive(false);
                 longClickPopUpUI._equipButton.SetActive(true);
                 LongClickPopUpUIObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(128,126);
@@ -91,15 +91,15 @@ public class LongClickComponenet : MonoBehaviour
             if (isBookmarked)
                 longClickPopUpUI._bookmarkButton.SetActive(true);
 
-            //ÀÎº¥Åä¸® ¾Æ´Ï¸é ºÎ¸ð¿¡¼­ weaponid ³Ö¾îÁÖ±â
+            //ï¿½Îºï¿½ï¿½ä¸® ï¿½Æ´Ï¸ï¿½ ï¿½Î¸ð¿¡¼ï¿½ weaponid ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
             if (!isInventory)
                 longClickPopUpUI.weaponID = transform.parent.GetComponent<WeaponSlotUI>().weaponID;
 
-            // longclickpopupui bool º¯¼ö ¼¼ÆÃ
+            // longclickpopupui bool ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             longClickPopUpUI.isBookmarked = isBookmarked;
             longClickPopUpUI.isInventory = isInventory;
             longClickPopUpUI.isWeaponSlot = isWeaponSlot;
-            // ¹öÆ° ÅØ½ºÆ® ¹Ù²ãÁÖ´Â ÇÔ¼ö È£Ãâ
+            // ï¿½ï¿½Æ° ï¿½Ø½ï¿½Æ® ï¿½Ù²ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½ È£ï¿½ï¿½
             longClickPopUpUI.SetBookmarkedButtonText(isBookmarked, isInventory,isWeaponSlot);
         }
     

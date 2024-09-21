@@ -205,7 +205,7 @@ public class WeaponImage : MonoBehaviour
             int myWeaponID = transform.parent.GetComponent<WeaponSlotUI>().weaponID;
             LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
 
-            if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon && GameManager.instance.useAbleWeaponCnt[targetWeaponID - 1] > 0)
+            if (targetSlotObject.GetComponent<WeaponSlotUI>().hasWeapon && GameManager.Instance.useAbleWeaponCnt[targetWeaponID - 1] > 0)
             {
                 longClickPopUpUi.SetLongClickPopUpUI(myWeaponID, false, false, false, transform.parent.GetComponent<WeaponSlotUI>().inventorySlot, transform.parent.GetComponent<WeaponSlotUI>());
                 longClickPopUpUi.UnEuqip();

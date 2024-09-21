@@ -44,7 +44,7 @@ public class WeaponSlotUI : MonoBehaviour
 
     public void ChangeWeaponUseable()
     {
-        isWeaponUseable = GameManager.instance.useAbleWeaponCnt[weaponID-1] > 0;
+        isWeaponUseable = GameManager.Instance.useAbleWeaponCnt[weaponID-1] > 0;
 
         if (isWeaponUseable)
             transform.GetChild(0).GetComponent<Image>().color = Color.white;

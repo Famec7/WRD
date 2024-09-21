@@ -24,10 +24,10 @@ public class AllShowInventorySlot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.weaponCnt[weaponID - 1] > 0)
+        if (GameManager.Instance.weaponCnt[weaponID - 1] > 0)
         {
             transform.GetChild(1).gameObject.SetActive(true);
-            countText.text = GameManager.instance.weaponCnt[weaponID - 1].ToString();
+            countText.text = GameManager.Instance.weaponCnt[weaponID - 1].ToString();
             slotImage.color = new Color32(255, 255, 255,255);
             weaponImage.color = new Color32(255, 255, 255,255);
         }

@@ -137,7 +137,7 @@ public class InventoryManager : MonoBehaviour
         int i = 0;
         int j = 0;
         string cmp="";
-        List<int> tmpList = new List<int>(GameManager.instance.useWeapon);
+        List<int> tmpList = new List<int>(GameManager.Instance.useWeapon);
         switch(grade)
         {
             case 0:
@@ -384,7 +384,7 @@ public class InventoryManager : MonoBehaviour
                             //����UI���� ������ �ٲٱ�
                             WeaponUI.Instance.ChangeItem(j, item);
                             // ��� ����Ʈ���� ����
-                            GameManager.instance.weaponCnt[itemIDs[0] - 1]--;
+                            GameManager.Instance.weaponCnt[itemIDs[0] - 1]--;
 
                             itemIDs.Remove(itemIDs[0]);
                             break;
@@ -401,7 +401,7 @@ public class InventoryManager : MonoBehaviour
             {
                 
                 // �� �������� ��ᰡ ���� ��
-                if (GameManager.instance.useAbleWeaponCnt[i-1] > 0)
+                if (GameManager.Instance.useAbleWeaponCnt[i-1] > 0)
                 {
                     foreach (var slot in slots)
                     {
@@ -413,7 +413,7 @@ public class InventoryManager : MonoBehaviour
                             break;
                         }
                     }
-                    GameManager.instance.useAbleWeaponCnt[i-1]--;
+                    GameManager.Instance.useAbleWeaponCnt[i-1]--;
                 }
                 // �������� ����� ��
                 else
@@ -435,7 +435,7 @@ public class InventoryManager : MonoBehaviour
             }
 
             items.Remove(removeToItem);
-            GameManager.instance.weaponCnt[i - 1]--;
+            GameManager.Instance.weaponCnt[i - 1]--;
         }
         
         FreshSlot(pressSlot != null);
@@ -486,7 +486,7 @@ public class InventoryManager : MonoBehaviour
                 notHeldSlotItem.GetComponent<InventorySlot>().weapon.AssignWeapon(data.ID);
                 notHeldSlotItem.GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
                 
-                bool isEquiped = GameManager.instance.IsUsing(j+1);
+                bool isEquiped = GameManager.Instance.IsUsing(j+1);
                 notHeldSlotItem.GetComponent<InventorySlot>().isEquiped = isEquiped;
                 notHeldSlotItem.GetComponent<InventorySlot>().equipText.gameObject.SetActive(isEquiped);
                 notHeldSlotItem.GetComponent<LongClickComponenet>().weaponID = data.ID;
@@ -566,7 +566,7 @@ public class InventoryManager : MonoBehaviour
 
     public void CreateAllItem()
     {
-        for (int i = 6; i < 22; i++)
+        for (int i = 6; i < 27; i++)
         {
 
             string weaponIconPath = "WeaponIcon/" + i.ToString();
@@ -578,8 +578,8 @@ public class InventoryManager : MonoBehaviour
             item.AssignWeapon(i);
 
 
-            GameManager.instance.weaponCnt[i - 1]++;
-            GameManager.instance.UpdateUseableWeaponCnt();
+            GameManager.Instance.weaponCnt[i - 1]++;
+            GameManager.Instance.UpdateUseableWeaponCnt();
             InventoryManager.instance.AddItem(item, false);
         }
 

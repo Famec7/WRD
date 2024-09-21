@@ -80,7 +80,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            elementCnt[i].text = GameManager.instance.weaponCnt[i].ToString();
+            elementCnt[i].text = GameManager.Instance.weaponCnt[i].ToString();
         }
     }
 
@@ -185,7 +185,7 @@ public class UIManager : MonoBehaviour
     }
    public void ChangeAutoSkipToggle()
     {
-        GameManager.instance.isSKip = autoSkipToggle.isOn;
+        GameManager.Instance.isSKip = autoSkipToggle.isOn;
     }
 
     public void OpenInventory()

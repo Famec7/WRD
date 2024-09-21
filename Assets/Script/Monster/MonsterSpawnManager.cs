@@ -91,7 +91,7 @@ public class MonsterSpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int idx = GameManager.instance.wave - 1;
+        int idx = GameManager.Instance.wave - 1;
         isBossWave = bossSpawnNum[idx] >= 1;
 
         if (idx >= 34)
@@ -115,32 +115,32 @@ public class MonsterSpawnManager : MonoBehaviour
         {
             int limitMonsterNum = 80;
 
-            if (GameManager.instance.wave >= 11 && GameManager.instance.wave <= 20)
+            if (GameManager.Instance.wave >= 11 && GameManager.Instance.wave <= 20)
                 limitMonsterNum = 70;
-            if (GameManager.instance.wave >= 21 && GameManager.instance.wave <= 30)
+            if (GameManager.Instance.wave >= 21 && GameManager.Instance.wave <= 30)
                 limitMonsterNum = 60;
-            if (GameManager.instance.wave >= 31 && GameManager.instance.wave <= 35)
+            if (GameManager.Instance.wave >= 31 && GameManager.Instance.wave <= 35)
                 limitMonsterNum = 50;
 
             UIManager.instance.limitMonsterNum.text = limitMonsterNum.ToString();
 
             if ((isBossWave && targetBossStatus.HP < 0) && currentMonsterNum > limitMonsterNum)
             {
-                GameManager.instance.isGameOver = true;
+                GameManager.Instance.isGameOver = true;
             }
             else if (isBossWave) // ���� ���� ����
             {
                 Debug.Log("���� ����");
             }
-            GameManager.instance.wave++;
-            UIManager.instance.waveNum.text = "Wave " + GameManager.instance.wave.ToString();
+            GameManager.Instance.wave++;
+            UIManager.instance.waveNum.text = "Wave " + GameManager.Instance.wave.ToString();
             ElementManager.instance.GetElement(3);
             waveTimer = 0;
             isNormalSpawnStop = false;
             currentWaveMonsterNum = 0;
             isSpawnStop = false;
             isBossSpawn = false;
-            idx = GameManager.instance.wave - 1;
+            idx = GameManager.Instance.wave - 1;
             isBossWave = bossSpawnNum[idx] >= 1;
         }
 
@@ -151,20 +151,20 @@ public class MonsterSpawnManager : MonoBehaviour
 
         if (spawnDelayTimer >= monsterSpawnTime[idx] && !isNormalSpawnStop)
         {
-            UnitCode code = (UnitCode)((int)GameManager.instance.wave / 6);
+            UnitCode code = (UnitCode)((int)GameManager.Instance.wave / 6);
             SpawnMonster(code);
         }
 
         if (isBossWave && !isBossSpawn)
         {
-            UnitCode code = (UnitCode)((int)GameManager.instance.wave / 6) + 6;
+            UnitCode code = (UnitCode)((int)GameManager.Instance.wave / 6) + 6;
             SpawnMonster(code);
             isBossSpawn = true;
         }
         // WAVE SKIP
         if ((!isBossWave && isNormalSpawnStop) || (isBossWave && targetBossStatus.HP <= 0))
         {
-            if (GameManager.instance.isSKip || isBossWave)
+            if (GameManager.Instance.isSKip || isBossWave)
             {
                 waveTimer = wavePlayTime[idx];
                 isNormalSpawnStop = false;
@@ -199,9 +199,9 @@ public class MonsterSpawnManager : MonoBehaviour
 
     public void waveSkip()
     {
-        if (currentWaveMonsterNum == monsterSpawnNum[GameManager.instance.wave - 1])
+        if (currentWaveMonsterNum == monsterSpawnNum[GameManager.Instance.wave - 1])
         {
-            waveTimer = wavePlayTime[GameManager.instance.wave - 1];
+            waveTimer = wavePlayTime[GameManager.Instance.wave - 1];
             isSpawnStop = false;
         }
     }
