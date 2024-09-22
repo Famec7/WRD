@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class MonsterSpawnManager : MonoBehaviour
 {
@@ -48,11 +48,16 @@ public class MonsterSpawnManager : MonoBehaviour
     
     [SerializeField]
     private Canvas _hpBarCanvas;
-    
+
+    public Button _skipButton;
+
+
     private void Awake()
     {
         if (instance == null)
             instance = this;
+
+        _skipButton.onClick.AddListener(WaveSkip);
     }
 
     void Start()
@@ -197,7 +202,7 @@ public class MonsterSpawnManager : MonoBehaviour
     }
 
 
-    public void waveSkip()
+    public void WaveSkip()
     {
         if (currentWaveMonsterNum == monsterSpawnNum[GameManager.Instance.wave - 1])
         {
