@@ -60,10 +60,13 @@ public abstract class CharacterController : MonoBehaviour
             return;
         
         GameObject nearestTarget = null;
-        float minDistance = float.MaxValue;
+        float minDistance = Data.CurrentWeapon.Data.AttackRange;
 
         foreach (var col in colliders)
         {
+            if(col.gameObject.activeSelf is false)
+                continue;
+            
             float distance = Vector3.Distance(transform.position, col.transform.position);
             
             if(distance < minDistance)
@@ -71,6 +74,7 @@ public abstract class CharacterController : MonoBehaviour
                 minDistance = distance;
                 nearestTarget = col.gameObject;
             }
+            
         }
         
         Target = nearestTarget;

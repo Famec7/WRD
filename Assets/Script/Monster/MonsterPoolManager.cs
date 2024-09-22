@@ -6,10 +6,10 @@ public class MonsterPoolManager : Singleton<MonsterPoolManager>
 {
     // Start is called before the first frame update
 
-    public GameObject[] monsterPrefab;
+    /*public GameObject[] monsterPrefab;
     
     private Dictionary<UnitCode, List<GameObject>> pooledObjects = new Dictionary<UnitCode, List<GameObject>>();
-    int poolingCount = 100;
+    int poolingCount = 100;*/
     
     private PoolManager _poolManager;
 
@@ -18,7 +18,7 @@ public class MonsterPoolManager : Singleton<MonsterPoolManager>
         _poolManager = GetComponent<PoolManager>();
     }
 
-    public void CreateMultiplePoolObjects()
+    /*public void CreateMultiplePoolObjects()
     {
         for (int i = 0; i < monsterPrefab.Length; i++)
         {
@@ -38,13 +38,13 @@ public class MonsterPoolManager : Singleton<MonsterPoolManager>
                 pooledObjects[monsterPrefab[i].GetComponent<Status>().unitCode].Add(enemy);
             }
         }
-    }
+    }*/
 
     public Monster GetPooledObject(UnitCode code)
     {
         var pooledObject = _poolManager.GetFromPool<Monster>(code.ToString());
 
-        if (pooledObjects is null)
+        if (pooledObject is null)
         {
             Debug.LogError("${code} is not found in the pool.");
             return null;
