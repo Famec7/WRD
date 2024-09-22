@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
     private UIPopUp[] _popups;
 
     [SerializeField] private GameObject missionUI;
-    
+
 
     private void Awake()
     {
@@ -67,6 +67,8 @@ public class UIManager : MonoBehaviour
             int index = i;
             elementUI[i].GetComponent<Button>().onClick.AddListener(() => CreateCombineUI(index+1));
         }
+
+        autoSkipToggle.GetComponent<Toggle>().onValueChanged.AddListener(delegate { ChangeAutoSkipToggle(); });
     }
 
     private void Start()
@@ -74,6 +76,8 @@ public class UIManager : MonoBehaviour
         combinePopupUIStack = new Stack<CombinePopUpUI>();
         popUpStack = new Stack<UIPopUp>();
         _popups = new UIPopUp[UIType.MissionCheck.GetHashCode() + 1];
+
+        
     }
 
     private void Update()
