@@ -79,6 +79,9 @@ public class GodOfThunder : InstantaneousSkill
     {
         ResetStat();
         
+        if(_electricAura is null)
+            return;
+        
         _electricAura.StopEffect();
         _electricAura = null;
     }
