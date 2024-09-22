@@ -9,57 +9,41 @@ public class SharpBlade : InstantaneousSkill
     private float _damage;
     private float _woundDamge;
 
-    [SerializeField] private Vector3 _range = new Vector3(0.75f, 1.75f, 1);
+    [SerializeField] private Vector3 _range = new Vector3(1.5f, 3.5f, 1);
 
     #endregion
 
     protected override void Init()
     {
         base.Init();
-        SetData();
-    }
-
-    private void SetData()
-    {
+        
         _damage = Data.GetValue(0);
         _woundDamge = Data.GetValue(1);
     }
-
-    // Start is called before the first frame update
+    
     protected override void OnActiveEnter()
     {
+        ;
     }
 
     protected override INode.ENodeState OnActiveExecute()
     {
-        if (weapon.owner.Target == null)
+        if (weapon.owner.Target is null)
         {
-            IsActive = false;
-            return INode.ENodeState.Failure;
+            return INode.ENodeState.Running;
         }
-
+        
+        weapon.enabled = false;
+        
         Vector3 dir = weapon.owner.Target.transform.position - weapon.owner.transform.position;
-        if (dir == Vector3.zero)
-        {
-            IsActive = false;
-            return INode.ENodeState.Failure;
-        }
 
-        List<Collider2D> targets =
-            RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, _range, dir, targetLayer);
-
-        if (targets.Count == 0)
-        {
-            IsActive = false;
-            return INode.ENodeState.Failure;
-        }
+        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, _range, dir, targetLayer);
 
         // 이펙트 재생
         ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("SharpBladeEffect");
 
         effect.SetPosition(weapon.owner.transform.position + dir);
         effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
-        effect.SetScale(_range);
         effect.PlayEffect();
 
         foreach (var tar in targets)
@@ -86,6 +70,6 @@ public class SharpBlade : InstantaneousSkill
 
     protected override void OnActiveExit()
     {
-        ;
+        weapon.enabled = true;
     }
 }

@@ -50,6 +50,11 @@ public abstract class ActiveSkillBase : SkillBase
     {
         targetMonsters.Add(monster);
     }
+    
+    public void RemoveTargetMonster(Monster monster)
+    {
+        targetMonsters.Remove(monster);
+    }
 
     /***************************Behaviour Tree***************************/
 
@@ -107,13 +112,6 @@ public abstract class ActiveSkillBase : SkillBase
 
                 SkillUIManager.Instance.ClosePopupPanel();
                 OnButtonActivate?.Invoke(true);
-            }
-            else
-            {
-                if (this is ClickTypeSkill)
-                    weapon.owner.enabled = false;
-
-                OnButtonActivate?.Invoke(false);
             }
         }
         get => _isCoolTime;
@@ -194,6 +192,10 @@ public abstract class ActiveSkillBase : SkillBase
             {
                 preparingTime = 3f;
 
+                Vector2 direction =  (Vector2)weapon.owner.transform.position - pivotPosition;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                indicator.transform.rotation = Quaternion.Euler(0, 0, angle + 45.0f);
+
                 indicator.ShowIndicator(pivotPosition);
                 targetMonsters.Clear();
 
@@ -235,7 +237,9 @@ public abstract class ActiveSkillBase : SkillBase
 
             if (this is ClickTypeSkill)
             {
-                if (Vector2.Distance(pivotPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Data.Range / 2)
+                float distance = Vector2.Distance(pivotPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
+                if (Data.Range > 0 &&distance > Data.Range / 2)
                 {
                     CancelSkill();
                     return INode.ENodeState.Failure;
@@ -277,6 +281,9 @@ public abstract class ActiveSkillBase : SkillBase
             if (_isActive is true)
             {
                 SkillUIManager.Instance.ShowPopupPanel(3);
+
+                OnButtonActivate?.Invoke(false);
+
                 OnActiveEnter();
             }
             else
@@ -330,8 +337,8 @@ public abstract class ActiveSkillBase : SkillBase
     private void IndicatorInit()
     {
         // 72.5f
-        const float scaleAdjustmentFactor = 72.5f;
-        
+        float scaleAdjustmentFactor = 1 / this.transform.localScale.x * 20f;
+
         float range = Data.Range * scaleAdjustmentFactor;
         float availableRange = Data.AvailableRange * scaleAdjustmentFactor;
 

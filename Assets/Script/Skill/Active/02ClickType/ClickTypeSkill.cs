@@ -62,6 +62,8 @@ public abstract class ClickTypeSkill : ActiveSkillBase
             {
                 ShowUsableRange();
 
+                weapon.owner.enabled = false;
+
                 preparingTime = 3f;
                 pivotPosition = default;
 
@@ -118,8 +120,6 @@ public abstract class ClickTypeSkill : ActiveSkillBase
             return INode.ENodeState.Failure;
         }
 
-        indicator.transform.position = pivotPosition;
-
         var currentSettingType = SettingManager.Instance.CurrentActiveSettingType;
         switch (currentSettingType)
         {
@@ -142,7 +142,7 @@ public abstract class ClickTypeSkill : ActiveSkillBase
     #endregion
 
     #endregion
-    
+
     public override void CancelSkill()
     {
         base.CancelSkill();
