@@ -6,6 +6,8 @@ public class SkillIndicator : MonoBehaviour
 {
     private ActiveSkillBase _skill;
 
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+
     [SerializeField] private bool _isFixedPosition = false;
 
     public void SetSkill(ActiveSkillBase skill)
@@ -15,7 +17,7 @@ public class SkillIndicator : MonoBehaviour
 
     public virtual void ShowIndicator(Vector3 position = default)
     {
-        gameObject.SetActive(true);
+        _spriteRenderer.enabled = true;
 
         if (_isFixedPosition)
         {
@@ -27,7 +29,7 @@ public class SkillIndicator : MonoBehaviour
 
     public virtual void HideIndicator()
     {
-        gameObject.SetActive(false);
+        _spriteRenderer.enabled = false;
     }
 
     private void Awake()
@@ -36,7 +38,7 @@ public class SkillIndicator : MonoBehaviour
         collider.isTrigger = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out Monster monster))
         {
@@ -52,7 +54,7 @@ public class SkillIndicator : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.TryGetComponent(out Monster monster))
         {

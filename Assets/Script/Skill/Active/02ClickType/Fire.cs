@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Fire : ClickTypeSkill
 {
-    private bool _isSingleTargetAttack;
-
     protected override void OnActiveEnter()
     {
         LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
@@ -20,8 +18,6 @@ public class Fire : ClickTypeSkill
                 OnAttackMultipleTargets(targetMonsters.ToList());
                 return;
             }
-
-            _isSingleTargetAttack = true;
 
             OnAttackSingleTarget(monster);
         }
@@ -41,7 +37,7 @@ public class Fire : ClickTypeSkill
 
     protected override void OnActiveExit()
     {
-        ;
+        
     }
 
     private void OnAttackSingleTarget(Monster monster)
@@ -55,7 +51,7 @@ public class Fire : ClickTypeSkill
 
     private void OnAttackMultipleTargets(List<Monster> monsters)
     {
-        foreach (var monster in targetMonsters)
+        foreach (var monster in monsters)
         {
             monster.HasAttacked(Data.GetValue(3));
             

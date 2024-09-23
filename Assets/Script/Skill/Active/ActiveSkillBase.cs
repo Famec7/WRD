@@ -192,10 +192,6 @@ public abstract class ActiveSkillBase : SkillBase
             {
                 preparingTime = 3f;
 
-                Vector2 direction =  (Vector2)weapon.owner.transform.position - pivotPosition;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                indicator.transform.rotation = Quaternion.Euler(0, 0, angle + 45.0f);
-
                 indicator.ShowIndicator(pivotPosition);
                 targetMonsters.Clear();
 
@@ -345,7 +341,7 @@ public abstract class ActiveSkillBase : SkillBase
         if (indicator != null)
         {
             indicator.transform.localScale = new Vector3(range, range, 1);
-            indicator.gameObject.SetActive(false);
+            indicator.HideIndicator();
             indicator.SetSkill(this);
         }
 
