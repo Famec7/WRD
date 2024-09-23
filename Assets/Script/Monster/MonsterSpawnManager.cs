@@ -162,7 +162,7 @@ public class MonsterSpawnManager : MonoBehaviour
 
         if (isBossWave && !isBossSpawn)
         {
-            UnitCode code = (UnitCode)((int)GameManager.Instance.wave / 6) + 6;
+            UnitCode code = UnitCode.ELITEMONSTER5 + (GameManager.Instance.wave / 5);
             SpawnMonster(code);
             isBossSpawn = true;
         }
