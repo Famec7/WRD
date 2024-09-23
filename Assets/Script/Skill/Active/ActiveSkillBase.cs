@@ -17,7 +17,7 @@ public abstract class ActiveSkillBase : SkillBase
 
     #endregion
 
-    protected List<Monster> targetMonsters = new List<Monster>();
+    protected HashSet<Monster> targetMonsters = new HashSet<Monster>();
     protected Vector2 pivotPosition = Vector2.zero;
 
     protected override void Init()

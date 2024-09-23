@@ -5,9 +5,8 @@ using UnityEngine;
 public class SkillIndicator : MonoBehaviour
 {
     private ActiveSkillBase _skill;
-    
-    [SerializeField]
-    private bool _isFixedPosition = false;
+
+    [SerializeField] private bool _isFixedPosition = false;
 
     public void SetSkill(ActiveSkillBase skill)
     {
@@ -17,12 +16,12 @@ public class SkillIndicator : MonoBehaviour
     public virtual void ShowIndicator(Vector3 position = default)
     {
         gameObject.SetActive(true);
-        
+
         if (_isFixedPosition)
         {
             return;
         }
-        
+
         transform.position = position;
     }
 
@@ -38,6 +37,14 @@ public class SkillIndicator : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Monster monster))
+        {
+            _skill.AddTargetMonster(monster);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.TryGetComponent(out Monster monster))
         {
