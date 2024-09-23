@@ -31,11 +31,15 @@ public class Ballista : RangedWeapon
         var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, _range, default, targetLayer);
 
         GameObject nearestTarget = null;
-        float minDistance = float.MaxValue;
+        float minDistance = Data.AttackRange;
 
         foreach (var tar in targets)
         {
+            if(tar.gameObject.activeSelf is false)
+                continue;
+            
             float distance = Vector3.Distance(targetPosition, tar.transform.position);
+            
             if (distance < minDistance)
             {
                 minDistance = distance;
