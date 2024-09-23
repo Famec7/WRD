@@ -52,5 +52,7 @@ public class SkillButton : MonoBehaviour
     {
         _trigger.enabled = active;
         GetComponent<Button>().interactable = active;
+        
+        this.gameObject.SetActive(active);
     }
 }
