@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
@@ -7,7 +8,7 @@ public class SkillButton : MonoBehaviour
 {
     private EventTrigger _trigger;
 
-    [SerializeField] private Image _image;
+    [SerializeField] private Image _coolTimeImage;
     [SerializeField] private ActiveSkillBase _currentSkill;
 
     private void Awake()
@@ -19,7 +20,7 @@ public class SkillButton : MonoBehaviour
     {
         if (_currentSkill != null && _currentSkill.IsCoolTime)
         {
-            _image.fillAmount = _currentSkill.CurrentCoolTime / _currentSkill.Data.CoolTime;
+            _coolTimeImage.fillAmount = _currentSkill.CurrentCoolTime / _currentSkill.Data.CoolTime;
         }
     }
 
