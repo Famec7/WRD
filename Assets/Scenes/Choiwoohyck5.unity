@@ -239,6 +239,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1872768819}
     - target: {fileID: 4064186686694354237, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _skipButton
+      value: 
+      objectReference: {fileID: 1442627443}
+    - target: {fileID: 4064186686694354237, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _hpBarCanvas
       value: 
       objectReference: {fileID: 216717592}
@@ -353,7 +357,7 @@ PrefabInstance:
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: BookmarkSlotUI
       value: 
-      objectReference: {fileID: 1592611211}
+      objectReference: {fileID: 1575364006}
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: autoSkipToggle
       value: 
@@ -2190,7 +2194,7 @@ PrefabInstance:
     - target: {fileID: 8188000774452529289, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1692083196}
+      objectReference: {fileID: 0}
     - target: {fileID: 8188000774452529289, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnClick
@@ -2760,6 +2764,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d324b62754e93479107f0c93d357ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1442627443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2559071690608262715, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+  m_PrefabInstance: {fileID: 1093094908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1492244879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2964,9 +2979,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856d4d3b4ea867f498e6711ffa6d1c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1592611211 stripped
+--- !u!1 &1575364006 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6119202861376016696, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6229964635178204274, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
   m_PrefabInstance: {fileID: 1093094908}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1650429293
@@ -3105,17 +3120,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650429293}
   m_CullTransparentMesh: 1
---- !u!114 &1692083196 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5809275360519365652, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
-  m_PrefabInstance: {fileID: 1093094908}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d06a5beaeca85b4c99d8b51a4b8d2a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1693133285 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7613276148012162102, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}

@@ -93,7 +93,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
+  originalPos: {x: 0, y: 0, z: 0}
   isDrag: 0
+  isSlide: 0
   isInventory: 0
   isBookmarked: 0
 --- !u!114 &1450981331742569123
@@ -498,7 +500,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
+  originalPos: {x: 0, y: 0, z: 0}
   isDrag: 0
+  isSlide: 0
   isInventory: 0
   isBookmarked: 0
 --- !u!114 &3834007991479783488
@@ -762,7 +766,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
+  originalPos: {x: 0, y: 0, z: 0}
   isDrag: 0
+  isSlide: 0
   isInventory: 0
   isBookmarked: 0
 --- !u!114 &7488118074976126098
@@ -1026,7 +1032,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
+  originalPos: {x: 0, y: 0, z: 0}
   isDrag: 0
+  isSlide: 0
   isInventory: 0
   isBookmarked: 0
 --- !u!114 &6180813504296698309
@@ -1431,7 +1439,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
+  originalPos: {x: 0, y: 0, z: 0}
   isDrag: 0
+  isSlide: 0
   isInventory: 0
   isBookmarked: 0
 --- !u!114 &7871770274989425417
@@ -1695,7 +1705,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 1
+  originalPos: {x: 0, y: 0, z: 0}
   isDrag: 0
+  isSlide: 0
   isInventory: 0
   isBookmarked: 0
 --- !u!114 &8447561702767785176
@@ -2382,7 +2394,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
+  originalPos: {x: 0, y: 0, z: 0}
   isDrag: 0
+  isSlide: 0
   isInventory: 0
   isBookmarked: 0
 --- !u!114 &8003005303094385340
@@ -2725,7 +2739,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1142721168159012576}
-  - {fileID: 8584707691565285168}
+  - {fileID: 8484081782706803322}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2964,7 +2978,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
+  originalPos: {x: 0, y: 0, z: 0}
   isDrag: 0
+  isSlide: 0
   isInventory: 0
   isBookmarked: 0
 --- !u!114 &7546742085385524199
@@ -3369,7 +3385,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minClickTime: 0.3
+  originalPos: {x: 0, y: 0, z: 0}
   isDrag: 0
+  isSlide: 0
   isInventory: 0
   isBookmarked: 0
 --- !u!114 &2336300790749292112
@@ -3822,7 +3840,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!1001 &7799307916034629893
+--- !u!1001 &7971992002058718287
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -3919,8 +3937,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ebe1c7d9c074e7459d2a15fe359f67f, type: 3}
---- !u!224 &8584707691565285168 stripped
+--- !u!224 &8484081782706803322 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1954482056833343029, guid: 4ebe1c7d9c074e7459d2a15fe359f67f, type: 3}
-  m_PrefabInstance: {fileID: 7799307916034629893}
+  m_PrefabInstance: {fileID: 7971992002058718287}
   m_PrefabAsset: {fileID: 0}
