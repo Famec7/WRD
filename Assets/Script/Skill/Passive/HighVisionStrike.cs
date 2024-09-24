@@ -17,11 +17,9 @@ public class HighVisionStrike : PassiveSkillBase
                 monster.HasAttacked(Data.GetValue(0));
                 StatusEffectManager.Instance.AddStatusEffect(monster.status, new SlowDown(monster.gameObject, 100f, Data.GetValue(1)));
                 
-                ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("HighOrbHit");
-                effect.SetPosition(target.transform.position);
+                ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("HighVisionStrike");
                 
-                Vector3 range = new Vector3(Data.Range / 2, Data.Range / 2, Data.Range / 2);
-                effect.SetScale(range);
+                effect.SetPosition(target.transform.position);
                 effect.PlayEffect();
             }
         }
