@@ -179,7 +179,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766200655571554603}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 55758a57978f28045b95604cb3bff8cf, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e97e3898c94a8b9944b16958b9f937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 100334747082997929}
+  _coolTimeImage: {fileID: 100334747082997929}
   _currentSkill: {fileID: 0}
 --- !u!114 &3448977239290221787
 MonoBehaviour:
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2560048591823535912}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -840,7 +840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 996cbcc0e6efbb045861c82520e76f9b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -906,7 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e97e3898c94a8b9944b16958b9f937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 5282841575077146922}
+  _coolTimeImage: {fileID: 5282841575077146922}
   _currentSkill: {fileID: 0}
 --- !u!114 &6177044878947193352
 MonoBehaviour:
@@ -1923,7 +1923,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 85f1d10c143cac24baa469c3708b3ada, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1989,7 +1989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e97e3898c94a8b9944b16958b9f937, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 3818809217391997352}
+  _coolTimeImage: {fileID: 3818809217391997352}
   _currentSkill: {fileID: 0}
 --- !u!114 &6549068160092135096
 MonoBehaviour:
