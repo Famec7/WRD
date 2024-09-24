@@ -96,27 +96,29 @@ public class PlayerController : CharacterController, ISubject
 
     private void OnClickMove()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (!Input.GetMouseButtonDown(0) || UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("UI")))
         {
-            TouchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            return;
+        }
 
-            var pos = TouchPos;
-            pos.z = 0f;
-            TouchPos = pos;
+        TouchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            MoveDir = (TouchPos - transform.position).normalized;
+        var pos = TouchPos;
+        pos.z = 0f;
+        TouchPos = pos;
 
-            Collider2D col = Physics2D.OverlapPoint(TouchPos);
-            // 몬스터 클릭 시 추적
-            if (col && (col.CompareTag("Monster") || col.CompareTag("Boss") || col.CompareTag("Mission")))
-            {
-                Target = col.gameObject;
-            }
-            else
-            {
-                Target = null;
-                ChangeState(State.MOVE);
-            }
+        MoveDir = (TouchPos - transform.position).normalized;
+
+        Collider2D col = Physics2D.OverlapPoint(TouchPos);
+        // 몬스터 클릭 시 추적
+        if (col && (col.CompareTag("Monster") || col.CompareTag("Boss") || col.CompareTag("Mission")))
+        {
+            Target = col.gameObject;
+        }
+        else
+        {
+            Target = null;
+            ChangeState(State.MOVE);
         }
     }
 

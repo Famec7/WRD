@@ -62,6 +62,8 @@ public abstract class ClickTypeSkill : ActiveSkillBase
             {
                 ShowUsableRange();
 
+                weapon.owner.enabled = false;
+
                 preparingTime = 3f;
                 pivotPosition = default;
 
@@ -118,8 +120,6 @@ public abstract class ClickTypeSkill : ActiveSkillBase
             return INode.ENodeState.Failure;
         }
 
-        indicator.transform.position = pivotPosition;
-
         var currentSettingType = SettingManager.Instance.CurrentActiveSettingType;
         switch (currentSettingType)
         {
@@ -135,6 +135,10 @@ public abstract class ClickTypeSkill : ActiveSkillBase
             default:
                 break;
         }
+        
+        Vector2 direction =  (Vector2)weapon.owner.transform.position - pivotPosition;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        indicator.transform.rotation = Quaternion.Euler(0, 0, angle + 45.0f);
 
         return INode.ENodeState.Success;
     }
@@ -142,7 +146,7 @@ public abstract class ClickTypeSkill : ActiveSkillBase
     #endregion
 
     #endregion
-    
+
     public override void CancelSkill()
     {
         base.CancelSkill();

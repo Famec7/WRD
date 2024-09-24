@@ -4,21 +4,13 @@ using UnityEngine;
 
 public class LowVisionStrike : PassiveSkillBase
 {
-    private Vector3 _range;
-
-    protected override void Init()
-    {
-        base.Init();
-        _range = new Vector3(Data.Range, Data.Range, Data.Range);
-    }
-
     public override bool Activate(GameObject target = null)
     {
         if (!CheckTrigger() || target == null)
             return false;
         
         Vector3 targetPosition = target.transform.position;
-        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(targetPosition, Vector2.zero, _range, targetLayer);
+        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(targetPosition, Data.Range, 360.0f, targetLayer);
         
         if(targets.Count == 0)
             return false;
@@ -26,7 +18,7 @@ public class LowVisionStrike : PassiveSkillBase
         // 이펙트 재생
         ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("OrbHit");
         effect.SetPosition(target.transform.position);
-        effect.SetScale(_range);
+        effect.SetScale(new Vector3(Data.Range, Data.Range, Data.Range));
         effect.PlayEffect();
 
         foreach (var tar in targets)

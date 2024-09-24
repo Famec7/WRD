@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6710139492206580332, guid: 95b8d3d65b5d7f1409c4ed1723887826, type: 3}
       propertyPath: m_Name
-      value: CFXR4 Sword Trail PLAIN (360 Thin Spiral) 1
+      value: CFXR4 Sword Trail PLAIN (360 Thin Spiral) 2
       objectReference: {fileID: 0}
     - target: {fileID: 6710139492206580334, guid: 95b8d3d65b5d7f1409c4ed1723887826, type: 3}
       propertyPath: stopAction
@@ -74,11 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6710139492206580334, guid: 95b8d3d65b5d7f1409c4ed1723887826, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.15686274
+      value: 0.15566039
       objectReference: {fileID: 0}
     - target: {fileID: 6710139492206580334, guid: 95b8d3d65b5d7f1409c4ed1723887826, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.9515966
+      value: 0.5588933
       objectReference: {fileID: 0}
     - target: {fileID: 6710139492206580334, guid: 95b8d3d65b5d7f1409c4ed1723887826, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -125,4 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552afd9778a44d7eb24ec8a2f5b3507a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectName: HorizontalSliceEffect
+  effectName: SharpBladeEffect

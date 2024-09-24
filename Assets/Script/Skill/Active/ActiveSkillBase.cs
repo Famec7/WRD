@@ -17,7 +17,7 @@ public abstract class ActiveSkillBase : SkillBase
 
     #endregion
 
-    protected List<Monster> targetMonsters = new List<Monster>();
+    protected HashSet<Monster> targetMonsters = new HashSet<Monster>();
     protected Vector2 pivotPosition = Vector2.zero;
 
     protected override void Init()
@@ -49,6 +49,11 @@ public abstract class ActiveSkillBase : SkillBase
     public void AddTargetMonster(Monster monster)
     {
         targetMonsters.Add(monster);
+    }
+    
+    public void RemoveTargetMonster(Monster monster)
+    {
+        targetMonsters.Remove(monster);
     }
 
     /***************************Behaviour Tree***************************/
@@ -107,13 +112,6 @@ public abstract class ActiveSkillBase : SkillBase
 
                 SkillUIManager.Instance.ClosePopupPanel();
                 OnButtonActivate?.Invoke(true);
-            }
-            else
-            {
-                if (this is ClickTypeSkill)
-                    weapon.owner.enabled = false;
-
-                OnButtonActivate?.Invoke(false);
             }
         }
         get => _isCoolTime;
@@ -235,7 +233,9 @@ public abstract class ActiveSkillBase : SkillBase
 
             if (this is ClickTypeSkill)
             {
-                if (Vector2.Distance(pivotPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Data.Range / 2)
+                float distance = Vector2.Distance(pivotPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
+                if (Data.Range > 0 &&distance > Data.Range / 2)
                 {
                     CancelSkill();
                     return INode.ENodeState.Failure;
@@ -277,6 +277,9 @@ public abstract class ActiveSkillBase : SkillBase
             if (_isActive is true)
             {
                 SkillUIManager.Instance.ShowPopupPanel(3);
+
+                OnButtonActivate?.Invoke(false);
+
                 OnActiveEnter();
             }
             else
@@ -330,15 +333,15 @@ public abstract class ActiveSkillBase : SkillBase
     private void IndicatorInit()
     {
         // 72.5f
-        const float scaleAdjustmentFactor = 72.5f;
-        
+        float scaleAdjustmentFactor = 1 / this.transform.localScale.x * 20f;
+
         float range = Data.Range * scaleAdjustmentFactor;
         float availableRange = Data.AvailableRange * scaleAdjustmentFactor;
 
         if (indicator != null)
         {
             indicator.transform.localScale = new Vector3(range, range, 1);
-            indicator.gameObject.SetActive(false);
+            indicator.HideIndicator();
             indicator.SetSkill(this);
         }
 

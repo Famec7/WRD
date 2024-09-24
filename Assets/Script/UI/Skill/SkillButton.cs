@@ -1,25 +1,28 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
 public class SkillButton : MonoBehaviour
 {
     private EventTrigger _trigger;
+    private Image _iconImage;
 
-    [SerializeField] private Image _image;
+    [SerializeField] private Image _coolTimeImage;
     [SerializeField] private ActiveSkillBase _currentSkill;
 
     private void Awake()
     {
         _trigger = GetComponent<EventTrigger>();
+        _iconImage = GetComponent<Image>();
     }
 
     private void Update()
     {
         if (_currentSkill != null && _currentSkill.IsCoolTime)
         {
-            _image.fillAmount = _currentSkill.CurrentCoolTime / _currentSkill.Data.CoolTime;
+            _coolTimeImage.fillAmount = _currentSkill.CurrentCoolTime / _currentSkill.Data.CoolTime;
         }
     }
 
@@ -37,6 +40,9 @@ public class SkillButton : MonoBehaviour
 
         // 위 이벤트를 트리거에 추가
         _trigger.triggers.Add(entry);
+        
+        // 아이콘 이미지 설정
+        _iconImage.sprite = skill.GetComponent<SpriteRenderer>().sprite;
     }
 
     public void RemoveSkill(ActiveSkillBase skill)
@@ -46,11 +52,16 @@ public class SkillButton : MonoBehaviour
 
         // 트리거 초기화
         _trigger.triggers.Clear();
+        
+        // 아이콘 이미지 초기화
+        _iconImage.sprite = null;
     }
 
     private void SetActive(bool active)
     {
         _trigger.enabled = active;
         GetComponent<Button>().interactable = active;
+        
+        this.gameObject.SetActive(active);
     }
 }
