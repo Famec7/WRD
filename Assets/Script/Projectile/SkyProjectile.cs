@@ -63,7 +63,6 @@ public class SkyProjectile : FallingProjectile
         // 슬로우 장판 생성
         _auraEffect = EffectManager.Instance.CreateEffect<EffectBase>("SkySwordAura");
         _auraEffect.SetPosition(transform.position);
-        _auraEffect.SetScale(new Vector3(Range / 2, Range / 2, Range / 2));
     }
     
     /********************************SlowDown Effect********************************/
