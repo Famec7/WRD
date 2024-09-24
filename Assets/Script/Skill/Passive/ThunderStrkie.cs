@@ -46,7 +46,6 @@ public class ThunderStrkie : PassiveSkillBase
         // 낙뢰 이펙트 발생
         thunderEffect.SetPosition(target.transform.position);
         thunderEffect.SetData(Data.GetValue(2), Data.GetValue(3), Data.GetValue(4));
-        thunderEffect.SetScale(new Vector3(_range, _range, _range));
         thunderEffect.PlayEffect();
         
         thunderEffect.PlayEffect();
