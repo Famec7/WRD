@@ -109,54 +109,55 @@ public class WeaponImage : MonoBehaviour
             if (result.gameObject.CompareTag("BookMarkedSlot"))
                 targetSlotObject = result.gameObject;
         }
-        
-        if (!isInventory && !gameObject.transform.parent.CompareTag("BookMarkedSlot") && !targetSlotObject.gameObject.CompareTag("BookMarkedSlot"))
+
+        if (targetSlotObject != null)
         {
-            if (targetSlotObject != null)
+            if (!isInventory && !gameObject.transform.parent.CompareTag("BookMarkedSlot") && !targetSlotObject.gameObject.CompareTag("BookMarkedSlot"))
             {
-                WeaponSlotUI targetSlot = targetSlotObject.GetComponent<WeaponSlotUI>();
-                Image targetSlotImage = targetSlot.transform.GetChild(0).gameObject.GetComponent<Image>();
+               
+                    WeaponSlotUI targetSlot = targetSlotObject.GetComponent<WeaponSlotUI>();
+                    Image targetSlotImage = targetSlot.transform.GetChild(0).gameObject.GetComponent<Image>();
 
-                int weaponID = transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID;
-                int targetweaponID = targetSlot.weaponID;
-                bool alreadyHasWeapon = targetSlot.GetComponent<WeaponSlotUI>().hasWeapon;
-                InventoryItem targetItem = targetSlot.transform.GetChild(0).gameObject.GetComponent<InventorySlot>().weapon;
-                InventorySlot targetInventorySlot = targetSlot.inventorySlot;
+                    int weaponID = transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID;
+                    int targetweaponID = targetSlot.weaponID;
+                    bool alreadyHasWeapon = targetSlot.GetComponent<WeaponSlotUI>().hasWeapon;
+                    InventoryItem targetItem = targetSlot.transform.GetChild(0).gameObject.GetComponent<InventorySlot>().weapon;
+                    InventorySlot targetInventorySlot = targetSlot.inventorySlot;
 
-                Sprite targetSprite = targetSlotImage.sprite;
-                Sprite mySprite = gameObject.GetComponent<Image>().sprite;
-                Color myColor = gameObject.GetComponent<Image>().color;
-                InventoryItem myItem = gameObject.GetComponent<InventorySlot>().weapon;
-                InventorySlot myInventorySlot = gameObject.transform.parent.GetComponent<WeaponSlotUI>().inventorySlot;
+                    Sprite targetSprite = targetSlotImage.sprite;
+                    Sprite mySprite = gameObject.GetComponent<Image>().sprite;
+                    Color myColor = gameObject.GetComponent<Image>().color;
+                    InventoryItem myItem = gameObject.GetComponent<InventorySlot>().weapon;
+                    InventorySlot myInventorySlot = gameObject.transform.parent.GetComponent<WeaponSlotUI>().inventorySlot;
 
-                targetSlot.hasWeapon = true;
-                targetSlot.transform.GetChild(0).GetComponent<LongClickComponenet>().weaponID = weaponID;
-                targetSlot.weaponID = weaponID;
-                targetSlotImage.enabled = true;
-                targetSlot.transform.GetChild(0).gameObject.GetComponent<InventorySlot>().weapon = gameObject.GetComponent<InventorySlot>().weapon;
-                targetSlotImage.sprite = mySprite;
-                targetSlotImage.color = myColor;
-                targetSlot.inventorySlot = myInventorySlot;
+                    targetSlot.hasWeapon = true;
+                    targetSlot.transform.GetChild(0).GetComponent<LongClickComponenet>().weaponID = weaponID;
+                    targetSlot.weaponID = weaponID;
+                    targetSlotImage.enabled = true;
+                    targetSlot.transform.GetChild(0).gameObject.GetComponent<InventorySlot>().weapon = gameObject.GetComponent<InventorySlot>().weapon;
+                    targetSlotImage.sprite = mySprite;
+                    targetSlotImage.color = myColor;
+                    targetSlot.inventorySlot = myInventorySlot;
 
-                if (alreadyHasWeapon)
-                {
-                    gameObject.GetComponent<Image>().sprite = targetSprite;
-                    gameObject.GetComponent<Image>().color = new Color32(0, 255, 255, 255);
-                    gameObject.GetComponent<Image>().enabled = true;
-                    gameObject.GetComponent<InventorySlot>().weapon = targetItem;
-                    transform.parent.gameObject.GetComponent<WeaponSlotUI>().hasWeapon = true;
-                    transform.parent.gameObject.GetComponent<WeaponSlotUI>().inventorySlot = targetInventorySlot; 
-                }
+                    if (alreadyHasWeapon)
+                    {
+                        gameObject.GetComponent<Image>().sprite = targetSprite;
+                        gameObject.GetComponent<Image>().color = new Color32(0, 255, 255, 255);
+                        gameObject.GetComponent<Image>().enabled = true;
+                        gameObject.GetComponent<InventorySlot>().weapon = targetItem;
+                        transform.parent.gameObject.GetComponent<WeaponSlotUI>().hasWeapon = true;
+                        transform.parent.gameObject.GetComponent<WeaponSlotUI>().inventorySlot = targetInventorySlot;
+                    }
 
-                else
-                    transform.parent.GetComponent<WeaponSlotUI>().Init();
+                    else
+                        transform.parent.GetComponent<WeaponSlotUI>().Init();
 
-                transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID = targetweaponID;
-                transform.gameObject.GetComponent<LongClickComponenet>().weaponID = targetweaponID;
-                UIManager.instance.touchPos = Input.mousePosition;
-                
-                WeaponManager.Instance.RemoveWeapon(transform.parent.GetComponent<WeaponSlotUI>().SlotIndex);
-                WeaponManager.Instance.AddWeapon(targetSlot.SlotIndex, weaponID);
+                    transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID = targetweaponID;
+                    transform.gameObject.GetComponent<LongClickComponenet>().weaponID = targetweaponID;
+                    UIManager.instance.touchPos = Input.mousePosition;
+
+                    WeaponManager.Instance.RemoveWeapon(transform.parent.GetComponent<WeaponSlotUI>().SlotIndex);
+                    WeaponManager.Instance.AddWeapon(targetSlot.SlotIndex, weaponID);
             }
         }
 

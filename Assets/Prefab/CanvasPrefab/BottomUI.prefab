@@ -3928,9 +3928,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2196962895922136523, guid: 4ebe1c7d9c074e7459d2a15fe359f67f, type: 3}
+      propertyPath: m_TagString
+      value: BookMarkedSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2349720340936554777, guid: 4ebe1c7d9c074e7459d2a15fe359f67f, type: 3}
+      propertyPath: m_TagString
+      value: BookMarkedSlot
+      objectReference: {fileID: 0}
     - target: {fileID: 3942862280357701535, guid: 4ebe1c7d9c074e7459d2a15fe359f67f, type: 3}
       propertyPath: m_Name
       value: BookMakredSlotUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5505258574530066372, guid: 4ebe1c7d9c074e7459d2a15fe359f67f, type: 3}
+      propertyPath: m_TagString
+      value: BookMarkedSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6747144509383898538, guid: 4ebe1c7d9c074e7459d2a15fe359f67f, type: 3}
+      propertyPath: m_TagString
+      value: BookMarkedSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068143093355156863, guid: 4ebe1c7d9c074e7459d2a15fe359f67f, type: 3}
+      propertyPath: m_TagString
+      value: BookMarkedSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014523803965583927, guid: 4ebe1c7d9c074e7459d2a15fe359f67f, type: 3}
+      propertyPath: m_TagString
+      value: BookMarkedSlot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
