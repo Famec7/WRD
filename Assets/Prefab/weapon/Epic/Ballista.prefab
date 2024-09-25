@@ -197,4 +197,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _endPosition: {x: -0.05, y: 0, z: 0}
+  _endPosition: {x: 0.05, y: 0, z: 0}

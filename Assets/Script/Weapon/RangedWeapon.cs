@@ -16,19 +16,24 @@ public class RangedWeapon : WeaponBase
 
     protected override void Attack()
     {
-        base.Attack();
-
         if (owner.Target.TryGetComponent(out Monster monster))
         {
-            var projectile =
-                ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
+            var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
 
             projectile.Target = owner.Target.gameObject;
-            projectile.Damage = Data.AttackDamage;
-
             projectile.SetType(type);
+            
+            projectile.OnHit += () => OnHit(monster, Data.AttackDamage);
 
             notifyAction?.Invoke();
         }
+    }
+
+    protected void OnHit(Monster monster, float damage)
+    {
+        monster.HasAttacked(damage);
+
+        ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>(type.ToString() + "Hit");
+        particleEffect.SetPosition(monster.transform.position);
     }
 }

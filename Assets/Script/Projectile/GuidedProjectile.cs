@@ -15,11 +15,13 @@ public class GuidedProjectile : ProjectileBase
             LookAtTarget(value.transform.position);
         }
     }
-    
+
+    public Action OnHit { get; set; }
+
     private float _startTime;
     private Vector3 _startPosition;
     private float _journeyLength;
-    
+
     private string _hitEffectName;
 
     private void Start()
@@ -36,7 +38,16 @@ public class GuidedProjectile : ProjectileBase
             ProjectileManager.Instance.ReturnProjectileToPool(this);
             return;
         }
-        
+
+        float distance = Vector3.Distance(transform.position, Target.transform.position);
+        if (distance < 0.1f)
+        {
+            OnHit?.Invoke();
+            
+            ProjectileManager.Instance.ReturnProjectileToPool(this);
+        }
+
+
         float timeSinceStart = Time.time - _startTime;
         float fractionOfJourney = timeSinceStart / _journeyLength;
         float easedFraction = curve.Evaluate(fractionOfJourney);
@@ -53,33 +64,20 @@ public class GuidedProjectile : ProjectileBase
     {
         ;
     }
-    
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out Monster monster))
-        {
-            monster.HasAttacked(Damage);
-            
-            ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>(_hitEffectName);
-            particleEffect.SetPosition(transform.position);
-            
-            ProjectileManager.Instance.ReturnProjectileToPool(this);
-        }
-    }
-    
+
     protected void LookAtTarget(Vector3 target)
     {
         Vector3 direction = target - transform.position;
-        
+
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 180;
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         transform.rotation = rotation;
     }
-    
+
     public void SetType(RangedWeapon.Type type)
     {
         StringBuilder sb = new StringBuilder();
-        
+
         switch (type)
         {
             case RangedWeapon.Type.Bow:
@@ -97,7 +95,7 @@ public class GuidedProjectile : ProjectileBase
             default:
                 break;
         }
-        
+
         _hitEffectName = sb.ToString();
     }
 }

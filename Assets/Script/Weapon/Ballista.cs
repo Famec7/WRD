@@ -10,18 +10,21 @@ public class Ballista : RangedWeapon
         base.Attack();
 
         Monster monster = FindNearestMonster(owner.Target.transform.position);
+        
+        if (monster is null)
+            return;
+        
+        if(passiveSkill.Activate(monster.gameObject))
+            return;
+        
+        var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
 
-        var projectile =
-            ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
-
-        projectile.Target = owner.Target.gameObject;
-        projectile.Damage = Data.AttackDamage;
-
+        projectile.Target = monster.gameObject;
         projectile.SetType(type);
+        
+        projectile.OnHit += () => OnHit(monster, Data.AttackDamage);
 
         notifyAction?.Invoke();
-        
-        passiveSkill.Activate(monster.gameObject);
     }
 
     private Monster FindNearestMonster(Vector3 targetPosition)
@@ -31,11 +34,14 @@ public class Ballista : RangedWeapon
         var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, _range, default, targetLayer);
 
         GameObject nearestTarget = null;
-        float minDistance = Data.AttackRange;
+        float minDistance = _range;
 
         foreach (var tar in targets)
         {
             if(tar.gameObject.activeSelf is false)
+                continue;
+            
+            if(tar.gameObject == owner.Target)
                 continue;
             
             float distance = Vector3.Distance(targetPosition, tar.transform.position);
