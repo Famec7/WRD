@@ -94,11 +94,12 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
             anim.PlayAnimation();
         }
 
-        if (IsPassiveSkillNull) return;
-
-        if (passiveSkill.Activate(owner.Target))
+        if (!IsPassiveSkillNull)
         {
-            return;
+            if (passiveSkill.Activate(owner.Target))
+            {
+                return;
+            }
         }
 
         Attack();
