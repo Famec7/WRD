@@ -25,7 +25,7 @@ public class GameManager : Singleton<GameManager>
         GameManager.Instance.weaponCnt[5]++;
         useWeapon.Add(6);
         UpdateUseableWeaponCnt();
-        ElementManager.instance.GetElement(5);
+        ElementManager.instance.GetElement(100);
     }
 
     public bool IsUsing(int weaponID)

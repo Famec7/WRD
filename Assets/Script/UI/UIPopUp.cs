@@ -30,7 +30,8 @@ public class UIPopUp : MonoBehaviour
                 UIManager.instance.CloseCombinePopUpUI();
                 UIManager.instance.CloseInventoryDescriptionPopUpUI();
                 UIManager.instance.CloseDetailedDescriptionPopUpUI();
-                Debug.Log("여기");
+                UIManager.instance.longClickPopUpUI.SetActive(false);
+
             }
 
             bool isButton = false;

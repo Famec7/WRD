@@ -329,7 +329,7 @@ public class InventoryManager : MonoBehaviour
         allShowInventoryContent.transform.GetChild(0).transform.GetChild(0).GetComponent<RectTransform>().anchoredPosition = new Vector2(20, -200);
     }
 
-    public bool RemoveItem(List<int> itemIDs, int mainWeaponID, InventoryItem item)
+    public bool RemoveItem(List<int> itemIDs, int mainWeaponID, InventoryItem item, bool isMainWeapon)
     {
         bool returnValue = false;
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
@@ -340,7 +340,7 @@ public class InventoryManager : MonoBehaviour
         if (longClickPopUpUi.weaponSlot != null && longClickPopUpUi.weaponSlot.inventorySlot != null)
             pressSlot = longClickPopUpUi.weaponSlot.inventorySlot;
 
-        if (WeaponDataManager.Instance.GetKorWeaponClassText(mainWeaponID) != "������")
+        if (WeaponDataManager.Instance.GetKorWeaponClassText(mainWeaponID) != "������" && isMainWeapon)
         {
             if (pressSlot == null)
             {
@@ -370,7 +370,6 @@ public class InventoryManager : MonoBehaviour
 
             if (pressSlot != null)
             {
-                // ���࿡ �������� �����
                 if (pressSlot.isEquiped)
                 {
                     for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)
@@ -379,11 +378,9 @@ public class InventoryManager : MonoBehaviour
 
                         if (pressSlot == weaponSlot.inventorySlot)
                         {
-                            // �κ��丮 �����ۿ��� ���� ������� ���� ����
+
                             items.Remove(pressSlot.weapon);
-                            //����UI���� ������ �ٲٱ�
                             WeaponUI.Instance.ChangeItem(j, item);
-                            // ��� ����Ʈ���� ����
                             GameManager.Instance.weaponCnt[itemIDs[0] - 1]--;
 
                             itemIDs.Remove(itemIDs[0]);
@@ -400,7 +397,6 @@ public class InventoryManager : MonoBehaviour
             if (i>5)
             {
                 
-                // �� �������� ��ᰡ ���� ��
                 if (GameManager.Instance.useAbleWeaponCnt[i-1] > 0)
                 {
                     foreach (var slot in slots)
@@ -415,7 +411,7 @@ public class InventoryManager : MonoBehaviour
                     }
                     GameManager.Instance.useAbleWeaponCnt[i-1]--;
                 }
-                // �������� ����� ��
+
                 else
                 {
                     for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)

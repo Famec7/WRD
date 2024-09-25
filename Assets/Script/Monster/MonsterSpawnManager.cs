@@ -105,7 +105,10 @@ public class MonsterSpawnManager : MonoBehaviour
         spawnDelayTimer += Time.deltaTime;
 
         if (currentMonsterNum >= limitMonsterNum)
+        {
             isNormalSpawnStop = true;
+            _skipButton.gameObject.SetActive(true);
+        }
         else
             waveSecTimer += Time.deltaTime;
 
@@ -129,17 +132,20 @@ public class MonsterSpawnManager : MonoBehaviour
 
             UIManager.instance.limitMonsterNum.text = limitMonsterNum.ToString();
 
-            if ((isBossWave && targetBossStatus.HP < 0) && currentMonsterNum > limitMonsterNum)
+            if ((isBossWave && targetBossStatus.HP > 0) && currentMonsterNum >= limitMonsterNum)
             {
                 GameManager.Instance.isGameOver = true;
+                MessageManager.Instance.ShowMessage("GAME OVER", new Vector2(0, 200), 2f, 0.5f);
             }
-            else if (isBossWave) // ���� ���� ����
+            else if (isBossWave)
             {
-                Debug.Log("���� ����");
+               
             }
+
             GameManager.Instance.wave++;
             UIManager.instance.waveNum.text = "Wave " + GameManager.Instance.wave.ToString();
             ElementManager.instance.GetElement(3);
+
             waveTimer = 0;
             isNormalSpawnStop = false;
             currentWaveMonsterNum = 0;
@@ -147,6 +153,8 @@ public class MonsterSpawnManager : MonoBehaviour
             isBossSpawn = false;
             idx = GameManager.Instance.wave - 1;
             isBossWave = bossSpawnNum[idx] >= 1;
+
+            _skipButton.gameObject.SetActive(false);
         }
 
         if (isSpawnStop) return;
@@ -165,6 +173,8 @@ public class MonsterSpawnManager : MonoBehaviour
         if (isBossWave && !isBossSpawn)
         {
             UnitCode code = UnitCode.ELITEMONSTER5 + (GameManager.Instance.wave / 5);
+            MessageManager.Instance.ShowMessage(targetBossStatus.unitCode.ToString() + "가 등장했습니다.", new Vector2(0, 200), 2f, 0.5f);
+
             SpawnMonster(code);
             isBossSpawn = true;
         }

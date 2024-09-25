@@ -77,7 +77,7 @@ public class CraftButton : MonoBehaviour
             WeaponUI.Instance.weaponID = weaponID;
 
             InventoryManager.instance.AddItem(item, false);
-            InventoryManager.instance.RemoveItem(materialsList, weaponID, item);
+            InventoryManager.instance.RemoveItem(materialsList, weaponID, item, isMainWeapon);
 
             if (InventoryManager.instance.isClassSorted)
                 InventoryManager.instance.ClickClassShowButton();
@@ -88,6 +88,7 @@ public class CraftButton : MonoBehaviour
             GameManager.Instance.weaponCnt[weaponID - 1]++;
             GameManager.Instance.UpdateUseableWeaponCnt();
             BookMakredSlotUI.Instance.UpdateAllSlot();
+
         }
     }
 
