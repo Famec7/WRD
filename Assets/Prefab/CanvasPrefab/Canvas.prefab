@@ -1490,6 +1490,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TopUI
       objectReference: {fileID: 0}
+    - target: {fileID: 6049523737666565923, guid: fe0a949808c8d0242b9500ed5032728c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6307760575969876796, guid: fe0a949808c8d0242b9500ed5032728c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -24.7

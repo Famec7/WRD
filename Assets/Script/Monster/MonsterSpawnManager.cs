@@ -109,11 +109,11 @@ public class MonsterSpawnManager : MonoBehaviour
             idx = 34;
 
         spawnDelayTimer += Time.deltaTime;
-
+        if(currentMonsterNum >= currentWaveMonsterNum)
+            _skipButton.gameObject.SetActive(true);
         if (currentMonsterNum >= limitMonsterNum)
         {
             isNormalSpawnStop = true;
-            _skipButton.gameObject.SetActive(true);
         }
         else
             waveSecTimer += Time.deltaTime;
