@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MonsterSpawnManager : MonoBehaviour
@@ -90,12 +91,17 @@ public class MonsterSpawnManager : MonoBehaviour
 
         UIManager.instance.limitMonsterNum.text = limitMonsterNum.ToString();
         TimeSpan timeSpan = TimeSpan.FromSeconds(wavePlayTime[0]);
-        UIManager.instance.currentWaveTime.text = timeSpan.ToString(@"mm\:ss"); 
+        UIManager.instance.currentWaveTime.text = timeSpan.ToString(@"mm\:ss");
+
+        UIManager.instance.waveNum.text = "Wave " + GameManager.Instance.wave.ToString();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.isGameOver) return;
+
         int idx = GameManager.Instance.wave - 1;
         isBossWave = bossSpawnNum[idx] >= 1;
 
@@ -132,10 +138,11 @@ public class MonsterSpawnManager : MonoBehaviour
 
             UIManager.instance.limitMonsterNum.text = limitMonsterNum.ToString();
 
-            if ((isBossWave && targetBossStatus.HP > 0) && currentMonsterNum >= limitMonsterNum)
+            if ((isBossWave && targetBossStatus.HP > 0) || currentMonsterNum >= limitMonsterNum && !GameManager.Instance.isGameOver)
             {
                 GameManager.Instance.isGameOver = true;
-                MessageManager.Instance.ShowMessage("GAME OVER", new Vector2(0, 200), 2f, 0.5f);
+                MessageManager.Instance.ShowMessage("GAME OVER", new Vector2(0, 218), 1f, 0.5f);
+                StartCoroutine(CountdownCoroutine(5));
             }
             else if (isBossWave)
             {
@@ -173,9 +180,10 @@ public class MonsterSpawnManager : MonoBehaviour
         if (isBossWave && !isBossSpawn)
         {
             UnitCode code = UnitCode.ELITEMONSTER5 + (GameManager.Instance.wave / 5);
-            MessageManager.Instance.ShowMessage(targetBossStatus.unitCode.ToString() + "가 등장했습니다.", new Vector2(0, 200), 2f, 0.5f);
 
             SpawnMonster(code);
+            MessageManager.Instance.ShowMessage(targetBossStatus.unitCode.ToString() + "가 등장했습니다.", new Vector2(0, 200), 1f, 0.5f);
+
             isBossSpawn = true;
         }
         // WAVE SKIP
@@ -221,5 +229,32 @@ public class MonsterSpawnManager : MonoBehaviour
             waveTimer = wavePlayTime[GameManager.Instance.wave - 1];
             isSpawnStop = false;
         }
+    }
+
+    private IEnumerator CountdownCoroutine(int seconds)
+    {
+        int countdown = seconds;
+        while (countdown > 0)
+        {
+            
+            // 메시지 매니저를 통해 카운트다운 메시지 표시
+            MessageManager.Instance.ShowMessage($"Restart {countdown}", new Vector2(0, 200), 1f,0.1f);
+
+            // 1초 기다리기
+            yield return new WaitForSeconds(1f);
+
+            // 카운트다운 감소
+            countdown--;
+        }
+
+        // 5초 후에 씬 다시 로드
+        ReloadScene();
+    }
+
+    private void ReloadScene()
+    {
+        // 현재 씬을 다시 로드
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 }

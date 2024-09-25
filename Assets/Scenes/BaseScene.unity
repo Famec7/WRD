@@ -142,6 +142,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 634136516482632422, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: messageParent
+      value: 
+      objectReference: {fileID: 1875576679}
     - target: {fileID: 938181490769147599, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: parentTransform
       value: 
@@ -198,6 +202,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3533289228794242793, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: missionInfo
+      value: 
+      objectReference: {fileID: 824331122}
     - target: {fileID: 3628297568055053547, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _characters.Array.data[0]
       value: 
@@ -1704,6 +1712,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a58402bde2b642898f8e216f82b907db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &824331122 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3441687419356619032, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+  m_PrefabInstance: {fileID: 1093094908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed7422ecae647e19cb282b4896233bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &892273948 stripped
@@ -3242,6 +3261,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58402bde2b642898f8e216f82b907db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1875576679 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3643912589083450785, guid: a1e2cfdb436228c449010363bad3bd3e, type: 3}
+  m_PrefabInstance: {fileID: 585969641}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1986429922 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6463702685014805497, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}

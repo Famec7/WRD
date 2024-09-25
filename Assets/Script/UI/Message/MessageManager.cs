@@ -24,7 +24,8 @@ public class MessageManager : Singleton<MessageManager>
 
     private Message CreateNewMessage()
     {
-        Message newMessage = Instantiate(messagePrefab, messageParent);
+        Message newMessage = Instantiate(messagePrefab);
+        newMessage.transform.SetParent(messageParent, false);
         newMessage.gameObject.SetActive(false);
         messagePool.Enqueue(newMessage);
         return newMessage;

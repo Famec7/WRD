@@ -31,21 +31,27 @@ public class CraftButton : MonoBehaviour
         }
 
 
-        int i = 2;
-        int cnt = 0;
-
         Color32 mainColor = GetClassColor(WeaponDataManager.Instance.Database.GetWeaponData(weaponID).WeaponClass);
 
         if (GameManager.Instance.weaponCnt[weaponID - 1] > 0)
             transform.GetChild(0).GetComponent<Image>().color = mainColor;
 
-        foreach (var weapon in materialWeapons)
+        int hasMaterialCnt = 0;
+        int[] tmpCnt = new int[GameManager.Instance.weaponCnt.Length];
+        Array.Copy(GameManager.Instance.weaponCnt, tmpCnt, tmpCnt.Length);
+
+        foreach (int i in materialWeapons)
         {
-            if (GameManager.Instance.weaponCnt[weapon - 1] > 0)
-              cnt++;   
+            if (tmpCnt[i - 1] >= 1)
+            {
+                hasMaterialCnt++;
+                tmpCnt[i - 1]--;
+            }
         }
 
-        if (cnt == materialWeapons.Length)
+ 
+
+        if (hasMaterialCnt == materialWeapons.Length)
             canCombineBorder.SetActive(true);
         else
             canCombineBorder.SetActive(false);

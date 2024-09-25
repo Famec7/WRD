@@ -70,6 +70,7 @@ public class CombinePopUpUI : UIPopUp
         closeButton.onClick.AddListener(() =>
         {
             UIManager.instance.CloseCombinePopUpUI();
+            UIManager.instance.longClickPopUpUI.SetActive(false);
         });
     }
 }

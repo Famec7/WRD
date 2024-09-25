@@ -34,6 +34,7 @@ public class InventoryDescriptionPopUpUI : UIPopUp
         closeButton.onClick.AddListener(() =>
         {
             UIManager.instance.CloseInventoryDescriptionPopUpUI();
+            UIManager.instance.longClickPopUpUI.SetActive(false);
         });
     }
 }
