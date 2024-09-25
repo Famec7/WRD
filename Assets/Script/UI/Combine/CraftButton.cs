@@ -17,13 +17,13 @@ public class CraftButton : MonoBehaviour
 
     void Start()
     {
-        isElement = weaponID < 5 ? true : false;
+        isElement = weaponID < 6 ? true : false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.weaponCnt[weaponID-1] > 0 && !isMain)
+        if (GameManager.Instance.weaponCnt[weaponID-1] > 0 && !isMain || isElement)
         {
             gameObject.GetComponent<Button>().enabled = false;
             canCombineBorder.SetActive(false);
@@ -53,14 +53,10 @@ public class CraftButton : MonoBehaviour
 
     public void CraftWeapon(bool isMainWeapon = false)
     {
-        // �����ִ� ����� ������ ��Ÿ���� ����
         int hasMaterialCnt = 0;
-        // ����� �迭
         int[] tmpCnt = new int[GameManager.Instance.weaponCnt.Length];
-        // �����ִ� ���� ���� �迭�� ����
         Array.Copy(GameManager.Instance.weaponCnt, tmpCnt, tmpCnt.Length);
 
-        //��� �迭�� ���鼭 ���࿡ ���� �ִ°� �� ������ ������ �迭���� ���ְ� �ʿ��� �������� ����
         foreach (int i in materialWeapons)
         {
             if (tmpCnt[i - 1] >= 1)
@@ -70,16 +66,14 @@ public class CraftButton : MonoBehaviour
             }
         }
 
-        // �׷��� �����ִ°����� �ִ°Ŷ� ������ (��ᰡ ��������)
         if (hasMaterialCnt == materialWeapons.Length)
         {
-            // ������ ������ ����
             List<int> materialsList = materialWeapons.ToList();
             InventoryItem item = new InventoryItem
             {
                 image = transform.GetChild(0).GetComponent<Image>().sprite
             };
-            item.AssignWeapon(weaponID); // �����ۿ� ���ⵥ���� �־���
+            item.AssignWeapon(weaponID);
             WeaponUI.Instance.weaponID = weaponID;
 
             InventoryManager.instance.AddItem(item, false);
