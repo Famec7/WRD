@@ -43,8 +43,6 @@ public class RewardManager : Singleton<RewardManager>
 
     public void GetReward(int wave)
     {
-        Debug.Log(elementRewardCnt[wave]);
-
         if (elementRewardCnt[wave] > 0)
         {
             ElementManager.instance.GetElement(elementRewardCnt[wave]);

@@ -156,7 +156,9 @@ public class MonsterSpawnManager : MonoBehaviour
 
         if (spawnDelayTimer >= monsterSpawnTime[idx] && !isNormalSpawnStop)
         {
-            UnitCode code = (UnitCode)((int)GameManager.Instance.wave / 6);
+            int monsterIndex = ((GameManager.Instance.wave - 1) / 5) + 1;
+            UnitCode code = (UnitCode)((int)UnitCode.MONSTER1 + (monsterIndex - 1));
+
             SpawnMonster(code);
         }
 

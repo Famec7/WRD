@@ -58,17 +58,17 @@ public class InventoryManager : MonoBehaviour
         notHeldslots = notHeldParent.GetComponentsInChildren<AllShowInventorySlot>();
         items = new List<InventoryItem>();
         
-        string path = "WeaponIcon/" + 21;
+        string path = "WeaponIcon/" + 6;
         InventoryItem item = new InventoryItem
         {
             image =  ResourceManager.Instance.Load<Sprite>(path)
         };
-        item.AssignWeapon(21);
+        item.AssignWeapon(6);
         AddItem(item);
         WeaponUI.Instance.weaponSlots[4].transform.GetChild(0).GetComponent<InventorySlot>().weapon = item;
         slots[0].isEquiped = true;
 
-        WeaponManager.Instance.AddWeapon(4, 21);
+        WeaponManager.Instance.AddWeapon(4, 6);
         
 #if ADD_ALL_ITEM
         CreateAllItem();

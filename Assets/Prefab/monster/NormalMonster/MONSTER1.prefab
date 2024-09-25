@@ -188,6 +188,7 @@ MonoBehaviour:
   maxHP: 0
   HP: 0
   moveSpeed: 0
+  originalSpeed: 0
   resist: 0
   defense: 0
   monsterName: 

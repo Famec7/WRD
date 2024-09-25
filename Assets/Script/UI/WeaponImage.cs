@@ -24,15 +24,16 @@ public class WeaponImage : MonoBehaviour
     public bool isInventory;
     public bool isBookmarked;
     private RectTransform rectTransform;
-    private RectTransform rectTransform1;
     private LongClickComponenet longClickComponenet;
 
     private Sprite mySprite;
+
+    private Canvas canvas;
     void Start()
     {
-        rectTransform1 = GetComponent<RectTransform>();
         rectTransform = GetComponent<RectTransform>();
         originalPos = transform.position;
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         longClickComponenet = GetComponent<LongClickComponenet>();
     }
 
@@ -40,25 +41,15 @@ public class WeaponImage : MonoBehaviour
     void Update()
     {
 
-        if (isClick)
-            clickTime += Time.deltaTime;
-        else
-            clickTime = 0;
-
-        if (clickTime > minClickTime)
-        {
-            transform.position = Input.mousePosition;
-        }
-
         if (!isDrag && !isSlide)
         {
-            transform.position = originalPos;
+            rectTransform.anchoredPosition = originalPos;
         }
         else
         {
             float sizeOffset = transform.parent.gameObject.name == "MainWeaponSlot" ? 1.5f : 1f;
             if ((transform.parent.gameObject.CompareTag("WeaponSlot")))
-                rectTransform1.sizeDelta = new Vector2(120, 120) * sizeOffset;
+                rectTransform.sizeDelta = new Vector2(120, 120) * sizeOffset;
 
             if ((transform.parent.gameObject.CompareTag("BookMarkedSlot")))
                 rectTransform.sizeDelta = new Vector2(100, 100);
@@ -80,7 +71,8 @@ public class WeaponImage : MonoBehaviour
     {
         if (!transform.parent.GetComponent<WeaponSlotUI>().isWeaponUseable && transform.parent.CompareTag("BookMarkedSlot")) return;
 
-        transform.position = Input.mousePosition;
+        FollowMouse();
+
         var parent = transform.parent;
         parent.GetComponent<RectTransform>().SetAsLastSibling();
         parent.parent.GetComponent<RectTransform>().SetAsLastSibling();
@@ -88,7 +80,6 @@ public class WeaponImage : MonoBehaviour
         if (isBookmarked)
             parent.parent.parent.GetComponent<RectTransform>().SetAsLastSibling();
 
-        UIManager.instance.touchPos = Input.mousePosition;
 
         isDrag = true;
         var results = UIManager.instance.GetRayCastResult();
@@ -229,7 +220,28 @@ public class WeaponImage : MonoBehaviour
 
         transform.position = originalPos;
         isDrag = false;
-        UIManager.instance.CloseCombinePopUpUI();
 
+        UIManager.instance.CloseCombinePopUpUI();
+        UIManager.instance.longClickPopUpUI.SetActive(false);
     }
+
+    public void FollowMouse()
+    {
+        Vector3 globalMousePos;
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            canvas.transform as RectTransform,
+            Input.mousePosition,
+            canvas.worldCamera,
+            out globalMousePos))
+        {
+            rectTransform.position = globalMousePos;
+        }
+
+        else
+        {
+            Debug.LogError("화면 좌표를 월드 좌표로 변환하는 데 실패했습니다.");
+        }
+    }
+
+
 }

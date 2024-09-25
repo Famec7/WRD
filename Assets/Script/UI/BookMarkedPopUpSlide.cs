@@ -19,7 +19,7 @@ public class BookMarkedPopUpSlide : PopUpSlide
     }
 
 
-    protected virtual IEnumerator IE_ClosePopUp()
+    protected override IEnumerator IE_ClosePopUp()
     {
         _isPopUp = false;
 
@@ -42,6 +42,7 @@ public class BookMarkedPopUpSlide : PopUpSlide
 
             yield return null;
         }
+
         OnPopUpComplete();
     }
     protected override IEnumerator IE_OpenPopUp()
@@ -70,6 +71,7 @@ public class BookMarkedPopUpSlide : PopUpSlide
     }
     protected void OnPopUpComplete()
     {
+
         foreach (var weaponImage in WeaponImages)
             weaponImage.isSlide = true;
 

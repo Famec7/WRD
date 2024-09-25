@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -97,7 +98,9 @@ public class LongClickPopUpUi : MonoBehaviour
         }
 
         UIManager.instance.CloseInventoryDescriptionPopUpUI();
-        gameObject.SetActive(false);
+
+        if (isBookmarked)
+            gameObject.SetActive(false);
     }
     
     public void ClickEquipButton()
@@ -180,14 +183,15 @@ public class LongClickPopUpUi : MonoBehaviour
     private IEnumerator WaitForSlideAndActivateBookmarkSlotUI()
     {
         // PopUpSlide의 OnClick 호출하여 슬라이드 시작
-        var popUpSlide = UIManager.instance.BookmarkSlotUI.transform.GetChild(0).GetComponent<PopUpSlide>();
+        var popUpSlide = UIManager.instance.BookmarkSlotUI.transform.GetChild(0).GetComponent<BookMarkedPopUpSlide>();
         popUpSlide.OnClick();
 
         // 슬라이드 완료를 기다림 (애니메이션 시간)
-        yield return new WaitForSeconds(0.7f);
-        
-        // 슬라이드가 완료되면 BookmarkSlotSelectUI 활성화
+        yield return new WaitForSeconds(0.4f);
+
         UIManager.instance.BookmarkSlotSelectUI.SetActive(true);
+        gameObject.SetActive(false);
+
     }
 }
     

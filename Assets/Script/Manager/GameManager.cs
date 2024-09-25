@@ -22,10 +22,10 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        GameManager.Instance.weaponCnt[6]++;
-        useWeapon.Add(7);
+        GameManager.Instance.weaponCnt[5]++;
+        useWeapon.Add(6);
         UpdateUseableWeaponCnt();
-        ElementManager.instance.GetElement(100);
+        ElementManager.instance.GetElement(5);
     }
 
     public bool IsUsing(int weaponID)

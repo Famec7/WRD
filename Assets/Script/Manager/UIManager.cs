@@ -95,6 +95,7 @@ public class UIManager : MonoBehaviour
         CloseInventoryDescriptionPopUpUI();
         CloseCombinePopUpUI();
         GameObject combineUI = WeaponCombinationUIGenerator.Instance.combineWeaponUIList[weaponID - 1];
+        if (combineUI == null) return;
         combineUI.GetComponent<CombinePopUpUI>().ChangeInventoryMode(isInventory);
         combinePopupUIStack.Push(combineUI.GetComponent<CombinePopUpUI>());
         combineUI.SetActive(true);
@@ -145,8 +146,6 @@ public class UIManager : MonoBehaviour
             current.SetActive(false);
             combinePopupUIStack.Pop();
         }
-       // _blockImage.gameObject.SetActive(false);
-        longClickPopUpUI.SetActive(false);
     }
     
     public void CloseDetailedDescriptionPopUpUI()
@@ -159,8 +158,6 @@ public class UIManager : MonoBehaviour
         
         descriptionPopUpUIStack.Clear();
         backButton.SetActive(false);
-      //  _blockImage.gameObject.SetActive(false);
-        longClickPopUpUI.SetActive(false);
     }
     
     public void CloseInventoryDescriptionPopUpUI()
@@ -176,8 +173,6 @@ public class UIManager : MonoBehaviour
         
         inventoryDescriptionPopUpUiStack.Clear();
         backButton.SetActive(false);
-     //   _blockImage.gameObject.SetActive(false);
-        longClickPopUpUI.SetActive(false);
     }
     
     public void CloseAllPopUpUI()
@@ -186,6 +181,7 @@ public class UIManager : MonoBehaviour
         CloseInventoryDescriptionPopUpUI();
         CloseDetailedDescriptionPopUpUI();
         InitLongClickPopupUI();
+        longClickPopUpUI.SetActive(false);
     }
    public void ChangeAutoSkipToggle()
     {

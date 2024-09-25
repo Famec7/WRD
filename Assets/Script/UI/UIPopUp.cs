@@ -50,6 +50,7 @@ public class UIPopUp : MonoBehaviour
                     results.Count < 4)
                 {
                     UIManager.instance.CloseAllPopUpUI();
+                    UIManager.instance.longClickPopUpUI.SetActive(false);
                     break;
                 }
             }
