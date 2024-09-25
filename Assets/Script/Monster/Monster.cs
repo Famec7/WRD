@@ -42,8 +42,8 @@ public class Monster : MonoBehaviour, IPoolObject
         }
 
         MonsterHPBarPool.ReturnObject(transform.GetChild(1).GetComponent<MonsterHPBar>());
-        MonsterPoolManager.Instance.ReturnObject(status.unitCode.ToString(), gameObject);
         Debug.Log(status.unitCode.ToString(), gameObject);
+        MonsterPoolManager.Instance.ReturnObject(status.unitCode.ToString(), gameObject);
     }
 
     public void GetFromPool()
