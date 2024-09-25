@@ -29,7 +29,7 @@ public abstract class CharacterController : MonoBehaviour
         set
         {
             _moveDir = value;
-            FlipSprite(_moveDir.x > 0);
+            SetFlip(_moveDir.x > 0);
         }
     }
 
@@ -38,7 +38,7 @@ public abstract class CharacterController : MonoBehaviour
     /*************************Sprite******************************/
     private SpriteRenderer _spriteRenderer;
 
-    public void FlipSprite(bool isRight)
+    public void SetFlip(bool isRight)
     {
         this.transform.rotation = Quaternion.Euler(0, isRight ? 180 : 0, 0);
     }
@@ -49,7 +49,7 @@ public abstract class CharacterController : MonoBehaviour
     }
 
     /*************************Find Target******************************/
-    public void FindNearestTarget()
+    public GameObject FindNearestTarget()
     {
         LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
         float attackRange = Data.CurrentWeapon.Data.AttackRange;
@@ -57,10 +57,10 @@ public abstract class CharacterController : MonoBehaviour
         var colliders = RangeDetectionUtility.GetAttackTargets(transform.position, attackRange, default, layerMask);
 
         if (colliders is null)
-            return;
+            return null;
         
         GameObject nearestTarget = null;
-        float minDistance = Data.CurrentWeapon.Data.AttackRange;
+        float minDistance = attackRange;
 
         foreach (var col in colliders)
         {
@@ -77,7 +77,7 @@ public abstract class CharacterController : MonoBehaviour
             
         }
         
-        Target = nearestTarget;
+        return nearestTarget;
     }
 
     public bool IsTargetNullOrInactive()

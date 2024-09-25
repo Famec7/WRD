@@ -32,7 +32,7 @@ public class PetController : CharacterController, IObserver
             
             if (IsTargetNullOrInactive())
             {
-                FindNearestTarget();
+                Target = FindNearestTarget();
             }
 
             return;

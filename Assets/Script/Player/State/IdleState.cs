@@ -12,7 +12,7 @@ public class IdleState : IState<PlayerController>
     {
         if (entity.Data.CurrentWeapon is not null)
         {
-            entity.FindNearestTarget();
+            entity.Target = entity.FindNearestTarget();
         }
     }
 
