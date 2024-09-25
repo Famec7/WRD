@@ -33,7 +33,7 @@ public class Swing : PassiveSkillBase
         ParticleEffect effect = GetSwingEffect();
         
         effect.SetPosition(weapon.owner.transform.position);
-        effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
+        effect.SetRotation(Quaternion.Euler(180, 0, Vector2.SignedAngle(Vector2.left, dir)));
         effect.PlayEffect();
         
         foreach (var tar in targets)

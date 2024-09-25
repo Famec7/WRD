@@ -31,7 +31,6 @@ public class TheChosenOne : PassiveAuraSkillBase
         _auraEffect.transform.SetParent(playerTransform);
         
         _auraEffect.SetPosition(playerTransform.position + Vector3.down * 0.5f);
-        _auraEffect.SetScale(1 / playerTransform.localScale.x * Vector3.one);
         
         _auraEffect.PlayEffect();
         

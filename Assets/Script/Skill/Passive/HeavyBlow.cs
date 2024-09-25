@@ -12,12 +12,9 @@ public class HeavyBlow : PassiveSkillBase
 
         if (targets.Count == 0)
             return false;
-
-        float _range = Data.Range / 2;
         
         ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("HeavyBlowEffect");
         effect.SetPosition(targetPosition);
-        effect.SetScale(new Vector3(_range, _range, _range));
         effect.PlayEffect();
 
         foreach (var tar in targets)
