@@ -100,6 +100,8 @@ public class MonsterSpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UIManager.instance.currentMonsterNum.text = currentMonsterNum.ToString();
+
         if (GameManager.Instance.isGameOver) return;
 
         int idx = GameManager.Instance.wave - 1;

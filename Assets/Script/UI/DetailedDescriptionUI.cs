@@ -35,6 +35,7 @@ public class DetailedDescriptionUI : UIPopUp
         closeButton.onClick.AddListener(() =>
         {
             UIManager.instance.CloseDetailedDescriptionPopUpUI();
+            UIManager.instance.longClickPopUpUI.SetActive(false);
         });
     }
 
