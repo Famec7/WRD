@@ -382,6 +382,8 @@ public class InventoryManager : MonoBehaviour
                             items.Remove(pressSlot.weapon);
                             WeaponUI.Instance.ChangeItem(j, item);
                             GameManager.Instance.weaponCnt[itemIDs[0] - 1]--;
+                            WeaponManager.Instance.RemoveWeapon(j);
+                            WeaponManager.Instance.AddWeapon(j, mainWeaponID);
 
                             itemIDs.Remove(itemIDs[0]);
                             break;
