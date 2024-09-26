@@ -6,7 +6,7 @@ using UnityEngine;
 public class ActiveSkillDataBase : ScriptableObject
 {
     private List<ActiveSkillData> _activeSkillDataList;
-    
+
     [ContextMenu("Load")]
     public void Load()
     {
@@ -15,69 +15,76 @@ public class ActiveSkillDataBase : ScriptableObject
 
         foreach (var data in csvData)
         {
-            ActiveSkillData activeSkillData = new ActiveSkillData
-            {
-                Name = (data["skill_name"].ToString())
-            };
-            
+            ActiveSkillData activeSkillData = new ActiveSkillData { Name = (data["skill_name"].ToString()) };
+
             /************cooltime Parse*************/
-            if(float.TryParse(data["skill_cooltime"].ToString(), out var coolTime))
+            if (float.TryParse(data["skill_cooltime"].ToString(), out var coolTime))
             {
                 activeSkillData.CoolTime = coolTime;
             }
             else
             {
+#if UNITY_EDITOR
                 Debug.LogError($"{activeSkillData.Name}'s cooltime is not float");
+#endif
             }
-            
+
             /****************active type Parse****************/
-            if(Enum.TryParse(data["skill_type"].ToString(), out ActiveSkillData.ActiveType activeType))
+            if (Enum.TryParse(data["skill_type"].ToString(), out ActiveSkillData.ActiveType activeType))
             {
                 activeSkillData.Type = activeType;
             }
             else
             {
+#if UNITY_EDITOR
                 Debug.LogError($"{activeSkillData.Name}'s type is not ActiveType");
+#endif
             }
-            
+
             /****************skill available range Parse****************/
-            if(float.TryParse(data["range"].ToString(), out var range))
+            if (float.TryParse(data["range"].ToString(), out var range))
             {
                 activeSkillData.AvailableRange = range;
             }
             else
             {
+#if UNITY_EDITOR
                 Debug.LogError($"{activeSkillData.Name}'s range is not float");
+#endif
             }
-            
+
             /****************skill range Parse****************/
-            if(float.TryParse(data["area"].ToString(), out var skillRange))
+            if (float.TryParse(data["area"].ToString(), out var skillRange))
             {
                 activeSkillData.Range = skillRange;
             }
             else
             {
+#if UNITY_EDITOR
                 Debug.LogError($"{activeSkillData.Name}'s skill range is not float");
+#endif
             }
 
             /****************skill value Parse****************/
             var values = data["skill_value"].ToString().Split(',');
             foreach (var value in values)
             {
-                if(float.TryParse(value, out var result))
+                if (float.TryParse(value, out var result))
                 {
                     activeSkillData.AddValue(result);
                 }
                 else
                 {
+#if UNITY_EDITOR
                     Debug.LogError($"{activeSkillData.Name}'s value is not float");
+#endif
                 }
             }
-            
+
             _activeSkillDataList.Add(activeSkillData);
         }
     }
-    
+
     /// <summary>
     /// 액티브 스킬 데이터 반환
     /// </summary>
@@ -87,7 +94,7 @@ public class ActiveSkillDataBase : ScriptableObject
     {
         foreach (var data in _activeSkillDataList)
         {
-            if (string.Compare(data.Name.Replace(" ",""), skillName, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(data.Name.Replace(" ", ""), skillName, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return data;
             }

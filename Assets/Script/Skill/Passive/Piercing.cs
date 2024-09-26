@@ -9,11 +9,20 @@ public class Piercing : PassiveSkillBase
         if(target.TryGetComponent(out Monster monster))
         {
             var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
+            
+            projectile.OnHit += () => OnHit(monster, Data.GetValue(0));
 
             projectile.Target = target.gameObject;
-            projectile.Damage = Data.GetValue(0);
         }
 
         return false;
+    }
+    
+    private void OnHit(Monster monster, float damage)
+    {
+        monster.HasAttacked(damage);
+
+        ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>("PiercingEffect");
+        particleEffect.SetPosition(monster.transform.position);
     }
 }

@@ -11,7 +11,6 @@ public class ChaseState : IState<PlayerController>
     {
         if (entity.IsTargetInRange())
         {
-            entity.ChangeState(PlayerController.State.IDLE);
             return;
         }
         
@@ -20,7 +19,7 @@ public class ChaseState : IState<PlayerController>
         Vector3 dir = (targetPos - entity.transform.position).normalized;
         entity.MoveDir = dir;
         
-        entity.transform.position += dir * (entity.Data.MoveSpeed * Time.deltaTime * 2);
+        entity.transform.position += dir * (entity.Data.MoveSpeed * Time.deltaTime);
     }
 
     public void Exit(PlayerController entity)

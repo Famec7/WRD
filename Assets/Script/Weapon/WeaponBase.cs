@@ -83,12 +83,8 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
         _pivot.Init(this.transform);
     }
-
-    /// <summary>
-    /// 무기 공격 구현
-    /// Ex. 총 구현 시 총알 생성 후 적에게 쏘기 / 탐지 범위 다르게 설정
-    /// </summary>
-    protected virtual void Attack()
+    
+    private void AttackBase()
     {
         if (IsTargetNullOrNotInRange())
             return;
@@ -98,14 +94,22 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
             anim.PlayAnimation();
         }
 
-        if (IsPassiveSkillNull) return;
-
-        if (passiveSkill.Activate(owner.Target))
+        if (!IsPassiveSkillNull)
         {
-            _isAttack = false;
-            StopCoroutine(CoroutineAttack());
+            if (passiveSkill.Activate(owner.Target))
+            {
+                return;
+            }
         }
+
+        Attack();
     }
+
+    /// <summary>
+    /// 무기 공격 구현
+    /// Ex. 총 구현 시 총알 생성 후 적에게 쏘기 / 탐지 범위 다르게 설정
+    /// </summary>
+    protected abstract void Attack();
 
     /// <summary>
     /// 무기 장착
@@ -155,7 +159,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
     private IEnumerator CoroutineAttack()
     {
         _isAttack = true;
-        Attack();
+        AttackBase();
         yield return AttackDelay;
         _isAttack = false;
     }
