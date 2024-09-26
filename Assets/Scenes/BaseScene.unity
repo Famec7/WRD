@@ -1865,7 +1865,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00024414062, y: -0.0010986328}
+  m_AnchoredPosition: {x: 0, y: -0.0009765625}
   m_SizeDelta: {x: 1, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &983066343
@@ -1942,7 +1942,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20.099854, y: -15.799927}
+  m_AnchoredPosition: {x: -20.09961, y: -15.799805}
   m_SizeDelta: {x: 32.3804, y: 24.7482}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1050710329
@@ -2049,7 +2049,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 124813456662847810, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 28.880005
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 207763542453152091, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2070,6 +2070,14 @@ PrefabInstance:
     - target: {fileID: 332961579251372225, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 3.8300018
+      objectReference: {fileID: 0}
+    - target: {fileID: 673975170062512335, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 673975170062512335, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1077784308730445734, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: slotIndex
@@ -2373,7 +2381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8922146213303427634, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 105.69
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8922146213303427634, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2382,6 +2390,18 @@ PrefabInstance:
     - target: {fileID: 8922320034369262941, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: slotIndex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925339077216437720, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925339077216437720, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8925339077216437720, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -385.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -3581,6 +3601,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[0]._count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[1]._count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[2]._count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[3]._count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[4]._count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[5]._count
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4515531161734457313, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
       propertyPath: poolingObjectPrefab
       value: 

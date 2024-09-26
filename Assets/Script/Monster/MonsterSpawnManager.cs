@@ -113,8 +113,11 @@ public class MonsterSpawnManager : MonoBehaviour
         spawnDelayTimer += Time.deltaTime;
         if(currentMonsterNum >= currentWaveMonsterNum)
             _skipButton.gameObject.SetActive(true);
-        if (currentMonsterNum >= limitMonsterNum)
+        if ((currentMonsterNum >= limitMonsterNum && !GameManager.Instance.isGameOver) || Input.GetKeyDown(KeyCode.R))
         {
+            GameManager.Instance.isGameOver = true;
+            MessageManager.Instance.ShowMessage("GAME OVER", new Vector2(0, 218), 1f, 0.5f);
+            StartCoroutine(CountdownCoroutine(5));
             isNormalSpawnStop = true;
         }
         else
@@ -140,7 +143,7 @@ public class MonsterSpawnManager : MonoBehaviour
 
             UIManager.instance.limitMonsterNum.text = limitMonsterNum.ToString();
 
-            if ((isBossWave && targetBossStatus.HP > 0) || currentMonsterNum >= limitMonsterNum && !GameManager.Instance.isGameOver)
+            if ((isBossWave && targetBossStatus.HP > 0) && !GameManager.Instance.isGameOver)
             {
                 GameManager.Instance.isGameOver = true;
                 MessageManager.Instance.ShowMessage("GAME OVER", new Vector2(0, 218), 1f, 0.5f);

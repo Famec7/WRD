@@ -11,15 +11,11 @@ public class WeaponUI : Singleton<WeaponUI>
     [SerializeField]
     private Transform slotParent;
     
-    // Start is called before the first frame update
-    void Awake()
-    {
-        weaponSlots = slotParent.GetComponentsInChildren<WeaponSlotUI>();
-    }
-
+  
     // Update is called once per frame
     protected override void Init()
     {
+        weaponSlots = slotParent.GetComponentsInChildren<WeaponSlotUI>();
         return;
     }
 
