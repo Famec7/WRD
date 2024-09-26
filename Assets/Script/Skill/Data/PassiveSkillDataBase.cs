@@ -23,10 +23,9 @@ public class PassiveSkillDataBase : ScriptableObject
             {
                 PassiveSkillData passiveSkillData = new PassiveSkillData
                 {
-                    Name = (data["skill_name"].ToString()),
-                    Chance = int.Parse(data["skill_chance"].ToString()),
+                    Name = (data["skill_name"].ToString()), Chance = int.Parse(data["skill_chance"].ToString()),
                 };
-                
+
                 /****************Range Parse****************/
                 if (float.TryParse(data["area"].ToString(), out var result))
                 {
@@ -34,7 +33,9 @@ public class PassiveSkillDataBase : ScriptableObject
                 }
                 else
                 {
+#if UNITY_EDITOR
                     Debug.LogError($"{passiveSkillData.Name} {data["area"].ToString()} can't parse");
+#endif
                 }
 
                 /****************Value Parse****************/
@@ -48,7 +49,9 @@ public class PassiveSkillDataBase : ScriptableObject
                     }
                     else
                     {
+#if UNITY_EDITOR
                         Debug.LogError($"{passiveSkillData.Name} {value} can't parse");
+#endif
                     }
                 }
 
@@ -61,15 +64,17 @@ public class PassiveSkillDataBase : ScriptableObject
                 {
                     Name = (data["skill_name"].ToString()),
                 };
-                
+
                 /****************Range Parse****************/
-                if(float.TryParse(data["area"].ToString(), out var result))
+                if (float.TryParse(data["area"].ToString(), out var result))
                 {
                     passiveAuraSkillDataData.Range = result;
                 }
                 else
                 {
+#if UNITY_EDITOR
                     Debug.LogError($"{passiveAuraSkillDataData.Name} {data["area"].ToString()} can't parse");
+#endif
                 }
 
                 /****************Value Parse****************/
@@ -83,7 +88,9 @@ public class PassiveSkillDataBase : ScriptableObject
                     }
                     else
                     {
+#if UNITY_EDITOR
                         Debug.LogError($"{passiveAuraSkillDataData.Name} {value} can't parse");
+#endif
                     }
                 }
 
@@ -102,7 +109,7 @@ public class PassiveSkillDataBase : ScriptableObject
         foreach (var data in _passiveSkillDataList)
         {
             // 대소문자, 공백 구분 없이 비교
-            if (string.Compare(data.Name.Replace(" ",""), skillName, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(data.Name.Replace(" ", ""), skillName, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return data;
             }
@@ -122,7 +129,7 @@ public class PassiveSkillDataBase : ScriptableObject
         foreach (var data in _passiveAuraSkillDataList)
         {
             // 대소문자, 공백 구분 없이 비교
-            if (string.Compare(data.Name.Replace(" ",""), skillName, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(data.Name.Replace(" ", ""), skillName, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return data;
             }
