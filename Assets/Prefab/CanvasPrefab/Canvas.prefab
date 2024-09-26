@@ -1321,6 +1321,18 @@ PrefabInstance:
       propertyPath: slotIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8484081782706803322, guid: 9ab7d26188c00e04d8a6f956da80638e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484081782706803322, guid: 9ab7d26188c00e04d8a6f956da80638e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484081782706803322, guid: 9ab7d26188c00e04d8a6f956da80638e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 154.19995
+      objectReference: {fileID: 0}
     - target: {fileID: 9183365001166107001, guid: 9ab7d26188c00e04d8a6f956da80638e, type: 3}
       propertyPath: gr
       value: 
