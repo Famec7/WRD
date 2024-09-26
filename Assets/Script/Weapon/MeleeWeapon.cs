@@ -17,8 +17,6 @@ public class MeleeWeapon : WeaponBase
     
     protected override void Attack()
     {
-        base.Attack();
-        
         if (owner.Target.TryGetComponent(out Monster monster))
         {
 #if WEAPON_DEBUG

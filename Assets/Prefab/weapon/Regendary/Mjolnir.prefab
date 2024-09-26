@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 5703279790792088075}
   - component: {fileID: 5225838402041298275}
   - component: {fileID: 4065601839009377681}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7127885995738322917}
   - component: {fileID: 131907331639537999}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UsableRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}

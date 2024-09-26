@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1232830659035640086}
   - component: {fileID: 2143818850957214467}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 2289988745955723278}
   - component: {fileID: 3133714531263887795}
   - component: {fileID: 8500180738181142224}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2961569834277981780}
   - component: {fileID: 3598954036561662534}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UsuableRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}

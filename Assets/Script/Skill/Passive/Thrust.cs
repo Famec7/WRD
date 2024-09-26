@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Thrust : PassiveSkillBase
 {
-    private Vector2 _range = new Vector2(1.5f, 0.5f);
+    [SerializeField]
+    private Vector2 _range = new Vector2(3.0f, 1.0f);
     
     [SerializeField]
     private EffectBase _effect;
@@ -29,7 +30,6 @@ public class Thrust : PassiveSkillBase
             if (tar.TryGetComponent(out Monster monster))
             {
                 monster.HasAttacked(Data.GetValue(0));
-                //Todo : 이펙트 추가
             }
         }
 

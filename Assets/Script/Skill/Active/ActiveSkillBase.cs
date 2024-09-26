@@ -230,12 +230,12 @@ public abstract class ActiveSkillBase : SkillBase
                 CancelSkill();
                 return INode.ENodeState.Failure;
             }
+            
+            var indicator = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), LayerMask.GetMask("Indicator"));
 
             if (this is ClickTypeSkill)
             {
-                float distance = Vector2.Distance(pivotPosition, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
-                if (Data.Range > 0 &&distance > Data.Range / 2)
+                if(indicator is null)
                 {
                     CancelSkill();
                     return INode.ENodeState.Failure;

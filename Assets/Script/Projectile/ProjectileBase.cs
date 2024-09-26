@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer), typeof(Collider2D))]
 public abstract class ProjectileBase : MonoBehaviour, IPoolObject
 {
     [SerializeField]

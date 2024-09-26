@@ -50,11 +50,15 @@ public class PlayerController : CharacterController, ISubject
 
             if (value == null || !value.activeSelf)
             {
+                ChangeState(State.IDLE);
                 return;
             }
 
-            // 상태를 추적으로 변경후 UI에 타겟을 전달 그리고 옵저버에게 알림
+            // 상태를 추적으로 변경후 옵저버에게 알림
             ChangeState(State.CHASE);
+            
+            Vector3 targetDir = value.transform.position - transform.position;
+            SetFlip(targetDir.x > 0);
             
             Notify();
         }
@@ -109,9 +113,10 @@ public class PlayerController : CharacterController, ISubject
 
         MoveDir = (TouchPos - transform.position).normalized;
 
-        Collider2D col = Physics2D.OverlapPoint(TouchPos);
+        LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
+        Collider2D col = Physics2D.OverlapPoint( TouchPos, layerMask);
         // 몬스터 클릭 시 추적
-        if (col && (col.CompareTag("Monster") || col.CompareTag("Boss") || col.CompareTag("Mission")))
+        if (col != null)
         {
             Target = col.gameObject;
         }
@@ -127,6 +132,8 @@ public class PlayerController : CharacterController, ISubject
 #if FSM_DEBUG
         Debug.Log($"Change State : {CurrentState} -> {state}");
 #endif
+        if(CurrentState == state)
+            return;
         
         CurrentState = state;
         switch (state)
