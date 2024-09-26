@@ -136,9 +136,11 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 1.0.2
+  bundleVersion: 0.1
   preloadedAssets:
-  - {fileID: -7180163810255923960, guid: eba26167936cc2449b2a6672480e6fc2, type: 2}
+  - {fileID: 5111415878730393850, guid: eba26167936cc2449b2a6672480e6fc2, type: 2}
+  - {fileID: 11400000, guid: fb0a20c93c721cd44bdbdb34589b5c02, type: 2}
+  - {fileID: 11400000, guid: 4028ac3496d02ef4bbd37577c2c7ee3d, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -172,7 +174,7 @@ PlayerSettings:
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 22
-  AndroidTargetSdkVersion: 0
+  AndroidTargetSdkVersion: 33
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -260,7 +262,7 @@ PlayerSettings:
   useCustomGradlePropertiesTemplate: 0
   useCustomGradleSettingsTemplate: 0
   useCustomProguardFile: 0
-  AndroidTargetArchitectures: 1
+  AndroidTargetArchitectures: 3
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
@@ -794,7 +796,8 @@ PlayerSettings:
     Android: DETECTION_DRAW;WEAPON_DEBUG;PASSIVE_SKILL_DEBUG;ADD_ALL_ITEM
   additionalCompilerArguments: {}
   platformArchitecture: {}
-  scriptingBackend: {}
+  scriptingBackend:
+    Android: 1
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   managedStrippingLevel:
@@ -878,7 +881,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -898,11 +907,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 6d1c006f-bee5-4a96-a7dd-9b9bd44b325d
+  cloudProjectId: 5da36ccc-879a-4ade-b625-784391271d9f
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: WRD 2024-01-05_13-42-18
-  organizationId: gart09
+  projectName: WRD
+  organizationId: power4417
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
