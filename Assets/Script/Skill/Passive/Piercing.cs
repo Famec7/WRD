@@ -22,7 +22,7 @@ public class Piercing : PassiveSkillBase
     {
         monster.HasAttacked(damage);
 
-        ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>("NormalHit");
+        ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>("PiercingEffect");
         particleEffect.SetPosition(monster.transform.position);
     }
 }
