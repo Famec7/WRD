@@ -793,7 +793,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: DETECTION_DRAW;WEAPON_DEBUG;PASSIVE_SKILL_DEBUG;ADD_ALL_ITEM
+    Android: 
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
