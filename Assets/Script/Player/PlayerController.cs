@@ -35,7 +35,7 @@ public class PlayerController : CharacterController, ISubject
     #region Offset
 
     private const float _characterFootOffset = 0.3f;
-    private const float _distanceThreshold = 0.07f;
+    private const float _distanceThreshold = 0.01f;
 
     #endregion
 
@@ -166,7 +166,7 @@ public class PlayerController : CharacterController, ISubject
     {
         // 캐릭터 발 위치를 고려하여 터치 위치와 거리를 계산
         var pos = TouchPos;
-        pos.y += _characterFootOffset;
+        pos.y -= _characterFootOffset;
 
         return Vector3.Distance(transform.position, TouchPos) < _distanceThreshold;
     }

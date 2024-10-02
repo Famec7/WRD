@@ -63,8 +63,19 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
     private void Update()
     {
-        if (_isAttack is false && !IsTargetNullOrNotInRange())
+        if (_isAttack is false)
+        {
+            if (IsTargetNullOrNotInRange())
+            {
+                GameObject target = owner.FindNearestTarget();
+                if (target is not null)
+                {
+                    owner.Target = target;
+                }
+            }
+
             StartCoroutine(CoroutineAttack());
+        }
     }
 
     #endregion
