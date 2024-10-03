@@ -44,8 +44,8 @@ public class UIManager : MonoBehaviour
     public WeaponSlotUI[] weaponSlotUI;
     
     private Stack<UIPopUp> popUpStack;
-    [SerializeField]
-    private Canvas _popupCanvas;
+    
+    public Canvas _popupCanvas;
     [SerializeField]
     private Image _blockImage;
     private UIPopUp[] _popups;
@@ -94,15 +94,18 @@ public class UIManager : MonoBehaviour
         if (descriptionPopUpUIStack.Count > 0) return;
         CloseInventoryDescriptionPopUpUI();
         CloseCombinePopUpUI();
+
         GameObject combineUI = WeaponCombinationUIGenerator.Instance.combineWeaponUIList[weaponID - 1];
+        combineUI.transform.parent = _popupCanvas.transform;
         if (combineUI == null) return;
         combineUI.GetComponent<CombinePopUpUI>().ChangeInventoryMode(isInventory);
         combinePopupUIStack.Push(combineUI.GetComponent<CombinePopUpUI>());
         combineUI.SetActive(true);
-       // _blockImage.gameObject.SetActive(isBlock);
+        // _blockImage.gameObject.SetActive(isBlock);
+ 
     }
     
-    public void CreateInventoryDescriptionUI(int weaponID , bool isBlock = true)
+    public GameObject CreateInventoryDescriptionUI(int weaponID , bool isBlock = true)
     {
         longClickPopUpUI.SetActive(true);
 
@@ -110,7 +113,9 @@ public class UIManager : MonoBehaviour
         
         inventoryDescriptionPopUpUiStack.Push(inventoryDescriptionUI.GetComponent<InventoryDescriptionPopUpUI>());
         inventoryDescriptionUI.SetActive(true);
-       // _blockImage.gameObject.SetActive(isBlock);
+        // _blockImage.gameObject.SetActive(isBlock);
+
+        return inventoryDescriptionUI;
     }
     
     public void CreateDetailedDescriptionUI(int weaponID , bool isBlock = true)
@@ -298,5 +303,51 @@ public class UIManager : MonoBehaviour
         missionUI.SetActive(!missionUI.activeSelf);
         if (inventory.activeSelf)
             InventoryManager.instance.CloseButton();
+    }
+
+    public Vector2 ConvertToPercentageCoordinates(Vector2 pos)
+    {
+        // 기준 해상도
+        float referenceWidth = 1080f;
+        float referenceHeight = 1920f;
+
+        // Canvas Scaler의 스케일 팩터 가져오기
+       
+        CanvasScaler canvasScaler = _popupCanvas.GetComponent<CanvasScaler>();
+
+        float scaleFactor = 1f;
+
+        if (canvasScaler.uiScaleMode == CanvasScaler.ScaleMode.ScaleWithScreenSize)
+        {
+            Vector2 referenceResolution = canvasScaler.referenceResolution;
+            float screenWidth = Screen.width;
+            float screenHeight = Screen.height;
+
+            float matchWidthOrHeight = canvasScaler.matchWidthOrHeight;
+            float widthScale = screenWidth / referenceResolution.x;
+            float heightScale = screenHeight / referenceResolution.y;
+
+            // 스케일 팩터 계산
+            scaleFactor = Mathf.Pow(widthScale, 1 - matchWidthOrHeight) * Mathf.Pow(heightScale, matchWidthOrHeight);
+        }
+
+        // 실제 위치 계산 (스케일 팩터 반영)
+        Vector2 scaledPosition = pos * scaleFactor;
+
+        // 퍼센트 계산
+        float xPercent = scaledPosition.x / (referenceWidth * scaleFactor);
+        float yPercent = scaledPosition.y / (referenceHeight * scaleFactor);
+
+        // 현재 해상도에서의 위치 계산
+        float currentX = xPercent * Screen.width;
+        float currentY = yPercent * Screen.height;
+
+        return new Vector2(currentX, currentY);
+    }
+
+    public IEnumerator ActiveBookMarekdSelectUI()
+    {
+        yield return new WaitForSeconds(0.4f);
+        BookmarkSlotSelectUI.SetActive(true);
     }
 }

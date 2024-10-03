@@ -99,8 +99,8 @@ public class LongClickPopUpUi : MonoBehaviour
 
         UIManager.instance.CloseInventoryDescriptionPopUpUI();
 
-        if (isBookmarked)
-            gameObject.SetActive(false);
+        //if (isBookmarked)
+        //    gameObject.SetActive(false);
     }
     
     public void ClickEquipButton()
@@ -184,13 +184,12 @@ public class LongClickPopUpUi : MonoBehaviour
     {
         // PopUpSlide의 OnClick 호출하여 슬라이드 시작
         var popUpSlide = UIManager.instance.BookmarkSlotUI.transform.GetChild(0).GetComponent<BookMarkedPopUpSlide>();
+        popUpSlide.isBookmarkedButtonClicked = true;
         popUpSlide.OnClick();
 
         // 슬라이드 완료를 기다림 (애니메이션 시간)
-        yield return new WaitForSeconds(0.4f);
+        yield return null;
 
-        UIManager.instance.BookmarkSlotSelectUI.SetActive(true);
-        gameObject.SetActive(false);
 
     }
 }
