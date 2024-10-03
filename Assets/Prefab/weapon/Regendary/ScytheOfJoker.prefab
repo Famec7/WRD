@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1567615695730328375}
   - component: {fileID: 4379857113999025645}
   - component: {fileID: 7633241865461433337}
+  - component: {fileID: -3269616315496645424}
   m_Layer: 0
   m_Name: ScytheOfJoker
   m_TagString: Untagged
@@ -104,7 +105,7 @@ MonoBehaviour:
     _originRotation: {x: 0, y: 0, z: 0}
     _originScale: {x: 0, y: 0, z: 0}
   weaponId: 22
-  passiveSkill: {fileID: 0}
+  passiveSkill: {fileID: -3269616315496645424}
   passiveAuraSkill: {fileID: 0}
   activeSkill: {fileID: 0}
   anim: {fileID: 7633241865461433337}
@@ -146,3 +147,18 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _degree: 60
+--- !u!114 &-3269616315496645424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4180195826425338574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6dcb180a7b94cfaa67dedca134cd958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  weapon: {fileID: 0}
+  _range: 1
