@@ -7,6 +7,7 @@ public class BookMarkedPopUpSlide : PopUpSlide
 {
     private WeaponImage[] WeaponImages;
     public bool isSliding = true;
+    public bool isBookmarkedButtonClicked = false;
     protected override void Awake()
     {
         base.Awake();
@@ -86,6 +87,11 @@ public class BookMarkedPopUpSlide : PopUpSlide
 
             weaponImage.originalPos = weaponImage.transform.parent.position;
             weaponImage.isSlide = false;
+            if (isBookmarkedButtonClicked) 
+                UIManager.instance.BookmarkSlotSelectUI.SetActive(true);
+
+            isBookmarkedButtonClicked = false;
+
         }
     }
 }

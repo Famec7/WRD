@@ -40,12 +40,12 @@ public class LongClickComponenet : MonoBehaviour
     public void MouseUp()
     {
         if (!isLongClick && weaponID > 0 )
-        {
-           
+        {          
             hasItem = GameManager.Instance.useAbleWeaponCnt[weaponID-1] > 0;
             UIManager.instance.CreateCombineUI(weaponID,true,isInventory,GetComponent<InventorySlot>().isEquiped);
-
+            GameObject combineUI =UIManager.instance.combinePopupUIStack.Peek().gameObject;
             LongClickPopUpUIObject = UIManager.instance.longClickPopUpUI;
+            LongClickPopUpUIObject.transform.parent = UIManager.instance._popupCanvas.transform;
             LongClickPopUpUi longClickPopUpUI = LongClickPopUpUIObject.GetComponent<LongClickPopUpUi>();
             LongClickPopUpUIObject.SetActive(true);
 
@@ -55,8 +55,10 @@ public class LongClickComponenet : MonoBehaviour
 
             if (isInventory)
             {
-                UIManager.instance.CreateInventoryDescriptionUI(weaponID);
-                
+                GameObject inventoryDescriptionUI = UIManager.instance.CreateInventoryDescriptionUI(weaponID);
+                combineUI.transform.parent = inventoryDescriptionUI.transform;
+                LongClickPopUpUIObject.transform.parent = inventoryDescriptionUI.transform;
+
                 InventoryManager.instance.inventorySelectUI.SetActive(true);
                 InventoryManager.instance.inventorySelectUI.GetComponent<RectTransform>().position = transform.position;
                 InventoryManager.instance.inventorySelectUI.GetComponent<InventorySelectUI>().enabled = true;
@@ -66,15 +68,20 @@ public class LongClickComponenet : MonoBehaviour
                 longClickPopUpUI._equipButton.SetActive(GameManager.Instance.weaponCnt[weaponID - 1] > 0);
 
                 UIManager.instance.SetActiveBlockImage(true);
-                LongClickPopUpUIObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(-420,162);
+                LongClickPopUpUIObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(-585,-90.5f);
+
                 longClickPopUpUI.inventorySlot = GetComponent<InventorySlot>();
+                combineUI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-70, -360);
             }
 
             if (isWeaponSlot)
             {
                 longClickPopUpUI._bookmarkButton.SetActive(false);
                 longClickPopUpUI._equipButton.SetActive(true);
-                LongClickPopUpUIObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(128,126);
+
+                LongClickPopUpUIObject.transform.parent = combineUI.transform;
+                LongClickPopUpUIObject.GetComponent<RectTransform>().anchoredPosition = new Vector3(-125,56);
+
                 longClickPopUpUI.weaponSlot = transform.parent.GetComponent<WeaponSlotUI>();
                 longClickPopUpUI.inventorySlot = longClickPopUpUI.weaponSlot.inventorySlot;
             }
