@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7521206941202176312
+--- !u!1 &8631104176903377073
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9046198068778337169}
-  - component: {fileID: 1501998024485070724}
+  - component: {fileID: 6262886161019574320}
+  - component: {fileID: 4857780242407119940}
   m_Layer: 0
-  m_Name: DetailedDescriptionUIGenerator
+  m_Name: SkillInfoManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9046198068778337169
+--- !u!4 &6262886161019574320
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7521206941202176312}
+  m_GameObject: {fileID: 8631104176903377073}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,20 +32,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1501998024485070724
+--- !u!114 &4857780242407119940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7521206941202176312}
+  m_GameObject: {fileID: 8631104176903377073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3848c5ce12c1be41af407e8192eaac8, type: 3}
+  m_Script: {fileID: 11500000, guid: c72e751c610b18e42a34c2a6deac1ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detailedDescriptionUIPrefab: {fileID: 3888809352829731799, guid: 4298f61f1e7bd9849be92b865f5337f2, type: 3}
-  highLevelCombinationPrefab: {fileID: 2906423818584320906, guid: 0f78b95b5caf3564290a23a678b99ca6, type: 3}
-  parentTransform: {fileID: 0}
-  detailedDescriptionUIList: []
-  SkillIconPrefab: {fileID: 6704194639146301037, guid: 7faf1275a24e0ed49912777626afdeb6, type: 3}

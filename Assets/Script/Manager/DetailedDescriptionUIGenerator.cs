@@ -12,6 +12,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
     public GameObject highLevelCombinationPrefab;
     public Transform parentTransform;
     public List<GameObject> detailedDescriptionUIList;
+    public GameObject SkillIconPrefab;
 
     protected override void Init()
     {
@@ -46,6 +47,36 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
             detailedDescriptionUI.weaponImage.sprite = ResourceManager.Instance.Load<Sprite>(weaponIconPath);
             detailedDescriptionUI.weaponClassText.text = WeaponDataManager.Instance.GetKorWeaponClassText(weaponId);
 
+            int skillIndex = 0; // 스킬 번호는 0부터 시작
+            if (SkillInfoManager.Instance.WeaponSkills.ContainsKey(weaponId))
+            {
+                
+                var skillList = SkillInfoManager.Instance.WeaponSkills[weaponId];
+
+                foreach (var skill in skillList)
+                {
+                    
+                    var skillIconGameObject = Instantiate(SkillIconPrefab, detailedDescriptionUI.transform.GetChild(1)) as GameObject;
+                    skillIconGameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(-280 + skillIndex * 120f, 124.2f);
+                    
+                    SkillIcon skillIcon = skillIconGameObject.GetComponent<SkillIcon>();
+                    skillIcon.Init();
+                    skillIcon.WeaponID = weaponId;
+                    skillIcon.SkillCount = skillIndex;
+
+                    // UI 업데이트 (스킬 정보 적용)
+                    if (skillIndex == 0)
+                    {
+                        skillIcon.SkillIconSelectUI.GetComponent<RectTransform>().anchoredPosition = skillIcon.GetComponent<RectTransform>().anchoredPosition;
+                        skillIcon.SkillName.text = skill.Name;
+                        skillIcon.SkillType.text = skill.Type;
+                        skillIcon.SkillDescriptionText.text = skill.Info;
+                    }
+                    skillIndex++;
+                }
+            }
+
+
             int idx = 0;
 
             foreach (var highLevelweaponID in canCombinWeaponsList)
@@ -79,6 +110,8 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
                 }
             }
             
+            
+
             detailedDescriptionUIGameObject.SetActive((false));
         }
     }

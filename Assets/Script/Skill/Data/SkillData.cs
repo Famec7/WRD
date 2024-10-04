@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +11,7 @@ public class SkillData
 
     private float _range;
     public float Range { get => _range; set => _range = value; }
+
 
     public float GetValue(int index)
     {
@@ -26,6 +27,7 @@ public class SkillData
     {
         _values.Add(value);
     }
+
 }
 
 [Serializable]
