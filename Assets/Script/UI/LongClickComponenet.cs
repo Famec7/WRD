@@ -101,6 +101,8 @@ public class LongClickComponenet : MonoBehaviour
         isClicked = false;
         isLongClick = false;
         elapsedTime = 0.0f;
+
+        Debug.Log(Screen.height);
     }
 
    
