@@ -22,7 +22,7 @@ public class SlotSelectUI : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
            
-            var results = UIManager.instance.GetRayCastResult(true);
+            var results = UIManager.instance.GetRayCastResult(false);
 
             // 없으면 끄기
             if (results.Count <= 0)
