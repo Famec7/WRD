@@ -12,6 +12,8 @@ public class SharpBlade : InstantaneousSkill
     [SerializeField] private Vector3 _range = new Vector3(1.5f, 3.5f, 1);
 
     #endregion
+    
+    private bool _isAttack = false;
 
     protected override void Init()
     {
@@ -23,18 +25,28 @@ public class SharpBlade : InstantaneousSkill
     
     protected override void OnActiveEnter()
     {
-        ;
+        _isAttack = false;
+        weapon.OnAttack += OnAttack;
     }
 
     protected override INode.ENodeState OnActiveExecute()
     {
-        if (weapon.owner.Target is null)
+        if (_isAttack)
         {
-            return INode.ENodeState.Running;
+            IsActive = false;
+            return INode.ENodeState.Success;
         }
         
-        weapon.enabled = false;
-        
+        return INode.ENodeState.Running;
+    }
+
+    protected override void OnActiveExit()
+    {
+        weapon.OnAttack -= OnAttack;
+    }
+
+    private void OnAttack()
+    {
         Vector3 dir = weapon.owner.Target.transform.position - weapon.owner.transform.position;
 
         List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, _range, dir, targetLayer);
@@ -63,13 +75,7 @@ public class SharpBlade : InstantaneousSkill
                 }
             }
         }
-
-        IsActive = false;
-        return INode.ENodeState.Success;
-    }
-
-    protected override void OnActiveExit()
-    {
-        weapon.enabled = true;
+        
+        _isAttack = true;
     }
 }

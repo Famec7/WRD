@@ -54,6 +54,8 @@ public class GodOfThunder : InstantaneousSkill
         _electricAura.transform.SetParent(weapon.owner.transform, false);
         
         _electricAura.PlayEffect();
+        
+        weapon.OnAttack += ChainAttack;
     }
 
     protected override INode.ENodeState OnActiveExecute()
@@ -64,13 +66,6 @@ public class GodOfThunder : InstantaneousSkill
             IsActive = false;
             return INode.ENodeState.Success;
         }
-        
-        if(weapon.owner.IsTargetNullOrInactive())
-        {
-            return INode.ENodeState.Running;
-        }
-        
-        ChainAttack();
         
         return INode.ENodeState.Running;
     }
@@ -84,6 +79,8 @@ public class GodOfThunder : InstantaneousSkill
         
         _electricAura.StopEffect();
         _electricAura = null;
+        
+        weapon.OnAttack -= ChainAttack;
     }
 
     private void ResetStat()

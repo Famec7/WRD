@@ -2,6 +2,8 @@
 
 public class CloverJackEffect : CardEffectBase
 {
+    private bool _isAttack;
+    
     protected CloverJackEffect(WeaponBase weapon) : base(weapon)
     {
         Data = SkillManager.Instance.GetActiveSkillData("shuffle - clover jack");
@@ -9,16 +11,22 @@ public class CloverJackEffect : CardEffectBase
 
     public override void OnEnter()
     {
-        Weapon.enabled = false;
+        Weapon.OnAttack += OnAttack;
+        _isAttack = false;
     }
 
     public override INode.ENodeState OnUpdate()
     {
-        if (Weapon.owner.Target is null)
-        {
-            return INode.ENodeState.Running;
-        }
-        
+        return _isAttack ? INode.ENodeState.Success : INode.ENodeState.Running;
+    }
+
+    public override void OnExit()
+    {
+        Weapon.OnAttack -= OnAttack;
+    }
+
+    private void OnAttack()
+    {
         Vector3 targetPosition = Weapon.owner.Target.transform.position;
         Vector3 range = new Vector3(3, 5, 0);
         var layer = LayerMaskManager.Instance.MonsterLayerMask;
@@ -38,11 +46,6 @@ public class CloverJackEffect : CardEffectBase
             }
         }
         
-        return INode.ENodeState.Success;
-    }
-
-    public override void OnExit()
-    {
-        Weapon.enabled = true;
+        _isAttack = true;
     }
 }

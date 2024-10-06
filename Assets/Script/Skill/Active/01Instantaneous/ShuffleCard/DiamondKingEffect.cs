@@ -3,7 +3,7 @@
 public class DiamondKingEffect : CardEffectBase
 {
     private float _time;
-    private Vector3 _range = new Vector3(3, 5, 0);
+    private readonly Vector3 _range = new Vector3(3, 5, 0);
     
     public DiamondKingEffect(WeaponBase weapon) : base(weapon)
     {
