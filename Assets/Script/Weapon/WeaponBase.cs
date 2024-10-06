@@ -12,6 +12,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
     public CharacterController owner;
 
     private bool _isAttack = false;
+    public Action OnAttack;
 
     #region pivot
 
@@ -94,7 +95,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
         _pivot.Init(this.transform);
     }
-    
+
     private void AttackBase()
     {
         if (IsTargetNullOrNotInRange())
@@ -113,7 +114,14 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
             }
         }
 
-        Attack();
+        if (OnAttack != null)
+        {
+            OnAttack.Invoke();
+        }
+        else
+        {
+            Attack();
+        }
     }
 
     /// <summary>
