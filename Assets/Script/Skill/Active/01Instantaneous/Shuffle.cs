@@ -25,8 +25,14 @@ public class Shuffle : InstantaneousSkill
 
     protected override INode.ENodeState OnActiveExecute()
     {
-        _cardEffect.OnUpdate();
-        return INode.ENodeState.Running;
+        INode.ENodeState result = _cardEffect.OnUpdate();
+        
+        if (result == INode.ENodeState.Success)
+        {
+            IsActive = false;
+        }
+
+        return result;
     }
 
     protected override void OnActiveExit()

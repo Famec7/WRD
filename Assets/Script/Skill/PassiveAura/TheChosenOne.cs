@@ -35,6 +35,7 @@ public class TheChosenOne : PassiveAuraSkillBase
         _auraEffect.PlayEffect();
         
         WeaponManager.Instance.OnWeaponEquipped += OnWeaponEquipped;
+        WeaponManager.Instance.OnWeaponDetached += OnWeaponDetached;
     }
 
     private void OnDisable()
@@ -49,6 +50,7 @@ public class TheChosenOne : PassiveAuraSkillBase
         _auraEffect.StopEffect();
         
         WeaponManager.Instance.OnWeaponEquipped -= OnWeaponEquipped;
+        WeaponManager.Instance.OnWeaponDetached -= OnWeaponDetached;
     }
     
     private void ApplyBuff(float damageMultiplier, float attackSpeedMultiplier)
@@ -79,5 +81,10 @@ public class TheChosenOne : PassiveAuraSkillBase
     private void OnWeaponEquipped(CharacterController character)
     {
         ApplyBuffToCharacter(character, _damageMultiplier, _attackSpeedMultiplier);
+    }
+    
+    private void OnWeaponDetached(CharacterController character)
+    {
+        ApplyBuffToCharacter(character, 1 / _damageMultiplier, 1 / _attackSpeedMultiplier);
     }
 }

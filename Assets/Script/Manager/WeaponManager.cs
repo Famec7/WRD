@@ -9,6 +9,7 @@ public class WeaponManager : Singleton<WeaponManager>
     private WeaponBase[] _equippedWeapons;
     
     public event Action<CharacterController> OnWeaponEquipped;
+    public event Action<CharacterController> OnWeaponDetached; 
     
     protected override void Init()
     {
@@ -42,6 +43,8 @@ public class WeaponManager : Singleton<WeaponManager>
     
     public void RemoveWeapon(int characterIndex)
     {
+        OnWeaponDetached?.Invoke(CharacterManager.Instance.GetCharacter(characterIndex));
+        
         WeaponBase detachedWeapon = _equippedWeapons[characterIndex];
         detachedWeapon.DetachWeapon();
         

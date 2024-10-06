@@ -12,11 +12,11 @@ public class CloverJackEffect : CardEffectBase
         Weapon.enabled = false;
     }
 
-    public override void OnUpdate()
+    public override INode.ENodeState OnUpdate()
     {
         if (Weapon.owner.Target is null)
         {
-            return;
+            return INode.ENodeState.Running;
         }
         
         Vector3 targetPosition = Weapon.owner.Target.transform.position;
@@ -37,6 +37,8 @@ public class CloverJackEffect : CardEffectBase
                 StatusEffectManager.Instance.AddStatusEffect(monster.status, amplification);
             }
         }
+        
+        return INode.ENodeState.Success;
     }
 
     public override void OnExit()
