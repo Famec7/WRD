@@ -4,7 +4,7 @@ public class CloverJackEffect : CardEffectBase
 {
     private bool _isAttack;
     
-    protected CloverJackEffect(WeaponBase weapon) : base(weapon)
+    public CloverJackEffect(WeaponBase weapon) : base(weapon)
     {
         Data = SkillManager.Instance.GetActiveSkillData("shuffle - clover jack");
     }
