@@ -222,9 +222,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1875576679}
     - target: {fileID: 938181490769147599, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: SkillIconPrefab
+      value: 
+      objectReference: {fileID: 6704194639146301037, guid: 7faf1275a24e0ed49912777626afdeb6, type: 3}
+    - target: {fileID: 938181490769147599, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: parentTransform
       value: 
       objectReference: {fileID: 1109643351}
+    - target: {fileID: 938181490769147599, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: SkillDescriptionPrefab
+      value: 
+      objectReference: {fileID: 444243645388663474, guid: a7e50d3e80833684d83340fbae6983c2, type: 3}
     - target: {fileID: 1498652523391941501, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: parentTransform
       value: 

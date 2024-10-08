@@ -28,6 +28,15 @@ public class SkillIcon : MonoBehaviour
         SkillDescriptionText = SkillDescriptionTextArea.GetChild(2).GetComponent<TextMeshProUGUI>();
     }
 
+    public void InventoryDescriptionPopUpInit()
+    {
+        Transform SkillDescriptionTextArea = transform.parent.GetChild(0);
+        SkillIconSelectUI = transform.parent.GetChild(1).gameObject;
+
+        SkillName = SkillDescriptionTextArea.GetChild(0).GetComponent<TextMeshProUGUI>();
+        SkillDescriptionText = SkillDescriptionTextArea.GetChild(1).GetComponent<TextMeshProUGUI>();
+    }
+
     public void ClickSkillIcon()
     {
         SkillIconSelectUI.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
@@ -37,7 +46,8 @@ public class SkillIcon : MonoBehaviour
             var skills = SkillInfoManager.Instance.WeaponSkills[WeaponID];
 
             SkillName.text = skills[SkillCount].Name; 
-            SkillType.text = skills[SkillCount].Type;
+            if(SkillType != null)
+                SkillType.text = skills[SkillCount].Type;
             SkillDescriptionText.text = skills[SkillCount].Info;
         }
     }

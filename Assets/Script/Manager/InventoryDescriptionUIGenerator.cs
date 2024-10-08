@@ -9,7 +9,7 @@ public class InventoryDescriptionUIGenerator : Singleton<InventoryDescriptionUIG
     private GameObject inventoryDescriptionUIPrefab;
     public Transform parentTransform;
     public List<GameObject> inventoryDescriptionUIList;
-
+    public GameObject SkillIconPrefab;
     
     protected override void Init()
     {
@@ -38,6 +38,35 @@ public class InventoryDescriptionUIGenerator : Singleton<InventoryDescriptionUIG
             
             inventoryDescriptionUIList.Add(inventoryDescriptionPopUpUIGameObject);
             inventoryDescriptionPopUpUIGameObject.SetActive(false);
+
+            int skillIndex = 0; // 스킬 번호는 0부터 시작
+            if (SkillInfoManager.Instance.WeaponSkills.ContainsKey(weaponId))
+            {
+
+                var skillList = SkillInfoManager.Instance.WeaponSkills[weaponId];
+
+                foreach (var skill in skillList)
+                {
+
+                    var skillIconGameObject = Instantiate(SkillIconPrefab, inventoryDescriptionPopUpUI.transform.GetChild(2)) as GameObject;
+                    skillIconGameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(15 + skillIndex * 85f, 0);
+                    skillIconGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(60f, 60f);
+                    SkillIcon skillIcon = skillIconGameObject.GetComponent<SkillIcon>();
+                    skillIcon.Init();
+                    skillIcon.WeaponID = weaponId;
+                    skillIcon.SkillCount = skillIndex;
+
+                    // UI 업데이트 (스킬 정보 적용)
+                    if (skillIndex == 0)
+                    {
+                        skillIcon.SkillIconSelectUI.GetComponent<RectTransform>().anchoredPosition = skillIcon.GetComponent<RectTransform>().anchoredPosition;
+                        skillIcon.SkillName.text = skill.Name;
+                        skillIcon.SkillType.text = skill.Type;
+                        skillIcon.SkillDescriptionText.text = skill.Info;
+                    }
+                    skillIndex++;
+                }
+            }
         }
         
     }
