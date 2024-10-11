@@ -60,6 +60,7 @@ public class Status : MonoBehaviour
         moveSpeed = MonsterDataManager.instance.speedData[wave];
         originalSpeed = moveSpeed;
         
+        maxHP = HP;
         ResetStatus();
     }
 
@@ -73,7 +74,8 @@ public class Status : MonoBehaviour
         monsterName = MissionMonsterManager.instance.monsterNameData[idx];
         moveSpeed = MissionMonsterManager.instance.speedData[idx];
         originalSpeed = moveSpeed;
-        
+
+        maxHP = HP;
         ResetStatus();
     }
     
@@ -84,7 +86,6 @@ public class Status : MonoBehaviour
     
     public void ResetStatus()
     {
-        HP = maxHP;
         IsWound = false;
         IsMark = false;
         damageAmplification = 0;
