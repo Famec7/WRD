@@ -21,11 +21,15 @@ public class SkillIcon : MonoBehaviour
     public void Init()
     {
         Transform SkillDescriptionTextArea = transform.parent.GetChild(0);
+        SkillDescriptionTextArea.gameObject.SetActive(true);
         SkillIconSelectUI = transform.parent.GetChild(1).gameObject;
-        
+        SkillIconSelectUI.SetActive(true);
         SkillName = SkillDescriptionTextArea.GetChild(0).GetComponent<TextMeshProUGUI>();
+        SkillName.gameObject.SetActive(true);
         SkillType = SkillDescriptionTextArea.GetChild(1).GetComponent<TextMeshProUGUI>();
+        SkillType.gameObject.SetActive(true);
         SkillDescriptionText = SkillDescriptionTextArea.GetChild(2).GetComponent<TextMeshProUGUI>();
+        SkillDescriptionText.gameObject.SetActive(true);
     }
 
     public void InventoryDescriptionPopUpInit()
@@ -34,13 +38,15 @@ public class SkillIcon : MonoBehaviour
         SkillIconSelectUI = transform.parent.GetChild(1).gameObject;
 
         SkillName = SkillDescriptionTextArea.GetChild(0).GetComponent<TextMeshProUGUI>();
+        SkillName.gameObject.SetActive(true);
         SkillDescriptionText = SkillDescriptionTextArea.GetChild(1).GetComponent<TextMeshProUGUI>();
+        SkillDescriptionText.gameObject.SetActive(true);
     }
 
     public void ClickSkillIcon()
     {
         SkillIconSelectUI.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-
+        SkillIconSelectUI.SetActive(true);
         if (SkillInfoManager.Instance.WeaponSkills.ContainsKey(WeaponID))
         {
             var skills = SkillInfoManager.Instance.WeaponSkills[WeaponID];
