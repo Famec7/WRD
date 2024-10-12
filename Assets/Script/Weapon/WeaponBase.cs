@@ -128,6 +128,8 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
     /// <param name="owner"> 무기를 가지고 있는 주체의 transform </param>
     public void EquipWeapon(CharacterController owner)
     {
+        _pivot.ResetPivot();
+        
         this.owner = owner;
         owner.AttachWeapon(this);
 
@@ -146,17 +148,16 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
     public void DetachWeapon()
     {
+        if (!IsActiveSkillNull)
+            activeSkill.CancelSkill();
+        
         // 무기 해제
         owner.DetachWeapon();
 
         ResetStats();
 
-        if (!IsActiveSkillNull)
-            activeSkill.CancelSkill();
-
         this.owner = null;
         _isAttack = false;
-
 
         StopAllCoroutines();
     }
@@ -209,7 +210,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
     public void GetFromPool()
     {
-        _pivot.ResetPivot();
+        ;
     }
 
     public void ReturnToPool()

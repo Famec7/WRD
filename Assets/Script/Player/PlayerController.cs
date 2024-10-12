@@ -218,8 +218,7 @@ public class PlayerController : CharacterController, ISubject
     public override void AttachWeapon(WeaponBase weapon)
     {
         Data.SetCurrentWeapon(weapon);
-
-
+        
         Vector3 weaponPos = weapon.transform.position;
         weaponPos += transform.position;
         weapon.transform.position = weaponPos;

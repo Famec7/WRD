@@ -60,6 +60,40 @@ public class WeaponManager : Singleton<WeaponManager>
         _equippedWeapons[characterIndex] = null;
     }
     
+    public void ChangeWeapon(int fromCharacterIndex, int toCharacterIndex)
+    {
+        WeaponBase fromWeapon = _equippedWeapons[fromCharacterIndex];
+        WeaponBase toWeapon = _equippedWeapons[toCharacterIndex];
+        
+        // 무기 교체
+        fromWeapon?.DetachWeapon();
+        toWeapon?.DetachWeapon();
+        
+        fromWeapon?.EquipWeapon(CharacterManager.Instance.GetCharacter(toCharacterIndex));
+        toWeapon?.EquipWeapon(CharacterManager.Instance.GetCharacter(fromCharacterIndex));
+        
+        _equippedWeapons[fromCharacterIndex] = toWeapon;
+        _equippedWeapons[toCharacterIndex] = fromWeapon;
+        
+        // 플레이어 교체면 액티브 스킬 교체
+        if (fromCharacterIndex == (int)CharacterManager.CharacterType.Player)
+        {
+            if(fromWeapon != null && fromWeapon.TryGetComponent(out ActiveSkillBase fromActiveSkill))
+            {
+                fromActiveSkill.enabled = false;
+                SkillManager.Instance.RemoveActiveSkill(fromActiveSkill);
+            }
+        }
+        else if (toCharacterIndex == (int)CharacterManager.CharacterType.Player)
+        {
+            if(toWeapon != null && toWeapon.TryGetComponent(out ActiveSkillBase toActiveSkill))
+            {
+                toActiveSkill.enabled = false;
+                SkillManager.Instance.RemoveActiveSkill(toActiveSkill);
+            }
+        }
+    }
+    
     private WeaponBase FindWeapon(int weaponId)
     {
         var weaponData = WeaponDataManager.Instance.GetWeaponData(weaponId);
