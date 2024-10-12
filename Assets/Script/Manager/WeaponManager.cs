@@ -83,9 +83,22 @@ public class WeaponManager : Singleton<WeaponManager>
                 fromActiveSkill.enabled = false;
                 SkillManager.Instance.RemoveActiveSkill(fromActiveSkill);
             }
+            
+            if(toWeapon != null && toWeapon.TryGetComponent(out ActiveSkillBase toActiveSkill))
+            {
+                toActiveSkill.enabled = true;
+                SkillManager.Instance.AddActiveSkill(toActiveSkill);
+            }
         }
-        else if (toCharacterIndex == (int)CharacterManager.CharacterType.Player)
+        
+        if (toCharacterIndex == (int)CharacterManager.CharacterType.Player)
         {
+            if(fromWeapon != null && fromWeapon.TryGetComponent(out ActiveSkillBase fromActiveSkill))
+            {
+                fromActiveSkill.enabled = true;
+                SkillManager.Instance.AddActiveSkill(fromActiveSkill);
+            }
+            
             if(toWeapon != null && toWeapon.TryGetComponent(out ActiveSkillBase toActiveSkill))
             {
                 toActiveSkill.enabled = false;

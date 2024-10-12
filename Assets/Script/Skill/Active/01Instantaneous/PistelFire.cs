@@ -22,6 +22,7 @@ public class PistelFire : InstantaneousSkill, IObserver
         if (_attackCount >= Data.GetValue(0))
         {
             IsActive = false;
+            weapon.owner.StartCoroutine(IE_DisableAttack());
             return INode.ENodeState.Success;
         }
 
@@ -31,8 +32,6 @@ public class PistelFire : InstantaneousSkill, IObserver
     protected override void OnActiveExit()
     {
         StatInit();
-        weapon.owner.StartCoroutine(IE_DisableAttack());
-        
         weapon.owner.Data.CurrentWeapon.RemoveAction(OnNotify);
     }
 
