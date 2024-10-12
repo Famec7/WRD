@@ -12,7 +12,7 @@ public abstract class ActiveSkillBase : SkillBase
     {
         Data = SkillManager.Instance.GetActiveSkillData(GetType().Name);
 
-        _currentCoolTime = Data.CoolTime;
+        CurrentCoolTime = 0f;
     }
 
     #endregion
@@ -111,6 +111,9 @@ public abstract class ActiveSkillBase : SkillBase
                 weapon.owner.enabled = true;
 
                 SkillUIManager.Instance.ClosePopupPanel();
+            }
+            else
+            {
                 OnButtonActivate?.Invoke(true);
             }
         }
