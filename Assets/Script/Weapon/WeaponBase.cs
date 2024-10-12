@@ -148,6 +148,8 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
     public void DetachWeapon()
     {
+        anim.StopAnimation();
+        
         if (!IsActiveSkillNull)
             activeSkill.CancelSkill();
         
