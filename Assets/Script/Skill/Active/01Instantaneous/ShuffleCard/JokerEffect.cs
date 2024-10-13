@@ -2,13 +2,10 @@
 
 public class JokerEffect : CardEffectBase
 {
-    private List<CardEffectBase> _cardEffects;
+    private readonly List<CardEffectBase> _cardEffects;
+    private List<bool> _isComplete;
     
     public JokerEffect(WeaponBase weapon) : base(weapon)
-    {
-    }
-
-    public override void OnEnter()
     {
         _cardEffects = new List<CardEffectBase>
         {
@@ -16,23 +13,50 @@ public class JokerEffect : CardEffectBase
             new HeartQueenEffect(Weapon),
             new DiamondKingEffect(Weapon)
         };
+        
+        _isComplete = new List<bool>(_cardEffects.Count) {false, false, false};
+    }
+
+    public override void OnEnter()
+    {
+        foreach (var cardEffect in _cardEffects)
+        {
+            cardEffect.OnEnter();
+        }
     }
 
     public override INode.ENodeState OnUpdate()
     {
-        foreach (var cardEffect in _cardEffects)
+        bool isAllComplete = true;
+        
+        for (int i = 0; i < _cardEffects.Count; i++)
         {
-            cardEffect.OnUpdate();
+            if (!_isComplete[i])
+            {
+                INode.ENodeState result = _cardEffects[i].OnUpdate();
+                if (result == INode.ENodeState.Success)
+                {
+                    _cardEffects[i].OnExit();
+                    _isComplete[i] = true;
+                }
+                else
+                {
+                    isAllComplete = false;
+                }
+            }
         }
         
-        return INode.ENodeState.Running;
+        return isAllComplete ? INode.ENodeState.Success : INode.ENodeState.Running;
     }
 
     public override void OnExit()
     {
         foreach (var cardEffect in _cardEffects)
         {
-            cardEffect.OnExit();
+            if (!_isComplete[_cardEffects.IndexOf(cardEffect)])
+            {
+                cardEffect.OnExit();
+            }
         }
     }
 }
