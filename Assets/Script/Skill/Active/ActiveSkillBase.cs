@@ -113,7 +113,8 @@ public abstract class ActiveSkillBase : SkillBase
 
             if (value is true)
             {
-                weapon.owner.enabled = true;
+                if (weapon.owner != null)
+                    weapon.owner.enabled = true;
 
                 SkillUIManager.Instance.ClosePopupPanel();
             }

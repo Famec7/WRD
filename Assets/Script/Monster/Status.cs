@@ -31,6 +31,9 @@ public class Status : MonoBehaviour
     
     [HideInInspector]
     public bool IsElectricShock; // 감전
+    
+    [HideInInspector]
+    public bool IsJokerMark; // 조커 표식
 
     #endregion
     
@@ -51,17 +54,14 @@ public class Status : MonoBehaviour
             HP = MonsterDataManager.instance.bossHPData[wave];
             defense = MonsterDataManager.instance.bossDefenseData[wave];
         }
-
-        maxHP = HP;
+        
         resist = MonsterDataManager.instance.resistData[wave];
         monsterName = MonsterDataManager.instance.monsterNameData[wave];
         moveSpeed = MonsterDataManager.instance.speedData[wave];
         originalSpeed = moveSpeed;
         
-        IsWound = false;
-        IsMark = false;
-        damageAmplification = 0;
-        IsElectricShock = false;
+        maxHP = HP;
+        ResetStatus();
     }
 
     public void SetMissionUnitStatus(UnitCode unitCode)
@@ -70,20 +70,26 @@ public class Status : MonoBehaviour
         unitCode = MissionMonsterManager.instance.unitCodeData[idx];       
         HP = MissionMonsterManager.instance.HPData[idx];
         defense = MissionMonsterManager.instance.defenseData[idx];
-        maxHP = HP;
         resist = MissionMonsterManager.instance.resistData[idx];
         monsterName = MissionMonsterManager.instance.monsterNameData[idx];
         moveSpeed = MissionMonsterManager.instance.speedData[idx];
         originalSpeed = moveSpeed;
-        
-        IsWound = false;
-        IsMark = false;
-        damageAmplification = 0;
-        IsElectricShock = false;
+
+        maxHP = HP;
+        ResetStatus();
     }
     
     public void ResetSpeed()
     {
         moveSpeed = originalSpeed;
+    }
+    
+    public void ResetStatus()
+    {
+        IsWound = false;
+        IsMark = false;
+        damageAmplification = 0;
+        IsElectricShock = false;
+        IsJokerMark = false;
     }
 }
