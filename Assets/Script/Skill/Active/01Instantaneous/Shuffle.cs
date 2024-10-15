@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Shuffle : InstantaneousSkill
@@ -16,26 +17,33 @@ public class Shuffle : InstantaneousSkill
     protected override void OnActiveEnter()
     {
         // (클로버 잭(Data{0}), 하트 퀸(Data{1}), 다이아몬드 킹(Data{2}), 조커: Data{3}) 중 하나를 랜덤하게 선택
-        float random = Random.Range(0, 100);
-
         float cloverJack = Data.GetValue(0);
         float heartQueen = Data.GetValue(1);
         float diamondKing = Data.GetValue(2);
         float joker = Data.GetValue(3);
 
-        _cardEffect = random switch
-        {
-            _ when random < cloverJack => new CloverJackEffect(weapon),
-            _ when random < heartQueen => new HeartQueenEffect(weapon),
-            _ when random < diamondKing => new DiamondKingEffect(weapon),
-            _ when random < joker => new JokerEffect(weapon),
-            _ => null
-        };
+        float random = Random.Range(0, cloverJack + heartQueen + diamondKing + joker);
 
-        if (_cardEffect is null)
+        if (random < cloverJack)
         {
-            return;
+            _cardEffect = new CloverJackEffect(weapon);
         }
+        else if (random < cloverJack + heartQueen)
+        {
+            _cardEffect = new HeartQueenEffect(weapon);
+        }
+        else if (random < cloverJack + heartQueen + diamondKing)
+        {
+            _cardEffect = new DiamondKingEffect(weapon);
+        }
+        else
+        {
+            _cardEffect = new JokerEffect(weapon);
+        }
+
+#if UNITY_EDITOR
+        Debug.Log($"[Shuffle] {_cardEffect.GetType().Name}");
+#endif
 
         Data.CoolTime = _cardEffect.Data.CoolTime;
 
