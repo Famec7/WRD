@@ -94,7 +94,7 @@ public class ActiveSkillDataBase : ScriptableObject
     {
         foreach (var data in _activeSkillDataList)
         {
-            if (string.Compare(data.Name.Replace(" ", ""), skillName, StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(data.Name.Replace(" ", ""), skillName.Replace(" ", ""), StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return data;
             }

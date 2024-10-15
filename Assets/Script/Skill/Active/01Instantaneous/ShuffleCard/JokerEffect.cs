@@ -7,6 +7,8 @@ public class JokerEffect : CardEffectBase
     
     public JokerEffect(WeaponBase weapon) : base(weapon)
     {
+        Data = SkillManager.Instance.GetActiveSkillData("shuffle - joker");
+        
         _cardEffects = new List<CardEffectBase>
         {
             new CloverJackEffect(Weapon),
