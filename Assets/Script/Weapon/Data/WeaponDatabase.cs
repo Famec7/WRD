@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,19 +10,20 @@ public class WeaponDatabase : ScriptableObject
     [ContextMenu("Load")]
     public void Load()
     {
-        List<Dictionary<string, object>> csvData = CSVReader.Read("Weapon");
+        List<Dictionary<string, object>> csvData = CSVReader.Read("Weapon2");
         _weaponDataList = new List<WeaponData>(csvData.Count);
-        
+        int idx = 1;
         foreach (var data in csvData)
         {
             WeaponData weaponData = new WeaponData
             {
-                ID = int.Parse(data["id"].ToString()),
+                ID = idx++,
                 WeaponClass = (data["class"].ToString()),
                 WeaponName = (data["name"].ToString()),
-                rType = int.Parse(data["r_type"].ToString()),
-                reload = int.Parse(data["reload"].ToString()),
-                reloadS = int.Parse(data["reload_s"].ToString()),
+                //rType = int.Parse(data["r_type"].ToString()),
+                num = int.Parse(data["num"].ToString()),
+                //reload = int.Parse(data["reload"].ToString()),
+                //reloadS = int.Parse(data["reload_s"].ToString()),
                 AttackDamage = int.Parse(data["attack"].ToString()),
                 AttackSpeed = float.Parse(data["attack_speed"].ToString()),
                 AttackRange = float.Parse(data["range"].ToString()),
@@ -62,6 +63,17 @@ public class WeaponDatabase : ScriptableObject
         return null;
     }
     
+    public int GetWeaponIdByNum(int num)
+    {
+        foreach (var data in _weaponDataList)
+        {
+            if (data.num == num)
+                return data.ID;
+        }
+
+        return 0;
+    }
+
     public int GetWeaponDataCount()
     {
         return _weaponDataList.Count;

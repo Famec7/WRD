@@ -25,10 +25,11 @@ public class SubCombinationUI : MonoBehaviour
         int i = 1;
         int index = 1;
 
-        foreach (int materialID in materialWeapons)
+        foreach (int materialNum in materialWeapons)
         {
+            int materialID = WeaponDataManager.Instance.Database.GetWeaponIdByNum(materialNum);
             craftButtons[index++].weaponID = materialID;
-
+            
             if (materialID < 6) continue;
 
             string combi = WeaponDataManager.Instance.Database.GetWeaponData(materialID).Combi;

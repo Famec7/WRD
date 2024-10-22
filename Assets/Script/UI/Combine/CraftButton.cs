@@ -42,10 +42,10 @@ public class CraftButton : MonoBehaviour
 
         foreach (int i in materialWeapons)
         {
-            if (tmpCnt[i - 1] >= 1)
+            if (tmpCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(i) - 1] >= 1)
             {
                 hasMaterialCnt++;
-                tmpCnt[i - 1]--;
+                tmpCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(i) - 1]--;
             }
         }
 
@@ -65,16 +65,20 @@ public class CraftButton : MonoBehaviour
 
         foreach (int i in materialWeapons)
         {
-            if (tmpCnt[i - 1] >= 1)
+            if (tmpCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(i) - 1] >= 1)
             {
                 hasMaterialCnt++;
-                tmpCnt[i - 1]--;
+                tmpCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(i) - 1]--;
             }
         }
 
         if (hasMaterialCnt == materialWeapons.Length)
         {
-            List<int> materialsList = materialWeapons.ToList();
+            List<int> materialIDList = new List<int>();
+            foreach (int i in materialWeapons)
+            {
+                materialIDList.Add(WeaponDataManager.Instance.Database.GetWeaponIdByNum(i));
+            }
             InventoryItem item = new InventoryItem
             {
                 image = transform.GetChild(0).GetComponent<Image>().sprite
@@ -83,7 +87,7 @@ public class CraftButton : MonoBehaviour
             WeaponUI.Instance.weaponID = weaponID;
 
             InventoryManager.instance.AddItem(item, false);
-            InventoryManager.instance.RemoveItem(materialsList, weaponID, item, isMainWeapon);
+            InventoryManager.instance.RemoveItem(materialIDList, weaponID, item, isMainWeapon);
 
             if (InventoryManager.instance.isClassSorted)
                 InventoryManager.instance.ClickClassShowButton();

@@ -16,6 +16,7 @@ public class WeaponData
     public int rType;
     public int reload;
     public int reloadS;
+    public int num { get; set; }
 
     public float AttackSpeed { get; set; }
     public float AttackRange { get; set; }
