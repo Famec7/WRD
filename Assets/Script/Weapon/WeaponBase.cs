@@ -12,6 +12,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
     public CharacterController owner;
 
     private bool _isAttack = false;
+    public Action OnAttack;
 
     #region pivot
 
@@ -94,7 +95,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
         _pivot.Init(this.transform);
     }
-    
+
     private void AttackBase()
     {
         if (IsTargetNullOrNotInRange())
@@ -113,7 +114,14 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
             }
         }
 
-        Attack();
+        if (OnAttack != null)
+        {
+            OnAttack.Invoke();
+        }
+        else
+        {
+            Attack();
+        }
     }
 
     /// <summary>
@@ -128,6 +136,8 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
     /// <param name="owner"> 무기를 가지고 있는 주체의 transform </param>
     public void EquipWeapon(CharacterController owner)
     {
+        _pivot.ResetPivot();
+        
         this.owner = owner;
         owner.AttachWeapon(this);
 
@@ -146,17 +156,18 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
     public void DetachWeapon()
     {
+        anim.StopAnimation();
+        
+        if (!IsActiveSkillNull)
+            activeSkill.CancelSkill();
+        
         // 무기 해제
         owner.DetachWeapon();
 
         ResetStats();
 
-        if (!IsActiveSkillNull)
-            activeSkill.CancelSkill();
-
         this.owner = null;
         _isAttack = false;
-
 
         StopAllCoroutines();
     }
@@ -209,7 +220,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
     public void GetFromPool()
     {
-        _pivot.ResetPivot();
+        ;
     }
 
     public void ReturnToPool()

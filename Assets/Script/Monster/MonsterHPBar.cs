@@ -11,13 +11,8 @@ public class MonsterHPBar : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
 
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
 
         hpBarFillTransform.localScale = new Vector2(ownerStatus.HP / ownerStatus.maxHP,1);
@@ -26,9 +21,9 @@ public class MonsterHPBar : MonoBehaviour
         if (ownerStatus.HP >= ownerStatus.maxHP * 0.5f)
             spriteRenderer.color = Color.green;
 
-            else if (ownerStatus.HP >= ownerStatus.maxHP * 0.25f)
+        else if (ownerStatus.HP >= ownerStatus.maxHP * 0.25f)
             spriteRenderer.color = Color.yellow;
-            else
+        else
             spriteRenderer.color = Color.red;
 
         if (ownerStatus.HP <= 0)

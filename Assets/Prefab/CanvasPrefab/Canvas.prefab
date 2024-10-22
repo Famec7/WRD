@@ -1637,9 +1637,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3876170567767852793}
     m_Modifications:
+    - target: {fileID: 100334747082997929, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 423310879749259716, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
       propertyPath: m_Name
       value: ActiveSkillUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 640520061569360219, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1579622806339914451, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
       propertyPath: leftImage
@@ -1664,6 +1672,14 @@ PrefabInstance:
     - target: {fileID: 2197932182171927170, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -154
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818809217391997352, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282841575077146922, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7015789454390344212, guid: 0f0e353fe8865ee48a360a94e65265d8, type: 3}
       propertyPath: m_Pivot.x

@@ -16,6 +16,8 @@ public class SkillButton : MonoBehaviour
     {
         _trigger = GetComponent<EventTrigger>();
         _iconImage = GetComponent<Image>();
+        
+        _coolTimeImage.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -23,6 +25,7 @@ public class SkillButton : MonoBehaviour
         if (_currentSkill != null && _currentSkill.IsCoolTime)
         {
             _coolTimeImage.fillAmount = _currentSkill.CurrentCoolTime / _currentSkill.Data.CoolTime;
+            _coolTimeImage.gameObject.SetActive(_coolTimeImage.fillAmount > 0);
         }
     }
 
@@ -42,6 +45,7 @@ public class SkillButton : MonoBehaviour
         _trigger.triggers.Add(entry);
         
         // 아이콘 이미지 설정
+        _iconImage.enabled = true;
         _iconImage.sprite = skill.GetComponent<SpriteRenderer>().sprite;
     }
 
@@ -54,14 +58,17 @@ public class SkillButton : MonoBehaviour
         _trigger.triggers.Clear();
         
         // 아이콘 이미지 초기화
+        _iconImage.enabled = false;
         _iconImage.sprite = null;
+        
+        // 쿨타임 이미지 초기화
+        _coolTimeImage.fillAmount = 0;
+        _coolTimeImage.gameObject.SetActive(false);
     }
 
     private void SetActive(bool active)
     {
         _trigger.enabled = active;
         GetComponent<Button>().interactable = active;
-        
-        this.gameObject.SetActive(active);
     }
 }

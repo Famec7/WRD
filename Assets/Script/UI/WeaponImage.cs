@@ -153,9 +153,8 @@ public class WeaponImage : MonoBehaviour
                 transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID = targetweaponID;
                 transform.gameObject.GetComponent<LongClickComponenet>().weaponID = targetweaponID;
                 UIManager.instance.touchPos = Input.mousePosition;
-
-                WeaponManager.Instance.RemoveWeapon(transform.parent.GetComponent<WeaponSlotUI>().SlotIndex);
-                WeaponManager.Instance.AddWeapon(targetSlot.SlotIndex, weaponID);
+                
+                WeaponManager.Instance.ChangeWeapon(transform.parent.GetComponent<WeaponSlotUI>().SlotIndex, targetSlot.SlotIndex);
             }
 
             if (gameObject.transform.parent.CompareTag("BookMarkedSlot"))

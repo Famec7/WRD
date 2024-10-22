@@ -218,11 +218,8 @@ public class PlayerController : CharacterController, ISubject
     public override void AttachWeapon(WeaponBase weapon)
     {
         Data.SetCurrentWeapon(weapon);
-
-
-        Vector3 weaponPos = weapon.transform.position;
-        weaponPos += transform.position;
-        weapon.transform.position = weaponPos;
+        
+        weapon.transform.position = transform.position + weapon.Pivot.GetPivot();
         
         weapon.transform.SetParent(_arm);
 

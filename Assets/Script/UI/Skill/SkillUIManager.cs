@@ -25,7 +25,6 @@ public class SkillUIManager : Singleton<SkillUIManager>
      */
     public void AddSkillButton(ActiveSkillBase skill)
     {
-        _skillButtons[_activeButton].gameObject.SetActive(true);
         _skillButtons[_activeButton].SetSkill(skill);
         _activeButton++;
     }
@@ -36,32 +35,7 @@ public class SkillUIManager : Singleton<SkillUIManager>
     public void RemoveSkillButton(ActiveSkillBase skill)
     {
         _activeButton--;
-        _skillButtons[_activeButton].gameObject.SetActive(false);
         _skillButtons[_activeButton].RemoveSkill(skill);
-    }
-
-    // num번째 스킬 버튼 클릭
-    private void OnClickSkillButton(int num)
-    {
-        var currentActiveSkill = SkillManager.Instance.GetActiveSkill(num);
-
-        // 스킬 사용 방식에 따라 다르게 처리 -> 여기서 뭔가 할게 없어서 일단 비워둠
-        switch (SettingManager.Instance.CurrentActiveSettingType)
-        {
-            case SettingManager.ActiveSettingType.Auto:
-                // 자동 사용
-                break;
-            case SettingManager.ActiveSettingType.SemiAuto:
-                // 반자동 사용
-                break;
-            case SettingManager.ActiveSettingType.Manual:
-                // 수동 사용
-                break;
-            default:
-                break;
-        }
-
-        currentActiveSkill.UseSkill();
     }
 
     public void ShowPopupPanel(int index = 0)

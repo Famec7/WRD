@@ -11,8 +11,6 @@ public abstract class ActiveSkillBase : SkillBase
     private void DataInit()
     {
         Data = SkillManager.Instance.GetActiveSkillData(GetType().Name);
-
-        _currentCoolTime = Data.CoolTime;
     }
 
     #endregion
@@ -28,9 +26,15 @@ public abstract class ActiveSkillBase : SkillBase
         IndicatorInit();
     }
 
-    private void Start()
+    private void Awake()
     {
         Init();
+        _currentCoolTime = 0;
+    }
+
+    private void Start()
+    {
+        IsCoolTime = true;
     }
 
     private void Update()
@@ -65,8 +69,6 @@ public abstract class ActiveSkillBase : SkillBase
     private void BTInit()
     {
         _btRunner = new BehaviourTreeRunner(SettingBT());
-
-        IsCoolTime = true;
     }
 
     /// <summary>
@@ -92,7 +94,7 @@ public abstract class ActiveSkillBase : SkillBase
     /// <returns></returns>
     protected virtual List<INode> CoolTimeNodes()
     {
-        return new List<INode> { new ActionNode(CheckCoolTimeState), new ActionNode(CheckCoolTime), };
+        return new List<INode> { new ActionNode(CheckCoolTimeState), new ActionNode(CoolTimeDown), };
     }
 
     // 스킬 버튼 활성화 이벤트
@@ -104,13 +106,20 @@ public abstract class ActiveSkillBase : SkillBase
     {
         set
         {
+            if (_isCoolTime == value)
+                return;
+            
             _isCoolTime = value;
 
             if (value is true)
             {
-                weapon.owner.enabled = true;
+                if (weapon.owner != null)
+                    weapon.owner.enabled = true;
 
                 SkillUIManager.Instance.ClosePopupPanel();
+            }
+            else
+            {
                 OnButtonActivate?.Invoke(true);
             }
         }
@@ -144,7 +153,7 @@ public abstract class ActiveSkillBase : SkillBase
         return IsCoolTime is true ? INode.ENodeState.Success : INode.ENodeState.Failure;
     }
 
-    private INode.ENodeState CheckCoolTime()
+    private INode.ENodeState CoolTimeDown()
     {
         CurrentCoolTime -= Time.deltaTime;
 
@@ -281,12 +290,13 @@ public abstract class ActiveSkillBase : SkillBase
                 OnButtonActivate?.Invoke(false);
 
                 OnActiveEnter();
+                
+                _currentCoolTime = Data.CoolTime;
             }
             else
             {
                 OnActiveExit();
-
-                _currentCoolTime = Data.CoolTime;
+                
                 IsCoolTime = true;
             }
         }
