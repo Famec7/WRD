@@ -34,7 +34,9 @@ public class CraftButton : MonoBehaviour
         Color32 mainColor = GetClassColor(WeaponDataManager.Instance.Database.GetWeaponData(weaponID).WeaponClass);
 
         if (GameManager.Instance.weaponCnt[weaponID - 1] > 0)
-            transform.GetChild(0).GetComponent<Image>().color = mainColor;
+            transform.GetComponent<Image>().color = mainColor;
+        else
+            transform.GetComponent<Image>().color = new Color32(56, 56, 56, 255); ;
 
         int hasMaterialCnt = 0;
         int[] tmpCnt = new int[GameManager.Instance.weaponCnt.Length];

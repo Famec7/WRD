@@ -10,7 +10,7 @@ public class WeaponDatabase : ScriptableObject
     [ContextMenu("Load")]
     public void Load()
     {
-        List<Dictionary<string, object>> csvData = CSVReader.Read("Weapon2");
+        List<Dictionary<string, object>> csvData = CSVReader.Read("Weapon");
         _weaponDataList = new List<WeaponData>(csvData.Count);
         int idx = 1;
         foreach (var data in csvData)
@@ -20,7 +20,7 @@ public class WeaponDatabase : ScriptableObject
                 ID = idx++,
                 WeaponClass = (data["class"].ToString()),
                 WeaponName = (data["name"].ToString()),
-                //rType = int.Parse(data["r_type"].ToString()),
+                rType = int.Parse(data["r_type"].ToString()),
                 num = int.Parse(data["num"].ToString()),
                 //reload = int.Parse(data["reload"].ToString()),
                 //reloadS = int.Parse(data["reload_s"].ToString()),
