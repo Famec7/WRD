@@ -23,8 +23,6 @@ public class Ballista : RangedWeapon
         projectile.SetType(type);
         
         projectile.OnHit += () => OnHit(monster, Data.AttackDamage);
-
-        notifyAction?.Invoke();
     }
 
     private Monster FindNearestMonster(Vector3 targetPosition)

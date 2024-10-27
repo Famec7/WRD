@@ -24,8 +24,6 @@ public class RangedWeapon : WeaponBase
             projectile.SetType(type);
             
             projectile.OnHit += () => OnHit(monster, Data.AttackDamage);
-
-            notifyAction?.Invoke();
         }
     }
 

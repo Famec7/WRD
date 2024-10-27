@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
+public abstract class WeaponBase : MonoBehaviour, IPoolObject
 {
     public CharacterController owner;
 
@@ -94,6 +94,19 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
         _originalAttackSpeed = Data.AttackSpeed;
 
         _pivot.Init(this.transform);
+        
+        SkillInit();
+    }
+
+    private void SkillInit()
+    {
+        // 스킬 설정 (owner도 같이 설정됨)
+        if (IsPassiveSkillNull is false)
+            passiveSkill.SetWeapon(this);
+        if (IsPassiveAuraSkillNull is false)
+            passiveAuraSkill.SetWeapon(this);
+        if (IsActiveSkillNull is false)
+            activeSkill.SetWeapon(this);
     }
 
     private void AttackBase()
@@ -106,6 +119,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
             anim.PlayAnimation();
         }
 
+        _notifyAction?.Invoke();
         if (!IsPassiveSkillNull)
         {
             if (passiveSkill.Activate(owner.Target))
@@ -140,14 +154,6 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
         
         this.owner = owner;
         owner.AttachWeapon(this);
-
-        // 스킬 설정 (owner도 같이 설정됨)
-        if (IsPassiveSkillNull is false)
-            passiveSkill.SetWeapon(this);
-        if (IsPassiveAuraSkillNull is false)
-            passiveAuraSkill.SetWeapon(this);
-        if (IsActiveSkillNull is false)
-            activeSkill.SetWeapon(this);
 
         // 애니메이션 설정
         if (anim != null)
@@ -204,16 +210,16 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
 
     #region Observer Action (Skill)
 
-    protected UnityAction notifyAction;
+    private UnityAction _notifyAction;
 
     public void AddAction(UnityAction action)
     {
-        notifyAction += action;
+        _notifyAction += action;
     }
 
     public void RemoveAction(UnityAction action)
     {
-        notifyAction -= action;
+        _notifyAction -= action;
     }
 
     #endregion
