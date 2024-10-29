@@ -10,13 +10,18 @@ public class DividedDevilBullet : PassiveSkillBase
         if (!CheckTrigger())
             return false;
 
-        FindTargetsBy(target);
-        SpawnBullet();
-        
-        return true;
+        if (FindTargetsBy(target))
+        {
+            SpawnBullet();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
-    private void FindTargetsBy(GameObject target)
+    private bool FindTargetsBy(GameObject target)
     {
         _targets.Clear();
         
@@ -43,6 +48,8 @@ public class DividedDevilBullet : PassiveSkillBase
                 _targets.Add(monster);
             }
         }
+
+        return true;
     }
 
     private void SpawnBullet()
