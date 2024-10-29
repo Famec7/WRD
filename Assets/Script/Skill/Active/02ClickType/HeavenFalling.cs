@@ -14,15 +14,14 @@ public class HeavenFalling : ClickTypeSkill
         if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
         {
             // 스킬 범위 안에 적이 있으면 타겟을 적으로 설정
-            var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Data.Range, default, targetLayer);
+            var target = weapon.owner.FindNearestTarget();
             
-            if (targets.Count > 0)
+            if (target != null)
             {
-                pivotPosition = targets[0].transform.position;
+                pivotPosition = target.transform.position;
             }
             else
             {
-                IsActive = false;
                 return;
             }
         }
