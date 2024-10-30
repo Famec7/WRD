@@ -22,7 +22,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
     void Start()
     {
         int weaponDataCount = WeaponDataManager.Instance.Database.GetWeaponDataCount();
-        
+        List<int> weaponNums = WeaponDataManager.Instance.Database.GetAllWeaponNums();
         for (int weaponId = 1; weaponId <= weaponDataCount; weaponId++)
         {
             int canCombineCnt = 0;
@@ -42,16 +42,16 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
             canCombineCnt = canCombinWeaponsList.Count;
 
             detailedDescriptionUI.weaponNameText.text = WeaponDataManager.Instance.Database.GetWeaponData(weaponId).WeaponName;
-            string weaponIconPath = "WeaponIcon/" + weaponId.ToString();
+            string weaponIconPath = "WeaponIcon/" + weaponNums[weaponId-1].ToString();
 
             detailedDescriptionUI.weaponImage.sprite = ResourceManager.Instance.Load<Sprite>(weaponIconPath);
             detailedDescriptionUI.weaponClassText.text = WeaponDataManager.Instance.GetKorWeaponClassText(weaponId);
 
             int skillIndex = 0; // 스킬 번호는 0부터 시작
-            if (SkillInfoManager.Instance.WeaponSkills.ContainsKey(weaponId))
+            if (SkillInfoManager.Instance.WeaponSkills.ContainsKey(weaponNums[weaponId - 1]))
             {
                 
-                var skillList = SkillInfoManager.Instance.WeaponSkills[weaponId];
+                var skillList = SkillInfoManager.Instance.WeaponSkills[weaponNums[weaponId - 1]];
 
                 foreach (var skill in skillList)
                 {
@@ -61,7 +61,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
                     
                     SkillIcon skillIcon = skillIconGameObject.GetComponent<SkillIcon>();
                     skillIcon.Init();
-                    skillIcon.WeaponID = weaponId;
+                    skillIcon.WeaponNum = weaponNums[weaponId - 1];
                     skillIcon.SkillCount = skillIndex;
 
                     // UI 업데이트 (스킬 정보 적용)
@@ -84,7 +84,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
                 var highLevelWeaponIcon = Instantiate(highLevelCombinationPrefab, detailedDescriptionUI.transform) as GameObject;
                 highLevelWeaponIcon.GetComponent<RectTransform>().anchoredPosition = new Vector3(-280 + 120 * idx, -280);
                 highLevelWeaponIcon.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(highLevelweaponID).WeaponName;
-                var path = "WeaponIcon/" + highLevelweaponID;
+                var path = "WeaponIcon/" + WeaponDataManager.Instance.GetWeaponData(highLevelweaponID).num;
                 highLevelWeaponIcon.GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
                 highLevelWeaponIcon.transform.GetComponent<Button>().onClick.AddListener(()=>UIManager.instance.CreateDetailedDescriptionUI(highLevelweaponID));
                 idx++;
@@ -94,7 +94,6 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
             
             for (int j = 0; j < weaponDataCount; j++)
             {
-                
                 foreach (var highLevelweaponID in canCombinWeaponsList)
                 {
                     if (WeaponDataManager.Instance.Database.GetWeaponData(j + 1).MainCombi == highLevelweaponID.ToString())
@@ -102,7 +101,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
                         var highLevelWeaponIcon = Instantiate(highLevelCombinationPrefab, detailedDescriptionUI.transform) as GameObject;
                         highLevelWeaponIcon.GetComponent<RectTransform>().anchoredPosition = new Vector3(-280 + 120 * idx, -420);
                         highLevelWeaponIcon.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(j).WeaponName;
-                        var path = "WeaponIcon/" + j;
+                        var path = "WeaponIcon/" + WeaponDataManager.Instance.GetWeaponData(j).num; 
                         highLevelWeaponIcon.GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
                         highLevelWeaponIcon.transform.GetComponent<Button>().onClick.AddListener(()=>UIManager.instance.CreateDetailedDescriptionUI(highLevelweaponID));
                         idx++;

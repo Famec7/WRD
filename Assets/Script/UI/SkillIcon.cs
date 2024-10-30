@@ -15,7 +15,7 @@ public class SkillIcon : MonoBehaviour
     public TextMeshProUGUI SkillDescriptionText;
     public GameObject SkillIconSelectUI;
 
-    public int WeaponID;
+    public int WeaponNum;
     public int SkillCount;
 
     public void Init()
@@ -47,9 +47,9 @@ public class SkillIcon : MonoBehaviour
     {
         SkillIconSelectUI.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
         SkillIconSelectUI.SetActive(true);
-        if (SkillInfoManager.Instance.WeaponSkills.ContainsKey(WeaponID))
+        if (SkillInfoManager.Instance.WeaponSkills.ContainsKey(WeaponNum))
         {
-            var skills = SkillInfoManager.Instance.WeaponSkills[WeaponID];
+            var skills = SkillInfoManager.Instance.WeaponSkills[WeaponNum];
 
             SkillName.text = skills[SkillCount].Name; 
             if(SkillType != null)

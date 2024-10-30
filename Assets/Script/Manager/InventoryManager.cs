@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -55,7 +56,7 @@ public class InventoryManager : MonoBehaviour
         notHeldslots = notHeldParent.GetComponentsInChildren<AllShowInventorySlot>();
         items = new List<InventoryItem>();
         
-        string path = "WeaponIcon/" + 6;
+        string path = "WeaponIcon/" + 201;
         InventoryItem item = new InventoryItem
         {
             image =  ResourceManager.Instance.Load<Sprite>(path)
@@ -472,7 +473,7 @@ public class InventoryManager : MonoBehaviour
             {
                 GameObject notHeldSlotItem = notHeldslots[i].transform.GetChild(0).gameObject;
 
-                string path = "WeaponIcon/" + data.ID.ToString();
+                string path = "WeaponIcon/" + data.num.ToString();
 
                 notHeldslots[i].gameObject.SetActive(true);
                 notHeldslots[i].GetComponent<AllShowInventorySlot>().weaponID = data.ID;
@@ -561,25 +562,27 @@ public class InventoryManager : MonoBehaviour
 
     public void CreateAllItem()
     {
-        for (int i = 6; i < 31; i++)
+        foreach (var item in WeaponDataManager.Instance.Database.GetAllWeaponNums().Select((value, i) => (value, i)))
         {
-
-            string weaponIconPath = "WeaponIcon/" + i.ToString();
-
-            InventoryItem item = new InventoryItem
             {
-                image = ResourceManager.Instance.Load<Sprite>(weaponIconPath)
-            };
-            item.AssignWeapon(i);
+                if (WeaponDataManager.Instance.GetWeaponData(item.i+1).WeaponClass == "normal") continue;
+
+                string weaponIconPath = "WeaponIcon/" + item.value.ToString();
+
+                InventoryItem weapon = new InventoryItem
+                {
+                    image = ResourceManager.Instance.Load<Sprite>(weaponIconPath)
+                };
+                weapon.AssignWeapon(item.i+1);
 
 
-            GameManager.Instance.weaponCnt[i - 1]++;
-            GameManager.Instance.UpdateUseableWeaponCnt();
-            InventoryManager.instance.AddItem(item, false);
+                GameManager.Instance.weaponCnt[item.i - 1]++;
+                GameManager.Instance.UpdateUseableWeaponCnt();
+                InventoryManager.instance.AddItem(weapon, false);
+            }
+
+            BookMakredSlotUI.Instance.UpdateAllSlot();
         }
-
-        BookMakredSlotUI.Instance.UpdateAllSlot();
-
     }
 }
 

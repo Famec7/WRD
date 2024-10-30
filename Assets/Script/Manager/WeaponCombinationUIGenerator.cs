@@ -19,10 +19,11 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
     void Start()
     {
         combineWeaponUIList = new List<GameObject>();
-        
+        List<int> weaponNums = WeaponDataManager.Instance.Database.GetAllWeaponNums();
+
         int weaponDataCount = WeaponDataManager.Instance.Database.GetWeaponDataCount();
         for (int i =1; i <= weaponDataCount; i++)
-            ResourceManager.Instance.Load<Sprite>("WeaponIcon/"+i.ToString());
+            ResourceManager.Instance.Load<Sprite>("WeaponIcon/"+ weaponNums[i-1].ToString());
 
         for (int i = 1; i <= weaponDataCount; i++)
         { 
@@ -59,7 +60,7 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
             weaponName.text = WeaponDataManager.Instance.Database.GetWeaponData(i).WeaponName;
 
             var weaponIcon = combinationUI.transform.GetChild(0).GetComponent<Image>();
-            string weaponIconPath = "WeaponIcon/" + i.ToString();
+            string weaponIconPath = "WeaponIcon/" + weaponNums[i-1].ToString();
             weaponIcon.sprite = ResourceManager.Instance.Load<Sprite>(weaponIconPath);
             
             combinationUI.GetComponent<RectTransform>().anchoredPosition = new Vector3(239, -780, 0);
@@ -80,7 +81,7 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
                 subCombi.GetComponent<SubCombinationUI>().originPosition =new Vector3(-220, -300 - 150 * j, -60);
                 subCombi.GetComponent<SubCombinationUI>().mainweaponID = targetCode;
 
-                string path = "WeaponIcon/" + targetCode.ToString();
+                string path = "WeaponIcon/" + WeaponDataManager.Instance.Database.GetWeaponData(targetCode).num.ToString();
                 subCombi.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
                 subCombi.GetComponent<SubCombinationUI>().materialWeapons = new int[combis.Length];
                 int index = 2;
@@ -95,8 +96,7 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
                 foreach (string s in combis)
                 {
                     int materialCode = Convert.ToInt32(s);
-                    string materialID = WeaponDataManager.Instance.Database.GetWeaponIdByNum(materialCode).ToString();
-                    path = "WeaponIcon/" + materialID;
+                    path = "WeaponIcon/" + materialCode.ToString();
                     subCombi.GetComponent<SubCombinationUI>().materialWeapons[index / 2 - 1] = materialCode;
                     //Debug.Log(index);
                     subCombi.transform.GetChild(index).GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
