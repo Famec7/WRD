@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WeaponDatabase", menuName = "Scriptable Object/WeaponDatabase", order = 1)]
@@ -74,8 +75,24 @@ public class WeaponDatabase : ScriptableObject
         return 0;
     }
 
+    public int GetWeaponNumByID(int id)
+    {
+        foreach (var data in _weaponDataList)
+        {
+            if (data.ID == id)
+                return data.num;
+        }
+
+        return 0;
+    }
+
     public int GetWeaponDataCount()
     {
         return _weaponDataList.Count;
+    }
+
+    public List<int> GetAllWeaponNums()
+    {
+        return _weaponDataList.Select(data => data.num).ToList();
     }
 }

@@ -18,6 +18,9 @@ public class InventoryDescriptionUIGenerator : Singleton<InventoryDescriptionUIG
     
     void Start()
     {
+        List<int> weaponNums = WeaponDataManager.Instance.Database.GetAllWeaponNums();
+
+
         for (int weaponId = 1; weaponId <= WeaponDataManager.Instance.Database.GetWeaponDataCount(); weaponId++)
         {
             var data = WeaponDataManager.Instance.GetWeaponData(weaponId);
@@ -25,7 +28,7 @@ public class InventoryDescriptionUIGenerator : Singleton<InventoryDescriptionUIG
             InventoryDescriptionPopUpUI inventoryDescriptionPopUpUI = inventoryDescriptionPopUpUIGameObject.GetComponent<InventoryDescriptionPopUpUI>();
             inventoryDescriptionPopUpUI.weaponId = weaponId;
             inventoryDescriptionPopUpUI.weaponNameText.text = data.WeaponName;
-            string weaponIconPath = "WeaponIcon/" + weaponId.ToString();
+            string weaponIconPath = "WeaponIcon/" + weaponNums[weaponId - 1].ToString();
 
             inventoryDescriptionPopUpUI.weaponImage.sprite = ResourceManager.Instance.Load<Sprite>(weaponIconPath);
 
@@ -40,10 +43,10 @@ public class InventoryDescriptionUIGenerator : Singleton<InventoryDescriptionUIG
             inventoryDescriptionPopUpUIGameObject.SetActive(false);
 
             int skillIndex = 0; // 스킬 번호는 0부터 시작
-            if (SkillInfoManager.Instance.WeaponSkills.ContainsKey(weaponId))
+            if (SkillInfoManager.Instance.WeaponSkills.ContainsKey(weaponNums[weaponId - 1]))
             {
 
-                var skillList = SkillInfoManager.Instance.WeaponSkills[weaponId];
+                var skillList = SkillInfoManager.Instance.WeaponSkills[weaponNums[weaponId - 1]];
 
                 foreach (var skill in skillList)
                 {
@@ -53,7 +56,7 @@ public class InventoryDescriptionUIGenerator : Singleton<InventoryDescriptionUIG
                     skillIconGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(60f, 60f);
                     SkillIcon skillIcon = skillIconGameObject.GetComponent<SkillIcon>();
                     skillIcon.Init();
-                    skillIcon.WeaponID = weaponId;
+                    skillIcon.WeaponNum = weaponId;
                     skillIcon.SkillCount = skillIndex;
 
                     // UI 업데이트 (스킬 정보 적용)

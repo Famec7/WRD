@@ -28,17 +28,17 @@ public class SkillInfoManager : Singleton<SkillInfoManager>
 
         for (int i = 0; i < data.Count; i++)
         {
-            int weaponId = int.Parse(data[i]["weapon_id"].ToString());
+            int weaponNum = int.Parse(data[i]["weapon_num"].ToString());
             string skillName = data[i]["skill_name"].ToString();
             string skillInfo = data[i]["skill_info"].ToString();
             string skillType = data[i]["skill_type_1"].ToString();
 
-            if (!WeaponSkills.ContainsKey(weaponId))
+            if (!WeaponSkills.ContainsKey(weaponNum))
             {
-                WeaponSkills[weaponId] = new List<SkillInfo>();
+                WeaponSkills[weaponNum] = new List<SkillInfo>();
             }
 
-            WeaponSkills[weaponId].Add(new SkillInfo(skillName, skillInfo, skillType));
+            WeaponSkills[weaponNum].Add(new SkillInfo(skillName, skillInfo, skillType));
         }
     }
 }

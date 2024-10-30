@@ -55,7 +55,7 @@ public class BookMakredSlotUI : Singleton<BookMakredSlotUI>
             }
         }
 
-        string weaponIconPath = "WeaponIcon/" + weaponID.ToString();
+        string weaponIconPath = "WeaponIcon/" + WeaponDataManager.Instance.GetWeaponData(weaponID).num.ToString();
 
         InventoryItem item = new InventoryItem
         {

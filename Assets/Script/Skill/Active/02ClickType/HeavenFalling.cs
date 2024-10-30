@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class HeavenFalling : ClickTypeSkill
 {
@@ -29,7 +29,7 @@ public class HeavenFalling : ClickTypeSkill
 
         holySword.SetData(Data);
         holySword.transform.position = (Vector3)pivotPosition + (Vector3)_offset;
-
+        Debug.Log(holySword.transform.position);
         holySword.Target = pivotPosition;
     }
 
