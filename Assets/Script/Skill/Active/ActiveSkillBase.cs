@@ -343,7 +343,7 @@ public abstract class ActiveSkillBase : SkillBase
     private void IndicatorInit()
     {
         // 72.5f
-        float scaleAdjustmentFactor = 1 / this.transform.localScale.x * 20f;
+        float scaleAdjustmentFactor = 1 / this.transform.localScale.x;
 
         float range = Data.Range * scaleAdjustmentFactor;
         float availableRange = Data.AvailableRange * scaleAdjustmentFactor;
