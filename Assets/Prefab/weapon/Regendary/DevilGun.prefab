@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 5019597083743873460}
   - component: {fileID: 1908920706521759614}
   - component: {fileID: 4917755106371981132}
+  - component: {fileID: -4115853899237106634}
+  - component: {fileID: 1958692894468307965}
+  - component: {fileID: 6877894846575197835}
   m_Layer: 0
   m_Name: DevilGun
   m_TagString: Untagged
@@ -104,9 +107,9 @@ MonoBehaviour:
     _originRotation: {x: 0, y: 0, z: 45}
     _originScale: {x: 0.015, y: 0.015, z: 0.015}
   weaponId: 0
-  passiveSkill: {fileID: 0}
-  passiveAuraSkill: {fileID: 0}
-  activeSkill: {fileID: 0}
+  passiveSkill: {fileID: -4115853899237106634}
+  passiveAuraSkill: {fileID: 1958692894468307965}
+  activeSkill: {fileID: 6877894846575197835}
   anim: {fileID: 4917755106371981132}
   type: 1
 --- !u!114 &4917755106371981132
@@ -146,3 +149,47 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _endPosition: {x: 0.05, y: 0, z: 0}
+--- !u!114 &-4115853899237106634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7198866616350648984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e95dbebfaf4c1a874eecee17a7965c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  weapon: {fileID: 0}
+--- !u!114 &1958692894468307965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7198866616350648984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a9b40a72384745a2bad6a252400acf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  weapon: {fileID: 0}
+--- !u!114 &6877894846575197835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7198866616350648984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a829eaaffe4ae5992c880109f5c013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillName: 
+  weapon: {fileID: 0}
+  indicator: {fileID: 0}
+  usableRange: {fileID: 0}
