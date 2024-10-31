@@ -229,10 +229,6 @@ PrefabInstance:
       propertyPath: parentTransform
       value: 
       objectReference: {fileID: 1109643351}
-    - target: {fileID: 938181490769147599, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: SkillDescriptionPrefab
-      value: 
-      objectReference: {fileID: 444243645388663474, guid: a7e50d3e80833684d83340fbae6983c2, type: 3}
     - target: {fileID: 1498652523391941501, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: parentTransform
       value: 
@@ -241,21 +237,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
-    - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: wave
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2402696352196400284, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.8541291
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2402696352196400284, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.21941765
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2402696352196400284, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.06862651
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2402696352196400284, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: m_LocalRotation.w
@@ -346,10 +338,6 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[0]._name
-      value: NormalHit
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[1]._name
       value: BowHit
       objectReference: {fileID: 0}
@@ -384,10 +372,6 @@ PrefabInstance:
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[9]._name
       value: HeavyBlowEffect
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[0]._count
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[10]._name
@@ -432,18 +416,6 @@ PrefabInstance:
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[1]._count
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[5]._count
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[6]._count
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[7]._count
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[8]._count

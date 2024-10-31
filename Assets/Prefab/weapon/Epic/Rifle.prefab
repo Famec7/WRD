@@ -225,8 +225,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   weapon: {fileID: 0}
-  indicator: {fileID: 8500180738181142224}
-  usableRange: {fileID: 8880795876332487989}
+  indicatorType: 1
+  _isFixedPosition: 0
 --- !u!114 &8260584912045237268
 MonoBehaviour:
   m_ObjectHideFlags: 0

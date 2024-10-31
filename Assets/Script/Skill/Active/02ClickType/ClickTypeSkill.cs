@@ -56,11 +56,11 @@ public abstract class ClickTypeSkill : ActiveSkillBase
 
             if (_isUsuableRangeState is false)
             {
-                HideUsableRange();
+                IndicatorManager.Instance.HideUsableIndicator();
             }
             else
             {
-                ShowUsableRange();
+                IndicatorManager.Instance.ShowUsableIndicator(weapon.owner.transform.position, Data.AvailableRange);
 
                 weapon.owner.enabled = false;
 
@@ -138,6 +138,8 @@ public abstract class ClickTypeSkill : ActiveSkillBase
         
         Vector2 direction =  (Vector2)weapon.owner.transform.position - pivotPosition;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        
+        SkillIndicator indicator = IndicatorManager.Instance.GetIndicator(indicatorType);
         indicator.transform.rotation = Quaternion.Euler(0, 0, angle + 45.0f);
 
         return INode.ENodeState.Success;
