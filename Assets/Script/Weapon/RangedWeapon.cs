@@ -24,16 +24,11 @@ public class RangedWeapon : WeaponBase
             projectile.SetType(type);
             
             projectile.OnHit += () => OnHit(monster, Data.AttackDamage);
-
-            notifyAction?.Invoke();
         }
     }
 
     protected void OnHit(Monster monster, float damage)
     {
         monster.HasAttacked(damage);
-
-        ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>(type.ToString() + "Hit");
-        particleEffect.SetPosition(monster.transform.position);
     }
 }

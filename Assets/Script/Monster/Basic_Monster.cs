@@ -9,10 +9,4 @@ public class Basic_Monster : Monster
     {
         hp = 1000;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
 }

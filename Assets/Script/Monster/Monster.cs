@@ -14,9 +14,17 @@ public class Monster : MonoBehaviour, IPoolObject
 
     public void HasAttacked(float damage)
     {
-        hp -= damage;
-        status.HP -= damage + damage * status.damageAmplification;
+        damage += status.damageAmplification * damage;
+        damage += status.devilBulletDamageAmplification * damage;
+        
+        status.HP -= damage;
         if (status.HP <= 0 && !isDead)
+            IsDead();
+    }
+    
+    public void Die()
+    {
+        if (!isDead)
             IsDead();
     }
 

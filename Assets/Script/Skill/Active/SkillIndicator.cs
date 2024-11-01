@@ -13,13 +13,15 @@ public class SkillIndicator : MonoBehaviour
     public void SetSkill(ActiveSkillBase skill)
     {
         _skill = skill;
+        
+        this.transform.localScale = new Vector3(skill.Data.Range, skill.Data.Range, 1);
     }
 
-    public virtual void ShowIndicator(Vector3 position = default)
+    public virtual void ShowIndicator(Vector3 position = default, bool isFixedPosition = false)
     {
         _spriteRenderer.enabled = true;
 
-        if (_isFixedPosition)
+        if (isFixedPosition)
         {
             return;
         }

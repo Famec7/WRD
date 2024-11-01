@@ -8,20 +8,19 @@ public class PistelFire : InstantaneousSkill, IObserver
     private void StatInit()
     {
         _attackCount = 0;
-        weapon.owner.Data.CurrentWeapon.SetAttackDelay(weapon.owner.Data.CurrentWeapon.Data.AttackSpeed);
+        weapon.SetAttackDelay(weapon.owner.Data.CurrentWeapon.Data.AttackSpeed);
     }
 
     protected override void OnActiveEnter()
     {
-        weapon.owner.Data.CurrentWeapon.SetAttackDelay(Data.GetValue(1));
-        weapon.owner.Data.CurrentWeapon.AddAction(OnNotify);
+        weapon.SetAttackDelay(Data.GetValue(1));
+        weapon.AddAction(OnNotify);
     }
 
     protected override INode.ENodeState OnActiveExecute()
     {
         if (_attackCount >= Data.GetValue(0))
         {
-            IsActive = false;
             weapon.owner.StartCoroutine(IE_DisableAttack());
             return INode.ENodeState.Success;
         }
@@ -32,18 +31,23 @@ public class PistelFire : InstantaneousSkill, IObserver
     protected override void OnActiveExit()
     {
         StatInit();
-        weapon.owner.Data.CurrentWeapon.RemoveAction(OnNotify);
     }
 
     private IEnumerator IE_DisableAttack()
     {
-        weapon.owner.Data.CurrentWeapon.enabled = false;
+        OnActiveWeapon(false);
         yield return new WaitForSeconds(Data.GetValue(2));
-        weapon.owner.Data.CurrentWeapon.enabled = true;
+        OnActiveWeapon(true);
     }
 
     public void OnNotify()
     {
         _attackCount++;
+    }
+    
+    private void OnActiveWeapon(bool isActive)
+    {
+        weapon.enabled = isActive;
+        weapon.activeSkill.CurrentCoolTime = isActive ? 0 : Data.GetValue(2);
     }
 }
