@@ -4,29 +4,27 @@ using UnityEngine;
 
 public class CompoundBow : RangedWeapon
 {
-    public int markDamage = 50;
+    public bool IsMarked { get; set; }
+    
+    private float _originalDamage;
+
+    protected override void Init()
+    {
+        base.Init();
+        _originalDamage = Data.AttackDamage;
+    }
 
     protected override void Attack()
     {
-        if (owner.Target.TryGetComponent(out Monster monster))
+        if (IsMarked)
         {
-            var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
-
-            projectile.Target = owner.Target.gameObject;
-            projectile.SetType(type);
-
-            var mark = StatusEffectManager.Instance.GetStatusEffect(monster.status, typeof(Mark));
-            projectile.OnHit += () => OnHit(monster, Data.AttackDamage+markDamage);
-
-            notifyAction?.Invoke();
+            Data.AttackDamage = _originalDamage + passiveSkill.Data.GetValue(0);
         }
-    }
-
-    protected void OnHit(Monster monster, float damage)
-    {
-        monster.HasAttacked(damage);
-
-        ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>(RangedWeapon.Type.Bow.ToString() + "Hit");
-        particleEffect.SetPosition(monster.transform.position);
+        else
+        {
+            Data.AttackDamage = _originalDamage;
+        }
+        
+        base.Attack();
     }
 }
