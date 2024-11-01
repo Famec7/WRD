@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +30,7 @@ public class ActiveSkillDataBase : ScriptableObject
             }
 
             /****************active type Parse****************/
-            if (Enum.TryParse(data["skill_type"].ToString(), out ActiveSkillData.ActiveType activeType))
+            if (Enum.TryParse(data["skill_activation_type"].ToString(), out ActiveSkillData.ActiveType activeType))
             {
                 activeSkillData.Type = activeType;
             }

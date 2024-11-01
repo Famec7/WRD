@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ public abstract class ActiveSkillBase : SkillBase
 
     protected HashSet<Monster> targetMonsters = new HashSet<Monster>();
     protected Vector2 pivotPosition = Vector2.zero;
-
+    protected Vector2 clickPosition = Vector2.zero;
     protected override void Init()
     {
         base.Init();
@@ -239,8 +239,9 @@ public abstract class ActiveSkillBase : SkillBase
                 CancelSkill();
                 return INode.ENodeState.Failure;
             }
-            
-            var indicator = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), LayerMask.GetMask("Indicator"));
+
+            clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var indicator = Physics2D.OverlapPoint(clickPosition, LayerMask.GetMask("Indicator"));
 
             if (this is ClickTypeSkill)
             {
