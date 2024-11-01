@@ -65,7 +65,7 @@ public class GuidedProjectile : ProjectileBase
 
     public override void ReturnToPool()
     {
-        ;
+        OnHit = null;
     }
 
     protected void LookAtTarget(Vector3 target)
