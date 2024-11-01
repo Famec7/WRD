@@ -6,8 +6,7 @@ public class DevilBullet : ClickTypeSkill
     
     protected override void OnActiveEnter()
     {
-        LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
-        Collider2D target = Physics2D.OverlapPoint(pivotPosition, layerMask);
+        FindTarget();
 
         if (target is null)
         {

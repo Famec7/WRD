@@ -154,4 +154,30 @@ public abstract class ClickTypeSkill : ActiveSkillBase
         base.CancelSkill();
         IsUsuableRangeState = false;
     }
+
+    protected GameObject target;
+    
+    protected void FindTarget()
+    {
+        if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
+        {
+            if (weapon.owner.Target is null)
+            {
+                target = weapon.owner.FindNearestTarget();
+            }
+            else if (weapon.owner.Target.TryGetComponent(out Monster monster))
+            {
+                target = monster.gameObject;
+            }
+            else
+            {
+                target = weapon.owner.FindNearestTarget();
+            }
+        }
+        else
+        {
+            LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
+            target = Physics2D.OverlapPoint(pivotPosition, layerMask).gameObject;
+        }
+    }
 }
