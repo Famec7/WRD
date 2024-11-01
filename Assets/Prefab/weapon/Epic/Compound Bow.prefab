@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1480572137741218002}
   - component: {fileID: 5298786495483300777}
   - component: {fileID: -5146570636851411397}
-  - component: {fileID: 3796282946153780898}
+  - component: {fileID: 6955562050464678149}
   - component: {fileID: 1782632758593961849}
   m_Layer: 0
   m_Name: Compound Bow
@@ -160,7 +160,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _endPosition: {x: 0.05, y: 0, z: 0}
---- !u!114 &3796282946153780898
+--- !u!114 &6955562050464678149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,19 +169,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4897807747513862174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 606cdc1494efc8b4f951c949b8fa5070, type: 3}
+  m_Script: {fileID: 11500000, guid: b373136225d446f699fb8370bb6c5bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   _pivot:
-    _pivot: {x: 0, y: 0, z: 0}
-    _originRotation: {x: 0, y: 0, z: 0}
-    _originScale: {x: 0, y: 0, z: 0}
+    _pivot: {x: -0.128, y: -0.107, z: 0}
+    _originRotation: {x: 0, y: 0, z: 90}
+    _originScale: {x: 0.01974804, y: 0.01974804, z: 0.01974804}
   weaponId: 23
-  passiveSkill: {fileID: 1782632758593961849}
-  passiveAuraSkill: {fileID: 0}
+  passiveSkill: {fileID: 0}
+  passiveAuraSkill: {fileID: 1782632758593961849}
   activeSkill: {fileID: 0}
-  anim: {fileID: -5146570636851411397}
+  anim: {fileID: 0}
   type: 0
 --- !u!114 &1782632758593961849
 MonoBehaviour:

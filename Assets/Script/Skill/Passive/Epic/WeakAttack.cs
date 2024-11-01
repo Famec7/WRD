@@ -1,24 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class WeakAttack : PassiveSkillBase
+public class WeakAttack : PassiveAuraSkillBase
 {
-    public override bool Activate(GameObject target)
+    private float _originalDamage;
+    
+    protected override void Init()
     {
-        CompoundBow compoundBow = weapon as CompoundBow;
-        compoundBow.IsMarked = false;
-        
-        if (target.TryGetComponent(out Status status))
-        {
-            var mark = StatusEffectManager.Instance.GetStatusEffect(status, typeof(Mark));
+        base.Init();
+        weapon.AddAction(OnAttack);
+    }
 
-            if (mark != null)
-            {
-                compoundBow.IsMarked = true;
-            }
+    private void OnAttack()
+    {
+        if (weapon.owner.Target is null)
+        {
+            return;
         }
         
-        return false;
+        if (weapon.owner.Target.TryGetComponent(out Status status))
+        {
+            StatusEffect mark = StatusEffectManager.Instance.GetStatusEffect(status, typeof(Mark));
+            
+            if (mark is null)
+            {
+                weapon.Data.AttackDamage = _originalDamage + Data.GetValue(0);
+            }
+            else
+            {
+                weapon.Data.AttackDamage = _originalDamage;
+            }
+        }
     }
 }

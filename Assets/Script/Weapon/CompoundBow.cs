@@ -18,7 +18,7 @@ public class CompoundBow : RangedWeapon
     {
         if (IsMarked)
         {
-            Data.AttackDamage = _originalDamage + passiveSkill.Data.GetValue(0);
+            Data.AttackDamage = _originalDamage + passiveAuraSkill.Data.GetValue(0);
         }
         else
         {
