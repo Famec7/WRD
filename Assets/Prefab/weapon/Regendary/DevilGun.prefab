@@ -106,7 +106,7 @@ MonoBehaviour:
     _pivot: {x: -0.136, y: -0.064, z: 0}
     _originRotation: {x: 0, y: 0, z: 45}
     _originScale: {x: 0.015, y: 0.015, z: 0.015}
-  weaponId: 0
+  weaponId: 29
   passiveSkill: {fileID: -4115853899237106634}
   passiveAuraSkill: {fileID: 1958692894468307965}
   activeSkill: {fileID: 6877894846575197835}
@@ -191,5 +191,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   weapon: {fileID: 0}
-  indicator: {fileID: 0}
-  usableRange: {fileID: 0}
+  indicatorType: 0
+  _isFixedPosition: 0
