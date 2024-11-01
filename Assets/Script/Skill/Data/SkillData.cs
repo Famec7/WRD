@@ -64,12 +64,13 @@ public class ActiveSkillData : SkillData
     
     public enum ActiveType
     {
-        None,
-        Immediate,
-        Click,
-        DoubleClick,
+        none,
+        immediate,
+        click,
+        doubleClick,
+        subordinate
     }
-    
+
     private ActiveType _type;
     
     public ActiveType Type

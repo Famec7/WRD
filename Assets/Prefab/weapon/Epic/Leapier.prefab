@@ -267,6 +267,10 @@ MonoBehaviour:
   weapon: {fileID: 0}
   indicator: {fileID: 3045385051265345064}
   usableRange: {fileID: 4410983234610488741}
+  DashDistance: 2
+  InitialSpeed: 5
+  MaxSpeed: 10
+  _player: {fileID: 0}
 --- !u!1 &4410983234610488741
 GameObject:
   m_ObjectHideFlags: 0

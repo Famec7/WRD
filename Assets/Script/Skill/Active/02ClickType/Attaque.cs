@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Attaque : ClickTypeSkill
@@ -8,38 +9,60 @@ public class Attaque : ClickTypeSkill
 
     private float _duration;
     private float _damage;
-    private float _passiveChance;
-    private float _originPassiveChance;
+    private int _passiveChance;
+    private int _originPassiveChance;
     #endregion
 
+    public float DashDistance = 2f;
+    public float InitialSpeed = 3f;       
+    public float MaxSpeed = 5f;
+
+    public GameObject _player;
+    private Coroutine _dashCoroutine = null;
     protected override void Init()
     {
-        _damage = Data.GetValue(1);
-        _duration = Data.GetValue(2);
-        _passiveChance = Data.GetValue(3);
-        _originPassiveChance = weapon.passiveSkill.Data.Chance;
+        base.Init();
+
+        _damage = Data.GetValue(0);
+        _duration = Data.GetValue(1);
+        _passiveChance = (int)Data.GetValue(2);
+        //   _originPassiveChance = weapon.passiveSkill.Data.Chance;
+        _player = GameObject.Find("player");
     }
 
     protected override void OnActiveEnter()
     {
-    
-        if (pivotPosition == Vector2.zero)
+        _originPassiveChance = weapon.passiveSkill.Data.Chance;
+        
+        Vector2 direction = (clickPosition - (Vector2)_player.transform.position).normalized;
+        Vector2 targetPosition = (Vector2)_player.transform.position + (direction * DashDistance);
+        
+        _player.GetComponent<PlayerController>().enabled = false;
+
+        if (_dashCoroutine != null)
         {
-            // 스킬 범위 안에 적이 있으면 타겟을 적으로 설정
-            var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Data.Range, default, targetLayer);
+            StopCoroutine(_dashCoroutine);
+        }
 
-            if (targets.Count > 0)
-            {
-                pivotPosition = targets[0].transform.position;
-            }
+        _dashCoroutine = StartCoroutine(Dash(targetPosition));
+        var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, Data.Range, default, targetLayer);
 
-            else
+        if (targets.Count == 0)
+            return;
+
+        foreach (var tar in targets)
+        {
+            if (tar.TryGetComponent(out Monster monster))
             {
-                IsActive = false;
-                return;
+                monster.HasAttacked(_damage);
+                if (monster.isDead)
+                    StartCoroutine(BoostPassiveChance());
+
+                break;
             }
         }
 
+        _player.GetComponent<PlayerController>().enabled = true;
     }
 
     protected override INode.ENodeState OnActiveExecute()
@@ -51,5 +74,28 @@ public class Attaque : ClickTypeSkill
     protected override void OnActiveExit()
     {
         ;
+    }
+
+    private IEnumerator Dash(Vector3 targetPosition)
+    {
+        float currentSpeed = InitialSpeed;
+
+        while (Vector3.Distance(_player.transform.position, targetPosition) > 0.1f)
+        {
+            currentSpeed = Mathf.Min(currentSpeed + 0.5f * Time.deltaTime, MaxSpeed);
+            _player.transform.position = Vector2.MoveTowards(_player.transform.position, targetPosition, currentSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        _player.transform.position = targetPosition;
+
+       
+    }
+
+    private IEnumerator BoostPassiveChance()
+    {
+        weapon.passiveSkill.Data.Chance = _passiveChance;
+        yield return new WaitForSeconds(_duration);
+        weapon.passiveSkill.Data.Chance = _originPassiveChance;
     }
 }
