@@ -30,8 +30,5 @@ public class RangedWeapon : WeaponBase
     protected void OnHit(Monster monster, float damage)
     {
         monster.HasAttacked(damage);
-
-        ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>(type.ToString() + "Hit");
-        particleEffect.SetPosition(monster.transform.position);
     }
 }

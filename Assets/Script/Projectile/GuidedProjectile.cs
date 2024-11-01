@@ -45,6 +45,9 @@ public class GuidedProjectile : ProjectileBase
             OnHit?.Invoke();
             
             ProjectileManager.Instance.ReturnProjectileToPool(this);
+            
+            ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>(_hitEffectName);
+            particleEffect.SetPosition(Target.transform.position);
         }
 
 
@@ -76,26 +79,7 @@ public class GuidedProjectile : ProjectileBase
 
     public void SetType(RangedWeapon.Type type)
     {
-        StringBuilder sb = new StringBuilder();
-
-        switch (type)
-        {
-            case RangedWeapon.Type.Bow:
-                sb.Append("NormalHit");
-                break;
-            case RangedWeapon.Type.Gun:
-                sb.Append("BulletHit");
-                break;
-            case RangedWeapon.Type.Orb:
-                sb.Append("OrbHit");
-                break;
-            case RangedWeapon.Type.HighOrb:
-                sb.Append("HighOrbHit");
-                break;
-            default:
-                break;
-        }
-
+        StringBuilder sb = new StringBuilder(type + "Hit");
         _hitEffectName = sb.ToString();
     }
 }
