@@ -140,7 +140,7 @@ public abstract class ClickTypeSkill : ActiveSkillBase
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         
         SkillIndicator indicator = IndicatorManager.Instance.GetIndicator(indicatorType);
-        indicator.transform.rotation = Quaternion.Euler(0, 0, angle + 45.0f);
+        indicator.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         return INode.ENodeState.Success;
     }

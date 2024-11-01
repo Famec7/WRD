@@ -140,7 +140,7 @@ MonoBehaviour:
   skillName: 
   weapon: {fileID: 0}
   indicatorType: 1
-  _isFixedPosition: 0
+  _isFixedPosition: 1
 --- !u!114 &8260584912045237268
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,9 +15,10 @@ public abstract class ActiveSkillBase : SkillBase
 
     #endregion
 
-    protected HashSet<Monster> targetMonsters = new HashSet<Monster>();
+    protected readonly HashSet<Monster> targetMonsters = new HashSet<Monster>();
     protected Vector2 pivotPosition = Vector2.zero;
     protected Vector2 clickPosition = Vector2.zero;
+    
     protected override void Init()
     {
         base.Init();
@@ -337,6 +338,8 @@ public abstract class ActiveSkillBase : SkillBase
     
     [SerializeField]
     protected IndicatorManager.Type indicatorType;
+    
+    public IndicatorManager.Type IndicatorType => indicatorType;
     
     [SerializeField]
     private bool _isFixedPosition = false;
