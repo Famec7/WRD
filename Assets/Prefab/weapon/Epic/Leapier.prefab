@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7701331785a255f4888d3d8d63ed09f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillId: 29
   weapon: {fileID: 0}
   _originalMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   _blueMaterial: {fileID: 2100000, guid: 7a1fcec57b337994182ef902b4275def, type: 2}
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f94ba69df75eef478cea522850d45ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillId: 4
   weapon: {fileID: 0}
   indicatorType: 2
   _isFixedPosition: 1

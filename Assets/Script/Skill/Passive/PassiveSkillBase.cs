@@ -52,6 +52,6 @@ public abstract class PassiveSkillBase : SkillBase
     protected override void Init()
     {
         base.Init();
-        _data = SkillManager.Instance.GetPassiveSkillData(GetType().Name);
+        _data = SkillManager.Instance.GetPassiveSkillData(skillId);
     }
 }

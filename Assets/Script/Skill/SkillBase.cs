@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 public abstract class SkillBase : MonoBehaviour
 {
-    [HideInInspector]
-    public  string skillName;
+    [SerializeField]
+    protected int skillId;
     
     [HideInInspector]
     public WeaponBase weapon;
@@ -20,7 +17,6 @@ public abstract class SkillBase : MonoBehaviour
 
     protected virtual void Init()
     {
-        skillName = GetType().Name;
         targetLayer = LayerMaskManager.Instance.MonsterLayerMask;
     }
 }

@@ -10,7 +10,7 @@ public abstract class ActiveSkillBase : SkillBase
 
     private void DataInit()
     {
-        Data = SkillManager.Instance.GetActiveSkillData(GetType().Name);
+        Data = SkillManager.Instance.GetActiveSkillData(skillId);
     }
 
     #endregion

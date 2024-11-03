@@ -7,7 +7,7 @@ public class DiamondKingEffect : CardEffectBase
     
     public DiamondKingEffect(WeaponBase weapon) : base(weapon)
     {
-        Data = SkillManager.Instance.GetActiveSkillData("shuffle - diamond king");
+        Data = SkillManager.Instance.GetActiveSkillData(13);
         _time = Data.GetValue(0);
     }
 

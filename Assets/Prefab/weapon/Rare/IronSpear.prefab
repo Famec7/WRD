@@ -107,6 +107,7 @@ MonoBehaviour:
     _originScale: {x: 0.015262, y: 0.015262, z: 0}
   weaponId: 12
   passiveSkill: {fileID: 2018605014098229058}
+  passiveAuraSkill: {fileID: 0}
   activeSkill: {fileID: 0}
   anim: {fileID: 265705803325377985}
   type: 1
@@ -122,8 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9def45197442459aafe4cdb97887e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Thrust
+  skillId: 2
   weapon: {fileID: 0}
+  _range: {x: 3, y: 1}
   _effect: {fileID: 4021117407603805226}
 --- !u!114 &265705803325377985
 MonoBehaviour:

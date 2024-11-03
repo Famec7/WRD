@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9bd6f3cf034cdcbe1f233a19972ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillId: 9
   weapon: {fileID: 0}
 --- !u!114 &-5146570636851411397
 MonoBehaviour:
