@@ -16,8 +16,7 @@ public class Attaque : ClickTypeSkill
     public float DashDistance = 2f;
     public float InitialSpeed = 3f;       
     public float MaxSpeed = 5f;
-
-    public GameObject _player;
+    
     private Coroutine _dashCoroutine = null;
     protected override void Init()
     {
@@ -26,18 +25,16 @@ public class Attaque : ClickTypeSkill
         _damage = Data.GetValue(0);
         _duration = Data.GetValue(1);
         _passiveChance = (int)Data.GetValue(2);
-        //   _originPassiveChance = weapon.passiveSkill.Data.Chance;
-        _player = GameObject.Find("player");
     }
 
     protected override void OnActiveEnter()
     {
         _originPassiveChance = weapon.passiveSkill.Data.Chance;
         
-        Vector2 direction = (clickPosition - (Vector2)_player.transform.position).normalized;
-        Vector2 targetPosition = (Vector2)_player.transform.position + (direction * DashDistance);
+        Vector2 direction = (clickPosition - (Vector2)weapon.owner.transform.position).normalized;
+        Vector2 targetPosition = (Vector2)weapon.owner.transform.position + (direction * DashDistance);
         
-        _player.GetComponent<PlayerController>().enabled = false;
+        weapon.owner.GetComponent<PlayerController>().enabled = false;
 
         if (_dashCoroutine != null)
         {
@@ -62,7 +59,7 @@ public class Attaque : ClickTypeSkill
             }
         }
 
-        _player.GetComponent<PlayerController>().enabled = true;
+        weapon.owner.GetComponent<PlayerController>().enabled = true;
     }
 
     protected override INode.ENodeState OnActiveExecute()
@@ -80,14 +77,14 @@ public class Attaque : ClickTypeSkill
     {
         float currentSpeed = InitialSpeed;
 
-        while (Vector3.Distance(_player.transform.position, targetPosition) > 0.1f)
+        while (Vector3.Distance(weapon.owner.transform.position, targetPosition) > 0.1f)
         {
             currentSpeed = Mathf.Min(currentSpeed + 0.5f * Time.deltaTime, MaxSpeed);
-            _player.transform.position = Vector2.MoveTowards(_player.transform.position, targetPosition, currentSpeed * Time.deltaTime);
+            weapon.owner.transform.position = Vector2.MoveTowards(weapon.owner.transform.position, targetPosition, currentSpeed * Time.deltaTime);
             yield return null;
         }
 
-        _player.transform.position = targetPosition;
+        weapon.owner.transform.position = targetPosition;
 
        
     }

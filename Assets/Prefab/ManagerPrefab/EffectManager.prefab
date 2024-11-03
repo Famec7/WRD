@@ -59,10 +59,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poolDatas:
   - _name: NormalHit
+    _prefab: {fileID: -8860096144743807973, guid: db9057c7fb474da489c25cb6e5a9b08a, type: 3}
+    _count: 20
+    _preloadOnStart: 0
+  - _name: BowHit
     _prefab: {fileID: -8860096144743807973, guid: b85d21f3b8fed714bacf0c4fd50fa512, type: 3}
     _count: 10
     _preloadOnStart: 0
-  - _name: BulletHit
+  - _name: GunHit
     _prefab: {fileID: 4490486443538525910, guid: 3ed0d324122d7b24eaec75c55c74aafc, type: 3}
     _count: 20
     _preloadOnStart: 0
@@ -74,12 +78,40 @@ MonoBehaviour:
     _prefab: {fileID: 4548751445793855413, guid: 2b987d41506d172419fa18578f6ac380, type: 3}
     _count: 20
     _preloadOnStart: 0
-  - _name: OrbHit
-    _prefab: {fileID: 6487501840110601943, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}
+  - _name: PiercingEffect
+    _prefab: {fileID: -8860096144743807973, guid: 17db874d43518de41be047c14b109431, type: 3}
     _count: 20
     _preloadOnStart: 0
+  - _name: OrbHit
+    _prefab: {fileID: 6487501840110601943, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}
+    _count: 5
+    _preloadOnStart: 0
   - _name: HighOrbHit
+    _prefab: {fileID: 6487501840110601943, guid: 8351ea02e4a19db47bab3fccb0104215, type: 3}
+    _count: 50
+    _preloadOnStart: 0
+  - _name: LowVisionStrike
+    _prefab: {fileID: 6487501840110601943, guid: 08a24d7db85ae6c4884e7408582386ff, type: 3}
+    _count: 1
+    _preloadOnStart: 0
+  - _name: HeavyBlowEffect
+    _prefab: {fileID: 4490486443538525910, guid: 170e56b3e749f5f488a065c475924cbb, type: 3}
+    _count: 1
+    _preloadOnStart: 0
+  - _name: HorizontalSliceEffect
+    _prefab: {fileID: 4548751445793855413, guid: 8272a4331e92ab2409ff9acabf8aaf3b, type: 3}
+    _count: 20
+    _preloadOnStart: 0
+  - _name: SharpBladeEffect
+    _prefab: {fileID: 4548751445793855413, guid: 632f6541f4e764d468c78769325dde04, type: 3}
+    _count: 20
+    _preloadOnStart: 0
+  - _name: HighVisionStrike
     _prefab: {fileID: 6487501840110601943, guid: 0b10423fceb027f4db920646d6ba2770, type: 3}
+    _count: 20
+    _preloadOnStart: 0
+  - _name: FireEffect
+    _prefab: {fileID: 4815132046972852505, guid: 47b9b513f1406ee4bb4a4cace955052b, type: 3}
     _count: 20
     _preloadOnStart: 0
   - _name: SkySwordAura

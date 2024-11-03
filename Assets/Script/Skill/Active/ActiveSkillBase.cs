@@ -15,15 +15,15 @@ public abstract class ActiveSkillBase : SkillBase
 
     #endregion
 
-    protected HashSet<Monster> targetMonsters = new HashSet<Monster>();
+    protected readonly HashSet<Monster> targetMonsters = new HashSet<Monster>();
     protected Vector2 pivotPosition = Vector2.zero;
     protected Vector2 clickPosition = Vector2.zero;
+    
     protected override void Init()
     {
         base.Init();
         DataInit();
         BTInit();
-        IndicatorInit();
     }
 
     private void Awake()
@@ -35,6 +35,7 @@ public abstract class ActiveSkillBase : SkillBase
     private void Start()
     {
         IsCoolTime = true;
+        IndicatorInit();
     }
 
     private void Update()
@@ -195,13 +196,13 @@ public abstract class ActiveSkillBase : SkillBase
 
             if (_isIndicatorState is false)
             {
-                indicator.HideIndicator();
+                IndicatorManager.Instance.HideIndicator(indicatorType);
             }
             else
             {
                 preparingTime = 3f;
 
-                indicator.ShowIndicator(pivotPosition);
+                IndicatorManager.Instance.ShowIndicator(pivotPosition, indicatorType, _isFixedPosition);
                 targetMonsters.Clear();
 
                 SkillUIManager.Instance.ShowPopupPanel(1);
@@ -334,52 +335,19 @@ public abstract class ActiveSkillBase : SkillBase
     #endregion
 
     #region Indicator
-
-    // 실제 스킬 사용 범위
-    [SerializeField] protected SkillIndicator indicator;
-
-    // 스킬 사용 가능한 범위 표시하는 오브젝트
-    [SerializeField] protected GameObject usableRange;
+    
+    [SerializeField]
+    protected IndicatorManager.Type indicatorType;
+    
+    public IndicatorManager.Type IndicatorType => indicatorType;
+    
+    [SerializeField]
+    private bool _isFixedPosition = false;
 
     private void IndicatorInit()
     {
-        // 72.5f
-        float scaleAdjustmentFactor = 1 / this.transform.localScale.x * 20f;
-
-        float range = Data.Range * scaleAdjustmentFactor;
-        float availableRange = Data.AvailableRange * scaleAdjustmentFactor;
-
-        if (indicator != null)
-        {
-            indicator.transform.localScale = new Vector3(range, range, 1);
-            indicator.HideIndicator();
-            indicator.SetSkill(this);
-        }
-
-        if (usableRange != null)
-        {
-            usableRange.transform.localScale = new Vector3(availableRange, availableRange, 1);
-            usableRange.SetActive(false);
-        }
-    }
-
-    public void ShowUsableRange(Vector2 position = default, Quaternion rotation = default)
-    {
-        if (position == default)
-        {
-            usableRange.transform.position = weapon.owner.transform.position;
-        }
-        else
-        {
-            usableRange.transform.position = position;
-        }
-
-        usableRange.SetActive(true);
-    }
-
-    public void HideUsableRange()
-    {
-        usableRange.SetActive(false);
+        SkillIndicator indicator = IndicatorManager.Instance.GetIndicator(indicatorType);
+        indicator.SetSkill(this);
     }
 
     #endregion

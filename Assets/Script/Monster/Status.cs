@@ -34,6 +34,9 @@ public class Status : MonoBehaviour
     
     [HideInInspector]
     public bool IsJokerMark; // 조커 표식
+    
+    [HideInInspector]
+    public float devilBulletDamageAmplification; // 악탄
 
     #endregion
     
@@ -91,5 +94,6 @@ public class Status : MonoBehaviour
         damageAmplification = 0;
         IsElectricShock = false;
         IsJokerMark = false;
+        devilBulletDamageAmplification = 0;
     }
 }

@@ -56,11 +56,11 @@ public abstract class ClickTypeSkill : ActiveSkillBase
 
             if (_isUsuableRangeState is false)
             {
-                HideUsableRange();
+                IndicatorManager.Instance.HideUsableIndicator();
             }
             else
             {
-                ShowUsableRange();
+                IndicatorManager.Instance.ShowUsableIndicator(weapon.owner.transform.position, Data.AvailableRange);
 
                 weapon.owner.enabled = false;
 
@@ -138,7 +138,9 @@ public abstract class ClickTypeSkill : ActiveSkillBase
         
         Vector2 direction =  (Vector2)weapon.owner.transform.position - pivotPosition;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        indicator.transform.rotation = Quaternion.Euler(0, 0, angle + 45.0f);
+        
+        SkillIndicator indicator = IndicatorManager.Instance.GetIndicator(indicatorType);
+        indicator.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         return INode.ENodeState.Success;
     }
@@ -151,5 +153,31 @@ public abstract class ClickTypeSkill : ActiveSkillBase
     {
         base.CancelSkill();
         IsUsuableRangeState = false;
+    }
+
+    protected GameObject target;
+    
+    protected void FindTarget()
+    {
+        if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
+        {
+            if (weapon.owner.Target is null)
+            {
+                target = weapon.owner.FindNearestTarget();
+            }
+            else if (weapon.owner.Target.TryGetComponent(out Monster monster))
+            {
+                target = monster.gameObject;
+            }
+            else
+            {
+                target = weapon.owner.FindNearestTarget();
+            }
+        }
+        else
+        {
+            LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
+            target = Physics2D.OverlapPoint(pivotPosition, layerMask).gameObject;
+        }
     }
 }

@@ -13,13 +13,31 @@ public class SkillIndicator : MonoBehaviour
     public void SetSkill(ActiveSkillBase skill)
     {
         _skill = skill;
+
+        Vector3 newScale = default;
+        switch (skill.IndicatorType)
+        {
+            case IndicatorManager.Type.Circle:
+                newScale = new Vector3(skill.Data.Range, skill.Data.Range, 1);
+                break;
+            case IndicatorManager.Type.Triangle:
+                newScale = new Vector3(skill.Data.Range, skill.Data.Range, 1);
+                break;
+            case IndicatorManager.Type.Square:
+                newScale = new Vector3(skill.Data.Range, 1, 1);
+                break;
+            default:
+                break;
+        }
+        
+        this.transform.localScale = newScale;
     }
 
-    public virtual void ShowIndicator(Vector3 position = default)
+    public virtual void ShowIndicator(Vector3 position = default, bool isFixedPosition = false)
     {
         _spriteRenderer.enabled = true;
 
-        if (_isFixedPosition)
+        if (isFixedPosition)
         {
             return;
         }
@@ -40,6 +58,11 @@ public class SkillIndicator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (_skill is null)
+        {
+            return;
+        }
+        
         if (other.TryGetComponent(out Monster monster))
         {
             _skill.AddTargetMonster(monster);
@@ -48,6 +71,11 @@ public class SkillIndicator : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if (_skill is null)
+        {
+            return;
+        }
+        
         if (other.TryGetComponent(out Monster monster))
         {
             _skill.AddTargetMonster(monster);
@@ -56,6 +84,11 @@ public class SkillIndicator : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (_skill is null)
+        {
+            return;
+        }
+        
         if (other.TryGetComponent(out Monster monster))
         {
             _skill.RemoveTargetMonster(monster);
