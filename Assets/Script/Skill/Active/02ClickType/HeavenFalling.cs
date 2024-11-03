@@ -2,23 +2,22 @@ using UnityEngine;
 
 public class HeavenFalling : ClickTypeSkill
 {
-    [Header("Offset From Target")]
-    [SerializeField]
+    [Header("Offset From Target")] [SerializeField]
     private Vector2 _offset;
-    
+
     protected override void OnActiveEnter()
     {
         // 성검 소환
         var holySword = ProjectileManager.Instance.CreateProjectile<HolyProjectile>();
 
-        FindTarget();
-        
-        if (target is null)
+        if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
         {
-            return;
+            if (target is null)
+                return;
+            
+            pivotPosition = target.transform.position;
         }
-        
-        pivotPosition = target.transform.position;
+
 
         holySword.SetData(Data);
         holySword.transform.position = (Vector3)pivotPosition + (Vector3)_offset;
