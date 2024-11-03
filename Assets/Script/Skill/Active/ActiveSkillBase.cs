@@ -168,7 +168,7 @@ public abstract class ActiveSkillBase : SkillBase
 
 #endif
 
-        return CurrentCoolTime <= 0 ? INode.ENodeState.Failure : INode.ENodeState.Running;
+        return CurrentCoolTime <= 0 ? INode.ENodeState.Success : INode.ENodeState.Running;
     }
 
     #endregion

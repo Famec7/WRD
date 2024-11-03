@@ -5,6 +5,12 @@ public class PistelFire : InstantaneousSkill, IObserver
 {
     private int _attackCount = 0;
 
+    protected override void Init()
+    {
+        base.Init();
+        weapon.AddAction(OnNotify);
+    }
+    
     private void StatInit()
     {
         _attackCount = 0;
@@ -14,7 +20,6 @@ public class PistelFire : InstantaneousSkill, IObserver
     protected override void OnActiveEnter()
     {
         weapon.SetAttackDelay(Data.GetValue(1));
-        weapon.AddAction(OnNotify);
     }
 
     protected override INode.ENodeState OnActiveExecute()
@@ -22,6 +27,8 @@ public class PistelFire : InstantaneousSkill, IObserver
         if (_attackCount >= Data.GetValue(0))
         {
             weapon.owner.StartCoroutine(IE_DisableAttack());
+            
+            IsActive = false;
             return INode.ENodeState.Success;
         }
 
