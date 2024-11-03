@@ -217,6 +217,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[3]._name
+      value: Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[3]._count
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[3]._prefab
+      value: 
+      objectReference: {fileID: -1203330249075668320, guid: 2ed1cfbacee0a6f44b54c8d1eada055d, type: 3}
     - target: {fileID: 634136516482632422, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: messageParent
       value: 
@@ -339,7 +355,7 @@ PrefabInstance:
       objectReference: {fileID: 940696516}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.size
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[18]._name
@@ -347,6 +363,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[19]._name
+      value: compound bow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[20]._name
       value: Leapier
       objectReference: {fileID: 0}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
@@ -358,11 +378,19 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[20]._count
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[18]._prefab
       value: 
       objectReference: {fileID: 1725306334580153423, guid: cb300b34e042b3a4d996a87978b4b5a7, type: 3}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[19]._prefab
+      value: 
+      objectReference: {fileID: 3796282946153780898, guid: 318ab53d5ed002145862b695f70687c1, type: 3}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[20]._prefab
       value: 
       objectReference: {fileID: 6620615878372865885, guid: ffff67e69d41a0540bfeb7bbc17ec4bf, type: 3}
     - target: {fileID: 6650071735411779139, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
