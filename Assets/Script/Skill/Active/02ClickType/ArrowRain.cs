@@ -9,7 +9,7 @@ public class ArrowRain : ClickTypeSkill
     private float _duration;
 
     [SerializeField]
-    private float _arrowJourneyTime = 1.5f;
+    private float _arrowJourneyTime = 0.5f;
 
     [SerializeField]
     private Vector2 _offset;
@@ -27,15 +27,18 @@ public class ArrowRain : ClickTypeSkill
 
     protected override void OnActiveEnter()
     {
+        Debug.Log("ㅇㅇ");
+
         for (int i = 0; i < _arrowCount; i++)
         {
             var arrow = ProjectileManager.Instance.CreateProjectile<ArrowProjectile>("Arrow");
+            arrow.gameObject.SetActive(true);
             arrow.transform.position = (Vector3)clickPosition + (Vector3)RandomPointInCircle(Data.Range/2f) + (Vector3)_offset;
-            arrow.TargetPosition = (Vector3)clickPosition + (Vector3)RandomPointInCircle(Data.Range / 2f); 
+            arrow.SetArrow((Vector3)clickPosition + (Vector3)RandomPointInCircle(Data.Range / 2f)); 
             arrow.JourneyTime = _arrowJourneyTime;
         }
 
-        StartCoroutine(Damage());
+        StartCoroutine(Damage(clickPosition));
     }
 
     protected override INode.ENodeState OnActiveExecute()
@@ -60,10 +63,10 @@ public class ArrowRain : ClickTypeSkill
         return new Vector2(x, y);
     }
 
-    IEnumerator Damage()
+    IEnumerator Damage(Vector3 position)
     {
         yield return new WaitForSeconds(_arrowJourneyTime);
-        var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Data.Range, default, targetLayer);
+        var targets = RangeDetectionUtility.GetAttackTargets(position, Data.Range, default, targetLayer);
 
         if (targets.Count == 0)
             yield break;
@@ -80,8 +83,6 @@ public class ArrowRain : ClickTypeSkill
                     StatusEffect amplification = new DamageAmplification(monster.gameObject, _damageAmplification, _duration);
                     StatusEffectManager.Instance.AddStatusEffect(monster.status, amplification);
                 }
-
-                break;
             }
         }
     }

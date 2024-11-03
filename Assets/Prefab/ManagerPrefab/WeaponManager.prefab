@@ -110,7 +110,3 @@ MonoBehaviour:
     _prefab: {fileID: 4354140859558254631, guid: 16f41333a180b0443bfc8023e25e3b2d, type: 3}
     _count: 9
     _preloadOnStart: 0
-  - _name: compound bow
-    _prefab: {fileID: 3796282946153780898, guid: 318ab53d5ed002145862b695f70687c1, type: 3}
-    _count: 9
-    _preloadOnStart: 0
