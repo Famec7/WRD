@@ -70,3 +70,7 @@ MonoBehaviour:
     _prefab: {fileID: 8168608869911393430, guid: 6d7c196752cb3254fa7b2d0256522998, type: 3}
     _count: 3
     _preloadOnStart: 0
+  - _name: Arrow
+    _prefab: {fileID: -7591119387060850233, guid: 2ed1cfbacee0a6f44b54c8d1eada055d, type: 3}
+    _count: 10
+    _preloadOnStart: 0

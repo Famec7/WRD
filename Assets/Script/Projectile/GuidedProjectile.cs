@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using UnityEngine;
 
@@ -18,11 +18,11 @@ public class GuidedProjectile : ProjectileBase
 
     public Action OnHit { get; set; }
 
-    private float _startTime;
-    private Vector3 _startPosition;
-    private float _journeyLength;
+    protected float _startTime;
+    protected Vector3 _startPosition;
+    protected float _journeyLength;
 
-    private string _hitEffectName;
+    protected string _hitEffectName;
 
     private void Start()
     {

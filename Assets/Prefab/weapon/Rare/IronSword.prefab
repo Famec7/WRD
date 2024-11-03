@@ -105,6 +105,7 @@ MonoBehaviour:
     _originRotation: {x: 0, y: 0, z: -90}
     _originScale: {x: 0.01204671, y: 0.01204671, z: 0}
   weaponId: 11
+  weaponNum: 301
   passiveSkill: {fileID: 3598860328224715236}
   passiveAuraSkill: {fileID: 0}
   activeSkill: {fileID: 0}

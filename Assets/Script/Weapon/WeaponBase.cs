@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +25,9 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
     #region Data
 
     [Space] [SerializeField] private int weaponId;
+
+    [Space][SerializeField] private int weaponNum;
+
 
     public WaitForSeconds AttackDelay { get; private set; }
 
@@ -88,7 +91,7 @@ public abstract class WeaponBase : MonoBehaviour, IObserver, IPoolObject
     /// </summary>
     protected virtual void Init()
     {
-        Data = WeaponDataManager.Instance.GetWeaponData(weaponId);
+        Data = WeaponDataManager.Instance.Database.GetWeaponDataByNum(weaponNum);
         SetAttackDelay(Data.AttackSpeed);
         _originalAttackDamage = Data.AttackDamage;
         _originalAttackSpeed = Data.AttackSpeed;
