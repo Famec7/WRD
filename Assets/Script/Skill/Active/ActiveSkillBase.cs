@@ -129,7 +129,7 @@ public abstract class ActiveSkillBase : SkillBase
 
     private float _currentCoolTime = 0f;
 
-    public float CurrentCoolTime
+    public virtual float CurrentCoolTime
     {
         get => _currentCoolTime;
         set
@@ -149,12 +149,12 @@ public abstract class ActiveSkillBase : SkillBase
         }
     }
 
-    private INode.ENodeState CheckCoolTimeState()
+    protected INode.ENodeState CheckCoolTimeState()
     {
         return IsCoolTime is true ? INode.ENodeState.Success : INode.ENodeState.Failure;
     }
 
-    private INode.ENodeState CoolTimeDown()
+    protected INode.ENodeState CoolTimeDown()
     {
         CurrentCoolTime -= Time.deltaTime;
 

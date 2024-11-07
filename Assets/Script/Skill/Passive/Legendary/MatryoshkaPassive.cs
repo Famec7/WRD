@@ -5,16 +5,14 @@ public class MatryoshkaPassive : PassiveSkillBase
     [SerializeField] private float stunRange = 3.0f;
 
     private float _slowRange = 0.0f;
-    public float SlowRange
-    {
-        set
-        {
-            _slowRange = value;
-            _collider.radius = _slowRange / 2;            
-        }
-    }
     
     private CircleCollider2D _collider;
+    
+    private void SetSlowRange(float value)
+    {
+        _slowRange = value;
+        _collider.radius = _slowRange / 2;   
+    }
     
     protected override void Init()
     {
@@ -23,7 +21,10 @@ public class MatryoshkaPassive : PassiveSkillBase
         targetLayer = LayerMaskManager.Instance.MonsterLayerMask;
         _collider = GetComponent<CircleCollider2D>();
 
-        SlowRange = 0.0f;
+        if (weapon.activeSkill is MatryoshkaActive activeSkill)
+        {
+            activeSkill.SetSlowRange += SetSlowRange;
+        }
     }
 
     public override bool Activate(GameObject target = null)

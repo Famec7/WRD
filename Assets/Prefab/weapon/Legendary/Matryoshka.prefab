@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1762292133358087807}
   - component: {fileID: 7024788216712616616}
   - component: {fileID: 3641344283379959334}
+  - component: {fileID: -6178006827734595661}
   m_Layer: 0
   m_Name: Matryoshka
   m_TagString: Untagged
@@ -140,9 +141,9 @@ MonoBehaviour:
     _originRotation: {x: 0, y: 0, z: 0}
     _originScale: {x: 0, y: 0, z: 0}
   weaponId: 404
-  passiveSkill: {fileID: 0}
+  passiveSkill: {fileID: 3641344283379959334}
   passiveAuraSkill: {fileID: 0}
-  activeSkill: {fileID: 0}
+  activeSkill: {fileID: -6178006827734595661}
   anim: {fileID: 0}
   type: 1
 --- !u!114 &3641344283379959334
@@ -160,3 +161,23 @@ MonoBehaviour:
   skillId: 18
   weapon: {fileID: 0}
   stunRange: 3
+--- !u!114 &-6178006827734595661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376974854351306595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 115268a3ed4a4ee4b85c193a22d13d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 16
+  weapon: {fileID: 0}
+  indicatorType: 0
+  _isFixedPosition: 0
+  _coolTimes:
+  - 20
+  - 10
+  - 5
