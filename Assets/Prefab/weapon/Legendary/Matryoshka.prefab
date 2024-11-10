@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 7376974854351306595}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.132, y: -0.152, z: 0}
+  m_LocalScale: {x: 0.013419853, y: 0.013419853, z: 0.292}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,15 +77,15 @@ SpriteRenderer:
   m_SortingLayerID: 351608095
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 038ee66f98a8bcf4e89113d1bf48371c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 32, y: 32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &1762292133358087807
@@ -137,15 +137,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   _pivot:
-    _pivot: {x: 0, y: 0, z: 0}
+    _pivot: {x: -0.132, y: -0.152, z: 0}
     _originRotation: {x: 0, y: 0, z: 0}
-    _originScale: {x: 0, y: 0, z: 0}
-  weaponId: 404
+    _originScale: {x: 0.01341985, y: 0.01341985, z: 1}
+  weaponId: 504
   passiveSkill: {fileID: 3641344283379959334}
   passiveAuraSkill: {fileID: 0}
   activeSkill: {fileID: -6178006827734595661}
   anim: {fileID: 0}
-  type: 1
+  type: 2
 --- !u!114 &3641344283379959334
 MonoBehaviour:
   m_ObjectHideFlags: 0
