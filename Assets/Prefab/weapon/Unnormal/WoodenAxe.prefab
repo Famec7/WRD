@@ -105,9 +105,11 @@ MonoBehaviour:
     _originScale: {x: 0.0178515, y: 0.0178515, z: 0}
   weaponId: 7
   passiveSkill: {fileID: 0}
+  passiveAuraSkill: {fileID: 0}
   activeSkill: {fileID: 0}
   anim: {fileID: 8193370221182410222}
   type: 2
+  _attackSound: {fileID: 8300000, guid: e7124a4641a18c94c952ff8eabc6adf9, type: 3}
 --- !u!114 &8193370221182410222
 MonoBehaviour:
   m_ObjectHideFlags: 0
