@@ -127,6 +127,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
+  _reloadSound: {fileID: 8300000, guid: 3a8aca95ee9814143a9b0f136ec1a616, type: 3}
 --- !u!114 &2730120669256416537
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class PistelFire : InstantaneousSkill, IObserver
 {
+    [Header("장전하는 사운드")]
+    [SerializeField]
+    private AudioClip _reloadSound;
+    
     private int _attackCount = 0;
 
     private void StatInit()
@@ -35,6 +39,7 @@ public class PistelFire : InstantaneousSkill, IObserver
 
     private IEnumerator IE_DisableAttack()
     {
+        SoundManager.Instance.PlaySFX(_reloadSound);
         OnActiveWeapon(false);
         yield return new WaitForSeconds(Data.GetValue(2));
         OnActiveWeapon(true);
