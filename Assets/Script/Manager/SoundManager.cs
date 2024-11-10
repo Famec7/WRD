@@ -13,8 +13,10 @@ public class SoundManager : Singleton<SoundManager>
         
         for (int i = 0; i < _sfxSourceCount; i++)
         {
-            _sfxSources.Enqueue(CreateAudioSource($"SFX_{i}"));
-            _sfxSources.Peek().outputAudioMixerGroup = _audioMixer.FindMatchingGroups("SFX")[0];
+            AudioSource sfxSource = CreateAudioSource($"SFX_{i}");
+            sfxSource.outputAudioMixerGroup = _audioMixer.FindMatchingGroups("SFX")[0];
+            
+            _sfxSources.Enqueue(sfxSource);
         }
     }
     
