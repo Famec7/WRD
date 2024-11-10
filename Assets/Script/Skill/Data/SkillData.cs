@@ -12,6 +12,7 @@ public class SkillData
     private float _range;
     public float Range { get => _range; set => _range = value; }
 
+    public int ID { get; set; }
 
     public float GetValue(int index)
     {

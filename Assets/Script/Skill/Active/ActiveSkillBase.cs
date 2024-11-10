@@ -10,7 +10,7 @@ public abstract class ActiveSkillBase : SkillBase
 
     private void DataInit()
     {
-        Data = SkillManager.Instance.GetActiveSkillData(GetType().Name);
+        Data = SkillManager.Instance.GetActiveSkillData(skillId);
     }
 
     #endregion
@@ -129,7 +129,7 @@ public abstract class ActiveSkillBase : SkillBase
 
     private float _currentCoolTime = 0f;
 
-    public float CurrentCoolTime
+    public virtual float CurrentCoolTime
     {
         get => _currentCoolTime;
         set
@@ -149,12 +149,12 @@ public abstract class ActiveSkillBase : SkillBase
         }
     }
 
-    private INode.ENodeState CheckCoolTimeState()
+    protected INode.ENodeState CheckCoolTimeState()
     {
         return IsCoolTime is true ? INode.ENodeState.Success : INode.ENodeState.Failure;
     }
 
-    private INode.ENodeState CoolTimeDown()
+    protected INode.ENodeState CoolTimeDown()
     {
         CurrentCoolTime -= Time.deltaTime;
 
@@ -168,7 +168,7 @@ public abstract class ActiveSkillBase : SkillBase
 
 #endif
 
-        return CurrentCoolTime <= 0 ? INode.ENodeState.Failure : INode.ENodeState.Running;
+        return CurrentCoolTime <= 0 ? INode.ENodeState.Success : INode.ENodeState.Running;
     }
 
     #endregion

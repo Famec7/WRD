@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6fb9760ee9b024e92e97d43eaff472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillId: 6
   weapon: {fileID: 0}
   _hitSize: {x: 1, y: 3}
 --- !u!114 &-8812445559295291458
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1227de02cab70242b2a6cd5bc6c0418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillId: 2
   weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0

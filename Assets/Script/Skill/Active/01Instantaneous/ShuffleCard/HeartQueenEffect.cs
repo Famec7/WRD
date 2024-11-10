@@ -7,7 +7,7 @@ public class HeartQueenEffect : CardEffectBase
     
     public HeartQueenEffect(WeaponBase weapon) : base(weapon)
     {
-        Data = SkillManager.Instance.GetActiveSkillData("shuffle - heart queen");
+        Data = SkillManager.Instance.GetActiveSkillData(12);
         _time = Data.GetValue(0);
     }
 

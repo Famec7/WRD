@@ -6,7 +6,7 @@ public class CloverJackEffect : CardEffectBase
     
     public CloverJackEffect(WeaponBase weapon) : base(weapon)
     {
-        Data = SkillManager.Instance.GetActiveSkillData("shuffle - clover jack");
+        Data = SkillManager.Instance.GetActiveSkillData(11);
     }
 
     public override void OnEnter()

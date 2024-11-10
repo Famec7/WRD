@@ -19,11 +19,6 @@ public class WeaponDataManager : Singleton<WeaponDataManager>
     {
         return Database.GetWeaponData(id);
     }
-    
-    public WeaponData GetWeaponData(string weaponName)
-    {
-        return Database.GetWeaponData(weaponName);
-	}
 
     public string GetKorWeaponClassText(int weaponId)
     {

@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9def45197442459aafe4cdb97887e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: Thrust
+  skillId: 2
   weapon: {fileID: 0}
   _range: {x: 3, y: 1}
   _effect: {fileID: 4021117407603805226}

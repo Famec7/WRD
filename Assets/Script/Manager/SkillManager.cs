@@ -22,19 +22,19 @@ public class SkillManager : Singleton<SkillManager>
         activeDataBase.Load();
     }
     
-    public PassiveSkillData GetPassiveSkillData(string skillName)
+    public PassiveSkillData GetPassiveSkillData(int skillId)
     {
-        return passiveDataBase.GetPassiveSkillData(skillName);
+        return passiveDataBase.GetPassiveSkillData(skillId);
     }
     
-    public PassiveAuraSkillData GetPassiveAuraSkillData(string skillName)
+    public PassiveAuraSkillData GetPassiveAuraSkillData(int skillId)
     {
-        return passiveDataBase.GetPassiveAuraSkillData(skillName);
+        return passiveDataBase.GetPassiveAuraSkillData(skillId);
     }
     
-    public ActiveSkillData GetActiveSkillData(string skillName)
+    public ActiveSkillData GetActiveSkillData(int skillId)
     {
-        return activeDataBase.GetActiveSkillData(skillName);
+        return activeDataBase.GetActiveSkillData(skillId);
     }
 
     #endregion

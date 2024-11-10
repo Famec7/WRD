@@ -15,7 +15,10 @@ public class ActiveSkillDataBase : ScriptableObject
 
         foreach (var data in csvData)
         {
-            ActiveSkillData activeSkillData = new ActiveSkillData { Name = (data["skill_name"].ToString()) };
+            ActiveSkillData activeSkillData = new ActiveSkillData
+            {
+                Name = (data["skill_name"].ToString()), ID = int.Parse(data["num"].ToString())
+            };
 
             /************cooltime Parse*************/
             if (float.TryParse(data["skill_cooltime"].ToString(), out var coolTime))
@@ -88,17 +91,21 @@ public class ActiveSkillDataBase : ScriptableObject
     /// <summary>
     /// 액티브 스킬 데이터 반환
     /// </summary>
-    /// <param name="skillName"> 스킬 이름 </param>
+    /// <param name="id"> 스킬 id </param>
     /// <returns> 스킬 데이터 반환 (이름이랑 일치하는 스킬 없으면 null) </returns>
-    public ActiveSkillData GetActiveSkillData(string skillName)
+    public ActiveSkillData GetActiveSkillData(int id)
     {
         foreach (var data in _activeSkillDataList)
         {
-            if (string.Compare(data.Name.Replace(" ", ""), skillName.Replace(" ", ""), StringComparison.OrdinalIgnoreCase) == 0)
+            if (data.ID == id)
             {
                 return data;
             }
         }
+
+#if UNITY_EDITOR
+        Debug.LogError($"Not found ActiveSkill's {id} data");
+#endif
 
         return null;
     }
