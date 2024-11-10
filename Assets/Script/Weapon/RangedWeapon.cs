@@ -27,11 +27,8 @@ public class RangedWeapon : WeaponBase
             projectile.SetType(type);
             
             projectile.OnHit += () => OnHit(monster, Data.AttackDamage);
-
-            if (_attackSound != null)
-            {
-                SoundManager.Instance.PlaySFX(_attackSound);
-            }
+            
+            SoundManager.Instance.PlaySFX(_attackSound);
         }
     }
 

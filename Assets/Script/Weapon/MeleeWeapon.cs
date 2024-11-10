@@ -30,10 +30,7 @@ public class MeleeWeapon : WeaponBase
             ParticleEffect particleEffect = GetHitEffect();
             particleEffect.SetPosition(owner.Target.transform.position);
             
-            if (_attackSound != null)
-            {
-                SoundManager.Instance.PlaySFX(_attackSound);
-            }
+            SoundManager.Instance.PlaySFX(_attackSound);
         }
     }
     

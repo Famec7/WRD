@@ -77,12 +77,12 @@ public class SoundManager : Singleton<SoundManager>
     /// <param name="volume"> 볼륨 설정 (기본 1) </param>
     public void PlaySFX(AudioClip clip, float volume = 1.0f)
     {
-        AudioSource sfxSource = _sfxSources.Dequeue();
-        
         if (clip == null)
         {
             return;
         }
+     
+        AudioSource sfxSource = _sfxSources.Dequeue();
         
         sfxSource.volume = volume;
         sfxSource.PlayOneShot(clip);
