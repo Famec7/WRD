@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7d836fdd8b43adb3dfad0df13de130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 0
+  skillId: 12
   weapon: {fileID: 0}
 --- !u!114 &5024238325934650485
 MonoBehaviour:
@@ -142,6 +142,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   indicatorType: 1
   _isFixedPosition: 1
+  _fireSound: {fileID: 8300000, guid: d580799338a23b045a30f8c072b0a638, type: 3}
 --- !u!114 &8260584912045237268
 MonoBehaviour:
   m_ObjectHideFlags: 0

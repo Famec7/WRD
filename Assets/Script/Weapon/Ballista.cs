@@ -5,6 +5,9 @@ public class Ballista : RangedWeapon
     [SerializeField]
     private float _range = 2.0f;
     
+    [SerializeField]
+    private AudioClip _twoTargetSound;
+    
     protected override void Attack()
     {
         base.Attack();
@@ -23,6 +26,8 @@ public class Ballista : RangedWeapon
         projectile.SetType(type);
         
         projectile.OnHit += () => OnHit(monster, Data.AttackDamage);
+        
+        SoundManager.Instance.PlaySFX(_twoTargetSound);
     }
 
     private Monster FindNearestMonster(Vector3 targetPosition)
