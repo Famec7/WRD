@@ -111,6 +111,7 @@ MonoBehaviour:
   activeSkill: {fileID: 0}
   anim: {fileID: -9069958465059359203}
   type: 0
+  _attackSound: {fileID: 8300000, guid: 9b6b51fa6e4d09a409899aa2c9e8a24b, type: 3}
 --- !u!114 &3598860328224715236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b2bcc8d2d34a67a8db8bda0af66653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillId: 1
   weapon: {fileID: 0}
   _hitSize: {x: 1, y: 3}
 --- !u!114 &-9069958465059359203

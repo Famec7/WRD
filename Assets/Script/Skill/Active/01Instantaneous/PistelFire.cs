@@ -3,8 +3,18 @@ using UnityEngine;
 
 public class PistelFire : InstantaneousSkill, IObserver
 {
+    [Header("장전하는 사운드")]
+    [SerializeField]
+    private AudioClip _reloadSound;
+    
     private int _attackCount = 0;
 
+    protected override void Init()
+    {
+        base.Init();
+        weapon.AddAction(OnNotify);
+    }
+    
     private void StatInit()
     {
         _attackCount = 0;
@@ -14,7 +24,6 @@ public class PistelFire : InstantaneousSkill, IObserver
     protected override void OnActiveEnter()
     {
         weapon.SetAttackDelay(Data.GetValue(1));
-        weapon.AddAction(OnNotify);
     }
 
     protected override INode.ENodeState OnActiveExecute()
@@ -22,6 +31,8 @@ public class PistelFire : InstantaneousSkill, IObserver
         if (_attackCount >= Data.GetValue(0))
         {
             weapon.owner.StartCoroutine(IE_DisableAttack());
+            
+            IsActive = false;
             return INode.ENodeState.Success;
         }
 
@@ -35,6 +46,7 @@ public class PistelFire : InstantaneousSkill, IObserver
 
     private IEnumerator IE_DisableAttack()
     {
+        SoundManager.Instance.PlaySFX(_reloadSound);
         OnActiveWeapon(false);
         yield return new WaitForSeconds(Data.GetValue(2));
         OnActiveWeapon(true);

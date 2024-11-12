@@ -15,6 +15,6 @@ public abstract class PassiveAuraSkillBase : SkillBase
     protected override void Init()
     {
         base.Init();
-        Data = SkillManager.Instance.GetPassiveAuraSkillData(GetType().Name);
+        Data = SkillManager.Instance.GetPassiveAuraSkillData(skillId);
     }
 }

@@ -23,6 +23,7 @@ public class PassiveSkillDataBase : ScriptableObject
             {
                 PassiveSkillData passiveSkillData = new PassiveSkillData
                 {
+                    ID = int.Parse(data["num"].ToString()),
                     Name = (data["skill_name"].ToString()), Chance = int.Parse(data["skill_chance"].ToString()),
                 };
 
@@ -62,6 +63,7 @@ public class PassiveSkillDataBase : ScriptableObject
             {
                 PassiveAuraSkillData passiveAuraSkillDataData = new PassiveAuraSkillData
                 {
+                    ID = int.Parse(data["num"].ToString()),
                     Name = (data["skill_name"].ToString()),
                 };
 
@@ -102,40 +104,44 @@ public class PassiveSkillDataBase : ScriptableObject
     /// <summary>
     /// 패시브 스킬 데이터 반환
     /// </summary>
-    /// <param name="skillName"> 스킬 이름 </param>
+    /// <param name="id"> 스킬 id </param>
     /// <returns> 스킬 데이터 반환 (이름이랑 일치하는 스킬 없으면 null) </returns>
-    public PassiveSkillData GetPassiveSkillData(string skillName)
+    public PassiveSkillData GetPassiveSkillData(int id)
     {
         foreach (var data in _passiveSkillDataList)
         {
-            // 대소문자, 공백 구분 없이 비교
-            if (string.Compare(data.Name.Replace(" ", ""), skillName, StringComparison.OrdinalIgnoreCase) == 0)
+            if (data.ID == id)
             {
                 return data;
             }
         }
 
-        Debug.LogError($"Not found {skillName} data");
+#if UNITY_EDITOR
+        Debug.LogError($"Not found PassiveSkill's {id} data");
+#endif
+
         return null;
     }
 
     /// <summary>
     /// 패시브 오라 스킬 데이터 반환
     /// </summary>
-    /// <param name="skillName"> 스킬 이름 </param>
+    /// <param name="id"> 스킬 id </param>
     /// <returns> 스킬 데이터 반환 (이름이랑 일치하는 스킬 없으면 null) </returns>
-    public PassiveAuraSkillData GetPassiveAuraSkillData(string skillName)
+    public PassiveAuraSkillData GetPassiveAuraSkillData(int id)
     {
         foreach (var data in _passiveAuraSkillDataList)
         {
-            // 대소문자, 공백 구분 없이 비교
-            if (string.Compare(data.Name.Replace(" ", ""), skillName, StringComparison.OrdinalIgnoreCase) == 0)
+            if (data.ID == id)
             {
                 return data;
             }
         }
 
-        Debug.LogError($"Not found {skillName} data");
+#if UNITY_EDITOR
+        Debug.LogError($"Not found PassiveAuraSkill's {id} data");
+#endif
+
         return null;
     }
 }

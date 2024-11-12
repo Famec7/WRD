@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MeleeWeapon : WeaponBase
 {
-    private enum Type
+    public enum Type
     {
         Sword,
         Spear,
@@ -14,6 +14,9 @@ public class MeleeWeapon : WeaponBase
     
     [SerializeField]
     private Type type;
+    
+    [Space] [Header("무기 종류에 맞는 사운드")]
+    [SerializeField] private AudioClip _attackSound;
     
     protected override void Attack()
     {
@@ -26,6 +29,8 @@ public class MeleeWeapon : WeaponBase
             
             ParticleEffect particleEffect = GetHitEffect();
             particleEffect.SetPosition(owner.Target.transform.position);
+            
+            SoundManager.Instance.PlaySFX(_attackSound);
         }
     }
     
