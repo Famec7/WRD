@@ -217,6 +217,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[3]._count
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 368305429629425799, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _isFixedPosition
       value: 1

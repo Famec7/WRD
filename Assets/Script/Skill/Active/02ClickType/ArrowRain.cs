@@ -27,11 +27,10 @@ public class ArrowRain : ClickTypeSkill
 
     protected override void OnActiveEnter()
     {
-        Debug.Log("ㅇㅇ");
-
         for (int i = 0; i < _arrowCount; i++)
         {
-            var arrow = ProjectileManager.Instance.CreateProjectile<ArrowProjectile>("Arrow");
+            var arrow = ProjectileManager.Instance.CreateProjectile<ArrowProjectile>("Arrow", this.transform.position);
+
             arrow.gameObject.SetActive(true);
             arrow.transform.position = (Vector3)clickPosition + (Vector3)RandomPointInCircle(Data.Range/2f) + (Vector3)_offset;
             arrow.SetArrow((Vector3)clickPosition + (Vector3)RandomPointInCircle(Data.Range / 2f)); 

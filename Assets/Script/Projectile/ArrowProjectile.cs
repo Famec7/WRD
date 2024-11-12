@@ -28,7 +28,8 @@ public class ArrowProjectile : ProjectileBase
         if (fractionOfJourney >= 1.0f)
         {
             transform.position = TargetPosition;
-            ProjectileManager.Instance.ReturnProjectileToPool(this);
+            ProjectileManager.Instance.ReturnProjectileToPool<ArrowProjectile>(this,"Arrow");
+            gameObject.SetActive(false);
             return;
         }
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6378943324257477101}
   - component: {fileID: -8120889208162515596}
   - component: {fileID: 882411857828660104}
+  - component: {fileID: -7991946785698264664}
   m_Layer: 0
   m_Name: Kunai
   m_TagString: Untagged
@@ -56,7 +57,7 @@ MonoBehaviour:
   weaponNum: 409
   passiveSkill: {fileID: -8120889208162515596}
   passiveAuraSkill: {fileID: 0}
-  activeSkill: {fileID: 0}
+  activeSkill: {fileID: -7991946785698264664}
   anim: {fileID: 882411857828660104}
   type: 0
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
@@ -98,8 +99,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 351608095
-  m_SortingLayer: 3
+  m_SortingLayerID: 977560319
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1d333c9ffc1097a45a59b68e83ea95cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -163,3 +164,20 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _degree: 60
+--- !u!114 &-7991946785698264664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4391208131410620124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39527a372d8a8ab489c4a6ab4da89365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 7
+  weapon: {fileID: 0}
+  indicatorType: 2
+  _isFixedPosition: 0
+  _trapPrefab: {fileID: 6662956486516750247, guid: aa66ad1164e37d84d93711a050b95529, type: 3}
