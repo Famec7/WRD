@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bf69fba53b9534b9972f64866175e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillId: 5
   weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0

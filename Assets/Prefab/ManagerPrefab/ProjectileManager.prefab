@@ -71,6 +71,10 @@ MonoBehaviour:
     _count: 3
     _preloadOnStart: 0
   - _name: Arrow
-    _prefab: {fileID: -7591119387060850233, guid: 2ed1cfbacee0a6f44b54c8d1eada055d, type: 3}
+    _prefab: {fileID: -1203330249075668320, guid: 2ed1cfbacee0a6f44b54c8d1eada055d, type: 3}
+    _count: 10
+    _preloadOnStart: 0
+  - _name: KunaiProjectile
+    _prefab: {fileID: 219236056389806837, guid: cb61d15ee33886847a1a832fd124e132, type: 3}
     _count: 10
     _preloadOnStart: 0

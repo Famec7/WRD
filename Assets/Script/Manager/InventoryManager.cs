@@ -210,6 +210,9 @@ public class InventoryManager : MonoBehaviour
 
                 // Assign the new array to the slots field
                 slots = newSlotsArray;
+
+                items.Add(_item);
+
             }
             else
             {

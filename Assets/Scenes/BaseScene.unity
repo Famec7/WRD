@@ -329,6 +329,22 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 940696516}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.size
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[22]._name
+      value: Kunai
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[22]._count
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[22]._prefab
+      value: 
+      objectReference: {fileID: -8939883723684518921, guid: 030ecb3a043e8b2479345e68868fd54d, type: 3}
     - target: {fileID: 6650071735411779139, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: parentTransform
       value: 

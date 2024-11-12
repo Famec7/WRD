@@ -80,4 +80,15 @@ public class WeaponDatabase : ScriptableObject
     {
         return _weaponDataList.Select(data => data.num).ToList();
     }
+
+    public WeaponData GetWeaponDataByNum(int num)
+    {
+        foreach(var data in _weaponDataList)
+        {
+            if (data.num == num)
+                return data;
+        }
+
+        return null;
+    }
 }

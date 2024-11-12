@@ -102,7 +102,7 @@ MonoBehaviour:
     _pivot: {x: -0.036, y: -0.031, z: 0}
     _originRotation: {x: 0, y: 0, z: 45}
     _originScale: {x: 0.0180432, y: 0.0180432, z: 0}
-  weaponId: 9
+  weaponId: 204
   weaponNum: 202
   passiveSkill: {fileID: 0}
   passiveAuraSkill: {fileID: 0}

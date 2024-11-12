@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7d836fdd8b43adb3dfad0df13de130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 0
+  skillId: 12
   weapon: {fileID: 0}
 --- !u!114 &5024238325934650485
 MonoBehaviour:

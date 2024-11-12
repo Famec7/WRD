@@ -110,3 +110,7 @@ MonoBehaviour:
     _prefab: {fileID: 4354140859558254631, guid: 16f41333a180b0443bfc8023e25e3b2d, type: 3}
     _count: 9
     _preloadOnStart: 0
+  - _name: Kunai
+    _prefab: {fileID: -8939883723684518921, guid: 030ecb3a043e8b2479345e68868fd54d, type: 3}
+    _count: 9
+    _preloadOnStart: 0
