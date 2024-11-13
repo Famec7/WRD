@@ -9,7 +9,7 @@ public class TripleKunai : PassiveSkillBase
     
     public override bool Activate(GameObject target = null)
     {
-        if (!CheckTrigger()) return false;
+        if (!CheckTrigger() || target == null) return false;
 
         _hitMonsterList.Clear();
         _hitMonsterList.Add(weapon.owner.Target.GetComponent<Monster>());
@@ -17,7 +17,9 @@ public class TripleKunai : PassiveSkillBase
         for (int i = 0; i < 3; i++)
         {
             ColliderProjectile projectile = ProjectileManager.Instance.CreateProjectile<ColliderProjectile>(default, this.transform.position);
-            float moveAngle = -15f + 15f*i;
+            float angle = Vector3.SignedAngle(transform.up, weapon.owner.Target.transform.position - weapon.owner.transform.position, -transform.forward);
+            Debug.Log(angle);
+            float moveAngle = -15f + 15f*i + angle;
             projectile.gameObject.transform.rotation = Quaternion.Euler(0,0,moveAngle);
             projectile.Init(weapon.Data.AttackDamage, moveAngle);
             projectile.SetType(RangedWeapon.Type.Bow);
