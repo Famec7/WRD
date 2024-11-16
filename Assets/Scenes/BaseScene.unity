@@ -245,6 +245,10 @@ PrefabInstance:
       propertyPath: wave
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: isSKip
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2402696352196400284, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -339,10 +343,18 @@ PrefabInstance:
       objectReference: {fileID: 940696516}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.size
-      value: 23
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[22]._name
+      value: Kunai
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[23]._name
+      value: Lance
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[24]._name
       value: Kunai
       objectReference: {fileID: 0}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
@@ -350,7 +362,23 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[23]._count
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[24]._count
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[22]._prefab
+      value: 
+      objectReference: {fileID: -8939883723684518921, guid: 030ecb3a043e8b2479345e68868fd54d, type: 3}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[23]._prefab
+      value: 
+      objectReference: {fileID: -987756104435300205, guid: 1029102de02047c4f81c9263e022ff28, type: 3}
+    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[24]._prefab
       value: 
       objectReference: {fileID: -8939883723684518921, guid: 030ecb3a043e8b2479345e68868fd54d, type: 3}
     - target: {fileID: 6650071735411779139, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
