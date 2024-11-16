@@ -18,7 +18,6 @@ public class TripleKunai : PassiveSkillBase
         {
             ColliderProjectile projectile = ProjectileManager.Instance.CreateProjectile<ColliderProjectile>(default, this.transform.position);
             float angle = Vector3.SignedAngle(transform.up, weapon.owner.Target.transform.position - weapon.owner.transform.position, -transform.forward);
-            Debug.Log(angle);
             float moveAngle = -15f + 15f*i + angle;
             projectile.gameObject.transform.rotation = Quaternion.Euler(0,0,moveAngle);
             projectile.Init(weapon.Data.AttackDamage, moveAngle);
