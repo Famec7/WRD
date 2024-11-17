@@ -118,3 +118,7 @@ MonoBehaviour:
     _prefab: {fileID: -987756104435300205, guid: 1029102de02047c4f81c9263e022ff28, type: 3}
     _count: 9
     _preloadOnStart: 0
+  - _name: Bomb
+    _prefab: {fileID: -3620828583818321960, guid: b06cdeec0825e5f449f45b84eaabeecd, type: 3}
+    _count: 9
+    _preloadOnStart: 0
