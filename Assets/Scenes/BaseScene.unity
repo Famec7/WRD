@@ -218,9 +218,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[5]._name
+      value: Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[3]._count
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[5]._count
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[5]._prefab
+      value: 
+      objectReference: {fileID: 1020475643293381023, guid: 96c08b93766bf6e409b507f5234b6b11, type: 3}
     - target: {fileID: 368305429629425799, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _isFixedPosition
       value: 1
@@ -343,7 +359,7 @@ PrefabInstance:
       objectReference: {fileID: 940696516}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.size
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[22]._name
@@ -355,7 +371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[24]._name
-      value: Kunai
+      value: bomb
       objectReference: {fileID: 0}
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[22]._count
@@ -380,7 +396,7 @@ PrefabInstance:
     - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[24]._prefab
       value: 
-      objectReference: {fileID: -8939883723684518921, guid: 030ecb3a043e8b2479345e68868fd54d, type: 3}
+      objectReference: {fileID: -3620828583818321960, guid: b06cdeec0825e5f449f45b84eaabeecd, type: 3}
     - target: {fileID: 6650071735411779139, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: parentTransform
       value: 

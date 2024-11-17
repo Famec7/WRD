@@ -12,6 +12,7 @@ public class Monster : MonoBehaviour, IPoolObject
     public bool isDead = false;
     public Status status;
 
+    public event Action OnMonsterDeath;
     public void HasAttacked(float damage)
     {
         damage += status.damageAmplification * damage;
@@ -31,6 +32,9 @@ public class Monster : MonoBehaviour, IPoolObject
     private void IsDead()
     {
         isDead = true;
+
+        OnMonsterDeath?.Invoke();
+
 
         if (status.unitCode >= UnitCode.MISSIONBOSS1 && status.unitCode <= UnitCode.MISSIONBOSS6)
         {
