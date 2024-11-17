@@ -45,8 +45,16 @@ public class MatryoshkaActive : ClickTypeSkill
     
     protected override void OnActiveEnter()
     {
-        var targets = RangeDetectionUtility.GetAttackTargets(clickPosition, Data.Range, default, targetLayer);
-
+        FindTarget();
+        
+        if (target is null)
+            return;
+        
+        var targets = RangeDetectionUtility.GetAttackTargets(target.transform.position, Data.Range, default, targetLayer);
+        
+        if (targets.Count == 0)
+            return;
+        
         foreach (var target in targets)
         {
             if (target.TryGetComponent(out Monster monster))
@@ -61,6 +69,7 @@ public class MatryoshkaActive : ClickTypeSkill
 
     protected override INode.ENodeState OnActiveExecute()
     {
+        IsActive = false;
         return INode.ENodeState.Success;
     }
 
@@ -88,22 +97,28 @@ public class MatryoshkaActive : ClickTypeSkill
     [Space]
     [SerializeField] private List<float> _coolTimes;
 
-    private float _currentCoolTime = 0;
-    
-    public override float CurrentCoolTime
+    protected override List<INode> CoolTimeNodes()
     {
-        get => base.CurrentCoolTime;
-        set
+        return new List<INode>
         {
-            _currentCoolTime = value;
-            
-            if (_currentCoolTime <= 0)
-            {
-                Stack++;
+            new ActionNode(CheckCoolTimeState),
+            new ActionNode(CoolTimeDown),
+            new ActionNode(OnCoolTimeEnd)
+        };
+    }
+    
+    private new INode.ENodeState OnCoolTimeEnd()
+    {
+        Stack++;
                 
-                _currentCoolTime = _coolTimes[Stack];
-            }
+        if (Stack >= _coolTimes.Count)
+        {
+            IsCoolTime = false;
+            return INode.ENodeState.Success;
         }
+        
+        CurrentCoolTime = _coolTimes[Stack];
+        return INode.ENodeState.Success;
     }
 
     #endregion

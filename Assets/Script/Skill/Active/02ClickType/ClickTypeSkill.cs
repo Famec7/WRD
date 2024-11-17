@@ -177,7 +177,7 @@ public abstract class ClickTypeSkill : ActiveSkillBase
         else
         {
             LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
-            Collider2D collider = Physics2D.OverlapPoint(pivotPosition, layerMask);
+            Collider2D collider = Physics2D.OverlapPoint(clickPosition, layerMask);
             target = collider != null ? collider.gameObject : null;
         }
     }
