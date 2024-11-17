@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class MatryoshkaPassive : PassiveSkillBase
 {
@@ -20,10 +21,14 @@ public class MatryoshkaPassive : PassiveSkillBase
         
         targetLayer = LayerMaskManager.Instance.MonsterLayerMask;
         _collider = GetComponent<CircleCollider2D>();
+        
+    }
 
+    private void Start()
+    {
         if (weapon.activeSkill is MatryoshkaActive activeSkill)
         {
-            activeSkill.SetSlowRange += SetSlowRange;
+            activeSkill.SetSlowRange = SetSlowRange;
         }
     }
 

@@ -23,9 +23,6 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
     #endregion
 
     #region Data
-
-    [Space] [SerializeField] private int weaponId;
-
     [Space][SerializeField] private int weaponNum;
 
 
