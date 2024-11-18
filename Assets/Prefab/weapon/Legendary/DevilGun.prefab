@@ -106,7 +106,7 @@ MonoBehaviour:
     _pivot: {x: -0.136, y: -0.064, z: 0}
     _originRotation: {x: 0, y: 0, z: 45}
     _originScale: {x: 0.015, y: 0.015, z: 0.015}
-  weaponId: 29
+  weaponNum: 503
   passiveSkill: {fileID: -4115853899237106634}
   passiveAuraSkill: {fileID: 1958692894468307965}
   activeSkill: {fileID: 6877894846575197835}
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7198866616350648984}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7a829eaaffe4ae5992c880109f5c013, type: 3}
   m_Name: 
