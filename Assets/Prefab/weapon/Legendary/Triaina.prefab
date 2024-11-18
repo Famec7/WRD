@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5976483136412037759}
   - component: {fileID: 3088160715255992765}
-  - component: {fileID: 6763348932393045899}
+  - component: {fileID: 2328374859411621728}
   - component: {fileID: 6893672429516240765}
   m_Layer: 0
   m_Name: Triaina
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6763348932393045899
+--- !u!114 &2328374859411621728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6373617968191510777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be42261473d4a3babdeb4f0c7746612, type: 3}
+  m_Script: {fileID: 11500000, guid: 54d27e78b4bc4bd5b098d72e14dd4f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
@@ -110,6 +110,8 @@ MonoBehaviour:
   anim: {fileID: 6893672429516240765}
   type: 1
   _attackSound: {fileID: 8300000, guid: 8d0a11c9d9d4839418651c0e779fd1b6, type: 3}
+  _skillId: 19
+  _passiveRange: 1
 --- !u!114 &6893672429516240765
 MonoBehaviour:
   m_ObjectHideFlags: 0
