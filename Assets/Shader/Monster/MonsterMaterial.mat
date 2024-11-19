@@ -54,7 +54,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _GlowAnimSpeed: 0.83
+    - _GlowNoiseDensity: 2.85
+    - _GlowOffset: 0.41
+    - _GlowStepPower: 0.74
+    - _GlowStepSize: 0.2
+    - _GlowStepSmoothness: 0
+    - _GlowValue: 1
     - _HitValue: 0
     m_Colors:
+    - _GlowColor1: {r: 0.1742168, g: 0.4245283, b: 0.22575152, a: 0}
+    - _GlowColor2: {r: 0.112223, g: 0.23584908, b: 0.094562136, a: 0}
     - _HitColor: {r: 0.93962264, g: 0.93962264, b: 0.93962264, a: 1}
   m_BuildTextureStacks: []
