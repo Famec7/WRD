@@ -231,7 +231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[5]._count
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[5]._prefab

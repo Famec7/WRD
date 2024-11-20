@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -3620828583818321960}
   - component: {fileID: 8401341244952071835}
   - component: {fileID: 337837907793772510}
+  - component: {fileID: -5171302110399898408}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -108,7 +109,7 @@ MonoBehaviour:
   weaponNum: 410
   passiveSkill: {fileID: 0}
   passiveAuraSkill: {fileID: 8401341244952071835}
-  activeSkill: {fileID: 0}
+  activeSkill: {fileID: -5171302110399898408}
   anim: {fileID: 337837907793772510}
   type: 0
   _attackSound: {fileID: 0}
@@ -166,3 +167,19 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _degree: 45
+--- !u!114 &-5171302110399898408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457782884522572341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3692026a987ae4b91926c4d13d9830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 8
+  weapon: {fileID: 0}
+  indicatorType: 0
+  _isFixedPosition: 1

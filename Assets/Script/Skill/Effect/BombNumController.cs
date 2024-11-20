@@ -26,7 +26,7 @@ public class BombNumController : MonoBehaviour
         {
             bombSpriteRenderer.sprite = bombSprites[BombCount - 1];
         }
-        else if (BombCount <= 0)
+        else if (BombCount <= 0 || BombCount > 5)
         {
             BombCount = 0;
             bombSpriteRenderer.sprite = null; 
