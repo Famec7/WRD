@@ -1,5 +1,10 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class GlueBomb : PassiveAuraSkillBase
 {
@@ -7,7 +12,7 @@ public class GlueBomb : PassiveAuraSkillBase
 
     // 몬스터별 폭탄 갯수와 BombNum 오브젝트 관리
     private Dictionary<Monster, BombNumController> monsterBombControllers = new Dictionary<Monster, BombNumController>();
-    private Dictionary<Monster, List<BombProjectile>> monsterBombs = new Dictionary<Monster, List<BombProjectile>>();
+    public Dictionary<Monster, List<BombProjectile>> monsterBombs = new Dictionary<Monster, List<BombProjectile>>();
 
     [Space]
     [Header("무기 종류에 맞는 사운드")]
@@ -21,12 +26,16 @@ public class GlueBomb : PassiveAuraSkillBase
 
     private void OnAttack()
     {
-        // 폭탄 터뜨리기
         if (BombProjectiles.Count >= Data.GetValue(0))
         {
-            BombProjectiles[0].Explosion();
-            RemoveBombFromMonster(BombProjectiles[0].Target.GetComponent<Monster>(), BombProjectiles[0]);
-            BombProjectiles.RemoveAt(0);
+            Monster targetMonster = BombProjectiles[0].Target.GetComponent<Monster>();
+           BombProjectiles[0].Explosion();
+
+            if (!targetMonster.isDead)
+            {
+                RemoveBombFromMonster(targetMonster, BombProjectiles[0]);
+                BombProjectiles.RemoveAt(0);
+            }
         }
         else if (weapon.owner.Target.TryGetComponent(out Monster monster))
         {
@@ -36,13 +45,16 @@ public class GlueBomb : PassiveAuraSkillBase
             projectile.Target = weapon.owner.Target.gameObject;
             BombProjectiles.Add(projectile);
 
-            AddBombToMonster(monster, projectile);
+
+            StartCoroutine(AddBombToMonster(monster, projectile));
             SoundManager.Instance.PlaySFX(_attackSound);
         }
     }
 
-    private void AddBombToMonster(Monster monster, BombProjectile bomb)
+
+    IEnumerator AddBombToMonster(Monster monster, BombProjectile bomb)
     {
+        yield return new WaitForSeconds(0.2f);
         // BombNumController 생성 또는 갱신
         if (!monsterBombControllers.ContainsKey(monster))
         {
@@ -53,7 +65,7 @@ public class GlueBomb : PassiveAuraSkillBase
             var controller = bombNumInstance.GetComponent<BombNumController>();
             monsterBombControllers[monster] = controller;
 
-            // 몬스터가 죽으면 BombNum과 폭탄 제거
+            // 몬스터가 죽으면 BombNum과 폭탄 제거 
             monster.OnMonsterDeath += () => RemoveAllBombsFromMonster(monster);
         }
 
@@ -68,12 +80,12 @@ public class GlueBomb : PassiveAuraSkillBase
         monsterBombControllers[monster].UpdateBombCount(1);
     }
 
-    private void RemoveBombFromMonster(Monster monster, BombProjectile bomb)
+    public void RemoveBombFromMonster(Monster monster, BombProjectile bomb)
     {
         if (monsterBombs.ContainsKey(monster))
         {
             monsterBombs[monster].Remove(bomb);
-            Destroy(bomb.gameObject);
+            ProjectileManager.Instance.ReturnProjectileToPool<BombProjectile>(bomb, "Bomb");
 
             if (monsterBombControllers.ContainsKey(monster))
             {
@@ -89,23 +101,35 @@ public class GlueBomb : PassiveAuraSkillBase
         }
     }
 
-    private void RemoveAllBombsFromMonster(Monster monster)
+    public void RemoveAllBombsFromMonster(Monster monster)
     {
-        // 몬스터와 관련된 모든 폭탄 제거
-        if (monsterBombs.ContainsKey(monster))
+        // 몬스터와 관련된 모든 폭탄 제거 (복사본 사용)
+        if (monsterBombs.TryGetValue(monster, out var bombs))
         {
-            foreach (var bomb in monsterBombs[monster])
+            foreach (var bomb in bombs.ToList()) // 안전한 반복 (복사본 사용)
             {
-                Destroy(bomb.gameObject);
+                bomb.IsAttached = false;
+                bomb.Target = null;
+                // BombProjectiles에서 제거
+                if (BombProjectiles.Contains(bomb))
+                {
+                    BombProjectiles.Remove(bomb);
+                }
+
+                // 폭탄 객체를 풀로 반환
+                ProjectileManager.Instance.ReturnProjectileToPool<BombProjectile>(bomb, "Bomb");
+                bomb.gameObject.transform.position= Vector3.zero;
             }
+
             monsterBombs.Remove(monster);
         }
 
         // BombNum 오브젝트 제거
-        if (monsterBombControllers.ContainsKey(monster))
+        if (monsterBombControllers.TryGetValue(monster, out var controller))
         {
-            Destroy(monsterBombControllers[monster].gameObject);
+            Destroy(controller.gameObject);
             monsterBombControllers.Remove(monster);
         }
     }
+
 }
