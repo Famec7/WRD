@@ -15,6 +15,7 @@ public class DevilBullet : ClickTypeSkill
 
         if (target.TryGetComponent(out Monster monster))
         {
+            Debug.Log("DevilBullet");
             StatusEffect markStatus = StatusEffectManager.Instance.GetStatusEffect(monster.status, typeof(Mark));
             
             if (markStatus != null)

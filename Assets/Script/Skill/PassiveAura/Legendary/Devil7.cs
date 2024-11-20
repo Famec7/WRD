@@ -12,6 +12,7 @@ public class Devil7 : PassiveAuraSkillBase
         set
         {
             _attackCount = value;
+            
             if (_attackCount >= Data.GetValue(0))
             {
                 OnActiveWeapon(false);
@@ -20,15 +21,22 @@ public class Devil7 : PassiveAuraSkillBase
         }
     }
 
-    private void Start()
+    protected override void Init()
     {
+        base.Init();
+        
         weapon.AddAction(OnAttack);
         _attackCount = 0;
     }
 
+    private void Start()
+    {
+        OnActiveWeapon(true);
+    }
+
     private void OnAttack()
     {
-        _attackCount++;
+        AttackCount++;
     }
 
     private IEnumerator IE_Reload()
@@ -48,6 +56,7 @@ public class Devil7 : PassiveAuraSkillBase
     private void OnActiveWeapon(bool isActive)
     {
         weapon.enabled = isActive;
-        weapon.activeSkill.CurrentCoolTime = isActive ? 0 : Data.GetValue(2);
+
+        weapon.activeSkill.enabled = !isActive;
     }
 }

@@ -163,3 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillId: 28
   weapon: {fileID: 0}
+  _chopSound: {fileID: 8300000, guid: 93a200abd178ee34e87d34536384382c, type: 3}

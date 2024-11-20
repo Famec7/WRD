@@ -12,8 +12,6 @@ public class Condemn : PassiveSkillBase
             float stunDuration = Data.GetValue(0);
             StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(status.gameObject, 100f, stunDuration));
             
-            StatusEffectManager.Instance.AddStatusEffect(status, new Mark(status.gameObject, Data.GetValue(1)));
-            
             var markStatus = StatusEffectManager.Instance.GetStatusEffect(status, typeof(Mark));
             if (markStatus != null)
             {
@@ -25,6 +23,8 @@ public class Condemn : PassiveSkillBase
                     projectile.OnHit += () => OnHit(monster, Data.GetValue(2));
                 }
             }
+            
+            StatusEffectManager.Instance.AddStatusEffect(status, new Mark(status.gameObject, Data.GetValue(1)));
         }
 
         return true;

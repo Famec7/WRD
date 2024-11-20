@@ -128,6 +128,7 @@ MonoBehaviour:
   skillId: 6
   weapon: {fileID: 0}
   _hitSize: {x: 1, y: 3}
+  _swingSound: {fileID: 8300000, guid: 06f89da76928e4f4b8b7d6597867196f, type: 3}
 --- !u!114 &-8812445559295291458
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public abstract class ActiveSkillBase : SkillBase
     protected readonly HashSet<Monster> targetMonsters = new HashSet<Monster>();
     protected Vector2 pivotPosition = Vector2.zero;
     protected Vector2 clickPosition = Vector2.zero;
-    
+
     protected override void Init()
     {
         base.Init();
@@ -56,7 +56,7 @@ public abstract class ActiveSkillBase : SkillBase
     {
         targetMonsters.Add(monster);
     }
-    
+
     public void RemoveTargetMonster(Monster monster)
     {
         targetMonsters.Remove(monster);
@@ -96,7 +96,12 @@ public abstract class ActiveSkillBase : SkillBase
     /// <returns></returns>
     protected virtual List<INode> CoolTimeNodes()
     {
-        return new List<INode> { new ActionNode(CheckCoolTimeState), new ActionNode(CoolTimeDown), };
+        return new List<INode>
+        {
+            new ActionNode(CheckCoolTimeState),
+            new ActionNode(CoolTimeDown),
+            new ActionNode(OnCoolTimeEnd)
+        };
     }
 
     // 스킬 버튼 활성화 이벤트
@@ -110,7 +115,7 @@ public abstract class ActiveSkillBase : SkillBase
         {
             if (_isCoolTime == value)
                 return;
-            
+
             _isCoolTime = value;
 
             if (value is true)
@@ -140,12 +145,6 @@ public abstract class ActiveSkillBase : SkillBase
             if (value <= 0)
             {
                 _currentCoolTime = 0;
-                IsCoolTime = false;
-
-                if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
-                {
-                    IsActive = true;
-                }
             }
         }
     }
@@ -170,6 +169,18 @@ public abstract class ActiveSkillBase : SkillBase
 #endif
 
         return CurrentCoolTime <= 0 ? INode.ENodeState.Success : INode.ENodeState.Running;
+    }
+
+    protected virtual INode.ENodeState OnCoolTimeEnd()
+    {
+        IsCoolTime = false;
+
+        if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
+        {
+            IsActive = true;
+        }
+
+        return INode.ENodeState.Success;
     }
 
     #endregion
@@ -247,7 +258,7 @@ public abstract class ActiveSkillBase : SkillBase
 
             if (this is ClickTypeSkill)
             {
-                if(indicator is null)
+                if (indicator is null)
                 {
                     CancelSkill();
                     return INode.ENodeState.Failure;
@@ -293,13 +304,13 @@ public abstract class ActiveSkillBase : SkillBase
                 OnButtonActivate?.Invoke(false);
 
                 OnActiveEnter();
-                
+
                 _currentCoolTime = Data.CoolTime;
             }
             else
             {
                 OnActiveExit();
-                
+
                 IsCoolTime = true;
             }
         }
@@ -336,14 +347,12 @@ public abstract class ActiveSkillBase : SkillBase
     #endregion
 
     #region Indicator
-    
-    [SerializeField]
-    protected IndicatorManager.Type indicatorType;
-    
+
+    [SerializeField] protected IndicatorManager.Type indicatorType;
+
     public IndicatorManager.Type IndicatorType => indicatorType;
-    
-    [SerializeField]
-    private bool _isFixedPosition = false;
+
+    [SerializeField] private bool _isFixedPosition = false;
 
     private void IndicatorInit()
     {

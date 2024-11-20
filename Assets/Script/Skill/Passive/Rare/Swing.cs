@@ -9,6 +9,9 @@ public class Swing : PassiveSkillBase
     [SerializeField]
     private Vector2 _hitSize;
     
+    [SerializeField]
+    private AudioClip _swingSound;
+    
     protected override void Init()
     {
         base.Init();
@@ -36,13 +39,14 @@ public class Swing : PassiveSkillBase
         effect.SetRotation(Quaternion.Euler(180, 0, Vector2.SignedAngle(Vector2.left, dir)));
         effect.PlayEffect();
         
+        SoundManager.Instance.PlaySFX(_swingSound);
+        
         foreach (var tar in targets)
         {
             if (tar.TryGetComponent(out Monster monster))
             {
                 StatusEffectManager.Instance.AddStatusEffect(monster.status, new Wound(tar.gameObject));
                 monster.HasAttacked(_skillDamage);
-                // Todo : 이펙트 추가
             }
         }
 
