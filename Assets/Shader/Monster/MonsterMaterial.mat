@@ -60,10 +60,10 @@ Material:
     - _GlowStepPower: 0.74
     - _GlowStepSize: 0.2
     - _GlowStepSmoothness: 0
-    - _GlowValue: 1
+    - _GlowValue: 0
     - _HitValue: 0
     m_Colors:
-    - _GlowColor1: {r: 0.1742168, g: 0.4245283, b: 0.22575152, a: 0}
-    - _GlowColor2: {r: 0.112223, g: 0.23584908, b: 0.094562136, a: 0}
+    - _GlowColor1: {r: 0.17254904, g: 0.31182018, b: 0.42352942, a: 0}
+    - _GlowColor2: {r: 0.09411766, g: 0.1717617, b: 0.23529412, a: 0}
     - _HitColor: {r: 0.93962264, g: 0.93962264, b: 0.93962264, a: 1}
   m_BuildTextureStacks: []
