@@ -259,7 +259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: wave
-      value: 1
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: isSKip
@@ -4666,6 +4666,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[19]._count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[7]._prefab
+      value: 
+      objectReference: {fileID: 6432071037866064084, guid: 6df066638a10a17429a93f7fe3207f7d, type: 3}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[8]._prefab
+      value: 
+      objectReference: {fileID: 6432071037866064084, guid: 37facf61d42157e41be4ba89552674c7, type: 3}
     - target: {fileID: 4515531161734457313, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
       propertyPath: poolingObjectPrefab
       value: 
