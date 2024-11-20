@@ -113,6 +113,7 @@ MonoBehaviour:
   type: 0
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
   _range: 2
+  _twoTargetSound: {fileID: 8300000, guid: 88324a7147ab6f444a7cd768c8d4f7ff, type: 3}
 --- !u!114 &-430598731046512726
 MonoBehaviour:
   m_ObjectHideFlags: 0

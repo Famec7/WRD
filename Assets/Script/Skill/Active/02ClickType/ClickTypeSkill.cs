@@ -141,6 +141,7 @@ public abstract class ClickTypeSkill : ActiveSkillBase
         
         SkillIndicator indicator = IndicatorManager.Instance.GetIndicator(indicatorType);
         indicator.transform.rotation = Quaternion.Euler(0, 0, angle);
+        indicator.transform.position = this.transform.position;
 
         return INode.ENodeState.Success;
     }

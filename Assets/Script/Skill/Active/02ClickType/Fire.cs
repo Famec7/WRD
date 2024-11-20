@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Fire : ClickTypeSkill
 {
+    [SerializeField]
+    private AudioClip _fireSound;
+    
     protected override void OnActiveEnter()
     {
         LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
@@ -47,6 +50,8 @@ public class Fire : ClickTypeSkill
         ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("FireEffect");
         effect.SetPosition(monster.transform.position);
         effect.PlayEffect();
+        
+        SoundManager.Instance.PlaySFX(_fireSound);
     }
 
     private void OnAttackMultipleTargets(List<Monster> monsters)
@@ -61,10 +66,11 @@ public class Fire : ClickTypeSkill
             
             StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(status.gameObject, slowRate, slowDuration));
             
-            // Todo: 다중 공격 이펙트 재생
             ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("FireEffect");
             effect.SetPosition(monster.transform.position);
             effect.PlayEffect();
+            
+            SoundManager.Instance.PlaySFX(_fireSound);
         }
     }
 }

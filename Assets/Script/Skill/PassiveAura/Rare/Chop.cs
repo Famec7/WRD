@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Chop : PassiveAuraSkillBase, IObserver
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private AudioClip _chopSound;
+    
     private int _attackCount = 0;
     private void OnAttack()
     {
@@ -14,7 +16,6 @@ public class Chop : PassiveAuraSkillBase, IObserver
         { 
             if (_attackCount == Data.GetValue(0))
             {
-                Debug.Log(Data.GetValue(1)); 
                 monster.HasAttacked(Data.GetValue(1));
                 StatusEffectManager.Instance.AddStatusEffect(monster.status, new SlowDown(monster.gameObject, 100f, Data.GetValue(2)));
 
@@ -29,6 +30,8 @@ public class Chop : PassiveAuraSkillBase, IObserver
                 ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("NormalHit");
                 effect.SetPosition(weapon.owner.Target.transform.position);
             }
+            
+            SoundManager.Instance.PlaySFX(_chopSound);
         }
 
     }
