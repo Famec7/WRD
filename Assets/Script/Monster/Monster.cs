@@ -15,8 +15,8 @@ public class Monster : MonoBehaviour, IPoolObject
     public event Action OnMonsterDeath;
     public void HasAttacked(float damage)
     {
-        damage += status.damageAmplification * damage;
-        damage += status.devilBulletDamageAmplification * damage;
+        damage += status.DamageAmplification * damage;
+        damage += status.DevilBulletDamageAmplification * damage;
         
         status.HP -= damage;
         if (status.HP <= 0 && !isDead)

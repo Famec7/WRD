@@ -13,7 +13,7 @@ public class DevilBulletDamageAmplification : StatusEffect
     {
         if (target.TryGetComponent(out Status status))
         {
-            status.devilBulletDamageAmplification += _damageAmplification;
+            status.DevilBulletDamageAmplification += _damageAmplification;
 
 #if STATUS_EFFECT_LOG
             Debug.Log($"DevilBulletDamageAmplification: {target.name} has {status.devilBulletDamageAmplification} devil bullets : ApplyEffect");
@@ -25,7 +25,7 @@ public class DevilBulletDamageAmplification : StatusEffect
     {
         if (target.TryGetComponent(out Status status))
         {
-            status.devilBulletDamageAmplification -= _damageAmplification;
+            status.DevilBulletDamageAmplification -= _damageAmplification;
             
 #if STATUS_EFFECT_LOG
             Debug.Log($"DevilBulletDamageAmplification: {target.name} has {status.devilBulletDamageAmplification} devil bullets : RemoveEffect");
