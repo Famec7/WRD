@@ -28,7 +28,7 @@ public class ElectricShock : StatusEffect
             if(target.TryGetComponent(out Status status))
             {
                 status.IsElectricShock = false;
-                status.damageAmplification -= _damageAmplification;
+                status.DamageAmplification -= _damageAmplification;
             }
             
             CoroutineHandler.Instance.StopCoroutine(_electricShockCoroutine);
@@ -44,7 +44,7 @@ public class ElectricShock : StatusEffect
         if (target.TryGetComponent(out Status status))
         {
             status.IsElectricShock = true;
-            status.damageAmplification += _damageAmplification;
+            status.DamageAmplification += _damageAmplification;
 
             if (Math.Abs(duration - 0f) > 0.01f)
             {

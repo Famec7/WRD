@@ -174,6 +174,11 @@ public abstract class ClickTypeSkill : ActiveSkillBase
             {
                 target = weapon.owner.FindNearestTarget();
             }
+            
+            if (target != null)
+                clickPosition = target.transform.position;
+            else
+                clickPosition = Vector2.zero;
         }
         else
         {

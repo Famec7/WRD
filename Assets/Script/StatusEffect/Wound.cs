@@ -21,6 +21,11 @@ public class Wound : StatusEffect
         {
             if(target.TryGetComponent(out Status status))
             {
+                if (status.PreventWoundConsumption)
+                {
+                    return;
+                }
+                
                 status.IsWound = false;
             }
             CoroutineHandler.Instance.StopCoroutine(_woundCoroutine);
@@ -37,7 +42,7 @@ public class Wound : StatusEffect
             {
                 yield return waitTime;
 
-                status.IsWound = false;
+                RemoveEffect();
             }
             else
             {

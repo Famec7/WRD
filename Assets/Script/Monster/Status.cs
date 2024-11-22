@@ -27,7 +27,7 @@ public class Status : MonoBehaviour
     public bool IsMark; // 표식
     
     [HideInInspector]
-    public float damageAmplification; // 데미지 증폭
+    public float DamageAmplification; // 데미지 증폭
     
     [HideInInspector]
     public bool IsElectricShock; // 감전
@@ -36,7 +36,10 @@ public class Status : MonoBehaviour
     public bool IsJokerMark; // 조커 표식
     
     [HideInInspector]
-    public float devilBulletDamageAmplification; // 악탄
+    public float DevilBulletDamageAmplification; // 악탄
+    
+    [HideInInspector]
+    public bool PreventWoundConsumption; // 자상 소모 방지
 
     #endregion
     
@@ -91,9 +94,9 @@ public class Status : MonoBehaviour
     {
         IsWound = false;
         IsMark = false;
-        damageAmplification = 0;
+        DamageAmplification = 0;
         IsElectricShock = false;
         IsJokerMark = false;
-        devilBulletDamageAmplification = 0;
+        DevilBulletDamageAmplification = 0;
     }
 }
