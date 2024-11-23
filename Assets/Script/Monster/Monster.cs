@@ -12,6 +12,8 @@ public class Monster : MonoBehaviour, IPoolObject
     public bool isDead = false;
     public Status status;
 
+    [HideInInspector] public GameObject hpUI;
+
     public event Action OnMonsterStart;
     public event Action OnMonsterAttacked;
     public event Action OnMonsterDeath;
@@ -59,7 +61,7 @@ public class Monster : MonoBehaviour, IPoolObject
 
         }
 
-        MonsterHPBarPool.ReturnObject(transform.GetChild(1).GetComponent<MonsterHPBar>());
+        MonsterHPBarPool.ReturnObject(hpUI.GetComponent<MonsterHPBar>());
         MonsterPoolManager.Instance.ReturnObject(status.unitCode.ToString(), gameObject);
     }
 
