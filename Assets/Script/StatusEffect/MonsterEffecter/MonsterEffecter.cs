@@ -24,6 +24,9 @@ public class MonsterEffecter : MonoBehaviour
     [Header("Slow Effect Setting")]
     [SerializeField] GameObject slowEffect;
 
+    [Header("Monster Dead Effect Setting")]
+    [SerializeField] string deadEffectName = "MonsterDead";
+
     //[Header("Debuff Effect Setting")]
     int debuffValue = Shader.PropertyToID("_GlowValue");
 
@@ -48,6 +51,7 @@ public class MonsterEffecter : MonoBehaviour
         //몬스터 Action에 필요한 연출 기능 추가
         monster.OnMonsterAttacked += StartHitEffect;
         monster.OnMonsterStart += InitEffects;
+        monster.OnMonsterDeath += MonsterDeadEffect;
     }
 
     private void Update()
@@ -149,5 +153,13 @@ public class MonsterEffecter : MonoBehaviour
         float value = on ? 1 : 0;
 
         monsterRenderer.material.SetFloat(debuffValue, value);
+    }
+
+    public void MonsterDeadEffect()
+    {
+        //몬스터 사망 파티클 생성
+        ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>(deadEffectName);
+
+        effect.gameObject.transform.position = transform.position;
     }
 }

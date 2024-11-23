@@ -577,6 +577,10 @@ PrefabInstance:
       propertyPath: parentTransform
       value: 
       objectReference: {fileID: 1109643351}
+    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[20]._prefab
+      value: 
+      objectReference: {fileID: 1137959396393713772}
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: Gr
       value: 
@@ -10133,7 +10137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1498394683
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16560,26 +16564,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dead Effect
       objectReference: {fileID: 0}
-    - target: {fileID: 2274615406317054621, guid: 48b895b0689b7e642a7c29090f7739ca, type: 3}
-      propertyPath: RotationModule.curve.scalar
-      value: 0.7853981
-      objectReference: {fileID: 0}
-    - target: {fileID: 2274615406317054621, guid: 48b895b0689b7e642a7c29090f7739ca, type: 3}
-      propertyPath: RotationModule.x.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2274615406317054621, guid: 48b895b0689b7e642a7c29090f7739ca, type: 3}
-      propertyPath: RotationModule.y.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2274615406317054621, guid: 48b895b0689b7e642a7c29090f7739ca, type: 3}
-      propertyPath: RotationModule.curve.minScalar
-      value: -0.7853981
-      objectReference: {fileID: 0}
-    - target: {fileID: 2274615406317054621, guid: 48b895b0689b7e642a7c29090f7739ca, type: 3}
-      propertyPath: RotationModule.curve.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7986381579860658386, guid: 48b895b0689b7e642a7c29090f7739ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.316
@@ -16625,6 +16609,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48b895b0689b7e642a7c29090f7739ca, type: 3}
+--- !u!114 &1137959396393713772 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5859218966625097769, guid: 48b895b0689b7e642a7c29090f7739ca, type: 3}
+  m_PrefabInstance: {fileID: 1137959396393713771}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 552afd9778a44d7eb24ec8a2f5b3507a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1335272891109537005
 PrefabInstance:
   m_ObjectHideFlags: 0
