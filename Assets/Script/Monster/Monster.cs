@@ -12,6 +12,8 @@ public class Monster : MonoBehaviour, IPoolObject
     public bool isDead = false;
     public Status status;
 
+    public event Action OnMonsterStart;
+    public event Action OnMonsterAttacked;
     public event Action OnMonsterDeath;
     public void HasAttacked(float damage)
     {
@@ -21,6 +23,10 @@ public class Monster : MonoBehaviour, IPoolObject
         status.HP -= damage;
         if (status.HP <= 0 && !isDead)
             IsDead();
+        else
+        {
+            OnMonsterAttacked?.Invoke();//죽지 않고 데미지 받으면 데미지 Action 실행
+        }
     }
     
     public void Die()
@@ -60,6 +66,7 @@ public class Monster : MonoBehaviour, IPoolObject
     public void GetFromPool()
     {
         // 구현 내용 생략
+        OnMonsterStart?.Invoke();
     }
 
     public void ReturnToPool()
