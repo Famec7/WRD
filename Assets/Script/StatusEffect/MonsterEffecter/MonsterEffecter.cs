@@ -39,6 +39,15 @@ public class MonsterEffecter : MonoBehaviour
                 Debug.LogError("MonsterEffecter가 Sprite Renderer 컴포넌트를 찾을 수 없음");
 
         InitEffects();
+
+        Monster monster = GetComponentInParent<Monster>();
+        if(monster == null)
+            if(TryGetComponent<Monster>(out monster) == false)
+                Debug.LogError("MonsterEffecter가 Monster 컴포넌트를 찾을 수 없음");
+
+        //몬스터 Action에 필요한 연출 기능 추가
+        monster.OnMonsterAttacked += StartHitEffect;
+        monster.OnMonsterStart += InitEffects;
     }
 
     private void Update()
