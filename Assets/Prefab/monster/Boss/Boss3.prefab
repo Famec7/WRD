@@ -173,6 +173,7 @@ MonoBehaviour:
   isMovable: 0
   isDead: 0
   status: {fileID: 7244248914210091522}
+  hpUI: {fileID: 0}
 --- !u!114 &7244248914210091522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451224ee50acf4244871aacff3bdb1c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitCode: 0
+  unitCode: 13
   maxHP: 0
   HP: 0
   moveSpeed: 0
@@ -195,10 +196,11 @@ MonoBehaviour:
   monsterName: 
   IsWound: 0
   IsMark: 0
-  damageAmplification: 0
+  DamageAmplification: 0
   IsElectricShock: 0
   IsJokerMark: 0
-  devilBulletDamageAmplification: 0
+  DevilBulletDamageAmplification: 0
+  PreventWoundConsumption: 0
 --- !u!50 &4455428403941024235
 Rigidbody2D:
   serializedVersion: 4
