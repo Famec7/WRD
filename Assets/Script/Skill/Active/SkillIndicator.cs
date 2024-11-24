@@ -33,15 +33,9 @@ public class SkillIndicator : MonoBehaviour
         this.transform.localScale = newScale;
     }
 
-    public virtual void ShowIndicator(Vector3 position = default, bool isFixedPosition = false)
+    public virtual void ShowIndicator(Vector3 position = default)
     {
         _spriteRenderer.enabled = true;
-
-        if (isFixedPosition)
-        {
-            return;
-        }
-
         transform.position = position;
     }
 

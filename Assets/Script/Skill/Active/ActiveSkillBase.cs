@@ -98,9 +98,7 @@ public abstract class ActiveSkillBase : SkillBase
     {
         return new List<INode>
         {
-            new ActionNode(CheckCoolTimeState),
-            new ActionNode(CoolTimeDown),
-            new ActionNode(OnCoolTimeEnd)
+            new ActionNode(CheckCoolTimeState), new ActionNode(CoolTimeDown), new ActionNode(OnCoolTimeEnd)
         };
     }
 
@@ -214,7 +212,18 @@ public abstract class ActiveSkillBase : SkillBase
             {
                 preparingTime = 3f;
 
-                IndicatorManager.Instance.ShowIndicator(pivotPosition, indicatorType, _isFixedPosition);
+                if (_isFixedPosition)
+                {
+                    Vector2 direction =  (Vector2)weapon.owner.transform.position - pivotPosition;
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    
+                    IndicatorManager.Instance.ShowIndicator(weapon.owner.transform.position, indicatorType, angle);
+                }
+                else
+                {
+                    IndicatorManager.Instance.ShowIndicator(pivotPosition, indicatorType);
+                }
+
                 targetMonsters.Clear();
 
                 SkillUIManager.Instance.ShowPopupPanel(1);

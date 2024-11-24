@@ -135,13 +135,6 @@ public abstract class ClickTypeSkill : ActiveSkillBase
             default:
                 break;
         }
-        
-        Vector2 direction =  (Vector2)weapon.owner.transform.position - pivotPosition;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        
-        SkillIndicator indicator = IndicatorManager.Instance.GetIndicator(indicatorType);
-        indicator.transform.rotation = Quaternion.Euler(0, 0, angle);
-        indicator.transform.position = this.transform.position;
 
         return INode.ENodeState.Success;
     }
