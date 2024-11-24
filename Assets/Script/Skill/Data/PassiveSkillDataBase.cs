@@ -35,7 +35,7 @@ public class PassiveSkillDataBase : ScriptableObject
                 else
                 {
 #if UNITY_EDITOR
-                    Debug.LogError($"{passiveSkillData.Name} {data["area"].ToString()} can't parse");
+                    Debug.LogWarning($"{passiveSkillData.Name} {data["area"].ToString()} can't parse");
 #endif
                 }
 
@@ -51,7 +51,7 @@ public class PassiveSkillDataBase : ScriptableObject
                     else
                     {
 #if UNITY_EDITOR
-                        Debug.LogError($"{passiveSkillData.Name} {value} can't parse");
+                        Debug.LogWarning($"{passiveSkillData.Name} {value} can't parse");
 #endif
                     }
                 }
@@ -75,7 +75,7 @@ public class PassiveSkillDataBase : ScriptableObject
                 else
                 {
 #if UNITY_EDITOR
-                    Debug.LogError($"{passiveAuraSkillDataData.Name} {data["area"].ToString()} can't parse");
+                    Debug.LogWarning($"{passiveAuraSkillDataData.Name} {data["area"].ToString()} can't parse");
 #endif
                 }
 
@@ -91,7 +91,7 @@ public class PassiveSkillDataBase : ScriptableObject
                     else
                     {
 #if UNITY_EDITOR
-                        Debug.LogError($"{passiveAuraSkillDataData.Name} {value} can't parse");
+                        Debug.LogWarning($"{passiveAuraSkillDataData.Name} {value} can't parse");
 #endif
                     }
                 }
