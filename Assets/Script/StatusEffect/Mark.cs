@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,6 +13,9 @@ public class Mark : StatusEffect
     public override void ApplyEffect()
     {
         _markCoroutine = CoroutineHandler.Instance.StartCoroutine(MarkCoroutine());
+
+        //표식 이펙트 켜주기
+        monsterEffecter.SetMarkEffect(true);
     }
 
     public override void RemoveEffect()
@@ -25,6 +28,9 @@ public class Mark : StatusEffect
             }
             CoroutineHandler.Instance.StopCoroutine(_markCoroutine);
         }
+
+        //표식 이펙트 꺼주기
+        monsterEffecter.SetMarkEffect(false);
     }
     
     private IEnumerator MarkCoroutine()

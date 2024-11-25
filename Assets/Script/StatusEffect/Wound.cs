@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,6 +13,8 @@ public class Wound : StatusEffect
     public override void ApplyEffect()
     {
         _woundCoroutine = CoroutineHandler.Instance.StartCoroutine(WoundCoroutine());
+
+
     }
 
     public override void RemoveEffect()
