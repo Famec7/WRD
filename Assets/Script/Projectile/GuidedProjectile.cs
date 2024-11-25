@@ -45,9 +45,12 @@ public class GuidedProjectile : ProjectileBase
             OnHit?.Invoke();
             
             ProjectileManager.Instance.ReturnProjectileToPool(this);
-            
-            ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>(_hitEffectName);
-            particleEffect.SetPosition(Target.transform.position);
+
+            if (_hitEffectName != null)
+            {
+                ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>(_hitEffectName);
+                particleEffect.SetPosition(Target.transform.position);
+            }
         }
 
 

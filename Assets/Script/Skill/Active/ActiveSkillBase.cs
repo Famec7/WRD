@@ -41,7 +41,6 @@ public abstract class ActiveSkillBase : SkillBase
     private void Update()
     {
         _btRunner.Operator();
-        Debug.Log(Data.CoolTime);
     }
 
     public abstract void UseSkill();

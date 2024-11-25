@@ -27,6 +27,11 @@ public class SkillButton : MonoBehaviour
             _coolTimeImage.fillAmount = _currentSkill.CurrentCoolTime / _currentSkill.Data.CoolTime;
             _coolTimeImage.gameObject.SetActive(_coolTimeImage.fillAmount > 0);
         }
+        else
+        {
+            _coolTimeImage.fillAmount = 0;
+            _coolTimeImage.gameObject.SetActive(false);
+        }
     }
 
     public void SetSkill(ActiveSkillBase skill)
