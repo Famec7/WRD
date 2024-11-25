@@ -16,6 +16,8 @@ public abstract class StatusEffect
     public StatusEffect(GameObject target, float duration = 0f)
     {
         SetEffect(duration, target);
+
+        FindMonsterEffecter();
     }
 
     public void SetEffect(float duration, GameObject target)
@@ -36,6 +38,9 @@ public abstract class StatusEffect
     MonsterEffecter FindMonsterEffecter()
     {
         MonsterEffecter monsterEffecter = target.GetComponentInChildren<MonsterEffecter>();
+
+        //if (monsterEffecter == null) Debug.LogWarning("적에게 적 이펙터가 존재하지 않음");
+        //else Debug.Log("적에게 이펙터가 존재함");
 
         this.monsterEffecter = monsterEffecter;
 
