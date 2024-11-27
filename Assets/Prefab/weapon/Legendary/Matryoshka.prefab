@@ -146,7 +146,7 @@ MonoBehaviour:
   activeSkill: {fileID: -6178006827734595661}
   anim: {fileID: 0}
   type: 2
-  _attackSound: {fileID: 0}
+  _attackSound: {fileID: 8300000, guid: 382ebf6ebe0983a4a8d6780a155a9da8, type: 3}
 --- !u!114 &3641344283379959334
 MonoBehaviour:
   m_ObjectHideFlags: 0

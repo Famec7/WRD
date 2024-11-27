@@ -2,6 +2,8 @@
 
 public class HeavyBlow : PassiveSkillBase
 {
+    [SerializeField] private AudioClip _heavyBlowSound;
+    
     public override bool Activate(GameObject target = null)
     {
         if (!CheckTrigger() || target == null)
@@ -16,6 +18,8 @@ public class HeavyBlow : PassiveSkillBase
         ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("HeavyBlowEffect");
         effect.SetPosition(targetPosition);
         effect.PlayEffect();
+        
+        SoundManager.Instance.PlaySFX(_heavyBlowSound);
 
         foreach (var tar in targets)
         {
