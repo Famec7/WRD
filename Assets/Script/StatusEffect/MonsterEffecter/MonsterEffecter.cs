@@ -15,6 +15,18 @@ public class MonsterEffecter : MonoBehaviour
 
     int hitValue = Shader.PropertyToID("_HitValue");
 
+    [Header("Wound Effect Setting")]
+    [SerializeField] GameObject woundEffect;
+
+    [Header("Mark Effect Setting")]
+    [SerializeField] GameObject markEffect;
+
+    [Header("Slow Effect Setting")]
+    [SerializeField] GameObject slowEffect;
+
+    //[Header("Debuff Effect Setting")]
+    int debuffValue = Shader.PropertyToID("_GlowValue");
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,12 +39,25 @@ public class MonsterEffecter : MonoBehaviour
                 Debug.LogError("MonsterEffecter가 Sprite Renderer 컴포넌트를 찾을 수 없음");
 
         InitEffects();
+
+        Monster monster = GetComponentInParent<Monster>();
+        if(monster == null)
+            if(TryGetComponent<Monster>(out monster) == false)
+                Debug.LogError("MonsterEffecter가 Monster 컴포넌트를 찾을 수 없음");
+
+        //몬스터 Action에 필요한 연출 기능 추가
+        monster.OnMonsterAttacked += StartHitEffect;
+        monster.OnMonsterStart += InitEffects;
     }
 
     private void Update()
     {
         //히트 이펙트 테스트
         if (Input.GetKeyDown(KeyCode.P)) StartHitEffect();
+        if (Input.GetKeyDown(KeyCode.O)) SetWoundEffect(true);
+        if (Input.GetKeyDown(KeyCode.I)) SetMarkEffect(true);
+        if (Input.GetKeyDown(KeyCode.U)) SetSlowEffect(true);
+        if (Input.GetKeyDown(KeyCode.Y)) SetDebuffEffect(true);
     }
 
     /// <summary>
@@ -41,7 +66,13 @@ public class MonsterEffecter : MonoBehaviour
     void InitEffects()
     {
         monsterRenderer.material.SetFloat(hitValue, 0f);
+
+        SetWoundEffect(false);
+        SetMarkEffect(false);
+        SetSlowEffect(false);
+        SetDebuffEffect(false);
     }
+
 
     #region Hit Effect
 
@@ -78,4 +109,45 @@ public class MonsterEffecter : MonoBehaviour
     }
 
     #endregion
+
+    /// <summary>
+    /// 자상 연출 사용 함수
+    /// </summary>
+    /// <param name="on"></param>
+    public void SetWoundEffect(bool on)
+    {
+        if (woundEffect == null) return;
+        woundEffect.SetActive(on);
+    }
+
+    /// <summary>
+    /// 표적 연출 사용 함수
+    /// </summary>
+    /// <param name="on"></param>
+    public void SetMarkEffect(bool on)
+    {
+        if (markEffect == null) return;
+        markEffect.SetActive(on);
+    }
+
+    /// <summary>
+    /// 느려지는 연출 사용 함수
+    /// </summary>
+    /// <param name="on"></param>
+    public void SetSlowEffect(bool on)
+    {
+        if (slowEffect == null) return;
+        slowEffect.SetActive(on);
+    }
+
+    /// <summary>
+    /// 디버프 연출 사용 함수
+    /// </summary>
+    /// <param name="on"></param>
+    public void SetDebuffEffect(bool on)
+    {
+        float value = on ? 1 : 0;
+
+        monsterRenderer.material.SetFloat(debuffValue, value);
+    }
 }

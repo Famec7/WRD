@@ -207,6 +207,7 @@ public class MonsterSpawnManager : MonoBehaviour
         GameObject hpBar = MonsterHPBarPool.GetObject();
         hpBar.transform.parent = monster.transform;
         hpBar.transform.position = monster.transform.position + new Vector3(0,0.2f);
+        monster.hpUI = hpBar;
         hpBar.SetActive(true);
         hpBar.GetComponent<MonsterHPBar>().owner = monster.gameObject;
         hpBar.GetComponent<MonsterHPBar>().ownerStatus = monster.GetComponent<Status>();

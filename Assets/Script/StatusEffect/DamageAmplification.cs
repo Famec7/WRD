@@ -28,7 +28,7 @@ public class DamageAmplification : StatusEffect
         {
             if(target.TryGetComponent(out Status status))
             {
-                status.damageAmplification -= _amplificationRate;
+                status.DamageAmplification -= _amplificationRate;
             }
             CoroutineHandler.Instance.StopCoroutine(_damageAmplificationCoroutine);
         }
@@ -42,7 +42,7 @@ public class DamageAmplification : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.damageAmplification += _amplificationRate;
+            status.DamageAmplification += _amplificationRate;
             
             if(Math.Abs(duration - 0f) > 0.01f)
             {

@@ -28,7 +28,7 @@ public class ActiveSkillDataBase : ScriptableObject
             else
             {
 #if UNITY_EDITOR
-                Debug.LogError($"{activeSkillData.Name}'s cooltime is not float");
+                Debug.LogWarning($"{activeSkillData.Name}'s cooltime is not float");
 #endif
             }
 
@@ -40,7 +40,7 @@ public class ActiveSkillDataBase : ScriptableObject
             else
             {
 #if UNITY_EDITOR
-                Debug.LogError($"{activeSkillData.Name}'s type is not ActiveType");
+                Debug.LogWarning($"{activeSkillData.Name}'s type is not ActiveType");
 #endif
             }
 
@@ -52,7 +52,7 @@ public class ActiveSkillDataBase : ScriptableObject
             else
             {
 #if UNITY_EDITOR
-                Debug.LogError($"{activeSkillData.Name}'s range is not float");
+                Debug.LogWarning($"{activeSkillData.Name}'s range is not float");
 #endif
             }
 
@@ -64,7 +64,7 @@ public class ActiveSkillDataBase : ScriptableObject
             else
             {
 #if UNITY_EDITOR
-                Debug.LogError($"{activeSkillData.Name}'s skill range is not float");
+                Debug.LogWarning($"{activeSkillData.Name}'s skill range is not float");
 #endif
             }
 
@@ -79,7 +79,7 @@ public class ActiveSkillDataBase : ScriptableObject
                 else
                 {
 #if UNITY_EDITOR
-                    Debug.LogError($"{activeSkillData.Name}'s value is not float");
+                    Debug.LogWarning($"{activeSkillData.Name}'s value is not float");
 #endif
                 }
             }

@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562499871069127646}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.130506, y: 0.02730587, z: 1}
   m_LocalScale: {x: 0.012046709, y: 0.012046709, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2734065733679396096
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -102,9 +102,8 @@ MonoBehaviour:
   owner: {fileID: 0}
   _pivot:
     _pivot: {x: -0.130506, y: 0.02730587, z: 1}
-    _originRotation: {x: 0, y: 0, z: -90}
+    _originRotation: {x: 0, y: 0, z: 0}
     _originScale: {x: 0.01204671, y: 0.01204671, z: 0}
-  weaponId: 11
   weaponNum: 306
   passiveSkill: {fileID: 0}
   passiveAuraSkill: {fileID: -9126627494730696835}
