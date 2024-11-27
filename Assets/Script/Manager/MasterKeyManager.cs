@@ -32,7 +32,6 @@ public class MasterKeyManager : Singleton<MasterKeyManager>
         // 유효성 검사
         if (tier == WeaponTier.Empty || tier == WeaponTier.COUNT)
         {
-            Debug.LogError("Invalid WeaponTier provided.");
             return;
         }
 
@@ -43,7 +42,6 @@ public class MasterKeyManager : Singleton<MasterKeyManager>
         if (masterKeyCnt[index] < 0)
         {
             masterKeyCnt[index] = 0;
-            Debug.LogWarning($"{tier} 마스터 키의 개수는 음수가 될 수 없습니다. 0으로 설정합니다.");
         }
 
         // 텍스트 UI 업데이트
@@ -51,12 +49,6 @@ public class MasterKeyManager : Singleton<MasterKeyManager>
         {
             MasterKeyCountText[index].text = masterKeyCnt[index].ToString(); // 텍스트 갱신
         }
-        else
-        {
-            Debug.LogWarning($"UI 텍스트가 설정되지 않은 인덱스: {index}");
-        }
-
-        Debug.Log($"{tier} 마스터 키의 개수가 업데이트되었습니다. 현재 개수: {masterKeyCnt[index]}");
     }
 
     public void ClickMasterKeyButton(int idx)

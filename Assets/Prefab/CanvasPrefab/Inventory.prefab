@@ -5339,6 +5339,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2567436808640041159, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567436808640041159, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 3199299875713078081, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
       propertyPath: m_Name
       value: 'RareMasterKeyButton '
@@ -5440,6 +5448,14 @@ PrefabInstance:
     - target: {fileID: 390434110535092829, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567436808640041159, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567436808640041159, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 3199299875713078081, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
       propertyPath: m_Name
@@ -6027,6 +6043,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2567436808640041159, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567436808640041159, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 3199299875713078081, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
       propertyPath: m_Name
       value: UnnormalMasterKeyButton
@@ -6128,6 +6152,14 @@ PrefabInstance:
     - target: {fileID: 390434110535092829, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567436808640041159, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567436808640041159, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 3199299875713078081, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
       propertyPath: m_Name
@@ -6807,6 +6839,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2567436808640041159, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567436808640041159, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 3199299875713078081, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
       propertyPath: m_Name
       value: MythMasterKeyButton
@@ -7216,6 +7256,14 @@ PrefabInstance:
     - target: {fileID: 390434110535092829, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567436808640041159, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567436808640041159, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 3199299875713078081, guid: 06b779297917f1f45a96bd9581e5708e, type: 3}
       propertyPath: m_Name
