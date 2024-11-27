@@ -1,9 +1,11 @@
-﻿public class WeaponTierTranslator
+public class WeaponTierTranslator
 {
     public static string TranslateToKorean(WeaponTier tier)
     {
         switch (tier)
         {
+            case WeaponTier.Element:
+                return "흔함";
             case WeaponTier.UNNORMAL:
                 return "안흔함";
             case WeaponTier.RARE:

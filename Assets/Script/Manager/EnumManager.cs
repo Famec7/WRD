@@ -44,12 +44,13 @@ public enum SkillType
 public enum WeaponTier
 {
     Empty,
+    Element,
     UNNORMAL,
     RARE,
     EPIC,
     LEGENDARY,
-    COUNT,
-    MYTH
+    MYTH,
+    COUNT
 }
 
 public enum PopUpUIType

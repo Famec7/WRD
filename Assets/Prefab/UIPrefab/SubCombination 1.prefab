@@ -472,6 +472,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7359819925412291107}
     m_Modifications:
+    - target: {fileID: 300344761070490807, guid: 3c59197dc5e9ff74f96edeaadc3409e9, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 300344761070490807, guid: 3c59197dc5e9ff74f96edeaadc3409e9, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 300344761070490807, guid: 3c59197dc5e9ff74f96edeaadc3409e9, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2370462807731248519, guid: 3c59197dc5e9ff74f96edeaadc3409e9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -571,6 +583,10 @@ PrefabInstance:
     - target: {fileID: 3205913134495928408, guid: 3c59197dc5e9ff74f96edeaadc3409e9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CraftWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680876525098609470, guid: 3c59197dc5e9ff74f96edeaadc3409e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

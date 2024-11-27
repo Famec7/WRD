@@ -2,10 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
+using UnityEditor;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -33,7 +37,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject allShowClassSelectButtons;
     public GameObject classShowClassSelectButtons;
     public GameObject[] sortButtons;
-    
+    public GameObject WeaponPickerConfirmPopUp;
+
     public ScrollRect scrollRect;
 
     public Toggle allShowToggle;
@@ -341,7 +346,7 @@ public class InventoryManager : MonoBehaviour
         if (longClickPopUpUi.weaponSlot != null && longClickPopUpUi.weaponSlot.inventorySlot != null)
             pressSlot = longClickPopUpUi.weaponSlot.inventorySlot;
 
-        if (WeaponDataManager.Instance.GetKorWeaponClassText(mainWeaponID) != "������" && isMainWeapon)
+        if (WeaponDataManager.Instance.GetKorWeaponClassText(mainWeaponID) != "안흔함" && isMainWeapon)
         {
             if (pressSlot == null)
             {
@@ -581,11 +586,127 @@ public class InventoryManager : MonoBehaviour
 
                 GameManager.Instance.weaponCnt[item.i - 1]++;
                 GameManager.Instance.UpdateUseableWeaponCnt();
-                InventoryManager.instance.AddItem(weapon, false);
+                AddItem(weapon, false);
             }
 
             BookMakredSlotUI.Instance.UpdateAllSlot();
         }
+    }
+
+    public void AddItemByNum(int num)
+    {
+        string path = "WeaponIcon/" + num;
+        InventoryItem item = new InventoryItem
+        {
+            image = ResourceManager.Instance.Load<Sprite>(path)
+        };
+        item.AssignWeapon(WeaponDataManager.Instance.Database.GetWeaponIdByNum(num));
+        AddItem(item);
+    }
+
+    public void OpenWeaponPickerConfirmPopUp(int num)
+    {
+        WeaponData data = WeaponDataManager.Instance.Database.GetWeaponDataByNum(num);
+        TextMeshProUGUI confirmText = WeaponPickerConfirmPopUp.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI warningText = WeaponPickerConfirmPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        confirmText.text = WeaponTierTranslator.TranslateToKorean(data.tier) + " 마스터키를 사용하겠습니까?";
+        warningText.text = data.WeaponName + " 대신 " + WeaponTierTranslator.TranslateToKorean(data.tier) +
+            " 등급의\n마스터키가 1개가 교환됩니다.";
+
+        WeaponPickerConfirmPopUp.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
+        {
+            MasterKeyManager.Instance.UpdateMasterKeyCount(data.tier, -1);
+            if (data.tier > WeaponTier.Element)
+                AddItemByNum(num);
+            else
+                GameManager.Instance.weaponCnt[num - 101]++;
+            WeaponPickerConfirmPopUp.SetActive(false);
+        });
+
+        WeaponPickerConfirmPopUp.SetActive(true);
+    }
+
+    public void OpenWeaponPickerConfirmPopUp(List<int> num,int targetWeaponID,List<int> materialIDList)
+    {
+        List<WeaponData>datas = new List<WeaponData>();
+        foreach (int i in num)
+        {
+            WeaponData data = WeaponDataManager.Instance.Database.GetWeaponDataByNum(i);
+            datas.Add(data);
+        }
+
+        TextMeshProUGUI confirmText = WeaponPickerConfirmPopUp.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI warningText = WeaponPickerConfirmPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        Dictionary<string, int> tierUsageCount = new Dictionary<string, int>();
+        List<string> messages = new List<string>();
+        foreach (int i in num)
+        {
+            WeaponData weaponData = WeaponDataManager.Instance.Database.GetWeaponDataByNum(i);
+            string tierKorean = WeaponTierTranslator.TranslateToKorean(weaponData.tier);
+
+            if (tierUsageCount.ContainsKey(tierKorean))
+            {
+                tierUsageCount[tierKorean]++;
+            }
+            else
+            {
+                tierUsageCount[tierKorean] = 1;
+            }
+
+            // 무기 이름 가져오기
+            string weaponName = weaponData.WeaponName;
+
+            // 메시지 작성: "무슨 무기 대신에 무슨 등급"
+            string message = $"{weaponName} 대신에 {tierKorean} 등급";
+            messages.Add(message);
+        }
+
+        string message2 = "";
+        foreach (var kvp in tierUsageCount)
+        {
+            message2 += $"{kvp.Key} 등급의 마스터키가 {kvp.Value}개, ";
+        }
+
+        // 마지막 ", " 제거
+        if (message2.EndsWith(", "))
+        {
+            message2 = message2.Substring(0, message2.Length - 2);
+        }
+
+        Debug.Log(targetWeaponID);
+        confirmText.text = string.Join(", ", messages) + "의 마스터키를 사용하시겠습니까?";
+        warningText.text = "재료 무기 대신 " + message2 + " 사용됩니다.";
+        WeaponPickerConfirmPopUp.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
+        {
+            foreach(var data in datas)
+                MasterKeyManager.Instance.UpdateMasterKeyCount(data.tier, -1);
+
+            string weaponIconPath = "WeaponIcon/" + WeaponDataManager.Instance.Database.GetWeaponNumByID(targetWeaponID);
+            InventoryItem item = new InventoryItem
+            {
+                image = ResourceManager.Instance.Load<Sprite>(weaponIconPath)
+            };
+            item.AssignWeapon(targetWeaponID);
+
+            WeaponUI.Instance.weaponID = targetWeaponID;
+
+            AddItem(item, false);
+            RemoveItem(materialIDList, targetWeaponID, item, true);
+
+            if (isClassSorted)
+                ClickClassShowButton();
+
+            UIManager.instance.CreateCombineUI(targetWeaponID);
+            GameManager.Instance.weaponCnt[targetWeaponID - 1]++;
+            GameManager.Instance.UpdateUseableWeaponCnt();
+            BookMakredSlotUI.Instance.UpdateAllSlot();
+            WeaponPickerConfirmPopUp.SetActive(false);
+        });
+
+        WeaponPickerConfirmPopUp.SetActive(true);
+        WeaponPickerConfirmPopUp.transform.SetAsLastSibling();
     }
 }
 

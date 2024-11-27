@@ -22,7 +22,6 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         weaponCnt = new int[WeaponDataManager.Instance.Database.GetWeaponDataCount()];
-        
         GameManager.Instance.weaponCnt[5]++;
         useWeapon.Add(6);
         UpdateUseableWeaponCnt();

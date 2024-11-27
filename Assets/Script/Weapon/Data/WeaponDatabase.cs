@@ -32,8 +32,31 @@ public class WeaponDatabase : ScriptableObject
                 MainCombi = (data["comb1"].ToString())
             };
 
+            switch (weaponData.WeaponClass.ToLower()) // 대소문자 구분 없이 비교
+            {
+                case "normal":
+                    weaponData.tier = WeaponTier.Element ;
+                    break;
+                case "unnormal":
+                    weaponData.tier = WeaponTier.UNNORMAL;
+                    break;
+                case "rare":
+                    weaponData.tier = WeaponTier.RARE;
+                    break;
+                case "epic":
+                    weaponData.tier = WeaponTier.EPIC;
+                    break;
+                case "legendary":
+                    weaponData.tier = WeaponTier.LEGENDARY;
+                    break;
+                default:
+                    weaponData.tier = WeaponTier.Empty; // 기본값 설정
+                    Debug.LogWarning($"Unrecognized WeaponClass: {weaponData.WeaponClass}");
+                    break;
+            }
             _weaponDataList.Add(weaponData);
         }
+       
     }
     
     public WeaponData GetWeaponData(int id)
@@ -90,5 +113,22 @@ public class WeaponDatabase : ScriptableObject
         }
 
         return null;
+    }
+
+    public List<WeaponData> GetAllSameTierWeaponData(WeaponTier tier)
+    {
+        List<WeaponData> datas = new List<WeaponData>();
+        
+        foreach (var data in _weaponDataList)
+        {
+
+            if (data.tier == tier)
+            {
+                Debug.Log(tier);
+                datas.Add(data);
+            }
+        }
+
+        return datas;
     }
 }
