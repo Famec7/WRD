@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillId: 7
   weapon: {fileID: 0}
+  _heavyBlowSound: {fileID: 8300000, guid: 4256eaf8cf3b0c145b96f9bf3de33153, type: 3}
 --- !u!114 &5050315283371252058
 MonoBehaviour:
   m_ObjectHideFlags: 0

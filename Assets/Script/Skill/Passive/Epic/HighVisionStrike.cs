@@ -2,6 +2,9 @@
 
 public class HighVisionStrike : PassiveSkillBase
 {
+    [SerializeField]
+    private AudioClip _strikeSound;
+    
     public override bool Activate(GameObject target = null)
     {
         if (!CheckTrigger() || target == null)
@@ -9,6 +12,11 @@ public class HighVisionStrike : PassiveSkillBase
         
         Vector3 targetPosition = target.transform.position;
         var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, Data.Range, default, LayerMaskManager.Instance.MonsterLayerMask);
+        
+        if (targets.Count == 0)
+            return false;
+        
+        SoundManager.Instance.PlaySFX(_strikeSound);
         
         foreach (var tar in targets)
         {
