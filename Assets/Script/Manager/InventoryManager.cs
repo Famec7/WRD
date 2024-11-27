@@ -627,7 +627,7 @@ public class InventoryManager : MonoBehaviour
         WeaponPickerConfirmPopUp.SetActive(true);
     }
 
-    public void OpenWeaponPickerConfirmPopUp(List<int> num,int targetWeaponID,List<int> materialIDList)
+    public void OpenWeaponPickerConfirmPopUp(List<int> num,int targetWeaponID,List<int> materialIDList , bool isMain)
     {
         List<WeaponData>datas = new List<WeaponData>();
         foreach (int i in num)
@@ -698,7 +698,9 @@ public class InventoryManager : MonoBehaviour
             if (isClassSorted)
                 ClickClassShowButton();
 
-            UIManager.instance.CreateCombineUI(targetWeaponID);
+            if(isMain)
+                UIManager.instance.CreateCombineUI(targetWeaponID);
+
             GameManager.Instance.weaponCnt[targetWeaponID - 1]++;
             GameManager.Instance.UpdateUseableWeaponCnt();
             BookMakredSlotUI.Instance.UpdateAllSlot();

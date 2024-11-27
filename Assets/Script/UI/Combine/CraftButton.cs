@@ -30,6 +30,8 @@ public class CraftButton : MonoBehaviour
             return;
         }
 
+        bool isMasterKey = false;
+
         if (isElement)
         {
             gameObject.GetComponent<Button>().enabled = false;
@@ -40,7 +42,7 @@ public class CraftButton : MonoBehaviour
         }
 
         Color32 mainColor = GetClassColor(WeaponDataManager.Instance.Database.GetWeaponData(weaponID).WeaponClass);
-
+        
         if (GameManager.Instance.weaponCnt[weaponID - 1] > 0)
             transform.GetComponent<Image>().color = mainColor;
         else
@@ -63,7 +65,10 @@ public class CraftButton : MonoBehaviour
                 tmpCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(i) - 1]--;
             }
             else
+            {
                 absentWeaponList.Add(i);
+                isMasterKey = true;
+            }
         }
 
         List<WeaponData> absentWeaponData = new List<WeaponData>();
@@ -82,12 +87,12 @@ public class CraftButton : MonoBehaviour
 
         WeaponData weaponData = WeaponDataManager.Instance.GetWeaponData(weaponID);
 
-        if (hasMaterialCnt == materialWeapons.Length)
+        if (hasMaterialCnt == materialWeapons.Length && !isMasterKey)
         {
             canCombineBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             canCombineBorder.SetActive(true);
         }
-        else if (MasterKeyManager.Instance.masterKeyCnt[(int)weaponData.tier - 1] > 0 && !isMain && !isElement)
+        else if (MasterKeyManager.Instance.masterKeyCnt[(int)weaponData.tier - 1] > 0  && !isElement)
         {
             canCombineBorder.GetComponent<Image>().color = new Color32(255, 71, 40, 255);
             canCombineBorder.SetActive(true);
@@ -172,7 +177,7 @@ public class CraftButton : MonoBehaviour
 
            if (hasMaterialCnt == materialWeapons.Length)
             {
-                InventoryManager.instance.OpenWeaponPickerConfirmPopUp(absentWeaponList,weaponID, materialIDList);
+                InventoryManager.instance.OpenWeaponPickerConfirmPopUp(absentWeaponList,weaponID, materialIDList , isMain);
             }
         }
     }
