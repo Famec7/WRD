@@ -35,7 +35,7 @@ public class MessageManager : Singleton<MessageManager>
     {
         Message message = null;
 
-        if (messagePool.Count > 0)
+        if (messagePool.Count > 0 && message is not null)
         {
             message = messagePool.Dequeue();
             message.gameObject.SetActive(true);
