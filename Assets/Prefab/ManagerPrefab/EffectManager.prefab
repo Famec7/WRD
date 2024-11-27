@@ -138,3 +138,7 @@ MonoBehaviour:
     _prefab: {fileID: 6183752856471893361, guid: bed2660f448fe2e49874c3dbe8694832, type: 3}
     _count: 1
     _preloadOnStart: 0
+  - _name: MonsterDead
+    _prefab: {fileID: 5859218966625097769, guid: 48b895b0689b7e642a7c29090f7739ca, type: 3}
+    _count: 100
+    _preloadOnStart: 0

@@ -43,6 +43,8 @@ public class Monster : MonoBehaviour, IPoolObject
 
         OnMonsterDeath?.Invoke();
 
+        
+
         if (status.unitCode >= UnitCode.MISSIONBOSS1 && status.unitCode <= UnitCode.MISSIONBOSS6)
         {
             MissionManager.Instance.TargetMonsterList.Remove(this);
