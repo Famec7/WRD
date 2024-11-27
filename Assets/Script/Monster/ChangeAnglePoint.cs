@@ -39,11 +39,9 @@ public class ChangeAnglePoint : MonoBehaviour
             collision.transform.parent.gameObject.GetComponent<MonsterMoveComponent>().returnPos = transform.position;
             Vector3 collisionScale = collision.transform.parent.localScale;
             if (monsterMoveDir.x < 0 || monsterMoveDir.y < 0)
-                collision.transform.parent.localScale = new Vector3(-1* collisionScale.x, 1* collisionScale.y, 1* collisionScale.z);
+                collision.transform.parent.GetComponent<SpriteRenderer>().flipX = true;
             else
-                collision.transform.parent.localScale = new Vector3(1* collisionScale.x, 1* collisionScale.y, 1* collisionScale.z);
-
-            
+                collision.transform.parent.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 }
