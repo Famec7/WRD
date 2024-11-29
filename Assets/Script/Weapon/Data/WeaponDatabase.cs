@@ -35,7 +35,7 @@ public class WeaponDatabase : ScriptableObject
             switch (weaponData.WeaponClass.ToLower()) // 대소문자 구분 없이 비교
             {
                 case "normal":
-                    weaponData.tier = WeaponTier.Element ;
+                    weaponData.tier = WeaponTier.Normal ;
                     break;
                 case "unnormal":
                     weaponData.tier = WeaponTier.UNNORMAL;
@@ -124,7 +124,6 @@ public class WeaponDatabase : ScriptableObject
 
             if (data.tier == tier)
             {
-                Debug.Log(tier);
                 datas.Add(data);
             }
         }

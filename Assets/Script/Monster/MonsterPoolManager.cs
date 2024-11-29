@@ -61,6 +61,7 @@ public class MonsterPoolManager : Singleton<MonsterPoolManager>
         }
         
         pooledObject.GetComponent<Basic_Monster>().isDead = false;
+        pooledObject.GetComponent<Monster>().isDead = false;
         pooledObject.transform.SetParent(null);
 
         return pooledObject;

@@ -24,7 +24,6 @@ public class WeaponPickerUI : UIPopUp
         List<WeaponData> dataList = WeaponDataManager.Instance.Database.GetAllSameTierWeaponData(tier);
         foreach (var data in dataList)
         {
-            Debug.Log("Init" + data);
             GameObject WeaponPickButton = Instantiate(WeaponPickButtonPrefab, _scrollbarTransform);
             string weaponIconPath = "WeaponIcon/" + data.num;
             WeaponPickButton.transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(weaponIconPath);

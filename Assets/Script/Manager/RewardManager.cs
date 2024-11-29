@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 public class RewardManager : Singleton<RewardManager>
 {
@@ -52,6 +55,44 @@ public class RewardManager : Singleton<RewardManager>
 
     public void GetReward(UnitCode code)
     {
-          ElementManager.instance.GetElement(3);
+        if (code >= UnitCode.MISSIONBOSS1 && code <= UnitCode.MISSIONBOSS6)
+        {
+            int idx = code - UnitCode.MISSIONBOSS1;
+            Tuple<string, List<int>> rewardTuple = MissionMonsterManager.instance.rewardList[idx];
+
+            string[] rewardStr = rewardTuple.Item1.Split(',');
+
+            for (int i = 0; i < rewardStr.Length; i++)
+            {
+                if (rewardStr[i].EndsWith("_m"))
+                {
+                    if(Enum.TryParse(rewardStr[i].Replace("_m", ""), true, out WeaponTier tier))
+                    {
+                        MasterKeyManager.Instance.UpdateMasterKeyCount(tier, rewardTuple.Item2[i]);
+                    }
+                }
+                else
+                {
+                    if (Enum.TryParse(rewardStr[i], true, out WeaponTier tier))
+                    {
+                        GetRandomWeapon(tier, rewardTuple.Item1[i]);
+                    }
+                }
+            }
+        }    
     }
+
+    public void GetRandomWeapon(WeaponTier tier,int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            List<WeaponData> sameTierWeaponList = WeaponDataManager.Instance.Database.GetAllSameTierWeaponData(tier);
+            int random = Random.Range(0, sameTierWeaponList.Count);
+            WeaponData rewardData = sameTierWeaponList[random];
+            InventoryManager.instance.AddItemByNum(rewardData.num);
+        }
+    }
+
+
+
 }

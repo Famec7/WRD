@@ -5192,6 +5192,30 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[0]._count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[1]._count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[2]._count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[3]._count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[4]._count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[5]._count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
       propertyPath: _poolDatas.Array.data[19]._count
       value: 1
       objectReference: {fileID: 0}
@@ -5203,6 +5227,10 @@ PrefabInstance:
       propertyPath: _poolDatas.Array.data[8]._prefab
       value: 
       objectReference: {fileID: 6432071037866064084, guid: 37facf61d42157e41be4ba89552674c7, type: 3}
+    - target: {fileID: 1349269234215623802, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
+      propertyPath: _poolDatas.Array.data[0]._preloadOnStart
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4515531161734457313, guid: 79a1f311795c2c64984f08ad632e6e01, type: 3}
       propertyPath: poolingObjectPrefab
       value: 

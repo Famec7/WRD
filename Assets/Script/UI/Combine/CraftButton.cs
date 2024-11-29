@@ -23,6 +23,13 @@ public class CraftButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Color32 mainColor = GetClassColor(WeaponDataManager.Instance.Database.GetWeaponData(weaponID).WeaponClass);
+
+        if (GameManager.Instance.weaponCnt[weaponID - 1] > 0)
+            transform.GetComponent<Image>().color = mainColor;
+        else
+            transform.GetComponent<Image>().color = new Color32(56, 56, 56, 255); 
+
         if (GameManager.Instance.weaponCnt[weaponID-1] > 0 && !isMain)
         {
             gameObject.GetComponent<Button>().enabled = false;
@@ -40,65 +47,60 @@ public class CraftButton : MonoBehaviour
                 canCombineBorder.GetComponent<Image>().color = new Color32(255, 71, 40, 255);
             }
         }
-
-        Color32 mainColor = GetClassColor(WeaponDataManager.Instance.Database.GetWeaponData(weaponID).WeaponClass);
-        
-        if (GameManager.Instance.weaponCnt[weaponID - 1] > 0)
-            transform.GetComponent<Image>().color = mainColor;
         else
-            transform.GetComponent<Image>().color = new Color32(56, 56, 56, 255); ;
-
-        int hasMaterialCnt = 0;
-        int[] tmpCnt = new int[GameManager.Instance.weaponCnt.Length];
-        int[] tmpMasterKeyCnt = new int[MasterKeyManager.Instance.masterKeyCnt.Length];
-
-        List<int> absentWeaponList = new List<int>();
-
-        Array.Copy(GameManager.Instance.weaponCnt, tmpCnt, tmpCnt.Length);
-        Array.Copy(MasterKeyManager.Instance.masterKeyCnt, tmpMasterKeyCnt, tmpMasterKeyCnt.Length);
-
-        foreach (int i in materialWeapons)
         {
-            if (tmpCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(i) - 1] >= 1)
+            int hasMaterialCnt = 0;
+            int[] tmpCnt = new int[GameManager.Instance.weaponCnt.Length];
+            int[] tmpMasterKeyCnt = new int[MasterKeyManager.Instance.masterKeyCnt.Length];
+
+            List<int> absentWeaponList = new List<int>();
+
+            Array.Copy(GameManager.Instance.weaponCnt, tmpCnt, tmpCnt.Length);
+            Array.Copy(MasterKeyManager.Instance.masterKeyCnt, tmpMasterKeyCnt, tmpMasterKeyCnt.Length);
+
+            foreach (int i in materialWeapons)
             {
-                hasMaterialCnt++;
-                tmpCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(i) - 1]--;
+                if (tmpCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(i) - 1] >= 1)
+                {
+                    hasMaterialCnt++;
+                    tmpCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(i) - 1]--;
+                }
+                else
+                {
+                    absentWeaponList.Add(i);
+                    isMasterKey = true;
+                }
+            }
+
+            List<WeaponData> absentWeaponData = new List<WeaponData>();
+
+            foreach (int id in absentWeaponList)
+                absentWeaponData.Add(WeaponDataManager.Instance.Database.GetWeaponDataByNum(id));
+
+            foreach (var data in absentWeaponData)
+            {
+                if (tmpMasterKeyCnt[(int)data.tier - 1] >= 1)
+                {
+                    hasMaterialCnt++;
+                    tmpMasterKeyCnt[(int)data.tier - 1]--;
+                }
+            }
+
+            WeaponData weaponData = WeaponDataManager.Instance.GetWeaponData(weaponID);
+
+            if (hasMaterialCnt == materialWeapons.Length && !isMasterKey)
+            {
+                canCombineBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                canCombineBorder.SetActive(true);
+            }
+            else if (MasterKeyManager.Instance.masterKeyCnt[(int)weaponData.tier - 1] > 0 && !isElement)
+            {
+                canCombineBorder.GetComponent<Image>().color = new Color32(255, 71, 40, 255);
+                canCombineBorder.SetActive(true);
             }
             else
-            {
-                absentWeaponList.Add(i);
-                isMasterKey = true;
-            }
+                canCombineBorder.SetActive(false);
         }
-
-        List<WeaponData> absentWeaponData = new List<WeaponData>();
-
-        foreach (int id in absentWeaponList)
-            absentWeaponData.Add(WeaponDataManager.Instance.Database.GetWeaponDataByNum(id));
-
-        foreach (var data in absentWeaponData)
-        {
-            if (tmpMasterKeyCnt[(int)data.tier - 1] >= 1)
-            {
-                hasMaterialCnt++;
-                tmpMasterKeyCnt[(int)data.tier - 1]--;
-            }
-        }
-
-        WeaponData weaponData = WeaponDataManager.Instance.GetWeaponData(weaponID);
-
-        if (hasMaterialCnt == materialWeapons.Length && !isMasterKey)
-        {
-            canCombineBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-            canCombineBorder.SetActive(true);
-        }
-        else if (MasterKeyManager.Instance.masterKeyCnt[(int)weaponData.tier - 1] > 0  && !isElement)
-        {
-            canCombineBorder.GetComponent<Image>().color = new Color32(255, 71, 40, 255);
-            canCombineBorder.SetActive(true);
-        }
-        else
-            canCombineBorder.SetActive(false);
             
     }
 
@@ -188,7 +190,7 @@ public class CraftButton : MonoBehaviour
 
         switch (classStr)
         {
-            case "element":
+            case "normal":
                 color = new Color32(0, 0, 0, 255);
                 break;
             case "unnormal":

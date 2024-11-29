@@ -23,7 +23,6 @@ public class MasterKeyManager : Singleton<MasterKeyManager>
             WeaponPicker.GetComponent<WeaponPickerUI>().Init(tier);
             WeaponPicker.SetActive(false);
             WeaponPickerList.Add(WeaponPicker);
-            UpdateMasterKeyCount(tier, 100);
         }
     }
 
@@ -75,4 +74,5 @@ public class MasterKeyManager : Singleton<MasterKeyManager>
     {
         ;
     }
+ 
 }

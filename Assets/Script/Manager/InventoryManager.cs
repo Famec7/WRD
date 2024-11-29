@@ -617,7 +617,7 @@ public class InventoryManager : MonoBehaviour
         WeaponPickerConfirmPopUp.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
         {
             MasterKeyManager.Instance.UpdateMasterKeyCount(data.tier, -1);
-            if (data.tier > WeaponTier.Element)
+            if (data.tier > WeaponTier.Normal)
                 AddItemByNum(num);
             else
                 GameManager.Instance.weaponCnt[num - 101]++;

@@ -44,7 +44,7 @@ public enum SkillType
 public enum WeaponTier
 {
     Empty,
-    Element,
+    Normal,
     UNNORMAL,
     RARE,
     EPIC,
