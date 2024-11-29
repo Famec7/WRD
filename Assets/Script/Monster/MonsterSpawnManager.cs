@@ -97,8 +97,15 @@ public class MonsterSpawnManager : MonoBehaviour
     {
         UIManager.instance.currentMonsterNum.text = currentMonsterNum.ToString();
 
-        if (GameManager.Instance.isGameOver) return;
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            Time.timeScale = 1.0f;
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            Time.timeScale = 2.0f;
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            Time.timeScale = 3.0f;
 
+        if (GameManager.Instance.isGameOver) return;
+        
         int idx = GameManager.Instance.wave - 1;
         isBossWave = bossSpawnNum[idx] >= 1;
 
@@ -171,8 +178,10 @@ public class MonsterSpawnManager : MonoBehaviour
 
         if (spawnDelayTimer >= monsterSpawnTime[idx] && !isNormalSpawnStop)
         {
-            int monsterIndex = ((GameManager.Instance.wave - 1) / 5) + 1;
-            UnitCode code = (UnitCode)((int)UnitCode.MONSTER1 + (monsterIndex - 1));
+            int monsterIndex = (GameManager.Instance.wave - 1) / 5;
+            if (GameManager.Instance.wave % 5 == 0) monsterIndex -= 1;
+
+            UnitCode code = (UnitCode)((int)UnitCode.MONSTER1 + monsterIndex);
 
             SpawnMonster(code);
         }
@@ -201,6 +210,10 @@ public class MonsterSpawnManager : MonoBehaviour
     public Monster SpawnMonster(UnitCode code)
     {
         var monster = MonsterPoolManager.Instance.GetPooledObject(code);
+        if (monster == null)
+        {
+            Debug.LogError($"GetPooledObject returned null for code: {code}");
+        }
         monster.GetComponent<MonsterMoveComponent>().roadNum = 1; 
         monster.transform.position = spawnPoints[spawnPointsCount - 1].transform.position;
 
@@ -208,6 +221,7 @@ public class MonsterSpawnManager : MonoBehaviour
         hpBar.transform.parent = monster.transform;
         hpBar.transform.position = monster.transform.position + new Vector3(0,0.2f);
         monster.hpUI = hpBar;
+
         hpBar.SetActive(true);
         hpBar.GetComponent<MonsterHPBar>().owner = monster.gameObject;
         hpBar.GetComponent<MonsterHPBar>().ownerStatus = monster.GetComponent<Status>();

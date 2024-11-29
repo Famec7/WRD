@@ -4,7 +4,7 @@ public class WeaponTierTranslator
     {
         switch (tier)
         {
-            case WeaponTier.Element:
+            case WeaponTier.Normal:
                 return "흔함";
             case WeaponTier.UNNORMAL:
                 return "안흔함";
