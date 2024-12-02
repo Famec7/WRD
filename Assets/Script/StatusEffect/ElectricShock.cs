@@ -23,14 +23,14 @@ public class ElectricShock : StatusEffect
 
     public override void RemoveEffect()
     {
+        if(target.TryGetComponent(out Status status))
+        {
+            status.IsElectricShock = false;
+            status.DamageAmplification -= _damageAmplification;
+        }
+        
         if (_electricShockCoroutine != null)
         {
-            if(target.TryGetComponent(out Status status))
-            {
-                status.IsElectricShock = false;
-                status.DamageAmplification -= _damageAmplification;
-            }
-            
             CoroutineHandler.Instance.StopCoroutine(_electricShockCoroutine);
         }
         
@@ -39,16 +39,31 @@ public class ElectricShock : StatusEffect
 #endif
     }
 
+    public override void CombineEffect(StatusEffect statusEffect)
+    {
+        base.CombineEffect(statusEffect);
+        
+        if (statusEffect is ElectricShock electricShock)
+        {
+            _damageAmplification += electricShock._damageAmplification;
+            
+            if (target.TryGetComponent(out Status status))
+            {
+                status.DamageAmplification = _damageAmplification;
+            }
+        }
+    }
+
     private IEnumerator ElectricShockCoroutine()
     {
         if (target.TryGetComponent(out Status status))
         {
             status.IsElectricShock = true;
-            status.DamageAmplification += _damageAmplification;
+            status.DamageAmplification = _damageAmplification;
 
             if (Math.Abs(duration - 0f) > 0.01f)
             {
-                yield return new WaitForSeconds(duration);
+                yield return waitTime;
 
                 RemoveEffect();
             }

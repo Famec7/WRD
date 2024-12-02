@@ -23,13 +23,14 @@ public class JokerMark : StatusEffect
 
     public override void RemoveEffect()
     {
+        if(target.TryGetComponent(out Status status))
+        {
+            status.IsJokerMark = false;
+            _action?.Invoke(target.GetComponent<Monster>());
+        }
+        
         if (_jokerMarkCoroutine != null)
         {
-            if(target.TryGetComponent(out Status status))
-            {
-                status.IsJokerMark = false;
-                _action?.Invoke(target.GetComponent<Monster>());
-            }
             CoroutineHandler.Instance.StopCoroutine(_jokerMarkCoroutine);
         }
         

@@ -20,12 +20,13 @@ public class Mark : StatusEffect
 
     public override void RemoveEffect()
     {
+        if(target.TryGetComponent(out Status status))
+        {
+            status.IsMark = false;
+        }
+        
         if (_markCoroutine != null)
         {
-            if(target.TryGetComponent(out Status status))
-            {
-                status.IsMark = false;
-            }
             CoroutineHandler.Instance.StopCoroutine(_markCoroutine);
         }
 

@@ -24,12 +24,13 @@ public class DamageAmplification : StatusEffect
 
     public override void RemoveEffect()
     {
+        if(target.TryGetComponent(out Status status))
+        {
+            status.DamageAmplification -= _amplificationRate;
+        }
+        
         if (_damageAmplificationCoroutine != null)
         {
-            if(target.TryGetComponent(out Status status))
-            {
-                status.DamageAmplification -= _amplificationRate;
-            }
             CoroutineHandler.Instance.StopCoroutine(_damageAmplificationCoroutine);
         }
         
@@ -37,16 +38,31 @@ public class DamageAmplification : StatusEffect
         Debug.Log($"{nameof(DamageAmplification)} Effect Removed - Amplification Rate: {_amplificationRate}");
 #endif
     }
-    
+
+    public override void CombineEffect(StatusEffect statusEffect)
+    {
+        base.CombineEffect(statusEffect);
+        
+        if (statusEffect is DamageAmplification damageAmplification)
+        {
+            _amplificationRate += damageAmplification._amplificationRate;
+            
+            if (target.TryGetComponent(out Status status))
+            {
+                status.DamageAmplification = _amplificationRate;
+            }
+        }
+    }
+
     private IEnumerator DamageAmplificationCoroutine()
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.DamageAmplification += _amplificationRate;
+            status.DamageAmplification = _amplificationRate;
             
             if(Math.Abs(duration - 0f) > 0.01f)
             {
-                yield return new WaitForSeconds(duration);
+                yield return waitTime;
                 
                 RemoveEffect();
             }
