@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     public bool isGameOver = false;
     public int[] weaponCnt;
     public int[] useAbleWeaponCnt;
-
+    public int StartElementCnt = 5;
     public List<int> useWeapon;
 
     protected override void Init()
@@ -25,7 +25,7 @@ public class GameManager : Singleton<GameManager>
         GameManager.Instance.weaponCnt[5]++;
         useWeapon.Add(6);
         UpdateUseableWeaponCnt();
-        ElementManager.instance.GetElement(5);
+        ElementManager.instance.GetElement(StartElementCnt);
     }
 
     public bool IsUsing(int weaponID)

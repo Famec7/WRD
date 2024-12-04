@@ -36,6 +36,11 @@ public class CraftButton : MonoBehaviour
             canCombineBorder.SetActive(false);
             return;
         }
+        else
+        {
+            gameObject.GetComponent<Button>().enabled = true;
+
+        }
 
         bool isMasterKey = false;
 

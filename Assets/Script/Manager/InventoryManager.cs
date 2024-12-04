@@ -184,8 +184,7 @@ public class InventoryManager : MonoBehaviour
         if (items.Count < slots.Length)
         {
             items.Add(_item);
-
-            if(refresh)
+            if (refresh)
                 FreshSlot();
         }
         else
@@ -341,10 +340,19 @@ public class InventoryManager : MonoBehaviour
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
         InventorySlot pressSlot = null;
 
+
         if (longClickPopUpUi.inventorySlot != null)
             pressSlot = longClickPopUpUi.inventorySlot;
         if (longClickPopUpUi.weaponSlot != null && longClickPopUpUi.weaponSlot.inventorySlot != null)
             pressSlot = longClickPopUpUi.weaponSlot.inventorySlot;
+
+        if (pressSlot != null)
+        {
+            if (!itemIDs.Contains(pressSlot.gameObject.GetComponent<LongClickComponenet>().weaponID))
+            {
+                pressSlot = null;
+            }
+        }
 
         if (WeaponDataManager.Instance.GetKorWeaponClassText(mainWeaponID) != "안흔함" && isMainWeapon)
         {
@@ -386,11 +394,13 @@ public class InventoryManager : MonoBehaviour
                         {
 
                             items.Remove(pressSlot.weapon);
+                            WeaponUI.Instance.weaponID = item.data.ID;
                             WeaponUI.Instance.ChangeItem(j, item);
                             GameManager.Instance.weaponCnt[itemIDs[0] - 1]--;
+                            GameManager.Instance.RemoveUseWeaponList(pressSlot.GetComponent<LongClickComponenet>().weaponID);
                             WeaponManager.Instance.RemoveWeapon(j);
                             WeaponManager.Instance.AddWeapon(j, mainWeaponID);
-
+                            weaponSlot.weaponID = mainWeaponID;
                             itemIDs.Remove(itemIDs[0]);
                             break;
                         }
@@ -404,7 +414,6 @@ public class InventoryManager : MonoBehaviour
             InventoryItem removeToItem = null;
             if (i>5)
             {
-                
                 if (GameManager.Instance.useAbleWeaponCnt[i-1] > 0)
                 {
                     foreach (var slot in slots)
@@ -431,6 +440,8 @@ public class InventoryManager : MonoBehaviour
 
                         if (removeToItem.data.ID == i)
                         {
+                            WeaponManager.Instance.RemoveWeapon(j);
+                            GameManager.Instance.RemoveUseWeaponList(i);
                             weaponSlot.Init();
                             break;
                         }
