@@ -6,6 +6,8 @@ using static UnityEngine.GraphicsBuffer;
 public class TripleKunai : PassiveSkillBase
 {
     private readonly List<Monster> _hitMonsterList = new List<Monster>();
+    [SerializeField]
+    private AudioClip _skillSound;
     
     public override bool Activate(GameObject target = null)
     {
@@ -24,6 +26,8 @@ public class TripleKunai : PassiveSkillBase
             projectile.SetType(RangedWeapon.Type.Bow);
             projectile.OnHit += () => OnHit(projectile);
         }
+        
+        SoundManager.Instance.PlaySFX(_skillSound);
 
         return true;
     }

@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 
 public class PlannedBomb : InstantaneousSkill
 {
+    [SerializeField]
+    private AudioClip _bombSound;
+    
     protected override void OnActiveEnter()
     {
         GlueBomb passiveAuraSkill = (GlueBomb)weapon.passiveAuraSkill;
@@ -18,6 +21,8 @@ public class PlannedBomb : InstantaneousSkill
 
         // 딕셔너리 초기화
         passiveAuraSkill.monsterBombs.Clear();
+        
+        SoundManager.Instance.PlaySFX(_bombSound);
     }
 
     protected override INode.ENodeState OnActiveExecute()

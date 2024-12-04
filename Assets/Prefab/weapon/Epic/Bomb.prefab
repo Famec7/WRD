@@ -105,7 +105,6 @@ MonoBehaviour:
     _pivot: {x: 0, y: 0, z: 0}
     _originRotation: {x: 0, y: 0, z: 0}
     _originScale: {x: 0.01220219, y: 0.01220219, z: 0.01220219}
-  weaponId: 18
   weaponNum: 410
   passiveSkill: {fileID: 0}
   passiveAuraSkill: {fileID: 8401341244952071835}
@@ -128,7 +127,7 @@ MonoBehaviour:
   skillId: 33
   weapon: {fileID: 0}
   BombProjectiles: []
-  _attackSound: {fileID: 0}
+  _attackSound: {fileID: 8300000, guid: f9941eda762f1474993231acf8ba2d2f, type: 3}
   bombNumPrefab: {fileID: 7551174404583364719, guid: 15b12573b9ed99b4b82db618e9a8f5d1, type: 3}
 --- !u!114 &337837907793772510
 MonoBehaviour:
@@ -183,3 +182,4 @@ MonoBehaviour:
   weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 1
+  _bombSound: {fileID: 8300000, guid: 4cd572ee9c0bbcc49b962154e1e434fa, type: 3}

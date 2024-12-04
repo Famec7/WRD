@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class DividedDevilBullet : PassiveSkillBase
 {
+    [SerializeField]
+    private AudioClip _bulletSound;
     private readonly List<Monster> _targets = new List<Monster>();
 
     public override bool Activate(GameObject target = null)
@@ -13,6 +15,7 @@ public class DividedDevilBullet : PassiveSkillBase
         if (FindTargetsBy(target))
         {
             SpawnBullet();
+            SoundManager.Instance.PlaySFX(_bulletSound);
             return true;
         }
 

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DevilBullet : ClickTypeSkill
 {
+    [SerializeField]
+    private AudioClip _bulletSound;
+    
     private int _attackCount = 0;
 
     protected override void OnActiveEnter()
@@ -45,6 +48,8 @@ public class DevilBullet : ClickTypeSkill
             StatusEffect devilBulletDamageAmplification =
                 new DevilBulletDamageAmplification(monster.gameObject, amplification);
             StatusEffectManager.Instance.AddStatusEffect(monster.status, devilBulletDamageAmplification);
+            
+            SoundManager.Instance.PlaySFX(_bulletSound);
         }
     }
 

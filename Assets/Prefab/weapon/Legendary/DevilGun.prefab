@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillId: 16
   weapon: {fileID: 0}
+  _bulletSound: {fileID: 8300000, guid: 95b39c726153cce4e8023e5231370ab8, type: 3}
 --- !u!114 &1958692894468307965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,3 +195,4 @@ MonoBehaviour:
   weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
+  _bulletSound: {fileID: 8300000, guid: e54f9197c59291b4ab105c0320999294, type: 3}

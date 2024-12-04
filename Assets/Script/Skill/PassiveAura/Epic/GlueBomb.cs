@@ -21,7 +21,7 @@ public class GlueBomb : PassiveAuraSkillBase
 
     private void Start()
     {
-        weapon.OnAttack += OnAttack;
+        weapon.OnAttack = OnAttack;
     }
 
     private void OnAttack()
