@@ -39,7 +39,7 @@ public class Stun : StatusEffect
     {
         if (target.TryGetComponent(out Status status))
         {
-            status.moveSpeed = 0.0f;
+            status.MoveSpeed = 0.0f;
             
             if (Mathf.Abs(duration) > 0.01f)
             {

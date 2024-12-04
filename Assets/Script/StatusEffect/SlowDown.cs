@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class SlowDown : StatusEffect
 {
-    // 이속감소의 최대 감속률
-    private static float maxSlowDownRate = 70.0f;
-    
     private Coroutine _slowDownCoroutine;
     private float _slowDownRate;
 
@@ -34,7 +31,7 @@ public class SlowDown : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.ResetSpeed();
+            status.moveSpeedMultiplier -= _slowDownRate;
         }
         
         if (_slowDownCoroutine != null)
@@ -47,26 +44,11 @@ public class SlowDown : StatusEffect
 #endif
     }
 
-    public override void CombineEffect(StatusEffect statusEffect)
-    {
-        base.CombineEffect(statusEffect);
-
-        if (statusEffect is SlowDown slowDown)
-        {
-            SlowDownRate = Mathf.Min(SlowDownRate + slowDown.SlowDownRate, maxSlowDownRate);
-            
-            if (target.TryGetComponent(out Status status))
-            {
-                status.moveSpeed = status.originalSpeed * (1 - _slowDownRate / 100);
-            }
-        }
-    }
-
     private IEnumerator SlowDownCoroutine()
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.moveSpeed = status.originalSpeed * (1 - _slowDownRate / 100);
+            status.moveSpeedMultiplier += _slowDownRate;
 
             if(Math.Abs(duration) > 0.01f)
             {

@@ -39,26 +39,11 @@ public class DamageAmplification : StatusEffect
 #endif
     }
 
-    public override void CombineEffect(StatusEffect statusEffect)
-    {
-        base.CombineEffect(statusEffect);
-        
-        if (statusEffect is DamageAmplification damageAmplification)
-        {
-            _amplificationRate += damageAmplification._amplificationRate;
-            
-            if (target.TryGetComponent(out Status status))
-            {
-                status.DamageAmplification = _amplificationRate;
-            }
-        }
-    }
-
     private IEnumerator DamageAmplificationCoroutine()
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.DamageAmplification = _amplificationRate;
+            status.DamageAmplification += _amplificationRate;
             
             if(Math.Abs(duration - 0f) > 0.01f)
             {

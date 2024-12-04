@@ -22,7 +22,7 @@ public class Mark : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.IsMark = false;
+            status.MarkStack--;
         }
         
         if (_markCoroutine != null)
@@ -38,13 +38,13 @@ public class Mark : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.IsMark = true;
+            status.MarkStack++;
             
             if(Math.Abs(duration - 0f) > 0.01f)
             {
                 yield return waitTime;
-
-                status.IsMark = false;
+                
+                RemoveEffect();
             }
             else
             {

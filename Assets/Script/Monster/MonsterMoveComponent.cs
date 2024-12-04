@@ -24,7 +24,7 @@ public class MonsterMoveComponent : MonoBehaviour
     {
         if (isRoad)
         {
-            transform.position += moveDir * status.moveSpeed * Time.deltaTime;
+            transform.position += moveDir * status.MoveSpeed * Time.deltaTime;
             returnMoveDir = Vector3.zero;
         }
         else
@@ -32,7 +32,7 @@ public class MonsterMoveComponent : MonoBehaviour
             if ((int)returnMoveDir.x == 0 && (int)returnMoveDir.y == 0)
                 returnMoveDir = FindCloseRoadDir();
 
-            transform.position += returnMoveDir * status.moveSpeed * Time.deltaTime;
+            transform.position += returnMoveDir * status.MoveSpeed * Time.deltaTime;
         }
 
 

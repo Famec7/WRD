@@ -36,15 +36,6 @@ public abstract class StatusEffect
     public abstract void RemoveEffect();
     
     /// <summary>
-    /// 기존 상태이상에서 중첩되는 상태이상을 합치는 함수
-    /// </summary>
-    /// <param name="statusEffect"> 중첩할 상태이상 </param>
-    public virtual void CombineEffect(StatusEffect statusEffect)
-    {
-        AddDuration(statusEffect.Duration);
-    }
-    
-    /// <summary>
     /// 상태이상의 지속시간을 추가하는 함수
     /// </summary>
     /// <param name="duration"> 추가할 지속시간 </param>

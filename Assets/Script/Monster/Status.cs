@@ -9,8 +9,23 @@ public class Status : MonoBehaviour
     public UnitCode unitCode;
     public float maxHP;
     public float HP;
-    public float moveSpeed;
-    
+
+    // 이속감소의 최대 감속률
+    private const float _maxSlowDownRate = 70.0f;
+    private float _moveSpeed;
+    public float MoveSpeed
+    {
+        get
+        {
+            if (moveSpeedMultiplier > _maxSlowDownRate)
+            {
+                return _moveSpeed * (1 - _maxSlowDownRate) / 100.0f;
+            }
+            return _moveSpeed * (1 - moveSpeedMultiplier) / 100.0f;
+        }
+        set => _moveSpeed = value;
+    }
+
     public float originalSpeed;
 
     public float resist;
@@ -21,16 +36,16 @@ public class Status : MonoBehaviour
     #region StatusEffect
 
     [HideInInspector]
-    public bool IsWound; // 자상
+    public int WoundStack; // 자상
     
     [HideInInspector]
-    public bool IsMark; // 표식
+    public int MarkStack; // 표식
     
     [HideInInspector]
     public float DamageAmplification; // 데미지 증폭
     
     [HideInInspector]
-    public bool IsElectricShock; // 감전
+    public int ElectricShockStack; // 감전
     
     [HideInInspector]
     public bool IsJokerMark; // 조커 표식
@@ -40,6 +55,9 @@ public class Status : MonoBehaviour
     
     [HideInInspector]
     public bool PreventWoundConsumption; // 자상 소모 방지
+    
+    [HideInInspector]
+    public float moveSpeedMultiplier = 1f; // 이동속도 배수
 
     #endregion
     
@@ -54,7 +72,6 @@ public class Status : MonoBehaviour
             HP = MonsterDataManager.instance.HPData[wave];
             defense = MonsterDataManager.instance.defenseData[wave];
         }
-
         else
         {
             HP = MonsterDataManager.instance.bossHPData[wave];
@@ -63,8 +80,8 @@ public class Status : MonoBehaviour
         
         resist = MonsterDataManager.instance.resistData[wave];
         monsterName = MonsterDataManager.instance.monsterNameData[wave];
-        moveSpeed = MonsterDataManager.instance.speedData[wave];
-        originalSpeed = moveSpeed;
+        MoveSpeed = MonsterDataManager.instance.speedData[wave];
+        originalSpeed = MoveSpeed;
         
         maxHP = HP;
         ResetStatus();
@@ -78,8 +95,8 @@ public class Status : MonoBehaviour
         defense = MissionMonsterManager.instance.defenseData[idx];
         resist = MissionMonsterManager.instance.resistData[idx];
         monsterName = MissionMonsterManager.instance.monsterNameData[idx];
-        moveSpeed = MissionMonsterManager.instance.speedData[idx];
-        originalSpeed = moveSpeed;
+        MoveSpeed = MissionMonsterManager.instance.speedData[idx];
+        originalSpeed = MoveSpeed;
 
         maxHP = HP;
         ResetStatus();
@@ -87,16 +104,17 @@ public class Status : MonoBehaviour
     
     public void ResetSpeed()
     {
-        moveSpeed = originalSpeed;
+        MoveSpeed = originalSpeed;
     }
     
     public void ResetStatus()
     {
-        IsWound = false;
-        IsMark = false;
+        WoundStack = 0;
+        MarkStack = 0;
         DamageAmplification = 0;
-        IsElectricShock = false;
+        ElectricShockStack = 0;
         IsJokerMark = false;
         DevilBulletDamageAmplification = 0;
+        moveSpeedMultiplier = 1f;
     }
 }

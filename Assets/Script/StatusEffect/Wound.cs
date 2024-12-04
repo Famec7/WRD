@@ -13,7 +13,7 @@ public class Wound : StatusEffect
     {
         if (target.TryGetComponent(out Status status))
         {
-            status.IsWound = true;
+            status.WoundStack++;
         }
 
         //자상 이펙트 켜주기
@@ -33,7 +33,7 @@ public class Wound : StatusEffect
                 return;
             }
 
-            status.IsWound = false;
+            status.WoundStack--;
         }
 
         //자상 이펙트 켜주기

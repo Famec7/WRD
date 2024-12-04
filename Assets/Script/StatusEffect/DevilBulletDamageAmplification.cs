@@ -2,7 +2,7 @@
 
 public class DevilBulletDamageAmplification : StatusEffect
 {
-    private float _damageAmplification;
+    private readonly float _damageAmplification;
     
     public DevilBulletDamageAmplification(GameObject target, float damageAmplification, float duration = 0) : base(target, duration)
     {
@@ -13,7 +13,7 @@ public class DevilBulletDamageAmplification : StatusEffect
     {
         if (target.TryGetComponent(out Status status))
         {
-            status.DevilBulletDamageAmplification = _damageAmplification;
+            status.DevilBulletDamageAmplification += _damageAmplification;
 
 #if STATUS_EFFECT_LOG
             Debug.Log($"DevilBulletDamageAmplification: {target.name} has {status.devilBulletDamageAmplification} devil bullets : ApplyEffect");
@@ -30,21 +30,6 @@ public class DevilBulletDamageAmplification : StatusEffect
 #if STATUS_EFFECT_LOG
             Debug.Log($"DevilBulletDamageAmplification: {target.name} has {status.devilBulletDamageAmplification} devil bullets : RemoveEffect");
 #endif
-        }
-    }
-
-    public override void CombineEffect(StatusEffect statusEffect)
-    {
-        base.CombineEffect(statusEffect);
-        
-        if (statusEffect is DevilBulletDamageAmplification devilBulletDamageAmplification)
-        {
-            _damageAmplification += devilBulletDamageAmplification._damageAmplification;
-            
-            if (target.TryGetComponent(out Status status))
-            {
-                status.DevilBulletDamageAmplification = _damageAmplification;
-            }
         }
     }
 }

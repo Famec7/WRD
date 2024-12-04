@@ -25,7 +25,7 @@ public class ElectricShock : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.IsElectricShock = false;
+            status.ElectricShockStack--;
             status.DamageAmplification -= _damageAmplification;
         }
         
@@ -39,27 +39,12 @@ public class ElectricShock : StatusEffect
 #endif
     }
 
-    public override void CombineEffect(StatusEffect statusEffect)
-    {
-        base.CombineEffect(statusEffect);
-        
-        if (statusEffect is ElectricShock electricShock)
-        {
-            _damageAmplification += electricShock._damageAmplification;
-            
-            if (target.TryGetComponent(out Status status))
-            {
-                status.DamageAmplification = _damageAmplification;
-            }
-        }
-    }
-
     private IEnumerator ElectricShockCoroutine()
     {
         if (target.TryGetComponent(out Status status))
         {
-            status.IsElectricShock = true;
-            status.DamageAmplification = _damageAmplification;
+            status.ElectricShockStack++;
+            status.DamageAmplification += _damageAmplification;
 
             if (Math.Abs(duration - 0f) > 0.01f)
             {
