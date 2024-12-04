@@ -18,7 +18,7 @@ public class StatusEffectManager : Singleton<StatusEffectManager>
             var existingStatusEffect = GetStatusEffect(status, statusEffect.GetType());
 
             // 이미 존재하는 상태이상이라면 지속시간만 추가
-            if (_statusEffects != null)
+            if (existingStatusEffect != null)
             {
                 existingStatusEffect.CombineEffect(statusEffect);
             }
