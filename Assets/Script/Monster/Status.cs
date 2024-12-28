@@ -11,7 +11,7 @@ public class Status : MonoBehaviour
     public float HP;
 
     // 이속감소의 최대 감속률
-    private const float _maxSlowDownRate = 70.0f;
+    private const float _maxSlowDownRate = 0.7f;
     private float _moveSpeed;
     public float MoveSpeed
     {
@@ -57,7 +57,7 @@ public class Status : MonoBehaviour
     public bool PreventWoundConsumption; // 자상 소모 방지
     
     [HideInInspector]
-    public float moveSpeedMultiplier = 1f; // 이동속도 배수
+    public float moveSpeedMultiplier = 0f; // 이동속도 배수
 
     #endregion
     
