@@ -31,7 +31,7 @@ public class SlowDown : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.moveSpeedMultiplier -= _slowDownRate;
+            status.moveSpeedMultiplier -= (1 - _slowDownRate / 100.0f);
         }
         
         if (_slowDownCoroutine != null)
@@ -48,7 +48,7 @@ public class SlowDown : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.moveSpeedMultiplier += _slowDownRate;
+            status.moveSpeedMultiplier += (1 - _slowDownRate / 100.0f);
 
             if(Math.Abs(duration) > 0.01f)
             {

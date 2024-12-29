@@ -21,7 +21,8 @@ public class Status : MonoBehaviour
             {
                 return _moveSpeed * (1 - _maxSlowDownRate) / 100.0f;
             }
-            return _moveSpeed * (1 - moveSpeedMultiplier) / 100.0f;
+
+            return _moveSpeed * moveSpeedMultiplier;
         }
         set => _moveSpeed = value;
     }
@@ -57,7 +58,7 @@ public class Status : MonoBehaviour
     public bool PreventWoundConsumption; // 자상 소모 방지
     
     [HideInInspector]
-    public float moveSpeedMultiplier = 0f; // 이동속도 배수
+    public float moveSpeedMultiplier = 1f; // 이동속도 배수
 
     #endregion
     
