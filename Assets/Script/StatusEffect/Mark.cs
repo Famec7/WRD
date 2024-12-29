@@ -31,7 +31,10 @@ public class Mark : StatusEffect
         }
 
         //표식 이펙트 꺼주기
-        monsterEffecter.SetMarkEffect(false);
+        if (status.MarkStack <= 0)
+        {
+            monsterEffecter.SetMarkEffect(false);
+        }
     }
     
     private IEnumerator MarkCoroutine()

@@ -37,8 +37,11 @@ public class Wound : StatusEffect
         }
 
         //자상 이펙트 켜주기
-        monsterEffecter.SetWoundEffect(false);
-        
+        if (status.WoundStack <= 0)
+        {
+            monsterEffecter.SetWoundEffect(false);
+        }
+
 #if STATUS_EFFECT_LOG
         Debug.Log("${Wound Effect Removed}");
 #endif
