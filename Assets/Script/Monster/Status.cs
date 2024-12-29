@@ -11,15 +11,15 @@ public class Status : MonoBehaviour
     public float HP;
 
     // 이속감소의 최대 감속률
-    private const float _maxSlowDownRate = 0.7f;
+    private const float _maxSlowDownRate = 0.3f;
     private float _moveSpeed;
     public float MoveSpeed
     {
         get
         {
-            if (moveSpeedMultiplier > _maxSlowDownRate)
+            if (moveSpeedMultiplier < _maxSlowDownRate)
             {
-                return _moveSpeed * (1 - _maxSlowDownRate) / 100.0f;
+                return _moveSpeed * _maxSlowDownRate;
             }
 
             return _moveSpeed * moveSpeedMultiplier;
