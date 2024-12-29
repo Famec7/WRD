@@ -21,7 +21,7 @@ public class Status : MonoBehaviour
             {
                 return _moveSpeed * _maxSlowDownRate;
             }
-
+            
             return _moveSpeed * moveSpeedMultiplier;
         }
         set => _moveSpeed = value;

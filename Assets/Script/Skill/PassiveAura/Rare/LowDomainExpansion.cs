@@ -16,7 +16,7 @@ public class LowDomainExpansion : PassiveAuraSkillBase
         // 범위 조정
         _collider = GetComponent<CircleCollider2D>();
         _collider.isTrigger = true;
-        _collider.radius = Data.Range * 16;
+        _collider.radius = Data.Range * 50;
 
         // 슬로우 비율 값
         _slowDownValue = Data.GetValue(0);
