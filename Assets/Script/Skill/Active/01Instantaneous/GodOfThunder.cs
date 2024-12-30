@@ -108,7 +108,7 @@ public class GodOfThunder : InstantaneousSkill
         {
             if (target.TryGetComponent(out Status status))
             {
-                if(status.IsElectricShock is false)
+                if(status.ElectricShockStack == 0)
                     continue;
                 
                 target.GetComponent<Monster>().HasAttacked(_damage);

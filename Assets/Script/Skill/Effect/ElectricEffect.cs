@@ -71,7 +71,7 @@ public class ElectricEffect : EffectBase
         {
             AddStatus(status, new SlowDown(other.gameObject, _slowRate));
 
-            if (status.IsWound)
+            if (status.WoundStack > 0)
             {
                 StatusEffectManager.Instance.RemoveStatusEffect(status, typeof(Wound));
                 StatusEffectManager.Instance.AddStatusEffect(status, new ElectricShock(other.gameObject, _damageAmplification, _shockDuration));

@@ -21,7 +21,9 @@ public class SkySword : PassiveSkillBase
 
             if (projectile is null)
             {
+#if UNITY_EDITOR
                 Debug.LogError("FallingSwordProjectile is not enough");
+#endif
                 return false;
             }
 

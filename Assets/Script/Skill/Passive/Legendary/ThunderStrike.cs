@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ThunderStrkie : PassiveSkillBase
+public class ThunderStrike : PassiveSkillBase
 {
     private WaitForSeconds _delay = null;
     private float _range = 0f;

@@ -4,57 +4,46 @@ using UnityEngine;
 
 public class Wound : StatusEffect
 {
-    private Coroutine _woundCoroutine;
-    
     public Wound(GameObject target, float duration = 0f) : base(target, duration)
     {
-        //Debug.Log("자상 이펙트 적용");
+        ;
     }
 
     public override void ApplyEffect()
     {
-        _woundCoroutine = CoroutineHandler.Instance.StartCoroutine(WoundCoroutine());
+        if (target.TryGetComponent(out Status status))
+        {
+            status.WoundStack++;
+        }
 
         //자상 이펙트 켜주기
         monsterEffecter.SetWoundEffect(true);
+
+#if STATUS_EFFECT_LOG
+        Debug.Log("${Wound Effect Applied}");
+#endif
     }
 
     public override void RemoveEffect()
     {
-        if (_woundCoroutine != null)
+        if (target.TryGetComponent(out Status status))
         {
-            if(target.TryGetComponent(out Status status))
+            if (status.PreventWoundConsumption)
             {
-                if (status.PreventWoundConsumption)
-                {
-                    return;
-                }
-                
-                status.IsWound = false;
+                return;
             }
-            CoroutineHandler.Instance.StopCoroutine(_woundCoroutine);
+
+            status.WoundStack--;
         }
 
         //자상 이펙트 켜주기
-        monsterEffecter.SetWoundEffect(false);
-    }
-    
-    private IEnumerator WoundCoroutine()
-    {
-        if(target.TryGetComponent(out Status status))
+        if (status.WoundStack <= 0)
         {
-            status.IsWound = true;
-            
-            if(Math.Abs(duration - 0f) > 0.01f)
-            {
-                yield return waitTime;
-
-                RemoveEffect();
-            }
-            else
-            {
-                yield return null;
-            }
+            monsterEffecter.SetWoundEffect(false);
         }
+
+#if STATUS_EFFECT_LOG
+        Debug.Log("${Wound Effect Removed}");
+#endif
     }
 }

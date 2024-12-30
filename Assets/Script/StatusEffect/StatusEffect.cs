@@ -8,8 +8,6 @@ public abstract class StatusEffect
     protected GameObject target;
 
     protected MonsterEffecter monsterEffecter;
-    
-    public GameObject Target { get; }
 
     public float Duration => duration;
     
@@ -20,16 +18,32 @@ public abstract class StatusEffect
         FindMonsterEffecter();
     }
 
-    public void SetEffect(float duration, GameObject target)
+    private void SetEffect(float duration, GameObject target)
     {
         this.duration = duration;
         waitTime = new WaitForSeconds(duration);
         this.target = target;
     }
 
+    /// <summary>
+    /// 상태이상을 적용하는 함수
+    /// </summary>
     public abstract void ApplyEffect();
 
+    /// <summary>
+    /// 상태이상을 제거하는 함수
+    /// </summary>
     public abstract void RemoveEffect();
+    
+    /// <summary>
+    /// 상태이상의 지속시간을 추가하는 함수
+    /// </summary>
+    /// <param name="duration"> 추가할 지속시간 </param>
+    private void AddDuration(float duration)
+    {
+        this.duration += duration;
+        waitTime = new WaitForSeconds(this.duration);
+    }
 
     /// <summary>
     /// 몬스터 오브젝트에 있는 MonsterEffecter 컴포넌트 찾아주는 함수(스파게티가 만들어지는 첫 시작점)

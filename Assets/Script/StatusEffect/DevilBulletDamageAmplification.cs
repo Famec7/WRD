@@ -2,7 +2,7 @@
 
 public class DevilBulletDamageAmplification : StatusEffect
 {
-    private float _damageAmplification;
+    private readonly float _damageAmplification;
     
     public DevilBulletDamageAmplification(GameObject target, float damageAmplification, float duration = 0) : base(target, duration)
     {

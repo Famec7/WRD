@@ -20,30 +20,34 @@ public class Mark : StatusEffect
 
     public override void RemoveEffect()
     {
+        if(target.TryGetComponent(out Status status))
+        {
+            status.MarkStack--;
+        }
+        
         if (_markCoroutine != null)
         {
-            if(target.TryGetComponent(out Status status))
-            {
-                status.IsMark = false;
-            }
             CoroutineHandler.Instance.StopCoroutine(_markCoroutine);
         }
 
         //표식 이펙트 꺼주기
-        monsterEffecter.SetMarkEffect(false);
+        if (status.MarkStack <= 0)
+        {
+            monsterEffecter.SetMarkEffect(false);
+        }
     }
     
     private IEnumerator MarkCoroutine()
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.IsMark = true;
+            status.MarkStack++;
             
             if(Math.Abs(duration - 0f) > 0.01f)
             {
                 yield return waitTime;
-
-                status.IsMark = false;
+                
+                RemoveEffect();
             }
             else
             {

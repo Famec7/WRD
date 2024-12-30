@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class StatusEffectManager : Singleton<StatusEffectManager>
 {
-    private Dictionary<Status, List<StatusEffect>> _statusEffects = new Dictionary<Status, List<StatusEffect>>();
-    
+    private readonly Dictionary<Status, List<StatusEffect>> _statusEffects = new();
+
     protected override void Init()
     {
         ;
     }
-    
+
     public void AddStatusEffect(Status status, StatusEffect statusEffect)
     {
         if (_statusEffects.ContainsKey(status))
@@ -19,16 +19,17 @@ public class StatusEffectManager : Singleton<StatusEffectManager>
         }
         else
         {
-            _statusEffects.Add(status, new List<StatusEffect> {statusEffect});
+            _statusEffects.Add(status, new List<StatusEffect> { statusEffect });
         }
+
         statusEffect.ApplyEffect();
     }
-    
+
     public void RemoveStatusEffect(Status status, Type statusEffectType)
     {
         if (_statusEffects.ContainsKey(status))
         {
-            StatusEffect removedStatusEffect  = GetStatusEffect(status, statusEffectType);
+            StatusEffect removedStatusEffect = GetStatusEffect(status, statusEffectType);
             if (removedStatusEffect != null)
             {
                 removedStatusEffect.RemoveEffect();
@@ -36,7 +37,7 @@ public class StatusEffectManager : Singleton<StatusEffectManager>
             }
         }
     }
-    
+
     public StatusEffect GetStatusEffect(Status status, Type statusEffectType)
     {
         if (_statusEffects.ContainsKey(status))
