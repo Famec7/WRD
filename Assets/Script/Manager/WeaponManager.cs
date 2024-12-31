@@ -31,8 +31,9 @@ public class WeaponManager : Singleton<WeaponManager>
         // 액티브 스킬 UI 추가
         if (characterIndex == (int)CharacterManager.CharacterType.Player)
         {
-            if(weapon.TryGetComponent(out ActiveSkillBase activeSkill))
+            for (int i = 0; i < weapon.GetActiveSkillCount(); i++)
             {
+                ActiveSkillBase activeSkill = weapon.GetActiveSkill(i);
                 activeSkill.enabled = true;
                 SkillManager.Instance.AddActiveSkill(activeSkill);
             }
@@ -51,8 +52,9 @@ public class WeaponManager : Singleton<WeaponManager>
         // 플레이어 장착 해제면 액티브 스킬 해제
         if (characterIndex == (int)CharacterManager.CharacterType.Player)
         {
-            if(detachedWeapon.TryGetComponent(out ActiveSkillBase activeSkill))
+            for (int i = 0; i < detachedWeapon.GetActiveSkillCount(); i++)
             {
+                ActiveSkillBase activeSkill = detachedWeapon.GetActiveSkill(i);
                 activeSkill.enabled = false;
                 SkillManager.Instance.RemoveActiveSkill(activeSkill);
             }

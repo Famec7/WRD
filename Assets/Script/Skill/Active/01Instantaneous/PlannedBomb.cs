@@ -11,7 +11,7 @@ public class PlannedBomb : InstantaneousSkill
     
     protected override void OnActiveEnter()
     {
-        GlueBomb passiveAuraSkill = (GlueBomb)weapon.passiveAuraSkill;
+        GlueBomb passiveAuraSkill = (GlueBomb)weapon.GetPassiveAuraSkill();
         var bombList = passiveAuraSkill.BombProjectiles.ToArray();
 
         foreach (var bomb in bombList)

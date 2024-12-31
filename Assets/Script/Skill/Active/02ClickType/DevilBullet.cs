@@ -61,7 +61,7 @@ public class DevilBullet : ClickTypeSkill
 
     protected override void OnActiveExit()
     {
-        if (weapon.passiveAuraSkill is Devil7 devil7)
+        if (weapon.GetPassiveAuraSkill() is Devil7 devil7)
         {
             devil7.AttackCount = 0;
         }
@@ -90,7 +90,7 @@ public class DevilBullet : ClickTypeSkill
 
     private new INode.ENodeState CoolTimeDown()
     {
-        if (weapon.passiveAuraSkill is Devil7 devil7)
+        if (weapon.GetPassiveAuraSkill() is Devil7 devil7)
         {
             CurrentCoolTime = devil7.Data.GetValue(0) - devil7.AttackCount;
         }
@@ -109,7 +109,7 @@ public class DevilBullet : ClickTypeSkill
 
     private IEnumerator IE_CheckSkillInactivity()
     {
-        float checkTime = weapon.passiveAuraSkill.Data.GetValue(1);
+        float checkTime = weapon.GetPassiveAuraSkill().Data.GetValue(1);
         yield return new WaitForSeconds(checkTime);
 
         if (IsActive is false)

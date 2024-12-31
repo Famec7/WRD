@@ -29,7 +29,7 @@ public class GodOfThunder : InstantaneousSkill
     {
         base.Init();
         
-        _originPassiveChance = weapon.passiveSkill.Data.Chance;
+        _originPassiveChance = weapon.GetPassiveSkill().Data.Chance;
         _originAttackRange = weapon.Data.AttackRange;
         
         _duration = Data.GetValue(0);
@@ -44,7 +44,7 @@ public class GodOfThunder : InstantaneousSkill
         _timer = 0.0f;
 
         // 패시브 스킬 확률을 변경
-        weapon.passiveSkill.Data.Chance = _passiveChance;
+        weapon.GetPassiveSkill().Data.Chance = _passiveChance;
         
         // 무기의 공격 범위를 변경
         weapon.SetAttackDelay(_range);
@@ -86,7 +86,7 @@ public class GodOfThunder : InstantaneousSkill
     private void ResetStat()
     {
         // 패시브 스킬 확률을 원래대로 변경
-        weapon.passiveSkill.Data.Chance = _originPassiveChance;
+        weapon.GetPassiveSkill().Data.Chance = _originPassiveChance;
         
         // 무기의 공격 범위를 원래대로 변경
         weapon.SetAttackDelay(_originAttackRange);

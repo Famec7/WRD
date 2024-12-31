@@ -26,7 +26,7 @@ public class MatryoshkaPassive : PassiveSkillBase
 
     private void Start()
     {
-        if (weapon.activeSkill is MatryoshkaActive activeSkill)
+        if (weapon.GetActiveSkill() is MatryoshkaActive activeSkill)
         {
             activeSkill.SetSlowRange = SetSlowRange;
         }

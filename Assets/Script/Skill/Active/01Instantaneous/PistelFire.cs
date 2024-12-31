@@ -60,6 +60,6 @@ public class PistelFire : InstantaneousSkill, IObserver
     private void OnActiveWeapon(bool isActive)
     {
         weapon.enabled = isActive;
-        weapon.activeSkill.CurrentCoolTime = isActive ? 0 : Data.GetValue(2);
+        weapon.GetActiveSkill().CurrentCoolTime = isActive ? 0 : Data.GetValue(2);
     }
 }

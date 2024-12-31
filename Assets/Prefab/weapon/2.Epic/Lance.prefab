@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4897807747513862174
+--- !u!1 &5458879643146912600
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1480572137741218002}
-  - component: {fileID: 5298786495483300777}
-  - component: {fileID: 7463102925610812401}
-  - component: {fileID: -430598731046512726}
-  - component: {fileID: -5146570636851411397}
+  - component: {fileID: 1584243018229932129}
+  - component: {fileID: -6054651551840705770}
+  - component: {fileID: -987756104435300205}
+  - component: {fileID: 4756995128283141596}
+  - component: {fileID: -4979163688014034612}
+  - component: {fileID: 8002293785894189828}
   m_Layer: 0
-  m_Name: Ballista
+  m_Name: Lance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1480572137741218002
+--- !u!4 &1584243018229932129
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4897807747513862174}
+  m_GameObject: {fileID: 5458879643146912600}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.128, y: -0.107, z: 0}
-  m_LocalScale: {x: 0.019748036, y: 0.019748036, z: 0.019748036}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: -0.2, y: -0.1, z: 0}
+  m_LocalScale: {x: 0.015262, y: 0.015262, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!212 &5298786495483300777
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+--- !u!212 &-6054651551840705770
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4897807747513862174}
+  m_GameObject: {fileID: 5458879643146912600}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,65 +77,83 @@ SpriteRenderer:
   m_SortingLayerID: 351608095
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 93ec097c8961c164eae35bf2979d7a0a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e6d9e0127dc21b048ab4310a19704149, type: 3}
+  m_Color: {r: 0.21568629, g: 0.21568629, b: 0.21568629, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 32, y: 32}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7463102925610812401
+--- !u!114 &-987756104435300205
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4897807747513862174}
+  m_GameObject: {fileID: 5458879643146912600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c76c0eedaa3464394998c459f9b3d4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4be42261473d4a3babdeb4f0c7746612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   _pivot:
-    _pivot: {x: -0.128, y: -0.107, z: 0}
-    _originRotation: {x: 0, y: 0, z: 90}
-    _originScale: {x: 0.01974804, y: 0.01974804, z: 0.01974804}
-  weaponId: 18
-  weaponNum: 403
-  passiveSkill: {fileID: -430598731046512726}
-  passiveAuraSkill: {fileID: 0}
-  activeSkill: {fileID: 0}
-  anim: {fileID: -5146570636851411397}
-  type: 0
-  _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
-  _range: 2
-  _twoTargetSound: {fileID: 8300000, guid: 88324a7147ab6f444a7cd768c8d4f7ff, type: 3}
---- !u!114 &-430598731046512726
+    _pivot: {x: 0, y: 0, z: 0}
+    _originRotation: {x: 0, y: 0, z: 0}
+    _originScale: {x: 0.015262, y: 0.015262, z: 0}
+  weaponNum: 408
+  passiveSkillList:
+  - {fileID: 4756995128283141596}
+  passiveAuraSkillList: []
+  activeSkillList:
+  - {fileID: -4979163688014034612}
+  anim: {fileID: 8002293785894189828}
+  type: 1
+  _attackSound: {fileID: 8300000, guid: 8d0a11c9d9d4839418651c0e779fd1b6, type: 3}
+--- !u!114 &4756995128283141596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4897807747513862174}
+  m_GameObject: {fileID: 5458879643146912600}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b9bd6f3cf034cdcbe1f233a19972ae4, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b383dc4b3812354ca64e4fc96a4a245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 9
+  skillId: 16
   weapon: {fileID: 0}
---- !u!114 &-5146570636851411397
+--- !u!114 &-4979163688014034612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4897807747513862174}
+  m_GameObject: {fileID: 5458879643146912600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345a25a226917124d85b70be239bd9fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 6
+  weapon: {fileID: 0}
+  indicatorType: 2
+  _isFixedPosition: 0
+  DashDistance: 2
+  InitialSpeed: 3
+  MaxSpeed: 5
+--- !u!114 &8002293785894189828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5458879643146912600}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 377d1e2eb7b345b58fa2e639300fd1a6, type: 3}
@@ -146,58 +165,22 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.010861699
-      value: 0.09994172
-      inSlope: 4.6377015
-      outSlope: 4.6377015
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.05015783
-      value: 0.20323277
-      inSlope: 4.199139
-      outSlope: 4.199139
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.11217322
-      value: 0.41007084
-      inSlope: 3.2866478
-      outSlope: 3.2866478
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.16314042
-      value: 0.5102249
-      inSlope: 1.4300561
-      outSlope: 1.4300561
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _endPosition: {x: 0.05, y: 0, z: 0}
+  _endPosition: {x: -0.3, y: 0, z: 0}

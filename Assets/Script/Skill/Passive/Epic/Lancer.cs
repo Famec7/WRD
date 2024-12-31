@@ -14,7 +14,7 @@ public class Lancer : PassiveSkillBase
         if (woundEffect != null)
             return false;
 
-        weapon.activeSkill.CurrentCoolTime -= Data.GetValue(0);
+        weapon.GetActiveSkill().CurrentCoolTime -= Data.GetValue(0);
 
         return true;
     }

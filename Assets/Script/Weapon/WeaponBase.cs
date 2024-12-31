@@ -45,13 +45,38 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
 
     # region Skill
 
-    [Header("Passive Skill")] public PassiveSkillBase passiveSkill = null;
-    [Header("Passive Aura Skill")] public PassiveAuraSkillBase passiveAuraSkill = null;
-    [Header("Active Skill")] public ActiveSkillBase activeSkill = null;
+    [Header("Passive Skill")] [SerializeField]
+    private List<PassiveSkillBase> passiveSkillList;
+    
+    [Header("Passive Aura Skill")] [SerializeField]
+    private List<PassiveAuraSkillBase> passiveAuraSkillList;
+    
+    [Header("Active Skill")] [SerializeField]
+    private List<ActiveSkillBase> activeSkillList;
 
-    public bool IsPassiveSkillNull => passiveSkill == null;
-    public bool IsPassiveAuraSkillNull => passiveAuraSkill == null;
-    public bool IsActiveSkillNull => activeSkill == null;
+    public bool IsPassiveSkillNull => passiveSkillList == null;
+    public bool IsPassiveAuraSkillNull => passiveAuraSkillList == null;
+    public bool IsActiveSkillNull => activeSkillList == null;
+    
+    public PassiveSkillBase GetPassiveSkill(int index = 0)
+    {
+        return passiveSkillList[index];
+    }
+    
+    public PassiveAuraSkillBase GetPassiveAuraSkill(int index = 0)
+    {
+        return passiveAuraSkillList[index];
+    }
+    
+    public ActiveSkillBase GetActiveSkill(int index = 0)
+    {
+        return activeSkillList[index];
+    }
+    
+    public int GetActiveSkillCount()
+    {
+        return activeSkillList.Count;
+    }
 
     #endregion
 
@@ -102,11 +127,22 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
     {
         // 스킬 설정 (owner도 같이 설정됨)
         if (IsPassiveSkillNull is false)
-            passiveSkill.SetWeapon(this);
+        {
+            foreach (var skill in passiveSkillList)
+                skill.SetWeapon(this);
+        }
+
         if (IsPassiveAuraSkillNull is false)
-            passiveAuraSkill.SetWeapon(this);
+        {
+            foreach (var skill in passiveAuraSkillList)
+                skill.SetWeapon(this);
+        }
+
         if (IsActiveSkillNull is false)
-            activeSkill.SetWeapon(this);
+        {
+            foreach (var skill in activeSkillList)
+                skill.SetWeapon(this);
+        }
     }
 
     private void AttackBase()
@@ -122,10 +158,17 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
         _notifyAction?.Invoke();
         if (!IsPassiveSkillNull)
         {
-            if (passiveSkill.Activate(owner.Target))
+            bool isActivate = false;
+            foreach (var passiveSkill in passiveSkillList)
             {
-                return;
+                if (passiveSkill.Activate(owner.Target))
+                {
+                    isActivate = true;
+                }
             }
+            
+            if (isActivate)
+                return;
         }
 
         if (OnAttack != null)
@@ -165,7 +208,12 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
         anim.StopAnimation();
         
         if (!IsActiveSkillNull)
-            activeSkill.CancelSkill();
+        {
+            foreach (var skill in activeSkillList)
+            {
+                skill.CancelSkill();
+            }
+        }
         
         // 무기 해제
         owner.DetachWeapon();

@@ -29,7 +29,7 @@ public class Attaque : ClickTypeSkill
 
     protected override void OnActiveEnter()
     {
-        _originPassiveChance = weapon.passiveSkill.Data.Chance;
+        _originPassiveChance = weapon.GetPassiveSkill().Data.Chance;
         
         Vector2 direction = (clickPosition - (Vector2)weapon.owner.transform.position).normalized;
         Vector2 targetPosition = (Vector2)weapon.owner.transform.position + (direction * DashDistance);
@@ -91,8 +91,8 @@ public class Attaque : ClickTypeSkill
 
     private IEnumerator BoostPassiveChance()
     {
-        weapon.passiveSkill.Data.Chance = _passiveChance;
+        weapon.GetPassiveSkill().Data.Chance = _passiveChance;
         yield return new WaitForSeconds(_duration);
-        weapon.passiveSkill.Data.Chance = _originPassiveChance;
+        weapon.GetPassiveSkill().Data.Chance = _originPassiveChance;
     }
 }

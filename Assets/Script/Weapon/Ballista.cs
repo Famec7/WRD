@@ -17,7 +17,7 @@ public class Ballista : RangedWeapon
         if (monster is null)
             return;
         
-        if(passiveSkill.Activate(monster.gameObject))
+        if(GetPassiveSkill().Activate(monster.gameObject))
             return;
         
         var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
