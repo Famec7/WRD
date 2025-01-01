@@ -9,8 +9,11 @@ public class CharacterData
     [SerializeField]
     private float _moveSpeed;
 
-    public float MoveSpeed => _moveSpeed;
-
+    public float MoveSpeed
+    {
+        get => _moveSpeed;
+        set => _moveSpeed = value;
+    }
 
     /*************************Attack******************************/
     [Header("Weapon")]
