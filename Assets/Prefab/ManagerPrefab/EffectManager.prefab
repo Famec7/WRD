@@ -71,24 +71,28 @@ MonoBehaviour:
     _count: 20
     _preloadOnStart: 0
   - _name: ClubHit
-    _prefab: {fileID: 5975237419241790496, guid: 83036083a4ebcd34f98131bd3cf6f4d2, type: 3}
+    _prefab: {fileID: -2400409030820806089, guid: f71baf4f36c2bc64fa4d172378460fc7, type: 3}
     _count: 20
     _preloadOnStart: 0
   - _name: SwingEffect
-    _prefab: {fileID: 4548751445793855413, guid: 2b987d41506d172419fa18578f6ac380, type: 3}
+    _prefab: {fileID: 8654979198887837690, guid: dab160e34a382b649aa7058706fe754d, type: 3}
     _count: 20
+    _preloadOnStart: 0
+  - _name: SpearEffect
+    _prefab: {fileID: 8541051133898734082, guid: b9859a255ac7daf48b0c69cde27fb5f9, type: 3}
+    _count: 100
     _preloadOnStart: 0
   - _name: PiercingEffect
     _prefab: {fileID: -8860096144743807973, guid: 17db874d43518de41be047c14b109431, type: 3}
-    _count: 20
+    _count: 5
     _preloadOnStart: 0
   - _name: OrbHit
     _prefab: {fileID: 6487501840110601943, guid: bbf9e36a48d6c5648a13889afab076fd, type: 3}
-    _count: 5
+    _count: 50
     _preloadOnStart: 0
   - _name: HighOrbHit
     _prefab: {fileID: 6487501840110601943, guid: 8351ea02e4a19db47bab3fccb0104215, type: 3}
-    _count: 50
+    _count: 20
     _preloadOnStart: 0
   - _name: LowVisionStrike
     _prefab: {fileID: 6487501840110601943, guid: 08a24d7db85ae6c4884e7408582386ff, type: 3}
@@ -96,14 +100,14 @@ MonoBehaviour:
     _preloadOnStart: 0
   - _name: HeavyBlowEffect
     _prefab: {fileID: 4490486443538525910, guid: 170e56b3e749f5f488a065c475924cbb, type: 3}
-    _count: 1
+    _count: 20
     _preloadOnStart: 0
   - _name: HorizontalSliceEffect
     _prefab: {fileID: 4548751445793855413, guid: 8272a4331e92ab2409ff9acabf8aaf3b, type: 3}
     _count: 20
     _preloadOnStart: 0
   - _name: SharpBladeEffect
-    _prefab: {fileID: 4548751445793855413, guid: 632f6541f4e764d468c78769325dde04, type: 3}
+    _prefab: {fileID: 6487501840110601943, guid: 0b10423fceb027f4db920646d6ba2770, type: 3}
     _count: 20
     _preloadOnStart: 0
   - _name: HighVisionStrike

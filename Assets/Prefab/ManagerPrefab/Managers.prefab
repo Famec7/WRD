@@ -1452,10 +1452,6 @@ PrefabInstance:
       propertyPath: _poolDatas.Array.data[7]._count
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
-      propertyPath: _poolDatas.Array.data[9]._count
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 5227631323196032994, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
