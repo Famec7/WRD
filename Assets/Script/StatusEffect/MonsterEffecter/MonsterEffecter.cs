@@ -9,6 +9,10 @@ public class MonsterEffecter : MonoBehaviour
 {
     [SerializeField] SpriteRenderer monsterRenderer;//몬스터가 사용하는 메테리얼
 
+    MaterialPropertyBlock materialPB;
+    Material defaultMaterial;
+    MaterialPropertyBlock defaultMaterialPB;
+
     [Header("Hit Effect Setting")]
     [SerializeField] float hitEffectDuration = 1f;
     [SerializeField] AnimationCurve hitEffectCurve;
@@ -33,6 +37,8 @@ public class MonsterEffecter : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        
+
         //부모 객체에 몬스터 스프라이트 컴포넌트가 있는지 확인
         monsterRenderer = GetComponentInParent<SpriteRenderer>();
 
@@ -40,6 +46,12 @@ public class MonsterEffecter : MonoBehaviour
         if (monsterRenderer == null)
             if(TryGetComponent<SpriteRenderer>(out monsterRenderer) == false)
                 Debug.LogError("MonsterEffecter가 Sprite Renderer 컴포넌트를 찾을 수 없음");
+
+        //Material Property Block 생성하기
+        materialPB = new MaterialPropertyBlock();
+        defaultMaterialPB = new MaterialPropertyBlock();
+        monsterRenderer.GetPropertyBlock(defaultMaterialPB);
+        //defaultMaterial = monsterRenderer.sharedMaterial;
 
         InitEffects();
 
@@ -60,7 +72,7 @@ public class MonsterEffecter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P)) StartHitEffect();
         if (Input.GetKeyDown(KeyCode.O)) SetWoundEffect(true);
         if (Input.GetKeyDown(KeyCode.I)) SetMarkEffect(true);
-        if (Input.GetKeyDown(KeyCode.U)) SetSlowEffect(true);
+        if (Input.GetKeyDown(KeyCode.U)) SetDebuffEffect(false);
         if (Input.GetKeyDown(KeyCode.Y)) SetDebuffEffect(true);
     }
 
@@ -69,14 +81,44 @@ public class MonsterEffecter : MonoBehaviour
     /// </summary>
     void InitEffects()
     {
-        monsterRenderer.material.SetFloat(hitValue, 0f);
+        //monsterRenderer.material.SetFloat(hitValue, 0f);
+        monsterRenderer.SetPropertyBlock(defaultMaterialPB);
 
         SetWoundEffect(false);
         SetMarkEffect(false);
         SetSlowEffect(false);
-        SetDebuffEffect(false);
+        //SetDebuffEffect(false);
     }
 
+    #region Set Default Material Setting
+    int materialChangeStack;//메테리얼에서 변경된 값이 없으면 0, 있으면 1이상의 값을 가지게 됨
+
+    void ChangeMaterial()
+    {
+        materialChangeStack += 1;
+
+        //Debug.Log(materialChangeStack);
+    }
+
+    void UndoMaterialChange()
+    {
+        materialChangeStack -= 1;
+        //Debug.Log(materialChangeStack);
+
+        if (materialChangeStack == 0)
+        {
+            //monsterRenderer.material = defaultMaterial;
+            Debug.Log("초기화");
+            //material property block 초기화
+            //monsterRenderer.SetPropertyBlock(materialPB);
+            //monsterRenderer.SetPropertyBlock(materialPB);
+
+            monsterRenderer.SetPropertyBlock(defaultMaterialPB);
+        }
+    }
+
+
+    #endregion
 
     #region Hit Effect
 
@@ -88,14 +130,30 @@ public class MonsterEffecter : MonoBehaviour
     public void StartHitEffect()
     {
         //이미 히트 이펙트가 진행되는게 있으면 꺼주기
-        if (hitEffectCoroutine != null) StopCoroutine(hitEffectCoroutine);
+        if (hitEffectCoroutine != null)
+        {
+            StopCoroutine(hitEffectCoroutine);
+            EndHitEffect();
+        }
 
         //히트 이펙트 진행
         hitEffectCoroutine = StartCoroutine(HitEffect());
     }
 
+    void EndHitEffect()
+    {
+        hitEffectCoroutine = null;//hitEffect 코루틴 변수 비워두기
+
+        //히트 이펙트 값 초기화
+        //monsterRenderer.material.SetFloat(hitValue, 0f);
+
+        UndoMaterialChange();
+    }
+
     IEnumerator HitEffect()
     {
+        ChangeMaterial();//메테리얼 변경이 있다고 알림
+
         float _time = 0f;
 
         //히트 이펙트 애니메이션 진행
@@ -103,13 +161,25 @@ public class MonsterEffecter : MonoBehaviour
         {
             _time += Time.deltaTime;
 
-            monsterRenderer.material.SetFloat(hitValue, hitEffectCurve.Evaluate(_time / hitEffectDuration));
+            //Debug.Log(hitEffectCurve.Evaluate(_time / hitEffectDuration));
+
+            //monsterRenderer.material.SetFloat(hitValue, hitEffectCurve.Evaluate(_time / hitEffectDuration));
+
+            monsterRenderer.GetPropertyBlock(materialPB);
+            materialPB.SetFloat(hitValue, hitEffectCurve.Evaluate(_time / hitEffectDuration));
+            monsterRenderer.SetPropertyBlock(materialPB);
 
             yield return null;
         }
 
+        EndHitEffect();
+
         //히트 이펙트 값 초기화
-        monsterRenderer.material.SetFloat(hitValue, 0f);
+        //monsterRenderer.material.SetFloat(hitValue, 0f);
+
+        //기존 메테리얼로 변경
+        //monsterRenderer.material = defaultMaterial;
+        
     }
 
     #endregion
@@ -152,7 +222,34 @@ public class MonsterEffecter : MonoBehaviour
     {
         float value = on ? 1 : 0;
 
-        monsterRenderer.material.SetFloat(debuffValue, value);
+        //monsterRenderer.material.SetFloat(debuffValue, value);
+        
+
+        if (on)
+        {
+            //monsterRenderer.SetPropertyBlock(materialPB);
+            if (materialPB.GetFloat(debuffValue) != value) ChangeMaterial();//메테리얼 변경했다고 알림
+
+            //monsterRenderer.material.SetFloat(debuffValue, value);
+
+            monsterRenderer.GetPropertyBlock(materialPB);
+            materialPB.SetFloat(debuffValue, value);
+            monsterRenderer.SetPropertyBlock(materialPB);
+        }
+        else
+        {
+
+            if (materialPB.GetFloat(debuffValue) != value)
+            {
+                monsterRenderer.GetPropertyBlock(materialPB);
+                materialPB.SetFloat(debuffValue, value);
+                monsterRenderer.SetPropertyBlock(materialPB);
+
+                //monsterRenderer.material.SetFloat(debuffValue, value);
+                UndoMaterialChange();
+            }
+            //monsterRenderer.SetPropertyBlock(null);
+        }
     }
 
     public void MonsterDeadEffect()

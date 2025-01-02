@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Thrust : PassiveSkillBase
@@ -18,7 +18,13 @@ public class Thrust : PassiveSkillBase
 
         if(targets.Count == 0)
             return false;
-        
+
+        ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("SpearEffect");
+
+        effect.SetPosition(weapon.owner.transform.position + dir.normalized * 0.5f);
+        effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, dir)));
+        effect.PlayEffect();
+
         // 이펙트 재생
         _effect.SetPosition(weapon.owner.transform.position + dir);
         _effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
