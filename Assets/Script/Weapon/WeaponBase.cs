@@ -33,6 +33,7 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
     public void SetAttackDelay(float attackSpeed)
     {
         AttackDelay = new WaitForSeconds(1 / attackSpeed);
+        Data.AttackSpeed = attackSpeed;
 
         if (anim != null)
             anim.SetTime(1 / attackSpeed);

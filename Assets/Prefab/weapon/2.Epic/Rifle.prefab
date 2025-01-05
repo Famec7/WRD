@@ -109,7 +109,8 @@ MonoBehaviour:
   passiveSkillList: []
   passiveAuraSkillList:
   - {fileID: 3572741182610153992}
-  activeSkillList: []
+  activeSkillList:
+  - {fileID: 5024238325934650485}
   anim: {fileID: 8260584912045237268}
   type: 1
   _attackSound: {fileID: 8300000, guid: e7124a4641a18c94c952ff8eabc6adf9, type: 3}
