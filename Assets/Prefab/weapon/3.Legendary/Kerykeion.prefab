@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 4042815741261854713}
   - component: {fileID: 3247106459643444662}
   - component: {fileID: 7864080563941399353}
+  - component: {fileID: 3811254620233172672}
   m_Layer: 0
   m_Name: Kerykeion
   m_TagString: Untagged
@@ -210,6 +211,7 @@ MonoBehaviour:
   - {fileID: 3247106459643444662}
   activeSkillList:
   - {fileID: 7864080563941399353}
+  - {fileID: 3811254620233172672}
   anim: {fileID: 0}
   type: 3
   _attackSound: {fileID: 0}
@@ -258,3 +260,19 @@ MonoBehaviour:
   indicatorType: 0
   _isFixedPosition: 0
   _windEffect: {fileID: 6036555951748995336}
+--- !u!114 &3811254620233172672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8127183145979303794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c5e27265ad473b9fcec113679f9be7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 0
+  weapon: {fileID: 0}
+  indicatorType: 0
+  _isFixedPosition: 0
