@@ -69,11 +69,11 @@ public class MonsterEffecter : MonoBehaviour
     private void Update()
     {
         //히트 이펙트 테스트
-        if (Input.GetKeyDown(KeyCode.P)) StartHitEffect();
-        if (Input.GetKeyDown(KeyCode.O)) SetWoundEffect(true);
-        if (Input.GetKeyDown(KeyCode.I)) SetMarkEffect(true);
-        if (Input.GetKeyDown(KeyCode.U)) SetDebuffEffect(false);
-        if (Input.GetKeyDown(KeyCode.Y)) SetDebuffEffect(true);
+        //if (Input.GetKeyDown(KeyCode.P)) StartHitEffect();
+        //if (Input.GetKeyDown(KeyCode.O)) SetWoundEffect(true);
+        //if (Input.GetKeyDown(KeyCode.I)) SetMarkEffect(true);
+        //if (Input.GetKeyDown(KeyCode.U)) SetDebuffEffect(false);
+        //if (Input.GetKeyDown(KeyCode.Y)) SetDebuffEffect(true);
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public class MonsterEffecter : MonoBehaviour
         if (materialChangeStack == 0)
         {
             //monsterRenderer.material = defaultMaterial;
-            Debug.Log("초기화");
+            //Debug.Log("초기화");
             //material property block 초기화
             //monsterRenderer.SetPropertyBlock(materialPB);
             //monsterRenderer.SetPropertyBlock(materialPB);
