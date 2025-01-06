@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -116,7 +116,7 @@ public class Pool<T> : IPool<T> where T : Component
         // 오브젝트가 풀에 없으면 예외 발생
         if (!_clones.Contains(clone))
         {
-            throw new Exception("ObjectPool: Return() - The object is not in the pool.");
+            throw new Exception("ObjectPool: Return(" + clone.name + ") - The object is not in the pool.");
             return;
         }
 
