@@ -10,6 +10,7 @@ using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
+using Random = UnityEngine.Random;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -61,17 +62,23 @@ public class InventoryManager : MonoBehaviour
         notHeldslots = notHeldParent.GetComponentsInChildren<AllShowInventorySlot>();
         items = new List<InventoryItem>();
         
-        string path = "WeaponIcon/" + 201;
+        const int unnormalWeaponIDImageMin = 201;
+        const int unnormalWeaponIDImageMax = 205;
+        
+        int randomUnnormalWeaponNum = Random.Range(unnormalWeaponIDImageMin, unnormalWeaponIDImageMax + 1);
+        int randomUnnormalWeaponID = WeaponDataManager.Instance.Database.GetWeaponIdByNum(randomUnnormalWeaponNum);
+        
+        string path = "WeaponIcon/" + randomUnnormalWeaponNum;
         InventoryItem item = new InventoryItem
         {
             image =  ResourceManager.Instance.Load<Sprite>(path)
         };
-        item.AssignWeapon(6);
+        item.AssignWeapon(randomUnnormalWeaponID);
         AddItem(item);
         WeaponUI.Instance.weaponSlots[4].transform.GetChild(0).GetComponent<InventorySlot>().weapon = item;
         slots[0].isEquiped = true;
-
-        WeaponManager.Instance.AddWeapon(4, 6);
+        
+        WeaponManager.Instance.AddWeapon(4, randomUnnormalWeaponID);
         
 #if ADD_ALL_ITEM
         CreateAllItem();
