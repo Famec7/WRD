@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Deuxfer : PassiveSkillBase
 {
@@ -12,7 +13,8 @@ public class Deuxfer : PassiveSkillBase
 
     [SerializeField]
     private float effectDuration = 0.5f;
-    
+
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     public override bool Activate(GameObject target = null)
     {
@@ -31,9 +33,9 @@ public class Deuxfer : PassiveSkillBase
 
     private IEnumerator ApplyBlueEffect()
     {
-        weapon.GetComponent<SpriteRenderer>().material = _blueMaterial;
+        _spriteRenderer.material = _blueMaterial;
         yield return new WaitForSeconds(effectDuration);
-        weapon.GetComponent<SpriteRenderer>().material = _originalMaterial;
+        _spriteRenderer.material = _originalMaterial;
     }
 
 

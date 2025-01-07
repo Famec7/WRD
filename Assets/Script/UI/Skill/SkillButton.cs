@@ -51,7 +51,7 @@ public class SkillButton : MonoBehaviour
         
         // 아이콘 이미지 설정
         _iconImage.enabled = true;
-        _iconImage.sprite = skill.GetComponent<SpriteRenderer>().sprite;
+        _iconImage.sprite = skill.SkillIcon;
     }
 
     public void RemoveSkill(ActiveSkillBase skill)

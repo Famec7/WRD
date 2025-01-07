@@ -7,30 +7,40 @@ public class SwingAnimation : AnimationBase
     [SerializeField]
     private float _degree = 60.0f;
     
-    Quaternion _originalRotation;
+    private Coroutine _coroutine;
     
     public override void PlayAnimation()
     {
-        Owner.localRotation = Quaternion.Euler(Owner.localRotation.eulerAngles.x, Owner.localRotation.eulerAngles.y, 0.0f);
-        StartCoroutine(IE_Swing());
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+        
+        _coroutine = StartCoroutine(IE_Swing());
     }
 
     public override void StopAnimation()
     {
-        StopCoroutine(IE_Swing());
+        if (_coroutine == null)
+        {
+            return;
+        }
+        
+        StopCoroutine(_coroutine);
+        this.transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 
     private IEnumerator IE_Swing()
     {
         float elapsedTime = 0.0f;
-        _originalRotation = Owner.localRotation;
+        Quaternion originalRotation = this.transform.localRotation;
         
-        if (Mathf.Approximately(_originalRotation.eulerAngles.y, 180.0f))
+        if (Mathf.Approximately(originalRotation.eulerAngles.y, 180.0f))
         {
             _degree = -Mathf.Abs(_degree);
         }
 
-        Quaternion targetRotation = Quaternion.Euler(_originalRotation.eulerAngles.x, _originalRotation.eulerAngles.y, _degree);
+        Quaternion targetRotation = Quaternion.Euler(originalRotation.eulerAngles.x, originalRotation.eulerAngles.y, _degree);
         
         while (elapsedTime < endTime)
         {
@@ -42,8 +52,8 @@ public class SwingAnimation : AnimationBase
                 yield break;
             }
             
-            Owner.localRotation = Quaternion.Lerp(_originalRotation, targetRotation, t);
-            if (IsInvalidQuaternion(Owner.localRotation))
+            this.transform.localRotation = Quaternion.Lerp(originalRotation, targetRotation, t);
+            if (IsInvalidQuaternion(this.transform.localRotation))
             {
                 Debug.LogError("Invalid rotation detected");
                 yield break;
@@ -52,7 +62,7 @@ public class SwingAnimation : AnimationBase
             yield return null;
         }
         
-        Owner.localRotation = _originalRotation;
+        this.transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
     
     private bool IsInvalidQuaternion(Quaternion ownerLocalRotation)

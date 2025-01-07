@@ -6,23 +6,33 @@ public class DirectionalMoveAnimation : AnimationBase
     [SerializeField]
     private Vector3 _endPosition;
     
-    private Vector3 _originalPosition;
+    private Coroutine _coroutine;
     
     public override void PlayAnimation()
     {
-        StartCoroutine(IE_Thrust());
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+        
+        _coroutine = StartCoroutine(IE_Thrust());
     }
 
     public override void StopAnimation()
     {
-        Owner.localPosition = _originalPosition;
-        StopCoroutine(IE_Thrust());
+        if (_coroutine == null)
+        {
+            return;
+        }
+        
+        StopCoroutine(_coroutine);
+        this.transform.localPosition = Vector3.zero;
     }
     
     private IEnumerator IE_Thrust()
     {
         float elapsedTime = 0.0f;
-        _originalPosition = Owner.localPosition;
+        Vector3 originalPosition = this.transform.localPosition;
         
         Vector3 adjustedEndPosition = _endPosition;
         
@@ -30,11 +40,11 @@ public class DirectionalMoveAnimation : AnimationBase
         {
             float t = CalculateElapsedTime(ref elapsedTime);
             
-            float newX = Mathf.Lerp(_originalPosition.x, adjustedEndPosition.x, t);
-            Owner.localPosition = new Vector3(newX, _originalPosition.y, _originalPosition.z);
+            float newX = Mathf.Lerp(originalPosition.x, adjustedEndPosition.x, t);
+            this.transform.localPosition = new Vector3(newX, originalPosition.y, originalPosition.z);
             yield return null;
         }
         
-        Owner.localPosition = _originalPosition;
+        this.transform.localPosition = Vector3.zero;
     }
 }

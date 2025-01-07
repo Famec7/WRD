@@ -133,7 +133,7 @@ CircleCollider2D:
   m_Offset: {x: 0.00000001490116, y: 0.00000000745058}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!1 &6373617968191510777
+--- !u!1 &2434419040870209983
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,43 +141,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5976483136412037759}
-  - component: {fileID: 3088160715255992765}
-  - component: {fileID: 2328374859411621728}
-  - component: {fileID: 4077256293241807442}
-  - component: {fileID: 704148395022289597}
-  - component: {fileID: 6893672429516240765}
+  - component: {fileID: 2302327039268884390}
+  - component: {fileID: 1409797215157498165}
+  - component: {fileID: 409160852981323148}
   m_Layer: 0
-  m_Name: Triaina
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5976483136412037759
+--- !u!4 &2302327039268884390
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6373617968191510777}
+  m_GameObject: {fileID: 2434419040870209983}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: -0.167, y: -0.098, z: 0}
-  m_LocalScale: {x: 0.017831158, y: 0.017831158, z: 0.017831158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8453062308990099403}
-  - {fileID: 681286040920082220}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
---- !u!212 &3088160715255992765
+  m_Children: []
+  m_Father: {fileID: 5976483136412037759}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1409797215157498165
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6373617968191510777}
+  m_GameObject: {fileID: 2434419040870209983}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -223,6 +218,80 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &409160852981323148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2434419040870209983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 377d1e2eb7b345b58fa2e639300fd1a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _endPosition: {x: -10, y: 0, z: 0}
+--- !u!1 &6373617968191510777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5976483136412037759}
+  - component: {fileID: 2328374859411621728}
+  - component: {fileID: 4077256293241807442}
+  - component: {fileID: 704148395022289597}
+  m_Layer: 0
+  m_Name: Triaina
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5976483136412037759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6373617968191510777}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: -0.167, y: -0.098, z: 0}
+  m_LocalScale: {x: 0.017831158, y: 0.017831158, z: 0.017831158}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2302327039268884390}
+  - {fileID: 8453062308990099403}
+  - {fileID: 681286040920082220}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
 --- !u!114 &2328374859411621728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +315,7 @@ MonoBehaviour:
   passiveAuraSkillList: []
   activeSkillList:
   - {fileID: 704148395022289597}
-  anim: {fileID: 6893672429516240765}
+  anim: {fileID: 409160852981323148}
   type: 1
   _attackSound: {fileID: 8300000, guid: 8d0a11c9d9d4839418651c0e779fd1b6, type: 3}
   _skillId: 19
@@ -280,49 +349,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillId: 17
   weapon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: 6820d233f1ebd6844851a3ee8c389deb, type: 3}
   indicatorType: 0
   _isFixedPosition: 0
   _wave: {fileID: 3778633764772579046}
   _waterPool: {fileID: 2117027151934981082}
   _pushForce: 10
   _moveSpeed: 3
---- !u!114 &6893672429516240765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6373617968191510777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 377d1e2eb7b345b58fa2e639300fd1a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationSpeed:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _endPosition: {x: -0.3, y: 0, z: 0}
 --- !u!1 &6760144031785054129
 GameObject:
   m_ObjectHideFlags: 0

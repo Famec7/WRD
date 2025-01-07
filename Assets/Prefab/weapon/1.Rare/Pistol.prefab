@@ -9,10 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7532056971248366043}
-  - component: {fileID: 401841946687775322}
   - component: {fileID: 5823808155564251743}
   - component: {fileID: 5571679544942119043}
-  - component: {fileID: 2730120669256416537}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -32,16 +30,93 @@ Transform:
   m_LocalPosition: {x: -0.1, y: -0.113, z: 0}
   m_LocalScale: {x: 0.012290731, y: 0.012290731, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6784816305240128034}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &401841946687775322
-SpriteRenderer:
+--- !u!114 &5823808155564251743
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113596503222121041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b373136225d446f699fb8370bb6c5bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  _pivot:
+    _pivot: {x: -0.138, y: -0.113, z: 0}
+    _originRotation: {x: 0, y: 0, z: 0}
+    _originScale: {x: 0.01229073, y: 0.01229073, z: 0}
+  weaponNum: 304
+  passiveSkillList: []
+  passiveAuraSkillList: []
+  activeSkillList:
+  - {fileID: 5571679544942119043}
+  anim: {fileID: 6781879102169452820}
+  type: 1
+  _attackSound: {fileID: 8300000, guid: 96d6808495ee9ad4c8545e145dd66044, type: 3}
+--- !u!114 &5571679544942119043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113596503222121041}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c935df2c722946b2bb201842ce376d65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 1
+  weapon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: 2187b1caf938b954790f3180dd468da3, type: 3}
+  indicatorType: 0
+  _isFixedPosition: 0
+  _reloadSound: {fileID: 8300000, guid: 3a8aca95ee9814143a9b0f136ec1a616, type: 3}
+--- !u!1 &7212394079033049343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6784816305240128034}
+  - component: {fileID: 1199456544586864761}
+  - component: {fileID: 6781879102169452820}
+  m_Layer: 0
+  m_Name: Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6784816305240128034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7212394079033049343}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7532056971248366043}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1199456544586864761
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7212394079033049343}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -55,7 +130,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81,61 +156,19 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 20.48, y: 20.48}
+  m_Size: {x: 32, y: 32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5823808155564251743
+--- !u!114 &6781879102169452820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113596503222121041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b373136225d446f699fb8370bb6c5bcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  owner: {fileID: 0}
-  _pivot:
-    _pivot: {x: -0.138, y: -0.113, z: 0}
-    _originRotation: {x: 0, y: 0, z: 0}
-    _originScale: {x: 0.01229073, y: 0.01229073, z: 0}
-  weaponNum: 304
-  passiveSkillList: []
-  passiveAuraSkillList: []
-  activeSkillList:
-  - {fileID: 5571679544942119043}
-  anim: {fileID: 2730120669256416537}
-  type: 1
-  _attackSound: {fileID: 8300000, guid: 96d6808495ee9ad4c8545e145dd66044, type: 3}
---- !u!114 &5571679544942119043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113596503222121041}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c935df2c722946b2bb201842ce376d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillId: 1
-  weapon: {fileID: 0}
-  indicatorType: 0
-  _isFixedPosition: 0
-  _reloadSound: {fileID: 8300000, guid: 3a8aca95ee9814143a9b0f136ec1a616, type: 3}
---- !u!114 &2730120669256416537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113596503222121041}
+  m_GameObject: {fileID: 7212394079033049343}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 377d1e2eb7b345b58fa2e639300fd1a6, type: 3}
@@ -147,8 +180,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -156,8 +189,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -165,4 +198,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _endPosition: {x: 0.05, y: 0, z: 0}
+  _endPosition: {x: 10, y: 0, z: 0}

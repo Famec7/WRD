@@ -64,6 +64,11 @@ public class Shuffle : InstantaneousSkill
 
     protected override void OnActiveExit()
     {
+        if (_cardEffect == null)
+        {
+            return;
+        }
+        
         _cardEffect.OnExit();
         _cardEffect = null;
     }

@@ -120,6 +120,7 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
         _originalAttackSpeed = Data.AttackSpeed;
 
         _pivot.Init(this.transform);
+        _pivot.ResetPivot();
         
         SkillInit();
     }
@@ -198,15 +199,11 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
         
         this.owner = owner;
         owner.AttachWeapon(this);
-
-        // 애니메이션 설정
-        if (anim != null)
-            anim.Owner = this.transform.parent;
     }
 
     public void DetachWeapon()
     {
-        anim.StopAnimation();
+        anim?.StopAnimation();
         
         if (!IsActiveSkillNull)
         {

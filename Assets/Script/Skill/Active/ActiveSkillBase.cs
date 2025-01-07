@@ -7,6 +7,11 @@ public abstract class ActiveSkillBase : SkillBase
     #region Data
 
     public ActiveSkillData Data { get; private set; }
+    
+    [SerializeField]
+    private Sprite _skillIcon;
+    
+    public Sprite SkillIcon => _skillIcon;
 
     private void DataInit()
     {

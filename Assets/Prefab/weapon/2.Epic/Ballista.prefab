@@ -9,10 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1480572137741218002}
-  - component: {fileID: 5298786495483300777}
   - component: {fileID: 7463102925610812401}
   - component: {fileID: -430598731046512726}
-  - component: {fileID: -5146570636851411397}
   m_Layer: 0
   m_Name: Ballista
   m_TagString: Untagged
@@ -32,16 +30,91 @@ Transform:
   m_LocalPosition: {x: -0.128, y: -0.107, z: 0}
   m_LocalScale: {x: 0.019748036, y: 0.019748036, z: 0.019748036}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4605886302364087440}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!212 &5298786495483300777
-SpriteRenderer:
+--- !u!114 &7463102925610812401
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4897807747513862174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c76c0eedaa3464394998c459f9b3d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  _pivot:
+    _pivot: {x: -0.128, y: -0.107, z: 0}
+    _originRotation: {x: 0, y: 0, z: 90}
+    _originScale: {x: 0.01974804, y: 0.01974804, z: 0.01974804}
+  weaponNum: 403
+  passiveSkillList:
+  - {fileID: -430598731046512726}
+  passiveAuraSkillList: []
+  activeSkillList: []
+  anim: {fileID: 7683878575097369065}
+  type: 0
+  _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
+  _range: 2
+  _twoTargetSound: {fileID: 8300000, guid: 88324a7147ab6f444a7cd768c8d4f7ff, type: 3}
+--- !u!114 &-430598731046512726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4897807747513862174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b9bd6f3cf034cdcbe1f233a19972ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 9
+  weapon: {fileID: 0}
+--- !u!1 &7529458644039154109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4605886302364087440}
+  - component: {fileID: 8547753367712946200}
+  - component: {fileID: 7683878575097369065}
+  m_Layer: 0
+  m_Name: Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4605886302364087440
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7529458644039154109}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1480572137741218002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &8547753367712946200
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7529458644039154109}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -87,54 +160,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7463102925610812401
+--- !u!114 &7683878575097369065
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4897807747513862174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c76c0eedaa3464394998c459f9b3d4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  owner: {fileID: 0}
-  _pivot:
-    _pivot: {x: -0.128, y: -0.107, z: 0}
-    _originRotation: {x: 0, y: 0, z: 90}
-    _originScale: {x: 0.01974804, y: 0.01974804, z: 0.01974804}
-  weaponNum: 403
-  passiveSkillList:
-  - {fileID: -430598731046512726}
-  passiveAuraSkillList: []
-  activeSkillList: []
-  anim: {fileID: -5146570636851411397}
-  type: 0
-  _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
-  _range: 2
-  _twoTargetSound: {fileID: 8300000, guid: 88324a7147ab6f444a7cd768c8d4f7ff, type: 3}
---- !u!114 &-430598731046512726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4897807747513862174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b9bd6f3cf034cdcbe1f233a19972ae4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillId: 9
-  weapon: {fileID: 0}
---- !u!114 &-5146570636851411397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4897807747513862174}
+  m_GameObject: {fileID: 7529458644039154109}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 377d1e2eb7b345b58fa2e639300fd1a6, type: 3}
@@ -200,4 +232,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _endPosition: {x: 0.05, y: 0, z: 0}
+  _endPosition: {x: 10, y: 0, z: 0}

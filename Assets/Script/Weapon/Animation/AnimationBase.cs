@@ -8,11 +8,6 @@ public abstract class AnimationBase : MonoBehaviour
     protected AnimationCurve animationSpeed;
 
     /// <summary>
-    /// 애니메이션이 실행되는 Transform
-    /// </summary>
-    public Transform Owner { get; set; }
-
-    /// <summary>
     /// 애니메이션 종료 시간
     /// </summary>
     protected float endTime;
