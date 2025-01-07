@@ -20,7 +20,10 @@ public abstract class AnimationBase : MonoBehaviour
     public void SetTime(float time)
     {
         endTime = time;
-        animationSpeed.keys[animationSpeed.length - 1].time = endTime;
+        
+        Keyframe[] keys = animationSpeed.keys;
+        keys[keys.Length - 1].time = time;
+        animationSpeed.keys = keys;
     }
 
     /// <summary>

@@ -7,6 +7,8 @@ public class SwingAnimation : AnimationBase
     [SerializeField]
     private float _degree = 60.0f;
     
+    Quaternion _originalRotation;
+    
     public override void PlayAnimation()
     {
         Owner.localRotation = Quaternion.Euler(Owner.localRotation.eulerAngles.x, Owner.localRotation.eulerAngles.y, 0.0f);
@@ -21,36 +23,14 @@ public class SwingAnimation : AnimationBase
     private IEnumerator IE_Swing()
     {
         float elapsedTime = 0.0f;
-        Quaternion startRotation = Owner.localRotation;
+        _originalRotation = Owner.localRotation;
         
-        if (startRotation.eulerAngles.y == 180.0f)
+        if (Mathf.Approximately(_originalRotation.eulerAngles.y, 180.0f))
         {
             _degree = -Mathf.Abs(_degree);
         }
 
-        Quaternion targetRotation = Quaternion.Euler(startRotation.eulerAngles.x, startRotation.eulerAngles.y, _degree);
-        
-        float hitdownTime = endTime / 4.0f;
-        
-        while (elapsedTime < hitdownTime)
-        {
-            float t = CalculateElapsedTime(ref elapsedTime);
-            
-            if (float.IsNaN(t))
-            {
-                Debug.LogError("Invalid elapsed time calculation");
-                yield break;
-            }
-            
-            Owner.localRotation = Quaternion.Lerp(startRotation, targetRotation, t);
-            if (IsInvalidQuaternion(Owner.localRotation))
-            {
-                Debug.LogError("Invalid rotation detected");
-                yield break;
-            }
-            
-            yield return null;
-        }
+        Quaternion targetRotation = Quaternion.Euler(_originalRotation.eulerAngles.x, _originalRotation.eulerAngles.y, _degree);
         
         while (elapsedTime < endTime)
         {
@@ -62,7 +42,7 @@ public class SwingAnimation : AnimationBase
                 yield break;
             }
             
-            Owner.localRotation = Quaternion.Lerp(targetRotation, startRotation, t);
+            Owner.localRotation = Quaternion.Lerp(_originalRotation, targetRotation, t);
             if (IsInvalidQuaternion(Owner.localRotation))
             {
                 Debug.LogError("Invalid rotation detected");
@@ -72,15 +52,7 @@ public class SwingAnimation : AnimationBase
             yield return null;
         }
         
-        Owner.localRotation = startRotation;
-    }
-    
-    private float CalculateElapsedTime(ref float elapsedTime)
-    {
-        elapsedTime += Time.deltaTime;
-        float t = elapsedTime / endTime;
-        
-        return animationSpeed.Evaluate(t);
+        Owner.localRotation = _originalRotation;
     }
     
     private bool IsInvalidQuaternion(Quaternion ownerLocalRotation)

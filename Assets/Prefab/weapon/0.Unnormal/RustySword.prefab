@@ -103,11 +103,10 @@ MonoBehaviour:
     _pivot: {x: -0.086, y: -0.019, z: 0.05964054}
     _originRotation: {x: 0, y: 0, z: -90}
     _originScale: {x: 0.01360396, y: 0.01360396, z: 0.01360396}
-  weaponId: 6
   weaponNum: 201
-  passiveSkill: {fileID: 0}
-  passiveAuraSkill: {fileID: 0}
-  activeSkill: {fileID: 0}
+  passiveSkillList: []
+  passiveAuraSkillList: []
+  activeSkillList: []
   anim: {fileID: 4783675039875687295}
   type: 0
   _attackSound: {fileID: 8300000, guid: 9b6b51fa6e4d09a409899aa2c9e8a24b, type: 3}

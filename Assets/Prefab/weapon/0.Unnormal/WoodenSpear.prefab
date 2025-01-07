@@ -104,9 +104,9 @@ MonoBehaviour:
     _originRotation: {x: 0, y: 0, z: 45}
     _originScale: {x: 0.01724689, y: 0.01724689, z: 0}
   weaponNum: 205
-  passiveSkill: {fileID: 0}
-  passiveAuraSkill: {fileID: 0}
-  activeSkill: {fileID: 0}
+  passiveSkillList: []
+  passiveAuraSkillList: []
+  activeSkillList: []
   anim: {fileID: 3385712454500711690}
   type: 1
   _attackSound: {fileID: 8300000, guid: 8d0a11c9d9d4839418651c0e779fd1b6, type: 3}
@@ -128,18 +128,18 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
+      time: 0.4987793
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
