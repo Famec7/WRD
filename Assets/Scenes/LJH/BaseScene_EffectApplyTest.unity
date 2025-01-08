@@ -361,18 +361,6 @@ PrefabInstance:
       propertyPath: parentTransform
       value: 
       objectReference: {fileID: 1109643351}
-    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[14]._count
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[2]._prefab
-      value: 
-      objectReference: {fileID: -4722774577867829533, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
-    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[11]._prefab
-      value: 
-      objectReference: {fileID: 8654979198887837690, guid: 73c88bd8601d9a642bd5211c86b3d52f, type: 3}
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: Gr
       value: 
