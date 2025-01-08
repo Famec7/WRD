@@ -1,4 +1,4 @@
-class,c_num,name,num,type,r_type,attack,attack_speed,range,comb1,combi
+﻿class,c_num,name,num,type,r_type,attack,attack_speed,range,comb1,combi
 normal,1,fire,101,,100,0,0,0,,
 normal,1,water,102,,100,0,0,0,,
 normal,1,grass,103,,100,0,0,0,,

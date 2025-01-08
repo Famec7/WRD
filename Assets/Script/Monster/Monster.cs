@@ -43,7 +43,7 @@ public class Monster : MonoBehaviour, IPoolObject
 
         OnMonsterDeath?.Invoke();
 
-        
+        gameObject.GetComponent<MonsterMoveComponent>().ResetCurrentSegment();
 
         if (status.unitCode >= UnitCode.MISSIONBOSS1 && status.unitCode <= UnitCode.MISSIONBOSS6)
         {

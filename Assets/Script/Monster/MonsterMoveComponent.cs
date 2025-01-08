@@ -6,111 +6,50 @@ using UnityEngine;
 
 public class MonsterMoveComponent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Vector3 moveDir;
-    public Vector3 returnPos;
-    public Vector3 returnMoveDir;
-    public int roadNum;
+    public Vector2 mapTopLeft = new Vector2(-2f, 2f); // 맵의 11시 좌표
+    public Vector2 mapBottomLeft = new Vector2(-2f, -2f); // 맵의 7시 좌표
+    public Vector2 mapBottomRight = new Vector2(2f, -2f); // 맵의 5시 좌표
+    public Vector2 mapTopRight = new Vector2(2f, 2f); // 맵의 1시 좌표
     public Status status;
 
-    public bool isRoad = true;
+    private Vector2[] pathPoints; // 경로 좌표
+    private int currentSegment = 0; // 현재 이동 중인 구간
+
     void Start()
     {
-        returnPos = transform.position;
+        // 경로 설정
+        pathPoints = new Vector2[]
+        {
+            mapTopLeft,     // 11시
+            mapBottomLeft,  // 7시
+            mapBottomRight, // 5시
+            mapTopRight     // 1시
+        };
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (isRoad)
-        {
-            transform.position += moveDir * status.MoveSpeed * Time.deltaTime;
-            returnMoveDir = Vector3.zero;
-        }
-        else
-        {
-            if ((int)returnMoveDir.x == 0 && (int)returnMoveDir.y == 0)
-                returnMoveDir = FindCloseRoadDir();
-
-            transform.position += returnMoveDir * status.MoveSpeed * Time.deltaTime;
-        }
-
-
-
-        if (Mathf.Abs(transform.position.x - returnPos.x) > 0.5f && (roadNum == 1 || roadNum == 3))
-            isRoad = false;
-        else if (Mathf.Abs(transform.position.x - returnPos.x) <= 0.1f && (roadNum == 1 || roadNum == 3))
-            isRoad = true;
-
-        if (Mathf.Abs(transform.position.y - returnPos.y) > 0.5f && (roadNum == 2 || roadNum == 4))
-            isRoad = false;
-        else if (Mathf.Abs(transform.position.y - returnPos.y) <= 0.1f && (roadNum == 2 || roadNum == 4))
-            isRoad = true;
-
+        MoveAlongPath();
     }
 
-    Vector2 FindCloseRoadDir()
+    void MoveAlongPath()
     {
-        List<float> distances = new List<float>();
+        // 현재 구간의 시작점과 끝점
+        Vector2 start = pathPoints[currentSegment];
+        Vector2 end = pathPoints[(currentSegment + 1) % pathPoints.Length];
 
-        for (int i = 0; i < 4; i++)
+        // 일정한 속도로 이동
+        transform.position = Vector2.MoveTowards(transform.position, end, status.MoveSpeed * Time.deltaTime);
+
+        // 도착했는지 확인
+        if (Vector2.Distance(transform.position, end) < 0.1f)
         {
-            switch (i)
-            {
-                case 0:
-                    distances.Add(RoadDistance(Vector2.left));
-                    break;
-                case 1:
-                    distances.Add(RoadDistance(Vector2.right));
-                    break;
-                case 2:
-                    distances.Add(RoadDistance(Vector2.up));
-                    break;
-                case 3:
-                    distances.Add(RoadDistance(Vector2.down));
-                    break;
-            }
+            currentSegment = (currentSegment + 1) % pathPoints.Length; // 다음 구간으로
         }
-
-        float minDistance = distances.Min();
-        int minIndex = distances.IndexOf(minDistance);
-
-        if (minIndex == 0)
-            return Vector2.left;
-        else if (minIndex == 1)
-            return Vector2.right;
-        else if (minIndex == 2)
-            return Vector2.up;
-        else if (minIndex == 3)
-            return Vector2.down;
-
-        return Vector2.zero;
     }
-
-    float RoadDistance(Vector2 dir)
+    public void ResetCurrentSegment()
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, dir,100);
-        float distance = 10000;
-
-        foreach (RaycastHit2D hit in hits)
-        {
-            if (hit.collider.CompareTag("Road"))
-            {
-                distance = hit.distance;
-                break;
-            }
-        }
-        return distance;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Road") && !isRoad)
-        {
-            moveDir = collision.GetComponent<RoadComponent>().moveDir;
-            roadNum = collision.GetComponent<RoadComponent>().roadNum;
-            returnPos = collision.GetComponent<RoadComponent>().returnPos;
-        }
+        currentSegment = 0;
     }
 }
 

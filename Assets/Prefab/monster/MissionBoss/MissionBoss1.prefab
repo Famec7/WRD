@@ -104,12 +104,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c28076a1cec3924f844a4fa21779e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDir: {x: 0, y: 0, z: 0}
-  returnPos: {x: 0, y: 0, z: 0}
-  returnMoveDir: {x: 0, y: 0, z: 0}
-  roadNum: 0
+  mapTopLeft: {x: -2, y: 2}
+  mapBottomLeft: {x: -2, y: -2}
+  mapBottomRight: {x: 2, y: -2}
+  mapTopRight: {x: 2, y: 2}
   status: {fileID: 7244248914210091522}
-  isRoad: 1
 --- !u!61 &590058144891316833
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -173,6 +172,7 @@ MonoBehaviour:
   isMovable: 0
   isDead: 0
   status: {fileID: 7244248914210091522}
+  hpUI: {fileID: 0}
 --- !u!114 &7244248914210091522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,20 +185,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451224ee50acf4244871aacff3bdb1c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitCode: 17
+  unitCode: 0
   maxHP: 0
   HP: 0
-  moveSpeed: 0
   originalSpeed: 0
   resist: 0
   defense: 0
   monsterName: 
-  IsWound: 0
-  IsMark: 0
-  damageAmplification: 0
-  IsElectricShock: 0
+  WoundStack: 0
+  MarkStack: 0
+  DamageAmplification: 0
+  ElectricShockStack: 0
   IsJokerMark: 0
-  devilBulletDamageAmplification: 0
+  DevilBulletDamageAmplification: 0
+  PreventWoundConsumption: 0
+  moveSpeedMultiplier: 1
 --- !u!50 &4455428403941024235
 Rigidbody2D:
   serializedVersion: 4

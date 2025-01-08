@@ -214,7 +214,6 @@ public class MonsterSpawnManager : MonoBehaviour
         {
             Debug.LogError($"GetPooledObject returned null for code: {code}");
         }
-        monster.GetComponent<MonsterMoveComponent>().roadNum = 1; 
         monster.transform.position = spawnPoints[spawnPointsCount - 1].transform.position;
 
         GameObject hpBar = MonsterHPBarPool.GetObject();
