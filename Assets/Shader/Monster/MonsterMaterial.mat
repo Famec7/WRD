@@ -60,7 +60,7 @@ Material:
     - _GlowStepPower: 0.74
     - _GlowStepSize: 0.2
     - _GlowStepSmoothness: 0
-    - _GlowValue: 0
+    - _GlowValue: 1
     - _HitValue: 0
     m_Colors:
     - _GlowColor1: {r: 0.17254904, g: 0.31182018, b: 0.42352942, a: 0}
