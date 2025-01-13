@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5886369049122517769}
   - component: {fileID: 3598806559973203965}
+  - component: {fileID: 6453325785724259777}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -26,11 +27,11 @@ Transform:
   m_GameObject: {fileID: 804150936880983184}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.6, y: 6, z: 0}
+  m_LocalPosition: {x: -0.79999965, y: 9.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7295856311475243320}
+  m_Father: {fileID: 7094792941737060755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3598806559973203965
 SpriteRenderer:
@@ -84,46 +85,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1889760873603846217
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7295856311475243320}
-  - component: {fileID: 6167621722367872292}
-  m_Layer: 0
-  m_Name: Pivot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7295856311475243320
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889760873603846217}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.4, y: 3.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5886369049122517769}
-  m_Father: {fileID: 7094792941737060755}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6167621722367872292
+--- !u!114 &6453325785724259777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889760873603846217}
+  m_GameObject: {fileID: 804150936880983184}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d809b1c5aa44dc59e4c261c9d36c804, type: 3}
@@ -153,6 +121,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  speed: 1
   _degree: 60
 --- !u!1 &4180195826425338574
 GameObject:
@@ -182,11 +151,11 @@ Transform:
   m_GameObject: {fileID: 4180195826425338574}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.102, y: -0.061, z: 90}
   m_LocalScale: {x: 0.01563556, y: 0.01563556, z: 0.01563556}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7295856311475243320}
+  - {fileID: 5886369049122517769}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4379857113999025645
@@ -203,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   _pivot:
-    _pivot: {x: 0, y: 0, z: 0}
+    _pivot: {x: 0.102, y: -0.061, z: 0}
     _originRotation: {x: 0, y: 0, z: 90}
     _originScale: {x: 0.01563556, y: 0.01563556, z: 0.01563556}
   weaponNum: 502
@@ -212,7 +181,7 @@ MonoBehaviour:
   passiveAuraSkillList: []
   activeSkillList:
   - {fileID: -6321969850104291216}
-  anim: {fileID: 6167621722367872292}
+  anim: {fileID: 6453325785724259777}
   type: 0
   _attackSound: {fileID: 8300000, guid: 9b6b51fa6e4d09a409899aa2c9e8a24b, type: 3}
 --- !u!114 &-3269616315496645424
