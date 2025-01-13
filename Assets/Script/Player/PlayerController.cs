@@ -219,13 +219,12 @@ public class PlayerController : CharacterController, ISubject
     {
         Data.SetCurrentWeapon(weapon);
         
-        weapon.transform.position = transform.position + weapon.Pivot.GetPivot();
-        
         weapon.transform.SetParent(_arm);
+        weapon.transform.localPosition = weapon.Pivot.GetPivot();
+        weapon.transform.localRotation = weapon.Pivot.GetOriginRotation();
 
-        Vector3 playerRotation = transform.rotation.eulerAngles;
-        
-        _arm.rotation = Quaternion.Euler(0, playerRotation.y == -180 ? 180 : 0, 0);
+        /*Vector3 playerRotation = transform.rotation.eulerAngles;
+        _arm.rotation = Quaternion.Euler(0, Mathf.Approximately(playerRotation.y, -180) ? 180 : 0, 0);*/
     }
     
     public override void DetachWeapon()
@@ -234,6 +233,6 @@ public class PlayerController : CharacterController, ISubject
         Data.CurrentWeapon.transform.SetParent(null);
         Data.SetCurrentWeapon(null);
         
-        _arm.localRotation = Quaternion.Euler(0, 0, 0);
+        /*_arm.localRotation = Quaternion.Euler(0, 0, 0);*/
     }
 }
