@@ -9,7 +9,7 @@ public class Fire : ClickTypeSkill
     
     protected override void OnActiveEnter()
     {
-        LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
+        LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
         Collider2D target = Physics2D.OverlapPoint(pivotPosition, layerMask);
 
         if (target != null && target.TryGetComponent(out Monster monster))

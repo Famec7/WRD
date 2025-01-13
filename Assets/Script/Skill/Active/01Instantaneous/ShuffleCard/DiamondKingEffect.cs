@@ -30,7 +30,7 @@ public class DiamondKingEffect : CardEffectBase
     private void OnAttack()
     {
         Vector3 targetPosition = Weapon.owner.Target.transform.position;
-        var layer = LayerMaskManager.Instance.MonsterLayerMask;
+        var layer = LayerMaskProvider.MonsterLayerMask;
 
         var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, _range, default, layer);
         

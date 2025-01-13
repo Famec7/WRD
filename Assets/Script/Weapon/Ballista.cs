@@ -32,7 +32,7 @@ public class Ballista : RangedWeapon
 
     private Monster FindNearestMonster(Vector3 targetPosition)
     {
-        var targetLayer = LayerMaskManager.Instance.MonsterLayerMask;
+        var targetLayer = LayerMaskProvider.MonsterLayerMask;
         
         var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, _range, default, targetLayer);
 

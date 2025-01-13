@@ -113,7 +113,7 @@ public class PlayerController : CharacterController, ISubject
 
         MoveDir = (TouchPos - transform.position).normalized;
 
-        LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
+        LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
         Collider2D col = Physics2D.OverlapPoint( TouchPos, layerMask);
         // 몬스터 클릭 시 추적
         if (col != null)
