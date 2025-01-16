@@ -5,7 +5,9 @@ using UnityEngine.Serialization;
 
 public abstract class ActiveSkillBase : SkillBase
 {
+    // indicator의 중심
     public Vector2 PivotPosition { get; set; } = Vector2.zero;
+    // 클릭 위치
     public Vector2 ClickPosition { get; set; } = Vector2.zero;
 
     // 스킬 버튼 활성화 이벤트
