@@ -27,7 +27,7 @@ public abstract class ActiveSkillBase : SkillBase
     private void Start()
     {
         if (_commandInvoker.IsEmpty)
-            _commandInvoker.SetCommand(new CooldownCommand(this));
+            _commandInvoker.AddCommand(new CooldownCommand(this));
         
         IndicatorInit();
     }
@@ -64,7 +64,7 @@ public abstract class ActiveSkillBase : SkillBase
     
     public void AddCommand(ICommand command)
     {
-        _commandInvoker.SetCommand(command);
+        _commandInvoker.AddCommand(command);
     }
     
     #endregion

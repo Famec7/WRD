@@ -16,26 +16,6 @@
     public bool Execute()
     {
         return _skill.OnActiveExecute();
-        /*if (_isExecute)
-        {
-            return _skill.OnActiveExecute();
-        }
-        
-        if (_skill is ClickTypeSkill clickTypeSkill)
-        {
-            if (clickTypeSkill.FindTarget())
-            {
-                _skill.OnActiveEnter();
-                _isExecute = true;
-            }
-        }
-        else
-        {
-            _skill.OnActiveEnter();
-            _isExecute = true;
-        }
-
-        return false;*/
     }
     
     public void OnComplete()

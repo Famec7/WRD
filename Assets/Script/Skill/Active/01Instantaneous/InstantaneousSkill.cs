@@ -9,10 +9,10 @@ public abstract class InstantaneousSkill : ActiveSkillBase
         switch (currentSettingType)
         {
             case SettingManager.ActiveSettingType.SemiAuto:
-                _commandInvoker.SetCommand(new ActiveSkillCommand(this));
+                _commandInvoker.AddCommand(new ActiveSkillCommand(this));
                 break;
             case SettingManager.ActiveSettingType.Manual:
-                _commandInvoker.SetCommand(new IndicatorCommand(this));
+                _commandInvoker.AddCommand(new IndicatorCommand(this));
                 break;
             case SettingManager.ActiveSettingType.Auto:
             default:

@@ -8,7 +8,7 @@ public class CommandInvoker
 
     public bool IsEmpty => _commandQueue.Count == 0 && _currentCommand == null;
 
-    public void SetCommand(ICommand command)
+    public void AddCommand(ICommand command)
     {
         if (command == null)
         {

@@ -5,7 +5,7 @@ public abstract class ClickTypeSkill : ActiveSkillBase
 {
     public override void UseSkill()
     {
-        _commandInvoker.SetCommand(new CheckUsableRangeCommand(this));
+        _commandInvoker.AddCommand(new CheckUsableRangeCommand(this));
     }
 
     /***************************Behaviour Tree***************************/
