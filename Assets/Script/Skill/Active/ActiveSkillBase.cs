@@ -57,9 +57,10 @@ public abstract class ActiveSkillBase : SkillBase
         _commandInvoker.Execute();
     }
     
-    public virtual void CancelSkill()
+    public void CancelSkill()
     {
         _commandInvoker.Reset();
+        _commandInvoker.AddCommand(new CooldownCommand(this));
     }
     
     public void AddCommand(ICommand command)

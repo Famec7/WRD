@@ -29,7 +29,7 @@ public class CheckUsableRangeCommand : ICommand
         if (currentWaitTime <= 0)
         {
             _skill.CancelSkill();
-            return true;
+            return false;
         }
 
 #if UNITY_EDITOR
@@ -55,7 +55,7 @@ public class CheckUsableRangeCommand : ICommand
         if (UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("UI"), touch))
         {
             _skill.CancelSkill();
-            return true;
+            return false;
         }
 
         _skill.PivotPosition = Camera.main.ScreenToWorldPoint(touch.position);

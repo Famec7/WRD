@@ -40,7 +40,7 @@ public class IndicatorCommand : ICommand
         if (_currentIndicatorTime <= 0)
         {
             _skill.CancelSkill();
-            return true;
+            return false;
         }
 
 #if UNITY_EDITOR
