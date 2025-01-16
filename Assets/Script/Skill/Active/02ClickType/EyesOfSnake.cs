@@ -1,6 +1,6 @@
 ﻿public class EyesOfSnake : ClickTypeSkill
 {
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         FindTarget();
 
@@ -18,13 +18,12 @@
         }
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        IsActive = false;
-        return INode.ENodeState.Success;
+        return true;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         ;
     }

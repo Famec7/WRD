@@ -5,21 +5,20 @@ public class Fohn : ClickTypeSkill
 {
     [SerializeField] private Wind _windEffect;
     
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         float radius = Data.Range;
         
-        _windEffect.Init(radius, clickPosition, ApplyDebuff);
+        _windEffect.Init(radius, ClickPosition, ApplyDebuff);
         _windEffect.Play();
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        IsActive = false;
-        return INode.ENodeState.Success;
+        return true;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         ;
     }

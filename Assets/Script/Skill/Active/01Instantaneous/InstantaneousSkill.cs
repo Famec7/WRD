@@ -8,38 +8,15 @@ public abstract class InstantaneousSkill : ActiveSkillBase
         
         switch (currentSettingType)
         {
-            case SettingManager.ActiveSettingType.Auto:
-                IsIndicatorState = true;
-                break;
             case SettingManager.ActiveSettingType.SemiAuto:
-                IsCoolTime = false;
-                IsActive = true;
+                _commandInvoker.SetCommand(new ActiveSkillCommand(this));
                 break;
             case SettingManager.ActiveSettingType.Manual:
-                IsCoolTime = false;
-                IsIndicatorState = true;
+                _commandInvoker.SetCommand(new IndicatorCommand(this));
                 break;
+            case SettingManager.ActiveSettingType.Auto:
             default:
                 break;
         }
-    }
-
-    /***************************Behaviour Tree***************************/
-    protected override INode SettingBT()
-    {
-        return new SelectorNode(
-            new List<INode>()
-            {
-                new SequenceNode(
-                    CoolTimeNodes()
-                ),
-                new SequenceNode(
-                    IndicatorNodes()
-                ),
-                new SequenceNode(
-                    ActiveNodes()
-                )
-            }
-        );
     }
 }

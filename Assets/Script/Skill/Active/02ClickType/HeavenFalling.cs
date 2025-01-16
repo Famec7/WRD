@@ -5,7 +5,7 @@ public class HeavenFalling : ClickTypeSkill
     [Header("Offset From Target")] [SerializeField]
     private Vector2 _offset;
 
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         // 성검 소환
         var holySword = ProjectileManager.Instance.CreateProjectile<HolyProjectile>();
@@ -15,22 +15,21 @@ public class HeavenFalling : ClickTypeSkill
             if (target is null)
                 return;
             
-            pivotPosition = target.transform.position;
+            PivotPosition = target.transform.position;
         }
 
 
         holySword.SetData(Data);
-        holySword.transform.position = (Vector3)pivotPosition + (Vector3)_offset;
-        holySword.Target = pivotPosition;
+        holySword.transform.position = (Vector3)PivotPosition + (Vector3)_offset;
+        holySword.Target = PivotPosition;
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        IsActive = false;
-        return INode.ENodeState.Success;
+        return true;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         ;
     }

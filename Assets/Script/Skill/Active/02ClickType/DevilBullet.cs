@@ -9,7 +9,7 @@ public class DevilBullet : ClickTypeSkill
     
     private int _attackCount = 0;
 
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         FindTarget();
 
@@ -53,13 +53,12 @@ public class DevilBullet : ClickTypeSkill
         }
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        IsActive = false;
-        return INode.ENodeState.Success;
+        return true;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         if (weapon.GetPassiveAuraSkill() is Devil7 devil7)
         {
@@ -80,7 +79,7 @@ public class DevilBullet : ClickTypeSkill
 
     #region Behavior Tree
 
-    protected override List<INode> CoolTimeNodes()
+    /*protected override List<INode> CoolTimeNodes()
     {
         return new List<INode>
         {
@@ -116,7 +115,7 @@ public class DevilBullet : ClickTypeSkill
         {
             CancelSkill();
         }
-    }
+    }*/
 
     #endregion
 }

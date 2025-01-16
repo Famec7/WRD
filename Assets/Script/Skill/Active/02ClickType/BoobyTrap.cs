@@ -7,26 +7,25 @@ public class BoobyTrap : ClickTypeSkill
     [SerializeField]
     private GameObject _trapPrefab;
     private GameObject _trapObject = null;
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         if (_trapObject == null)
             _trapObject = Instantiate(_trapPrefab);
 
         _trapObject.GetComponent<KunaiTrap>().Init(Data.GetValue(0));
-        _trapObject.transform.position = clickPosition;
+        _trapObject.transform.position = ClickPosition;
         _trapObject.SetActive(true);
         
         StartCoroutine(DisableTrapAfterDelay());
 
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        IsActive = false;
-        return INode.ENodeState.Success;
+        return true;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
 
     }

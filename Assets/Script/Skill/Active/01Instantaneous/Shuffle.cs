@@ -14,7 +14,7 @@ public class Shuffle : InstantaneousSkill
 
     private CardEffectBase _cardEffect;
 
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         // (클로버 잭(Data{0}), 하트 퀸(Data{1}), 다이아몬드 킹(Data{2}), 조커: Data{3}) 중 하나를 랜덤하게 선택
         float cloverJack = Data.GetValue(0);
@@ -50,25 +50,24 @@ public class Shuffle : InstantaneousSkill
         _cardEffect.OnEnter();
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        INode.ENodeState result = _cardEffect.OnUpdate();
+        bool result = _cardEffect.OnUpdate();
 
-        if (result == INode.ENodeState.Success)
+        if (result)
         {
-            IsActive = false;
         }
 
         return result;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         if (_cardEffect == null)
         {
             return;
         }
-        
+
         _cardEffect.OnExit();
         _cardEffect = null;
     }

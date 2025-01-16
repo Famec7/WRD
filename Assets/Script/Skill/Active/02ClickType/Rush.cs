@@ -29,9 +29,9 @@ public class Rush : ClickTypeSkill
         _reducedSpeed = (int)Data.GetValue(2);
     }
 
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
-        Vector2 direction = (clickPosition - (Vector2)weapon.transform.position).normalized;
+        Vector2 direction = (ClickPosition - (Vector2)weapon.transform.position).normalized;
         Vector2 targetPosition = (Vector2)weapon.transform.position + (direction * DashDistance);
 
         _originAngleZ = transform.rotation.eulerAngles.z;
@@ -50,13 +50,12 @@ public class Rush : ClickTypeSkill
         
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        IsActive = false;
-        return INode.ENodeState.Success;
+        return true;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         
     }

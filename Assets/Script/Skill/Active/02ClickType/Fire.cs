@@ -7,10 +7,10 @@ public class Fire : ClickTypeSkill
     [SerializeField]
     private AudioClip _fireSound;
     
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
-        Collider2D target = Physics2D.OverlapPoint(pivotPosition, layerMask);
+        Collider2D target = Physics2D.OverlapPoint(PivotPosition, layerMask);
 
         if (target != null && target.TryGetComponent(out Monster monster))
         {
@@ -28,17 +28,14 @@ public class Fire : ClickTypeSkill
         {
             OnAttackMultipleTargets(targetMonsters.ToList());
         }
-        
-        IsActive = false;
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        IsActive = false;
-        return INode.ENodeState.Success;
+        return true;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         
     }

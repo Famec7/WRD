@@ -12,6 +12,6 @@ public abstract class CardEffectBase
     public WeaponBase Weapon { get; set; }
     
     public abstract void OnEnter();
-    public abstract INode.ENodeState OnUpdate();
+    public abstract bool OnUpdate();
     public abstract void OnExit();
 }

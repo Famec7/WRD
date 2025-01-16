@@ -31,7 +31,6 @@ public class MatryoshkaActive : ClickTypeSkill
                     
                 if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
                 {
-                    IsActive = true;
                 }
                     
                 return;
@@ -43,7 +42,7 @@ public class MatryoshkaActive : ClickTypeSkill
 
     #endregion
     
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         FindTarget();
         
@@ -67,13 +66,12 @@ public class MatryoshkaActive : ClickTypeSkill
         }
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        IsActive = false;
-        return INode.ENodeState.Success;
+        return true;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         Stack = -1;
     }
@@ -97,7 +95,7 @@ public class MatryoshkaActive : ClickTypeSkill
     [Space]
     [SerializeField] private List<float> _coolTimes;
 
-    protected override List<INode> CoolTimeNodes()
+    /*protected override List<INode> CoolTimeNodes()
     {
         return new List<INode>
         {
@@ -119,7 +117,7 @@ public class MatryoshkaActive : ClickTypeSkill
         
         CurrentCoolTime = _coolTimes[Stack];
         return INode.ENodeState.Success;
-    }
+    }*/
 
     #endregion
 }
