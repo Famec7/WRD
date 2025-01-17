@@ -28,10 +28,10 @@ public abstract class ActiveSkillBase : SkillBase
     
     private void Start()
     {
-        if (_commandInvoker.IsEmpty)
-            _commandInvoker.AddCommand(new CooldownCommand(this));
-        
         IndicatorInit();
+        
+        if (_commandInvoker.IsEmpty)
+            ExecuteCoolTimeCommand();
     }
     
     #region Data
@@ -59,10 +59,15 @@ public abstract class ActiveSkillBase : SkillBase
         _commandInvoker.Execute();
     }
     
+    public virtual void ExecuteCoolTimeCommand()
+    {
+        _commandInvoker.AddCommand(new CooldownCommand(this));
+    }
+    
     public void CancelSkill()
     {
         _commandInvoker.Reset();
-        _commandInvoker.AddCommand(new CooldownCommand(this));
+        ExecuteCoolTimeCommand();
     }
     
     public void AddCommand(ICommand command)
@@ -73,6 +78,8 @@ public abstract class ActiveSkillBase : SkillBase
     #endregion
     
     #region Active Skill
+
+    public bool IsActive { get; set; } = false;
     
     /// <summary>
     /// 스킬 사용 시 호출되는 함수

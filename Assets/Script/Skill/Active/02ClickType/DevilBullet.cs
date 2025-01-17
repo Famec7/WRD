@@ -118,4 +118,9 @@ public class DevilBullet : ClickTypeSkill
     }*/
 
     #endregion
+
+    public override void ExecuteCoolTimeCommand()
+    {
+        _commandInvoker.AddCommand(new DevilCooldownCommand(this));
+    }
 }

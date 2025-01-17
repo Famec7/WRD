@@ -9,6 +9,7 @@
         
         SkillUIManager.Instance.ShowPopupPanel(3);
         _skill.OnButtonActivate?.Invoke(false);
+        _skill.IsActive = true;
         
         _skill.OnActiveEnter();
     }
@@ -22,15 +23,17 @@
     {
         _skill.OnActiveExit();
         _skill.CurrentCoolTime = _skill.Data.CoolTime;
+        _skill.IsActive = false;
         
-        _skill.AddCommand(new CooldownCommand(_skill));
+        _skill.ExecuteCoolTimeCommand();
     }
 
     public void Undo()
     {
-        _skill.CurrentCoolTime = _skill.Data.CoolTime;
         _skill.OnActiveExit();
+        _skill.CurrentCoolTime = _skill.Data.CoolTime;
+        _skill.IsActive = false;
         
-        _skill.AddCommand(new CooldownCommand(_skill));
+        _skill.ExecuteCoolTimeCommand();
     }
 }

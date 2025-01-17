@@ -2,53 +2,52 @@
 
 public class CooldownCommand : ICommand
 {
-    private readonly ActiveSkillBase _skill;
+    protected readonly ActiveSkillBase skill;
 
     public CooldownCommand(ActiveSkillBase skill)
     {
-        _skill = skill;
+        this.skill = skill;
         
-        if (_skill.weapon.owner != null)
-            _skill.weapon.owner.enabled = true;
+        if (this.skill.weapon.owner != null)
+            this.skill.weapon.owner.enabled = true;
 
         SkillUIManager.Instance.ClosePopupPanel();
     }
 
-    public bool Execute()
+    public virtual bool Execute()
     {
-        _skill.CurrentCoolTime -= Time.deltaTime;
+        skill.CurrentCoolTime -= Time.deltaTime;
 
         // 테스트용
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.T))
         {
-            _skill.CurrentCoolTime = 1.0f;
+            skill.CurrentCoolTime = 1.0f;
         }
 #endif
 
-        if (_skill.CurrentCoolTime <= 0.0f)
+        if (skill.CurrentCoolTime <= 0.0f)
         {
-            _skill.CurrentCoolTime = 0.0f;
-
-            if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
-            {
-                _skill.AddCommand(new ActiveSkillCommand(_skill));
-            }
-            
+            skill.CurrentCoolTime = 0.0f;
             return true;
         }
 
         return false;
     }
     
-    public void OnComplete()
+    public virtual void OnComplete()
     {
-        _skill.OnButtonActivate?.Invoke(true);
+        if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
+        {
+            skill.AddCommand(new ActiveSkillCommand(skill));
+        }
+        
+        skill.OnButtonActivate?.Invoke(true);
     }
 
     public void Undo()
     {
-        _skill.OnButtonActivate?.Invoke(true);
-        _skill.CurrentCoolTime = _skill.Data.CoolTime;
+        skill.OnButtonActivate?.Invoke(true);
+        skill.CurrentCoolTime = skill.Data.CoolTime;
     }
 }
