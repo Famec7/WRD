@@ -39,7 +39,7 @@ public class CooldownCommand : ICommand
     {
         if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
         {
-            skill.AddCommand(new ActiveSkillCommand(skill));
+            skill.AddCommand(new CheckForEnemiesCommand(skill as ClickTypeSkill));
         }
         
         skill.OnButtonActivate?.Invoke(true);

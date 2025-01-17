@@ -6,39 +6,7 @@ public class MatryoshkaActive : ClickTypeSkill
 {
     #region Skill Data
 
-    private int _stack = 0;
-
-    private int Stack
-    {
-        get => _stack;
-        set
-        {
-            _stack = value;
-
-            if (_stack > 0)
-            {
-                OnButtonActivate?.Invoke(true);
-            }
-            else
-            {
-                CurrentCoolTime = Data.CoolTime;
-                OnButtonActivate?.Invoke(false);
-            }
-            
-            if (_stack >= _coolTimes.Count)
-            {
-                _stack = _coolTimes.Count;
-                    
-                if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
-                {
-                }
-                    
-                return;
-            }
-            
-            SetSlowRange?.Invoke(_stack);
-        }
-    }
+    private StackCoolTime _stackCoolTime;
 
     #endregion
     
@@ -58,9 +26,9 @@ public class MatryoshkaActive : ClickTypeSkill
         {
             if (target.TryGetComponent(out Monster monster))
             {
-                monster.HasAttacked(Data.GetValue(Stack - 1));
+                monster.HasAttacked(Data.GetValue(_stackCoolTime.Stack - 1));
                 
-                Stun(monster.status, Data.GetValue(2 + Stack));
+                Stun(monster.status, Data.GetValue(2 + _stackCoolTime.Stack));
                 DamageAmplification(monster.status, Data.GetValue(7) / 100, Data.GetValue(6));
             }
         }
@@ -73,7 +41,7 @@ public class MatryoshkaActive : ClickTypeSkill
 
     public override void OnActiveExit()
     {
-        Stack = -1;
+        _stackCoolTime.Stack = -1;
     }
     
     private void Stun(Status status, float duration)
@@ -90,34 +58,25 @@ public class MatryoshkaActive : ClickTypeSkill
     
     public Action<float> SetSlowRange { get; set; }
 
-    #region Behavior Tree
+    #region CoolTime Command
 
     [Space]
     [SerializeField] private List<float> _coolTimes;
 
-    /*protected override List<INode> CoolTimeNodes()
+    public override void ExecuteCoolTimeCommand()
     {
-        return new List<INode>
-        {
-            new ActionNode(CheckCoolTimeState),
-            new ActionNode(CoolTimeDown),
-            new ActionNode(OnCoolTimeEnd)
+        _stackCoolTime = new StackCoolTime(this, _coolTimes.Count) { OnStackMax = () =>
+            {
+                if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
+                {
+                    _commandInvoker.AddCommand(new CheckForEnemiesCommand(this as ClickTypeSkill));
+                }
+            },
+            OnStackChange = SetSlowRange
         };
+
+        _commandInvoker.AddCommand(new StackedCooldownCommand(this, _coolTimes, _stackCoolTime));
     }
-    
-    private new INode.ENodeState OnCoolTimeEnd()
-    {
-        Stack++;
-                
-        if (Stack >= _coolTimes.Count)
-        {
-            IsCoolTime = false;
-            return INode.ENodeState.Success;
-        }
-        
-        CurrentCoolTime = _coolTimes[Stack];
-        return INode.ENodeState.Success;
-    }*/
 
     #endregion
 }
