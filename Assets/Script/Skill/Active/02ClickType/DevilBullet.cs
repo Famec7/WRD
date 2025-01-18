@@ -4,57 +4,57 @@ using UnityEngine;
 
 public class DevilBullet : ClickTypeSkill
 {
-    [SerializeField]
-    private AudioClip _bulletSound;
+    [SerializeField] private AudioClip _bulletSound;
     
+    private float _attackDamage = 0.0f;
+    private float _amplification = 0.0f;
     private int _attackCount = 0;
+    private float _attackSpeedIncrease = 0.0f;
 
     public override void OnActiveEnter()
     {
-        FindTarget();
-
-        if (target is null)
-        {
-            return;
-        }
-
-        if (target.TryGetComponent(out Monster monster))
-        {
-            StatusEffect markStatus = StatusEffectManager.Instance.GetStatusEffect(monster.status, typeof(Mark));
-
-            if (markStatus != null)
-            {
-                if (monster.CompareTag("Boss"))
-                {
-                    float attackSpeed = weapon.Data.AttackSpeed + weapon.Data.AttackSpeed * Data.GetValue(3);
-                    weapon.SetAttackDelay(attackSpeed);
-
-                    weapon.AddAction(OnAttack);
-                }
-                else if (monster.CompareTag("Monster"))
-                {
-                    monster.Die();
-                }
-            }
-            else
-            {
-                StatusEffect status = new Mark(monster.gameObject);
-                StatusEffectManager.Instance.AddStatusEffect(monster.status, status);
-            }
-
-            monster.HasAttacked(Data.GetValue(0));
-
-            float amplification = Data.GetValue(1) / 100;
-            StatusEffect devilBulletDamageAmplification =
-                new DevilBulletDamageAmplification(monster.gameObject, amplification);
-            StatusEffectManager.Instance.AddStatusEffect(monster.status, devilBulletDamageAmplification);
-            
-            SoundManager.Instance.PlaySFX(_bulletSound);
-        }
+        _attackDamage = Data.GetValue(0);
+        _amplification = Data.GetValue(1) / 100.0f;
+        _attackCount = (int)Data.GetValue(2);
+        _attackSpeedIncrease = weapon.Data.AttackSpeed + weapon.Data.AttackSpeed * Data.GetValue(3);
     }
 
     public override bool OnActiveExecute()
     {
+        Monster target = SelectMonsterAtClickPosition();
+
+        if (target is null)
+        {
+            return true;
+        }
+        
+        StatusEffect markStatus = StatusEffectManager.Instance.GetStatusEffect(target.status, typeof(Mark));
+
+        if (markStatus != null)
+        {
+            if (target.CompareTag("Boss"))
+            {
+                weapon.SetAttackDelay(_attackSpeedIncrease);
+                weapon.AddAction(OnAttack);
+            }
+            else if (target.CompareTag("Monster"))
+            {
+                target.Die();
+            }
+        }
+        else
+        {
+            StatusEffect status = new Mark(target.gameObject);
+            StatusEffectManager.Instance.AddStatusEffect(target.status, status);
+        }
+
+        target.HasAttacked(_attackDamage);
+        
+        StatusEffect devilBulletDamageAmplification = new DevilBulletDamageAmplification(target.gameObject, _amplification);
+        StatusEffectManager.Instance.AddStatusEffect(target.status, devilBulletDamageAmplification);
+
+        SoundManager.Instance.PlaySFX(_bulletSound);
+        
         return true;
     }
 
@@ -68,9 +68,9 @@ public class DevilBullet : ClickTypeSkill
 
     private void OnAttack()
     {
-        _attackCount++;
+        _attackCount--;
 
-        if (_attackCount >= Data.GetValue(2))
+        if (_attackCount <= 0)
         {
             weapon.SetAttackDelay(weapon.Data.AttackSpeed);
             weapon.RemoveAction(OnAttack);
@@ -121,6 +121,6 @@ public class DevilBullet : ClickTypeSkill
 
     public override void ExecuteCoolTimeCommand()
     {
-        _commandInvoker.AddCommand(new DevilCooldownCommand(this));
+        commandInvoker.AddCommand(new DevilCooldownCommand(this));
     }
 }

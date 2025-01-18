@@ -55,11 +55,6 @@ public class StackedCooldownCommand : CooldownCommand
     {
         _coolTimes = coolTimes;
         _stackCoolTime = stackCoolTime;
-
-        _stackCoolTime.OnStackMax = () =>
-        {
-            skill.AddCommand(new CheckForEnemiesCommand(skill as ClickTypeSkill));
-        };
         
         skill.Data.CoolTime = _coolTimes[_stackCoolTime.Stack];
         skill.CurrentCoolTime = skill.Data.CoolTime;
@@ -71,7 +66,6 @@ public class StackedCooldownCommand : CooldownCommand
         
         if (_stackCoolTime.Stack >= _coolTimes.Count)
         {
-            _stackCoolTime.Stack = _coolTimes.Count;
             return;
         }
 

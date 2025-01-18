@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class CheckForEnemiesCommand : ICommand
 {
@@ -11,16 +12,31 @@ public class CheckForEnemiesCommand : ICommand
 
     public bool Execute()
     {
-        GameObject nearestTarget = _skill.weapon.owner.FindNearestTarget();
-        if (nearestTarget == null)
+        if (SettingManager.Instance.CurrentActiveSettingType != SettingManager.ActiveSettingType.Auto)
+        {
+            return true;
+        }
+
+        if (_skill.weapon.owner.Target is null)
         {
             return false;
         }
+
+        Vector2 targetPosition = _skill.weapon.owner.Target.transform.position;
         
-        _skill.ClickPosition = nearestTarget.transform.position;
-        _skill.ShowIndicator(_skill.ClickPosition);
+        _skill.ClickPosition = targetPosition;
+        _skill.ShowIndicator(_skill.ClickPosition, false);
+        
+        _skill.StartCoroutine(DelayedActiveSkillCommand());
 
         return true;
+    }
+
+    private IEnumerator DelayedActiveSkillCommand()
+    {
+        yield return null;
+        
+        _skill.AddCommand(new ActiveSkillCommand(_skill));
     }
 
     public void OnComplete()

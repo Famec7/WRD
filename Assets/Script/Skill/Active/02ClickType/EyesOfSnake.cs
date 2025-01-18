@@ -1,25 +1,31 @@
 ﻿public class EyesOfSnake : ClickTypeSkill
 {
+    private float _duration = 0.0f;
+    private float _damageAmplification = 0.0f;
+    private float _slowRate = 0.0f;
+    
     public override void OnActiveEnter()
     {
-        FindTarget();
-
-        if (target.TryGetComponent(out Monster monster))
-        {
-            float duration = Data.GetValue(0);
-            float damageAmplification = Data.GetValue(1) / 100.0f;
-            float slowRate = Data.GetValue(2);
-            
-            StatusEffect damageAmplificationEffect = new DamageAmplification(monster.gameObject, damageAmplification, duration);
-            StatusEffectManager.Instance.AddStatusEffect(monster.status, damageAmplificationEffect);
-            
-            StatusEffect slowEffect = new SlowDown(monster.gameObject, slowRate, duration);
-            StatusEffectManager.Instance.AddStatusEffect(monster.status, slowEffect);
-        }
+        _duration = Data.GetValue(0);
+        _damageAmplification = Data.GetValue(1) / 100.0f;
+        _slowRate = Data.GetValue(2);
     }
 
     public override bool OnActiveExecute()
     {
+        Monster target = SelectMonsterAtClickPosition();
+        
+        if (target is null)
+        {
+            return true;
+        }
+            
+        StatusEffect damageAmplificationEffect = new DamageAmplification(target.gameObject, _damageAmplification, _duration);
+        StatusEffectManager.Instance.AddStatusEffect(target.status, damageAmplificationEffect);
+            
+        StatusEffect slowEffect = new SlowDown(target.gameObject, _slowRate, _duration);
+        StatusEffectManager.Instance.AddStatusEffect(target.status, slowEffect);
+        
         return true;
     }
 

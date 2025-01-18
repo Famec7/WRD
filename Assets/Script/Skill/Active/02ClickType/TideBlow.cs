@@ -12,13 +12,6 @@ public class TideBlow : ClickTypeSkill
     
     public override void OnActiveEnter()
     {
-        FindTarget();
-        
-        if (ClickPosition == Vector2.zero)
-        {
-            return;
-        }
-        
         _wave.transform.SetParent(null);
         _waterPool.transform.SetParent(null);
         

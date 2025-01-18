@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -30,7 +31,7 @@ public abstract class ActiveSkillBase : SkillBase
     {
         IndicatorInit();
         
-        if (_commandInvoker.IsEmpty)
+        if (commandInvoker.IsEmpty)
             ExecuteCoolTimeCommand();
     }
     
@@ -52,27 +53,32 @@ public abstract class ActiveSkillBase : SkillBase
     
     # region Command System
 
-    protected CommandInvoker _commandInvoker = new CommandInvoker();
+    protected CommandInvoker commandInvoker = new CommandInvoker();
     
     private void Update()
     {
-        _commandInvoker.Execute();
+        commandInvoker.Execute();
     }
     
     public virtual void ExecuteCoolTimeCommand()
     {
-        _commandInvoker.AddCommand(new CooldownCommand(this));
+        commandInvoker.AddCommand(new CooldownCommand(this));
     }
     
     public void CancelSkill()
     {
-        _commandInvoker.Reset();
+        commandInvoker.Reset();
         ExecuteCoolTimeCommand();
     }
     
     public void AddCommand(ICommand command)
     {
-        _commandInvoker.AddCommand(command);
+        commandInvoker.AddCommand(command);
+    }
+    
+    public void Undo()
+    {
+        commandInvoker.Undo();
     }
     
     #endregion
@@ -118,7 +124,7 @@ public abstract class ActiveSkillBase : SkillBase
         indicator.SetSkill(this);
     }
     
-    public void ShowIndicator(Vector2 position)
+    public void ShowIndicator(Vector2 position, bool isRender = true)
     {
         if (_isFixedPosition)
         {
@@ -127,12 +133,18 @@ public abstract class ActiveSkillBase : SkillBase
             Vector2 direction = (Vector2)ownerPos - position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-            IndicatorManager.Instance.ShowIndicator(ownerPos, IndicatorType, angle);
+            IndicatorManager.Instance.ShowIndicator(ownerPos, IndicatorType, isRender, angle);
         }
         else
         {
-            IndicatorManager.Instance.ShowIndicator(position, IndicatorType);
+            IndicatorManager.Instance.ShowIndicator(position, IndicatorType, isRender);
         }
+    }
+    
+    protected void SetIndicatorRange(float range)
+    {
+        SkillIndicator indicator = IndicatorManager.Instance.GetIndicator(indicatorType);
+        indicator.transform.localScale = new Vector3(range, range, 1);
     }
     
     #endregion
@@ -140,21 +152,35 @@ public abstract class ActiveSkillBase : SkillBase
     #region Target Monster
     
     // 스킬이 타겟팅하는 몬스터들 (클릭형 스킬에서 사용)
-    protected readonly HashSet<Monster> targetMonsters = new HashSet<Monster>();
+    private readonly HashSet<Monster> indicatorMonsters = new HashSet<Monster>();
     
     public void AddTargetMonster(Monster monster)
     {
-        targetMonsters.Add(monster);
+        if (IsActive)
+            return;
+        
+        indicatorMonsters.Add(monster);
     }
 
     public void RemoveTargetMonster(Monster monster)
     {
-        targetMonsters.Remove(monster);
+        if (IsActive)
+            return;
+        
+        indicatorMonsters.Remove(monster);
     }
     
     public void ClearTargetMonsters()
     {
-        targetMonsters.Clear();
+        if (IsActive)
+            return;
+        
+        indicatorMonsters.Clear();
+    }
+    
+    protected List<Monster> GetTargetMonsters()
+    {
+        return new List<Monster>(indicatorMonsters);
     }
 
     #endregion

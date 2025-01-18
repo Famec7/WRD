@@ -5,43 +5,39 @@ public abstract class ClickTypeSkill : ActiveSkillBase
 {
     public override void UseSkill()
     {
-        _commandInvoker.AddCommand(new CheckUsableRangeCommand(this));
-    }
-
-    /***************************Behaviour Tree***************************/
-    #region Targeting
-
-    protected GameObject target;
-    
-    public bool FindTarget()
-    {
         if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
         {
-            if (weapon.owner.Target is null)
-            {
-                target = weapon.owner.FindNearestTarget();
-            }
-            else if (weapon.owner.Target.TryGetComponent(out Monster monster))
-            {
-                target = monster.gameObject;
-            }
-            else
-            {
-                target = null;
-            }
-            
-            if (target != null)
-                ClickPosition = target.transform.position;
+            commandInvoker.Undo();
         }
-        else
-        {
-            LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
-            Collider2D collider = Physics2D.OverlapPoint(ClickPosition, layerMask);
-            target = collider != null ? collider.gameObject : null;
-        }
-        
-        return target != null;
+
+        commandInvoker.AddCommand(new CheckUsableRangeCommand(this));
     }
 
-    #endregion
+    /// <summary>
+    /// 클릭한 위치에 있는 몬스터를 반환하는 함수
+    /// </summary>
+    /// <returns></returns>
+    protected Monster SelectMonsterAtClickPosition()
+    {
+        LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
+        Collider2D collider = Physics2D.OverlapPoint(ClickPosition, layerMask);
+
+        if (collider is null)
+        {
+#if UNITY_EDITOR
+            Debug.Log("No monster found at click position");
+#endif
+            return null;
+        }
+
+        if (collider.TryGetComponent(out Monster monster))
+        {
+            return monster;
+        }
+
+#if UNITY_EDITOR
+        Debug.Log("No monster found at click position");
+#endif
+        return null;
+    }
 }

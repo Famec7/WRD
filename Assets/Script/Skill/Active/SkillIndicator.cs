@@ -33,9 +33,9 @@ public class SkillIndicator : MonoBehaviour
         this.transform.localScale = newScale;
     }
 
-    public virtual void ShowIndicator(Vector3 position = default)
+    public virtual void ShowIndicator(Vector3 position = default, bool isRender = true)
     {
-        _spriteRenderer.enabled = true;
+        _spriteRenderer.enabled = isRender;
         transform.position = position;
     }
 
@@ -52,7 +52,7 @@ public class SkillIndicator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (_skill is null)
+        if (IsSkillNull())
         {
             return;
         }
@@ -65,7 +65,7 @@ public class SkillIndicator : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (_skill is null)
+        if (IsSkillNull())
         {
             return;
         }
@@ -78,7 +78,7 @@ public class SkillIndicator : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (_skill is null)
+        if (IsSkillNull())
         {
             return;
         }
@@ -87,5 +87,10 @@ public class SkillIndicator : MonoBehaviour
         {
             _skill.RemoveTargetMonster(monster);
         }
+    }
+    
+    private bool IsSkillNull()
+    {
+        return _skill is null;
     }
 }

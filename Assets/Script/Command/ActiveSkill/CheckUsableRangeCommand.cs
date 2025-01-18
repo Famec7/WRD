@@ -59,12 +59,14 @@ public class CheckUsableRangeCommand : ICommand
         }
 
         _skill.PivotPosition = Camera.main.ScreenToWorldPoint(touch.position);
+        _skill.ClickPosition = _skill.PivotPosition;
 
         var currentSetting = SettingManager.Instance.CurrentActiveSettingType;
 
         switch (currentSetting)
         {
             case SettingManager.ActiveSettingType.SemiAuto:
+            case SettingManager.ActiveSettingType.Auto:
                 _skill.AddCommand(new ActiveSkillCommand(_skill));
                 break;
             case SettingManager.ActiveSettingType.Manual:
@@ -80,10 +82,12 @@ public class CheckUsableRangeCommand : ICommand
     public void OnComplete()
     {
         IndicatorManager.Instance.HideUsableIndicator();
+        _skill.weapon.owner.enabled = true;
     }
 
     public void Undo()
     {
         IndicatorManager.Instance.HideUsableIndicator();
+        _skill.weapon.owner.enabled = true;
     }
 }
