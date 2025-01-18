@@ -39,7 +39,7 @@ public class GodOfThunder : InstantaneousSkill
         _stunDuration = Data.GetValue(4);
     }
 
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         _timer = 0.0f;
 
@@ -58,19 +58,18 @@ public class GodOfThunder : InstantaneousSkill
         weapon.OnAttack += ChainAttack;
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
         _timer += Time.deltaTime;
         if (_timer >= _duration)
         {
-            IsActive = false;
-            return INode.ENodeState.Success;
+            return true;
         }
-        
-        return INode.ENodeState.Running;
+
+        return false;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         ResetStat();
         

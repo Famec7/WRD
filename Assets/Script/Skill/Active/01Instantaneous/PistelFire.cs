@@ -21,25 +21,23 @@ public class PistelFire : InstantaneousSkill, IObserver
         weapon.SetAttackDelay(weapon.owner.Data.CurrentWeapon.Data.AttackSpeed);
     }
 
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         weapon.SetAttackDelay(Data.GetValue(1));
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
         if (_attackCount >= Data.GetValue(0))
         {
             weapon.owner.StartCoroutine(IE_DisableAttack());
-            
-            IsActive = false;
-            return INode.ENodeState.Success;
+            return true;
         }
 
-        return INode.ENodeState.Running;
+        return false;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         StatInit();
     }

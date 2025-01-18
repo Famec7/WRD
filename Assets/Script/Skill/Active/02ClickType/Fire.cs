@@ -7,45 +7,51 @@ public class Fire : ClickTypeSkill
     [SerializeField]
     private AudioClip _fireSound;
     
-    protected override void OnActiveEnter()
+    private float _singleDamage = 0.0f;
+    private float _multipleDamage = 0.0f;
+    private float slowDuration = 0.0f;
+    private float slowRate = 0.0f;
+    
+    public override void OnActiveEnter()
     {
-        LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
-        Collider2D target = Physics2D.OverlapPoint(pivotPosition, layerMask);
+        _singleDamage = Data.GetValue(0);
+        slowDuration = Data.GetValue(1);
+        slowRate = Data.GetValue(2);
+        _multipleDamage = Data.GetValue(3);
+    }
 
-        if (target != null && target.TryGetComponent(out Monster monster))
+    public override bool OnActiveExecute()
+    {
+        Monster target = SelectMonsterAtClickPosition();
+
+        if (target != null)
         {
-            StatusEffect markStatus = StatusEffectManager.Instance.GetStatusEffect(monster.status, typeof(Mark));
+            StatusEffect markStatus = StatusEffectManager.Instance.GetStatusEffect(target.status, typeof(Mark));
 
             if (markStatus is null)
             {
-                OnAttackMultipleTargets(targetMonsters.ToList());
-                return;
+                OnAttackMultipleTargets();
+                return true;
             }
 
-            OnAttackSingleTarget(monster);
+            /*OnAttackSingleTarget(target);*/
         }
         else
         {
-            OnAttackMultipleTargets(targetMonsters.ToList());
+            OnAttackMultipleTargets();
         }
         
-        IsActive = false;
+        return true;
     }
 
-    protected override INode.ENodeState OnActiveExecute()
-    {
-        IsActive = false;
-        return INode.ENodeState.Success;
-    }
-
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         
     }
 
     private void OnAttackSingleTarget(Monster monster)
     {
-        monster.HasAttacked(Data.GetValue(0));
+        monster.HasAttacked(_singleDamage);
         
         ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("FireEffect");
         effect.SetPosition(monster.transform.position);
@@ -54,23 +60,27 @@ public class Fire : ClickTypeSkill
         SoundManager.Instance.PlaySFX(_fireSound);
     }
 
-    private void OnAttackMultipleTargets(List<Monster> monsters)
+    private void OnAttackMultipleTargets()
     {
-        foreach (var monster in monsters)
+        List<Monster> targets = GetTargetMonsters();
+        
+        if (targets.Count == 0)
         {
-            monster.HasAttacked(Data.GetValue(3));
+            return;
+        }
+        
+        foreach (var target in targets)
+        {
+            target.HasAttacked(_multipleDamage);
             
-            Status status = monster.status;
-            float slowDuration = Data.GetValue(1);
-            float slowRate = Data.GetValue(2);
-            
+            Status status = target.status;
             StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(status.gameObject, slowRate, slowDuration));
             
             ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("FireEffect");
-            effect.SetPosition(monster.transform.position);
+            effect.SetPosition(target.transform.position);
             effect.PlayEffect();
-            
-            SoundManager.Instance.PlaySFX(_fireSound);
         }
+
+        SoundManager.Instance.PlaySFX(_fireSound);
     }
 }

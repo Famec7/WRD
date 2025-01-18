@@ -20,18 +20,17 @@ public class Rush : ClickTypeSkill
     public float MaxSpeed = 5f;
 
     private Coroutine _dashCoroutine = null;
-    protected override void Init()
-    {
-        base.Init();
 
+    public override void OnActiveEnter()
+    {
         _damage = Data.GetValue(0);
         _duration = Data.GetValue(1);
         _reducedSpeed = (int)Data.GetValue(2);
     }
 
-    protected override void OnActiveEnter()
+    public override bool OnActiveExecute()
     {
-        Vector2 direction = (clickPosition - (Vector2)weapon.transform.position).normalized;
+        Vector2 direction = (ClickPosition - (Vector2)weapon.transform.position).normalized;
         Vector2 targetPosition = (Vector2)weapon.transform.position + (direction * DashDistance);
 
         _originAngleZ = transform.rotation.eulerAngles.z;
@@ -48,15 +47,10 @@ public class Rush : ClickTypeSkill
 
         _dashCoroutine = StartCoroutine(Dash(targetPosition));
         
+        return true;
     }
 
-    protected override INode.ENodeState OnActiveExecute()
-    {
-        IsActive = false;
-        return INode.ENodeState.Success;
-    }
-
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         
     }

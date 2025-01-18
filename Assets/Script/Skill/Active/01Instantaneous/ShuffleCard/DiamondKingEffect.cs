@@ -16,10 +16,10 @@ public class DiamondKingEffect : CardEffectBase
         Weapon.OnAttack += OnAttack;
     }
 
-    public override INode.ENodeState OnUpdate()
+    public override bool OnUpdate()
     {
         _time -= Time.deltaTime;
-        return _time <= 0 ? INode.ENodeState.Success : INode.ENodeState.Running;
+        return _time <= 0 ? true : false;
     }
 
     public override void OnExit()
@@ -30,7 +30,7 @@ public class DiamondKingEffect : CardEffectBase
     private void OnAttack()
     {
         Vector3 targetPosition = Weapon.owner.Target.transform.position;
-        var layer = LayerMaskManager.Instance.MonsterLayerMask;
+        var layer = LayerMaskProvider.MonsterLayerMask;
 
         var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, _range, default, layer);
         

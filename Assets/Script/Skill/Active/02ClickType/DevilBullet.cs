@@ -4,62 +4,61 @@ using UnityEngine;
 
 public class DevilBullet : ClickTypeSkill
 {
-    [SerializeField]
-    private AudioClip _bulletSound;
+    [SerializeField] private AudioClip _bulletSound;
     
+    private float _attackDamage = 0.0f;
+    private float _amplification = 0.0f;
     private int _attackCount = 0;
+    private float _attackSpeedIncrease = 0.0f;
 
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
-        FindTarget();
+        _attackDamage = Data.GetValue(0);
+        _amplification = Data.GetValue(1) / 100.0f;
+        _attackCount = (int)Data.GetValue(2);
+        _attackSpeedIncrease = weapon.Data.AttackSpeed + weapon.Data.AttackSpeed * Data.GetValue(3);
+    }
+
+    public override bool OnActiveExecute()
+    {
+        Monster target = SelectMonsterAtClickPosition();
 
         if (target is null)
         {
-            return;
+            return true;
         }
+        
+        StatusEffect markStatus = StatusEffectManager.Instance.GetStatusEffect(target.status, typeof(Mark));
 
-        if (target.TryGetComponent(out Monster monster))
+        if (markStatus != null)
         {
-            StatusEffect markStatus = StatusEffectManager.Instance.GetStatusEffect(monster.status, typeof(Mark));
-
-            if (markStatus != null)
+            if (target.CompareTag("Boss"))
             {
-                if (monster.CompareTag("Boss"))
-                {
-                    float attackSpeed = weapon.Data.AttackSpeed + weapon.Data.AttackSpeed * Data.GetValue(3);
-                    weapon.SetAttackDelay(attackSpeed);
-
-                    weapon.AddAction(OnAttack);
-                }
-                else if (monster.CompareTag("Monster"))
-                {
-                    monster.Die();
-                }
+                weapon.SetAttackDelay(_attackSpeedIncrease);
+                weapon.AddAction(OnAttack);
             }
-            else
+            else if (target.CompareTag("Monster"))
             {
-                StatusEffect status = new Mark(monster.gameObject);
-                StatusEffectManager.Instance.AddStatusEffect(monster.status, status);
+                target.Die();
             }
-
-            monster.HasAttacked(Data.GetValue(0));
-
-            float amplification = Data.GetValue(1) / 100;
-            StatusEffect devilBulletDamageAmplification =
-                new DevilBulletDamageAmplification(monster.gameObject, amplification);
-            StatusEffectManager.Instance.AddStatusEffect(monster.status, devilBulletDamageAmplification);
-            
-            SoundManager.Instance.PlaySFX(_bulletSound);
         }
+        else
+        {
+            StatusEffect status = new Mark(target.gameObject);
+            StatusEffectManager.Instance.AddStatusEffect(target.status, status);
+        }
+
+        target.HasAttacked(_attackDamage);
+        
+        StatusEffect devilBulletDamageAmplification = new DevilBulletDamageAmplification(target.gameObject, _amplification);
+        StatusEffectManager.Instance.AddStatusEffect(target.status, devilBulletDamageAmplification);
+
+        SoundManager.Instance.PlaySFX(_bulletSound);
+        
+        return true;
     }
 
-    protected override INode.ENodeState OnActiveExecute()
-    {
-        IsActive = false;
-        return INode.ENodeState.Success;
-    }
-
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         if (weapon.GetPassiveAuraSkill() is Devil7 devil7)
         {
@@ -69,9 +68,9 @@ public class DevilBullet : ClickTypeSkill
 
     private void OnAttack()
     {
-        _attackCount++;
+        _attackCount--;
 
-        if (_attackCount >= Data.GetValue(2))
+        if (_attackCount <= 0)
         {
             weapon.SetAttackDelay(weapon.Data.AttackSpeed);
             weapon.RemoveAction(OnAttack);
@@ -80,7 +79,7 @@ public class DevilBullet : ClickTypeSkill
 
     #region Behavior Tree
 
-    protected override List<INode> CoolTimeNodes()
+    /*protected override List<INode> CoolTimeNodes()
     {
         return new List<INode>
         {
@@ -116,7 +115,12 @@ public class DevilBullet : ClickTypeSkill
         {
             CancelSkill();
         }
-    }
+    }*/
 
     #endregion
+
+    public override void ExecuteCoolTimeCommand()
+    {
+        commandInvoker.AddCommand(new DevilCooldownCommand(this));
+    }
 }

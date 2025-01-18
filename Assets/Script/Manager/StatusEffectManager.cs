@@ -13,6 +13,11 @@ public class StatusEffectManager : Singleton<StatusEffectManager>
 
     public void AddStatusEffect(Status status, StatusEffect statusEffect)
     {
+        if (status.gameObject.activeSelf == false)
+        {
+            return;
+        }
+        
         if (_statusEffects.ContainsKey(status))
         {
             _statusEffects[status].Add(statusEffect);

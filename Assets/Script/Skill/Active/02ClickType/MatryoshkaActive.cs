@@ -6,119 +6,96 @@ public class MatryoshkaActive : ClickTypeSkill
 {
     #region Skill Data
 
-    private int _stack = 0;
+    private StackCoolTime _stackCoolTime;
 
-    private int Stack
-    {
-        get => _stack;
-        set
-        {
-            _stack = value;
+    private float _damageAmplification = 0.0f;
+    private float _amplificationDuration = 0.0f;
+    private float _stunDuration = 0.0f;
+    private float _damage = 0.0f;
+    private readonly int baseStunIndex = 2;
 
-            if (_stack > 0)
-            {
-                OnButtonActivate?.Invoke(true);
-            }
-            else
-            {
-                CurrentCoolTime = Data.CoolTime;
-                OnButtonActivate?.Invoke(false);
-            }
-            
-            if (_stack >= _coolTimes.Count)
-            {
-                _stack = _coolTimes.Count;
-                    
-                if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
-                {
-                    IsActive = true;
-                }
-                    
-                return;
-            }
-            
-            SetSlowRange?.Invoke(_stack);
-        }
-    }
+    [SerializeField] private List<float> _ranges;
 
     #endregion
-    
-    protected override void OnActiveEnter()
+
+    protected override void Init()
     {
-        FindTarget();
+        base.Init();
+        _stackCoolTime = new StackCoolTime(this, _coolTimes.Count)
+        {
+            OnStackMax = () =>
+            {
+                if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
+                {
+                    commandInvoker.AddCommand(new CheckForEnemiesCommand(this as ClickTypeSkill));
+                }
+            },
+            OnStackChange = SetSlowRange + SetIndicatorRange
+        };
         
-        if (target is null)
-            return;
-        
-        var targets = RangeDetectionUtility.GetAttackTargets(target.transform.position, Data.Range, default, targetLayer);
-        
-        if (targets.Count == 0)
-            return;
+        SetIndicatorRange(_ranges[0]);
+    }
+
+    public override void OnActiveEnter()
+    {
+        _damage = Data.GetValue(_stackCoolTime.Stack - 1);
+        _damageAmplification = Data.GetValue(7) / 100.0f;
+        _amplificationDuration = Data.GetValue(6);
+        _stunDuration = Data.GetValue(baseStunIndex + _stackCoolTime.Stack);
+    }
+
+    public override bool OnActiveExecute()
+    {
+        List<Monster> targets = GetTargetMonsters();
         
         foreach (var target in targets)
         {
-            if (target.TryGetComponent(out Monster monster))
-            {
-                monster.HasAttacked(Data.GetValue(Stack - 1));
-                
-                Stun(monster.status, Data.GetValue(2 + Stack));
-                DamageAmplification(monster.status, Data.GetValue(7) / 100, Data.GetValue(6));
-            }
+            target.HasAttacked(_damage);
+
+            Stun(target.status, _stunDuration);
+            DamageAmplification(target.status, _damageAmplification, _amplificationDuration);
         }
+
+        return true;
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override void OnActiveExit()
     {
-        IsActive = false;
-        return INode.ENodeState.Success;
+        _stackCoolTime.Stack = 0;
     }
 
-    protected override void OnActiveExit()
-    {
-        Stack = -1;
-    }
-    
     private void Stun(Status status, float duration)
     {
         StatusEffect stun = new SlowDown(status.gameObject, 100f, duration);
         StatusEffectManager.Instance.AddStatusEffect(status, stun);
     }
-    
+
     private void DamageAmplification(Status status, float amplification, float duration)
     {
-        StatusEffect devilBulletDamageAmplification = new DamageAmplification(status.gameObject, amplification, duration);
+        StatusEffect devilBulletDamageAmplification =
+            new DamageAmplification(status.gameObject, amplification, duration);
         StatusEffectManager.Instance.AddStatusEffect(status, devilBulletDamageAmplification);
     }
-    
+
     public Action<float> SetSlowRange { get; set; }
-
-    #region Behavior Tree
-
-    [Space]
-    [SerializeField] private List<float> _coolTimes;
-
-    protected override List<INode> CoolTimeNodes()
-    {
-        return new List<INode>
-        {
-            new ActionNode(CheckCoolTimeState),
-            new ActionNode(CoolTimeDown),
-            new ActionNode(OnCoolTimeEnd)
-        };
-    }
     
-    private new INode.ENodeState OnCoolTimeEnd()
+    private void SetIndicatorRange()
     {
-        Stack++;
-                
-        if (Stack >= _coolTimes.Count)
+        if (_stackCoolTime.Stack >= _coolTimes.Count)
         {
-            IsCoolTime = false;
-            return INode.ENodeState.Success;
+            return;
         }
         
-        CurrentCoolTime = _coolTimes[Stack];
-        return INode.ENodeState.Success;
+        SetIndicatorRange(_ranges[_stackCoolTime.Stack]);
+    }
+
+    #region CoolTime Command
+
+    [Space] [SerializeField] private List<float> _coolTimes;
+
+    public override void ExecuteCoolTimeCommand()
+    {
+        commandInvoker.AddCommand(new StackedCooldownCommand(this, _coolTimes, _stackCoolTime));
     }
 
     #endregion

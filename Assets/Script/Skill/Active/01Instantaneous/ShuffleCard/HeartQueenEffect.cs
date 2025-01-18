@@ -32,15 +32,15 @@ public class HeartQueenEffect : CardEffectBase
         WeaponManager.Instance.OnWeaponDetached += RemoveBuffFromCharacter;
     }
 
-    public override INode.ENodeState OnUpdate()
+    public override bool OnUpdate()
     {
         if (_time <= 0)
         {
-            return INode.ENodeState.Success;
+            return true;
         }
         
         _time -= Time.deltaTime;
-        return INode.ENodeState.Running;
+        return false;
     }
 
     public override void OnExit()

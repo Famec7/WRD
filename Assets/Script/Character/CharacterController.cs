@@ -51,7 +51,7 @@ public abstract class CharacterController : MonoBehaviour
     /*************************Find Target******************************/
     public GameObject FindNearestTarget()
     {
-        LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
+        LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
         float attackRange = Data.CurrentWeapon.Data.AttackRange;
         
         var colliders = RangeDetectionUtility.GetAttackTargets(transform.position, attackRange, default, layerMask);
