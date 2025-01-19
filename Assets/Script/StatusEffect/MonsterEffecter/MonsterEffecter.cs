@@ -129,6 +129,9 @@ public class MonsterEffecter : MonoBehaviour
     /// </summary>
     public void StartHitEffect()
     {
+        //예외처리: 몬스터 비활설화 일때 히트 이펙트 호출되는 경우 생기는듯
+        if (this.gameObject.activeSelf == false) return;
+
         //이미 히트 이펙트가 진행되는게 있으면 꺼주기
         if (hitEffectCoroutine != null)
         {
