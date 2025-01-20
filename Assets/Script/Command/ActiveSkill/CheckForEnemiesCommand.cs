@@ -34,7 +34,7 @@ public class CheckForEnemiesCommand : ICommand
 
     private IEnumerator DelayedActiveSkillCommand()
     {
-        yield return null;
+        yield return new WaitForSeconds(0.01f);
         
         _skill.AddCommand(new ActiveSkillCommand(_skill));
     }
