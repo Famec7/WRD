@@ -19,7 +19,7 @@ public static class RangeDetectionUtility
     public static List<Collider2D> GetAttackTargets(Vector2 position, float radius,
         float degree = 360f, LayerMask layerMask = default)
     {
-        radius /= 2;
+        //radius /= 2;
 
         var colliders = Physics2D.OverlapCircleAll(position, radius, layerMask);
 
