@@ -34,7 +34,7 @@ public class Fire : ClickTypeSkill
                 return true;
             }
 
-            /*OnAttackSingleTarget(target);*/
+            OnAttackSingleTarget(target);
         }
         else
         {

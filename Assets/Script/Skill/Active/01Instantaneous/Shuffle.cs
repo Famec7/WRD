@@ -54,10 +54,6 @@ public class Shuffle : InstantaneousSkill
     {
         bool result = _cardEffect.OnUpdate();
 
-        if (result)
-        {
-        }
-
         return result;
     }
 

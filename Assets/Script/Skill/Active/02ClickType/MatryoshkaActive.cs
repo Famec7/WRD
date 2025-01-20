@@ -66,7 +66,7 @@ public class MatryoshkaActive : ClickTypeSkill
 
     private void Stun(Status status, float duration)
     {
-        StatusEffect stun = new SlowDown(status.gameObject, 100f, duration);
+        StatusEffect stun = new Stun(status.gameObject, duration);
         StatusEffectManager.Instance.AddStatusEffect(status, stun);
     }
 
