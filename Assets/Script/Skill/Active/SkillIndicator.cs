@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class SkillIndicator : MonoBehaviour
 {
+    private Collider2D _collider;
     private ActiveSkillBase _skill;
 
     [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -43,54 +44,12 @@ public class SkillIndicator : MonoBehaviour
     {
         _spriteRenderer.enabled = false;
     }
+    
+    public Collider2D Collider => _collider;
 
     private void Awake()
     {
-        Collider2D collider = GetComponent<Collider2D>();
-        collider.isTrigger = true;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (IsSkillNull())
-        {
-            return;
-        }
-        
-        if (other.TryGetComponent(out Monster monster))
-        {
-            _skill.AddTargetMonster(monster);
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (IsSkillNull())
-        {
-            return;
-        }
-        
-        if (other.TryGetComponent(out Monster monster))
-        {
-            _skill.AddTargetMonster(monster);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (IsSkillNull())
-        {
-            return;
-        }
-        
-        if (other.TryGetComponent(out Monster monster))
-        {
-            _skill.RemoveTargetMonster(monster);
-        }
-    }
-    
-    private bool IsSkillNull()
-    {
-        return _skill is null;
+        _collider = GetComponent<Collider2D>();
+        _collider.isTrigger = true;
     }
 }

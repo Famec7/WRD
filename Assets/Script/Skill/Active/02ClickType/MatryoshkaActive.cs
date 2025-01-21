@@ -46,9 +46,7 @@ public class MatryoshkaActive : ClickTypeSkill
 
     public override bool OnActiveExecute()
     {
-        List<Monster> targets = GetTargetMonsters();
-        
-        foreach (var target in targets)
+        foreach (var target in IndicatorMonsters)
         {
             target.HasAttacked(_damage);
 

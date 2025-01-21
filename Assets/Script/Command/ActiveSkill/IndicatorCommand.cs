@@ -79,13 +79,13 @@ public class IndicatorCommand : ICommand
 
     public void OnComplete()
     {
-        IndicatorManager.Instance.HideIndicator(IndicatorType);
+        _skill.Indicator.HideIndicator();
         _skill.weapon.owner.enabled = true;
     }
 
     public void Undo()
     {
-        IndicatorManager.Instance.HideIndicator(IndicatorType);
+        _skill.Indicator.HideIndicator();
         _skill.weapon.owner.enabled = true;
     }
 }

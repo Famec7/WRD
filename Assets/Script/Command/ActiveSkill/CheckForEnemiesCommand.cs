@@ -26,17 +26,11 @@ public class CheckForEnemiesCommand : ICommand
         
         _skill.ClickPosition = targetPosition;
         _skill.ShowIndicator(_skill.ClickPosition, false);
-        
-        _skill.StartCoroutine(DelayedActiveSkillCommand());
-
-        return true;
-    }
-
-    private IEnumerator DelayedActiveSkillCommand()
-    {
-        yield return new WaitForSeconds(0.01f);
+        Physics2D.SyncTransforms();
         
         _skill.AddCommand(new ActiveSkillCommand(_skill));
+
+        return true;
     }
 
     public void OnComplete()

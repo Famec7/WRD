@@ -32,19 +32,6 @@ public class IndicatorManager : Singleton<IndicatorManager>
         _usualbleIndicator.SetActive(false);
     }
 
-    public void ShowIndicator(Vector3 position, Type type, bool isRender = true, float angle = 0.0f)
-    {
-        SkillIndicator indicator = GetIndicator(type);
-        indicator.transform.rotation = Quaternion.Euler(0, 0, angle);
-        
-        indicator.ShowIndicator(position, isRender);
-    }
-
-    public void HideIndicator(Type type)
-    {
-        GetIndicator(type).HideIndicator();
-    }
-
     public SkillIndicator GetIndicator(Type type)
     {
         if (_skillIndicators[(int)type] is null)

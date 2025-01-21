@@ -1,7 +1,8 @@
-﻿public class ActiveSkillCommand : ICommand
+﻿using UnityEngine;
+
+public class ActiveSkillCommand : ICommand
 {
     private readonly ActiveSkillBase _skill;
-    private bool _isExecute = false;
     
     public ActiveSkillCommand(ActiveSkillBase skill)
     {
@@ -10,6 +11,9 @@
         SkillUIManager.Instance.ShowPopupPanel(3);
         _skill.OnButtonActivate?.Invoke(false);
         _skill.IsActive = true;
+
+        LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
+        _skill.IndicatorMonsters = RangeDetectionUtility.GetAttackTargets(_skill.Indicator.Collider, layerMask);
         
         _skill.OnActiveEnter();
     }

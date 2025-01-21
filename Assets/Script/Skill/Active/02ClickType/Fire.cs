@@ -62,14 +62,12 @@ public class Fire : ClickTypeSkill
 
     private void OnAttackMultipleTargets()
     {
-        List<Monster> targets = GetTargetMonsters();
-        
-        if (targets.Count == 0)
+        if (IndicatorMonsters.Count == 0)
         {
             return;
         }
         
-        foreach (var target in targets)
+        foreach (var target in IndicatorMonsters)
         {
             target.HasAttacked(_multipleDamage);
             
