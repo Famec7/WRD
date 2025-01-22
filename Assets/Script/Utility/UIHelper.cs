@@ -25,7 +25,7 @@ public static class UIHelper
 
         foreach (var result in raycastResults)
         {
-            if (result.gameObject.layer == layer)
+            if (result.gameObject.layer.Equals(layer))
             {
                 return true;
             }

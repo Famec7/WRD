@@ -9,6 +9,13 @@ public class MoveState : IState<PlayerController>
 
     public void Execute(PlayerController entity)
     {
+        bool isPointerOverUI = UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("UI"));
+        bool isPointerOverSkillUI = UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("SkillUI"));
+        if (isPointerOverUI || isPointerOverSkillUI)
+        { 
+            return;
+        }
+        
         Vector3 dir = (entity.TouchPos - entity.transform.position).normalized;
         entity.transform.position += dir * (entity.Data.MoveSpeed * Time.deltaTime);
     }

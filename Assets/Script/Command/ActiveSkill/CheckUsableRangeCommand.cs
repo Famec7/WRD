@@ -14,10 +14,10 @@ public class CheckUsableRangeCommand : ICommand
         Vector3 ownerPos = _skill.weapon.owner.transform.position;
         IndicatorManager.Instance.ShowUsableIndicator(ownerPos, _skill.Data.AvailableRange);
 
-        _skill.weapon.owner.enabled = false;
-
         currentWaitTime = waitTime;
         _skill.PivotPosition = ownerPos;
+        
+        _skill.weapon.owner.enabled = false;
 
         SkillUIManager.Instance.ShowPopupPanel();
     }
@@ -58,6 +58,15 @@ public class CheckUsableRangeCommand : ICommand
             return false;
         }
 
+        Ray ray = Camera.main.ScreenPointToRay(touch.position);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+        
+        if (hit.collider is null)
+        {
+            _skill.CancelSkill();
+            return false;
+        }
+
         _skill.PivotPosition = Camera.main.ScreenToWorldPoint(touch.position);
         _skill.ClickPosition = _skill.PivotPosition;
 
@@ -67,6 +76,8 @@ public class CheckUsableRangeCommand : ICommand
         {
             case SettingManager.ActiveSettingType.SemiAuto:
             case SettingManager.ActiveSettingType.Auto:
+                _skill.ShowIndicator(_skill.ClickPosition, false);
+                Physics2D.SyncTransforms();
                 _skill.AddCommand(new ActiveSkillCommand(_skill));
                 break;
             case SettingManager.ActiveSettingType.Manual:
@@ -82,12 +93,10 @@ public class CheckUsableRangeCommand : ICommand
     public void OnComplete()
     {
         IndicatorManager.Instance.HideUsableIndicator();
-        _skill.weapon.owner.enabled = true;
     }
 
     public void Undo()
     {
         IndicatorManager.Instance.HideUsableIndicator();
-        _skill.weapon.owner.enabled = true;
     }
 }

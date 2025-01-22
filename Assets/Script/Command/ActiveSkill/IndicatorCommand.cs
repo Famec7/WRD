@@ -23,10 +23,10 @@ public class IndicatorCommand : ICommand
 
         _skill.ShowIndicator(PivotPosition);
 
+        _skill.weapon.owner.enabled = false;
+
         _skill.ClearTargetMonsters();
         SkillUIManager.Instance.ShowPopupPanel(1);
-        
-        _skill.weapon.owner.enabled = false;
     }
 
     public bool Execute()
@@ -70,6 +70,15 @@ public class IndicatorCommand : ICommand
             _skill.CancelSkill();
             return true;
         }
+        
+        Ray ray = Camera.main.ScreenPointToRay(touch.position);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+        
+        if (hit.collider is null)
+        {
+            _skill.CancelSkill();
+            return false;
+        }
 
         _skill.ClickPosition = Camera.main.ScreenToWorldPoint(touch.position);
         _skill.AddCommand(new ActiveSkillCommand(_skill));
@@ -80,12 +89,10 @@ public class IndicatorCommand : ICommand
     public void OnComplete()
     {
         _skill.Indicator.HideIndicator();
-        _skill.weapon.owner.enabled = true;
     }
 
     public void Undo()
     {
         _skill.Indicator.HideIndicator();
-        _skill.weapon.owner.enabled = true;
     }
 }
