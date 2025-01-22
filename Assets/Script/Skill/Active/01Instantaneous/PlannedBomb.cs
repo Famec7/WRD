@@ -9,7 +9,7 @@ public class PlannedBomb : InstantaneousSkill
     [SerializeField]
     private AudioClip _bombSound;
     
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         GlueBomb passiveAuraSkill = (GlueBomb)weapon.GetPassiveAuraSkill();
         var bombList = passiveAuraSkill.BombProjectiles.ToArray();
@@ -25,13 +25,12 @@ public class PlannedBomb : InstantaneousSkill
         SoundManager.Instance.PlaySFX(_bombSound);
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        IsActive = false;
-        return INode.ENodeState.Success;
+        return true;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         ;
     }

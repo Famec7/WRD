@@ -27,7 +27,7 @@ public class JokerEffect : CardEffectBase
         }
     }
 
-    public override INode.ENodeState OnUpdate()
+    public override bool OnUpdate()
     {
         bool isAllComplete = true;
         
@@ -35,8 +35,8 @@ public class JokerEffect : CardEffectBase
         {
             if (!_isComplete[i])
             {
-                INode.ENodeState result = _cardEffects[i].OnUpdate();
-                if (result == INode.ENodeState.Success)
+                bool result = _cardEffects[i].OnUpdate();
+                if (result)
                 {
                     _cardEffects[i].OnExit();
                     _isComplete[i] = true;
@@ -48,7 +48,7 @@ public class JokerEffect : CardEffectBase
             }
         }
         
-        return isAllComplete ? INode.ENodeState.Success : INode.ENodeState.Running;
+        return isAllComplete ? true : false;
     }
 
     public override void OnExit()

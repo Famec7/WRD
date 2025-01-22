@@ -11,7 +11,7 @@ public class HighVisionStrike : PassiveSkillBase
             return false;
         
         Vector3 targetPosition = target.transform.position;
-        var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, Data.Range, default, LayerMaskManager.Instance.MonsterLayerMask);
+        var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, Data.Range, default, LayerMaskProvider.MonsterLayerMask);
         
         if (targets.Count == 0)
             return false;

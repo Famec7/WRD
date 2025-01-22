@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class GodOfThunder : InstantaneousSkill
 {
-    private float _timer = 0.0f;
-
     private int _originPassiveChance;
     private float _originAttackRange;
     
@@ -24,11 +22,9 @@ public class GodOfThunder : InstantaneousSkill
     private float _stunDuration;
 
     #endregion
-
-    protected override void Init()
+    
+    public override void OnActiveEnter()
     {
-        base.Init();
-        
         _originPassiveChance = weapon.GetPassiveSkill().Data.Chance;
         _originAttackRange = weapon.Data.AttackRange;
         
@@ -37,12 +33,7 @@ public class GodOfThunder : InstantaneousSkill
         _passiveChance = (int)Data.GetValue(2);
         _damage = Data.GetValue(3);
         _stunDuration = Data.GetValue(4);
-    }
-
-    protected override void OnActiveEnter()
-    {
-        _timer = 0.0f;
-
+        
         // 패시브 스킬 확률을 변경
         weapon.GetPassiveSkill().Data.Chance = _passiveChance;
         
@@ -58,19 +49,14 @@ public class GodOfThunder : InstantaneousSkill
         weapon.OnAttack += ChainAttack;
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        _timer += Time.deltaTime;
-        if (_timer >= _duration)
-        {
-            IsActive = false;
-            return INode.ENodeState.Success;
-        }
+        _duration -= Time.deltaTime;
         
-        return INode.ENodeState.Running;
+        return _duration <= 0;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         ResetStat();
         
@@ -114,7 +100,7 @@ public class GodOfThunder : InstantaneousSkill
                 target.GetComponent<Monster>().HasAttacked(_damage);
                 
                 StatusEffectManager.Instance.RemoveStatusEffect(status, typeof(ElectricShock));
-                StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(status.gameObject, 100f, _stunDuration));
+                StatusEffectManager.Instance.AddStatusEffect(status, new Stun(status.gameObject, _stunDuration));
                 
                 yield return new WaitForSeconds(0.5f);
             }

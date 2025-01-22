@@ -56,10 +56,10 @@ public class PlayerController : CharacterController, ISubject
 
             // 상태를 추적으로 변경후 옵저버에게 알림
             ChangeState(State.CHASE);
-            
+
             Vector3 targetDir = value.transform.position - transform.position;
             SetFlip(targetDir.x > 0);
-            
+
             Notify();
         }
     }
@@ -100,12 +100,37 @@ public class PlayerController : CharacterController, ISubject
 
     private void OnClickMove()
     {
-        if (!Input.GetMouseButtonDown(0) || UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("UI")))
-        {
+#if UNITY_EDITOR
+        if (!Input.GetMouseButton(0))
+            return;
+#else
+    if (Input.touchCount <= 0)
+        return;
+#endif
+
+#if UNITY_EDITOR
+        bool isPointerOverUI = UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("UI"));
+        bool isPointerOverSkillUI = UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("SkillUI"));
+        if (isPointerOverUI || isPointerOverSkillUI)
+        { 
             return;
         }
 
-        TouchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+#else
+    Touch touch = Input.GetTouch(0);
+
+    bool isPointerOverUI = UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("UI"), touch);
+    bool isPointerOverSkillUI = UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("SkillUI"), touch);
+    if (isPointerOverUI || isPointerOverSkillUI)
+    {
+        return;
+    }
+
+    Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+#endif
+
+        TouchPos = touchPosition;
 
         var pos = TouchPos;
         pos.z = 0f;
@@ -113,8 +138,8 @@ public class PlayerController : CharacterController, ISubject
 
         MoveDir = (TouchPos - transform.position).normalized;
 
-        LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
-        Collider2D col = Physics2D.OverlapPoint( TouchPos, layerMask);
+        LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
+        Collider2D col = Physics2D.OverlapPoint(TouchPos, layerMask);
         // 몬스터 클릭 시 추적
         if (col != null)
         {
@@ -132,9 +157,9 @@ public class PlayerController : CharacterController, ISubject
 #if FSM_DEBUG
         Debug.Log($"Change State : {CurrentState} -> {state}");
 #endif
-        if(CurrentState == state)
+        if (CurrentState == state)
             return;
-        
+
         CurrentState = state;
         switch (state)
         {
@@ -154,7 +179,7 @@ public class PlayerController : CharacterController, ISubject
                 Debug.LogError($"{state} is not exist in {nameof(State)}");
                 break;
         }
-        
+
         Notify();
     }
 
@@ -173,12 +198,12 @@ public class PlayerController : CharacterController, ISubject
 
     public bool IsTargetInRange()
     {
-        if(IsTargetNullOrInactive())
+        if (IsTargetNullOrInactive())
             return false;
-        
+
         return Vector3.Distance(transform.position, Target.transform.position) <= Data.CurrentWeapon.Data.AttackRange;
     }
-    
+
     public bool IsWeaponEquipped()
     {
         return Data.CurrentWeapon != null;
@@ -187,6 +212,7 @@ public class PlayerController : CharacterController, ISubject
     #endregion
 
     /******************************Observer******************************************/
+
     #region Observer
 
     private readonly List<IObserver> _observers = new();
@@ -213,12 +239,12 @@ public class PlayerController : CharacterController, ISubject
     }
 
     #endregion
-    
+
     /******************************Weapon******************************************/
     public override void AttachWeapon(WeaponBase weapon)
     {
         Data.SetCurrentWeapon(weapon);
-        
+
         weapon.transform.SetParent(_arm);
         weapon.transform.localPosition = weapon.Pivot.GetPivot();
         weapon.transform.localRotation = weapon.Pivot.GetOriginRotation();
@@ -226,13 +252,13 @@ public class PlayerController : CharacterController, ISubject
         /*Vector3 playerRotation = transform.rotation.eulerAngles;
         _arm.rotation = Quaternion.Euler(0, Mathf.Approximately(playerRotation.y, -180) ? 180 : 0, 0);*/
     }
-    
+
     public override void DetachWeapon()
     {
         Target = null;
         Data.CurrentWeapon.transform.SetParent(null);
         Data.SetCurrentWeapon(null);
-        
+
         /*_arm.localRotation = Quaternion.Euler(0, 0, 0);*/
     }
 }

@@ -15,9 +15,9 @@ public class CloverJackEffect : CardEffectBase
         _isAttack = false;
     }
 
-    public override INode.ENodeState OnUpdate()
+    public override bool OnUpdate()
     {
-        return _isAttack ? INode.ENodeState.Success : INode.ENodeState.Running;
+        return _isAttack ? true : false;
     }
 
     public override void OnExit()
@@ -29,7 +29,7 @@ public class CloverJackEffect : CardEffectBase
     {
         Vector3 targetPosition = Weapon.owner.Target.transform.position;
         Vector3 range = new Vector3(3, 5, 0);
-        var layer = LayerMaskManager.Instance.MonsterLayerMask;
+        var layer = LayerMaskProvider.MonsterLayerMask;
 
         var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, range, default, layer);
         foreach (var target in targets)

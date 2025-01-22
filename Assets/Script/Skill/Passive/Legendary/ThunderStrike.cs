@@ -38,16 +38,16 @@ public class ThunderStrike : PassiveSkillBase
         // 전류 이펙트
         StartCoroutine(IE_ElectricEffect(target));
     }
-    
+
     private IEnumerator IE_ElectricEffect(GameObject target)
     {
         var thunderEffect = EffectManager.Instance.CreateEffect<ElectricEffect>("ThunderEffect");
-        
+
         // 낙뢰 이펙트 발생
         thunderEffect.SetPosition(target.transform.position);
         thunderEffect.SetData(Data.GetValue(2), Data.GetValue(3), Data.GetValue(4));
         thunderEffect.PlayEffect();
-        
+
         thunderEffect.PlayEffect();
 
         yield return _delay;
@@ -58,11 +58,11 @@ public class ThunderStrike : PassiveSkillBase
     private void Attack()
     {
         var targets = RangeDetectionUtility.GetAttackTargets(transform.position, _range, default,
-            LayerMaskManager.Instance.MonsterLayerMask);
+            LayerMaskProvider.MonsterLayerMask);
 
         foreach (var target in targets)
         {
-            if(target.TryGetComponent(out Monster monster))
+            if (target.TryGetComponent(out Monster monster))
             {
                 monster.HasAttacked(_damage);
             }

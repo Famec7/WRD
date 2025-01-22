@@ -22,7 +22,7 @@ public class SkillButton : MonoBehaviour
 
     private void Update()
     {
-        if (_currentSkill != null && _currentSkill.IsCoolTime)
+        if (_currentSkill != null)
         {
             _coolTimeImage.fillAmount = _currentSkill.CurrentCoolTime / _currentSkill.Data.CoolTime;
             _coolTimeImage.gameObject.SetActive(_coolTimeImage.fillAmount > 0);

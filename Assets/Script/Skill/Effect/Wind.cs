@@ -22,7 +22,7 @@ public class Wind : MonoBehaviour
         this.gameObject.SetActive(true);
         
         // radius 범위 안의 적들을 중앙으로 끌어당김
-        LayerMask layer = LayerMaskManager.Instance.MonsterLayerMask;
+        LayerMask layer = LayerMaskProvider.MonsterLayerMask;
         var targets = RangeDetectionUtility.GetAttackTargets(transform.position, _radius, default, layer);
         foreach (var target in targets)
         {

@@ -23,24 +23,23 @@ public class SharpBlade : InstantaneousSkill
         _woundDamge = Data.GetValue(1);
     }
     
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         _isAttack = false;
         weapon.OnAttack += OnAttack;
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
         if (_isAttack)
         {
-            IsActive = false;
-            return INode.ENodeState.Success;
+            return true;
         }
-        
-        return INode.ENodeState.Running;
+
+        return false;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         weapon.OnAttack -= OnAttack;
     }

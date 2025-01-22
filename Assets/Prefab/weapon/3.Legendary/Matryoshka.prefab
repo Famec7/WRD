@@ -178,8 +178,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillId: 16
   weapon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: 038ee66f98a8bcf4e89113d1bf48371c, type: 3}
   indicatorType: 0
   _isFixedPosition: 0
+  _ranges:
+  - 2
+  - 2.5
+  - 3
   _coolTimes:
   - 20
   - 10

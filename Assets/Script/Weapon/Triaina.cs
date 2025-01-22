@@ -32,7 +32,7 @@ public class Triaina : MeleeWeapon
     private void AttackNearbyMonsters()
     {
         Vector3 targetPosition = owner.Target.transform.position;
-        LayerMask targetLayer = LayerMaskManager.Instance.MonsterLayerMask;
+        LayerMask targetLayer = LayerMaskProvider.MonsterLayerMask;
         var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, 1.0f, default, targetLayer);
 
         int count = (int)_passiveAuraSkillData.GetValue(0);
