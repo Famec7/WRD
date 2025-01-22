@@ -86,13 +86,6 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
                 subCombi.GetComponent<SubCombinationUI>().materialWeapons = new int[combis.Length];
                 int index = 2;
                 
-                Array.Sort(combis, (x, y) =>
-                {
-                    if (x == i.ToString()) return -1;
-                    else if (y == i.ToString()) return 1;
-                    else return string.Compare(x, y);
-                });
-            
                 foreach (string s in combis)
                 {
                     int materialCode = Convert.ToInt32(s);

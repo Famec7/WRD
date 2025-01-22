@@ -22,11 +22,10 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         weaponCnt = new int[WeaponDataManager.Instance.Database.GetWeaponDataCount()];
-        GameManager.Instance.weaponCnt[5]++;
+        //GameManager.Instance.weaponCnt[5]++;
         //useWeapon.Add(6);
         UpdateUseableWeaponCnt();
-        //ElementManager.instance.GetElement(StartElementCnt);
-        MasterKeyManager.Instance.UpdateMasterKeyCount(WeaponTier.Normal, 5);
+        ElementManager.instance.GetElement(StartElementCnt);
     }
 
     public bool IsUsing(int weaponID)

@@ -76,8 +76,10 @@ public class InventoryManager : MonoBehaviour
         item.AssignWeapon(randomUnnormalWeaponID);
         AddItem(item);
         WeaponUI.Instance.weaponSlots[4].transform.GetChild(0).GetComponent<InventorySlot>().weapon = item;
+        WeaponUI.Instance.weaponSlots[4].weaponID = randomUnnormalWeaponID;
         slots[0].isEquiped = true;
-        
+        GameManager.Instance.weaponCnt[randomUnnormalWeaponID-1]++;
+        GameManager.Instance.useWeapon.Add(randomUnnormalWeaponID);
         WeaponManager.Instance.AddWeapon(4, randomUnnormalWeaponID);
         
 #if ADD_ALL_ITEM
@@ -347,7 +349,6 @@ public class InventoryManager : MonoBehaviour
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
         InventorySlot pressSlot = null;
 
-
         if (longClickPopUpUi.inventorySlot != null)
             pressSlot = longClickPopUpUi.inventorySlot;
         if (longClickPopUpUi.weaponSlot != null && longClickPopUpUi.weaponSlot.inventorySlot != null)
@@ -399,7 +400,6 @@ public class InventoryManager : MonoBehaviour
 
                         if (pressSlot == weaponSlot.inventorySlot)
                         {
-
                             items.Remove(pressSlot.weapon);
                             WeaponUI.Instance.weaponID = item.data.ID;
                             WeaponUI.Instance.ChangeItem(j, item);

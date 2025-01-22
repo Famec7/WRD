@@ -33,15 +33,9 @@ public class SubCombinationUI : MonoBehaviour
             if (materialID < 6) continue;
 
             string combi = WeaponDataManager.Instance.Database.GetWeaponData(materialID).Combi;
+            string mainCombi = WeaponDataManager.Instance.Database.GetWeaponData(materialID).MainCombi;
             string[] combis = combi.Split('\x020');
             craftButtons[i].materialWeapons = new int[combis.Length];
-
-            Array.Sort(combis, (x, y) =>
-            {
-                if (x == i.ToString()) return -1;
-                else if (y == i.ToString()) return 1;
-                else return string.Compare(x, y);
-            });
             int j = 0;
             
             foreach (string s in combis)

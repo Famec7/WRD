@@ -32,6 +32,7 @@ public class WeaponDatabase : ScriptableObject
                 MainCombi = (data["comb1"].ToString())
             };
 
+
             switch (weaponData.WeaponClass.ToLower()) // 대소문자 구분 없이 비교
             {
                 case "normal":
