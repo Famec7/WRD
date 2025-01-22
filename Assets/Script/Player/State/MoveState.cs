@@ -16,6 +16,13 @@ public class MoveState : IState<PlayerController>
             return;
         }
         
+        LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
+        Collider2D col = Physics2D.OverlapPoint(entity.TouchPos, layerMask);
+        if (col is null)
+        {
+            return;
+        }
+        
         Vector3 dir = (entity.TouchPos - entity.transform.position).normalized;
         entity.transform.position += dir * (entity.Data.MoveSpeed * Time.deltaTime);
     }
