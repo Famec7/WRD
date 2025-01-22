@@ -17,6 +17,6 @@ public abstract class SkillBase : MonoBehaviour
 
     protected virtual void Init()
     {
-        targetLayer = LayerMaskManager.Instance.MonsterLayerMask;
+        targetLayer = LayerMaskProvider.MonsterLayerMask;
     }
 }

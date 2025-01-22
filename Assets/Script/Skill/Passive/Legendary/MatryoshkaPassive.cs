@@ -19,7 +19,7 @@ public class MatryoshkaPassive : PassiveSkillBase
     {
         base.Init();
         
-        targetLayer = LayerMaskManager.Instance.MonsterLayerMask;
+        targetLayer = LayerMaskProvider.MonsterLayerMask;
         _collider = GetComponent<CircleCollider2D>();
         
     }

@@ -5,179 +5,39 @@ public abstract class ClickTypeSkill : ActiveSkillBase
 {
     public override void UseSkill()
     {
-        IsCoolTime = false;
-        IsUsuableRangeState = true;
-    }
-
-    /***************************Behaviour Tree***************************/
-
-    #region Behaviour Tree
-
-    protected override INode SettingBT()
-    {
-        return new SelectorNode(
-            new List<INode>()
-            {
-                new SequenceNode(
-                    CoolTimeNodes()
-                ),
-                new SequenceNode(
-                    UsableRangeNodes()
-                ),
-                new SequenceNode(
-                    IndicatorNodes()
-                ),
-                new SequenceNode(
-                    ActiveNodes()
-                ),
-            }
-        );
-    }
-
-    #region Usable Range Node
-
-    protected virtual List<INode> UsableRangeNodes()
-    {
-        return new List<INode>
-        {
-            new ActionNode(CheckUsuableRangeState),
-            new ActionNode(TouchUsableRange),
-            new ActionNode(CheckingUsableRange),
-        };
-    }
-
-    private bool _isUsuableRangeState = false;
-
-    protected bool IsUsuableRangeState
-    {
-        set
-        {
-            _isUsuableRangeState = value;
-
-            if (_isUsuableRangeState is false)
-            {
-                IndicatorManager.Instance.HideUsableIndicator();
-            }
-            else
-            {
-                IndicatorManager.Instance.ShowUsableIndicator(weapon.owner.transform.position, Data.AvailableRange);
-
-                weapon.owner.enabled = false;
-
-                preparingTime = 3f;
-                pivotPosition = default;
-
-                SkillUIManager.Instance.ShowPopupPanel();
-            }
-        }
-
-        get => _isUsuableRangeState;
-    }
-
-    private INode.ENodeState CheckUsuableRangeState()
-    {
-        return IsUsuableRangeState is true ? INode.ENodeState.Success : INode.ENodeState.Failure;
-    }
-
-    private INode.ENodeState TouchUsableRange()
-    {
-        preparingTime -= Time.deltaTime;
-        if (preparingTime <= 0f)
-        {
-            CancelSkill();
-            return INode.ENodeState.Failure;
-        }
-
-        if (UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("SkillUI")))
-        {
-            return INode.ENodeState.Running;
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            // UI 터치 시 스킬 취소
-            if (UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("UI")))
-            {
-                CancelSkill();
-                return INode.ENodeState.Failure;
-            }
-
-            pivotPosition = Camera.main!.ScreenToWorldPoint(Input.mousePosition);
-            return INode.ENodeState.Success;
-        }
-
-        return INode.ENodeState.Running;
-    }
-
-    private INode.ENodeState CheckingUsableRange()
-    {
-        IsUsuableRangeState = false;
-        float distanceFromPlayerToPivot = Vector2.Distance(weapon.owner.transform.position, pivotPosition);
-
-        if (distanceFromPlayerToPivot > Data.AvailableRange / 2)
-        {
-            CancelSkill();
-            return INode.ENodeState.Failure;
-        }
-
-        var currentSettingType = SettingManager.Instance.CurrentActiveSettingType;
-        switch (currentSettingType)
-        {
-            case SettingManager.ActiveSettingType.Auto:
-                IsCoolTime = true;
-                break;
-            case SettingManager.ActiveSettingType.SemiAuto:
-                IsActive = true;
-                break;
-            case SettingManager.ActiveSettingType.Manual:
-                IsIndicatorState = true;
-                break;
-            default:
-                break;
-        }
-
-        return INode.ENodeState.Success;
-    }
-
-    #endregion
-
-    #endregion
-
-    public override void CancelSkill()
-    {
-        base.CancelSkill();
-        IsUsuableRangeState = false;
-    }
-
-    protected GameObject target;
-    
-    protected void FindTarget()
-    {
         if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
         {
-            if (weapon.owner.Target is null)
-            {
-                target = weapon.owner.FindNearestTarget();
-            }
-            else if (weapon.owner.Target.TryGetComponent(out Monster monster))
-            {
-                target = monster.gameObject;
-            }
-            else
-            {
-                target = weapon.owner.FindNearestTarget();
-            }
-            
-            if (target != null)
-                clickPosition = target.transform.position;
-            else
-                clickPosition = Vector2.zero;
+            commandInvoker.Undo();
         }
-        else
+
+        commandInvoker.AddCommand(new CheckUsableRangeCommand(this));
+    }
+
+    /// <summary>
+    /// 클릭한 위치에 있는 몬스터를 반환하는 함수
+    /// </summary>
+    /// <returns></returns>
+    protected Monster SelectMonsterAtClickPosition()
+    {
+        LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
+        Collider2D collider = Physics2D.OverlapPoint(ClickPosition, layerMask);
+
+        if (collider is null)
         {
-            LayerMask layerMask = LayerMaskManager.Instance.MonsterLayerMask;
-            Collider2D collider = Physics2D.OverlapPoint(clickPosition, layerMask);
-            target = collider != null ? collider.gameObject : null;
+#if UNITY_EDITOR
+            Debug.Log("No monster found at click position");
+#endif
+            return null;
         }
+
+        if (collider.TryGetComponent(out Monster monster))
+        {
+            return monster;
+        }
+
+#if UNITY_EDITOR
+        Debug.Log("No monster found at click position");
+#endif
+        return null;
     }
 }

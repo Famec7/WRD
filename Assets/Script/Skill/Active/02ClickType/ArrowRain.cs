@@ -25,28 +25,27 @@ public class ArrowRain : ClickTypeSkill
         _damageAmplification = Data.GetValue(2);
     }
 
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
         for (int i = 0; i < _arrowCount; i++)
         {
             var arrow = ProjectileManager.Instance.CreateProjectile<ArrowProjectile>("Arrow", this.transform.position);
 
             arrow.gameObject.SetActive(true);
-            arrow.transform.position = (Vector3)clickPosition + (Vector3)RandomPointInCircle(Data.Range/2f) + (Vector3)_offset;
-            arrow.SetArrow((Vector3)clickPosition + (Vector3)RandomPointInCircle(Data.Range / 2f)); 
+            arrow.transform.position = (Vector3)ClickPosition + (Vector3)RandomPointInCircle(Data.Range/2f) + (Vector3)_offset;
+            arrow.SetArrow((Vector3)ClickPosition + (Vector3)RandomPointInCircle(Data.Range / 2f)); 
             arrow.JourneyTime = _arrowJourneyTime;
         }
 
-        StartCoroutine(Damage(clickPosition));
+        StartCoroutine(Damage(ClickPosition));
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        IsActive = false;
-        return INode.ENodeState.Success;
+        return true;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         ;
     }

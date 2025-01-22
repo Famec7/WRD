@@ -30,7 +30,7 @@ public static class RangeDetectionUtility
         foreach (var col in colliders)
         {
             Vector3 targetDirection = col.transform.position - (Vector3)position;
-            float angle = Vector3.Angle(Vector2.zero ,targetDirection);
+            float angle = Vector3.Angle(Vector2.zero, targetDirection);
             if (angle <= degree / 2)
             {
                 targets.Add(col);
@@ -75,5 +75,32 @@ public static class RangeDetectionUtility
 #endif
             return colliders.ToList();
         }
+    }
+
+    /// <summary>
+    /// 무기 공격 범위 내의 적 탐지 (콜라이더 모양)
+    /// </summary>
+    public static List<Monster> GetAttackTargets(Collider2D collider, LayerMask layerMask = default)
+    {
+        List<Collider2D> targets = new List<Collider2D>();
+        ContactFilter2D contactFilter = new ContactFilter2D();
+        Physics2D.OverlapCollider(collider, contactFilter.NoFilter(), targets);
+
+        List<Monster> monsters = new List<Monster>();
+        foreach (var target in targets)
+        {
+            if ((layerMask.value & 1 << target.gameObject.layer) == 0)
+            {
+                continue;
+            }
+
+            Monster monster = target.GetComponent<Monster>();
+            if (monster != null)
+            {
+                monsters.Add(monster);
+            }
+        }
+
+        return monsters;
     }
 }

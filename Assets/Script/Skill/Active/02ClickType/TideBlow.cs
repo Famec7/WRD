@@ -10,20 +10,13 @@ public class TideBlow : ClickTypeSkill
     [SerializeField] private float _pushForce = 10.0f;
     [SerializeField] private float _moveSpeed = 3.0f;
     
-    protected override void OnActiveEnter()
+    public override void OnActiveEnter()
     {
-        FindTarget();
-        
-        if (clickPosition == Vector2.zero)
-        {
-            return;
-        }
-        
         _wave.transform.SetParent(null);
         _waterPool.transform.SetParent(null);
         
         // Wave
-        Vector2 direction = (clickPosition - (Vector2)transform.position).normalized;
+        Vector2 direction = (ClickPosition - (Vector2)transform.position).normalized;
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
             direction.y = 0;
@@ -41,13 +34,12 @@ public class TideBlow : ClickTypeSkill
         _wave.OnWaveEnd = CreateWaterPool;
     }
 
-    protected override INode.ENodeState OnActiveExecute()
+    public override bool OnActiveExecute()
     {
-        IsActive = false;
-        return INode.ENodeState.Success;
+        return true;
     }
 
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         ;
     }

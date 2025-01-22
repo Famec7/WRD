@@ -4,11 +4,20 @@ using UnityEngine.EventSystems;
 
 public static class UIHelper
 {
-    public static bool IsPointerOverUILayer(int layer)
+    public static bool IsPointerOverUILayer(int layer, Touch touch = default)
     {
+        // touch가 default 값이라면 position을 Input.mousePosition으로 설정
+        if (touch.Equals(default(Touch)))
+        {
+            touch = new Touch
+            {
+                position = Input.mousePosition
+            };
+        }
+        
         var pointerEventData = new PointerEventData(EventSystem.current)
         {
-            position = Input.mousePosition
+            position = touch.position
         };
 
         var raycastResults = new List<RaycastResult>();
@@ -16,7 +25,7 @@ public static class UIHelper
 
         foreach (var result in raycastResults)
         {
-            if (result.gameObject.layer == layer)
+            if (result.gameObject.layer.Equals(layer))
             {
                 return true;
             }

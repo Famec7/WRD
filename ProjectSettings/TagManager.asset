@@ -73,9 +73,12 @@ TagManager:
   - name: Effect
     uniqueID: 977560319
     locked: 0
-  - name: SkillUI
-    uniqueID: 246963415
-    locked: 0
   - name: UI
     uniqueID: 1242507459
+    locked: 0
+  - name: Indicator
+    uniqueID: 3900076609
+    locked: 0
+  - name: SkillUI
+    uniqueID: 246963415
     locked: 0

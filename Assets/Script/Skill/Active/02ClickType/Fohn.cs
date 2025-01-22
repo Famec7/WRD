@@ -5,21 +5,26 @@ public class Fohn : ClickTypeSkill
 {
     [SerializeField] private Wind _windEffect;
     
-    protected override void OnActiveEnter()
+    private float _stunDuration = 0.0f;
+    private float _damageAmplificationDuration = 0.0f;
+    private float _damageAmplification = 0.0f;
+    
+    public override void OnActiveEnter()
     {
-        float radius = Data.Range;
-        
-        _windEffect.Init(radius, clickPosition, ApplyDebuff);
+        _stunDuration = Data.GetValue(1);
+        _damageAmplificationDuration = Data.GetValue(2);
+        _damageAmplification = Data.GetValue(3);
+    }
+
+    public override bool OnActiveExecute()
+    {
+        _windEffect.Init(Data.Range, ClickPosition, ApplyDebuff);
         _windEffect.Play();
+        
+        return true;
     }
 
-    protected override INode.ENodeState OnActiveExecute()
-    {
-        IsActive = false;
-        return INode.ENodeState.Success;
-    }
-
-    protected override void OnActiveExit()
+    public override void OnActiveExit()
     {
         ;
     }
@@ -27,14 +32,11 @@ public class Fohn : ClickTypeSkill
     private void ApplyDebuff(Monster monster)
     {
         // Stun
-        float stunDuration = Data.GetValue(1);
-        StatusEffect stun = new Stun(monster.gameObject, stunDuration);
+        StatusEffect stun = new Stun(monster.gameObject, _stunDuration);
         StatusEffectManager.Instance.AddStatusEffect(monster.status, stun);
         
         // Damage Amplification
-        float damageAmplificationDuration = Data.GetValue(2);
-        float damageAmplification = Data.GetValue(3);
-        StatusEffect damageAmplificationEffect = new DamageAmplification(monster.gameObject, damageAmplification, damageAmplificationDuration);
+        StatusEffect damageAmplificationEffect = new DamageAmplification(monster.gameObject, _damageAmplification, _damageAmplificationDuration);
         StatusEffectManager.Instance.AddStatusEffect(monster.status, damageAmplificationEffect);
     }
 }
