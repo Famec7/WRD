@@ -64,4 +64,16 @@ public class TestManager : Singleton<TestManager>
         else
             MessageManager.Instance.ShowMessage("1스테이지에서 누르지마세요", new Vector2(0, 218), 1f, 0.5f);
     }
+
+    public void ClickNextWave()
+    {
+        if (MonsterSpawnManager.instance.isBossWave)
+        {
+            MonsterSpawnManager.instance.targetBoss.HasAttacked(MonsterSpawnManager.instance.targetBossStatus.maxHP);
+        }
+        if (GameManager.Instance.wave < 35)
+            MonsterSpawnManager.instance.ProgressWave(1);
+        else
+            MessageManager.Instance.ShowMessage("35스테이지에서 누르지마세요", new Vector2(0, 218), 1f, 0.5f);
+    }
 }

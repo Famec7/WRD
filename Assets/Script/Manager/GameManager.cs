@@ -17,11 +17,11 @@ public class GameManager : Singleton<GameManager>
     protected override void Init()
     {
         useWeapon = new List<int>();
+        weaponCnt = new int[WeaponDataManager.Instance.Database.GetWeaponDataCount()];
     }
 
     private void Start()
     {
-        weaponCnt = new int[WeaponDataManager.Instance.Database.GetWeaponDataCount()];
         //GameManager.Instance.weaponCnt[5]++;
         //useWeapon.Add(6);
         UpdateUseableWeaponCnt();
