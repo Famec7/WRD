@@ -28,7 +28,6 @@ public class PlayerController : CharacterController, ISubject
     private readonly IdleState _idleState = new();
     private readonly ChaseState _chaseState = new();
     private readonly MoveState _moveState = new();
-    private readonly HoldState _holdState = new();
 
     #endregion
 
@@ -171,9 +170,6 @@ public class PlayerController : CharacterController, ISubject
                 break;
             case State.MOVE:
                 _fsm.ChangeState(_moveState);
-                break;
-            case State.HOLD:
-                _fsm.ChangeState(_holdState);
                 break;
             default:
                 Debug.LogError($"{state} is not exist in {nameof(State)}");
