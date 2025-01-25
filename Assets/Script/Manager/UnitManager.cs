@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class UnitManager : MonoBehaviour
@@ -31,8 +32,7 @@ public class UnitManager : MonoBehaviour
     {
         foreach(var m in monsterList)
         {
-            MonsterPoolManager.Instance.ReturnObject(m);
-            monsterList.Remove(m);
+          m.GetComponent<Monster>().HasAttacked(m.GetComponent<Status>().HP);
         }
     }    
     

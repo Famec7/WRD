@@ -26,6 +26,8 @@ public class MonsterSpawnManager : MonoBehaviour
     public GameObject[] spawnPoints;
     public GameObject hpBarPrefab;
     public Status targetBossStatus;
+    public Monster targetBoss;
+
 
     public int spawnPointsCount = 1;
     public int currentMonsterNum = 0;
@@ -46,7 +48,7 @@ public class MonsterSpawnManager : MonoBehaviour
     private Canvas _hpBarCanvas;
 
     public Button _skipButton;
-
+    public bool isAutoWaveProgression = true;
 
     private void Awake()
     {
@@ -122,53 +124,21 @@ public class MonsterSpawnManager : MonoBehaviour
             StartCoroutine(CountdownCoroutine(5));
             isNormalSpawnStop = true;
         }
-        else
+        else 
             waveSecTimer += Time.deltaTime;
 
         if (waveSecTimer >= 1f) 
         {
             waveTimer++;
-            TimeSpan timeSpan = TimeSpan.FromSeconds(wavePlayTime[idx]-waveTimer);
+            float remainingTime = wavePlayTime[idx] - waveTimer;
+            remainingTime = Mathf.Max(0, remainingTime);
+            TimeSpan timeSpan = TimeSpan.FromSeconds(remainingTime);
             UIManager.instance.currentWaveTime.text = timeSpan.ToString(@"mm\:ss");
             waveSecTimer = 0f;
         }
-        if (waveTimer >= wavePlayTime[idx])
+        if (waveTimer >= wavePlayTime[idx] && isAutoWaveProgression)
         {
-            int limitMonsterNum = 80;
-
-            if (GameManager.Instance.wave >= 11 && GameManager.Instance.wave <= 20)
-                limitMonsterNum = 70;
-            if (GameManager.Instance.wave >= 21 && GameManager.Instance.wave <= 30)
-                limitMonsterNum = 60;
-            if (GameManager.Instance.wave >= 31 && GameManager.Instance.wave <= 35)
-                limitMonsterNum = 50;
-
-            UIManager.instance.limitMonsterNum.text = limitMonsterNum.ToString();
-
-            if ((isBossWave && targetBossStatus.HP > 0) && !GameManager.Instance.isGameOver)
-            {
-                GameManager.Instance.isGameOver = true;
-                MessageManager.Instance.ShowMessage("GAME OVER", new Vector2(0, 218), 1f, 0.5f);
-                StartCoroutine(CountdownCoroutine(5));
-            }
-            else if (isBossWave)
-            {
-               
-            }
-
-            GameManager.Instance.wave++;
-            UIManager.instance.waveNum.text = "Wave " + GameManager.Instance.wave.ToString();
-            ElementManager.instance.GetElement(3);
-
-            waveTimer = 0;
-            isNormalSpawnStop = false;
-            currentWaveMonsterNum = 0;
-            isSpawnStop = false;
-            isBossSpawn = false;
-            idx = GameManager.Instance.wave - 1;
-            isBossWave = bossSpawnNum[idx] >= 1;
-
-            _skipButton.gameObject.SetActive(false);
+            ProgressWave(1);
         }
 
         if (isSpawnStop) return;
@@ -176,6 +146,7 @@ public class MonsterSpawnManager : MonoBehaviour
         if (currentWaveMonsterNum == monsterSpawnNum[idx])
             isNormalSpawnStop = true;
 
+        // 일반 몹 생성
         if (spawnDelayTimer >= monsterSpawnTime[idx] && !isNormalSpawnStop)
         {
             int monsterIndex = (GameManager.Instance.wave - 1) / 5;
@@ -185,7 +156,7 @@ public class MonsterSpawnManager : MonoBehaviour
 
             SpawnMonster(code);
         }
-
+        // BOSS 생성
         if (isBossWave && !isBossSpawn)
         {
             UnitCode code = UnitCode.ELITEMONSTER5 + (GameManager.Instance.wave / 5);
@@ -198,11 +169,9 @@ public class MonsterSpawnManager : MonoBehaviour
         // WAVE SKIP
         if ((!isBossWave && isNormalSpawnStop) || (isBossWave && targetBossStatus.HP <= 0))
         {
-            if (GameManager.Instance.isSKip || isBossWave)
+            if (GameManager.Instance.isSKip || isBossWave && isAutoWaveProgression)
             {
-                waveTimer = wavePlayTime[idx];
-                isNormalSpawnStop = false;
-                isSpawnStop = true;
+                ProgressWave(1);
             }
         }
     }
@@ -235,6 +204,44 @@ public class MonsterSpawnManager : MonoBehaviour
         return monster;
     }
 
+    public void ProgressWave(int waveCnt)
+    {
+        if (GameManager.Instance.wave + waveCnt <= 0 || GameManager.Instance.wave + waveCnt > 36)
+        {
+            MessageManager.Instance.ShowMessage("유효하지 않은 스테이지입니다.", new Vector2(0, 200), 1f, 0.1f);
+            return;
+        }
+
+        int limitMonsterNum = 80;
+
+        if (GameManager.Instance.wave >= 11 && GameManager.Instance.wave <= 20)
+            limitMonsterNum = 70;
+        if (GameManager.Instance.wave >= 21 && GameManager.Instance.wave <= 30)
+            limitMonsterNum = 60;
+        if (GameManager.Instance.wave >= 31 && GameManager.Instance.wave <= 35)
+            limitMonsterNum = 50;
+
+        UIManager.instance.limitMonsterNum.text = limitMonsterNum.ToString();
+
+        if ((isBossWave && targetBossStatus.HP > 0) && !GameManager.Instance.isGameOver)
+        {
+            Restart();
+        }
+
+        GameManager.Instance.wave+= waveCnt;
+        UIManager.instance.waveNum.text = "Wave " + GameManager.Instance.wave.ToString();
+
+        if (waveCnt > 0)
+            ElementManager.instance.GetElement(3);
+
+        waveTimer = 0;
+        isNormalSpawnStop = false;
+        currentWaveMonsterNum = 0;
+        isSpawnStop = false;
+        isBossSpawn = false;
+        isBossWave = bossSpawnNum[GameManager.Instance.wave - 1] >= 1;
+        _skipButton.gameObject.SetActive(false);
+    }
 
     public void WaveSkip()
     {
@@ -243,6 +250,13 @@ public class MonsterSpawnManager : MonoBehaviour
             waveTimer = wavePlayTime[GameManager.Instance.wave - 1];
             isSpawnStop = false;
         }
+    }
+
+    public void Restart()
+    {
+        GameManager.Instance.isGameOver = true;
+        MessageManager.Instance.ShowMessage("GAME OVER", new Vector2(0, 218), 1f, 0.5f);
+        StartCoroutine(CountdownCoroutine(5));
     }
 
     private IEnumerator CountdownCoroutine(int seconds)
@@ -271,4 +285,6 @@ public class MonsterSpawnManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
+
+
 }

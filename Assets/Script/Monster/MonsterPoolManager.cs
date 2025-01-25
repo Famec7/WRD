@@ -58,6 +58,8 @@ public class MonsterPoolManager : Singleton<MonsterPoolManager>
         if (code >= UnitCode.BOSS1)
         {
             MonsterSpawnManager.instance.targetBossStatus = pooledObject.GetComponent<Status>();
+            MonsterSpawnManager.instance.targetBoss = pooledObject;
+
         }
         
         pooledObject.GetComponent<Basic_Monster>().isDead = false;
