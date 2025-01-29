@@ -10,10 +10,10 @@ public class IdleState : IState<PlayerController>
 
     public void Execute(PlayerController entity)
     {
-        /*if (entity.Data.CurrentWeapon is not null)
+        if (entity.Data.CurrentWeapon is not null)
         {
             entity.Target = entity.FindNearestTarget();
-        }*/
+        }
     }
 
     public void Exit(PlayerController entity)

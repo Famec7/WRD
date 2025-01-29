@@ -20,7 +20,7 @@ public class PlayerController : CharacterController, ISubject
         IDLE,
         CHASE,
         MOVE,
-        HOLD,
+        Attack,
     }
 
     public State CurrentState { get; private set; }
@@ -28,6 +28,7 @@ public class PlayerController : CharacterController, ISubject
     private readonly IdleState _idleState = new();
     private readonly ChaseState _chaseState = new();
     private readonly MoveState _moveState = new();
+    private readonly AttackState _attackState = new();
 
     #endregion
 
@@ -79,14 +80,13 @@ public class PlayerController : CharacterController, ISubject
             case State.IDLE:
                 break;
             case State.CHASE:
+            case State.Attack:
                 if (!IsWeaponEquipped() || IsTargetNullOrInactive())
                     ChangeState(State.IDLE);
                 break;
             case State.MOVE:
                 if (IsPlayerAtTouchPos())
                     ChangeState(State.IDLE);
-                break;
-            case State.HOLD:
                 break;
             default:
                 break;
@@ -170,6 +170,9 @@ public class PlayerController : CharacterController, ISubject
                 break;
             case State.MOVE:
                 _fsm.ChangeState(_moveState);
+                break;
+            case State.Attack:
+                _fsm.ChangeState(_attackState);
                 break;
             default:
                 Debug.LogError($"{state} is not exist in {nameof(State)}");

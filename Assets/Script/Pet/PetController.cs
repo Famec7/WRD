@@ -22,6 +22,11 @@ public class PetController : CharacterController, IObserver
     private void Update()
     {
         Move();
+
+        if (!IsTargetNullOrInactive())
+        {
+            Data.CurrentWeapon?.UpdateAttack();
+        }
     }
 
     public void OnNotify()

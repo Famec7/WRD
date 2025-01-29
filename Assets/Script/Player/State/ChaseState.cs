@@ -11,6 +11,7 @@ public class ChaseState : IState<PlayerController>
     {
         if (entity.IsTargetInRange())
         {
+            entity.ChangeState(PlayerController.State.Attack);
             return;
         }
         
@@ -24,6 +25,6 @@ public class ChaseState : IState<PlayerController>
 
     public void Exit(PlayerController entity)
     {
-        entity.Target = null;
+        ;
     }
 }

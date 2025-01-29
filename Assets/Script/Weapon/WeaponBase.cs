@@ -88,23 +88,6 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
         Init();
     }
 
-    private void Update()
-    {
-        if (_isAttack is false)
-        {
-            if (IsTargetNullOrNotInRange())
-            {
-                GameObject target = owner.FindNearestTarget();
-                if (target is not null)
-                {
-                    owner.Target = target;
-                }
-            }
-
-            StartCoroutine(CoroutineAttack());
-        }
-    }
-
     #endregion
 
     [Space] [SerializeField] protected AnimationBase anim;
@@ -145,6 +128,22 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
             foreach (var skill in activeSkillList)
                 skill.SetWeapon(this);
         }
+    }
+
+    public bool UpdateAttack()
+    {
+        if (_isAttack is false)
+        {
+            if (IsTargetNullOrNotInRange())
+            {
+                return false;
+            }
+
+            StartCoroutine(CoroutineAttack());
+            return true;
+        }
+
+        return true;
     }
 
     private void AttackBase()
