@@ -212,7 +212,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 32, y: 32}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -254,6 +254,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  speed: 1
   _endPosition: {x: -10, y: 0, z: 0}
 --- !u!1 &6373617968191510777
 GameObject:
@@ -284,7 +285,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
   m_LocalPosition: {x: -0.167, y: -0.098, z: 0}
-  m_LocalScale: {x: 0.017831158, y: 0.017831158, z: 0.017831158}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2302327039268884390}
@@ -308,7 +309,7 @@ MonoBehaviour:
   _pivot:
     _pivot: {x: -0.167, y: -0.098, z: 0}
     _originRotation: {x: 0, y: 0, z: 45}
-    _originScale: {x: 0.01783116, y: 0.01783116, z: 0.01783116}
+    _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 505
   passiveSkillList:
   - {fileID: 4077256293241807442}
@@ -352,6 +353,7 @@ MonoBehaviour:
   _skillIcon: {fileID: 21300000, guid: 6820d233f1ebd6844851a3ee8c389deb, type: 3}
   indicatorType: 0
   _isFixedPosition: 0
+  IndicatorMonsters: []
   _wave: {fileID: 3778633764772579046}
   _waterPool: {fileID: 2117027151934981082}
   _pushForce: 10

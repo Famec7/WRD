@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 1562499871069127646}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.130506, y: 0.02730587, z: 1}
-  m_LocalScale: {x: 0.012046709, y: 0.012046709, z: 0}
+  m_LocalPosition: {x: -0.044, y: -0.09, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 586208361994716130}
@@ -50,7 +50,7 @@ MonoBehaviour:
   _pivot:
     _pivot: {x: -0.044, y: -0.09, z: 1}
     _originRotation: {x: 0, y: 0, z: -90}
-    _originScale: {x: 0.01204671, y: 0.01204671, z: 0}
+    _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 301
   passiveSkillList:
   - {fileID: 3598860328224715236}
@@ -154,7 +154,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 20.48, y: 20.48}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

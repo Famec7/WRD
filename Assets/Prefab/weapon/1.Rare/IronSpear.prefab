@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
   m_LocalPosition: {x: -0.2, y: -0.1, z: 0}
-  m_LocalScale: {x: 0.015262, y: 0.015262, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5332294075666290822}
@@ -51,7 +51,7 @@ MonoBehaviour:
   _pivot:
     _pivot: {x: -0.2, y: -0.1, z: 0}
     _originRotation: {x: 0, y: 0, z: 45}
-    _originScale: {x: 0.015262, y: 0.015262, z: 0}
+    _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 302
   passiveSkillList:
   - {fileID: 2018605014098229058}
@@ -253,7 +253,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 32, y: 32}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -295,4 +295,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  speed: 1
   _endPosition: {x: -10, y: 0, z: 0}
