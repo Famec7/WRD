@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 5458879643146912600}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.181, y: -0.1, z: 0}
-  m_LocalScale: {x: 0.015262, y: 0.015262, z: 1}
+  m_LocalPosition: {x: -0.03, y: -0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7877453084605501101}
@@ -49,9 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   _pivot:
-    _pivot: {x: -0.181, y: -0.1, z: 0}
+    _pivot: {x: -0.03, y: -0.1, z: 0}
     _originRotation: {x: 0, y: 0, z: 0}
-    _originScale: {x: 0.015262, y: 0.015262, z: 0}
+    _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 408
   passiveSkillList:
   - {fileID: 4756995128283141596}
@@ -92,6 +92,7 @@ MonoBehaviour:
   _skillIcon: {fileID: 21300000, guid: dcafc33676cc84e42a1ff9ee4c4cb4ed, type: 3}
   indicatorType: 2
   _isFixedPosition: 0
+  IndicatorMonsters: []
   DashDistance: 2
   InitialSpeed: 3
   MaxSpeed: 5
@@ -174,7 +175,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 32, y: 32}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -216,4 +217,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  speed: 1
   _endPosition: {x: -10, y: 0, z: 0}

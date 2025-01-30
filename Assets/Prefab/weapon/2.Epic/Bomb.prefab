@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 457782884522572341}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01220219, y: 0.01220219, z: 0.01220219}
+  m_LocalPosition: {x: -0.061, y: -0.097, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 281503988601491495}
@@ -51,7 +51,7 @@ MonoBehaviour:
   _pivot:
     _pivot: {x: -0.061, y: -0.097, z: 0}
     _originRotation: {x: 0, y: 0, z: 0}
-    _originScale: {x: 0.01220219, y: 0.01220219, z: 0.01220219}
+    _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 410
   passiveSkillList: []
   passiveAuraSkillList:
@@ -95,6 +95,7 @@ MonoBehaviour:
   _skillIcon: {fileID: 21300000, guid: 178923164ed3dca4ab64b062439855dd, type: 3}
   indicatorType: 0
   _isFixedPosition: 1
+  IndicatorMonsters: []
   _bombSound: {fileID: 8300000, guid: 4cd572ee9c0bbcc49b962154e1e434fa, type: 3}
 --- !u!1 &3687854405022420805
 GameObject:
@@ -175,7 +176,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 20.48, y: 20.48}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

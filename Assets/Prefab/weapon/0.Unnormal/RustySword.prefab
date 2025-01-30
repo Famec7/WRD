@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -0.049, y: -0.114, z: 0}
-  m_LocalScale: {x: 0.013603962, y: 0.013603962, z: 0.01360396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6392503505247256427}
@@ -49,7 +49,7 @@ MonoBehaviour:
   _pivot:
     _pivot: {x: -0.049, y: -0.114, z: 0}
     _originRotation: {x: 0, y: 0, z: -90}
-    _originScale: {x: 0.01360396, y: 0.01360396, z: 0.01360396}
+    _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 201
   passiveSkillList: []
   passiveAuraSkillList: []
@@ -136,7 +136,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 32, y: 32}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

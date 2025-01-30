@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.046, y: -0.092, z: 0}
-  m_LocalScale: {x: 0.014641735, y: 0.014641735, z: 0.014641735}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8319929945194318197}
@@ -52,7 +52,7 @@ MonoBehaviour:
   _pivot:
     _pivot: {x: -0.046, y: -0.092, z: 0}
     _originRotation: {x: 0, y: 0, z: 0}
-    _originScale: {x: 0.01464173, y: 0.01464173, z: 0.01464173}
+    _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 507
   passiveSkillList:
   - {fileID: 2106532731441581438}
@@ -93,6 +93,7 @@ MonoBehaviour:
   _skillIcon: {fileID: 21300000, guid: 9a43d33b29ac0fc47b938b2e988ee1ce, type: 3}
   indicatorType: 0
   _isFixedPosition: 0
+  IndicatorMonsters: []
   _chainAttackRange: 7
 --- !u!114 &-8115485028832374192
 MonoBehaviour:
@@ -211,7 +212,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 20.48, y: 20.48}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
