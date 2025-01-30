@@ -9,10 +9,9 @@ public class MatryoshkaPassive : PassiveSkillBase
     
     private CircleCollider2D _collider;
     
-    private void SetSlowRange(float value)
+    private void SetSlowRange(int value)
     {
         _slowRange = value;
-        _collider.radius = _slowRange / 2;   
     }
     
     protected override void Init()
