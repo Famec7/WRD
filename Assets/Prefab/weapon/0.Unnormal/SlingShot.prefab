@@ -79,7 +79,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 32, y: 32}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -150,7 +150,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.015768819, y: 0.015768819, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8967560997381141846}
@@ -170,9 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   _pivot:
-    _pivot: {x: -0.041, y: -0.209, z: 0}
+    _pivot: {x: -0.041, y: 0, z: 0}
     _originRotation: {x: 0, y: 0, z: 45}
-    _originScale: {x: 0.01576882, y: 0.01576882, z: 0}
+    _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 203
   passiveSkillList: []
   passiveAuraSkillList: []

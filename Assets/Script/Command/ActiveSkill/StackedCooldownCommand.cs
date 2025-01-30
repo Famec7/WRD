@@ -15,7 +15,7 @@ public class StackCoolTime
     private int _stack;
 
     public System.Action OnStackMax; // 스택이 최대치에 도달했을 때
-    public System.Action<float> OnStackChange; // 스택이 변할 때
+    public System.Action<int> OnStackChange; // 스택이 변할 때
 
     public int Stack
     {

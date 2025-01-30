@@ -15,6 +15,7 @@ public class MatryoshkaActive : ClickTypeSkill
     private readonly int baseStunIndex = 2;
 
     [SerializeField] private List<float> _ranges;
+    [Space] [SerializeField] private MatryoshkaSpriteChanger _matryoshkaSpriteChanger;
 
     #endregion
 
@@ -30,10 +31,10 @@ public class MatryoshkaActive : ClickTypeSkill
                     commandInvoker.AddCommand(new CheckForEnemiesCommand(this as ClickTypeSkill));
                 }
             },
-            OnStackChange = SetSlowRange + SetIndicatorRange
+            OnStackChange = SetSlowRange + SetRange + SetSprite
         };
-        
-        SetIndicatorRange(_ranges[0]);
+
+        SetRange(0);
     }
 
     public override void OnActiveEnter()
@@ -75,16 +76,26 @@ public class MatryoshkaActive : ClickTypeSkill
         StatusEffectManager.Instance.AddStatusEffect(status, devilBulletDamageAmplification);
     }
 
-    public Action<float> SetSlowRange { get; set; }
-    
-    private void SetIndicatorRange()
+    public Action<int> SetSlowRange { get; set; }
+
+    private void SetRange(int stack)
     {
-        if (_stackCoolTime.Stack >= _coolTimes.Count)
+        if (stack >= _coolTimes.Count)
+        {
+            return;
+        }
+
+        SetIndicatorRange(_ranges[stack]);
+    }
+    
+    private void SetSprite(int stack)
+    {
+        if (stack >= _coolTimes.Count)
         {
             return;
         }
         
-        SetIndicatorRange(_ranges[_stackCoolTime.Stack]);
+        _matryoshkaSpriteChanger.ChangeMatryoshikaSprite(stack + 1);
     }
 
     #region CoolTime Command

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4976216226756630464
 Transform:
   m_ObjectHideFlags: 0
@@ -128,8 +128,8 @@ Transform:
   m_GameObject: {fileID: 8127183145979303794}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.176, y: 0.057, z: 0}
-  m_LocalScale: {x: 0.020941805, y: 0.020941805, z: 0.020941805}
+  m_LocalPosition: {x: -0.083, y: -0.066, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4976216226756630464}
@@ -181,7 +181,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 32, y: 32}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -201,9 +201,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   _pivot:
-    _pivot: {x: -0.176, y: 0.057, z: 0}
+    _pivot: {x: -0.083, y: -0.066, z: 0}
     _originRotation: {x: 0, y: 0, z: 0}
-    _originScale: {x: 0.02094181, y: 0.02094181, z: 0.02094181}
+    _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 510
   passiveSkillList: []
   passiveAuraSkillList:
@@ -257,8 +257,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillId: 23
   weapon: {fileID: 0}
+  _skillIcon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
+  IndicatorMonsters: []
   _windEffect: {fileID: 6036555951748995336}
 --- !u!114 &3811254620233172672
 MonoBehaviour:
@@ -274,5 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillId: 0
   weapon: {fileID: 0}
+  _skillIcon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
+  IndicatorMonsters: []
