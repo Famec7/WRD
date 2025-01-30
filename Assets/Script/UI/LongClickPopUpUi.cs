@@ -44,12 +44,11 @@ public class LongClickPopUpUi : MonoBehaviour
             bool isAnotherTouch = true;
             foreach (var result in results)
             {
-                if ((result.gameObject.CompareTag("LongClickPopUpUI")))
+                if ((result.gameObject.CompareTag("LongClickPopUpUI"))) 
                     isAnotherTouch = false;
             }
 
         }
-
         transform.SetAsLastSibling();
     }
 
@@ -164,6 +163,8 @@ public class LongClickPopUpUi : MonoBehaviour
         weaponSlot.Init();
         weaponSlot = null;
         inventorySlot = null;
+
+        SetBookmarkedButtonText(isBookmarked, isInventory, isWeaponSlot);
 
         BookMakredSlotUI.Instance.UpdateAllSlot();
         gameObject.SetActive(false);

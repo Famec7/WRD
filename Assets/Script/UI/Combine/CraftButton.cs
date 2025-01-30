@@ -152,8 +152,7 @@ public class CraftButton : MonoBehaviour
                 InventoryManager.instance.ClickClassShowButton();
 
             if(isMainWeapon)
-                UIManager.instance.CreateCombineUI(weaponID);
-
+                UIManager.instance.CreateCombineUI(weaponID,false,false,true);
             GameManager.Instance.weaponCnt[weaponID - 1]++;
             GameManager.Instance.UpdateUseableWeaponCnt();
             BookMakredSlotUI.Instance.UpdateAllSlot();

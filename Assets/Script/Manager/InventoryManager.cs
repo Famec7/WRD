@@ -404,6 +404,7 @@ public class InventoryManager : MonoBehaviour
                             items.Remove(pressSlot.weapon);
                             WeaponUI.Instance.weaponID = item.data.ID;
                             WeaponUI.Instance.ChangeItem(j, item);
+                            longClickPopUpUi.weaponID = mainWeaponID;
                             GameManager.Instance.weaponCnt[itemIDs[0] - 1]--;
                             GameManager.Instance.RemoveUseWeaponList(pressSlot.GetComponent<LongClickComponenet>().weaponID);
                             WeaponManager.Instance.RemoveWeapon(j);

@@ -101,10 +101,14 @@ public class UIManager : MonoBehaviour
         combineUI.GetComponent<CombinePopUpUI>().ChangeInventoryMode(isInventory);
         combinePopupUIStack.Push(combineUI.GetComponent<CombinePopUpUI>());
         combineUI.SetActive(true);
+
+        if (isEquiped)
+            longClickPopUpUI.transform.parent = combineUI.transform;
+
         // _blockImage.gameObject.SetActive(isBlock);
- 
+
     }
-    
+
     public GameObject CreateInventoryDescriptionUI(int weaponID , bool isBlock = true)
     {
         longClickPopUpUI.SetActive(true);

@@ -72,6 +72,8 @@ public class LongClickComponenet : MonoBehaviour
 
                 longClickPopUpUI.inventorySlot = GetComponent<InventorySlot>();
                 combineUI.GetComponent<RectTransform>().anchoredPosition = new Vector3(-70, -360);
+
+                longClickPopUpUI.SetBookmarkedButtonText(isBookmarked, isInventory, isWeaponSlot);
             }
 
             if (isWeaponSlot)

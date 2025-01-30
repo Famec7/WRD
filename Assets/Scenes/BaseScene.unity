@@ -257,6 +257,10 @@ PrefabInstance:
       propertyPath: wave
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: StartElementCnt
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2402696352196400284, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
