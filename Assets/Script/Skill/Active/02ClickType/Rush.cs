@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Rush : ClickTypeSkill
@@ -19,6 +20,8 @@ public class Rush : ClickTypeSkill
     public float InitialSpeed = 3f;
     public float MaxSpeed = 5f;
 
+    public Vector3 pivot = new Vector3(-0.181f, -0.1f,0);
+
     private Coroutine _dashCoroutine = null;
 
     public override void OnActiveEnter()
@@ -34,14 +37,17 @@ public class Rush : ClickTypeSkill
         Vector2 targetPosition = (Vector2)weapon.transform.position + (direction * DashDistance);
 
         _originAngleZ = transform.rotation.eulerAngles.z;
-        angleZ = Vector3.SignedAngle(transform.up, direction, -transform.forward);
-        weapon.gameObject.transform.rotation = Quaternion.Euler(0, 0, angleZ+_originAngleZ);
+        angleZ = Vector3.SignedAngle(transform.up, direction, transform.forward);
+        weapon.gameObject.transform.localRotation = Quaternion.Euler(0, 0, angleZ+_originAngleZ - 90f);
 
         _originPosition = weapon.owner.transform.position;
+
+        weapon.owner.GetComponent<PlayerController>().enabled = false;
         weapon.enabled = false;
 
         if (_dashCoroutine != null)
         {
+            
             StopCoroutine(_dashCoroutine);
         }
 
@@ -52,7 +58,6 @@ public class Rush : ClickTypeSkill
 
     public override void OnActiveExit()
     {
-        
     }
 
     private IEnumerator Dash(Vector3 targetPosition)
@@ -65,9 +70,6 @@ public class Rush : ClickTypeSkill
             weapon.transform.position = Vector2.MoveTowards(weapon.transform.position, targetPosition, currentSpeed * Time.deltaTime);
             yield return null;
         }
-
-        weapon.transform.position = targetPosition;
-        weapon.gameObject.transform.rotation = Quaternion.Euler(0, 0, _originAngleZ);
 
         if (!weapon.enabled)
         {
@@ -86,13 +88,24 @@ public class Rush : ClickTypeSkill
                 }
             }
 
-            StartCoroutine(Dash(_originPosition));
-            weapon.gameObject.transform.rotation = Quaternion.Euler(0, 0, -angleZ -_originAngleZ);
             weapon.enabled = true;
+            yield return new WaitForSeconds(0.3f);
+            weapon.transform.localPosition = pivot;
+            weapon.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            weapon.owner.GetComponent<PlayerController>().enabled = true;
         }
 
+       
     }
 
-
+    void LateUpdate()
+    {
+        if (!weapon.enabled)
+        {
+            weapon.owner.GetComponent<PlayerController>().enabled = false;
+            weapon.gameObject.transform.localRotation = Quaternion.Euler(0, 0, angleZ + _originAngleZ - 90f);
+        }
+    }
 
 }
+
