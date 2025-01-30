@@ -77,6 +77,7 @@ public class InventoryManager : MonoBehaviour
         AddItem(item);
         WeaponUI.Instance.weaponSlots[4].transform.GetChild(0).GetComponent<InventorySlot>().weapon = item;
         WeaponUI.Instance.weaponSlots[4].weaponID = randomUnnormalWeaponID;
+        WeaponUI.Instance.weaponSlots[4].transform.GetChild(0).GetComponent<LongClickComponenet>().weaponID = randomUnnormalWeaponID;
         slots[0].isEquiped = true;
         GameManager.Instance.weaponCnt[randomUnnormalWeaponID-1]++;
         GameManager.Instance.useWeapon.Add(randomUnnormalWeaponID);

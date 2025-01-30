@@ -2709,6 +2709,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: TestManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 1273527885999130842, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: weaponID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1294105297197682328, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -4257,8 +4261,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1050710328}
   - {fileID: 983066342}
+  - {fileID: 1050710328}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
