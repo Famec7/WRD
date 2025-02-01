@@ -169,7 +169,7 @@ public class MonsterSpawnManager : MonoBehaviour
         // WAVE SKIP
         if ((!isBossWave && isNormalSpawnStop) || (isBossWave && targetBossStatus.HP <= 0))
         {
-            if (GameManager.Instance.isSKip || isBossWave && isAutoWaveProgression)
+            if (GameManager.Instance.isSKip)
             {
                 ProgressWave(1);
             }
@@ -245,10 +245,9 @@ public class MonsterSpawnManager : MonoBehaviour
 
     public void WaveSkip()
     {
-        if (currentWaveMonsterNum == monsterSpawnNum[GameManager.Instance.wave - 1])
+        if (currentWaveMonsterNum == monsterSpawnNum[GameManager.Instance.wave - 1] || isBossWave && targetBossStatus.HP <= 0)
         {
-            waveTimer = wavePlayTime[GameManager.Instance.wave - 1];
-            isSpawnStop = false;
+            ProgressWave(1);
         }
     }
 
