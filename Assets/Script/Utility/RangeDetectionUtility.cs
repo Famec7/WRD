@@ -35,7 +35,7 @@ public static class RangeDetectionUtility
             {
                 targets.Add(col);
 #if DETECTION_DRAW
-                Debug.DrawLine(position, col.transform.position, Color.red);
+                Debug.DrawLine(position, col.transform.position, Color.red, 5f);
 #endif
             }
         }
@@ -70,7 +70,7 @@ public static class RangeDetectionUtility
 #if DETECTION_DRAW
             foreach (var col in colliders)
             {
-                Debug.DrawLine(position, col.transform.position, Color.red);
+                Debug.DrawLine(position, col.transform.position, Color.red, 5f);
             }
 #endif
             return colliders.ToList();

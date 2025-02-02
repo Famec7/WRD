@@ -8,6 +8,7 @@ public class PlayerController : CharacterController, ISubject
 {
     /***********************Variables*****************************/
     private FSM<PlayerController> _fsm;
+    public bool IsTouchTarget { get; private set; } = false;
 
     public Vector3 TouchPos { get; private set; }
 
@@ -50,15 +51,9 @@ public class PlayerController : CharacterController, ISubject
 
             if (value == null || !value.activeSelf)
             {
-                ChangeState(State.IDLE);
+                IsTouchTarget = false;
                 return;
             }
-
-            // 상태를 추적으로 변경후 옵저버에게 알림
-            ChangeState(State.CHASE);
-
-            Vector3 targetDir = value.transform.position - transform.position;
-            SetFlip(targetDir.x > 0);
 
             Notify();
         }
@@ -143,6 +138,7 @@ public class PlayerController : CharacterController, ISubject
         if (col != null)
         {
             Target = col.gameObject;
+            IsTouchTarget = true;
         }
         else
         {
