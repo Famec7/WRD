@@ -8,6 +8,7 @@ public class PistelFire : InstantaneousSkill, IObserver
     private AudioClip _reloadSound;
     
     private int _attackCount = 0;
+    private float _originalAttackSpeed;
 
     protected override void Init()
     {
@@ -17,12 +18,14 @@ public class PistelFire : InstantaneousSkill, IObserver
     
     private void StatInit()
     {
-        _attackCount = 0;
-        weapon.SetAttackDelay(weapon.owner.Data.CurrentWeapon.Data.AttackSpeed);
+        weapon.SetAttackDelay(_originalAttackSpeed);
     }
 
     public override void OnActiveEnter()
     {
+        _attackCount = 0;
+        
+        _originalAttackSpeed = weapon.Data.AttackSpeed;
         weapon.SetAttackDelay(Data.GetValue(1));
     }
 

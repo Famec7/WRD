@@ -2,7 +2,11 @@
 {
     public void Enter(PlayerController entity)
     {
-        ;
+        if (entity.Data.CurrentWeapon.enabled is false)
+        {
+            entity.ChangeState(PlayerController.State.IDLE);
+            return;
+        }
     }
 
     public void Execute(PlayerController entity)

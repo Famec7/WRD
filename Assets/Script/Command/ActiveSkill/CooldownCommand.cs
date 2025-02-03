@@ -7,7 +7,7 @@ public class CooldownCommand : ICommand
     public CooldownCommand(ActiveSkillBase skill)
     {
         this.skill = skill;
-        
+
         if (this.skill.weapon.owner != null)
             this.skill.weapon.owner.enabled = true;
 
@@ -34,14 +34,21 @@ public class CooldownCommand : ICommand
 
         return false;
     }
-    
+
     public virtual void OnComplete()
     {
         if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
         {
-            skill.AddCommand(new CheckForEnemiesCommand(skill as ClickTypeSkill));
+            if (skill is ClickTypeSkill clickTypeSkill)
+            {
+                clickTypeSkill.AddCommand(new CheckForEnemiesCommand(clickTypeSkill));
+            }
+            else
+            {
+                skill.AddCommand(new ActiveSkillCommand(skill));
+            }
         }
-        
+
         skill.OnButtonActivate?.Invoke(true);
     }
 
