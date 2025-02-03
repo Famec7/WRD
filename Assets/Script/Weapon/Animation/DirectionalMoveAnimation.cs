@@ -34,13 +34,11 @@ public class DirectionalMoveAnimation : AnimationBase
         float elapsedTime = 0.0f;
         Vector3 originalPosition = this.transform.localPosition;
         
-        Vector3 adjustedEndPosition = _endPosition;
-        
         while (elapsedTime < endTime)
         {
             float t = CalculateElapsedTime(ref elapsedTime);
             
-            float newX = Mathf.Lerp(originalPosition.x, adjustedEndPosition.x, t);
+            float newX = Mathf.Lerp(originalPosition.x, _endPosition.x, t);
             this.transform.localPosition = new Vector3(newX, originalPosition.y, originalPosition.z);
             yield return null;
         }

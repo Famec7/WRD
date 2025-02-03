@@ -159,13 +159,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2434419040870209983}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5976483136412037759}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
 --- !u!212 &1409797215157498165
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -283,7 +283,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6373617968191510777}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.167, y: -0.098, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -292,7 +292,7 @@ Transform:
   - {fileID: 8453062308990099403}
   - {fileID: 681286040920082220}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2328374859411621728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   _pivot:
     _pivot: {x: -0.167, y: -0.098, z: 0}
-    _originRotation: {x: 0, y: 0, z: 45}
+    _originRotation: {x: 0, y: 0, z: 0}
     _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 505
   passiveSkillList:
