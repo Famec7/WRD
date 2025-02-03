@@ -12,6 +12,7 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
     public CharacterController owner;
 
     private bool _isAttack = false;
+    private bool _attackFinished = false;
     public Action OnAttack;
 
     #region pivot
@@ -132,25 +133,22 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
 
     public bool UpdateAttack()
     {
-        if (_isAttack is false)
+        if (_attackFinished)
         {
-            if (IsTargetNullOrNotInRange())
-            {
-                return false;
-            }
-
-            StartCoroutine(CoroutineAttack());
+            _attackFinished = false;
             return true;
         }
+        
+        if (_isAttack is false)
+        {
+            StartCoroutine(CoroutineAttack());
+        }
 
-        return true;
+        return false;
     }
 
     private void AttackBase()
     {
-        if (IsTargetNullOrNotInRange())
-            return;
-
         if (anim != null)
         {
             anim.PlayAnimation();
@@ -235,6 +233,7 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
         AttackBase();
         yield return AttackDelay;
         _isAttack = false;
+        _attackFinished = true;
     }
 
     private bool IsTargetNullOrNotInRange()

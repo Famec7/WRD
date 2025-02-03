@@ -695,7 +695,6 @@ public class InventoryManager : MonoBehaviour
             message2 = message2.Substring(0, message2.Length - 2);
         }
 
-        Debug.Log(targetWeaponID);
         confirmText.text = string.Join(", ", messages) + "의 마스터키를 사용하시겠습니까?";
         warningText.text = "재료 무기 대신 " + message2 + " 사용됩니다.";
         WeaponPickerConfirmPopUp.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
@@ -703,32 +702,102 @@ public class InventoryManager : MonoBehaviour
             foreach(var data in datas)
                 MasterKeyManager.Instance.UpdateMasterKeyCount(data.tier, -1);
 
+            // 스프라이트 설정 로직
             string weaponIconPath = "WeaponIcon/" + WeaponDataManager.Instance.Database.GetWeaponNumByID(targetWeaponID);
-            InventoryItem item = new InventoryItem
-            {
-                image = ResourceManager.Instance.Load<Sprite>(weaponIconPath)
-            };
-            item.AssignWeapon(targetWeaponID);
+            Sprite loadedSprite = ResourceManager.Instance.Load<Sprite>(weaponIconPath);
 
-            WeaponUI.Instance.weaponID = targetWeaponID;
+            // 공통 로직 함수 호출
+            ProcessWeaponAcquisition(
+                weaponID: targetWeaponID,
+                weaponSprite: loadedSprite,
+                isMainWeapon: isMain,
+                materialIDList: materialIDList,
+                createUIWithExtraParams: false // 두 번째 코드에서는 기본 UI 사용
+            );
 
-            AddItem(item, false);
-            RemoveItem(materialIDList, targetWeaponID, item, true);
+            /*
+            //string weaponIconPath = "WeaponIcon/" + WeaponDataManager.Instance.Database.GetWeaponNumByID(targetWeaponID);
+            //InventoryItem item = new InventoryItem
+            //{
+            //    image = ResourceManager.Instance.Load<Sprite>(weaponIconPath)
+            //};
+            //item.AssignWeapon(targetWeaponID);
 
-            if (isClassSorted)
-                ClickClassShowButton();
+            //WeaponUI.Instance.weaponID = targetWeaponID;
 
-            if(isMain)
-                UIManager.instance.CreateCombineUI(targetWeaponID);
+            //AddItem(item, false);
+            //RemoveItem(materialIDList, targetWeaponID, item, true);
 
-            GameManager.Instance.weaponCnt[targetWeaponID - 1]++;
-            GameManager.Instance.UpdateUseableWeaponCnt();
-            BookMakredSlotUI.Instance.UpdateAllSlot();
+            //if (isClassSorted)
+            //    ClickClassShowButton();
+
+            //if(isMain)
+            //    UIManager.instance.CreateCombineUI(targetWeaponID);
+
+            //GameManager.Instance.weaponCnt[targetWeaponID - 1]++;
+            //GameManager.Instance.UpdateUseableWeaponCnt();
+            //BookMakredSlotUI.Instance.UpdateAllSlot();
+            //UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>().weaponID = targetWeaponID;
+            //UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>().inventorySlot = InventoryManager.instance.FindInventorySlot(targetWeaponID);
+            */
             WeaponPickerConfirmPopUp.SetActive(false);
         });
 
         WeaponPickerConfirmPopUp.SetActive(true);
         WeaponPickerConfirmPopUp.transform.SetAsLastSibling();
+    }
+
+    public void ProcessWeaponAcquisition(
+    int weaponID,
+    Sprite weaponSprite,
+    bool isMainWeapon,
+    List<int> materialIDList,
+    bool createUIWithExtraParams = false
+)
+    {
+        // 1) 인벤토리 아이템 생성
+        InventoryItem item = new InventoryItem
+        {
+            image = weaponSprite
+        };
+        item.AssignWeapon(weaponID);
+
+        // 2) WeaponUI 설정
+        WeaponUI.Instance.weaponID = weaponID;
+
+        // 3) 아이템 추가/재료 제거
+        InventoryManager.instance.AddItem(item, false);
+        InventoryManager.instance.RemoveItem(materialIDList, weaponID, item, isMainWeapon);
+
+        // 4) 클래스 정렬이 되어 있으면 UI 갱신
+        if (InventoryManager.instance.isClassSorted)
+        {
+            InventoryManager.instance.ClickClassShowButton();
+        }
+
+        // 5) 무기 합성 UI 호출 (필요 시 파라미터 다르게 전달)
+        if (isMainWeapon)
+        {
+            if (createUIWithExtraParams)
+            {
+                // 기존 코드처럼 추가 파라미터를 넣어주고 싶다면
+                UIManager.instance.CreateCombineUI(weaponID, false, false, true);
+            }
+            else
+            {
+                UIManager.instance.CreateCombineUI(weaponID);
+            }
+        }
+
+        // 6) GameManager 카운트 업데이트
+        GameManager.Instance.weaponCnt[weaponID - 1]++;
+        GameManager.Instance.UpdateUseableWeaponCnt();
+
+        // 7) 나머지 UI 갱신
+        BookMakredSlotUI.Instance.UpdateAllSlot();
+        LongClickPopUpUi popUp = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
+        popUp.weaponID = weaponID;
+        popUp.inventorySlot = InventoryManager.instance.FindInventorySlot(weaponID);
     }
 }
 

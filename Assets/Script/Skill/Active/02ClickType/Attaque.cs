@@ -13,7 +13,7 @@ public class Attaque : ClickTypeSkill
     private int _originPassiveChance;
     #endregion
 
-    public float DashDistance = 2f;
+    public float MaxDashDistance = 2f;
     public float InitialSpeed = 3f;       
     public float MaxSpeed = 5f;
     
@@ -30,9 +30,10 @@ public class Attaque : ClickTypeSkill
     public override void OnActiveEnter()
     {
         _originPassiveChance = weapon.GetPassiveSkill().Data.Chance;
-        
+
+        float distacne = Mathf.Clamp(Vector2.Distance(ClickPosition, (Vector2)weapon.owner.transform.position),0, MaxDashDistance);
         Vector2 direction = (ClickPosition - (Vector2)weapon.owner.transform.position).normalized;
-        Vector2 targetPosition = (Vector2)weapon.owner.transform.position + (direction * DashDistance);
+        Vector2 targetPosition = (Vector2)weapon.owner.transform.position + (direction * distacne);
         
         weapon.owner.GetComponent<PlayerController>().enabled = false;
 
