@@ -13,6 +13,11 @@ public class IdleState : IState<PlayerController>
         if (entity.Data.CurrentWeapon is not null)
         {
             entity.Target = entity.FindNearestTarget();
+
+            if (entity.IsTouchTarget is false)
+            {
+                entity.ChangeState(PlayerController.State.Attack);
+            }
         }
     }
 

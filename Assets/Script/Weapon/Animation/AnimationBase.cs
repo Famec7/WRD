@@ -6,10 +6,6 @@ public abstract class AnimationBase : MonoBehaviour
     [Header("애니메이션 속도 그래프")]
     [SerializeField]
     protected AnimationCurve animationSpeed;
-    
-    [Header("애니메이션 속도")]
-    [SerializeField]
-    private float speed = 1.0f;
 
     /// <summary>
     /// 애니메이션 종료 시간
@@ -37,7 +33,7 @@ public abstract class AnimationBase : MonoBehaviour
     
     protected float CalculateElapsedTime(ref float elapsedTime)
     {
-        elapsedTime += Time.deltaTime * speed;
+        elapsedTime += Time.deltaTime;
         float t = elapsedTime / endTime;
         
         return animationSpeed.Evaluate(t);
