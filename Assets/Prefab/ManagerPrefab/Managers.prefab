@@ -84,6 +84,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &565320515564965119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1987198479732239248}
+  - component: {fileID: 2913841516436438484}
+  m_Layer: 0
+  m_Name: CombinationPopupGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1987198479732239248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565320515564965119}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0130955875, y: 0.95204085, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2402696352196400284}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2913841516436438484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565320515564965119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14115a22b89f45c428d48a4b01ea9232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DetailedCombinationPopupUIPrefab: {fileID: 1449319406833183469, guid: 2ea8963492200fc488c71d2db94c7e02, type: 3}
+  highLevelCombinationPrefab: {fileID: 3355827785742244248, guid: 62ded4e64c90ecf41a35f28e148394aa, type: 3}
+  parentTransform: {fileID: 0}
+  DetailedCombinationPopupUIList: []
 --- !u!1 &1743793772114758584
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +183,7 @@ Transform:
   - {fileID: 3754650861804983507}
   - {fileID: 6373124622062059713}
   - {fileID: 1514103815673358202}
+  - {fileID: 1987198479732239248}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1907959335479880199
@@ -235,6 +284,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TestPopUpArea: {fileID: 0}
+  TestButtonImage: {fileID: 0}
+  AutoWaveProgressionButtonImage: {fileID: 0}
+  WaveInputField: {fileID: 0}
 --- !u!1 &2443558260264677275
 GameObject:
   m_ObjectHideFlags: 0

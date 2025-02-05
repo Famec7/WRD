@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     public Toggle autoSkipToggle;
     public Stack<CombinePopUpUI>combinePopupUIStack;
     public Stack<DetailedDescriptionUI> descriptionPopUpUIStack;
+    public Stack<DetailedCombinationPopupUI> DetailedCombinationPopupUIStack;
+
     public Stack<InventoryDescriptionPopUpUI> inventoryDescriptionPopUpUiStack;
 
     public Vector3 touchPos;
@@ -75,9 +77,11 @@ public class UIManager : MonoBehaviour
     {
         combinePopupUIStack = new Stack<CombinePopUpUI>();
         popUpStack = new Stack<UIPopUp>();
+        DetailedCombinationPopupUIStack = new Stack<DetailedCombinationPopupUI>();
         _popups = new UIPopUp[UIType.MissionCheck.GetHashCode() + 1];
-
         
+
+
     }
 
     private void Update()
@@ -86,6 +90,16 @@ public class UIManager : MonoBehaviour
         {
             elementCnt[i].text = GameManager.Instance.weaponCnt[i].ToString();
         }
+    }
+
+    public void CreateDetailedCombinationPopupUI(int weaponID)
+    {
+        GameObject combineUI = DetailedCombinationPopupUIGenerator.Instance.DetailedCombinationPopupUIList[weaponID - 1];
+        if (combineUI == null) return;
+        combineUI.transform.parent = _popupCanvas.transform;
+        combineUI.SetActive(true);
+        DetailedCombinationPopupUIStack.Push(combineUI.GetComponent<DetailedCombinationPopupUI>());
+        combineUI.transform.SetAsLastSibling();
     }
 
     public void CreateCombineUI(int weaponID, bool isBlock = true, bool isInventory = false, bool isEquiped = false)
@@ -122,10 +136,10 @@ public class UIManager : MonoBehaviour
         return inventoryDescriptionUI;
     }
     
-    public void CreateDetailedDescriptionUI(int weaponID , bool isBlock = true)
+    public void CreateDetailedDescriptionUI(int weaponID , bool isBlock = true, bool closeCombine = true)
     {
-
-        CloseCombinePopUpUI();
+        if(closeCombine)
+            CloseCombinePopUpUI();
 
         GameObject detailedDescriptionUI = DetailedDescriptionUIGenerator.Instance.detailedDescriptionUIList[weaponID - 1];
         detailedDescriptionUI.transform.SetAsLastSibling();
@@ -156,7 +170,18 @@ public class UIManager : MonoBehaviour
             combinePopupUIStack.Pop();
         }
     }
-    
+    public void CloseDetailedCombinationPopUpUI()
+    {
+        foreach (var popup in DetailedCombinationPopupUIStack)
+        {
+            GameObject current = popup.gameObject;
+            current.SetActive((false));
+        }
+
+        DetailedCombinationPopupUIStack.Clear();
+        backButton.SetActive(false);
+    }
+
     public void CloseDetailedDescriptionPopUpUI()
     {
         foreach (var popup in descriptionPopUpUIStack)

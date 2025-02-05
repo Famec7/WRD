@@ -30,6 +30,7 @@ public class UIPopUp : MonoBehaviour
                 UIManager.instance.CloseCombinePopUpUI();
                 UIManager.instance.CloseInventoryDescriptionPopUpUI();
                 UIManager.instance.CloseDetailedDescriptionPopUpUI();
+                UIManager.instance.CloseDetailedCombinationPopUpUI();
                 UIManager.instance.longClickPopUpUI.SetActive(false);
 
             }

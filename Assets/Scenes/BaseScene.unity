@@ -225,6 +225,10 @@ PrefabInstance:
       propertyPath: _poolDatas.Array.data[5]._count
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 565320515564965119, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: m_Name
+      value: DetailedCombinationPopupUIGenerator
+      objectReference: {fileID: 0}
     - target: {fileID: 634136516482632422, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: messageParent
       value: 
@@ -301,6 +305,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2913841516436438484, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2913841516436438484, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: parentTransform
+      value: 
+      objectReference: {fileID: 1109643351}
+    - target: {fileID: 2913841516436438484, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: highLevelCombinationPrefab
+      value: 
+      objectReference: {fileID: 3355827785742244248, guid: 62ded4e64c90ecf41a35f28e148394aa, type: 3}
+    - target: {fileID: 2913841516436438484, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: DetailedCombinationPopupUIPrefab
+      value: 
+      objectReference: {fileID: 1449319406833183469, guid: 2ea8963492200fc488c71d2db94c7e02, type: 3}
     - target: {fileID: 3188305656620013362, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
       value: -0.8668755
