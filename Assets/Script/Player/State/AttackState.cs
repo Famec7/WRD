@@ -7,6 +7,18 @@
             entity.ChangeState(PlayerController.State.IDLE);
             return;
         }
+
+        if (entity.Target is null)
+        {
+            entity.ChangeState(PlayerController.State.IDLE);
+            return;
+        }
+        
+        float targetPosX = entity.Target.transform.position.x;
+        float playerPosX = entity.transform.position.x;
+
+        bool isRight = targetPosX > playerPosX;
+        entity.SetFlip(isRight);
     }
 
     public void Execute(PlayerController entity)
@@ -23,12 +35,6 @@
         {
             return;
         }
-        
-        float targetPosX = entity.Target.transform.position.x;
-        float playerPosX = entity.transform.position.x;
-
-        bool isRight = targetPosX > playerPosX;
-        entity.SetFlip(isRight);
 
         if (entity.IsTouchTarget && entity.IsTargetInRange() is false)
         {

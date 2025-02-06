@@ -40,12 +40,6 @@ public abstract class CharacterController : MonoBehaviour
 
     public void SetFlip(bool isRight)
     {
-        if (!isRight)
-        {
-            this.transform.rotation = Quaternion.Euler(0, 0, 0);
-            return;
-        }
-        
         this.transform.rotation = Quaternion.Euler(0, isRight ? 180 : 0, 0);
     }
 

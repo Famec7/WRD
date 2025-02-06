@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(ParticleSystem))]
 public class ParticleEffect : EffectBase
 {
     [SerializeField]
@@ -13,8 +14,11 @@ public class ParticleEffect : EffectBase
     
     protected override void Init()
     {
-        _hitEffect = GetComponent<ParticleSystem>();
         _originScale = transform.localScale;
+        
+        _hitEffect = GetComponent<ParticleSystem>();
+        ParticleSystem.MainModule main = _hitEffect.main;
+        main.stopAction = ParticleSystemStopAction.Callback;
     }
 
     public override void PlayEffect()
