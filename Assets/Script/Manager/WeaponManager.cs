@@ -38,6 +38,14 @@ public class WeaponManager : Singleton<WeaponManager>
                 SkillManager.Instance.AddActiveSkill(activeSkill);
             }
         }
+        else
+        {
+            for (int i = 0; i < weapon.GetActiveSkillCount(); i++)
+            {
+                ActiveSkillBase activeSkill = weapon.GetActiveSkill(i);
+                activeSkill.enabled = false;
+            }
+        }
         
         OnWeaponEquipped?.Invoke(owner);
     }
