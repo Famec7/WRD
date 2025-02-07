@@ -34,7 +34,8 @@ public class Attaque : ClickTypeSkill
         float distacne = Mathf.Clamp(Vector2.Distance(ClickPosition, (Vector2)weapon.owner.transform.position),0, MaxDashDistance);
         Vector2 direction = (ClickPosition - (Vector2)weapon.owner.transform.position).normalized;
         Vector2 targetPosition = (Vector2)weapon.owner.transform.position + (direction * distacne);
-        
+        targetPosition.x = Mathf.Clamp(targetPosition.x, weapon.owner.GetComponent<PlayerController>().MinX, weapon.owner.GetComponent<PlayerController>().MaxX);
+        targetPosition.y = Mathf.Clamp(targetPosition.y, weapon.owner.GetComponent<PlayerController>().MinY, weapon.owner.GetComponent<PlayerController>().MaxY);
         weapon.owner.GetComponent<PlayerController>().enabled = false;
 
         if (_dashCoroutine != null)
