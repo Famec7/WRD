@@ -16,7 +16,7 @@ public class DetailedCombinationButton : MonoBehaviour
     void Update()
     {
         BackGround.color = WeaponTierTranslator.GetClassColor(WeaponDataManager.Instance.Database.GetWeaponData(weaponID).WeaponClass);
-        if (GameManager.Instance.weaponCnt[weaponID - 1] > 0)
+        if (GameManager.Instance.weaponCnt[weaponID - 1] == 0)
             BackGround.color *= 0.7f;
     }
 }

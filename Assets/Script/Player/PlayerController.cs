@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,6 +11,10 @@ public class PlayerController : CharacterController, ISubject
     public bool IsTouchTarget { get; private set; } = false;
 
     public Vector3 TouchPos { get; private set; }
+    public readonly float MinX = -1.2f;
+    public readonly float MaxX = 1.2f;
+    public readonly float MinY = -0.9f;
+    public readonly float MaxY = 1.8f;
 
     [SerializeField] private Transform _arm;
 
@@ -36,7 +40,7 @@ public class PlayerController : CharacterController, ISubject
     #region Offset
 
     private const float _characterFootOffset = 0.3f;
-    private const float _distanceThreshold = 0.01f;
+    private const float _distanceThreshold = 0.02f;
 
     #endregion
 
@@ -131,7 +135,7 @@ public class PlayerController : CharacterController, ISubject
         TouchPos = pos;
 
         MoveDir = (TouchPos - transform.position).normalized;
-
+  
         LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
         Collider2D col = Physics2D.OverlapPoint(TouchPos, layerMask);
         // 몬스터 클릭 시 추적
@@ -184,11 +188,11 @@ public class PlayerController : CharacterController, ISubject
 
     private bool IsPlayerAtTouchPos()
     {
-        // 캐릭터 발 위치를 고려하여 터치 위치와 거리를 계산
-        var pos = TouchPos;
-        pos.y -= _characterFootOffset;
-
-        return Vector3.Distance(transform.position, TouchPos) < _distanceThreshold;
+        var limitPos = TouchPos;
+     
+        limitPos.x = Mathf.Clamp(limitPos.x, MinX, MaxX);
+        limitPos.y = Mathf.Clamp(limitPos.y, MinY, MaxY);
+        return Vector3.Distance(transform.position, limitPos) < _distanceThreshold;
     }
 
     public bool IsTargetInRange()

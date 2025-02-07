@@ -56,7 +56,8 @@ MonoBehaviour:
   passiveSkillList: []
   passiveAuraSkillList:
   - {fileID: 1782632758593961849}
-  activeSkillList: []
+  activeSkillList:
+  - {fileID: 2745252123847738697}
   anim: {fileID: 8887362761926240980}
   type: 0
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
@@ -216,5 +217,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speed: 1
   _endPosition: {x: 0.1, y: 0, z: 0}
