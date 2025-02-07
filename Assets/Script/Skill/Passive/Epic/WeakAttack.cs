@@ -10,6 +10,7 @@ public class WeakAttack : PassiveAuraSkillBase
     protected override void Init()
     {
         base.Init();
+        _originalDamage = weapon.Data.AttackDamage;
         weapon.AddAction(OnAttack);
     }
 
@@ -26,11 +27,11 @@ public class WeakAttack : PassiveAuraSkillBase
             
             if (mark is null)
             {
-                weapon.Data.AttackDamage = _originalDamage + Data.GetValue(0);
+                weapon.Data.AttackDamage = _originalDamage;
             }
             else
             {
-                weapon.Data.AttackDamage = _originalDamage;
+                weapon.Data.AttackDamage = _originalDamage + Data.GetValue(0);
             }
         }
     }
