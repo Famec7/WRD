@@ -149,6 +149,11 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
 
     private void AttackBase()
     {
+        if (owner.IsTargetNullOrInactive())
+        {
+            return;
+        }
+        
         if (anim != null)
         {
             anim.PlayAnimation();

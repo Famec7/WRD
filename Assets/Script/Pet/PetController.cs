@@ -23,9 +23,23 @@ public class PetController : CharacterController, IObserver
     {
         Move();
 
-        if (!IsTargetNullOrInactive())
+        if (Data.CurrentWeapon is null)
         {
-            Data.CurrentWeapon?.UpdateAttack();
+            return;
+        }
+
+        if (Data.CurrentWeapon.enabled is false)
+        {
+            return;
+        }
+        
+        if (IsTargetNullOrInactive())
+        {
+            Target = FindNearestTarget();
+        }
+        else
+        {
+            Data.CurrentWeapon.UpdateAttack();
         }
     }
 
@@ -34,11 +48,6 @@ public class PetController : CharacterController, IObserver
         if (_playerController.Target == null)
         {
             if (!IsPlayerStateIdleAndWeaponNotNull()) return;
-            
-            if (IsTargetNullOrInactive())
-            {
-                Target = FindNearestTarget();
-            }
 
             return;
         }

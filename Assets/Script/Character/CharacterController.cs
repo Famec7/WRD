@@ -8,7 +8,7 @@ public abstract class CharacterController : MonoBehaviour
 
     #region Data
 
-    [SerializeField] private CharacterData _data;
+    [SerializeField] private CharacterData _data = new CharacterData();
     public CharacterData Data => _data;
 
     #endregion
