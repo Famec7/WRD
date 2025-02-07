@@ -127,6 +127,9 @@ public class MonsterSpawnManager : MonoBehaviour
         else 
             waveSecTimer += Time.deltaTime;
 
+        if (currentWaveMonsterNum == monsterSpawnNum[idx])
+            isNormalSpawnStop = true;
+
         if (waveSecTimer >= 1f) 
         {
             waveTimer++;
@@ -143,8 +146,7 @@ public class MonsterSpawnManager : MonoBehaviour
 
         if (isSpawnStop) return;
 
-        if (currentWaveMonsterNum == monsterSpawnNum[idx])
-            isNormalSpawnStop = true;
+
 
         // 일반 몹 생성
         if (spawnDelayTimer >= monsterSpawnTime[idx] && !isNormalSpawnStop)
