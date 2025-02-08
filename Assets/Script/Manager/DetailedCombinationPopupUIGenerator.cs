@@ -16,7 +16,7 @@ public class DetailedCombinationPopupUIGenerator : Singleton<DetailedCombination
     {
         int weaponDataCount = WeaponDataManager.Instance.Database.GetWeaponDataCount();
         List<int> weaponNums = WeaponDataManager.Instance.Database.GetAllWeaponNums();
-        for (int weaponId = 6; weaponId <= weaponDataCount; weaponId++)
+        for (int weaponId = 1; weaponId <= weaponDataCount; weaponId++)
         {
             int weaponNum = WeaponDataManager.Instance.Database.GetWeaponNumByID(weaponId);
             int canCombineCnt = 0;
@@ -28,12 +28,17 @@ public class DetailedCombinationPopupUIGenerator : Singleton<DetailedCombination
             detailedDescriptionUIGameObject.transform.GetChild(2).GetComponent<DetailedCombinationButton>().weaponID = weaponId;
             detailedCombinationPopupUI.Init(weaponNum);
 
-            for (int j = 0; j < weaponDataCount; j++)
+            for (int j = 1; j < weaponDataCount; j++)
             {
-                string mainCombi = WeaponDataManager.Instance.Database.GetWeaponData(j + 1).MainCombi;
-                if (mainCombi == weaponNum.ToString())
+                var highWeaponData = WeaponDataManager.Instance.GetWeaponData(j);
+                string highWeaponCombi = highWeaponData.Combi;
+                string[] highWeaponcombis = highWeaponCombi.Split('\x020');
+                foreach (var num in highWeaponcombis)
                 {
-                    canCombinWeaponsList.Add(WeaponDataManager.Instance.Database.GetWeaponData(j + 1).ID);
+                    if (num == weaponNum.ToString())
+                    {
+                        canCombinWeaponsList.Add(WeaponDataManager.Instance.Database.GetWeaponData(j + 1).ID);
+                    }
                 }
             }
             canCombineCnt = canCombinWeaponsList.Count;
@@ -52,7 +57,7 @@ public class DetailedCombinationPopupUIGenerator : Singleton<DetailedCombination
             }
 
             var data = WeaponDataManager.Instance.GetWeaponData(weaponId);
-            if (data == null) return;
+            if (data == null || weaponId < 6) continue;
             string combi = data.Combi;
             
             string[] combis = combi.Split('\x020');
