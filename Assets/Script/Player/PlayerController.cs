@@ -18,6 +18,8 @@ public class PlayerController : CharacterController, ISubject
 
     [SerializeField] private Transform _arm;
 
+    [SerializeField] private List<PetController> _pets;
+
     #region State
 
     public enum State
@@ -180,6 +182,14 @@ public class PlayerController : CharacterController, ISubject
         }
 
         Notify();
+    }
+    
+    public void PetAttack()
+    {
+        foreach (var pet in _pets)
+        {
+            pet.Data.CurrentWeapon?.UpdateAttack();
+        }
     }
 
     /******************************bool Method******************************************/
