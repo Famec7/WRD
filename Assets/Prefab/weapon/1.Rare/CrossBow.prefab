@@ -121,8 +121,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speed: 1
-  _endPosition: {x: 10, y: 0, z: 0}
+  _endPosition: {x: 0.1, y: 0, z: 0}
 --- !u!1 &5817946484766166386
 GameObject:
   m_ObjectHideFlags: 0
