@@ -10,6 +10,7 @@ public class PlayerController : CharacterController, ISubject
     private FSM<PlayerController> _fsm;
     public bool IsTouchTarget { get; private set; } = false;
 
+
     public Vector3 TouchPos { get; private set; }
     public readonly float MinX = -1.2f;
     public readonly float MaxX = 1.2f;

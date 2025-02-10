@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,12 +38,12 @@ public class DetailedCombinationPopupUIGenerator : Singleton<DetailedCombination
                 {
                     if (num == weaponNum.ToString())
                     {
-                        canCombinWeaponsList.Add(WeaponDataManager.Instance.Database.GetWeaponData(j + 1).ID);
+                        canCombinWeaponsList.Add(WeaponDataManager.Instance.Database.GetWeaponData(j).ID);
                     }
                 }
             }
             canCombineCnt = canCombinWeaponsList.Count;
-
+            canCombinWeaponsList = canCombinWeaponsList.Distinct().ToList();
             int idx = 0;
 
             foreach (var highLevelweaponID in canCombinWeaponsList)
@@ -51,7 +52,7 @@ public class DetailedCombinationPopupUIGenerator : Singleton<DetailedCombination
                 highLevelWeaponIcon.GetComponent<RectTransform>().anchoredPosition = new Vector3(-110 + 110 * idx, 0);
                 var path = "WeaponIcon/" + WeaponDataManager.Instance.GetWeaponData(highLevelweaponID).num;
                 highLevelWeaponIcon.transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
-                highLevelWeaponIcon.transform.GetComponent<Button>().onClick.AddListener(() => UIManager.instance.CreateDetailedCombinationPopupUI(highLevelweaponID-5));
+                highLevelWeaponIcon.transform.GetComponent<Button>().onClick.AddListener(() => UIManager.instance.CreateDetailedCombinationPopupUI(highLevelweaponID));
                 highLevelWeaponIcon.GetComponent<DetailedCombinationButton>().weaponID = highLevelweaponID;
                 idx++;
             }
@@ -69,8 +70,8 @@ public class DetailedCombinationPopupUIGenerator : Singleton<DetailedCombination
                 var path = "WeaponIcon/" + lowLevelNum;
                 int lowLevelID = WeaponDataManager.Instance.Database.GetWeaponIdByNum(Int32.Parse(lowLevelNum));
                 lowLevelWeaponIcon.transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
-                if (lowLevelID - 5 > 5)
-                    lowLevelWeaponIcon.transform.GetComponent<Button>().onClick.AddListener(() => UIManager.instance.CreateDetailedCombinationPopupUI(lowLevelID - 5));
+                if (lowLevelID  > 5)
+                    lowLevelWeaponIcon.transform.GetComponent<Button>().onClick.AddListener(() => UIManager.instance.CreateDetailedCombinationPopupUI(lowLevelID));
                 idx2++;
 
                 lowLevelWeaponIcon.GetComponent<DetailedCombinationButton>().weaponID = lowLevelID;
