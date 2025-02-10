@@ -48,6 +48,6 @@ public class SubCombinationUI : MonoBehaviour
 
     public void OnClickDetailedButton()
     {
-        UIManager.instance.CreateDetailedCombinationPopupUI(mainweaponID-5);
+        UIManager.instance.CreateDetailedCombinationPopupUI(mainweaponID);
     }
 }
