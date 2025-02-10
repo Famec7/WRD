@@ -9,7 +9,6 @@ public class MissionMonsterManager : MonoBehaviour
     // Start is called before the first frame update
     public static MissionMonsterManager instance;
 
-    public int[] defenseData;
     public List<Tuple<string, List<int>>> rewardList = new List<Tuple<string, List<int>>>();
     public UnitCode[] unitCodeData;
 
@@ -29,7 +28,6 @@ public class MissionMonsterManager : MonoBehaviour
             instance = this;
 
         unitCodeData = new UnitCode[data.Count];
-        defenseData = new int[data.Count];
         speedData = new float[data.Count];
         resistData = new float[data.Count];
         HPData = new float[data.Count];
@@ -40,7 +38,6 @@ public class MissionMonsterManager : MonoBehaviour
 
         for (int i = 0; i < data.Count; i++)
         {
-            defenseData[i] = int.Parse((data[i]["defense"]).ToString());
             speedData[i] = float.Parse((data[i]["speed"]).ToString());
             resistData[i] = float.Parse((data[i]["resist"]).ToString());
             HPData[i] = float.Parse((data[i]["hp"]).ToString());

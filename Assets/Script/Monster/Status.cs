@@ -30,7 +30,6 @@ public class Status : MonoBehaviour
     public float originalSpeed;
 
     public float resist;
-    public float defense;
 
     public string monsterName;
 
@@ -71,12 +70,10 @@ public class Status : MonoBehaviour
         if (unitCode < UnitCode.ELITEMONSTER1)
         {
             HP = MonsterDataManager.instance.HPData[wave];
-            defense = MonsterDataManager.instance.defenseData[wave];
         }
         else
         {
             HP = MonsterDataManager.instance.bossHPData[wave];
-            defense = MonsterDataManager.instance.bossDefenseData[wave];
         }
         
         resist = MonsterDataManager.instance.resistData[wave];
@@ -93,7 +90,6 @@ public class Status : MonoBehaviour
         int idx = unitCode - UnitCode.MISSIONBOSS1;
         unitCode = MissionMonsterManager.instance.unitCodeData[idx];       
         HP = MissionMonsterManager.instance.HPData[idx];
-        defense = MissionMonsterManager.instance.defenseData[idx];
         resist = MissionMonsterManager.instance.resistData[idx];
         monsterName = MissionMonsterManager.instance.monsterNameData[idx];
         MoveSpeed = MissionMonsterManager.instance.speedData[idx];
