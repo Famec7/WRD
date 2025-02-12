@@ -604,7 +604,7 @@ public class InventoryManager : MonoBehaviour
                 weapon.AssignWeapon(item.i+1);
 
 
-                GameManager.Instance.weaponCnt[item.i - 1]++;
+                GameManager.Instance.weaponCnt[item.i]++;
                 GameManager.Instance.UpdateUseableWeaponCnt();
                 AddItem(weapon, false);
             }
