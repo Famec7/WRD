@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,15 +22,15 @@ public class MissionDatabase : ScriptableObject
             _missionDataList[i].requiredGrade = new WeaponTuple<WeaponTier, int>((WeaponTier)Enum.Parse(typeof(WeaponTier),data[i]["require_grade"].ToString(), true),
                 int.Parse(data[i]["require_number"].ToString()));
             
-            var easyGrades = data[i]["easy_grade"].ToString().Split(',');
-            var easyNumbers = data[i]["easy_number"].ToString().Split(',');
-            for (int j = 0; j < easyGrades.Length; j++)
-            {
-                string easyGradeName = easyGrades[j];
-                _missionDataList[i].easyRequiredGrade
-                    .Add(new WeaponTuple<WeaponTier, int>((WeaponTier)Enum.Parse(typeof(WeaponTier), easyGradeName, true),
-                        int.Parse(easyNumbers[j])));
-            }
+            //var easyGrades = data[i]["easy_grade"].ToString().Split(',');
+            //var easyNumbers = data[i]["easy_number"].ToString().Split(',');
+            //for (int j = 0; j < easyGrades.Length; j++)
+            //{
+            //    string easyGradeName = easyGrades[j];
+            //    _missionDataList[i].easyRequiredGrade
+            //        .Add(new WeaponTuple<WeaponTier, int>((WeaponTier)Enum.Parse(typeof(WeaponTier), easyGradeName, true),
+            //            int.Parse(easyNumbers[j])));
+            //}
         }
     }
 

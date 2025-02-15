@@ -190,7 +190,6 @@ MonoBehaviour:
   HP: 0
   originalSpeed: 0
   resist: 0
-  defense: 0
   monsterName: 
   WoundStack: 0
   MarkStack: 0

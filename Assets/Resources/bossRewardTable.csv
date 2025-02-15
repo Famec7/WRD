@@ -1,0 +1,7 @@
+wave_num,reward_grade,reward_number,reward_transform
+5,unnormal,2,0
+10,rare,2,0
+15,rare,2,0
+20,epic,1,1
+25,epic,1,1
+30,,,2

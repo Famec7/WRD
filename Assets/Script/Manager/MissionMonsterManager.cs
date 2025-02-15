@@ -16,6 +16,7 @@ public class MissionMonsterManager : MonoBehaviour
     public float[] resistData;
     public float[] HPData;
     public float[] playTimeData;
+    public int[] rewardTransform;
     public string[] monsterNameData;
     public string[] rewardGrades;
     public string[] rewardNumbers;
@@ -29,22 +30,22 @@ public class MissionMonsterManager : MonoBehaviour
 
         unitCodeData = new UnitCode[data.Count];
         speedData = new float[data.Count];
-        resistData = new float[data.Count];
         HPData = new float[data.Count];
         monsterNameData = new string[data.Count];
         playTimeData = new float[data.Count];
         rewardGrades = new string[data.Count];
         rewardNumbers = new string[data.Count];
-
+        rewardTransform = new int[data.Count];
         for (int i = 0; i < data.Count; i++)
         {
             speedData[i] = float.Parse((data[i]["speed"]).ToString());
-            resistData[i] = float.Parse((data[i]["resist"]).ToString());
+            //resistData[i] = float.Parse((data[i]["resist"]).ToString());
             HPData[i] = float.Parse((data[i]["hp"]).ToString());
             monsterNameData[i] = data[i]["monster_name"].ToString();
             playTimeData[i] = float.Parse((data[i]["mission_playtime"]).ToString());
             rewardGrades[i] = data[i]["reward_grade"].ToString();
             rewardNumbers[i] = data[i]["reward_number"].ToString();
+            rewardTransform[i] = Int32.Parse(data[i]["reward_transform"].ToString());
             unitCodeData[i] = UnitCode.MISSIONBOSS1 + i;
         }
 

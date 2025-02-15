@@ -90,7 +90,7 @@ public class Status : MonoBehaviour
         int idx = unitCode - UnitCode.MISSIONBOSS1;
         unitCode = MissionMonsterManager.instance.unitCodeData[idx];       
         HP = MissionMonsterManager.instance.HPData[idx];
-        resist = MissionMonsterManager.instance.resistData[idx];
+        //resist = MissionMonsterManager.instance.resistData[idx];
         monsterName = MissionMonsterManager.instance.monsterNameData[idx];
         MoveSpeed = MissionMonsterManager.instance.speedData[idx];
         originalSpeed = MoveSpeed;

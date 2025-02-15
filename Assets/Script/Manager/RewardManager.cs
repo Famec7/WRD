@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 using Random = UnityEngine.Random;
@@ -16,7 +17,10 @@ public class RewardManager : Singleton<RewardManager>
     public int[] epicRewardCnt;
     public int[] legendaryRewardCnt;
     public int[] mythRewardCnt;
+    public List<Tuple<string, List<int>>> bossRewardList = new List<Tuple<string, List<int>>>();
 
+    public string[] bossRewardGrades;
+    public string[] bossRewardNumbers;
     protected override void Init()
     {
         ;
@@ -25,6 +29,10 @@ public class RewardManager : Singleton<RewardManager>
     {
         List<Dictionary<string, object>> data = CSVReader.Read("WaveReward");
 
+        List<Dictionary<string, object>> bossRewardData = CSVReader.Read("bossRewardTable");
+
+        bossRewardGrades = new string[data.Count];
+        bossRewardNumbers = new string[data.Count];
         elementRewardCnt = new int[data.Count];
         unnormalRewardCnt = new int[data.Count];
         rareRewardCnt = new int[data.Count];
@@ -41,6 +49,36 @@ public class RewardManager : Singleton<RewardManager>
             legendaryRewardCnt[i] = int.Parse((data[i]["legendary"]).ToString());
             mythRewardCnt[i] = int.Parse((data[i]["myth"]).ToString());
         }
+
+        for (int i =0; i < bossRewardData.Count; i++)
+        {
+            bossRewardGrades[i] = bossRewardData[i]["reward_grade"].ToString();
+            bossRewardNumbers[i] = bossRewardData[i]["reward_number"].ToString();
+        }
+
+        for (int i = 0; i < bossRewardData.Count; i++)
+        {
+            string grade = bossRewardGrades[i];
+            string[] rewards = bossRewardNumbers[i].Split(',');
+
+            List<int> rewardNumbersList = new List<int>();
+
+            // 보상을 정수로 변환
+            foreach (string reward in rewards)
+            {
+                if (int.TryParse(reward.Trim(), out int parsedReward))
+                {
+                    rewardNumbersList.Add(parsedReward);
+                }
+                else
+                {
+                    Debug.LogWarning($"Warning: Failed to parse reward '{reward}' at index {i}.");
+                }
+            }
+
+            // 등급과 보상을 리스트에 추가
+            bossRewardList.Add(new Tuple<string, List<int>>(grade, rewardNumbersList));
+        }
     }
 
 
@@ -55,31 +93,68 @@ public class RewardManager : Singleton<RewardManager>
 
     public void GetReward(UnitCode code)
     {
+        Tuple<string, List<int>> rewardTuple = null;
+
         if (code >= UnitCode.MISSIONBOSS1 && code <= UnitCode.MISSIONBOSS6)
         {
             int idx = code - UnitCode.MISSIONBOSS1;
-            Tuple<string, List<int>> rewardTuple = MissionMonsterManager.instance.rewardList[idx];
+            rewardTuple = MissionMonsterManager.instance.rewardList[idx];
+        }
+        else if (code >= UnitCode.BOSS1 && code <= UnitCode.BOSS6)
+        {
+            int idx = code - UnitCode.BOSS1;
+            rewardTuple = bossRewardList[idx];
+        }
 
-            string[] rewardStr = rewardTuple.Item1.Split(',');
+        if (rewardTuple != null)
+        {
+            ProcessReward(rewardTuple);
+        }
+    }
 
-            for (int i = 0; i < rewardStr.Length; i++)
+    private void ProcessReward(Tuple<string, List<int>> rewardTuple)
+    {
+        string[] rewardStrArr = rewardTuple.Item1.Split(',');
+        Dictionary<WeaponTier, int> rewardCounts = new Dictionary<WeaponTier, int>();
+
+        for (int i = 0; i < rewardStrArr.Length; i++)
+        {
+            string rewardStr = rewardStrArr[i];
+            int count = rewardTuple.Item2[i];
+
+            if (rewardStr.EndsWith("_m"))
             {
-                if (rewardStr[i].EndsWith("_m"))
+                if (Enum.TryParse(rewardStr.Replace("_m", ""), true, out WeaponTier tier))
                 {
-                    if(Enum.TryParse(rewardStr[i].Replace("_m", ""), true, out WeaponTier tier))
-                    {
-                        MasterKeyManager.Instance.UpdateMasterKeyCount(tier, rewardTuple.Item2[i]);
-                    }
-                }
-                else
-                {
-                    if (Enum.TryParse(rewardStr[i], true, out WeaponTier tier))
-                    {
-                        GetRandomWeapon(tier, rewardTuple.Item1[i]);
-                    }
+                    MasterKeyManager.Instance.UpdateMasterKeyCount(tier, count);
+                    if (rewardCounts.ContainsKey(tier))
+                        rewardCounts[tier] += count;
+                    else
+                        rewardCounts[tier] = count;
                 }
             }
-        }    
+            else
+            {
+                if (Enum.TryParse(rewardStr, true, out WeaponTier tier))
+                {
+                    GetRandomWeapon(tier, count);
+                    if (rewardCounts.ContainsKey(tier))
+                        rewardCounts[tier] += count;
+                    else
+                        rewardCounts[tier] = count;
+                }
+            }
+        }
+
+        if (rewardCounts.Count > 0)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var kv in rewardCounts)
+            {
+                sb.Append($"{kv.Key} 등급: {kv.Value}개 획득\n");
+            }
+            MessageManager.Instance.ShowMessage(sb.ToString(), new Vector2(0, 218), 1f, 0.5f);
+        }
     }
 
     public void GetRandomWeapon(WeaponTier tier,int count)

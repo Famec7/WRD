@@ -1,7 +1,7 @@
-monster_name,spawn_wave,hp,defense,speed,resist,mission_playtime,reward_grade,reward_number
-a,3~10,500,10,1,10,40,normal_m,3
-b,6~10,5000,20,1,10,40,unnormal,2
-c,11~15,10000,70,0.5,10,40,rare,1
-d,16~20,12000,30,3.5,50,40,normal_m,10
-e,21~25,100000,100,0.5,20,45,"rare_m, hero","2, 1"
-f,26~30,500000,60,4,60,45,"rare_m, hero","1, 2"
+monster_name,spawn_wave,hp,speed,reward_grade,reward_number,reward_transform,mission_playtime
+a,3~10,500,1,normal_m,5,0,40
+b,6~10,2000,1,normal_m,10,0,40
+c,11~15,12000,0.5,rare_m,1,0,40
+d,16~20,10000,3.5,rare_m,2,0,40
+e,21~25,120000,0.5,epic_m,1,1,45
+f,26~30,300000,4,epic_m,1,1,45

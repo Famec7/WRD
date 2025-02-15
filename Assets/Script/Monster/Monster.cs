@@ -62,6 +62,9 @@ public class Monster : MonoBehaviour, IPoolObject
 
         }
 
+        if (status.unitCode >= UnitCode.BOSS1 && status.unitCode <= UnitCode.BOSS6)
+            RewardManager.Instance.GetReward(status.unitCode);
+
         MonsterHPBarPool.ReturnObject(hpUI.GetComponent<MonsterHPBar>());
         MonsterPoolManager.Instance.ReturnObject(status.unitCode.ToString(), gameObject);
     }
