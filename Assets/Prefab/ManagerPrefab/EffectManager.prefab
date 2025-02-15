@@ -146,3 +146,11 @@ MonoBehaviour:
     _prefab: {fileID: 5859218966625097769, guid: 48b895b0689b7e642a7c29090f7739ca, type: 3}
     _count: 100
     _preloadOnStart: 0
+  - _name: ArrowRain
+    _prefab: {fileID: 4815132046972852505, guid: 614b55614ea21c048acd2e7c4791192f, type: 3}
+    _count: 10
+    _preloadOnStart: 0
+  - _name: Wave
+    _prefab: {fileID: -9095776941266118830, guid: 41b4175ec58c60d49910482434359b52, type: 3}
+    _count: 10
+    _preloadOnStart: 0

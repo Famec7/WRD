@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class ArrowRain : ClickTypeSkill
 {
@@ -9,7 +10,7 @@ public class ArrowRain : ClickTypeSkill
     private float _duration;
 
     [SerializeField]
-    private float _arrowJourneyTime = 0.5f;
+    private float _arrowJourneyTime = 1.0f;
 
     [SerializeField]
     private Vector2 _offset;
@@ -27,16 +28,9 @@ public class ArrowRain : ClickTypeSkill
 
     public override void OnActiveEnter()
     {
-        for (int i = 0; i < _arrowCount; i++)
-        {
-            var arrow = ProjectileManager.Instance.CreateProjectile<ArrowProjectile>("Arrow", this.transform.position);
-
-            arrow.gameObject.SetActive(true);
-            arrow.transform.position = (Vector3)ClickPosition + (Vector3)RandomPointInCircle(Data.Range/2f) + (Vector3)_offset;
-            arrow.SetArrow((Vector3)ClickPosition + (Vector3)RandomPointInCircle(Data.Range / 2f)); 
-            arrow.JourneyTime = _arrowJourneyTime;
-        }
-
+        ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("ArrowRain");
+        effect.SetPosition(ClickPosition);
+        effect.PlayEffect();
         StartCoroutine(Damage(ClickPosition));
     }
 
@@ -64,7 +58,7 @@ public class ArrowRain : ClickTypeSkill
     IEnumerator Damage(Vector3 position)
     {
         yield return new WaitForSeconds(_arrowJourneyTime);
-        var targets = RangeDetectionUtility.GetAttackTargets(position, Data.Range, default, targetLayer);
+        var targets = RangeDetectionUtility.GetAttackTargets(position, Data.Range / 2f, default, targetLayer);
 
         if (targets.Count == 0)
             yield break;

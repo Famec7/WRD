@@ -233,7 +233,7 @@ public class MonsterSpawnManager : MonoBehaviour
         GameManager.Instance.wave+= waveCnt;
         UIManager.instance.waveNum.text = "Wave " + GameManager.Instance.wave.ToString();
 
-        if (waveCnt > 0)
+        if (waveCnt > 0 && GameManager.Instance.wave <= 30)
             ElementManager.instance.GetElement(3);
 
         waveTimer = 0;

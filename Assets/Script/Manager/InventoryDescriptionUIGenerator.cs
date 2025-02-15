@@ -56,7 +56,7 @@ public class InventoryDescriptionUIGenerator : Singleton<InventoryDescriptionUIG
                     skillIconGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(60f, 60f);
                     SkillIcon skillIcon = skillIconGameObject.GetComponent<SkillIcon>();
                     skillIcon.Init();
-                    skillIcon.WeaponNum = weaponId;
+                    skillIcon.WeaponNum = WeaponDataManager.Instance.Database.GetWeaponNumByID(weaponId);
                     skillIcon.SkillCount = skillIndex;
 
                     // UI 업데이트 (스킬 정보 적용)
