@@ -31,7 +31,7 @@ public class MatryoshkaActive : ClickTypeSkill
                     commandInvoker.AddCommand(new CheckForEnemiesCommand(this as ClickTypeSkill));
                 }
             },
-            OnStackChange = SetSlowRange + SetRange + SetSprite
+            OnStackChange = SetRange
         };
 
         SetRange(0);
@@ -76,7 +76,7 @@ public class MatryoshkaActive : ClickTypeSkill
         StatusEffectManager.Instance.AddStatusEffect(status, devilBulletDamageAmplification);
     }
 
-    public Action<int> SetSlowRange { get; set; }
+    public Action<float> SetSlowRange { get; set; }
 
     private void SetRange(int stack)
     {
@@ -86,6 +86,9 @@ public class MatryoshkaActive : ClickTypeSkill
         }
 
         SetIndicatorRange(_ranges[stack]);
+        SetSprite(stack);
+        
+        SetSlowRange?.Invoke(_ranges[stack]);
     }
     
     private void SetSprite(int stack)

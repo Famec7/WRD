@@ -26,7 +26,8 @@ public class DamageAmplification : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.DamageAmplification -= _amplificationRate;
+            float newAmplificationRate = Mathf.Round((status.DamageAmplification - _amplificationRate / 100.0f) * 100.0f) / 100.0f;
+            status.DamageAmplification = newAmplificationRate;
             PlayEffect(status.DamageAmplification);
         }
         
@@ -44,7 +45,7 @@ public class DamageAmplification : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.DamageAmplification += _amplificationRate;
+            status.DamageAmplification += _amplificationRate / 100.0f;
             PlayEffect(status.DamageAmplification);
 
 

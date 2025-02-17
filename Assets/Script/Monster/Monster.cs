@@ -17,20 +17,22 @@ public class Monster : MonoBehaviour, IPoolObject
     public event Action OnMonsterStart;
     public event Action OnMonsterAttacked;
     public event Action OnMonsterDeath;
+
     public void HasAttacked(float damage)
     {
         damage += status.DamageAmplification * damage;
         damage += status.DevilBulletDamageAmplification * damage;
-        
+
         status.HP -= damage;
+        Debug.Log(status.HP);
         if (status.HP <= 0 && !isDead)
             IsDead();
-        else
+        else if (!isDead)
         {
-            OnMonsterAttacked?.Invoke();//죽지 않고 데미지 받으면 데미지 Action 실행
+            OnMonsterAttacked?.Invoke(); //죽지 않고 데미지 받으면 데미지 Action 실행
         }
     }
-    
+
     public void Die()
     {
         if (!isDead)
@@ -56,10 +58,10 @@ public class Monster : MonoBehaviour, IPoolObject
                 Destroy(timer.gameObject); // 타이머 오브젝트 제거 (필요한 경우)
                 MissionManager.Instance.MonsterTimerDict.Remove(this); // 딕셔너리에서 제거
             }
-            RewardManager.Instance.GetReward(status.unitCode);
-            MessageManager.Instance.ShowMessage(status.unitCode.ToString() + " Clear!", new Vector2(0,200), 2f, 0.5f);
-            MissionManager.Instance.missionInfo._missionSlots[status.unitCode - UnitCode.MISSIONBOSS1].Clear(true);
 
+            RewardManager.Instance.GetReward(status.unitCode);
+            MessageManager.Instance.ShowMessage(status.unitCode.ToString() + " Clear!", new Vector2(0, 200), 2f, 0.5f);
+            MissionManager.Instance.missionInfo._missionSlots[status.unitCode - UnitCode.MISSIONBOSS1].Clear(true);
         }
 
         if (status.unitCode >= UnitCode.BOSS1 && status.unitCode <= UnitCode.BOSS6)
@@ -73,6 +75,8 @@ public class Monster : MonoBehaviour, IPoolObject
     {
         // 구현 내용 생략
         OnMonsterStart?.Invoke();
+
+        isDead = false;
     }
 
     public void ReturnToPool()

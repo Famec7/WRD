@@ -4,14 +4,19 @@ using UnityEngine;
 public class MatryoshkaPassive : PassiveSkillBase
 {
     [SerializeField] private float stunRange = 3.0f;
+    [SerializeField] private SlowZone _slowZone;
 
     private float _slowRange = 0.0f;
     
     private CircleCollider2D _collider;
     
-    private void SetSlowRange(int value)
+    private void SetSlowRange(float value)
     {
         _slowRange = value;
+        _slowZone.SetData(0, value, Data.GetValue(0));
+        _slowZone.transform.SetParent(weapon.owner.transform);
+        
+        _slowZone.PlayEffect();
     }
     
     protected override void Init()
@@ -20,7 +25,6 @@ public class MatryoshkaPassive : PassiveSkillBase
         
         targetLayer = LayerMaskProvider.MonsterLayerMask;
         _collider = GetComponent<CircleCollider2D>();
-        
     }
 
     private void Start()
@@ -45,28 +49,16 @@ public class MatryoshkaPassive : PassiveSkillBase
         {
             if (t.TryGetComponent(out Status status))
             {
-                StatusEffect stun = new SlowDown(t.gameObject, 100f, Data.GetValue(1));
+                StatusEffect stun = new Stun(t.gameObject, Data.GetValue(1));
                 StatusEffectManager.Instance.AddStatusEffect(status, stun);
             }
         }
 
         return true;
     }
-    
-    private void OnTriggerEnter2D(Collider2D other)
+
+    private void OnDisable()
     {
-        if (other.TryGetComponent(out Status status))
-        {
-            StatusEffect slow = new SlowDown(other.gameObject, Data.GetValue(0));
-            StatusEffectManager.Instance.AddStatusEffect(status, slow);
-        }
-    }
-    
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out Status status))
-        {
-            StatusEffectManager.Instance.RemoveStatusEffect(status, typeof(SlowDown));
-        }
+        _slowZone.StopEffect();
     }
 }
