@@ -4,42 +4,24 @@ using UnityEngine;
 
 public class HighDomainExpansion : PassiveAuraSkillBase
 {
-    private List<Status> _statusList = new List<Status>();
+    [SerializeField]
+    private SlowZone _slowZone;
     
     protected override void Init()
     {
         base.Init();
         
-        CircleCollider2D collider = GetComponent<CircleCollider2D>();
-        collider.isTrigger = true;
-        collider.radius = Data.Range * 16;
+        _slowZone.SetData(0, Data.Range, Data.GetValue(0));
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        if (other.TryGetComponent(out Status status))
-        {
-            StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(status.gameObject, Data.GetValue(0)));
-            
-            _statusList.Add(status);
-        }
+        _slowZone.transform.SetParent(weapon.owner.transform);
+        _slowZone.PlayEffect();
     }
-    
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out Status status))
-        {
-            StatusEffectManager.Instance.RemoveStatusEffect(status, typeof(SlowDown));
-            
-            _statusList.Remove(status);
-        }
-    }
-    
+
     private void OnDisable()
     {
-        foreach (var status in _statusList)
-        {
-            StatusEffectManager.Instance.RemoveStatusEffect(status, typeof(SlowDown));
-        }
+        _slowZone.StopEffect();
     }
 }

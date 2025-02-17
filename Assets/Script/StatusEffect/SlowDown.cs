@@ -48,7 +48,8 @@ public class SlowDown : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.moveSpeedMultiplier -= _slowDownRate / 100.0f;
+            float newSlowDownRate = Mathf.Round((status.moveSpeedMultiplier - _slowDownRate / 100.0f) * 100.0f) / 100.0f;
+            status.moveSpeedMultiplier = newSlowDownRate;
 
             if(Math.Abs(duration) > 0.01f)
             {

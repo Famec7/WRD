@@ -1578,8 +1578,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 2402696352196400284}
     m_Modifications:
     - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.size
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
       propertyPath: _poolDatas.Array.data[0]._count
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[16]._name
+      value: HolySwordAura
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[17]._name
+      value: AuraEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[18]._name
+      value: ThunderEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[19]._name
+      value: ElectricAura
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[20]._name
+      value: MonsterDead
       objectReference: {fileID: 0}
     - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
       propertyPath: _poolDatas.Array.data[2]._count
@@ -1593,6 +1617,46 @@ PrefabInstance:
       propertyPath: _poolDatas.Array.data[7]._count
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[16]._count
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[17]._count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[18]._count
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[19]._count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[20]._count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[16]._prefab
+      value: 
+      objectReference: {fileID: 6183752856471893361, guid: effb650189dc5714e9e9801b1cfb3991, type: 3}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[17]._prefab
+      value: 
+      objectReference: {fileID: 1676326213360021944, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[18]._prefab
+      value: 
+      objectReference: {fileID: 8473323115296030796, guid: 6718dc24203da53468af9ada8fef7d6d, type: 3}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[19]._prefab
+      value: 
+      objectReference: {fileID: 6183752856471893361, guid: bed2660f448fe2e49874c3dbe8694832, type: 3}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[20]._prefab
+      value: 
+      objectReference: {fileID: 5859218966625097769, guid: 48b895b0689b7e642a7c29090f7739ca, type: 3}
     - target: {fileID: 5227631323196032994, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -47,7 +47,7 @@ public class TideBlow : ClickTypeSkill
     private void CreateWaterPool()
     {
         _waterPool.transform.position = _wave.transform.position;
-        _waterPool.Init(Data.GetValue(0), Data.GetValue(1), Data.GetValue(2) / 100.0f);
+        _waterPool.Init(Data.GetValue(1), Data.GetValue(2));
         _waterPool.PlayEffect();
     }
 }

@@ -11,6 +11,8 @@ public class SkyProjectile : FallingProjectile
     /********************************Effect********************************/
     private EffectBase _auraEffect;
     
+    [SerializeField]
+    private SlowZone _slowZone;
 
     public void SetPosition(Vector3 ownerPosition, Vector3 targetPosition)
     {
@@ -33,16 +35,16 @@ public class SkyProjectile : FallingProjectile
     }
     
     /********************************Data********************************/
-    private float _slowRate = 0.0f;
-    
     public override void SetData(SkillData data)
     {
         base.SetData(data);
         
         Damage = data.GetValue(0);
-        _slowRate = data.GetValue(2);
+        float slowRate = data.GetValue(2);
         
         Dealy ??= new WaitForSeconds(data.GetValue(1));
+        
+        _slowZone.SetData(0, data.Range, slowRate);
     }
     
     /********************************Sword Impact********************************/
@@ -63,53 +65,16 @@ public class SkyProjectile : FallingProjectile
         // 슬로우 장판 생성
         _auraEffect = EffectManager.Instance.CreateEffect<EffectBase>("SkySwordAura");
         _auraEffect.SetPosition(transform.position);
+        
+        _slowZone.SetPosition(transform.position);
+        _slowZone.PlayEffect();
     }
-    
-    /********************************SlowDown Effect********************************/
-
-    #region SlowDown Effect
-    
-    private List<Monster> _monsters = new List<Monster>();
-    
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out Monster monster))
-        {
-            // monster에게 slowEffect를 적용
-            StatusEffectManager.Instance.AddStatusEffect(monster.status, new SlowDown(other.gameObject, _slowRate));
-            _monsters.Add(monster);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out Monster monster))
-        {
-            // monster에게 slowEffect를 해제
-            StatusEffectManager.Instance.RemoveStatusEffect(monster.status, typeof(SlowDown));
-            _monsters.Remove(monster);
-        }
-    }
-    
-    #endregion
     
     /*************************Enable and Disable*************************/
-    
-    public override void GetFromPool()
-    {
-        base.GetFromPool();
-        _monsters.Clear();
-    }
     
     public override void ReturnToPool()
     {
         base.ReturnToPool();
-        
-        foreach (var monster in _monsters)
-        {
-            StatusEffectManager.Instance.RemoveStatusEffect(monster.status, typeof(SlowDown));
-        }
-        
         _auraEffect.StopEffect();
     }
 }

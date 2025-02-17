@@ -42,6 +42,15 @@ public class StatusEffectManager : Singleton<StatusEffectManager>
             }
         }
     }
+    
+    public void RemoveStatusEffect(Status status, StatusEffect statusEffect)
+    {
+        if (_statusEffects.ContainsKey(status))
+        {
+            statusEffect.RemoveEffect();
+            _statusEffects[status].Remove(statusEffect);
+        }
+    }
 
     public StatusEffect GetStatusEffect(Status status, Type statusEffectType)
     {

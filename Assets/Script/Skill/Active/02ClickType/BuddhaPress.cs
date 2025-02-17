@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BuddhaPress : ClickTypeSkill
 {
-    [SerializeField] private BrokenGround _brokenGround;
+    [SerializeField] private DamageAmplificationZone _damageAmplificationZone;
     
     private float _damage;
     private float _stunDuration;
@@ -16,12 +17,12 @@ public class BuddhaPress : ClickTypeSkill
         
         float brokenGroundTime = Data.GetValue(2);
         float damageAmplification = Data.GetValue(3);
-        _brokenGround.SetData(brokenGroundTime, damageAmplification, Data.Range);
+        _damageAmplificationZone.SetData(brokenGroundTime, Data.Range, damageAmplification);
     }
 
     public override void OnActiveEnter()
     {
-        _brokenGround.transform.SetParent(null);
+        ;
     }
 
     public override bool OnActiveExecute()
@@ -34,8 +35,8 @@ public class BuddhaPress : ClickTypeSkill
             
         }
         
-        _brokenGround.SetPosition(ClickPosition);
-        _brokenGround.PlayEffect();
+        _damageAmplificationZone.SetPosition(ClickPosition);
+        _damageAmplificationZone.PlayEffect();
         return true;
     }
 

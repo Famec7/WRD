@@ -4,57 +4,39 @@ using UnityEngine;
 
 public class WaterPool : MonoBehaviour
 {
-    private float _duration = 0.0f;
-    private float _slowRate = 0.0f;
-    private float _damageAmplification = 0.0f;
+    [Header("물웅덩이 크기")]
+    [SerializeField] private float _poolRadius = 2.0f;
     
-    private Coroutine _effectCoroutine;
-    
-    public void Init(float duration, float slowRate, float damageAmplification)
+    [SerializeField]
+    private SlowZone _slowZone;
+    [SerializeField]
+    private DamageAmplificationZone _damageAmplificationZone;
+
+    public void Init(float slowRate, float damageAmplificationRate)
     {
-        _duration = duration;
-        _slowRate = slowRate;
-        _damageAmplification = damageAmplification;
+        _slowZone.SetData(0, _poolRadius, slowRate);
+        _damageAmplificationZone.SetData(0, _poolRadius, damageAmplificationRate);
+        
+        Vector3 newScale = new Vector3(_poolRadius, _poolRadius, 1);
+        this.transform.localScale = newScale;
     }
 
     public void PlayEffect()
     {
         this.gameObject.SetActive(true);
-        _effectCoroutine = StartCoroutine(IE_PlayEffect());
+        
+        _slowZone.SetPosition(this.transform.position);
+        _slowZone.PlayEffect();
+        
+        _damageAmplificationZone.SetPosition(this.transform.position);
+        _damageAmplificationZone.PlayEffect();
     }
 
     public void StopEffect()
     {
         this.gameObject.SetActive(false);
         
-        if (_effectCoroutine != null)
-            StopCoroutine(_effectCoroutine);
-    }
-    
-    private IEnumerator IE_PlayEffect()
-    {
-        yield return new WaitForSeconds(_duration);
-        StopEffect();
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out Status status))
-        {
-            StatusEffect slow = new SlowDown(status.gameObject, _slowRate, _duration);
-            StatusEffectManager.Instance.AddStatusEffect(status, slow);
-            
-            StatusEffect amplifyDamage = new DamageAmplification(status.gameObject, _damageAmplification / 100.0f, _duration);
-            StatusEffectManager.Instance.AddStatusEffect(status, amplifyDamage);
-        }
-    }
-    
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.TryGetComponent(out Status status))
-        {
-            StatusEffectManager.Instance.RemoveStatusEffect(status, typeof(SlowDown));
-            StatusEffectManager.Instance.RemoveStatusEffect(status, typeof(DamageAmplification));
-        }
+        _slowZone.StopEffect();
+        _damageAmplificationZone.StopEffect();
     }
 }

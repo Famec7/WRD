@@ -98,9 +98,6 @@ public class Pool<T> : IPool<T> where T : Component
         }
 
         _activeClones.Add(clone);
-        
-        _clones.Remove(clone);
-        _clones.Add(clone);
 
         clone.gameObject.SetActive(true);
         if (clone is IPoolObject poolObject)
@@ -124,6 +121,7 @@ public class Pool<T> : IPool<T> where T : Component
         if (!_activeClones.Contains(clone))
         {
             throw new Exception("ObjectPool: Return(" + clone.name + ") - The object is already inactive.");
+            return;
         }
 
         _activeClones.Remove(clone);

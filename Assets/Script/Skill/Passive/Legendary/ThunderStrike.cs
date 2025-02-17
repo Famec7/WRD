@@ -6,6 +6,11 @@ public class ThunderStrike : PassiveSkillBase
     private WaitForSeconds _delay = null;
     private float _range = 0f;
     private float _damage = 0f;
+    
+    [SerializeField]
+    private SlowZone _slowZone;
+    [SerializeField]
+    private ElectricZone _electricZone;
 
     protected override void Init()
     {
@@ -44,10 +49,8 @@ public class ThunderStrike : PassiveSkillBase
         var thunderEffect = EffectManager.Instance.CreateEffect<ElectricEffect>("ThunderEffect");
 
         // 낙뢰 이펙트 발생
+        thunderEffect.SetData(Data);
         thunderEffect.SetPosition(target.transform.position);
-        thunderEffect.SetData(Data.GetValue(2), Data.GetValue(3), Data.GetValue(4));
-        thunderEffect.PlayEffect();
-
         thunderEffect.PlayEffect();
 
         yield return _delay;
