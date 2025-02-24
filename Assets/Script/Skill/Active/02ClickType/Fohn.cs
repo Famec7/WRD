@@ -18,7 +18,7 @@ public class Fohn : ClickTypeSkill
 
     public override bool OnActiveExecute()
     {
-        _windEffect.Init(Data.Range, ClickPosition, ApplyDebuff);
+        _windEffect.Init(Data.Range, ClickPosition, ApplyDebuff, transform);
         _windEffect.Play();
         
         return true;

@@ -8,8 +8,9 @@ public class Wind : MonoBehaviour
 
     private float _radius;
     private Vector3 _targetPosition;
+    private Transform _parent;
     
-    public void Init(float radius, Vector3 targetPosition, Action<Monster> onWindEnd)
+    public void Init(float radius, Vector3 targetPosition, Action<Monster> onWindEnd, Transform parent)
     {
         _radius = radius;
         _targetPosition = targetPosition;
@@ -18,6 +19,7 @@ public class Wind : MonoBehaviour
     
     public void Play()
     {
+        this.transform.SetParent(null);
         this.transform.position = _targetPosition;
         this.gameObject.SetActive(true);
         
@@ -37,6 +39,7 @@ public class Wind : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         _onWindEnd?.Invoke(monster);
+        this.transform.SetParent(_parent);
     }
     
     // 몬스터의 위치를 특정 위치로 이동하는 코루틴
