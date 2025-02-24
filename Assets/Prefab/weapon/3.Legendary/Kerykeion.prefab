@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 537517957435951027}
   - component: {fileID: 1918583861900140858}
   - component: {fileID: 4042815741261854713}
-  - component: {fileID: 3247106459643444662}
   - component: {fileID: 7864080563941399353}
   - component: {fileID: 3811254620233172672}
   m_Layer: 0
@@ -209,7 +208,6 @@ MonoBehaviour:
   passiveSkillList: []
   passiveAuraSkillList:
   - {fileID: 4042815741261854713}
-  - {fileID: 3247106459643444662}
   activeSkillList:
   - {fileID: 7864080563941399353}
   - {fileID: 3811254620233172672}
@@ -229,20 +227,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 26
-  weapon: {fileID: 0}
---- !u!114 &3247106459643444662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8127183145979303794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb93832beb424530a61222c89ffb94b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillId: 27
   weapon: {fileID: 0}
 --- !u!114 &7864080563941399353
 MonoBehaviour:
