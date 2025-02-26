@@ -131,11 +131,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1004854079747896198}
-  - component: {fileID: 9054863277577675079}
-  - component: {fileID: -5200391543111187388}
-  - component: {fileID: 1316558169367962957}
+  - component: {fileID: 6351077631978056308}
+  - component: {fileID: -369520460370825311}
+  - component: {fileID: 6812731252093701782}
   m_Layer: 0
-  m_Name: Yeouibong
+  m_Name: Yeouibong2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +157,7 @@ Transform:
   - {fileID: 3337254756712432121}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9054863277577675079
+--- !u!114 &6351077631978056308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8086894773384887271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be42261473d4a3babdeb4f0c7746612, type: 3}
+  m_Script: {fileID: 11500000, guid: b373136225d446f699fb8370bb6c5bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
@@ -176,14 +176,14 @@ MonoBehaviour:
     _originScale: {x: 0, y: 0, z: 0}
   weaponNum: 509
   passiveSkillList:
-  - {fileID: 1316558169367962957}
+  - {fileID: 6812731252093701782}
   passiveAuraSkillList: []
   activeSkillList:
-  - {fileID: -5200391543111187388}
+  - {fileID: -369520460370825311}
   anim: {fileID: 5921340581029874775}
   type: 2
-  _attackSound: {fileID: 8300000, guid: e7124a4641a18c94c952ff8eabc6adf9, type: 3}
---- !u!114 &-5200391543111187388
+  _attackSound: {fileID: 8300000, guid: 382ebf6ebe0983a4a8d6780a155a9da8, type: 3}
+--- !u!114 &-369520460370825311
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,7 +203,7 @@ MonoBehaviour:
   IndicatorMonsters: []
   _meleeIndex: 509
   _rangeIndex: 0
---- !u!114 &1316558169367962957
+--- !u!114 &6812731252093701782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,8 +212,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8086894773384887271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cc44188dd4d43c7b16ad4e1f0bd7414, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e019e2c36c2477fb65e7b930fac1367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 24
+  skillId: 25
   weapon: {fileID: 0}
