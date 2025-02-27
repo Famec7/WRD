@@ -11,7 +11,7 @@ public class PreventWoundConsumption : StatusEffect
 
     public override void ApplyEffect()
     {
-        _preventWoundConsumptionCoroutine = CoroutineHandler.Instance.StartCoroutine(PreventWoundConsumptionCoroutine());
+        _preventWoundConsumptionCoroutine = target.GetComponent<MonoBehaviour>().StartCoroutine(PreventWoundConsumptionCoroutine());
     }
 
     public override void RemoveEffect()
@@ -22,7 +22,7 @@ public class PreventWoundConsumption : StatusEffect
             {
                 status.PreventWoundConsumption = false;
             }
-            CoroutineHandler.Instance.StopCoroutine(_preventWoundConsumptionCoroutine);
+            target.GetComponent<MonoBehaviour>().StopCoroutine(_preventWoundConsumptionCoroutine);
         }
     }
     

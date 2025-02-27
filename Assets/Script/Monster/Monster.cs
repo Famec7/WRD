@@ -24,7 +24,7 @@ public class Monster : MonoBehaviour, IPoolObject
         damage += status.DevilBulletDamageAmplification * damage;
 
         status.HP -= damage;
-        Debug.Log(status.HP);
+
         if (status.HP <= 0 && !isDead)
             IsDead();
         else if (!isDead)

@@ -14,7 +14,7 @@ public class JokerMark : StatusEffect
 
     public override void ApplyEffect()
     {
-        _jokerMarkCoroutine = CoroutineHandler.Instance.StartCoroutine(JokerMarkCoroutine());
+        _jokerMarkCoroutine = target.GetComponent<MonoBehaviour>().StartCoroutine(JokerMarkCoroutine());
         
 #if STATUS_EFFECT_LOG
         Debug.Log($"{Joker Mark Effect Applied} - Duration: {duration}");
@@ -31,7 +31,7 @@ public class JokerMark : StatusEffect
         
         if (_jokerMarkCoroutine != null)
         {
-            CoroutineHandler.Instance.StopCoroutine(_jokerMarkCoroutine);
+            target.GetComponent<MonoBehaviour>().StopCoroutine(_jokerMarkCoroutine);
         }
         
 #if STATUS_EFFECT_LOG

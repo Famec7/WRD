@@ -11,7 +11,7 @@ public class Stun : StatusEffect
 
     public override void ApplyEffect()
     {
-        _stunCoroutine = CoroutineHandler.Instance.StartCoroutine(StunCoroutine());
+        _stunCoroutine = target.GetComponent<MonoBehaviour>().StartCoroutine(StunCoroutine());
         
 #if STATUS_EFFECT_LOG
         Debug.Log("${Stun Effect Applied} - Duration: {duration}");
@@ -27,7 +27,7 @@ public class Stun : StatusEffect
         
         if (_stunCoroutine != null)
         {
-            CoroutineHandler.Instance.StopCoroutine(_stunCoroutine);
+            target.GetComponent<MonoBehaviour>().StopCoroutine(_stunCoroutine);
         }
         
 #if STATUS_EFFECT_LOG
