@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Wind : MonoBehaviour
 {
+    [SerializeField] private float _duration = 2.0f;
+    
     private Action<Monster> _onWindEnd;
 
     private float _radius;
@@ -33,12 +35,13 @@ public class Wind : MonoBehaviour
                 StartCoroutine(IE_MoveMonster(monster));
             }
         }
+        
+        StartCoroutine(IE_WindDuration());
     }
 
-    public void Stop(Monster monster)
+    public void Stop()
     {
         this.gameObject.SetActive(false);
-        _onWindEnd?.Invoke(monster);
         this.transform.SetParent(_parent);
     }
     
@@ -51,6 +54,12 @@ public class Wind : MonoBehaviour
             yield return null;
         }
         
-        Stop(monster);
+        _onWindEnd?.Invoke(monster);
+    }
+    
+    private IEnumerator IE_WindDuration()
+    {
+        yield return new WaitForSeconds(_duration);
+        Stop();
     }
 }
