@@ -12,7 +12,7 @@ public class Mark : StatusEffect
 
     public override void ApplyEffect()
     {
-        _markCoroutine = CoroutineHandler.Instance.StartCoroutine(MarkCoroutine());
+        _markCoroutine = target.GetComponent<MonoBehaviour>().StartCoroutine(MarkCoroutine());
 
         //표식 이펙트 켜주기
         monsterEffecter.SetMarkEffect(true);
@@ -27,7 +27,7 @@ public class Mark : StatusEffect
         
         if (_markCoroutine != null)
         {
-            CoroutineHandler.Instance.StopCoroutine(_markCoroutine);
+            target.GetComponent<MonoBehaviour>().StopCoroutine(_markCoroutine);
         }
 
         //표식 이펙트 꺼주기

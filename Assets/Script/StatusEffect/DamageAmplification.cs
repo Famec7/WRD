@@ -15,7 +15,7 @@ public class DamageAmplification : StatusEffect
 
     public override void ApplyEffect()
     {
-        _damageAmplificationCoroutine = CoroutineHandler.Instance.StartCoroutine(DamageAmplificationCoroutine());
+        _damageAmplificationCoroutine = target.GetComponent<MonoBehaviour>().StartCoroutine(DamageAmplificationCoroutine());
 
 #if STATUS_EFFECT_LOG
         Debug.Log($"{nameof(DamageAmplification)} Effect Applied - Amplification Rate: {_amplificationRate}");
@@ -33,7 +33,7 @@ public class DamageAmplification : StatusEffect
         
         if (_damageAmplificationCoroutine != null)
         {
-            CoroutineHandler.Instance.StopCoroutine(_damageAmplificationCoroutine);
+            target.GetComponent<MonoBehaviour>().StopCoroutine(_damageAmplificationCoroutine);
         }
         
 #if STATUS_EFFECT_LOG

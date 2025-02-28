@@ -20,7 +20,7 @@ public class SlowDown : StatusEffect
 
     public override void ApplyEffect()
     {
-        _slowDownCoroutine = CoroutineHandler.Instance.StartCoroutine(SlowDownCoroutine());
+        _slowDownCoroutine = target.GetComponent<MonoBehaviour>().StartCoroutine(SlowDownCoroutine());
         
 #if STATUS_EFFECT_LOG
         Debug.Log("${SlowDown Effect Applied} - SlowDown Rate: {_slowDownRate}");
@@ -36,7 +36,7 @@ public class SlowDown : StatusEffect
         
         if (_slowDownCoroutine != null)
         {
-            CoroutineHandler.Instance.StopCoroutine(_slowDownCoroutine);
+            target.GetComponent<MonoBehaviour>().StopCoroutine(_slowDownCoroutine);
         }
         
 #if STATUS_EFFECT_LOG

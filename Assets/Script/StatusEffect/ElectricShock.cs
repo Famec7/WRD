@@ -14,7 +14,7 @@ public class ElectricShock : StatusEffect
 
     public override void ApplyEffect()
     {
-        _electricShockCoroutine = CoroutineHandler.Instance.StartCoroutine(ElectricShockCoroutine());
+        _electricShockCoroutine = target.GetComponent<MonoBehaviour>().StartCoroutine(ElectricShockCoroutine());
 
 #if STATUS_EFFECT_LOG
         Debug.Log($"{Shock Effect Applied} - Duration: {duration}");
@@ -31,7 +31,7 @@ public class ElectricShock : StatusEffect
         
         if (_electricShockCoroutine != null)
         {
-            CoroutineHandler.Instance.StopCoroutine(_electricShockCoroutine);
+            target.GetComponent<MonoBehaviour>().StopCoroutine(_electricShockCoroutine);
         }
         
 #if STATUS_EFFECT_LOG
