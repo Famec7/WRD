@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Wave : MonoBehaviour
@@ -7,15 +8,19 @@ public class Wave : MonoBehaviour
     private float _pushForce;
     private Vector2 _moveDirection;
     private float _moveSpeed;
+    private float _damage;
     
     private Coroutine _moveCoroutine;
     public Action OnWaveEnd;
 
-    public void Init(float pushForce, Vector2 moveDirection, float moveSpeed)
+    private HashSet<Monster> _damagedMonsters = new();
+
+    public void Init(float pushForce, Vector2 moveDirection, float moveSpeed, float damage)
     {
         _pushForce = pushForce;
         _moveDirection = moveDirection;
         _moveSpeed = moveSpeed;
+        _damage = damage;
     }
 
     public void PlayEffect()
@@ -52,6 +57,12 @@ public class Wave : MonoBehaviour
         if (other.TryGetComponent(out Monster monster))
         {
             monster.transform.position += (Vector3)(_moveDirection * _pushForce * Time.deltaTime);
+            
+            if (!_damagedMonsters.Contains(monster))
+            {
+                monster.HasAttacked(_damage);
+                _damagedMonsters.Add(monster);
+            }
         }
     }
 }

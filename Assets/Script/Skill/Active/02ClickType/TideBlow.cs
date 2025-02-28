@@ -27,7 +27,8 @@ public class TideBlow : ClickTypeSkill
             direction.x = 0;
             _wave.transform.rotation = Quaternion.Euler(0, 0, 90);
         }
-        _wave.Init(_pushForce, direction, _moveSpeed);
+
+        _wave.Init(_pushForce, direction, _moveSpeed, Data.GetValue(0));
         _wave.transform.position = transform.position;
         _wave.PlayEffect();
         
@@ -47,7 +48,7 @@ public class TideBlow : ClickTypeSkill
     private void CreateWaterPool()
     {
         _waterPool.transform.position = _wave.transform.position;
-        _waterPool.Init(Data.GetValue(1), Data.GetValue(2), Data.GetValue(0));
+        _waterPool.Init(Data.GetValue(2), Data.GetValue(3), Data.GetValue(1));
         _waterPool.PlayEffect();
     }
 }

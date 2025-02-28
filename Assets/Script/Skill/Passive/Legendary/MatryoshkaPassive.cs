@@ -13,7 +13,7 @@ public class MatryoshkaPassive : PassiveSkillBase
     private void SetSlowRange(float value)
     {
         _slowRange = value;
-        _slowZone.SetData(0, value, Data.GetValue(0));
+        _slowZone.SetData(0, value, Data.GetValue(1));
         _slowZone.transform.SetParent(weapon.owner.transform);
         
         _slowZone.PlayEffect();
@@ -45,12 +45,17 @@ public class MatryoshkaPassive : PassiveSkillBase
         if (targets.Count == 0)
             return false;
 
-        foreach (var t in targets)
+        foreach (var tar in targets)
         {
-            if (t.TryGetComponent(out Status status))
+            if (tar.TryGetComponent(out Status status))
             {
-                StatusEffect stun = new Stun(t.gameObject, Data.GetValue(1));
+                StatusEffect stun = new Stun(tar.gameObject, Data.GetValue(2));
                 StatusEffectManager.Instance.AddStatusEffect(status, stun);
+            }
+
+            if (tar.TryGetComponent(out Monster monster))
+            {
+                monster.HasAttacked(Data.GetValue(0));
             }
         }
 
