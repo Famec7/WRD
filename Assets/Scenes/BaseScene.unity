@@ -249,6 +249,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2131935270406744889, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: rewardPopUpUIObejct_
+      value: 
+      objectReference: {fileID: 716824510}
     - target: {fileID: 2135416744339038070, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.579
@@ -259,7 +263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: wave
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: StartElementCnt
@@ -581,6 +585,10 @@ PrefabInstance:
       propertyPath: WeaponSlotSelectUI
       value: 
       objectReference: {fileID: 1316262336}
+    - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: InventoryOpenButton
+      value: 
+      objectReference: {fileID: 1682052871}
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: BookmarkSlotSelectUI
       value: 
@@ -2125,6 +2133,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655108098}
   m_CullTransparentMesh: 1
+--- !u!1 &716824510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5262640945125742007, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+  m_PrefabInstance: {fileID: 1093094908}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &743681278 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5658102866588283387, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
@@ -3228,6 +3241,14 @@ PrefabInstance:
     - target: {fileID: 4990769942120546271, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -190
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262640945125742007, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5362301002006488792, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5467557678828940493, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_IsActive
@@ -5026,6 +5047,11 @@ GameObject:
 --- !u!1 &1679717231 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8711320713991063150, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+  m_PrefabInstance: {fileID: 1093094908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1682052871 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9042030080578861144, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
   m_PrefabInstance: {fileID: 1093094908}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1707655199 stripped

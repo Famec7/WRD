@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     public Vector3 touchPos;
     public GameObject[] PopUpPrefabs;
     public GameObject inventory;
+    public GameObject InventoryOpenButton;
     public GameObject allShowInventoryContent;
     public GameObject normalInventoryContent;
     public GameObject backButton;
@@ -53,7 +54,6 @@ public class UIManager : MonoBehaviour
     private UIPopUp[] _popups;
 
     [SerializeField] private GameObject missionUI;
-
 
     private void Awake()
     {

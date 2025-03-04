@@ -51,4 +51,33 @@ public class WeaponTierTranslator
 
         return color;
     }
+
+    public static Color32 GetClassColor(WeaponTier tier)
+    {
+        Color32 color = new Color32(56, 56, 56, 255);
+
+        switch (tier)
+        {
+            case WeaponTier.Normal:
+                color = new Color32(0, 0, 0, 255);
+                break;
+            case WeaponTier.UNNORMAL:
+                color = new Color32(84, 130, 53, 255);
+                break;
+            case WeaponTier.RARE:
+                color = new Color32(68, 114, 196, 255);
+                break;
+            case WeaponTier.EPIC:
+                color = new Color32(112, 48, 160, 255);
+                break;
+            case WeaponTier.LEGENDARY:
+                color = new Color32(255, 192, 0, 255);
+                break;
+            case WeaponTier.MYTH:
+                color = new Color32(255, 255, 255, 255);
+                break;
+        }
+
+        return color;
+    }
 }

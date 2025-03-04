@@ -21,6 +21,9 @@ public class RewardManager : Singleton<RewardManager>
 
     public string[] bossRewardGrades;
     public string[] bossRewardNumbers;
+
+    [SerializeField]
+    private GameObject rewardPopUpUIObejct_;
     protected override void Init()
     {
         ;
@@ -94,16 +97,19 @@ public class RewardManager : Singleton<RewardManager>
     public void GetReward(UnitCode code)
     {
         Tuple<string, List<int>> rewardTuple = null;
-
+        rewardPopUpUIObejct_.SetActive(true);
+        RewardPopUpUI rewardPopUpUI = rewardPopUpUIObejct_.GetComponent<RewardPopUpUI>(); 
         if (code >= UnitCode.MISSIONBOSS1 && code <= UnitCode.MISSIONBOSS6)
         {
             int idx = code - UnitCode.MISSIONBOSS1;
             rewardTuple = MissionMonsterManager.instance.rewardList[idx];
+            rewardPopUpUI.SettingRewardPopUpUI(false, idx);
         }
         else if (code >= UnitCode.BOSS1 && code <= UnitCode.BOSS6)
         {
             int idx = code - UnitCode.BOSS1;
             rewardTuple = bossRewardList[idx];
+            rewardPopUpUI.SettingRewardPopUpUI(true, idx);
         }
 
         if (rewardTuple != null)
@@ -115,22 +121,27 @@ public class RewardManager : Singleton<RewardManager>
     private void ProcessReward(Tuple<string, List<int>> rewardTuple)
     {
         string[] rewardStrArr = rewardTuple.Item1.Split(',');
-        Dictionary<WeaponTier, int> rewardCounts = new Dictionary<WeaponTier, int>();
+        
+        Dictionary<WeaponTier, int> masterKeyRewards = new Dictionary<WeaponTier, int>();
+        Dictionary<WeaponTier, int> weaponRewards = new Dictionary<WeaponTier, int>();
+
+        RewardPopUpUI rewardPopUpUI = rewardPopUpUIObejct_.GetComponent<RewardPopUpUI>();
 
         for (int i = 0; i < rewardStrArr.Length; i++)
         {
             string rewardStr = rewardStrArr[i];
             int count = rewardTuple.Item2[i];
 
+        
             if (rewardStr.EndsWith("_m"))
             {
                 if (Enum.TryParse(rewardStr.Replace("_m", ""), true, out WeaponTier tier))
                 {
                     MasterKeyManager.Instance.UpdateMasterKeyCount(tier, count);
-                    if (rewardCounts.ContainsKey(tier))
-                        rewardCounts[tier] += count;
+                    if (masterKeyRewards.ContainsKey(tier))
+                        masterKeyRewards[tier] += count;
                     else
-                        rewardCounts[tier] = count;
+                        masterKeyRewards[tier] = count;
                 }
             }
             else
@@ -138,33 +149,43 @@ public class RewardManager : Singleton<RewardManager>
                 if (Enum.TryParse(rewardStr, true, out WeaponTier tier))
                 {
                     GetRandomWeapon(tier, count);
-                    if (rewardCounts.ContainsKey(tier))
-                        rewardCounts[tier] += count;
+                    if (weaponRewards.ContainsKey(tier))
+                        weaponRewards[tier] += count;
                     else
-                        rewardCounts[tier] = count;
+                        weaponRewards[tier] = count;
                 }
             }
         }
 
-        if (rewardCounts.Count > 0)
+        foreach (var kv in masterKeyRewards)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (var kv in rewardCounts)
-            {
-                sb.Append($"{kv.Key} 등급: {kv.Value}개 획득\n");
-            }
-            MessageManager.Instance.ShowMessage(sb.ToString(), new Vector2(0, 218), 1f, 0.5f);
+            Tuple<WeaponTier, int> masterKeyRewardTuple = new Tuple<WeaponTier, int>(kv.Key, kv.Value);
+            rewardPopUpUI.CreateMasterKeyRewardSlot(masterKeyRewardTuple);
         }
+
+        //// 무기 보상이 있다면 간단한 메시지로 표시 (필요에 따라 별도 슬롯 생성 가능)
+        //if (weaponRewards.Count > 0)
+        //{
+        //    StringBuilder sb = new StringBuilder();
+        //    foreach (var kv in weaponRewards)
+        //    {
+        //        sb.Append($"{kv.Key} 등급: {kv.Value}개 획득\n");
+        //    }
+        //    MessageManager.Instance.ShowMessage(sb.ToString(), new Vector2(0, 218), 1f, 0.5f);
+        //}
     }
 
     public void GetRandomWeapon(WeaponTier tier,int count)
     {
+        RewardPopUpUI rewardPopUpUI = rewardPopUpUIObejct_.GetComponent<RewardPopUpUI>();
+
         for (int i = 0; i < count; i++)
         {
             List<WeaponData> sameTierWeaponList = WeaponDataManager.Instance.Database.GetAllSameTierWeaponData(tier);
             int random = Random.Range(0, sameTierWeaponList.Count);
             WeaponData rewardData = sameTierWeaponList[random];
             InventoryManager.instance.AddItemByNum(rewardData.num);
+            rewardPopUpUI.CreateRandomWeaponRewardSlot(rewardData.num);
         }
     }
 
