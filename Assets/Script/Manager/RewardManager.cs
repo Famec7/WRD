@@ -163,16 +163,6 @@ public class RewardManager : Singleton<RewardManager>
             rewardPopUpUI.CreateMasterKeyRewardSlot(masterKeyRewardTuple);
         }
 
-        //// 무기 보상이 있다면 간단한 메시지로 표시 (필요에 따라 별도 슬롯 생성 가능)
-        //if (weaponRewards.Count > 0)
-        //{
-        //    StringBuilder sb = new StringBuilder();
-        //    foreach (var kv in weaponRewards)
-        //    {
-        //        sb.Append($"{kv.Key} 등급: {kv.Value}개 획득\n");
-        //    }
-        //    MessageManager.Instance.ShowMessage(sb.ToString(), new Vector2(0, 218), 1f, 0.5f);
-        //}
     }
 
     public void GetRandomWeapon(WeaponTier tier,int count)
