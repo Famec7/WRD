@@ -63,7 +63,7 @@ public class Monster : MonoBehaviour, IPoolObject
             MissionManager.Instance.missionInfo._missionSlots[status.unitCode - UnitCode.MISSIONBOSS1].Clear(true);
         }
 
-        if (status.unitCode >= UnitCode.BOSS1 && status.unitCode <= UnitCode.BOSS6)
+        if (status.unitCode >= UnitCode.BOSS1 && status.unitCode <= UnitCode.BOSS6 && GameManager.Instance.wave <= 30) 
             RewardManager.Instance.GetReward(status.unitCode);
 
         MonsterHPBarPool.ReturnObject(hpUI.GetComponent<MonsterHPBar>());
