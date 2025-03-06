@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 849085743359343443}
   - component: {fileID: 5827977261769237252}
+  - component: {fileID: 3827341178054065686}
   m_Layer: 0
   m_Name: failnot
   m_TagString: Untagged
@@ -175,7 +176,26 @@ MonoBehaviour:
   weaponNum: 508
   passiveSkillList: []
   passiveAuraSkillList: []
-  activeSkillList: []
-  anim: {fileID: 7049387736139468}
+  activeSkillList:
+  - {fileID: 3827341178054065686}
+  anim: {fileID: 0}
   type: 0
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
+--- !u!114 &3827341178054065686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4170057505856472504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7055d82cd67f4de7befa0ece68212b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 20
+  weapon: {fileID: 0}
+  _skillIcon: {fileID: 0}
+  indicatorType: 3
+  _isFixedPosition: 1
+  IndicatorMonsters: []

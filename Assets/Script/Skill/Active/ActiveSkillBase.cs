@@ -120,7 +120,7 @@ public abstract class ActiveSkillBase : SkillBase
 
     public SkillIndicator Indicator { get; private set; }
 
-    private void IndicatorInit()
+    protected virtual void IndicatorInit()
     {
         Indicator = IndicatorManager.Instance.GetIndicator(indicatorType);
         Indicator.SetSkill(this);
