@@ -79,6 +79,16 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
     {
         return activeSkillList.Count;
     }
+    
+    public int GetPassiveSkillCount()
+    {
+        return passiveSkillList.Count;
+    }
+    
+    public int GetPassiveAuraSkillCount()
+    {
+        return passiveAuraSkillList.Count;
+    }
 
     #endregion
 

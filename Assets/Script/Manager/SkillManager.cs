@@ -39,23 +39,54 @@ public class SkillManager : Singleton<SkillManager>
 
     #endregion
 
-    #region Active Skill
+    #region Skill
 
-    private List<ActiveSkillBase> _currentActiveSkill = new();
+    private readonly List<SkillBase> _currentActiveSkill = new();
     
-    public void AddActiveSkill(ActiveSkillBase skill)
+    private void AddSkill(SkillBase skill)
     {
         _currentActiveSkill.Add(skill);
         SkillUIManager.Instance.AddSkillButton(skill);
     }
+
+    public void AddSkill(WeaponBase weapon)
+    {
+        for (int i = 0; i < weapon.GetActiveSkillCount(); i++)
+        {
+            ActiveSkillBase activeSkill = weapon.GetActiveSkill(i);
+            AddSkill(activeSkill);
+        }
+        
+        for (int i = 0; i < weapon.GetPassiveSkillCount(); i++)
+        {
+            PassiveSkillBase passiveSkill = weapon.GetPassiveSkill(i);
+            AddSkill(passiveSkill);
+        }
+        
+        for (int i = 0; i < weapon.GetPassiveAuraSkillCount(); i++)
+        {
+            PassiveAuraSkillBase passiveAuraSkill = weapon.GetPassiveAuraSkill(i);
+            AddSkill(passiveAuraSkill);
+        }
+    }
     
-    public void RemoveActiveSkill(ActiveSkillBase skill)
+    public void RemoveSkill(SkillBase skill)
     {
         _currentActiveSkill.Remove(skill);
         SkillUIManager.Instance.RemoveSkillButton(skill);
     }
     
-    public ActiveSkillBase GetActiveSkill(int index)
+    public void RemoveAllSkill()
+    {
+        foreach (var skill in _currentActiveSkill)
+        {
+            SkillUIManager.Instance.RemoveSkillButton(skill);
+        }
+        
+        _currentActiveSkill.Clear();
+    }
+    
+    public SkillBase GetActiveSkill(int index)
     {
         if (index < 0 || index >= _currentActiveSkill.Count)
         {
