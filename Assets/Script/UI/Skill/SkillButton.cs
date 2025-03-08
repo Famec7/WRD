@@ -20,7 +20,7 @@ public class SkillButton : MonoBehaviour
     {
         _trigger = GetComponent<EventTrigger>();
         _iconImage = GetComponent<Image>();
-        
+
         _coolTimeImage.gameObject.SetActive(false);
     }
 
@@ -31,7 +31,7 @@ public class SkillButton : MonoBehaviour
         {
             return;
         }
-        
+
         if (_currentSkill != null)
         {
             _coolTimeImage.fillAmount = activeSkill.CurrentCoolTime / activeSkill.Data.CoolTime;
@@ -47,58 +47,48 @@ public class SkillButton : MonoBehaviour
     public void SetSkill(SkillBase skill)
     {
         _currentSkill = skill;
-        
+
         // 아이콘 이미지 설정
         _iconImage.enabled = true;
         _iconImage.sprite = skill.SkillIcon;
-        
-        ActiveSkillBase activeSkill = _currentSkill as ActiveSkillBase;
-        if (activeSkill == null)
-        {
-            return;
-        }
 
         // 스킬 버튼 땠을 때 발생하는 이벤트
-        var pointerDownEntry = new EventTrigger.Entry
-        {
-            eventID = EventTriggerType.PointerDown
-        };
+        var pointerDownEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerDown };
         pointerDownEntry.callback.AddListener((data) => { OnPointerDown(); });
 
-        var pointerUpEntry = new EventTrigger.Entry
-        {
-            eventID = EventTriggerType.PointerUp
-        };
+        var pointerUpEntry = new EventTrigger.Entry { eventID = EventTriggerType.PointerUp };
         pointerUpEntry.callback.AddListener((data) => { OnPointerUp(); });
 
         // 위 이벤트를 트리거에 추가
         _trigger.triggers.Add(pointerDownEntry);
         _trigger.triggers.Add(pointerUpEntry);
-        
-        activeSkill.OnButtonActivate += SetActive;
+
+        ActiveSkillBase activeSkill = _currentSkill as ActiveSkillBase;
+        if (activeSkill != null)
+        {
+            activeSkill.OnButtonActivate += SetActive;
+        }
     }
 
     public void RemoveSkill(SkillBase skill)
     {
         ActiveSkillBase activeSkill = _currentSkill as ActiveSkillBase;
-        if (activeSkill == null)
+        if (activeSkill != null)
         {
-            return;
+            activeSkill.OnButtonActivate -= SetActive;
         }
-        
-        activeSkill.OnButtonActivate -= SetActive;
 
         // 트리거 초기화
         _trigger.triggers.Clear();
-        
+
         // 아이콘 이미지 초기화
         _iconImage.enabled = false;
         _iconImage.sprite = null;
-        
+
         // 쿨타임 이미지 초기화
         _coolTimeImage.fillAmount = 0;
         _coolTimeImage.gameObject.SetActive(false);
-        
+
         _currentSkill = null;
     }
 
@@ -107,7 +97,7 @@ public class SkillButton : MonoBehaviour
         _trigger.enabled = active;
         GetComponent<Button>().interactable = active;
     }
-    
+
     private void OnPointerDown()
     {
         _pressStartTime = Time.time;
@@ -119,7 +109,7 @@ public class SkillButton : MonoBehaviour
     {
         CancelInvoke(nameof(ShowDescriptionPopup));
         _descriptionPopup.HideDescription();
-        
+
         if (_isLongPress)
         {
             return;
@@ -134,7 +124,7 @@ public class SkillButton : MonoBehaviour
             }
         }
     }
-    
+
     private void ShowDescriptionPopup()
     {
         _descriptionPopup.SetSkill(_currentSkill);

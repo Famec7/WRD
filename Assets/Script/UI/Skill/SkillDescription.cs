@@ -11,6 +11,11 @@ public class SkillDescription : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _description;
 
+    private void Awake()
+    {
+        _skillName.fontStyle = FontStyles.Bold;
+    }
+
     public void SetSkill(SkillBase skill)
     {
         _skill = skill;
