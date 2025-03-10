@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7701331785a255f4888d3d8d63ed09f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 29
+  skillId: 28
   weapon: {fileID: 0}
   _originalMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   _blueMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   indicatorType: 2
   _isFixedPosition: 1
   IndicatorMonsters: []
-  DashDistance: 2
+  MaxDashDistance: 2
   InitialSpeed: 5
   MaxSpeed: 10
 --- !u!1 &2195757405802200558
@@ -221,5 +221,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speed: 1
   _endPosition: {x: -0.1, y: 0, z: 0}

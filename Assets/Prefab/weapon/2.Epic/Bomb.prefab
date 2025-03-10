@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f237c16b273fc4d828e9ce7aa5dd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 33
+  skillId: 32
   weapon: {fileID: 0}
   BombProjectiles: []
   _attackSound: {fileID: 8300000, guid: f9941eda762f1474993231acf8ba2d2f, type: 3}
@@ -218,5 +218,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speed: 1
   _degree: 45

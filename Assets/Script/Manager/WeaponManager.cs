@@ -140,4 +140,17 @@ public class WeaponManager : Singleton<WeaponManager>
 
         return weapon;
     }
+
+    public bool IsEuqiped(int weaponNum)
+    {
+        bool result = false;    
+        foreach(var weapon in _equippedWeapons)
+        {
+            if (weapon == null) continue;
+            if (weapon.Data.num == weaponNum)
+                result = true;
+        }    
+
+        return result;
+    }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -40,6 +40,7 @@ public class Aiming : PassiveAuraSkillBase
             if (target.TryGetComponent(out Status status))
             {
                 StatusEffectManager.Instance.AddStatusEffect(status, new Mark(status.gameObject, _markDuration));
+                break;
             }
         }
     }

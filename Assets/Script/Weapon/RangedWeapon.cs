@@ -22,8 +22,12 @@ public class RangedWeapon : WeaponBase
         if (owner.Target.TryGetComponent(out Monster monster))
         {
             var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
+
             if (type == Type.Gun)
                 projectile.GetComponent<SpriteRenderer>().enabled = false;
+            else
+                projectile.GetComponent<SpriteRenderer>().enabled = true;
+
             projectile.Target = owner.Target.gameObject;
             projectile.SetType(type);
             
