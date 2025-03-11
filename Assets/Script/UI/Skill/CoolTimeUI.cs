@@ -65,7 +65,7 @@ public class CoolTimeUI : MonoBehaviour
         _panelImage.enabled = true;
 
         _coolTimeText.text = $"{_currentData.CurrentCoolTime:F0}";
-        _coolTimeText.color = _currentData.CurrentCoolTime < CriticalCoolTimeThreshold ? Color.red : Color.black;
+        _coolTimeText.color = _currentData.CurrentCoolTime <= CriticalCoolTimeThreshold ? Color.red : Color.black;
     }
 
     private void HideCoolTime()

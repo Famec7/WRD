@@ -15,6 +15,7 @@ public class SkillButton : MonoBehaviour
     private SkillBase _currentSkill;
     [SerializeField] private SkillDescription _descriptionPopup;
     [SerializeField] private CoolTimeUI _coolTimeUI;
+    [SerializeField] private Image _outlineImage;
 
     private void Awake()
     {
@@ -25,6 +26,11 @@ public class SkillButton : MonoBehaviour
     public void SetSkill(SkillBase skill)
     {
         _currentSkill = skill;
+        
+        if (_currentSkill == null)
+        {
+            return;
+        }
 
         // 아이콘 이미지 설정
         _iconImage.enabled = true;
@@ -45,7 +51,10 @@ public class SkillButton : MonoBehaviour
         {
             activeSkill.OnButtonActivate += SetActive;
             _coolTimeUI.SetSkill(activeSkill);
-            
+        }
+        else
+        {
+            _outlineImage.enabled = true;
         }
     }
 
