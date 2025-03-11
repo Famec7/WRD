@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkillDescription : MonoBehaviour
 {
-    private SkillBase _skill;
+    private SkillData _skill;
     
     [SerializeField]
     private TextMeshProUGUI _skillName;
@@ -16,34 +16,24 @@ public class SkillDescription : MonoBehaviour
         _skillName.fontStyle = FontStyles.Bold;
     }
 
-    public void SetSkill(SkillBase skill)
+    public void SetSkill(SkillData skill)
     {
         _skill = skill;
-        
-        ActiveSkillBase activeSkill = _skill as ActiveSkillBase;
-        
-        if (activeSkill != null)
+
+        switch (_skill)
         {
-            _skillName.text = activeSkill.Data.Name;
-            _description.text = activeSkill.Data.Description;
-            return;
-        }
-        
-        PassiveSkillBase passiveSkill = _skill as PassiveSkillBase;
-        
-        if (passiveSkill != null)
-        {
-            _skillName.text = passiveSkill.Data.Name;
-            _description.text = passiveSkill.Data.Description;
-            return;
-        }
-        
-        PassiveAuraSkillBase passiveAuraSkill = _skill as PassiveAuraSkillBase;
-        
-        if (passiveAuraSkill != null)
-        {
-            _skillName.text = passiveAuraSkill.Data.Name;
-            _description.text = passiveAuraSkill.Data.Description;
+            case ActiveSkillData activeData:
+                _skillName.text = activeData.Name;
+                _description.text = activeData.Description;
+                return;
+            case PassiveSkillData passiveData:
+                _skillName.text = passiveData.Name;
+                _description.text = passiveData.Description;
+                return;
+            case PassiveAuraSkillData passiveAuraData:
+                _skillName.text = passiveAuraData.Name;
+                _description.text = passiveAuraData.Description;
+                return;
         }
     }
     

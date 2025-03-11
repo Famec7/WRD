@@ -11,37 +11,15 @@ public class SkillButton : MonoBehaviour
     private float _pressStartTime;
     private bool _isLongPress;
     private const float LongPressDuration = 1.0f;
-
-    [SerializeField] private Image _coolTimeImage;
-    [SerializeField] private SkillBase _currentSkill;
+    
+    private SkillBase _currentSkill;
     [SerializeField] private SkillDescription _descriptionPopup;
+    [SerializeField] private CoolTimeUI _coolTimeUI;
 
     private void Awake()
     {
         _trigger = GetComponent<EventTrigger>();
         _iconImage = GetComponent<Image>();
-
-        _coolTimeImage.gameObject.SetActive(false);
-    }
-
-    private void Update()
-    {
-        ActiveSkillBase activeSkill = _currentSkill as ActiveSkillBase;
-        if (activeSkill == null)
-        {
-            return;
-        }
-
-        if (_currentSkill != null)
-        {
-            _coolTimeImage.fillAmount = activeSkill.CurrentCoolTime / activeSkill.Data.CoolTime;
-            _coolTimeImage.gameObject.SetActive(_coolTimeImage.fillAmount > 0);
-        }
-        else
-        {
-            _coolTimeImage.fillAmount = 0;
-            _coolTimeImage.gameObject.SetActive(false);
-        }
     }
 
     public void SetSkill(SkillBase skill)
@@ -62,11 +40,12 @@ public class SkillButton : MonoBehaviour
         // 위 이벤트를 트리거에 추가
         _trigger.triggers.Add(pointerDownEntry);
         _trigger.triggers.Add(pointerUpEntry);
-
-        ActiveSkillBase activeSkill = _currentSkill as ActiveSkillBase;
-        if (activeSkill != null)
+        
+        if (_currentSkill is ActiveSkillBase activeSkill)
         {
             activeSkill.OnButtonActivate += SetActive;
+            _coolTimeUI.SetSkill(activeSkill);
+            
         }
     }
 
@@ -84,10 +63,6 @@ public class SkillButton : MonoBehaviour
         // 아이콘 이미지 초기화
         _iconImage.enabled = false;
         _iconImage.sprite = null;
-
-        // 쿨타임 이미지 초기화
-        _coolTimeImage.fillAmount = 0;
-        _coolTimeImage.gameObject.SetActive(false);
 
         _currentSkill = null;
     }
@@ -127,7 +102,19 @@ public class SkillButton : MonoBehaviour
 
     private void ShowDescriptionPopup()
     {
-        _descriptionPopup.SetSkill(_currentSkill);
+        switch (_currentSkill)
+        {
+            case ActiveSkillBase activeSkill:
+                _descriptionPopup.SetSkill(activeSkill.Data);
+                break;
+            case PassiveSkillBase passiveSkill:
+                _descriptionPopup.SetSkill(passiveSkill.Data);
+                break;
+            case PassiveAuraSkillBase passiveAuraSkill:
+                _descriptionPopup.SetSkill(passiveAuraSkill.Data);
+                break;
+        }
+
         _descriptionPopup.ShowDescription();
         _isLongPress = true;
     }
