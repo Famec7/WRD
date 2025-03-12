@@ -35,7 +35,6 @@ public class WeaponManager : Singleton<WeaponManager>
             {
                 ActiveSkillBase activeSkill = weapon.GetActiveSkill(i);
                 activeSkill.enabled = true;
-                SkillManager.Instance.AddActiveSkill(activeSkill);
             }
         }
         else
@@ -47,6 +46,7 @@ public class WeaponManager : Singleton<WeaponManager>
             }
         }
         
+        SkillManager.Instance.AddSkill(weapon);
         OnWeaponEquipped?.Invoke(owner);
     }
     
@@ -64,10 +64,10 @@ public class WeaponManager : Singleton<WeaponManager>
             {
                 ActiveSkillBase activeSkill = detachedWeapon.GetActiveSkill(i);
                 activeSkill.enabled = false;
-                SkillManager.Instance.RemoveActiveSkill(activeSkill);
             }
         }
         
+        SkillManager.Instance.RemoveAllSkill();
         _poolManager.ReturnToPool(detachedWeapon.Data.WeaponName, detachedWeapon);
         
         _equippedWeapons[characterIndex] = null;
@@ -94,13 +94,11 @@ public class WeaponManager : Singleton<WeaponManager>
             if(fromWeapon != null && fromWeapon.TryGetComponent(out ActiveSkillBase fromActiveSkill))
             {
                 fromActiveSkill.enabled = false;
-                SkillManager.Instance.RemoveActiveSkill(fromActiveSkill);
             }
             
             if(toWeapon != null && toWeapon.TryGetComponent(out ActiveSkillBase toActiveSkill))
             {
                 toActiveSkill.enabled = true;
-                SkillManager.Instance.AddActiveSkill(toActiveSkill);
             }
         }
         
@@ -109,15 +107,16 @@ public class WeaponManager : Singleton<WeaponManager>
             if(fromWeapon != null && fromWeapon.TryGetComponent(out ActiveSkillBase fromActiveSkill))
             {
                 fromActiveSkill.enabled = true;
-                SkillManager.Instance.AddActiveSkill(fromActiveSkill);
             }
             
             if(toWeapon != null && toWeapon.TryGetComponent(out ActiveSkillBase toActiveSkill))
             {
                 toActiveSkill.enabled = false;
-                SkillManager.Instance.RemoveActiveSkill(toActiveSkill);
             }
         }
+        
+        SkillManager.Instance.RemoveAllSkill();
+        SkillManager.Instance.AddSkill(toWeapon);
     }
     
     private WeaponBase FindWeapon(int weaponId)

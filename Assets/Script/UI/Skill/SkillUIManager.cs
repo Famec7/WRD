@@ -11,9 +11,9 @@ public class SkillUIManager : Singleton<SkillUIManager>
     }
 
 
-    /********************************Active Skill UI********************************/
+    /********************************Skill UI********************************/
 
-    #region Active Skill UI
+    #region Skill UI
 
     [SerializeField] private List<SkillButton> _skillButtons;
     private int _activeButton = 0;
@@ -21,18 +21,18 @@ public class SkillUIManager : Singleton<SkillUIManager>
     [SerializeField] private SkillPopup _popupPanel;
 
     /*
-     * Active Skill Button 추가
+     * kill Button 추가
      */
-    public void AddSkillButton(ActiveSkillBase skill)
+    public void AddSkillButton(SkillBase skill)
     {
         _skillButtons[_activeButton].SetSkill(skill);
         _activeButton++;
     }
 
     /*
-     * Active Skill Button 제거
+     * Skill Button 제거
      */
-    public void RemoveSkillButton(ActiveSkillBase skill)
+    public void RemoveSkillButton(SkillBase skill)
     {
         _activeButton--;
         _skillButtons[_activeButton].RemoveSkill(skill);

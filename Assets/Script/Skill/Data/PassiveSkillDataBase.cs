@@ -55,6 +55,9 @@ public class PassiveSkillDataBase : ScriptableObject
 #endif
                     }
                 }
+                
+                /****************Description Parse****************/
+                passiveSkillData.Description = data["skill_shortinfo"].ToString();
 
                 _passiveSkillDataList.Add(passiveSkillData);
             }
@@ -78,6 +81,9 @@ public class PassiveSkillDataBase : ScriptableObject
                     Debug.LogWarning($"{passiveAuraSkillDataData.Name} {data["area"].ToString()} can't parse");
 #endif
                 }
+                
+                /****************Description Parse****************/
+                passiveAuraSkillDataData.Description = data["skill_shortinfo"].ToString();
 
                 /****************Value Parse****************/
                 var values = data["skill_value"].ToString().Split(',');

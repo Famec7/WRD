@@ -40,10 +40,6 @@ public abstract class ActiveSkillBase : SkillBase
 
     public ActiveSkillData Data { get; private set; }
 
-    [SerializeField] private Sprite _skillIcon;
-
-    public Sprite SkillIcon => _skillIcon;
-
     private void DataInit()
     {
         Data = SkillManager.Instance.GetActiveSkillData(skillId);

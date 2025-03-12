@@ -121,7 +121,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speed: 1
   _degree: 60
 --- !u!1 &8534504255012625708
 GameObject:
@@ -199,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 13
+  _skillIcon: {fileID: 21300000, guid: 94ceebcb63bab7648ad52f4811883315, type: 3}
   weapon: {fileID: 0}
 --- !u!114 &7926419819972194322
 MonoBehaviour:
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 14
+  _skillIcon: {fileID: 21300000, guid: 94ceebcb63bab7648ad52f4811883315, type: 3}
   weapon: {fileID: 0}
 --- !u!114 &6299760244683842465
 MonoBehaviour:
@@ -227,8 +228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 9
-  weapon: {fileID: 0}
   _skillIcon: {fileID: 21300000, guid: 94ceebcb63bab7648ad52f4811883315, type: 3}
+  weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []
