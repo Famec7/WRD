@@ -217,18 +217,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[3]._count
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[5]._count
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 565320515564965119, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: m_Name
-      value: DetailedCombinationPopupUIGenerator
-      objectReference: {fileID: 0}
     - target: {fileID: 634136516482632422, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: messageParent
       value: 
@@ -237,6 +225,10 @@ PrefabInstance:
       propertyPath: parentTransform
       value: 
       objectReference: {fileID: 1109643351}
+    - target: {fileID: 1172110342264932152, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _skillIndicators.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1498652523391941501, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: parentTransform
       value: 
@@ -244,26 +236,6 @@ PrefabInstance:
     - target: {fileID: 1743793772114758584, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: m_Name
       value: Managers
-      objectReference: {fileID: 0}
-    - target: {fileID: 1907959335479880199, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2135416744339038070, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.579
-      objectReference: {fileID: 0}
-    - target: {fileID: 2135416744339038070, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: wave
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: StartElementCnt
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2402696352196400284, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: m_LocalPosition.x
@@ -306,45 +278,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2913841516436438484, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2913841516436438484, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: parentTransform
       value: 
       objectReference: {fileID: 1109643351}
-    - target: {fileID: 2913841516436438484, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: highLevelCombinationPrefab
-      value: 
-      objectReference: {fileID: 3355827785742244248, guid: 62ded4e64c90ecf41a35f28e148394aa, type: 3}
-    - target: {fileID: 2913841516436438484, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: DetailedCombinationPopupUIPrefab
-      value: 
-      objectReference: {fileID: 1449319406833183469, guid: 2ea8963492200fc488c71d2db94c7e02, type: 3}
-    - target: {fileID: 3188305656620013362, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
-      value: -0.8668755
-      objectReference: {fileID: 0}
-    - target: {fileID: 3188305656620013362, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
-      value: 0.49995816
-      objectReference: {fileID: 0}
-    - target: {fileID: 3188305656620013362, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
-      value: -0.86882293
-      objectReference: {fileID: 0}
-    - target: {fileID: 3188305656620013362, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
-      value: -0.501335
-      objectReference: {fileID: 0}
-    - target: {fileID: 3188305656620013362, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: -0.0010121148
-      objectReference: {fileID: 0}
-    - target: {fileID: 3188305656620013362, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
-      value: -0.0002648048
-      objectReference: {fileID: 0}
     - target: {fileID: 3533289228794242793, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: missionInfo
       value: 
@@ -462,14 +398,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1109643351}
     - target: {fileID: 8074838461231275463, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: WeaponPickerUIPrefab
-      value: 
-      objectReference: {fileID: 4025450814691672788, guid: d1696a3e18a7e8347b8aa1e0eb896e80, type: 3}
-    - target: {fileID: 8074838461231275463, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: MasterKeyButton.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8074838461231275463, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: MasterKeyButton.Array.data[0]
       value: 
       objectReference: {fileID: 1151108208}
@@ -493,10 +421,6 @@ PrefabInstance:
       propertyPath: MasterKeyButton.Array.data[5]
       value: 
       objectReference: {fileID: 1042741728}
-    - target: {fileID: 8074838461231275463, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: MasterKeyCountText.Array.size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 8074838461231275463, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: MasterKeyCountText.Array.data[0]
       value: 
@@ -670,8 +594,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 489299488}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 8695265536351966182, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
