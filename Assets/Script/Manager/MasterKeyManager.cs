@@ -15,13 +15,14 @@ public class MasterKeyManager : Singleton<MasterKeyManager>
 
     void Start()
     {
+        int index = 0;
         foreach (WeaponTier tier in System.Enum.GetValues(typeof(WeaponTier)))
         {
-            if (tier == WeaponTier.Empty || tier == WeaponTier.COUNT) continue;
-
+            if (tier == WeaponTier.Empty || tier == WeaponTier.COUNT || tier > WeaponTier.EPIC) continue;
             var WeaponPicker = Instantiate(WeaponPickerUIPrefab, ParentTransform);
             WeaponPicker.GetComponent<WeaponPickerUI>().Init(tier);
             WeaponPicker.SetActive(false);
+            WeaponPicker.GetComponent<RectTransform>().anchoredPosition = new Vector3(-260 + index++ * 150 , 750);
             WeaponPickerList.Add(WeaponPicker);
         }
     }
@@ -66,6 +67,7 @@ public class MasterKeyManager : Singleton<MasterKeyManager>
         }
 
         // 선택한 WeaponPicker UI 활성화
+        
         WeaponPickerList[idx].SetActive(true);
         Debug.Log($"WeaponPicker UI {idx}가 활성화되었습니다.");
     }

@@ -24,6 +24,7 @@ TagManager:
   - InventoryDescriptionUI
   - DetailedDescriptionUI
   - EndPoint
+  - WeaponPicker
   layers:
   - Default
   - TransparentFX

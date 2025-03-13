@@ -32,13 +32,15 @@ public class UIPopUp : MonoBehaviour
                 UIManager.instance.CloseDetailedDescriptionPopUpUI();
                 UIManager.instance.CloseDetailedCombinationPopUpUI();
                 UIManager.instance.longClickPopUpUI.SetActive(false);
-
+                foreach (var pickerUI in MasterKeyManager.Instance.WeaponPickerList)
+                    pickerUI.SetActive(false);
             }
 
             bool isButton = false;
             foreach (var result in popUPresults)
             {
-                if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count >= 3 || result.gameObject.CompareTag("DetailedDescriptionUI") || result.gameObject.CompareTag("Mission") || result.gameObject.CompareTag("InventoryDescriptionUI"))
+                if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count >= 3 || result.gameObject.CompareTag("DetailedDescriptionUI") ||
+                    result.gameObject.CompareTag("Mission") || result.gameObject.CompareTag("InventoryDescriptionUI") || result.gameObject.CompareTag("WeaponPicker"))
                     isButton = true;
             }
 
@@ -53,6 +55,8 @@ public class UIPopUp : MonoBehaviour
                 {
                     UIManager.instance.CloseAllPopUpUI();
                     UIManager.instance.longClickPopUpUI.SetActive(false);
+                    foreach (var pickerUI in MasterKeyManager.Instance.WeaponPickerList)
+                        pickerUI.SetActive(false);
                     break;
                 }
             }

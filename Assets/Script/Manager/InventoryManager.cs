@@ -647,6 +647,18 @@ public class InventoryManager : MonoBehaviour
         WeaponPickerConfirmPopUp.SetActive(true);
     }
 
+    public void OnclickWeaponPicker(int num)
+    {
+       WeaponData data = WeaponDataManager.Instance.Database.GetWeaponDataByNum(num);
+
+       MasterKeyManager.Instance.UpdateMasterKeyCount(data.tier, -1);
+
+       if (data.tier > WeaponTier.Normal)
+           AddItemByNum(num);
+       else
+           GameManager.Instance.weaponCnt[num - 101]++;
+    }
+
     public void OpenWeaponPickerConfirmPopUp(List<int> num,int targetWeaponID,List<int> materialIDList , bool isMain)
     {
         List<WeaponData>datas = new List<WeaponData>();
