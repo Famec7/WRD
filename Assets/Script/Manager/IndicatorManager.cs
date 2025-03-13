@@ -12,7 +12,6 @@ public class IndicatorManager : Singleton<IndicatorManager>
         Circle,
         Triangle,
         Square,
-        ShrinkingTriangle,
         Count
     }
 

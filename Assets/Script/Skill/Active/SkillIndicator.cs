@@ -20,7 +20,6 @@ public class SkillIndicator : MonoBehaviour
         {
             case IndicatorManager.Type.Circle:
             case IndicatorManager.Type.Triangle:
-            case IndicatorManager.Type.ShrinkingTriangle:
                 newScale = new Vector3(skill.Data.Range, skill.Data.Range, 1);
                 break;
             case IndicatorManager.Type.Square:

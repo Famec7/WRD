@@ -2,51 +2,36 @@
 
 public class SilentTrueshot : ClickTypeSkill
 {
-    private float _focusTime = 0.0f;
-    private float _minDamage = 0.0f;
-    private float _maxDamage = 0.0f;
-
+    private float _damageDelay = 0.0f;
     private float _damage = 0.0f;
 
     protected override void Init()
     {
         base.Init();
-
-        _focusTime = Data.GetValue(0);
-        _minDamage = Data.GetValue(1);
-        _maxDamage = Data.GetValue(2);
-    }
-
-    protected override void IndicatorInit()
-    {
-        base.IndicatorInit();
         
-        ShrinkingTriangleIndicator indicator = Indicator as ShrinkingTriangleIndicator;
-        if (indicator != null)
-        {
-            indicator.OnShrinkEnd = () =>
-            {
-                Undo();
-                AddCommand(new ActiveSkillCommand(this));
-            };
-        }
+        _damage = Data.GetValue(1);
     }
 
     public override void OnActiveEnter()
     {
-        ShrinkingTriangleIndicator indicator = Indicator as ShrinkingTriangleIndicator;
-
-        if (indicator == null)
-        {
-            Debug.LogError("Indicator is null");
-            return;
-        }
-
-        _damage = CalculateDamage(indicator.ElapsedTime);
+        _damageDelay = Data.GetValue(0);
+        ClearTargetMonsters();
+        
+        weapon.enabled = false;
+        weapon.owner.enabled = false;
     }
 
     public override bool OnActiveExecute()
     {
+        if (_damageDelay > 0.0f)
+        {
+            _damageDelay -= Time.deltaTime;
+            return false;
+        }
+        
+        LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
+        IndicatorMonsters = RangeDetectionUtility.GetAttackTargets(Indicator.Collider, layerMask);
+        
         foreach (var monster in IndicatorMonsters)
         {
             monster.HasAttacked(_damage);
@@ -57,14 +42,8 @@ public class SilentTrueshot : ClickTypeSkill
 
     public override void OnActiveExit()
     {
-        ;
-    }
-
-    private float CalculateDamage(float elapsedTime)
-    {
-        float step = (_maxDamage - _minDamage) / _focusTime;
-
-        return _minDamage + step * elapsedTime;
+        weapon.enabled = true;
+        weapon.owner.enabled = true;
     }
 
     private bool HasTargetMark(Monster monster)

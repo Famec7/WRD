@@ -172,7 +172,7 @@ MonoBehaviour:
   _pivot:
     _pivot: {x: 0, y: 0, z: 0}
     _originRotation: {x: 0, y: 0, z: 0}
-    _originScale: {x: 0, y: 0, z: 0}
+    _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 508
   passiveSkillList: []
   passiveAuraSkillList: []
@@ -196,6 +196,6 @@ MonoBehaviour:
   skillId: 20
   weapon: {fileID: 0}
   _skillIcon: {fileID: 0}
-  indicatorType: 3
+  indicatorType: 1
   _isFixedPosition: 1
   IndicatorMonsters: []

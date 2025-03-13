@@ -153,6 +153,7 @@ public abstract class ActiveSkillBase : SkillBase
     #region Target Monster
 
     // 스킬이 타겟팅하는 몬스터들 (클릭형 스킬에서 사용)
+    [HideInInspector]
     public List<Monster> IndicatorMonsters = new List<Monster>();
 
     public void ClearTargetMonsters()
