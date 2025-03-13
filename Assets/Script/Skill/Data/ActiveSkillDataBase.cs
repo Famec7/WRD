@@ -67,6 +67,9 @@ public class ActiveSkillDataBase : ScriptableObject
                 Debug.LogWarning($"{activeSkillData.Name}'s skill range is not float");
 #endif
             }
+            
+            /****************skill short info Parse****************/
+            activeSkillData.Description = data["skill_shortinfo"].ToString();
 
             /****************skill value Parse****************/
             var values = data["skill_value"].ToString().Split(',');
