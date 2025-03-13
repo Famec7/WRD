@@ -57,9 +57,10 @@ public class CheckUsableRangeCommand : ICommand
             _skill.CancelSkill();
             return false;
         }
-
+        
+        int indicatorLayer = 1 << LayerMask.NameToLayer("Indicator");
         Ray ray = Camera.main.ScreenPointToRay(touch.position);
-        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, indicatorLayer);
         
         if (hit.collider is null)
         {

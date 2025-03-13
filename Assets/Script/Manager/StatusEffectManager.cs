@@ -61,4 +61,18 @@ public class StatusEffectManager : Singleton<StatusEffectManager>
 
         return null;
     }
+    
+    public List<Status> GetAllStatusEffects(Type statusEffectType)
+    {
+        List<Status> statusList = new();
+        foreach (var statusEffect in _statusEffects)
+        {
+            if (statusEffect.Value.Exists(effect => effect.GetType() == statusEffectType))
+            {
+                statusList.Add(statusEffect.Key);
+            }
+        }
+
+        return statusList;
+    }
 }
