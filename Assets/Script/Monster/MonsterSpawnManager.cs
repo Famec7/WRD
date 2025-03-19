@@ -43,6 +43,7 @@ public class MonsterSpawnManager : MonoBehaviour
 
     bool isBossSpawn = false;
     bool isSpawnStop = false;
+    bool isWait = false;
     
     [SerializeField]
     private Canvas _hpBarCanvas;
@@ -92,12 +93,14 @@ public class MonsterSpawnManager : MonoBehaviour
 
         UIManager.instance.waveNum.text = "Wave " + GameManager.Instance.wave.ToString();
 
+        StartCoroutine(CountdownStartCoroutine(3));
     }
 
     // Update is called once per frame
     void Update()
     {
         UIManager.instance.currentMonsterNum.text = currentMonsterNum.ToString();
+        if (!isWait) return;
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Time.timeScale = 1.0f;
@@ -278,6 +281,25 @@ public class MonsterSpawnManager : MonoBehaviour
 
         // 5초 후에 씬 다시 로드
         ReloadScene();
+    }
+
+    private IEnumerator  CountdownStartCoroutine(int seconds)
+    {
+        int countdown = seconds;
+        while (countdown > 0)
+        {
+
+            // 메시지 매니저를 통해 카운트다운 메시지 표시
+            MessageManager.Instance.ShowMessage($"Start {countdown}", new Vector2(0, 200), 1f, 0.1f);
+
+            // 1초 기다리기
+            yield return new WaitForSeconds(1f);
+
+            // 카운트다운 감소
+            countdown--;
+        }
+
+        isWait = true;
     }
 
     private void ReloadScene()
