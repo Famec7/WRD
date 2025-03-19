@@ -49,7 +49,6 @@ public class SkillButton : MonoBehaviour
         
         if (_currentSkill is ActiveSkillBase activeSkill)
         {
-            activeSkill.OnButtonActivate += SetActive;
             _coolTimeUI.SetSkill(activeSkill);
         }
         else
@@ -60,12 +59,6 @@ public class SkillButton : MonoBehaviour
 
     public void RemoveSkill(SkillBase skill)
     {
-        ActiveSkillBase activeSkill = _currentSkill as ActiveSkillBase;
-        if (activeSkill != null)
-        {
-            activeSkill.OnButtonActivate -= SetActive;
-        }
-
         // 트리거 초기화
         _trigger.triggers.Clear();
 
@@ -76,12 +69,6 @@ public class SkillButton : MonoBehaviour
         _outlineImage.enabled = false;
 
         _currentSkill = null;
-    }
-
-    private void SetActive(bool active)
-    {
-        _trigger.enabled = active;
-        GetComponent<Button>().interactable = active;
     }
 
     private void OnPointerDown()
@@ -106,6 +93,10 @@ public class SkillButton : MonoBehaviour
         {
             if (_currentSkill is ActiveSkillBase activeSkill)
             {
+                if (activeSkill.CurrentCoolTime > 0)
+                {
+                    return;
+                }
                 activeSkill.UseSkill();
             }
         }

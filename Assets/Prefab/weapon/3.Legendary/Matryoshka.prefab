@@ -163,7 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce48322779974180bc4b59ffec719bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 18
+  skillId: 19
+  _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
   stunRange: 3
   _slowZone: {fileID: 6736480360790856242}
@@ -180,8 +181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 16
-  weapon: {fileID: 0}
   _skillIcon: {fileID: 21300000, guid: 038ee66f98a8bcf4e89113d1bf48371c, type: 3}
+  weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []

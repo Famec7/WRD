@@ -23,15 +23,10 @@ public class StackCoolTime
         set
         {
             _stack = value;
-
-            if (_stack > 0)
-            {
-                _skill.OnButtonActivate?.Invoke(true);
-            }
-            else
+            
+            if (_stack <= 0)
             {
                 _skill.CurrentCoolTime = _skill.Data.CoolTime;
-                _skill.OnButtonActivate?.Invoke(false);
             }
 
             if (_stack >= _maxStack)

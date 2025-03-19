@@ -12,9 +12,6 @@ public abstract class ActiveSkillBase : SkillBase
     // 클릭 위치
     public Vector2 ClickPosition { get; set; } = Vector2.zero;
 
-    // 스킬 버튼 활성화 이벤트
-    public Action<bool> OnButtonActivate;
-
     public float CurrentCoolTime { get; set; } = 0f;
 
     protected override void Init()

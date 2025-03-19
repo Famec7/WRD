@@ -48,13 +48,10 @@ public class CooldownCommand : ICommand
                 skill.AddCommand(new ActiveSkillCommand(skill));
             }
         }
-
-        skill.OnButtonActivate?.Invoke(true);
     }
 
     public void Undo()
     {
-        skill.OnButtonActivate?.Invoke(true);
         skill.CurrentCoolTime = skill.Data.CoolTime;
     }
 }
