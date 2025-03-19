@@ -72,6 +72,8 @@ public class SkillButton : MonoBehaviour
         // 아이콘 이미지 초기화
         _iconImage.enabled = false;
         _iconImage.sprite = null;
+        
+        _outlineImage.enabled = false;
 
         _currentSkill = null;
     }
