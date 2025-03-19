@@ -19,8 +19,6 @@ public class SkillIndicator : MonoBehaviour
         switch (skill.IndicatorType)
         {
             case IndicatorManager.Type.Circle:
-                newScale = new Vector3(skill.Data.Range, skill.Data.Range, 1);
-                break;
             case IndicatorManager.Type.Triangle:
                 newScale = new Vector3(skill.Data.Range, skill.Data.Range, 1);
                 break;
@@ -38,6 +36,11 @@ public class SkillIndicator : MonoBehaviour
     {
         _spriteRenderer.enabled = isRender;
         transform.position = position;
+
+        if (isRender)
+        {
+            OnSpriteRendered();
+        }
     }
 
     public virtual void HideIndicator()
@@ -51,5 +54,12 @@ public class SkillIndicator : MonoBehaviour
     {
         _collider = GetComponent<Collider2D>();
         _collider.isTrigger = true;
+    }
+    
+    protected bool IsSpriteRendered => _spriteRenderer.enabled;
+    
+    protected virtual void OnSpriteRendered()
+    {
+        ;
     }
 }
