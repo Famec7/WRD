@@ -42,5 +42,6 @@ public class ScaleUpAnimation : AnimationBase
         }
         
         transform.localScale = _originalScale;
+        OnEnd?.Invoke();
     }
 }

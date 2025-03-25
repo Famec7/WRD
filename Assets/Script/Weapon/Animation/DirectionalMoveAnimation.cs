@@ -44,5 +44,6 @@ public class DirectionalMoveAnimation : AnimationBase
         }
         
         this.transform.localPosition = Vector3.zero;
+        OnEnd?.Invoke();
     }
 }
