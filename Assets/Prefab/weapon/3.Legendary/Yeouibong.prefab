@@ -821,7 +821,7 @@ MonoBehaviour:
   - {fileID: 278420920286851948}
   - {fileID: 8353166877166658448}
   - {fileID: 2504949004552110004}
-  _randomRange: 0.2
+  _randomRange: 0.5
   _isMelee: 1
 --- !u!1 &8553880544510029065
 GameObject:
