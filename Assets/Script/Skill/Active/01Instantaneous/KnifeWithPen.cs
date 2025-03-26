@@ -2,7 +2,8 @@
 
 public class KnifeWithPen : InstantaneousSkill
 {
-    private bool _isMelee = true;
+    [SerializeField]
+    private bool _isMelee;
     
     [SerializeField]
     private int _meleeIndex;
@@ -24,13 +25,11 @@ public class KnifeWithPen : InstantaneousSkill
         ;
     }
     
-    private void ChangeWeapon(bool isMelee = true)
+    private void ChangeWeapon(bool isMelee)
     {
-        _isMelee = isMelee;
-        
         const int characterType = (int) CharacterManager.CharacterType.Player;
         WeaponManager.Instance.RemoveWeapon(characterType);
-        if (_isMelee)
+        if (isMelee)
         {
             WeaponManager.Instance.AddWeapon(characterType, _meleeIndex);
         }
@@ -40,6 +39,6 @@ public class KnifeWithPen : InstantaneousSkill
         }
         
         WeaponBase weapon = WeaponManager.Instance.GetEquippedWeapon(characterType);
-        weapon.GetActiveSkill(0).CurrentCoolTime = 0.0f;
+        weapon.GetActiveSkill(1).CurrentCoolTime = 0.0f;
     }
 }

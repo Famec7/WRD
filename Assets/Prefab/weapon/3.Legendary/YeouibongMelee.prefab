@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 1316558169367962957}
   - component: {fileID: 5723006329895053955}
   m_Layer: 0
-  m_Name: Yeouibong
+  m_Name: YeouibongMelee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -783,8 +783,9 @@ MonoBehaviour:
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []
-  _meleeIndex: 509
-  _rangeIndex: 0
+  _isMelee: 1
+  _meleeIndex: 38
+  _rangeIndex: 39
 --- !u!114 &1316558169367962957
 MonoBehaviour:
   m_ObjectHideFlags: 0
