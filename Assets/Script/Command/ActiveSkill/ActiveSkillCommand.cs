@@ -9,7 +9,6 @@ public class ActiveSkillCommand : ICommand
         _skill = skill;
         
         SkillUIManager.Instance.ShowPopupPanel(3);
-        _skill.OnButtonActivate?.Invoke(false);
         _skill.IsActive = true;
 
         LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;

@@ -198,7 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5bc41300be34157a06637e0d586b093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 26
+  skillId: 28
+  _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!114 &7864080563941399353
 MonoBehaviour:
@@ -213,8 +214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 23
-  weapon: {fileID: 0}
   _skillIcon: {fileID: 0}
+  weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []
@@ -232,8 +233,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 24
-  weapon: {fileID: 0}
   _skillIcon: {fileID: 0}
+  weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []

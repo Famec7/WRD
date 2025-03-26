@@ -220,7 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a296dc6a413314282d31cc3aff62d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 31
+  skillId: 33
+  _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
   _skillSound: {fileID: 8300000, guid: 6cd7ad9795877e24db87479c86d613c8, type: 3}
 --- !u!114 &-7991946785698264664
@@ -236,8 +237,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 7
-  weapon: {fileID: 0}
   _skillIcon: {fileID: 0}
+  weapon: {fileID: 0}
   indicatorType: 2
   _isFixedPosition: 0
   IndicatorMonsters: []

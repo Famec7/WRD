@@ -75,7 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e95dbebfaf4c1a874eecee17a7965c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 16
+  skillId: 17
+  _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
   _bulletSound: {fileID: 8300000, guid: 95b39c726153cce4e8023e5231370ab8, type: 3}
 --- !u!114 &1958692894468307965
@@ -90,7 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a9b40a72384745a2bad6a252400acf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 17
+  skillId: 18
+  _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!114 &6877894846575197835
 MonoBehaviour:
@@ -105,8 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 15
-  weapon: {fileID: 0}
   _skillIcon: {fileID: 0}
+  weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []
