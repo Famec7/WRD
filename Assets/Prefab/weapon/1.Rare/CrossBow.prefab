@@ -194,4 +194,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 3
+  _skillIcon: {fileID: 21300000, guid: 005be5d5d3690e643a2a9c69938db161, type: 3}
   weapon: {fileID: 0}

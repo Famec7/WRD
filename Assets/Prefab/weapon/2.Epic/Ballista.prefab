@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 9
+  _skillIcon: {fileID: 21300000, guid: 725d822ccba4148449f62c0547fe2bca, type: 3}
   weapon: {fileID: 0}
 --- !u!1 &7529458644039154109
 GameObject:
@@ -232,5 +233,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speed: 1
   _endPosition: {x: 0.1, y: 0, z: 0}
