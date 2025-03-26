@@ -12,6 +12,8 @@ public abstract class AnimationBase : MonoBehaviour
     /// </summary>
     protected float endTime;
     
+    public Action OnEnd;
+    
     public void SetTime(float time)
     {
         endTime = time;

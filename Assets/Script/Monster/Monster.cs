@@ -24,7 +24,7 @@ public class Monster : MonoBehaviour, IPoolObject
         damage += status.DevilBulletDamageAmplification * damage;
 
         status.HP -= damage;
-
+        
         if (status.HP <= 0 && !isDead)
             IsDead();
         else if (!isDead)
@@ -60,10 +60,11 @@ public class Monster : MonoBehaviour, IPoolObject
             }
 
             RewardManager.Instance.GetReward(status.unitCode);
+            MessageManager.Instance.ShowMessage(status.unitCode.ToString() + " Clear!", new Vector2(0, 200), 2f, 0.5f);
             MissionManager.Instance.missionInfo._missionSlots[status.unitCode - UnitCode.MISSIONBOSS1].Clear(true);
         }
 
-        if (status.unitCode >= UnitCode.BOSS1 && status.unitCode <= UnitCode.BOSS6 && GameManager.Instance.wave <= 30) 
+        if (status.unitCode >= UnitCode.BOSS1 && status.unitCode <= UnitCode.BOSS6)
             RewardManager.Instance.GetReward(status.unitCode);
 
         MonsterHPBarPool.ReturnObject(hpUI.GetComponent<MonsterHPBar>());

@@ -139,6 +139,11 @@ public class WeaponManager : Singleton<WeaponManager>
 
         return weapon;
     }
+    
+    public WeaponBase GetEquippedWeapon(int characterIndex)
+    {
+        return _equippedWeapons[characterIndex];
+    }
 
     public bool IsEuqiped(int weaponNum)
     {
