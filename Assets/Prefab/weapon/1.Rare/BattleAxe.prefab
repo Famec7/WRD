@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ff02d41b7faa74481a079f7b47a22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 27
+  skillId: 29
   _skillIcon: {fileID: 21300000, guid: e4e76e288c70ac741b55be8ec30df734, type: 3}
   weapon: {fileID: 0}
   _chopSound: {fileID: 8300000, guid: 93a200abd178ee34e87d34536384382c, type: 3}

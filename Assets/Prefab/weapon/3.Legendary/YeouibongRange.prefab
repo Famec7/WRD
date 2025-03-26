@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 1004854079747896198}
   - component: {fileID: 6073348245000123850}
   - component: {fileID: -5200391543111187388}
-  - component: {fileID: 1316558169367962957}
+  - component: {fileID: 5848601010868183292}
   - component: {fileID: 5723006329895053955}
   m_Layer: 0
   m_Name: YeouibongRange
@@ -757,7 +757,7 @@ MonoBehaviour:
     _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 510
   passiveSkillList:
-  - {fileID: 1316558169367962957}
+  - {fileID: 0}
   passiveAuraSkillList: []
   activeSkillList:
   - {fileID: -5200391543111187388}
@@ -778,15 +778,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 21
-  weapon: {fileID: 0}
   _skillIcon: {fileID: 0}
+  weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []
   _isMelee: 0
   _meleeIndex: 38
   _rangeIndex: 39
---- !u!114 &1316558169367962957
+--- !u!114 &5848601010868183292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -795,10 +795,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8086894773384887271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cc44188dd4d43c7b16ad4e1f0bd7414, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e019e2c36c2477fb65e7b930fac1367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 24
+  skillId: 27
+  _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!114 &5723006329895053955
 MonoBehaviour:
@@ -813,8 +814,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 22
-  weapon: {fileID: 0}
   _skillIcon: {fileID: 21300000, guid: 723d7d98a90223e41a7fa305d8a316d5, type: 3}
+  weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []
