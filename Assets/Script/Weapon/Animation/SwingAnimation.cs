@@ -63,6 +63,7 @@ public class SwingAnimation : AnimationBase
         }
         
         this.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        OnEnd?.Invoke();
     }
     
     private bool IsInvalidQuaternion(Quaternion ownerLocalRotation)

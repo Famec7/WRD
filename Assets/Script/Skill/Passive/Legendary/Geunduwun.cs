@@ -1,0 +1,41 @@
+﻿using UnityEngine;
+
+public class Geunduwun : PassiveSkillBase
+{
+    public override bool Activate(GameObject target = null)
+    {
+        if (!CheckTrigger())
+        {
+            return false;
+        }
+        
+        Vector2 pivotPos = weapon.owner.transform.position;
+        LayerMask monsterlayer = LayerMaskProvider.MonsterLayerMask;
+        var targets = RangeDetectionUtility.GetAttackTargets(pivotPos, Data.Range, 360.0f, monsterlayer);
+
+        foreach (var tar in targets)
+        {
+            if (tar.TryGetComponent(out Monster monster))
+            {
+                monster.HasAttacked(Data.GetValue(1));
+                
+                ApplyStun(monster.status);
+                ApplyMark(monster.status);
+            }
+        }
+        
+        return true;
+    }
+    
+    private void ApplyStun(Status status)
+    {
+        Stun stun = new Stun(status.gameObject, Data.GetValue(0));
+        StatusEffectManager.Instance.AddStatusEffect(status, stun);
+    }
+    
+    private void ApplyMark(Status status)
+    {
+        Mark mark = new Mark(status.gameObject, Data.GetValue(2));
+        StatusEffectManager.Instance.AddStatusEffect(status, mark);
+    }
+}

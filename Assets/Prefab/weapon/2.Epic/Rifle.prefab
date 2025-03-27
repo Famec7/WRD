@@ -121,7 +121,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speed: 1
   _endPosition: {x: 0.1, y: 0, z: 0}
 --- !u!1 &5626274417511413474
 GameObject:
@@ -197,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 12
+  _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!114 &5024238325934650485
 MonoBehaviour:
@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 3
+  _skillIcon: {fileID: 21300000, guid: bb7be7da20c52f747b9699f6a07b69e9, type: 3}
   weapon: {fileID: 0}
-  _skillIcon: {fileID: 21300000, guid: afdaed34b5f152c4cb97efc08ff3a1f1, type: 3}
   indicatorType: 1
   _isFixedPosition: 1
   IndicatorMonsters: []
