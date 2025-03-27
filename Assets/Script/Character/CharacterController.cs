@@ -71,7 +71,8 @@ public abstract class CharacterController : MonoBehaviour
                 nearestTarget = col.gameObject;
                 break;
             }
-            float distance = Vector3.Distance(transform.position, col.transform.position);
+            Vector3 playerPos = CharacterManager.Instance.GetCharacter(CharacterManager.CharacterType.Player).gameObject.transform.position;
+            float distance = Vector3.Distance(playerPos, col.transform.position);
             
             if(distance < minDistance)
             {

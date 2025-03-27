@@ -5,11 +5,8 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
-using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 using Random = UnityEngine.Random;
 
 public class InventoryManager : MonoBehaviour

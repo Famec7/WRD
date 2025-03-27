@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 public class PetController : CharacterController, IObserver
@@ -65,7 +65,15 @@ public class PetController : CharacterController, IObserver
         
         transform.position = newPos;
         
-        this.transform.rotation = _playerController.transform.rotation;
+        GameObject target = Data.CurrentWeapon.owner.Target;
+
+        if (target.transform.position.x > transform.position.x)
+            this.transform.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
+        else
+            this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+
+        if(target == null)
+            this.transform.rotation = _playerController.transform.rotation;
     }
     
     private bool IsPlayerStateIdleAndWeaponNotNull()
