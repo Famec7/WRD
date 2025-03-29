@@ -4,7 +4,6 @@ using UnityEngine;
 public class ThunderStrike : PassiveSkillBase
 {
     private WaitForSeconds _delay = null;
-    private float _range = 0f;
     private float _damage = 0f;
     
     [SerializeField]
@@ -18,8 +17,6 @@ public class ThunderStrike : PassiveSkillBase
 
         // 전류가 잔존하는 시간
         _delay = new WaitForSeconds(Data.GetValue(1));
-        // 낙뢰 범위
-        _range = Data.Range;
         // 낙뢰 데미지
         _damage = Data.GetValue(0);
     }
@@ -60,7 +57,7 @@ public class ThunderStrike : PassiveSkillBase
 
     private void Attack()
     {
-        var targets = RangeDetectionUtility.GetAttackTargets(transform.position, _range, default,
+        var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Data.Range, default,
             LayerMaskProvider.MonsterLayerMask);
 
         foreach (var target in targets)

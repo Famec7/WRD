@@ -44,9 +44,7 @@ public class Shuffle : InstantaneousSkill
 #if UNITY_EDITOR
         Debug.Log($"[Shuffle] {_cardEffect.GetType().Name}");
 #endif
-
-        Data.CoolTime = _cardEffect.Data.CoolTime;
-
+        
         _cardEffect.OnEnter();
     }
 
@@ -64,6 +62,7 @@ public class Shuffle : InstantaneousSkill
             return;
         }
 
+        Data.CoolTime = _cardEffect.Data.CoolTime;
         _cardEffect.OnExit();
         _cardEffect = null;
     }

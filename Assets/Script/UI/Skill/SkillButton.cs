@@ -67,6 +67,7 @@ public class SkillButton : MonoBehaviour
         _iconImage.sprite = null;
         
         _outlineImage.enabled = false;
+        _coolTimeUI.SetSkill(null);
 
         _currentSkill = null;
     }

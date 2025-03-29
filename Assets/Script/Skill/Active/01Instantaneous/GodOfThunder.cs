@@ -38,7 +38,7 @@ public class GodOfThunder : InstantaneousSkill
         weapon.GetPassiveSkill().Data.Chance = _passiveChance;
         
         // 무기의 공격 범위를 변경
-        weapon.SetAttackDelay(_range);
+        weapon.Data.AttackRange = _range;
         
         _electricAura = EffectManager.Instance.CreateEffect<ParticleEffect>("ElectricAura");
         _electricAura.SetPosition(weapon.owner.transform.position);
@@ -46,7 +46,7 @@ public class GodOfThunder : InstantaneousSkill
         
         _electricAura.PlayEffect();
         
-        weapon.OnAttack += ChainAttack;
+        weapon.AddAction(ChainAttack);
     }
 
     public override bool OnActiveExecute()
@@ -66,7 +66,7 @@ public class GodOfThunder : InstantaneousSkill
         _electricAura.StopEffect();
         _electricAura = null;
         
-        weapon.OnAttack -= ChainAttack;
+        weapon.RemoveAction(ChainAttack);
     }
 
     private void ResetStat()
@@ -75,7 +75,7 @@ public class GodOfThunder : InstantaneousSkill
         weapon.GetPassiveSkill().Data.Chance = _originPassiveChance;
         
         // 무기의 공격 범위를 원래대로 변경
-        weapon.SetAttackDelay(_originAttackRange);
+        weapon.Data.AttackRange = _originAttackRange;
     }
 
     #region ChainAttack

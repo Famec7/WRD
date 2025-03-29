@@ -94,11 +94,13 @@ public class WeaponManager : Singleton<WeaponManager>
             if(fromWeapon != null && fromWeapon.TryGetComponent(out ActiveSkillBase fromActiveSkill))
             {
                 fromActiveSkill.enabled = false;
+                SkillManager.Instance.RemoveAllSkill();
             }
             
             if(toWeapon != null && toWeapon.TryGetComponent(out ActiveSkillBase toActiveSkill))
             {
                 toActiveSkill.enabled = true;
+                SkillManager.Instance.AddSkill(toWeapon);
             }
         }
         
@@ -107,16 +109,15 @@ public class WeaponManager : Singleton<WeaponManager>
             if(fromWeapon != null && fromWeapon.TryGetComponent(out ActiveSkillBase fromActiveSkill))
             {
                 fromActiveSkill.enabled = true;
+                SkillManager.Instance.AddSkill(fromWeapon);
             }
             
             if(toWeapon != null && toWeapon.TryGetComponent(out ActiveSkillBase toActiveSkill))
             {
                 toActiveSkill.enabled = false;
+                SkillManager.Instance.RemoveAllSkill();
             }
         }
-        
-        SkillManager.Instance.RemoveAllSkill();
-        SkillManager.Instance.AddSkill(toWeapon);
     }
     
     private WeaponBase FindWeapon(int weaponId)
