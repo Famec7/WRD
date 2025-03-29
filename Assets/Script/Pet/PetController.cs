@@ -64,8 +64,17 @@ public class PetController : CharacterController, IObserver
         newPos.y = Mathf.Clamp(newPos.y, -screenBound.y, screenBound.y);
         
         transform.position = newPos;
+
+        if (Data.CurrentWeapon == null)
+        {
+            return;
+        }
         
         GameObject target = Data.CurrentWeapon.owner.Target;
+        if (target == null)
+        {
+            return;
+        }
 
         if (target.transform.position.x > transform.position.x)
             this.transform.rotation = Quaternion.Euler(new Vector3(0, -180, 0));
