@@ -170,21 +170,7 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
         }
 
         _notifyAction?.Invoke();
-        if (!IsPassiveSkillNull)
-        {
-            bool isActivate = false;
-            foreach (var passiveSkill in passiveSkillList)
-            {
-                if (passiveSkill.Activate(owner.Target))
-                {
-                    isActivate = true;
-                }
-            }
-            
-            if (isActivate)
-                return;
-        }
-
+        
         if (OnAttack != null)
         {
             OnAttack.Invoke();
@@ -192,6 +178,14 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
         else
         {
             Attack();
+        }
+        
+        if (!IsPassiveSkillNull)
+        {
+            foreach (var passiveSkill in passiveSkillList)
+            {
+                passiveSkill.Activate(owner.Target);
+            }
         }
     }
 
