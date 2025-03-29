@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chop : PassiveAuraSkillBase, IObserver
+public class Chop : PassiveAuraSkillBase
 {
     [SerializeField]
     private AudioClip _chopSound;
@@ -36,19 +36,10 @@ public class Chop : PassiveAuraSkillBase, IObserver
 
     }
 
-    public void OnNotify()
+    protected override void Init()
     {
-        _attackCount++;
-
-        if (_attackCount == Data.GetValue(0))
-        {
-            weapon.OnAttack += OnAttack;
-            _attackCount = 0;
-        }
-    }
-
-    private void Start()
-    {
-        weapon.OnAttack += OnAttack;
+        base.Init();
+        
+        weapon.AddAction(OnAttack);
     }
 }

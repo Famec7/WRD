@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class Lancer : PassiveSkillBase
+public class Lancer : PassiveAuraSkillBase
 {
-    public override bool Activate(GameObject target = null)
+    protected override void Init()
     {
-        if (!CheckTrigger() || target == null) return false;
+        base.Init();
 
-        StatusEffect woundEffect = StatusEffectManager.Instance.GetStatusEffect(weapon.owner.Target.GetComponent<Monster>().status, typeof(Wound));
+        weapon.AddAction(OnAttack);
+    }
 
-        if (woundEffect != null)
-            return false;
+    private void OnAttack()
+    {
+        if (weapon.owner.Target.TryGetComponent(out Monster monster))
+        {
+            StatusEffect woundEffect = StatusEffectManager.Instance.GetStatusEffect(monster.status, typeof(Wound));
 
-        weapon.GetActiveSkill().CurrentCoolTime -= Data.GetValue(0);
-
-        return true;
+            if (woundEffect != null)
+            {
+                weapon.GetActiveSkill().CurrentCoolTime -= Data.GetValue(0);
+            }
+        }
     }
 }
