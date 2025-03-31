@@ -374,6 +374,10 @@ PrefabInstance:
       value: Wind
       objectReference: {fileID: 0}
     - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[9]._count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[21]._count
       value: 10
       objectReference: {fileID: 0}
@@ -397,6 +401,10 @@ PrefabInstance:
       propertyPath: _poolDatas.Array.data[23]._prefab
       value: 
       objectReference: {fileID: -9095776941266118830, guid: 35dc53ab70275d14ca26436a49ea95c0, type: 3}
+    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[13]._preloadOnStart
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8074838461231275463, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: ParentTransform
       value: 
