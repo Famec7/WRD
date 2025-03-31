@@ -18,8 +18,6 @@ public class RewardSlot : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("start : " + GetComponent<RectTransform>().anchoredPosition);
-        Debug.Log("start : " + transform.localPosition);
         StartCoroutine(MoveShrinkAndDestroy());
     }
 
@@ -27,7 +25,7 @@ public class RewardSlot : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        float duration = 1f;
+        float duration = 0.9f;
         float elapsed = 0f;
         RectTransform rectTransform = GetComponent<RectTransform>();
 
@@ -49,7 +47,6 @@ public class RewardSlot : MonoBehaviour
 
         rectTransform.localPosition = targetLocalPos;
         rectTransform.localScale = targetScale;
-
         Destroy(gameObject);
     }
 
