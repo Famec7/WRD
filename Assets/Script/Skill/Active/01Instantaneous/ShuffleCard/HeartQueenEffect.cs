@@ -5,6 +5,8 @@ public class HeartQueenEffect : CardEffectBase
     private float _time;
     private Vector3 _range = new Vector3(3, 5, 0);
     
+    private float _originalAttackSpeed;
+    
     public HeartQueenEffect(WeaponBase weapon) : base(weapon)
     {
         Data = SkillManager.Instance.GetActiveSkillData(12);
@@ -66,15 +68,15 @@ public class HeartQueenEffect : CardEffectBase
     {
         WeaponBase weapon = character.Data.CurrentWeapon;
         
-        float originalAttackSpeed = character.Data.CurrentWeapon.Data.AttackSpeed;
-        weapon.SetAttackDelay(originalAttackSpeed + originalAttackSpeed * Data.GetValue(1));
+        _originalAttackSpeed = character.Data.CurrentWeapon.Data.AttackSpeed;
+        weapon.SetAttackDelay(_originalAttackSpeed + _originalAttackSpeed * Data.GetValue(1));
 
         weapon.GetPassiveSkill().Data.Chance += (int)Data.GetValue(2);
     }
     
     private void RemoveBuffFromCharacter(CharacterController character)
     {
-        character.Data.CurrentWeapon.SetAttackDelay(character.Data.CurrentWeapon.Data.AttackSpeed);
+        character.Data.CurrentWeapon.SetAttackDelay(_originalAttackSpeed);
         character.Data.CurrentWeapon.GetPassiveSkill().Data.Chance -= (int)Data.GetValue(2);
     }
 }
