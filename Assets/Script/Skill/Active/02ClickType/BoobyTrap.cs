@@ -6,27 +6,24 @@ using UnityEngine.Serialization;
 public class BoobyTrap : ClickTypeSkill
 {
     [SerializeField]
-    private SlowZone _slowZone;
-    [SerializeField]
-    private DamageAmplificationZone _damageAmplificationZone;
+    private GameObject _trap;
 
     protected override void Init()
     {
         base.Init();
 
         float effectTime = Data.GetValue(0);
-        _slowZone.SetData(effectTime, Data.Range, Data.GetValue(2));
         
-        _damageAmplificationZone.SetData(effectTime, Data.Range, Data.GetValue(1));
+        _trap.GetComponent<SlowZone>().SetData(effectTime, Data.Range, Data.GetValue(2));
+        _trap.GetComponent<DamageAmplificationZone>().SetData(effectTime, Data.Range, Data.GetValue(1));
     }
 
     public override void OnActiveEnter()
     {
-        _slowZone.SetPosition(ClickPosition);
-        _slowZone.PlayEffect();
+        _trap.transform.SetParent(null);
         
-        _damageAmplificationZone.SetPosition(ClickPosition);
-        _damageAmplificationZone.PlayEffect();
+        _trap.GetComponent<SlowZone>().SetPosition(ClickPosition);
+        _trap.GetComponent<SlowZone>().PlayEffect();
     }
 
     public override bool OnActiveExecute()

@@ -42,6 +42,7 @@ public class GodOfThunder : InstantaneousSkill
         
         _electricAura = EffectManager.Instance.CreateEffect<ParticleEffect>("ElectricAura");
         _electricAura.SetPosition(weapon.owner.transform.position);
+        _electricAura.transform.localPosition = Vector3.zero;
         _electricAura.transform.SetParent(weapon.owner.transform, false);
         
         _electricAura.PlayEffect();

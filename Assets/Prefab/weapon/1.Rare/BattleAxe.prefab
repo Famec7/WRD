@@ -26,14 +26,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562499871069127646}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: 0, w: 0}
   m_LocalPosition: {x: -0.041, y: -0.112, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8095699154336810000}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 90}
 --- !u!114 &1725306334580153423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   _pivot:
     _pivot: {x: -0.041, y: -0.112, z: 1}
-    _originRotation: {x: 0, y: 0, z: 0}
+    _originRotation: {x: 180, y: 0, z: 90}
     _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 306
   passiveSkillList: []
@@ -196,4 +196,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _degree: 30
+  _degree: -30

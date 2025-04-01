@@ -17,7 +17,7 @@ public class Chop : PassiveAuraSkillBase
             if (_attackCount == Data.GetValue(0))
             {
                 monster.HasAttacked(Data.GetValue(1));
-                StatusEffectManager.Instance.AddStatusEffect(monster.status, new SlowDown(monster.gameObject, 100f, Data.GetValue(2)));
+                StatusEffectManager.Instance.AddStatusEffect(monster.status, new Stun(monster.gameObject, Data.GetValue(2)));
 
                 ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("SharpBladeEffect");
                 effect.SetPosition(weapon.owner.Target.transform.position);
