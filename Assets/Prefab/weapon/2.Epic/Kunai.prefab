@@ -242,8 +242,7 @@ MonoBehaviour:
   indicatorType: 2
   _isFixedPosition: 0
   IndicatorMonsters: []
-  _slowZone: {fileID: 2725026544710881298}
-  _damageAmplificationZone: {fileID: 585872486457072759}
+  _trap: {fileID: 2053947674168135204}
 --- !u!1 &5051919937147673749
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,9 +10,13 @@ public class DevilBullet : ClickTypeSkill
     private float _amplification = 0.0f;
     private int _attackCount = 0;
     private float _attackSpeedIncrease = 0.0f;
+    
+    private float _originAttackSpeed;
 
     public override void OnActiveEnter()
     {
+        _originAttackSpeed = weapon.Data.AttackSpeed;
+        
         _attackDamage = Data.GetValue(0);
         _amplification = Data.GetValue(1) / 100.0f;
         _attackCount = (int)Data.GetValue(2);
@@ -72,7 +76,7 @@ public class DevilBullet : ClickTypeSkill
 
         if (_attackCount <= 0)
         {
-            weapon.SetAttackDelay(weapon.Data.AttackSpeed);
+            weapon.SetAttackDelay(_originAttackSpeed);
             weapon.RemoveAction(OnAttack);
         }
     }
