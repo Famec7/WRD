@@ -2,21 +2,22 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class Wind : MonoBehaviour
 {
     [SerializeField] private float _duration = 2.0f;
     
     private Action<Monster> _onWindEnd;
-
-    private float _radius;
+    
     private Vector3 _targetPosition;
     private Transform _parent;
     
     public void Init(float radius, Vector3 targetPosition, Action<Monster> onWindEnd, Transform parent)
     {
-        _radius = radius;
         _targetPosition = targetPosition;
         _onWindEnd = onWindEnd;
+        
+        GetComponent<CircleCollider2D>().radius = radius * 0.5f;
     }
     
     public void Play()
@@ -24,17 +25,6 @@ public class Wind : MonoBehaviour
         this.transform.SetParent(null);
         this.transform.position = _targetPosition;
         this.gameObject.SetActive(true);
-        
-        // radius 범위 안의 적들을 중앙으로 끌어당김
-        LayerMask layer = LayerMaskProvider.MonsterLayerMask;
-        var targets = RangeDetectionUtility.GetAttackTargets(transform.position, _radius, default, layer);
-        foreach (var target in targets)
-        {
-            if (target.TryGetComponent(out Monster monster))
-            {
-                StartCoroutine(IE_MoveMonster(monster));
-            }
-        }
         
         StartCoroutine(IE_WindDuration());
     }
@@ -50,7 +40,7 @@ public class Wind : MonoBehaviour
     {
         while ((monster.transform.position - _targetPosition).sqrMagnitude > Mathf.Epsilon)
         {
-            monster.transform.position = Vector3.MoveTowards(monster.transform.position, _targetPosition, 0.1f);
+            monster.transform.position = Vector3.MoveTowards(monster.transform.position, _targetPosition, 0.01f);
             yield return null;
         }
         
@@ -61,5 +51,13 @@ public class Wind : MonoBehaviour
     {
         yield return new WaitForSeconds(_duration);
         Stop();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out Monster monster))
+        {
+            StartCoroutine(IE_MoveMonster(monster));
+        }
     }
 }

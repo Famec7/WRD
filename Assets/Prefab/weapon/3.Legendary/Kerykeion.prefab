@@ -286,6 +286,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1333865051522506820, guid: 35dc53ab70275d14ca26436a49ea95c0, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1705267993706079511, guid: 35dc53ab70275d14ca26436a49ea95c0, type: 3}
       propertyPath: _duration
       value: 2
@@ -301,8 +305,51 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8980516677153364470, guid: 35dc53ab70275d14ca26436a49ea95c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2927755646036274863}
   m_SourcePrefab: {fileID: 100100000, guid: 35dc53ab70275d14ca26436a49ea95c0, type: 3}
+--- !u!1 &385174142609945704 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8980516677153364470, guid: 35dc53ab70275d14ca26436a49ea95c0, type: 3}
+  m_PrefabInstance: {fileID: 8789158959708433822}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &2927755646036274863
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385174142609945704}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!4 &7744936488777960922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1333865051522506820, guid: 35dc53ab70275d14ca26436a49ea95c0, type: 3}
@@ -313,7 +360,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1705267993706079511, guid: 35dc53ab70275d14ca26436a49ea95c0, type: 3}
   m_PrefabInstance: {fileID: 8789158959708433822}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 385174142609945704}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d19f190d5070495a9339cf3795bcc19f, type: 3}
