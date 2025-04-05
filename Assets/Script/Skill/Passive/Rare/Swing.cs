@@ -46,7 +46,7 @@ public class Swing : PassiveSkillBase
             if (tar.TryGetComponent(out Monster monster))
             {
                 StatusEffectManager.Instance.AddStatusEffect(monster.status, new Wound(tar.gameObject));
-                monster.HasAttacked(_skillDamage);
+                TakeDamage(monster);
             }
         }
 
@@ -57,5 +57,10 @@ public class Swing : PassiveSkillBase
     protected virtual ParticleEffect GetSwingEffect()
     {
         return EffectManager.Instance.CreateEffect<ParticleEffect>("SwingEffect");
+    }
+
+    protected virtual void TakeDamage(Monster monster)
+    {
+        monster.HasAttacked(_skillDamage);
     }
 }

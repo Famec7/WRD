@@ -32,6 +32,12 @@ public class Monster : MonoBehaviour, IPoolObject
             OnMonsterAttacked?.Invoke(); //죽지 않고 데미지 받으면 데미지 Action 실행
         }
     }
+    
+    public void HasAttackedPercent(float percent)
+    {
+        float damage = status.maxHP * percent;
+        HasAttacked(damage);
+    }
 
     public void Die()
     {

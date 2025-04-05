@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7797819180812344039}
   - component: {fileID: 5978862745958417574}
-  - component: {fileID: 2491299365098758661}
-  - component: {fileID: -8812445559295291458}
+  - component: {fileID: 1766333629883905158}
+  - component: {fileID: 3823790296092547861}
   m_Layer: 0
-  m_Name: SacredSword
+  m_Name: M_SacredSword 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,16 +52,16 @@ MonoBehaviour:
     _pivot: {x: -0.013, y: -0.12, z: 0}
     _originRotation: {x: 0, y: 0, z: -90}
     _originScale: {x: 1, y: 1, z: 1}
-  weaponNum: 401
+  weaponNum: 601
   passiveSkillList:
-  - {fileID: 2491299365098758661}
+  - {fileID: 1766333629883905158}
   passiveAuraSkillList: []
   activeSkillList:
-  - {fileID: -8812445559295291458}
+  - {fileID: 3823790296092547861}
   anim: {fileID: 1618176130363896691}
   type: 0
   _attackSound: {fileID: 8300000, guid: 9b6b51fa6e4d09a409899aa2c9e8a24b, type: 3}
---- !u!114 &2491299365098758661
+--- !u!114 &1766333629883905158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,15 +70,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5083573871661536336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab6fb9760ee9b024e92e97d43eaff472, type: 3}
+  m_Script: {fileID: 11500000, guid: e90c77cb2b6f44fd817352e501a23da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 6
+  skillId: 38
   _skillIcon: {fileID: 21300000, guid: abb53d6e7265d8a498d4ec0d38d831ec, type: 3}
   weapon: {fileID: 0}
-  _hitSize: {x: 1, y: 3}
-  _swingSound: {fileID: 8300000, guid: 06f89da76928e4f4b8b7d6597867196f, type: 3}
---- !u!114 &-8812445559295291458
+  _hitSize: {x: 0, y: 0}
+  _swingSound: {fileID: 0}
+--- !u!114 &3823790296092547861
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,10 +87,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5083573871661536336}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1227de02cab70242b2a6cd5bc6c0418, type: 3}
+  m_Script: {fileID: 11500000, guid: a3237a51525d444eab08b76e5ecb91b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 2
+  skillId: 25
   _skillIcon: {fileID: 21300000, guid: 72c3c589b659a2141a622d0322539df2, type: 3}
   weapon: {fileID: 0}
   indicatorType: 0

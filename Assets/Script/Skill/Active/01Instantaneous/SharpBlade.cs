@@ -7,7 +7,7 @@ public class SharpBlade : InstantaneousSkill
     #region Data
 
     private float _damage;
-    private float _woundDamge;
+    protected float WoundDamage { get; private set; }
 
     [SerializeField] private Vector3 _range = new Vector3(1.5f, 3.5f, 1);
 
@@ -20,7 +20,7 @@ public class SharpBlade : InstantaneousSkill
         base.Init();
         
         _damage = Data.GetValue(0);
-        _woundDamge = Data.GetValue(1);
+        WoundDamage = Data.GetValue(1);
     }
     
     public override void OnActiveEnter()
@@ -70,11 +70,16 @@ public class SharpBlade : InstantaneousSkill
                 else
                 {
                     StatusEffectManager.Instance.RemoveStatusEffect(monster.status, typeof(Wound));
-                    monster.HasAttacked(_woundDamge);
+                    TakeWoundDamage(monster);
                 }
             }
         }
         
         _isAttack = true;
+    }
+    
+    protected virtual void TakeWoundDamage(Monster monster)
+    {
+        monster.HasAttacked(WoundDamage);
     }
 }
