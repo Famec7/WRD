@@ -33,6 +33,10 @@ public class Monster : MonoBehaviour, IPoolObject
         }
     }
     
+    /// <summary>
+    /// 데미지 비율로 공격
+    /// </summary>
+    /// <param name="percent"> percent% 만큼 공격 </param>
     public void HasAttackedPercent(float percent)
     {
         percent = percent / 100.0f;
