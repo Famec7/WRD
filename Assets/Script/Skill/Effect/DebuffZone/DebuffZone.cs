@@ -7,6 +7,9 @@ public abstract class DebuffZone : EffectBase
 {
     private Coroutine _coroutine;
     private float _effectTime;
+    
+    [SerializeField]
+    private bool _isParentNull = true;
 
     protected override void Init()
     {
@@ -14,9 +17,18 @@ public abstract class DebuffZone : EffectBase
         collider.isTrigger = true;
     }
 
+    /// <summary>
+    /// 디버프존 데이터 설정
+    /// </summary>
+    /// <param name="effectTime"> 디버프 지속시간 </param>
+    /// <param name="radius"> 범위 </param>
     protected void SetData(float effectTime, float radius)
     {
-        this.transform.SetParent(null);
+        if (_isParentNull)
+        {
+            transform.SetParent(null);
+        }
+        
         _effectTime = effectTime;
         SetScale(new Vector3(radius, radius, 1));
     }
@@ -25,7 +37,7 @@ public abstract class DebuffZone : EffectBase
     {
         transform.gameObject.SetActive(true);
 
-        if (_coroutine == null)
+        if (_coroutine == null && _effectTime > 0)
         {
             _coroutine = StartCoroutine(IE_PlayEffect());
         }
@@ -43,14 +55,7 @@ public abstract class DebuffZone : EffectBase
 
     private IEnumerator IE_PlayEffect()
     {
-        if (_effectTime > 0)
-        {
-            yield return new WaitForSeconds(_effectTime);
-        }
-        else
-        {
-            yield break;
-        }
+        yield return new WaitForSeconds(_effectTime);
 
         StopEffect();
     }

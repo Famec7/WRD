@@ -3,7 +3,7 @@
 public class HeavyBlow : PassiveSkillBase
 {
     [SerializeField] private AudioClip _heavyBlowSound;
-    
+
     public override bool Activate(GameObject target = null)
     {
         if (!CheckTrigger() || target == null)
@@ -27,26 +27,25 @@ public class HeavyBlow : PassiveSkillBase
             {
                 monster.HasAttacked(Data.GetValue(0));
 
-                float slowDuration = Data.GetValue(1);
-                StatusEffectManager.Instance.AddStatusEffect(monster.status,
-                    new SlowDown(monster.gameObject, 100f, slowDuration));
+                float stunDuration = Data.GetValue(1);
 
+                Stun stun = new Stun(monster.gameObject, stunDuration);
+                StatusEffectManager.Instance.AddStatusEffect(monster.status, stun);
 
                 StatusEffect woundEffect = StatusEffectManager.Instance.GetStatusEffect(monster.status, typeof(Wound));
 
                 if (woundEffect != null)
                 {
-                    monster.HasAttacked(Data.GetValue(2));
-
-                    slowDuration = Data.GetValue(3);
-                    float slowRate = Data.GetValue(4);
-
-                    StatusEffectManager.Instance.AddStatusEffect(monster.status,
-                        new SlowDown(monster.gameObject, slowRate, slowDuration));
+                    TakeWoundDamage(monster);
                 }
             }
         }
 
         return true;
+    }
+    
+    protected virtual void TakeWoundDamage(Monster monster)
+    {
+        monster.HasAttacked(Data.GetValue(2));
     }
 }

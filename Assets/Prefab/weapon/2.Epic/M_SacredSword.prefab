@@ -1,5 +1,86 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2581491926210774901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5100961338946808425}
+  - component: {fileID: 1176701553595717035}
+  - component: {fileID: 1554888736354666688}
+  m_Layer: 0
+  m_Name: SlowZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5100961338946808425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2581491926210774901}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7797819180812344039}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1176701553595717035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2581491926210774901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2377b8b094334dbc8b80ca6aca2191a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isParentNull: 0
+--- !u!58 &1554888736354666688
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2581491926210774901}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &5083573871661536336
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,8 +93,9 @@ GameObject:
   - component: {fileID: 5978862745958417574}
   - component: {fileID: 1766333629883905158}
   - component: {fileID: 3823790296092547861}
+  - component: {fileID: 8929435555099841464}
   m_Layer: 0
-  m_Name: M_SacredSword 1
+  m_Name: M_SacredSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +115,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8080216561100624954}
+  - {fileID: 5100961338946808425}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &5978862745958417574
@@ -77,7 +160,7 @@ MonoBehaviour:
   _skillIcon: {fileID: 21300000, guid: abb53d6e7265d8a498d4ec0d38d831ec, type: 3}
   weapon: {fileID: 0}
   _hitSize: {x: 0, y: 0}
-  _swingSound: {fileID: 0}
+  _swingSound: {fileID: 8300000, guid: 06f89da76928e4f4b8b7d6597867196f, type: 3}
 --- !u!114 &3823790296092547861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +180,22 @@ MonoBehaviour:
   _isFixedPosition: 0
   IndicatorMonsters: []
   _range: {x: 1.5, y: 3.5, z: 1}
+--- !u!114 &8929435555099841464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5083573871661536336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1fbd569e97487dbfba57f86f6b744b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 37
+  _skillIcon: {fileID: 0}
+  weapon: {fileID: 0}
+  _slowZone: {fileID: 1176701553595717035}
 --- !u!1 &8818613340853973319
 GameObject:
   m_ObjectHideFlags: 0
