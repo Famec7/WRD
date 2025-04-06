@@ -35,6 +35,8 @@ public class Monster : MonoBehaviour, IPoolObject
     
     public void HasAttackedPercent(float percent)
     {
+        percent = percent / 100.0f;
+        
         float damage = status.maxHP * percent;
         HasAttacked(damage);
     }
