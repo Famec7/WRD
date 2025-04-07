@@ -17,7 +17,7 @@
 
         if (monster.CompareTag("Boss"))
         {
-            monster.HasAttackedPercent(_percent);
+            monster.HasAttackedCurrentPercent(_percent);
         }
     }
 }
