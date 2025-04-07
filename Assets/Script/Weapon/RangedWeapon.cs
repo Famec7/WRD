@@ -16,6 +16,8 @@ public class RangedWeapon : WeaponBase
     
     [Space] [Header("무기 종류에 맞는 사운드")]
     [SerializeField] private AudioClip _attackSound;
+    
+    protected AudioClip AttackSound => _attackSound;
 
     protected override void Attack()
     {
@@ -33,12 +35,17 @@ public class RangedWeapon : WeaponBase
             
             projectile.OnHit += () => OnHit(monster, Data.AttackDamage);
             
-            SoundManager.Instance.PlaySFX(_attackSound);
+            PlayAttackSound();
         }
     }
 
-    protected void OnHit(Monster monster, float damage)
+    protected virtual void OnHit(Monster monster, float damage)
     {
         monster.HasAttacked(damage);
+    }
+    
+    protected virtual void PlayAttackSound()
+    {
+        SoundManager.Instance.PlaySFX(_attackSound);
     }
 }

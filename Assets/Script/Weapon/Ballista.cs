@@ -13,10 +13,13 @@ public class Ballista : RangedWeapon
         base.Attack();
 
         Monster monster = FindNearestMonster(owner.Target.transform.position);
-        
+
         if (monster is null)
+        {
+            SoundManager.Instance.PlaySFX(AttackSound);
             return;
-        
+        }
+
         if(GetPassiveSkill().Activate(monster.gameObject))
             return;
         
@@ -57,5 +60,10 @@ public class Ballista : RangedWeapon
         }
 
         return nearestTarget?.GetComponent<Monster>();
+    }
+
+    protected override void PlayAttackSound()
+    {
+        
     }
 }
