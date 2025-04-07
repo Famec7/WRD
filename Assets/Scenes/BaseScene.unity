@@ -353,34 +353,6 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[0]
       value: 
       objectReference: {fileID: 940696516}
-    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.size
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[34]._name
-      value: m_ballista
-      objectReference: {fileID: 0}
-    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[35]._name
-      value: m_high orb
-      objectReference: {fileID: 0}
-    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[34]._count
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[35]._count
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[34]._prefab
-      value: 
-      objectReference: {fileID: 7649094638972814237, guid: 670534f50305859468955e4ccb6ae503, type: 3}
-    - target: {fileID: 6419824201362202699, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[35]._prefab
-      value: 
-      objectReference: {fileID: 3289993488168452608, guid: d0d0a038b9085e84cb87da3c95d15135, type: 3}
     - target: {fileID: 6650071735411779139, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: parentTransform
       value: 

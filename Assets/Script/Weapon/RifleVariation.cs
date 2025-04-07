@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class BallistaVariation : Ballista
+public class RifleVariation : RangedWeapon
 {
     private float _markDuration;
 

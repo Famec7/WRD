@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1480572137741218002}
   - component: {fileID: 7463102925610812401}
   - component: {fileID: -430598731046512726}
+  - component: {fileID: 5001452256315348524}
   m_Layer: 0
   m_Name: Ballista
   m_TagString: Untagged
@@ -54,7 +55,8 @@ MonoBehaviour:
   weaponNum: 403
   passiveSkillList:
   - {fileID: -430598731046512726}
-  passiveAuraSkillList: []
+  passiveAuraSkillList:
+  - {fileID: 5001452256315348524}
   activeSkillList: []
   anim: {fileID: 7683878575097369065}
   type: 0
@@ -75,6 +77,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillId: 9
   _skillIcon: {fileID: 21300000, guid: 725d822ccba4148449f62c0547fe2bca, type: 3}
+  weapon: {fileID: 0}
+--- !u!114 &5001452256315348524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4897807747513862174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a95cb2a1f0e430ba721e510f8248290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 8
+  _skillIcon: {fileID: 21300000, guid: cbda0e124eb240841acbe841a95ae1a8, type: 3}
   weapon: {fileID: 0}
 --- !u!1 &7529458644039154109
 GameObject:
