@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class WeakAttack : PassiveAuraSkillBase
 {
-    private float _originalDamage;
+    protected float _originalDamage;
     
     protected override void Init()
     {
@@ -21,18 +21,23 @@ public class WeakAttack : PassiveAuraSkillBase
             return;
         }
         
-        if (weapon.owner.Target.TryGetComponent(out Status status))
+        if (weapon.owner.Target.TryGetComponent(out Monster monster))
         {
-            StatusEffect mark = StatusEffectManager.Instance.GetStatusEffect(status, typeof(Mark));
-            
-            if (mark is null)
-            {
-                weapon.Data.AttackDamage = _originalDamage;
-            }
-            else
-            {
-                weapon.Data.AttackDamage = _originalDamage + Data.GetValue(0);
-            }
+            TakeDamage(monster);
+        }
+    }
+
+    protected virtual void TakeDamage(Monster monster)
+    {
+        StatusEffect mark = StatusEffectManager.Instance.GetStatusEffect(monster.status, typeof(Mark));
+
+        if (mark is null)
+        {
+            weapon.Data.AttackDamage = _originalDamage;
+        }
+        else
+        {
+            weapon.Data.AttackDamage = _originalDamage + Data.GetValue(0);
         }
     }
 }

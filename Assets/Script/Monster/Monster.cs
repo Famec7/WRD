@@ -32,7 +32,18 @@ public class Monster : MonoBehaviour, IPoolObject
             OnMonsterAttacked?.Invoke(); //죽지 않고 데미지 받으면 데미지 Action 실행
         }
     }
-    
+
+    /// <summary>
+    /// 현재 체력 비율로 공격
+    /// </summary>
+    public void HasAttackedCurrentPercent(float percent)
+    {
+        percent = percent / 100.0f;
+
+        float damage = status.HP * percent;
+        HasAttacked(damage);
+    }
+
     /// <summary>
     /// 데미지 비율로 공격
     /// </summary>

@@ -5,16 +5,15 @@ using UnityEngine.Serialization;
 
 public class Deuxfer : PassiveSkillBase
 {
-    [SerializeField]
-    private Material _originalMaterial;
+    
+    public Material _originalMaterial;
 
-    [SerializeField]
-    private Material _blueMaterial;
+    
+    public Material _blueMaterial;
 
-    [SerializeField]
-    private float effectDuration = 0.5f;
+    public float effectDuration = 0.5f;
 
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    public SpriteRenderer _spriteRenderer;
 
     public override bool Activate(GameObject target = null)
     {
@@ -23,7 +22,7 @@ public class Deuxfer : PassiveSkillBase
 
         if (weapon.owner.Target.TryGetComponent(out Monster monster))
         {
-            monster.HasAttacked(weapon.Data.AttackDamage);
+            TakeDamage(monster);
             ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("NormalHit");
             effect.SetPosition(weapon.owner.Target.transform.position);
         }
@@ -38,5 +37,9 @@ public class Deuxfer : PassiveSkillBase
         _spriteRenderer.material = _originalMaterial;
     }
 
+    protected virtual void TakeDamage(Monster monster)
+    {
+        monster.HasAttacked(weapon.Data.AttackDamage);
+    }
 
 }

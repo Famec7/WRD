@@ -7,10 +7,10 @@ public class Attaque : ClickTypeSkill
 {
     #region Data
 
-    private float _duration;
-    private float _damage;
-    private int _passiveChance;
-    private int _originPassiveChance;
+    protected float _duration;
+    protected float _damage;
+    protected int _passiveChance;
+    protected int _originPassiveChance;
     #endregion
 
     public float MaxDashDistance = 2f;
@@ -53,9 +53,7 @@ public class Attaque : ClickTypeSkill
         {
             if (tar.TryGetComponent(out Monster monster))
             {
-                monster.HasAttacked(_damage);
-                if (monster.isDead)
-                    StartCoroutine(BoostPassiveChance());
+                TakeDamage(monster);
 
                 break;
             }
@@ -90,10 +88,17 @@ public class Attaque : ClickTypeSkill
        
     }
 
-    private IEnumerator BoostPassiveChance()
+    protected IEnumerator BoostPassiveChance(float duration)
     {
         weapon.GetPassiveSkill().Data.Chance = _passiveChance;
-        yield return new WaitForSeconds(_duration);
+        yield return new WaitForSeconds(duration);
         weapon.GetPassiveSkill().Data.Chance = _originPassiveChance;
+    }
+
+    protected virtual void TakeDamage(Monster monster)
+    {
+        monster.HasAttacked(_damage);
+        if (monster.isDead)
+            StartCoroutine(BoostPassiveChance(_duration));
     }
 }
