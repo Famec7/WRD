@@ -22,8 +22,7 @@ public class HighVisionStrike : PassiveSkillBase
         {
             if (tar.TryGetComponent(out Monster monster))
             {
-                monster.HasAttacked(Data.GetValue(0));
-                StatusEffectManager.Instance.AddStatusEffect(monster.status, new SlowDown(monster.gameObject, 100f, Data.GetValue(1)));
+                Attack(monster);
                 
                 ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("HighVisionStrike");
                 
@@ -33,5 +32,11 @@ public class HighVisionStrike : PassiveSkillBase
         }
         
         return true;
+    }
+
+    protected virtual void Attack(Monster monster)
+    {
+        monster.HasAttacked(Data.GetValue(0));
+        StatusEffectManager.Instance.AddStatusEffect(monster.status, new SlowDown(monster.gameObject, 100f, Data.GetValue(1)));
     }
 }
