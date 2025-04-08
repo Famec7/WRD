@@ -7,39 +7,22 @@ public class Fire : ClickTypeSkill
     [SerializeField]
     private AudioClip _fireSound;
     
-    private float _singleDamage = 0.0f;
-    private float _multipleDamage = 0.0f;
-    private float slowDuration = 0.0f;
-    private float slowRate = 0.0f;
+    private float _damage = 0.0f;
+    private float _additionalDamage = 0.0f;
+    private float _slowDuration = 0.0f;
+    private float _slowRate = 0.0f;
     
     public override void OnActiveEnter()
     {
-        _singleDamage = Data.GetValue(0);
-        slowDuration = Data.GetValue(1);
-        slowRate = Data.GetValue(2);
-        _multipleDamage = Data.GetValue(3);
+        _damage = Data.GetValue(0) * Data.GetValue(1);
+        _slowDuration = Data.GetValue(2);
+        _slowRate = Data.GetValue(3);
+        _additionalDamage = Data.GetValue(4);
     }
 
     public override bool OnActiveExecute()
     {
-        Monster target = SelectMonsterAtClickPosition();
-
-        if (target != null)
-        {
-            StatusEffect markStatus = StatusEffectManager.Instance.GetStatusEffect(target.status, typeof(Mark));
-
-            if (markStatus is null)
-            {
-                OnAttackMultipleTargets();
-                return true;
-            }
-
-            OnAttackSingleTarget(target);
-        }
-        else
-        {
-            OnAttackMultipleTargets();
-        }
+        OnAttackMultipleTargets();
         
         return true;
     }
@@ -47,17 +30,6 @@ public class Fire : ClickTypeSkill
     public override void OnActiveExit()
     {
         
-    }
-
-    private void OnAttackSingleTarget(Monster monster)
-    {
-        monster.HasAttacked(_singleDamage);
-        
-        ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("FireEffect");
-        effect.SetPosition(monster.transform.position);
-        effect.PlayEffect();
-        
-        SoundManager.Instance.PlaySFX(_fireSound);
     }
 
     private void OnAttackMultipleTargets()
@@ -69,11 +41,17 @@ public class Fire : ClickTypeSkill
         
         foreach (var target in IndicatorMonsters)
         {
-            target.HasAttacked(_multipleDamage);
+            target.HasAttacked(_damage);
             
             Status status = target.status;
-            StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(status.gameObject, slowRate, slowDuration));
+            StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(status.gameObject, _slowRate, _slowDuration));
             
+            StatusEffect mark = StatusEffectManager.Instance.GetStatusEffect(status, typeof(Mark));
+            if (mark != null)
+            {
+                target.HasAttacked(_additionalDamage);
+            }
+
             ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("FireEffect");
             effect.SetPosition(target.transform.position);
             effect.PlayEffect();

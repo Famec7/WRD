@@ -16,7 +16,6 @@ public class HighDomainExpansion : PassiveAuraSkillBase
 
     private void Start()
     {
-        _slowZone.transform.SetParent(weapon.owner.transform);
         _slowZone.PlayEffect();
     }
 

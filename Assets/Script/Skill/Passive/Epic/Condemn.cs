@@ -10,7 +10,7 @@ public class Condemn : PassiveSkillBase
         if (target.TryGetComponent(out Status status))
         {
             float stunDuration = Data.GetValue(0);
-            StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(status.gameObject, 100f, stunDuration));
+            StatusEffectManager.Instance.AddStatusEffect(status, new Stun(status.gameObject, stunDuration));
             
             var markStatus = StatusEffectManager.Instance.GetStatusEffect(status, typeof(Mark));
             if (markStatus != null)
@@ -30,7 +30,7 @@ public class Condemn : PassiveSkillBase
         return true;
     }
     
-    private void OnHit(Monster monster, float damage)
+    protected virtual void OnHit(Monster monster, float damage)
     {
         monster.HasAttacked(damage);
 

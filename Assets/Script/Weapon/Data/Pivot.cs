@@ -12,9 +12,8 @@ public class Pivot
     
     [SerializeField]
     private Vector3 _originRotation;
-    
-    [SerializeField]
-    private Vector3 _originScale;
+
+    [SerializeField] private Vector3 _originScale = Vector3.one;
     
     public void Init(Transform transform)
     {
