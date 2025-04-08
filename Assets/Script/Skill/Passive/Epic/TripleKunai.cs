@@ -41,7 +41,7 @@ public class TripleKunai : PassiveSkillBase
         return true;
     }
 
-    public void OnHit(ColliderProjectile projectile)
+    public virtual void OnHit(ColliderProjectile projectile)
     {
         projectile._damage  = weapon.Data.AttackDamage * (1 -Data.GetValue(0) * 0.01f);
     }

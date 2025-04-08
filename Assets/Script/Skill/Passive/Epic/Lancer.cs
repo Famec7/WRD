@@ -12,7 +12,7 @@ public class Lancer : PassiveAuraSkillBase
         weapon.AddAction(OnAttack);
     }
 
-    private void OnAttack()
+    protected void OnAttack()
     {
         if (weapon.owner.Target.TryGetComponent(out Monster monster))
         {
