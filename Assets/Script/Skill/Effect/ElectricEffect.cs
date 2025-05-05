@@ -20,6 +20,9 @@ public class ElectricEffect : EffectBase
     [SerializeField]
     private ElectricZone _electricZone;
     
+    [SerializeField]
+    private Animator _thunderStrikeEffect;
+    
     protected override void Init()
     {
         ;
@@ -27,6 +30,8 @@ public class ElectricEffect : EffectBase
 
     public override void PlayEffect()
     {
+        _thunderStrikeEffect.Play("ThunderStrike");
+        
         _slowZone.SetPosition(this.transform.position);
         _slowZone.PlayEffect();
         

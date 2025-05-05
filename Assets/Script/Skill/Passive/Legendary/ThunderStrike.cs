@@ -5,20 +5,15 @@ public class ThunderStrike : PassiveSkillBase
 {
     private WaitForSeconds _delay = null;
     private float _damage = 0f;
-    
-    [SerializeField]
-    private SlowZone _slowZone;
-    [SerializeField]
-    private ElectricZone _electricZone;
 
     protected override void Init()
     {
         base.Init();
 
-        // 전류가 잔존하는 시간
-        _delay = new WaitForSeconds(Data.GetValue(1));
         // 낙뢰 데미지
         _damage = Data.GetValue(0);
+        // 전류가 잔존하는 시간
+        _delay = new WaitForSeconds(Data.GetValue(1));
     }
 
     public override bool Activate(GameObject target = null)
@@ -49,7 +44,7 @@ public class ThunderStrike : PassiveSkillBase
         thunderEffect.SetData(Data);
         thunderEffect.SetPosition(target.transform.position);
         thunderEffect.PlayEffect();
-
+        
         yield return _delay;
 
         thunderEffect.StopEffect();
