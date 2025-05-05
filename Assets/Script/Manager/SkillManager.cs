@@ -41,11 +41,11 @@ public class SkillManager : Singleton<SkillManager>
 
     #region Skill
 
-    private readonly List<SkillBase> _currentActiveSkill = new();
+    private readonly List<SkillBase> _currentSkill = new();
     
     private void AddSkill(SkillBase skill)
     {
-        _currentActiveSkill.Add(skill);
+        _currentSkill.Add(skill);
         SkillUIManager.Instance.AddSkillButton(skill);
     }
 
@@ -70,31 +70,25 @@ public class SkillManager : Singleton<SkillManager>
         }
     }
     
-    public void RemoveSkill(SkillBase skill)
-    {
-        _currentActiveSkill.Remove(skill);
-        SkillUIManager.Instance.RemoveSkillButton(skill);
-    }
-    
     public void RemoveAllSkill()
     {
-        foreach (var skill in _currentActiveSkill)
+        foreach (var skill in _currentSkill)
         {
             SkillUIManager.Instance.RemoveSkillButton(skill);
         }
         
-        _currentActiveSkill.Clear();
+        _currentSkill.Clear();
     }
     
     public SkillBase GetActiveSkill(int index)
     {
-        if (index < 0 || index >= _currentActiveSkill.Count)
+        if (index < 0 || index >= _currentSkill.Count)
         {
             Debug.LogError("$Active Skill Index Error: {index}");
             return null;
         }
 
-        return _currentActiveSkill[index];
+        return _currentSkill[index];
     }
 
     #endregion

@@ -88,35 +88,43 @@ public class WeaponManager : Singleton<WeaponManager>
         
         _equippedWeapons[fromCharacterIndex] = toWeapon;
         _equippedWeapons[toCharacterIndex] = fromWeapon;
-        
+
         // 플레이어 교체면 액티브 스킬 교체
         if (fromCharacterIndex == (int)CharacterManager.CharacterType.Player)
         {
+            SkillManager.Instance.RemoveAllSkill();
             if(fromWeapon != null && fromWeapon.TryGetComponent(out ActiveSkillBase fromActiveSkill))
             {
                 fromActiveSkill.enabled = false;
-                SkillManager.Instance.RemoveAllSkill();
             }
             
             if(toWeapon != null && toWeapon.TryGetComponent(out ActiveSkillBase toActiveSkill))
             {
                 toActiveSkill.enabled = true;
+            }
+            
+            if (toWeapon != null)
+            {
                 SkillManager.Instance.AddSkill(toWeapon);
             }
         }
         
         if (toCharacterIndex == (int)CharacterManager.CharacterType.Player)
         {
+            SkillManager.Instance.RemoveAllSkill();
             if(fromWeapon != null && fromWeapon.TryGetComponent(out ActiveSkillBase fromActiveSkill))
             {
                 fromActiveSkill.enabled = true;
-                SkillManager.Instance.AddSkill(fromWeapon);
             }
             
             if(toWeapon != null && toWeapon.TryGetComponent(out ActiveSkillBase toActiveSkill))
             {
                 toActiveSkill.enabled = false;
-                SkillManager.Instance.RemoveAllSkill();
+            }
+            
+            if (fromWeapon != null)
+            {
+                SkillManager.Instance.AddSkill(fromWeapon);
             }
         }
     }
