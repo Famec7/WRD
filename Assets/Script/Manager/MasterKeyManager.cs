@@ -11,7 +11,7 @@ public class MasterKeyManager : Singleton<MasterKeyManager>
     public List<GameObject> WeaponPickerList = new List<GameObject>();
     public List<Button> MasterKeyButton = new List<Button>();
     public List<TextMeshProUGUI> MasterKeyCountText = new List<TextMeshProUGUI>();
-    public int[] masterKeyCnt = new int[6];
+    public int[] masterKeyCnt = new int[7];
 
     void Start()
     {
