@@ -41,6 +41,9 @@ public class WeaponDataManager : Singleton<WeaponDataManager>
             case "myth":
                 classKorText = "신화";
                 break;
+            case "modified":
+                classKorText = "변이";
+                break;
         }
 
         return classKorText;

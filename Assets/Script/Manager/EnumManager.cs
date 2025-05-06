@@ -50,6 +50,7 @@ public enum WeaponTier
     EPIC,
     LEGENDARY,
     MYTH,
+    MODIFIED,
     COUNT
 }
 
