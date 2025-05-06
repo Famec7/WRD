@@ -98,7 +98,7 @@ public class CraftButton : MonoBehaviour
                 canCombineBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
                 canCombineBorder.SetActive(true);
             }
-            else if (MasterKeyManager.Instance.masterKeyCnt[(int)weaponData.tier - 1] > 0 && !isElement)
+            else if (weaponData.tier < WeaponTier.LEGENDARY&&MasterKeyManager.Instance.masterKeyCnt[(int)weaponData.tier - 1] > 0 && !isElement)
             {
                 canCombineBorder.GetComponent<Image>().color = new Color32(255, 71, 40, 255);
                 canCombineBorder.SetActive(true);
