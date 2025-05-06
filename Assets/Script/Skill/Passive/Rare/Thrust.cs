@@ -6,9 +6,6 @@ public class Thrust : PassiveSkillBase
     [SerializeField]
     private Vector2 _range = new Vector2(3.0f, 1.0f);
     
-    [SerializeField]
-    private EffectBase _effect;
-    
     public override bool Activate(GameObject target = null)
     {
         if (!CheckTrigger()) return false;
@@ -24,12 +21,6 @@ public class Thrust : PassiveSkillBase
         effect.SetPosition(weapon.owner.transform.position + dir.normalized * 0.5f);
         effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, dir)));
         effect.PlayEffect();
-
-        // 이펙트 재생
-        _effect.SetPosition(weapon.owner.transform.position + dir);
-        _effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.left, dir)));
-        _effect.SetScale(_range);
-        _effect.PlayEffect();
         
         foreach (var tar in targets)
         {
