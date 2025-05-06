@@ -220,6 +220,9 @@ public class CraftButton : MonoBehaviour
             case "myth":
                 color = new Color32(255, 255, 255, 255);
                 break;
+            case "modified":
+                color = new Color32(160, 43, 147, 255);
+                break;
         }
 
         return color;
