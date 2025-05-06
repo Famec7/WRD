@@ -143,28 +143,6 @@ public class CraftButton : MonoBehaviour
                 weaponID: weaponID, weaponSprite: transform.GetChild(0).GetComponent<Image>().sprite,
                 isMainWeapon: isMainWeapon,materialIDList: materialIDList,
                 createUIWithExtraParams: true);
-
-            //InventoryItem item = new InventoryItem
-            //{
-            //    image = transform.GetChild(0).GetComponent<Image>().sprite
-            //};
-            //item.AssignWeapon(weaponID);
-            //WeaponUI.Instance.weaponID = weaponID;
-
-            //InventoryManager.instance.AddItem(item, false);
-            //InventoryManager.instance.RemoveItem(materialIDList, weaponID, item, isMainWeapon);
-
-            //if (InventoryManager.instance.isClassSorted)
-            //    InventoryManager.instance.ClickClassShowButton();
-
-            //if(isMainWeapon)
-            //    UIManager.instance.CreateCombineUI(weaponID,false,false,true);
-
-            //GameManager.Instance.weaponCnt[weaponID - 1]++;
-            //GameManager.Instance.UpdateUseableWeaponCnt();
-            //BookMakredSlotUI.Instance.UpdateAllSlot();
-            //UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>().weaponID = weaponID;
-            //UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>().inventorySlot = InventoryManager.instance.FindInventorySlot(weaponID);
         }
         else 
         {

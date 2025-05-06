@@ -175,6 +175,7 @@ public class RewardManager : Singleton<RewardManager>
             int random = Random.Range(0, sameTierWeaponList.Count);
             WeaponData rewardData = sameTierWeaponList[random];
             GameManager.Instance.weaponCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(rewardData.num) - 1]++;
+            GameManager.Instance.UpdateUseableWeaponCnt();
             InventoryManager.instance.AddItemByNum(rewardData.num);
             rewardPopUpUI.CreateRandomWeaponRewardSlot(rewardData.num);
         }

@@ -346,6 +346,8 @@ public class InventoryManager : MonoBehaviour
         bool returnValue = false;
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
         InventorySlot pressSlot = null;
+        if (itemIDs.Count == 0)
+            return true;
 
         if (longClickPopUpUi.inventorySlot != null)
             pressSlot = longClickPopUpUi.inventorySlot;
@@ -706,6 +708,7 @@ public class InventoryManager : MonoBehaviour
 
         confirmText.text = string.Join(", ", messages) + "의 마스터키를 사용하시겠습니까?";
         warningText.text = "재료 무기 대신 " + message2 + " 사용됩니다.";
+        WeaponPickerConfirmPopUp.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
         WeaponPickerConfirmPopUp.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
         {
             foreach(var data in datas)
@@ -724,31 +727,6 @@ public class InventoryManager : MonoBehaviour
                 createUIWithExtraParams: false // 두 번째 코드에서는 기본 UI 사용
             );
 
-            /*
-            //string weaponIconPath = "WeaponIcon/" + WeaponDataManager.Instance.Database.GetWeaponNumByID(targetWeaponID);
-            //InventoryItem item = new InventoryItem
-            //{
-            //    image = ResourceManager.Instance.Load<Sprite>(weaponIconPath)
-            //};
-            //item.AssignWeapon(targetWeaponID);
-
-            //WeaponUI.Instance.weaponID = targetWeaponID;
-
-            //AddItem(item, false);
-            //RemoveItem(materialIDList, targetWeaponID, item, true);
-
-            //if (isClassSorted)
-            //    ClickClassShowButton();
-
-            //if(isMain)
-            //    UIManager.instance.CreateCombineUI(targetWeaponID);
-
-            //GameManager.Instance.weaponCnt[targetWeaponID - 1]++;
-            //GameManager.Instance.UpdateUseableWeaponCnt();
-            //BookMakredSlotUI.Instance.UpdateAllSlot();
-            //UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>().weaponID = targetWeaponID;
-            //UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>().inventorySlot = InventoryManager.instance.FindInventorySlot(targetWeaponID);
-            */
             WeaponPickerConfirmPopUp.SetActive(false);
         });
 
@@ -775,7 +753,7 @@ public class InventoryManager : MonoBehaviour
         WeaponUI.Instance.weaponID = weaponID;
 
         // 3) 아이템 추가/재료 제거
-        InventoryManager.instance.AddItem(item, false);
+        InventoryManager.instance.AddItem(item, true);
         InventoryManager.instance.RemoveItem(materialIDList, weaponID, item, isMainWeapon);
 
         // 4) 클래스 정렬이 되어 있으면 UI 갱신
