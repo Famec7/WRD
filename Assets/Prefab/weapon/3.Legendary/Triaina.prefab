@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2377b8b094334dbc8b80ca6aca2191a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isParentNull: 1
 --- !u!1 &5975229658007611836
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ecf172c975e4f5aa451e510402f6090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isParentNull: 1
 --- !u!1 &6373617968191510777
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +434,7 @@ GameObject:
   - component: {fileID: 2328374859411621728}
   - component: {fileID: 4077256293241807442}
   - component: {fileID: 704148395022289597}
+  - component: {fileID: -8989941699365228452}
   m_Layer: 0
   m_Name: Triaina
   m_TagString: Untagged
@@ -477,13 +480,13 @@ MonoBehaviour:
   weaponNum: 505
   passiveSkillList:
   - {fileID: 4077256293241807442}
-  passiveAuraSkillList: []
+  passiveAuraSkillList:
+  - {fileID: -8989941699365228452}
   activeSkillList:
   - {fileID: 704148395022289597}
   anim: {fileID: 409160852981323148}
   type: 1
   _attackSound: {fileID: 8300000, guid: 8d0a11c9d9d4839418651c0e779fd1b6, type: 3}
-  _skillId: 19
   _passiveRange: 1
 --- !u!114 &4077256293241807442
 MonoBehaviour:
@@ -523,6 +526,21 @@ MonoBehaviour:
   _waterPool: {fileID: 2117027151934981082}
   _pushForce: 10
   _moveSpeed: 3
+--- !u!114 &-8989941699365228452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6373617968191510777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88cbe71549874b77bef3a8ebf44fa81f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 20
+  _skillIcon: {fileID: 0}
+  weapon: {fileID: 0}
 --- !u!1001 &5229736834273058816
 PrefabInstance:
   m_ObjectHideFlags: 0

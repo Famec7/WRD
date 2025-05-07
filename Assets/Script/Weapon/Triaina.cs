@@ -1,20 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Triaina : MeleeWeapon
 {
     #region PassiveAura
 
     [Space] [Header("trident of poseidon")]
-    [SerializeField] private int _skillId = 0;
     [SerializeField] private float _passiveRange = 1.0f;
-    private PassiveAuraSkillData _passiveAuraSkillData;
+    PassiveAuraSkillData _passiveAuraSkillData;
 
     #endregion
 
-    protected override void Init()
+    private void Start()
     {
-        base.Init();
-        _passiveAuraSkillData = SkillManager.Instance.GetPassiveAuraSkillData(_skillId);
+        _passiveAuraSkillData = GetPassiveAuraSkill().Data;
     }
 
     protected override void Attack()
