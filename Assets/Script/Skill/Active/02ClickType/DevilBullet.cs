@@ -64,10 +64,7 @@ public class DevilBullet : ClickTypeSkill
 
     public override void OnActiveExit()
     {
-        if (weapon.GetPassiveAuraSkill() is Devil7 devil7)
-        {
-            devil7.AttackCount = 0;
-        }
+        ;
     }
 
     private void OnAttack()
@@ -80,48 +77,6 @@ public class DevilBullet : ClickTypeSkill
             weapon.RemoveAction(OnAttack);
         }
     }
-
-    #region Behavior Tree
-
-    /*protected override List<INode> CoolTimeNodes()
-    {
-        return new List<INode>
-        {
-            new ActionNode(CheckCoolTimeState), new ActionNode(CoolTimeDown), new ActionNode(OnCoolTimeEnd)
-        };
-    }
-
-    private new INode.ENodeState CoolTimeDown()
-    {
-        if (weapon.GetPassiveAuraSkill() is Devil7 devil7)
-        {
-            CurrentCoolTime = devil7.Data.GetValue(0) - devil7.AttackCount;
-        }
-
-        return CurrentCoolTime <= 0 ? INode.ENodeState.Success : INode.ENodeState.Running;
-    }
-
-    protected override INode.ENodeState OnCoolTimeEnd()
-    {
-        base.OnCoolTimeEnd();
-
-        StartCoroutine(IE_CheckSkillInactivity());
-
-        return INode.ENodeState.Success;
-    }
-
-    private IEnumerator IE_CheckSkillInactivity()
-    {
-        float checkTime = weapon.GetPassiveAuraSkill().Data.GetValue(1);
-        yield return new WaitForSeconds(checkTime);
-
-        if (IsActive is false)
-        {
-            CancelSkill();
-        }
-    }*/
-
-    #endregion
 
     public override void ExecuteCoolTimeCommand()
     {

@@ -31,7 +31,13 @@ public class DevilCooldownCommand : CooldownCommand
         base.OnComplete();
 
         skill.CurrentCoolTime = 0;
-        skill.StartCoroutine(CheckSkillInactivity());
+
+        var setting = SettingManager.Instance.CurrentActiveSettingType;
+
+        if (setting != SettingManager.ActiveSettingType.Auto)
+        {
+            skill.StartCoroutine(CheckSkillInactivity());
+        }
     }
 
     private IEnumerator CheckSkillInactivity()
