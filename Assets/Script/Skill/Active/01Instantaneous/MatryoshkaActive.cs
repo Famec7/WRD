@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MatryoshkaActive : ClickTypeSkill
+public class MatryoshkaActive : InstantaneousSkill
 {
     #region Skill Data
 
@@ -28,7 +28,7 @@ public class MatryoshkaActive : ClickTypeSkill
             {
                 if (SettingManager.Instance.CurrentActiveSettingType == SettingManager.ActiveSettingType.Auto)
                 {
-                    commandInvoker.AddCommand(new CheckForEnemiesCommand(this as ClickTypeSkill));
+                    commandInvoker.AddCommand(new ActiveSkillCommand(this));
                 }
             },
             OnStackChange = SetRange
