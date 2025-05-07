@@ -125,5 +125,7 @@ public class PetController : CharacterController, IObserver
         FloatingIdleMotion floatingIdleMotion = GetComponent<FloatingIdleMotion>();
         floatingIdleMotion.StopFloatingIdle();
         floatingIdleMotion.ShowShadow(false);
+        
+        Data.SetCurrentWeapon(null);
     }
 }
