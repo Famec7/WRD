@@ -3,7 +3,7 @@
     private float _damageAmplification = 0f;
     private float _shockDuration = 0f;
     
-    public void SetData(float effectTime, float radius, float damageAmplification, float shockDuration)
+    public void SetData(float effectTime, float radius, float damageAmplification, float shockDuration = 0.0f)
     {
         SetData(effectTime, radius);
         _damageAmplification = damageAmplification;
