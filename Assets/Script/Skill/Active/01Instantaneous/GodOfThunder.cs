@@ -86,7 +86,7 @@
             Vector3 pos = weapon.owner.Target.transform.position;
             var targets = RangeDetectionUtility.GetAttackTargets(pos, _chainAttackRange, default, targetLayer);
 
-            StopCoroutine(IE_ChainAttack(targets));
+            StartCoroutine(IE_ChainAttack(targets));
         }
 
         private IEnumerator IE_ChainAttack(List<Collider2D> targets)
@@ -119,7 +119,9 @@
 
         private void CreateLightningEffect(Vector3 from, Vector3 to)
         {
-            
+            LineRendererController lightningEffect = EffectManager.Instance.CreateEffect<LineRendererController>("ChainLightning");
+            lightningEffect.LinkTarget(from, to);
+            lightningEffect.PlayEffect();
         }
 
         #endregion
