@@ -7,6 +7,11 @@ public class ActiveSkillCommand : ICommand
     public ActiveSkillCommand(ActiveSkillBase skill)
     {
         _skill = skill;
+
+        if (_skill.IsActive)
+        {
+            _skill.OnActiveExit();
+        }
         
         SkillUIManager.Instance.ShowPopupPanel(3);
         _skill.IsActive = true;
@@ -15,6 +20,12 @@ public class ActiveSkillCommand : ICommand
         _skill.IndicatorMonsters = RangeDetectionUtility.GetAttackTargets(_skill.Indicator.Collider, layerMask);
         
         _skill.OnActiveEnter();
+        
+        if (_skill is InstantaneousSkill)
+        {
+            _skill.CurrentCoolTime = _skill.Data.CoolTime;
+            _skill.ExecuteCoolTimeCommand();
+        }
     }
     
     public bool Execute()
@@ -25,18 +36,24 @@ public class ActiveSkillCommand : ICommand
     public void OnComplete()
     {
         _skill.OnActiveExit();
-        _skill.CurrentCoolTime = _skill.Data.CoolTime;
         _skill.IsActive = false;
-        
-        _skill.ExecuteCoolTimeCommand();
+
+        if (_skill is not InstantaneousSkill)
+        {
+            _skill.CurrentCoolTime = _skill.Data.CoolTime;
+            _skill.ExecuteCoolTimeCommand();
+        }
     }
 
     public void Undo()
     {
         _skill.OnActiveExit();
-        _skill.CurrentCoolTime = _skill.Data.CoolTime;
         _skill.IsActive = false;
         
-        _skill.ExecuteCoolTimeCommand();
+        if (_skill is not InstantaneousSkill)
+        {
+            _skill.CurrentCoolTime = _skill.Data.CoolTime;
+            _skill.ExecuteCoolTimeCommand();
+        }
     }
 }

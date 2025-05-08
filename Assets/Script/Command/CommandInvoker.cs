@@ -3,10 +3,9 @@ using UnityEngine;
 
 public class CommandInvoker
 {
-    private readonly Queue<ICommand> _commandQueue = new Queue<ICommand>();
-    private ICommand _currentCommand;
+    private readonly List<ICommand> _currentCommands = new List<ICommand>();
 
-    public bool IsEmpty => _commandQueue.Count == 0 && _currentCommand == null;
+    public bool IsEmpty => _currentCommands.Count == 0;
 
     public void AddCommand(ICommand command)
     {
@@ -18,52 +17,61 @@ public class CommandInvoker
             return;
         }
 
-        _commandQueue.Enqueue(command);
+        if (command is ActiveSkillCommand)
+        {
+            foreach (var cmd in _currentCommands)
+            {
+                if (cmd is ActiveSkillCommand)
+                {
+                    _currentCommands.Remove(cmd);
+                    break;
+                }
+            }
+        }
+        
+        _currentCommands.Add(command);
     }
     
     public void Execute()
     {
-        if (_currentCommand == null && _commandQueue.Count > 0)
-        {
-            _currentCommand = _commandQueue.Dequeue();
-        }
-
-        if (_currentCommand == null)
+        if (_currentCommands == null)
         {
             return;
         }
 
-        if (_currentCommand.Execute())
+        for (int i = _currentCommands.Count - 1; i >= 0; i--)
         {
-            _currentCommand.OnComplete();
-            _currentCommand = null;
+            var command = _currentCommands[i];
+
+            if (command.Execute())
+            {
+                command.OnComplete();
+                _currentCommands.RemoveAt(i);
+            }
         }
     }
 
     public void Undo()
     {
-        if (_currentCommand == null)
+        if (_currentCommands == null)
         {
             Debug.LogWarning("Command is null.");
             return;
         }
 
-        _currentCommand.Undo();
-        _currentCommand = null;
+        foreach (var command in _currentCommands)
+        {
+            command.Undo();
+        }
+        _currentCommands.Clear();
     }
 
     public void Reset()
     {
-        if (_currentCommand != null)
+        foreach (var command in _currentCommands)
         {
-            _currentCommand.Undo();
-            _currentCommand = null;
-        }
-
-        while (_commandQueue.Count > 0)
-        {
-            var command = _commandQueue.Dequeue();
             command.Undo();
         }
+        _currentCommands.Clear();
     }
 }
