@@ -8,7 +8,7 @@ public class SkyProjectile : FallingProjectile
     [SerializeField] private float _offset = 0.5f;
     
     /********************************Effect********************************/
-    private EffectBase _auraEffect;
+    private AnimationEffect _auraEffect;
     
     [SerializeField]
     private SlowZone _slowZone;
@@ -69,8 +69,9 @@ public class SkyProjectile : FallingProjectile
         }
         
         // 슬로우 장판 생성
-        _auraEffect = EffectManager.Instance.CreateEffect<EffectBase>("SkySwordAura");
+        _auraEffect = EffectManager.Instance.CreateEffect<AnimationEffect>("SkySwordAura");
         _auraEffect.SetPosition(transform.position);
+        _auraEffect.PlayEffect();
         
         _slowZone.SetPosition(transform.position);
         _slowZone.PlayEffect();
@@ -81,7 +82,6 @@ public class SkyProjectile : FallingProjectile
     public override void ReturnToPool()
     {
         base.ReturnToPool();
-        _auraEffect.StopEffect();
         
         transform.position = Vector3.zero;
     }

@@ -413,6 +413,14 @@ PrefabInstance:
       propertyPath: parentTransform
       value: 
       objectReference: {fileID: 1109643351}
+    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[15]._count
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6805614889025869311, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: _poolDatas.Array.data[15]._prefab
+      value: 
+      objectReference: {fileID: 3787199431204724614, guid: 9c4c1a21a0bbe3d4683438de382042cc, type: 3}
     - target: {fileID: 8074838461231275463, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: ParentTransform
       value: 
