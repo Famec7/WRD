@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5652be1ec8794f64a117d047cc0ec3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isParentNull: 1
 --- !u!1 &5017856223001294117
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +93,7 @@ GameObject:
   - component: {fileID: 1209900746028265968}
   - component: {fileID: 3521813352519561871}
   - component: {fileID: 8168608869911393430}
+  - component: {fileID: 2779340725502157087}
   m_Layer: 0
   m_Name: HolySword
   m_TagString: Untagged
@@ -107,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5017856223001294117}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.92387956, w: 0.38268343}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -115,7 +117,7 @@ Transform:
   - {fileID: 402533134621595490}
   - {fileID: 5849261908720734769}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1209900746028265968
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -192,7 +194,7 @@ SpriteRenderer:
   m_SortingLayerID: 977560319
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 242c2bcd56628b548b6c5ea41daa568d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9008dc11a1dfc49498e587188cdc79b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -250,6 +252,28 @@ MonoBehaviour:
     m_RotationOrder: 4
   _projectileName: HolySword
   _damageAmplificationZone: {fileID: 5781801334562317754}
+  _animationClip: {fileID: 7400000, guid: 6577a5f40b9b63e438227b9137dba53e, type: 2}
+--- !u!95 &2779340725502157087
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5017856223001294117}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35e8ba1950dbf9f44b5807204237b5b1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6920100518674584950
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,3 +354,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ecf172c975e4f5aa451e510402f6090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isParentNull: 1

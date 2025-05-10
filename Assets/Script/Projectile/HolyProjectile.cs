@@ -35,6 +35,9 @@ public class HolyProjectile : FallingProjectile
     [SerializeField]
     private DamageAmplificationZone _damageAmplificationZone;
     
+    [SerializeField]
+    private AnimationClip _animationClip;
+    
     protected override void OnSwordImpact()
     {
         var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Range, default, LayerMaskProvider.MonsterLayerMask);
@@ -93,5 +96,15 @@ public class HolyProjectile : FallingProjectile
         
         _auraEffect.StopEffect();
         _damageAmplificationZone.StopEffect();
+    }
+    
+    public override void GetFromPool()
+    {
+        base.GetFromPool();
+
+        if (TryGetComponent(out Animator animator))
+        {
+            animator.Play(_animationClip.name);
+        }
     }
 }
