@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7030304037774812959}
   - component: {fileID: 3787199431204724614}
   m_Layer: 0
-  m_Name: SkySwordAura
+  m_Name: HolySwordAura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,4 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43165d4f5410446d9966127ae63a0dea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clip: {fileID: 7400000, guid: 8915cdeb37e9659409ae61b174b2c09a, type: 2}
+  _clip: {fileID: 7400000, guid: 3bf0e3d2eea914644a6a8fe616d062a8, type: 2}

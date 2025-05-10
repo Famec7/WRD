@@ -30,7 +30,7 @@ public class HolyProjectile : FallingProjectile
 
     #endregion
 
-    private EffectBase _auraEffect;
+    private AnimationEffect _auraEffect;
     
     [SerializeField]
     private DamageAmplificationZone _damageAmplificationZone;
@@ -54,7 +54,7 @@ public class HolyProjectile : FallingProjectile
             }
         }
         
-        _auraEffect = EffectManager.Instance.CreateEffect<EffectBase>("HolySwordAura");
+        _auraEffect = EffectManager.Instance.CreateEffect<AnimationEffect>("HolySwordAura");
         _auraEffect.SetPosition(transform.position);
         _auraEffect.PlayEffect();
         
