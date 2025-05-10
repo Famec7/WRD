@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8553362190231061399}
   - component: {fileID: 2875862362023903736}
   - component: {fileID: 8197228752605292094}
+  - component: {fileID: 3665690376762513927}
   m_Layer: 0
   m_Name: SkySword
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3240979190947326009}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 977560319
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f1a0cf1e27477e44585ebe3dc224a894, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7cfd7f0da573e0d4285ea85f152f694e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -147,16 +148,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.1789432
-      value: 0.35132068
-      inSlope: 2.3905818
-      outSlope: 2.3905818
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.3
+      time: 1
       value: 1
       inSlope: 2
       outSlope: 2
@@ -168,9 +160,30 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _projectileName: SkySword
-  _radius: 1.5
-  _degree: 45
+  _offset: 0.5
   _slowZone: {fileID: 1694397429169365091}
+  _animationClip: {fileID: 7400000, guid: b84f01bd92cae854386c0402aac51f27, type: 2}
+--- !u!95 &3665690376762513927
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240979190947326009}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35e8ba1950dbf9f44b5807204237b5b1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3439661402600104678
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,3 +264,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2377b8b094334dbc8b80ca6aca2191a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isParentNull: 1
