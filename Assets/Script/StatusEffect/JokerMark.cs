@@ -19,6 +19,8 @@ public class JokerMark : StatusEffect
 #if STATUS_EFFECT_LOG
         Debug.Log($"{Joker Mark Effect Applied} - Duration: {duration}");
 #endif
+        
+        monsterEffecter.SetJokerEffect(true);
     }
 
     public override void RemoveEffect()
@@ -37,6 +39,7 @@ public class JokerMark : StatusEffect
 #if STATUS_EFFECT_LOG
         Debug.Log($"{Joker Mark Effect Removed} - Duration: {duration}");
 #endif
+        monsterEffecter.SetJokerEffect(false);
     }
     
     private IEnumerator JokerMarkCoroutine()

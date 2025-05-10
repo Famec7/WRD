@@ -27,6 +27,9 @@ public class MonsterEffecter : MonoBehaviour
 
     [Header("Slow Effect Setting")]
     [SerializeField] GameObject slowEffect;
+    
+    [Header("Joker Effect Setting")]
+    [SerializeField] GameObject jokerEffect;
 
     [Header("Monster Dead Effect Setting")]
     [SerializeField] string deadEffectName = "MonsterDead";
@@ -215,6 +218,20 @@ public class MonsterEffecter : MonoBehaviour
     {
         if (slowEffect == null) return;
         slowEffect.SetActive(on);
+    }
+
+    public void SetJokerEffect(bool on)
+    {
+        if (jokerEffect == null) return;
+        
+        jokerEffect.transform.position = monsterRenderer.bounds.center + new Vector3(0, monsterRenderer.bounds.extents.y, 0);
+        jokerEffect.SetActive(on);
+
+        if (jokerEffect.TryGetComponent(out Animator animator))
+        {
+            if (on)
+                animator.Play("JokerMark");
+        }
     }
 
     /// <summary>
