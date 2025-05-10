@@ -33,7 +33,7 @@ public class PistelFire : InstantaneousSkill, IObserver
     {
         if (_attackCount >= Data.GetValue(0))
         {
-            weapon.owner.StartCoroutine(IE_DisableAttack());
+            /*weapon.owner.StartCoroutine(IE_DisableAttack());*/
             return true;
         }
 
