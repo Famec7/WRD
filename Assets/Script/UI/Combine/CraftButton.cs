@@ -92,7 +92,7 @@ public class CraftButton : MonoBehaviour
             }
 
             WeaponData weaponData = WeaponDataManager.Instance.GetWeaponData(weaponID);
-
+            Debug.Log(weaponID);
             if (hasMaterialCnt == materialWeapons.Length && !isMasterKey)
             {
                 canCombineBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
