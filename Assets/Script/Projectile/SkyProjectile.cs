@@ -8,7 +8,7 @@ public class SkyProjectile : FallingProjectile
     [SerializeField] private float _offset = 0.5f;
     
     /********************************Effect********************************/
-    private AnimationEffect _auraEffect;
+    private EffectBase _auraEffect;
     
     [SerializeField]
     private SlowZone _slowZone;
@@ -16,6 +16,9 @@ public class SkyProjectile : FallingProjectile
     /********************************Animation********************************/
     [SerializeField]
     private AnimationClip _animationClip;
+    
+    /********************************Data********************************/
+    private float _stunDuration = 0.0f;
 
     public void SetPosition(Vector3 ownerPosition, Vector3 targetPosition)
     {
@@ -46,9 +49,10 @@ public class SkyProjectile : FallingProjectile
         base.SetData(data);
         
         Damage = data.GetValue(0);
-        float slowRate = data.GetValue(2);
+        _stunDuration = data.GetValue(1);
+        float slowRate = data.GetValue(3);
         
-        Dealy ??= new WaitForSeconds(data.GetValue(1));
+        Dealy ??= new WaitForSeconds(data.GetValue(2));
         
         _slowZone.SetData(0, data.Range, slowRate);
     }
@@ -65,13 +69,14 @@ public class SkyProjectile : FallingProjectile
             {
                 monster.HasAttacked(Damage);
                 StatusEffectManager.Instance.AddStatusEffect(monster.status, new Wound(target.gameObject));
+                StatusEffectManager.Instance.AddStatusEffect(monster.status, new Stun(target.gameObject, _stunDuration));
             }
         }
         
         // 슬로우 장판 생성
-        /*_auraEffect = EffectManager.Instance.CreateEffect<AnimationEffect>("SkySwordAura");
+        _auraEffect = EffectManager.Instance.CreateEffect<EffectBase>("SkySwordAura");
         _auraEffect.SetPosition(transform.position);
-        _auraEffect.PlayEffect();*/
+        _auraEffect.PlayEffect();
         
         _slowZone.SetPosition(transform.position);
         _slowZone.PlayEffect();
@@ -83,6 +88,7 @@ public class SkyProjectile : FallingProjectile
     {
         base.ReturnToPool();
         
+        _auraEffect.StopEffect();
         transform.position = Vector3.zero;
     }
 
