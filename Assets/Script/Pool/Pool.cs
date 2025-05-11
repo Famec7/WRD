@@ -125,7 +125,7 @@ public class Pool<T> : IPool<T> where T : Component
         // 오브젝트가 활성화되지 않았으면 예외 발생
         if (!_activeClones.Contains(clone))
         {
-            throw new Exception("ObjectPool: Return(" + clone.name + ") - The object is already inactive.");
+            Debug.LogWarning("ObjectPool: Return(" + clone.name + ") - The object is already inactive.");
             return;
         }
 
