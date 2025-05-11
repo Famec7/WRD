@@ -32,6 +32,13 @@ public class CloverJackEffect : CardEffectBase
         var layer = LayerMaskProvider.MonsterLayerMask;
 
         var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, range, default, layer);
+        
+        var effect = EffectManager.Instance.CreateEffect<ParticleEffect>("CloverJack");
+        effect.SetPosition(Weapon.owner.transform.position);
+        effect.SetScale(range);
+        effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, targetPosition)));
+        effect.PlayEffect();
+        
         foreach (var target in targets)
         {
             if (target.TryGetComponent(out Monster monster))

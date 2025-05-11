@@ -26,7 +26,7 @@ public class SkySword : PassiveSkillBase
 #endif
                 return false;
             }
-
+            
             projectile.SetPosition(weapon.owner.transform.position, weapon.owner.Target.transform.position);
             projectile.SetData(Data);
 

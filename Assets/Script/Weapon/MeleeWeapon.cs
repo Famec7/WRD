@@ -10,6 +10,7 @@ public class MeleeWeapon : WeaponBase
         Sword,
         Spear,
         Club,
+        Joker,
     }
     
     [SerializeField]
@@ -27,14 +28,15 @@ public class MeleeWeapon : WeaponBase
 #endif
             monster.HasAttacked(Data.AttackDamage);
             
-            ParticleEffect particleEffect = GetHitEffect();
-            particleEffect.SetPosition(owner.Target.transform.position);
+            EffectBase hitEffect = GetHitEffect();
+            hitEffect.SetPosition(owner.Target.transform.position);
+            hitEffect.PlayEffect();
             
             SoundManager.Instance.PlaySFX(_attackSound);
         }
     }
-    
-    public ParticleEffect GetHitEffect()
+
+    private EffectBase GetHitEffect()
     {
         switch (type)
         {
@@ -44,6 +46,8 @@ public class MeleeWeapon : WeaponBase
                 return EffectManager.Instance.CreateEffect<ParticleEffect>("NormalHit");
             case Type.Club:
                 return EffectManager.Instance.CreateEffect<ParticleEffect>("ClubHit");
+            case Type.Joker:
+                return EffectManager.Instance.CreateEffect<AnimationEffect>("JokerSlash");
             default:
                 break;
         }

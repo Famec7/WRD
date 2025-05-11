@@ -16,7 +16,7 @@ public class HeavenFalling : ClickTypeSkill
         var holySword = ProjectileManager.Instance.CreateProjectile<HolyProjectile>();
         
         holySword.SetData(Data);
-        holySword.transform.position = (Vector3)ClickPosition + (Vector3)_offset;
+        holySword.SetPosition((Vector3)ClickPosition + (Vector3)_offset);
         holySword.Target = ClickPosition;
         
         return true;

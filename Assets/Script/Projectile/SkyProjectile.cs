@@ -5,14 +5,20 @@ public class SkyProjectile : FallingProjectile
 {
     /********************************Target********************************/
     [Header("Offset")]
-    [SerializeField] private float _radius;
-    [SerializeField] private float _degree;
+    [SerializeField] private float _offset = 0.5f;
     
     /********************************Effect********************************/
     private EffectBase _auraEffect;
     
     [SerializeField]
     private SlowZone _slowZone;
+    
+    /********************************Animation********************************/
+    [SerializeField]
+    private AnimationClip _animationClip;
+    
+    /********************************Data********************************/
+    private float _stunDuration = 0.0f;
 
     public void SetPosition(Vector3 ownerPosition, Vector3 targetPosition)
     {
@@ -24,14 +30,17 @@ public class SkyProjectile : FallingProjectile
         // 캐릭터와 타겟 사이의 축이 사분면에 따라 방향을 조절
         int directionX = direction.x > 0 ? -1 : 1;
         
-        Vector2 offset = new Vector2(Mathf.Cos(_degree * Mathf.Deg2Rad) * directionX, Mathf.Sin(_degree * Mathf.Deg2Rad)) * _radius;
+        /*Vector2 offset = new Vector2(Mathf.Cos(_degree * Mathf.Deg2Rad) * directionX, Mathf.Sin(_degree * Mathf.Deg2Rad)) * _radius;*/
         
         // SpriteRenderer의 flip을 이용하여 방향을 조절
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.flipX = direction.x > 0;
         
         // 위치와 회전을 조절
-        transform.position = targetPosition + (Vector3)offset;
+        Vector3 position = targetPosition + new Vector3(-direction.x * _offset, _offset, 0);
+        transform.position = position;
+        
+        InitPosition(position);
     }
     
     /********************************Data********************************/
@@ -40,9 +49,10 @@ public class SkyProjectile : FallingProjectile
         base.SetData(data);
         
         Damage = data.GetValue(0);
-        float slowRate = data.GetValue(2);
+        _stunDuration = data.GetValue(1);
+        float slowRate = data.GetValue(3);
         
-        Dealy ??= new WaitForSeconds(data.GetValue(1));
+        Dealy ??= new WaitForSeconds(data.GetValue(2));
         
         _slowZone.SetData(0, data.Range, slowRate);
     }
@@ -59,12 +69,14 @@ public class SkyProjectile : FallingProjectile
             {
                 monster.HasAttacked(Damage);
                 StatusEffectManager.Instance.AddStatusEffect(monster.status, new Wound(target.gameObject));
+                StatusEffectManager.Instance.AddStatusEffect(monster.status, new Stun(target.gameObject, _stunDuration));
             }
         }
         
         // 슬로우 장판 생성
         _auraEffect = EffectManager.Instance.CreateEffect<EffectBase>("SkySwordAura");
         _auraEffect.SetPosition(transform.position);
+        _auraEffect.PlayEffect();
         
         _slowZone.SetPosition(transform.position);
         _slowZone.PlayEffect();
@@ -75,6 +87,18 @@ public class SkyProjectile : FallingProjectile
     public override void ReturnToPool()
     {
         base.ReturnToPool();
+        
         _auraEffect.StopEffect();
+        transform.position = Vector3.zero;
+    }
+
+    public override void GetFromPool()
+    {
+        base.GetFromPool();
+
+        if (TryGetComponent(out Animator animator))
+        {
+            animator.Play(_animationClip.name);
+        }
     }
 }

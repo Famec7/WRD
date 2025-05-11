@@ -30,10 +30,13 @@ public class HolyProjectile : FallingProjectile
 
     #endregion
 
-    private EffectBase _auraEffect;
+    private AnimationEffect _auraEffect;
     
     [SerializeField]
     private DamageAmplificationZone _damageAmplificationZone;
+    
+    [SerializeField]
+    private AnimationClip _animationClip;
     
     protected override void OnSwordImpact()
     {
@@ -51,7 +54,7 @@ public class HolyProjectile : FallingProjectile
             }
         }
         
-        _auraEffect = EffectManager.Instance.CreateEffect<EffectBase>("HolySwordAura");
+        _auraEffect = EffectManager.Instance.CreateEffect<AnimationEffect>("HolySwordAura");
         _auraEffect.SetPosition(transform.position);
         _auraEffect.PlayEffect();
         
@@ -93,5 +96,15 @@ public class HolyProjectile : FallingProjectile
         
         _auraEffect.StopEffect();
         _damageAmplificationZone.StopEffect();
+    }
+    
+    public override void GetFromPool()
+    {
+        base.GetFromPool();
+
+        if (TryGetComponent(out Animator animator))
+        {
+            animator.Play(_animationClip.name);
+        }
     }
 }

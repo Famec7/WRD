@@ -121,7 +121,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speed: 1
   _degree: 60
 --- !u!1 &4180195826425338574
 GameObject:
@@ -182,7 +181,7 @@ MonoBehaviour:
   activeSkillList:
   - {fileID: -6321969850104291216}
   anim: {fileID: 6453325785724259777}
-  type: 0
+  type: 3
   _attackSound: {fileID: 8300000, guid: 9b6b51fa6e4d09a409899aa2c9e8a24b, type: 3}
 --- !u!114 &-3269616315496645424
 MonoBehaviour:
@@ -197,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 15
+  _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
   _range: 1
 --- !u!114 &-6321969850104291216
@@ -212,8 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 10
-  weapon: {fileID: 0}
   _skillIcon: {fileID: 21300000, guid: 31dc74f3052325c4ea70cb51c94b9fdf, type: 3}
+  weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []

@@ -9,9 +9,9 @@ public class Projectile : ProjectileBase
     private Vector3 _startPosition;
     private float _journeyLength;
 
-    private void Start()
+    protected void InitPosition(Vector3 position)
     {
-        _startPosition = transform.position;
+        _startPosition = position;
         _journeyLength = Vector3.Distance(_startPosition, Target);
         _startTime = Time.time;
     }
@@ -23,6 +23,12 @@ public class Projectile : ProjectileBase
         float easedFraction = curve.Evaluate(fractionOfJourney);
         
         transform.position = Vector3.Lerp(_startPosition, Target, easedFraction);
+    }
+
+    public void SetPosition(Vector3 position)
+    {
+        transform.position = position;
+        InitPosition(position);
     }
 
     public override void GetFromPool()
