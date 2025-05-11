@@ -18,16 +18,15 @@ public class HighVisionStrike : PassiveSkillBase
         
         SoundManager.Instance.PlaySFX(_strikeSound);
         
+        ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("HighVisionStrike");
+        effect.SetPosition(targetPosition);
+        effect.PlayEffect();
+        
         foreach (var tar in targets)
         {
             if (tar.TryGetComponent(out Monster monster))
             {
                 Attack(monster);
-                
-                ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("HighVisionStrike");
-                
-                effect.SetPosition(target.transform.position);
-                effect.PlayEffect();
             }
         }
         

@@ -146,10 +146,12 @@ public class PlayerController : CharacterController, ISubject
         {
             Target = col.gameObject;
             IsTouchTarget = true;
+            ChangeState(State.CHASE);
         }
         else
         {
             Target = null;
+            IsTouchTarget = false;
             ChangeState(State.MOVE);
         }
     }

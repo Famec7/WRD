@@ -12,15 +12,17 @@ public static class Pool
     /// <param name="count"> 원하는 개수 넣으면 됨 </param>
     /// <typeparam name="T"> 어떤 컴포넌트로 넣을지 정하면 됨 </typeparam>
     /// <returns> Pool 클래스를 반환 </returns>
-    public static Pool<T> CreatePool<T>(T prefab, int count) where T : Component
+    public static Pool<T> CreatePool<T>(T prefab, int count, string name) where T : Component
     {
-        return Pool<T>.CreatePool(prefab, count);
+        return Pool<T>.CreatePool(prefab, count, name);
     }
 }
 
 public class Pool<T> : IPool<T> where T : Component
 {
     Component IPool.Component => Component;
+    
+    public string Name { get; private set; }
     
     public T Component { get; private set; }
 
@@ -30,7 +32,7 @@ public class Pool<T> : IPool<T> where T : Component
 
     private readonly List<T> _activeClones = new List<T>();
 
-    internal static Pool<T> CreatePool(T prefab, int count)
+    internal static Pool<T> CreatePool(T prefab, int count, string name)
     {
         count = Mathf.Max(count, 0);
 
@@ -38,7 +40,8 @@ public class Pool<T> : IPool<T> where T : Component
         {
             Component = prefab,
             Count = count,
-            _clones = new(count)
+            _clones = new(count),
+            Name = name
         };
 
         return pool;
@@ -50,6 +53,7 @@ public class Pool<T> : IPool<T> where T : Component
         {
             T clone = Object.Instantiate(Component, Vector3.zero, Quaternion.identity);
             clone.gameObject.SetActive(false);
+            clone.name = Name;
             
             _clones.Add(clone);
         }
@@ -94,6 +98,7 @@ public class Pool<T> : IPool<T> where T : Component
             }
 
             clone = Object.Instantiate(Component);
+            clone.name = Name;
             _clones.Add(clone);
         }
 

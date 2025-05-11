@@ -20,7 +20,12 @@ public class ChaseState : IState<PlayerController>
         Vector3 dir = (targetPos - entity.transform.position).normalized;
         entity.MoveDir = dir;
         
-        entity.transform.position += dir * (entity.Data.MoveSpeed * Time.deltaTime);
+        Vector3 newPosition = entity.transform.position + dir * (entity.Data.MoveSpeed * Time.deltaTime);
+        
+        newPosition.x = Mathf.Clamp(newPosition.x, entity.MinX, entity.MaxX);
+        newPosition.y = Mathf.Clamp(newPosition.y, entity.MinY, entity.MaxY);
+        
+        entity.transform.position = newPosition;
     }
 
     public void Exit(PlayerController entity)

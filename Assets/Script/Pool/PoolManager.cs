@@ -36,7 +36,7 @@ public class PoolManager : MonoBehaviour
             var poolType = genericPoolType.MakeGenericType(poolData.Prefab.GetType());
             var createPoolMethod = poolType.GetMethod("CreatePool", BindingFlags.Static | BindingFlags.NonPublic);
             
-            var pool = createPoolMethod.Invoke(null, new object[] {poolData.Prefab, poolData.Count});
+            var pool = createPoolMethod.Invoke(null, new object[] {poolData.Prefab, poolData.Count, poolData.Name});
             
             if(poolData.PreloadOnStart)
             {

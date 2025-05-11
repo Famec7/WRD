@@ -13,12 +13,6 @@
             entity.ChangeState(PlayerController.State.IDLE);
             return;
         }
-        
-        float targetPosX = entity.Target.transform.position.x;
-        float playerPosX = entity.transform.position.x;
-
-        bool isRight = targetPosX > playerPosX;
-        entity.SetFlip(isRight);
     }
 
     public void Execute(PlayerController entity)
@@ -29,6 +23,7 @@
             return;
         }
 
+        CheckFlip(entity);
         bool isAttackSuccess = entity.Data.CurrentWeapon.UpdateAttack();
 
         if (isAttackSuccess is false)
@@ -36,11 +31,13 @@
             return;
         }
 
-        if (entity.IsTouchTarget && entity.IsTargetInRange() is false)
+        bool isTargetInRange = entity.IsTargetInRange();
+        if (entity.IsTouchTarget && isTargetInRange == false)
         {
             entity.ChangeState(PlayerController.State.CHASE);
+            return;
         }
-        else
+        if (entity.IsTouchTarget == false)
         {
             entity.ChangeState(PlayerController.State.IDLE);
         }
@@ -49,5 +46,14 @@
     public void Exit(PlayerController entity)
     {
         ;
+    }
+    
+    private void CheckFlip(PlayerController entity)
+    {
+        float targetPosX = entity.Target.transform.position.x;
+        float playerPosX = entity.transform.position.x;
+
+        bool isRight = targetPosX > playerPosX;
+        entity.SetFlip(isRight);
     }
 }
