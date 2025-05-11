@@ -5,6 +5,10 @@ public class DividedDevilBullet : PassiveSkillBase
 {
     [SerializeField]
     private AudioClip _bulletSound;
+    
+    [SerializeField]
+    private Animator _animator;
+    
     private readonly List<Monster> _targets = new List<Monster>();
 
     public override bool Activate(GameObject target = null)
@@ -16,6 +20,7 @@ public class DividedDevilBullet : PassiveSkillBase
         {
             SpawnBullet();
             SoundManager.Instance.PlaySFX(_bulletSound);
+            _animator.Play("DevilBullet", -1, 0f);
             return true;
         }
 
