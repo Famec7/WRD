@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class ThunderStrike : PassiveSkillBase
 {
-    private WaitForSeconds _delay = null;
     private float _damage = 0f;
 
     protected override void Init()
@@ -12,8 +11,6 @@ public class ThunderStrike : PassiveSkillBase
 
         // 낙뢰 데미지
         _damage = Data.GetValue(0);
-        // 전류가 잔존하는 시간
-        _delay = new WaitForSeconds(Data.GetValue(1));
     }
 
     public override bool Activate(GameObject target = null)
@@ -33,21 +30,12 @@ public class ThunderStrike : PassiveSkillBase
         Attack();
 
         // 전류 이펙트
-        StartCoroutine(IE_ElectricEffect(target));
-    }
-
-    private IEnumerator IE_ElectricEffect(GameObject target)
-    {
         var thunderEffect = EffectManager.Instance.CreateEffect<ElectricEffect>("ThunderEffect");
 
         // 낙뢰 이펙트 발생
         thunderEffect.SetData(Data);
         thunderEffect.SetPosition(target.transform.position);
         thunderEffect.PlayEffect();
-        
-        yield return _delay;
-
-        thunderEffect.StopEffect();
     }
 
     private void Attack()
