@@ -48,7 +48,7 @@ public class Status : MonoBehaviour
     public int ElectricShockStack; // 감전
     
     [HideInInspector]
-    public bool IsJokerMark; // 조커 표식
+    public int IsJokerMark; // 조커 표식
     
     [HideInInspector]
     public float DevilBulletDamageAmplification; // 악탄
@@ -110,7 +110,7 @@ public class Status : MonoBehaviour
         MarkStack = 0;
         DamageAmplification = 0;
         ElectricShockStack = 0;
-        IsJokerMark = false;
+        IsJokerMark = 0;
         DevilBulletDamageAmplification = 0;
         moveSpeedMultiplier = 1f;
     }
