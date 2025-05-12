@@ -186,7 +186,6 @@ MonoBehaviour:
   _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
   _bulletSound: {fileID: 8300000, guid: 95b39c726153cce4e8023e5231370ab8, type: 3}
-  _animator: {fileID: 3906621347249261821}
 --- !u!114 &1958692894468307965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +220,7 @@ MonoBehaviour:
   _isFixedPosition: 0
   IndicatorMonsters: []
   _bulletSound: {fileID: 8300000, guid: e54f9197c59291b4ab105c0320999294, type: 3}
+  _animator: {fileID: 3906621347249261821}
 --- !u!1 &8944427412805998708
 GameObject:
   m_ObjectHideFlags: 0
