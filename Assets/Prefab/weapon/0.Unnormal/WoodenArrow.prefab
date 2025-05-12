@@ -56,6 +56,7 @@ MonoBehaviour:
   activeSkillList: []
   anim: {fileID: 4642341142702726540}
   type: 0
+  _isShowProjectile: 0
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
 --- !u!1 &5579874562778471843
 GameObject:
@@ -178,5 +179,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speed: 2
   _endPosition: {x: 0.1, y: 0, z: 0}

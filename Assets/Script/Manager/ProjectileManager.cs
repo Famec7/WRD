@@ -20,6 +20,11 @@ public class ProjectileManager : Singleton<ProjectileManager>
 
     public void ReturnProjectileToPool<T>(T projectile, string projectileName = default) where T : ProjectileBase
     {
+        if (projectile.TryGetComponent(out SpriteRenderer sprite))
+        {
+            sprite.enabled = true;
+        }
+        
         if(projectileName == default)
             _poolManager.ReturnToPool(projectile);
         else

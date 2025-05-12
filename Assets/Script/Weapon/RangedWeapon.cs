@@ -14,6 +14,9 @@ public class RangedWeapon : WeaponBase
 
     [SerializeField] protected Type type;
     
+    [SerializeField]
+    private bool _isShowProjectile = true;
+    
     [Space] [Header("무기 종류에 맞는 사운드")]
     [SerializeField] private AudioClip _attackSound;
     
@@ -24,11 +27,11 @@ public class RangedWeapon : WeaponBase
         if (owner.Target.TryGetComponent(out Monster monster))
         {
             var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
-
-            if (type == Type.Gun)
+            
+            if (_isShowProjectile == false)
+            {
                 projectile.GetComponent<SpriteRenderer>().enabled = false;
-            else
-                projectile.GetComponent<SpriteRenderer>().enabled = true;
+            }
 
             projectile.Target = owner.Target.gameObject;
             projectile.SetType(type);

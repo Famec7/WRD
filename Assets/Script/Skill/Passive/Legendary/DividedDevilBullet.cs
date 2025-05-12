@@ -67,15 +67,8 @@ public class DividedDevilBullet : PassiveSkillBase
         while(bulletCount-- > 0)
         {
             Monster monster = _targets[targetIndex];
-            
-            float randomX = Random.Range(-1f, 1f);
-            float randomY = Random.Range(-1f, 1f);
-            Vector3 spawnPosition = this.transform.position + new Vector3(randomX, randomY, 0);
 
-            GuidedProjectile bullet = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, spawnPosition);
-            bullet.SetType(RangedWeapon.Type.Gun);
-            bullet.Target = monster.gameObject;
-            bullet.OnHit = () => OnHit(monster, damage);
+            OnHit(monster, damage);
             
             targetIndex++;
             if (targetIndex >= _targets.Count)

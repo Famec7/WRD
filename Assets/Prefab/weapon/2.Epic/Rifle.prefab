@@ -182,6 +182,7 @@ MonoBehaviour:
   - {fileID: 5024238325934650485}
   anim: {fileID: 929464643217821976}
   type: 1
+  _isShowProjectile: 0
   _attackSound: {fileID: 8300000, guid: e7124a4641a18c94c952ff8eabc6adf9, type: 3}
 --- !u!114 &3572741182610153992
 MonoBehaviour:
