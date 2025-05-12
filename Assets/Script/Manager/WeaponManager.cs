@@ -66,9 +66,9 @@ public class WeaponManager : Singleton<WeaponManager>
                 ActiveSkillBase activeSkill = detachedWeapon.GetActiveSkill(i);
                 activeSkill.enabled = false;
             }
+            SkillManager.Instance.RemoveAllSkill();
         }
         
-        SkillManager.Instance.RemoveAllSkill();
         _poolManager.ReturnToPool(detachedWeapon.Data.WeaponName, detachedWeapon);
         
         _equippedWeapons[characterIndex] = null;
