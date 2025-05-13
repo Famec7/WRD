@@ -176,7 +176,7 @@ MonoBehaviour:
     _pivot: {x: -0.083, y: -0.066, z: 0}
     _originRotation: {x: 0, y: 0, z: 0}
     _originScale: {x: 1, y: 1, z: 1}
-  weaponNum: 510
+  weaponNum: 511
   passiveSkillList: []
   passiveAuraSkillList:
   - {fileID: 4042815741261854713}
