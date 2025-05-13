@@ -245,6 +245,8 @@ public class MonsterSpawnManager : MonoBehaviour
         isSpawnStop = false;
         isBossSpawn = false;
         isBossWave = bossSpawnNum[GameManager.Instance.wave - 1] >= 1;
+        if (isBossWave)
+            isNormalSpawnStop = true;
         _skipButton.gameObject.SetActive(false);
     }
 
