@@ -25,6 +25,7 @@ TagManager:
   - DetailedDescriptionUI
   - EndPoint
   - WeaponPicker
+  - CombinedWeaponImage
   layers:
   - Default
   - TransparentFX

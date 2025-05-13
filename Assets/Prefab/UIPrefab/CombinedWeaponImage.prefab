@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 6527636723949462780}
   m_Layer: 5
   m_Name: CombinedWeaponImage
-  m_TagString: Untagged
+  m_TagString: CombinedWeaponImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,8 +222,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa25c5ae98c51944930bf9fb314601d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMain: 0
   weaponID: 0
   materialWeapons: 
+  isElement: 0
   canCombineBorder: {fileID: 6680876525098609470}
 --- !u!1 &6680876525098609470
 GameObject:

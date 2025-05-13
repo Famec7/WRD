@@ -542,6 +542,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1682052871}
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: WeaponPickerPopUpUI
+      value: 
+      objectReference: {fileID: 1969422565}
+    - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: BookmarkSlotSelectUI
       value: 
       objectReference: {fileID: 419177329}

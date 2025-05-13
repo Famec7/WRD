@@ -32,6 +32,7 @@ public class UIPopUp : MonoBehaviour
                 UIManager.instance.CloseDetailedDescriptionPopUpUI();
                 UIManager.instance.CloseDetailedCombinationPopUpUI();
                 UIManager.instance.longClickPopUpUI.SetActive(false);
+                UIManager.instance.WeaponPickerPopUpUI.SetActive(false);
                 foreach (var pickerUI in MasterKeyManager.Instance.WeaponPickerList)
                     pickerUI.SetActive(false);
             }
@@ -40,7 +41,7 @@ public class UIPopUp : MonoBehaviour
             foreach (var result in popUPresults)
             {
                 if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count >= 3 || result.gameObject.CompareTag("DetailedDescriptionUI") ||
-                    result.gameObject.CompareTag("Mission") || result.gameObject.CompareTag("InventoryDescriptionUI") || result.gameObject.CompareTag("WeaponPicker"))
+                    result.gameObject.CompareTag("Mission") || result.gameObject.CompareTag("InventoryDescriptionUI") || result.gameObject.CompareTag("WeaponPicker") || result.gameObject.CompareTag("CombinedWeaponImage"))
                     isButton = true;
             }
 

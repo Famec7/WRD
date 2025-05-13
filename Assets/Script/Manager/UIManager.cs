@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
     public GameObject BookmarkSlotUI;
     public GameObject WeaponSlotSelectUI;
     public GameObject BookmarkSlotSelectUI;
+    public GameObject WeaponPickerPopUpUI;
 
     public GraphicRaycaster PopUpGr;
     public GraphicRaycaster Gr;
@@ -216,6 +217,7 @@ public class UIManager : MonoBehaviour
         CloseDetailedDescriptionPopUpUI();
         InitLongClickPopupUI();
         longClickPopUpUI.SetActive(false);
+        WeaponPickerPopUpUI.SetActive(false);
     }
    public void ChangeAutoSkipToggle()
     {
