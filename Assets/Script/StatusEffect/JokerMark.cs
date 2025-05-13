@@ -27,7 +27,7 @@ public class JokerMark : StatusEffect
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.IsJokerMark = false;
+            status.IsJokerMark--;
             _action?.Invoke(target.GetComponent<Monster>());
         }
         
@@ -39,14 +39,18 @@ public class JokerMark : StatusEffect
 #if STATUS_EFFECT_LOG
         Debug.Log($"{Joker Mark Effect Removed} - Duration: {duration}");
 #endif
-        monsterEffecter.SetJokerEffect(false);
+        
+        if (status.IsJokerMark <= 0)
+        {
+            monsterEffecter.SetJokerEffect(false);
+        }
     }
     
     private IEnumerator JokerMarkCoroutine()
     {
         if(target.TryGetComponent(out Status status))
         {
-            status.IsJokerMark = true;
+            status.IsJokerMark++;
             
             if(Math.Abs(duration - 0f) > 0.01f)
             {

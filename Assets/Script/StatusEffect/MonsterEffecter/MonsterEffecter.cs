@@ -30,6 +30,9 @@ public class MonsterEffecter : MonoBehaviour
     
     [Header("Joker Effect Setting")]
     [SerializeField] GameObject jokerEffect;
+    
+    [Header("Eyes Of Snake Effect Setting")]
+    [SerializeField] GameObject eyesOfSnakeEffect;
 
     [Header("Monster Dead Effect Setting")]
     [SerializeField] string deadEffectName = "MonsterDead";
@@ -220,6 +223,10 @@ public class MonsterEffecter : MonoBehaviour
         slowEffect.SetActive(on);
     }
 
+    /// <summary>
+    /// 조커 연출 사용 함수
+    /// </summary>
+    /// <param name="on"></param>
     public void SetJokerEffect(bool on)
     {
         if (jokerEffect == null) return;
@@ -232,6 +239,34 @@ public class MonsterEffecter : MonoBehaviour
             if (on)
                 animator.Play("JokerMark");
         }
+    }
+    
+    /// <summary>
+    /// 뱀의 주시 연출 사용 함수
+    /// </summary>
+    /// <param name="on"></param>
+    public void SetSnakeEffect(bool on, float duration)
+    {
+        if (eyesOfSnakeEffect == null) return;
+
+        eyesOfSnakeEffect.transform.position = monsterRenderer.bounds.center + new Vector3(0, monsterRenderer.bounds.extents.y, 0);
+        eyesOfSnakeEffect.SetActive(on);
+        
+        if (on)
+        {
+            //뱀의 주시 이펙트가 켜지면 n초 후에 꺼지게 하기
+            StartCoroutine(IE_SetSnakeEffect(duration));
+        }
+        else
+        {
+            eyesOfSnakeEffect.SetActive(false);
+        }
+    }
+    
+    private IEnumerator IE_SetSnakeEffect(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        SetSnakeEffect(false, 0);
     }
 
     /// <summary>

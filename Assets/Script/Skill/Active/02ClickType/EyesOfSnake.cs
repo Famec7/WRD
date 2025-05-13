@@ -19,12 +19,8 @@
         {
             return true;
         }
-            
-        StatusEffect damageAmplificationEffect = new DamageAmplification(target.gameObject, _damageAmplification, _duration);
-        StatusEffectManager.Instance.AddStatusEffect(target.status, damageAmplificationEffect);
-            
-        StatusEffect slowEffect = new SlowDown(target.gameObject, _slowRate, _duration);
-        StatusEffectManager.Instance.AddStatusEffect(target.status, slowEffect);
+        
+        ApplyEffect(target);
         
         return true;
     }
@@ -32,5 +28,23 @@
     public override void OnActiveExit()
     {
         ;
+    }
+    
+    private void ApplyEffect(Monster target)
+    {
+        StatusEffect markEffect = new Mark(target.gameObject, _duration);
+        StatusEffectManager.Instance.AddStatusEffect(target.status, markEffect);
+            
+        StatusEffect damageAmplificationEffect = new DamageAmplification(target.gameObject, _damageAmplification, _duration);
+        StatusEffectManager.Instance.AddStatusEffect(target.status, damageAmplificationEffect);
+            
+        StatusEffect slowEffect = new SlowDown(target.gameObject, _slowRate, _duration);
+        StatusEffectManager.Instance.AddStatusEffect(target.status, slowEffect);
+        
+        MonsterEffecter monsterEffecter = target.GetComponentInChildren<MonsterEffecter>();
+        if (monsterEffecter != null)
+        {
+            monsterEffecter.SetSnakeEffect(true, _duration);
+        }
     }
 }
