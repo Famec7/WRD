@@ -158,8 +158,8 @@ public class MonsterSpawnManager : MonoBehaviour
             if (GameManager.Instance.wave % 5 == 0) monsterIndex -= 1;
 
             UnitCode code = (UnitCode)((int)UnitCode.MONSTER1 + monsterIndex);
-
-            SpawnMonster(code);
+            if ((int)UnitCode.MONSTER1 + monsterIndex != -1)
+                SpawnMonster(code);
         }
         // BOSS 생성
         if (isBossWave && !isBossSpawn)
