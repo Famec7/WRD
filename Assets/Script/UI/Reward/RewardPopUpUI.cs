@@ -36,7 +36,7 @@ public class RewardPopUpUI : MonoBehaviour
         }
         else
         {
-            titleText = "미션" + idx.ToString() + "클리어!\n";
+            titleText = "미션" + (idx+1).ToString() + "클리어!\n";
         }
 
         titleText += "다음 보상 획득";
