@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class SkillPopup : MonoBehaviour
 {
     [SerializeField] private Image _panelImage;
-    [SerializeField] private TMP_Text _guideText;
 
     [SerializeField] private List<string> _guideTexts;
     private int _curGuideTextIndex = 0;
@@ -14,7 +13,6 @@ public class SkillPopup : MonoBehaviour
     public void ShowPopup(int index = 0)
     {
         _panelImage.gameObject.SetActive(true);
-        _guideText.gameObject.SetActive(true);
         
         _curGuideTextIndex = index;
         
@@ -24,7 +22,6 @@ public class SkillPopup : MonoBehaviour
     public void HidePopup()
     {
         _panelImage.gameObject.SetActive(false);
-        _guideText.gameObject.SetActive(false);
 
         _curGuideTextIndex = -1;
     }
@@ -38,7 +35,6 @@ public class SkillPopup : MonoBehaviour
             return;
         }
         
-        _guideText.text = _guideTexts[_curGuideTextIndex];
         _curGuideTextIndex++;
     }
 }

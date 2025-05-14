@@ -153,6 +153,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 120886990661144697, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: _poolDatas.Array.data[3]._count
       value: 20
@@ -424,6 +428,18 @@ PrefabInstance:
     - target: {fileID: 8074838461231275463, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: MasterKeyCountText.Array.data[5]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457063962167628055, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: m_Color.b
+      value: 0.38496798
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457063962167628055, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: m_Color.g
+      value: 0.38496798
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457063962167628055, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: m_Color.r
+      value: 0.38679248
       objectReference: {fileID: 0}
     - target: {fileID: 9059502256449264243, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: Gr
@@ -2082,6 +2098,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1123180149647439432, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1166917035176717740, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2896,6 +2916,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8350956329111051075, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406344950785498456, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -215.70001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8711320713991063150, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8832401447555704837, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
