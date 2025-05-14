@@ -51,6 +51,7 @@ public enum WeaponTier
     LEGENDARY,
     MYTH,
     MODIFIED,
+    MNORMAL,
     COUNT
 }
 

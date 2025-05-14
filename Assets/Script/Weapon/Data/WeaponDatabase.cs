@@ -53,6 +53,9 @@ public class WeaponDatabase : ScriptableObject
                 case "modified":
                     weaponData.tier = WeaponTier.MODIFIED;
                     break;
+                case "mnormal":
+                    weaponData.tier = WeaponTier.MNORMAL;
+                    break;
                 default:
                     weaponData.tier = WeaponTier.Empty; // 기본값 설정
                     Debug.LogWarning($"Unrecognized WeaponClass: {weaponData.WeaponClass}");
