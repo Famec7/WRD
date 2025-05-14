@@ -37,7 +37,7 @@ public class CheckForEnemiesCommand : ICommand
     {
         ;
     }
-    
+
     public void Undo()
     {
         _skill.ClearTargetMonsters();
