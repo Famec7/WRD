@@ -96,6 +96,8 @@ public class RewardManager : Singleton<RewardManager>
 
     public void GetReward(UnitCode code)
     {
+        if (GameManager.Instance.wave > 30) return;
+
         Tuple<string, List<int>> rewardTuple = null;
         rewardPopUpUIObejct_.SetActive(true);
         RewardPopUpUI rewardPopUpUI = rewardPopUpUIObejct_.GetComponent<RewardPopUpUI>(); 
