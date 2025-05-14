@@ -24,13 +24,6 @@ public class TheChosenOne : PassiveAuraSkillBase
         
         ApplyBuff(_damageMultiplier, _attackSpeedMultiplier);
         
-        Transform playerTransform = CharacterManager.Instance.GetCharacter((int)CharacterManager.CharacterType.Player).transform;
-        
-        _auraEffect = EffectManager.Instance.CreateEffect<ParticleEffect>("AuraEffect");
-        _auraEffect.transform.SetParent(playerTransform);
-        _auraEffect.SetPosition(playerTransform.position + Vector3.down * 0.5f);
-        _auraEffect.PlayEffect();
-        
         WeaponManager.Instance.OnWeaponEquipped += OnWeaponEquipped;
         WeaponManager.Instance.OnWeaponDetached += OnWeaponDetached;
     }
