@@ -178,8 +178,9 @@ MonoBehaviour:
   passiveAuraSkillList: []
   activeSkillList:
   - {fileID: 3827341178054065686}
-  anim: {fileID: 0}
+  anim: {fileID: 7049387736139468}
   type: 0
+  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
 --- !u!114 &3827341178054065686
 MonoBehaviour:
@@ -194,8 +195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 20
-  weapon: {fileID: 0}
   _skillIcon: {fileID: 0}
+  weapon: {fileID: 0}
   indicatorType: 1
   _isFixedPosition: 1
   IndicatorMonsters: []
