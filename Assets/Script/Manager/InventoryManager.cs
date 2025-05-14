@@ -635,12 +635,7 @@ public class InventoryManager : MonoBehaviour
 
         WeaponPickerConfirmPopUp.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
         {
-            MasterKeyManager.Instance.UpdateMasterKeyCount(data.tier, -1);
-            if (data.tier > WeaponTier.Normal)
-                AddItemByNum(num);
-            else
-                GameManager.Instance.weaponCnt[num - 101]++;
-            WeaponPickerConfirmPopUp.SetActive(false);
+            OnclickWeaponPicker(num);
         });
 
         WeaponPickerConfirmPopUp.SetActive(true);
@@ -652,10 +647,13 @@ public class InventoryManager : MonoBehaviour
 
        MasterKeyManager.Instance.UpdateMasterKeyCount(data.tier, -1);
 
-       if (data.tier > WeaponTier.Normal)
-           AddItemByNum(num);
-       else
-           GameManager.Instance.weaponCnt[num - 101]++;
+        if (data.tier > WeaponTier.Normal)
+        {
+            AddItemByNum(num);
+            GameManager.Instance.weaponCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(num)-1]++;
+        }
+        else
+            GameManager.Instance.weaponCnt[num - 101]++;
 
         GameManager.Instance.UpdateUseableWeaponCnt();
     }

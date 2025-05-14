@@ -42,7 +42,7 @@ public class UIPopUp : MonoBehaviour
             {
                 if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count >= 3 || result.gameObject.CompareTag("DetailedDescriptionUI") ||
                     result.gameObject.CompareTag("Mission") || result.gameObject.CompareTag("InventoryDescriptionUI") || result.gameObject.CompareTag("WeaponPicker") || result.gameObject.CompareTag("CombinedWeaponImage") ||
-                    result.gameObject.CompareTag("WeaponPickerConfrimPopUp"))
+                    result.gameObject.CompareTag("WeaponPickerConfrimPopUp") || result.gameObject.CompareTag("DescriptionButton"))
                     isButton = true;
             }
 
