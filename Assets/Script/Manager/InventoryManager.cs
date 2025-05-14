@@ -656,6 +656,8 @@ public class InventoryManager : MonoBehaviour
            AddItemByNum(num);
        else
            GameManager.Instance.weaponCnt[num - 101]++;
+
+        GameManager.Instance.UpdateUseableWeaponCnt();
     }
 
     public void OpenWeaponPickerConfirmPopUp(List<int> num,int targetWeaponID,List<int> materialIDList , bool isMain)
