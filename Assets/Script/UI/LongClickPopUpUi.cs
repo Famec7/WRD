@@ -154,6 +154,9 @@ public class LongClickPopUpUi : MonoBehaviour
                 }
             }
         }
+        if (inventorySlot == null)
+            inventorySlot = InventoryManager.instance.FindInventorySlot(weaponID);
+
         inventorySlot.GetComponent<InventorySlot>().equipText.gameObject.SetActive(false);
         
         // 장착중인 무기 해제
