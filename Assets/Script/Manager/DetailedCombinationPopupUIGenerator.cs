@@ -58,7 +58,7 @@ public class DetailedCombinationPopupUIGenerator : Singleton<DetailedCombination
             }
 
             var data = WeaponDataManager.Instance.GetWeaponData(weaponId);
-            if (data == null || weaponId < 6) continue;
+            if (data == null || weaponId < 6 || weaponId == 51) continue;
             string combi = data.Combi;
             
             string[] combis = combi.Split('\x020');

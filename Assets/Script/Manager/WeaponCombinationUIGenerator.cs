@@ -30,7 +30,7 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
             List<int> canCombinWeaponsList = new List<int>();
             int canCombineCnt = 0;
              
-            for (int j = 5; j < weaponDataCount; j++)
+            for (int j = 5; j < weaponDataCount-1; j++)
             {
                 var data = WeaponDataManager.Instance.GetWeaponData(j + 1);
                  string combi = data.Combi;

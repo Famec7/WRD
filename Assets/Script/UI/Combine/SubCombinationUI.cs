@@ -30,7 +30,7 @@ public class SubCombinationUI : MonoBehaviour
             int materialID = WeaponDataManager.Instance.Database.GetWeaponIdByNum(materialNum);
             craftButtons[index++].weaponID = materialID;
             
-            if (materialID < 6) continue;
+            if (materialID < 6 || materialID == 51) continue;
 
             string combi = WeaponDataManager.Instance.Database.GetWeaponData(materialID).Combi;
             string mainCombi = WeaponDataManager.Instance.Database.GetWeaponData(materialID).MainCombi;

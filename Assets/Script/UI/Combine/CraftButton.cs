@@ -12,12 +12,14 @@ public class CraftButton : MonoBehaviour
     public int weaponID;
     public int[] materialWeapons;
     public bool isElement = false;
+    public bool isModifyElement = false;
 
     public GameObject canCombineBorder;
 
     void Start()
     {
         isElement = weaponID < 6 ? true : false;
+        isModifyElement = weaponID == 51;
     }
 
     // Update is called once per frame
@@ -47,12 +49,12 @@ public class CraftButton : MonoBehaviour
         if (isElement)
         {
             gameObject.GetComponent<Button>().enabled = false;
-            if (MasterKeyManager.Instance.masterKeyCnt[weaponID - 1] > 0 && !isMain)
+            if (MasterKeyManager.Instance.masterKeyCnt[weaponID - 1] > 0 && !isMain && isElement)
             {
                 canCombineBorder.GetComponent<Image>().color = new Color32(255, 71, 40, 255);
             }
         }
-        else
+        else if (!isModifyElement)
         {
             int hasMaterialCnt = 0;
             int[] tmpCnt = new int[GameManager.Instance.weaponCnt.Length];
@@ -84,6 +86,8 @@ public class CraftButton : MonoBehaviour
 
             foreach (var data in absentWeaponData)
             {
+                if (data.tier == WeaponTier.MNORMAL) continue; 
+
                 if (tmpMasterKeyCnt[(int)data.tier - 1] >= 1)
                 {
                     hasMaterialCnt++;
@@ -200,6 +204,9 @@ public class CraftButton : MonoBehaviour
                 break;
             case "modified":
                 color = new Color32(160, 43, 147, 255);
+                break;
+            case "mnormal":
+                color = new Color32(255, 0, 0, 255);
                 break;
         }
 
