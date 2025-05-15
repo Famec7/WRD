@@ -80,8 +80,8 @@ public class WeaponManager : Singleton<WeaponManager>
         WeaponBase toWeapon = _equippedWeapons[toCharacterIndex];
         
         // 무기 교체
-        fromWeapon?.DetachWeapon();
-        toWeapon?.DetachWeapon();
+        fromWeapon?.DetachWeapon(false);
+        toWeapon?.DetachWeapon(false);
         
         fromWeapon?.EquipWeapon(CharacterManager.Instance.GetCharacter(toCharacterIndex));
         toWeapon?.EquipWeapon(CharacterManager.Instance.GetCharacter(fromCharacterIndex));

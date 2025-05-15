@@ -49,11 +49,5 @@ public class ActiveSkillCommand : ICommand
     {
         _skill.OnActiveExit();
         _skill.IsActive = false;
-        
-        if (_skill is not InstantaneousSkill)
-        {
-            _skill.CurrentCoolTime = _skill.Data.CoolTime;
-            _skill.ExecuteCoolTimeCommand();
-        }
     }
 }

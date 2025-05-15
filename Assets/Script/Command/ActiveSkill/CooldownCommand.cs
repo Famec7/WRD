@@ -52,6 +52,6 @@ public class CooldownCommand : ICommand
 
     public void Undo()
     {
-        skill.CurrentCoolTime = skill.Data.CoolTime;
+        ;
     }
 }

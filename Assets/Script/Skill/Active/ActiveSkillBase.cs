@@ -64,6 +64,13 @@ public abstract class ActiveSkillBase : SkillBase
         ExecuteCoolTimeCommand();
     }
 
+    public void ExecuteSkill()
+    {
+        commandInvoker.Reset();
+        CurrentCoolTime = 0.0f;
+        ExecuteCoolTimeCommand();
+    }
+
     public void AddCommand(ICommand command)
     {
         commandInvoker.AddCommand(command);

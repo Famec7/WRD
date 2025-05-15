@@ -207,7 +207,7 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
         owner.AttachWeapon(this);
     }
 
-    public void DetachWeapon()
+    public void DetachWeapon(bool isResetCoolTime = true)
     {
         anim?.StopAnimation();
         
@@ -215,7 +215,10 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
         {
             foreach (var skill in activeSkillList)
             {
-                skill.CancelSkill();
+                if (isResetCoolTime)
+                    skill.ExecuteSkill();
+                else
+                    skill.CancelSkill();
             }
         }
         

@@ -5,8 +5,6 @@ public class TheChosenOne : PassiveAuraSkillBase
     private float _damageMultiplier;
     private float _attackSpeedMultiplier;
     
-    private ParticleEffect _auraEffect;
-    
     protected override void Init()
     {
         base.Init();
@@ -36,8 +34,6 @@ public class TheChosenOne : PassiveAuraSkillBase
         }
         
         RemoveBuff();
-        
-        _auraEffect.StopEffect();
         
         WeaponManager.Instance.OnWeaponEquipped -= OnWeaponEquipped;
         WeaponManager.Instance.OnWeaponDetached -= OnWeaponDetached;
