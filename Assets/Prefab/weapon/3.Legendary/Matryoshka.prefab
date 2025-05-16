@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1762292133358087807}
   - component: {fileID: 7024788216712616616}
   - component: {fileID: 3641344283379959334}
-  - component: {fileID: -6178006827734595661}
+  - component: {fileID: 3935019648868971263}
   m_Layer: 0
   m_Name: Matryoshka
   m_TagString: Untagged
@@ -147,9 +147,10 @@ MonoBehaviour:
   - {fileID: 3641344283379959334}
   passiveAuraSkillList: []
   activeSkillList:
-  - {fileID: -6178006827734595661}
+  - {fileID: 3935019648868971263}
   anim: {fileID: 0}
   type: 2
+  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 382ebf6ebe0983a4a8d6780a155a9da8, type: 3}
 --- !u!114 &3641344283379959334
 MonoBehaviour:
@@ -167,8 +168,12 @@ MonoBehaviour:
   _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
   stunRange: 3
+  slowRanges:
+  - 2
+  - 2.5
+  - 3
   _slowZone: {fileID: 6736480360790856242}
---- !u!114 &-6178006827734595661
+--- !u!114 &3935019648868971263
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,20 +186,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 16
-  _skillIcon: {fileID: 21300000, guid: 038ee66f98a8bcf4e89113d1bf48371c, type: 3}
+  _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
   indicatorType: 0
-  _isFixedPosition: 0
+  _isFixedPosition: 1
   IndicatorMonsters: []
   _ranges:
-  - 2
-  - 2.5
-  - 3
+  - 4.5
+  - 4
+  - 3.5
   _matryoshkaSpriteChanger: {fileID: 4508801962611740291}
-  _coolTimes:
-  - 20
-  - 10
-  - 5
 --- !u!1 &9108334578788373779
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2377b8b094334dbc8b80ca6aca2191a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isParentNull: 0
 --- !u!1001 &5380444004298302158
 PrefabInstance:
   m_ObjectHideFlags: 0

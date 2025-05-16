@@ -569,11 +569,11 @@ MonoBehaviour:
   _1_outsideSprite1Renderer: {fileID: 612482550935999584}
   _5_outsideSprite2Renderer: {fileID: 4153352257900220931}
   sprite_level1:
-    _2_insideSprite1: {fileID: 21300000, guid: 3f6b17d389079cd4d9165bbeb60e1532, type: 3}
-    _4_insideSprite2: {fileID: 21300000, guid: 557999bf9719aa74aa1a4b23e9ac025f, type: 3}
-    _3_coreSprite: {fileID: 21300000, guid: 57f5900b3e6b2b945a3eceacb6ede685, type: 3}
-    _1_outsideSprite1: {fileID: 21300000, guid: 0f83fee40329cfb4abc8ccc6b04cb68d, type: 3}
-    _5_outsideSprite2: {fileID: 21300000, guid: 3cd4cff1746cfa64ba4e6dc965753a2b, type: 3}
+    _2_insideSprite1: {fileID: 21300000, guid: 947fa7503d9685b4e94bc6adeb92b438, type: 3}
+    _4_insideSprite2: {fileID: 21300000, guid: 0affa5d63a83c9d4f83ce93b6aa22896, type: 3}
+    _3_coreSprite: {fileID: 21300000, guid: 3acc1f0e30a58cd4c8c9c491571f2273, type: 3}
+    _1_outsideSprite1: {fileID: 21300000, guid: 341b9dcb9e1364e4d903fa4208c2d39b, type: 3}
+    _5_outsideSprite2: {fileID: 21300000, guid: 1cd2d474ae47eb542a34baeecb5ef2e4, type: 3}
   sprite_level2:
     _2_insideSprite1: {fileID: 21300000, guid: 602d42eb0bf03784d9f421660f3c11f4, type: 3}
     _4_insideSprite2: {fileID: 21300000, guid: 9bd2e095a8f4e934fbdfc06aea316b0f, type: 3}
@@ -581,8 +581,8 @@ MonoBehaviour:
     _1_outsideSprite1: {fileID: 21300000, guid: 7942f84416c30af48afc8f76f88a4a6f, type: 3}
     _5_outsideSprite2: {fileID: 21300000, guid: 1762fd80f848d2746874e4a1b5fbd2bb, type: 3}
   sprite_level3:
-    _2_insideSprite1: {fileID: 21300000, guid: 947fa7503d9685b4e94bc6adeb92b438, type: 3}
-    _4_insideSprite2: {fileID: 21300000, guid: 0affa5d63a83c9d4f83ce93b6aa22896, type: 3}
-    _3_coreSprite: {fileID: 21300000, guid: 3acc1f0e30a58cd4c8c9c491571f2273, type: 3}
-    _1_outsideSprite1: {fileID: 21300000, guid: 341b9dcb9e1364e4d903fa4208c2d39b, type: 3}
-    _5_outsideSprite2: {fileID: 21300000, guid: 1cd2d474ae47eb542a34baeecb5ef2e4, type: 3}
+    _2_insideSprite1: {fileID: 21300000, guid: 3f6b17d389079cd4d9165bbeb60e1532, type: 3}
+    _4_insideSprite2: {fileID: 21300000, guid: 557999bf9719aa74aa1a4b23e9ac025f, type: 3}
+    _3_coreSprite: {fileID: 21300000, guid: 57f5900b3e6b2b945a3eceacb6ede685, type: 3}
+    _1_outsideSprite1: {fileID: 21300000, guid: 0f83fee40329cfb4abc8ccc6b04cb68d, type: 3}
+    _5_outsideSprite2: {fileID: 21300000, guid: 3cd4cff1746cfa64ba4e6dc965753a2b, type: 3}

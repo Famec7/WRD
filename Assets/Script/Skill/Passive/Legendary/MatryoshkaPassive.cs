@@ -1,32 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MatryoshkaPassive : PassiveSkillBase
 {
-    [SerializeField] private float stunRange = 3.0f;
+    [Header("기절 범위")]
+    [SerializeField]
+    private float stunRange = 1.0f;
+    
+    [Header("이속 감소 범위")]
+    [SerializeField]
+    private List<float> slowRanges;
+    
     [SerializeField] private SlowZone _slowZone;
-
-    private float _slowRange = 0.0f;
     
-    private CircleCollider2D _collider;
-    
-    private void SetSlowRange(float value)
+    private void SetSlowRange(int index)
     {
-        _slowRange = value;
-        _slowZone.SetData(0, value, Data.GetValue(1));
-        _slowZone.transform.SetParent(weapon.owner.transform);
+        if (index < 0 || index >= slowRanges.Count)
+        {
+            Debug.LogError("Index out of range for slowRanges.");
+            return;
+        }
+        
+        float value = slowRanges[index];
+        _slowZone.SetData(0, value, Data.GetValue(0));
         
         _slowZone.PlayEffect();
     }
     
-    protected override void Init()
-    {
-        base.Init();
-        
-        targetLayer = LayerMaskProvider.MonsterLayerMask;
-        _collider = GetComponent<CircleCollider2D>();
-    }
-
     private void Start()
     {
         if (weapon.GetActiveSkill() is MatryoshkaActive activeSkill)
@@ -55,7 +56,7 @@ public class MatryoshkaPassive : PassiveSkillBase
 
             if (tar.TryGetComponent(out Monster monster))
             {
-                monster.HasAttacked(Data.GetValue(0));
+                monster.HasAttacked(Data.GetValue(1));
             }
         }
 

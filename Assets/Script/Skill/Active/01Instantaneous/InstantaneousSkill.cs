@@ -15,6 +15,8 @@ public abstract class InstantaneousSkill : ActiveSkillBase
                 commandInvoker.AddCommand(new IndicatorCommand(this));
                 break;
             case SettingManager.ActiveSettingType.Auto:
+                commandInvoker.AddCommand(new ActiveSkillCommand(this));
+                break;
             default:
                 break;
         }
