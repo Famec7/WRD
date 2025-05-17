@@ -13,6 +13,7 @@ public class RangedWeapon : WeaponBase
     }
 
     [SerializeField] protected Type type;
+    public Type WeaponType => type;
     
     [SerializeField]
     private bool _isShowProjectile = true;
