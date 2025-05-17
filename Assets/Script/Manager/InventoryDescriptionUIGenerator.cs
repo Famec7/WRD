@@ -37,7 +37,7 @@ public class InventoryDescriptionUIGenerator : Singleton<InventoryDescriptionUIG
             inventoryDescriptionPopUpUI.weaponStatText[1].text = data.AttackSpeed.ToString();
             inventoryDescriptionPopUpUI.weaponStatText[2].text = data.AttackRange.ToString();
             inventoryDescriptionPopUpUI.weaponStatText[3].text = WeaponDataManager.Instance.GetKorWeaponTypeText(weaponId);
-            inventoryDescriptionPopUpUI.weaponTypeText.text = WeaponDataManager.Instance.GetKorWeaponRTypeText(weaponId);
+            //inventoryDescriptionPopUpUI.weaponTypeText.text = WeaponDataManager.Instance.GetKorWeaponRTypeText(weaponId);
             
             inventoryDescriptionUIList.Add(inventoryDescriptionPopUpUIGameObject);
             inventoryDescriptionPopUpUIGameObject.SetActive(false);
