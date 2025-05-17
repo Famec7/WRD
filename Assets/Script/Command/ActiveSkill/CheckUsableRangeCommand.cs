@@ -58,7 +58,7 @@ public class CheckUsableRangeCommand : ICommand
             return false;
         }
         
-        int indicatorLayer = 1 << LayerMask.NameToLayer("Indicator");
+        /*int indicatorLayer = 1 << LayerMask.NameToLayer("Indicator");
         Ray ray = Camera.main.ScreenPointToRay(touch.position);
         RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, indicatorLayer);
         
@@ -66,7 +66,7 @@ public class CheckUsableRangeCommand : ICommand
         {
             _skill.CancelSkill();
             return false;
-        }
+        }*/
 
         _skill.PivotPosition = Camera.main.ScreenToWorldPoint(touch.position);
         _skill.ClickPosition = _skill.PivotPosition;
