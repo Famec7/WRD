@@ -18,7 +18,7 @@ public class Thrust : PassiveSkillBase
 
         ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("SpearEffect");
 
-        effect.SetPosition(weapon.owner.transform.position + dir.normalized * 0.5f);
+        effect.SetPosition(weapon.owner.transform.position);
         effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, dir)));
         effect.PlayEffect();
         
