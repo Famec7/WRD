@@ -19,6 +19,10 @@ public class MatryoshkaActive : InstantaneousSkill
     [Space] [SerializeField] private MatryoshkaSpriteChanger _matryoshkaSpriteChanger;
 
     #endregion
+    
+    [Header("스킬 이펙트")]
+    [SerializeField]
+    private GameObject _effect;
 
     private int _stackLevel = 0;
 
@@ -40,6 +44,14 @@ public class MatryoshkaActive : InstantaneousSkill
         _damage = Data.GetValue(_stackLevel);
         _stunDuration = Data.GetValue(BaseStunIndex + _stackLevel);
         _range = _ranges[_stackLevel];
+        
+        _effect.transform.localScale = new Vector3(_range, _range, 1);
+        _effect.SetActive(true);
+
+        if (_effect.TryGetComponent(out Animator animator))
+        {
+            animator.Play("ActiveEffect", -1, 0f);
+        }
     }
 
     public override bool OnActiveExecute()
@@ -111,6 +123,24 @@ public class MatryoshkaActive : InstantaneousSkill
         }
 
         _matryoshkaSpriteChanger.ChangeMatryoshikaSprite(stack + 1);
+
+        if (_effect.TryGetComponent(out SpriteRenderer spriteRenderer))
+        {
+            switch (_stackLevel)
+            {
+                case 0:
+                    spriteRenderer.color = Color.blue;
+                    break;
+                case 1:
+                    spriteRenderer.color = Color.yellow;
+                    break;
+                case 2:
+                    spriteRenderer.color = Color.red;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public override void ExecuteSkill()
@@ -119,5 +149,10 @@ public class MatryoshkaActive : InstantaneousSkill
         
         _stackLevel = 0;
         SetRange(0);
+    }
+
+    private void OnDisable()
+    {
+        _effect.SetActive(false);
     }
 }
