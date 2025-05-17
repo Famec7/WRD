@@ -157,18 +157,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[3]._count
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[4]._count
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 225958422097210227, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
-      propertyPath: _poolDatas.Array.data[5]._count
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 565320515564965119, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: m_Name
       value: DetailedCombinationPopupUIGenerator

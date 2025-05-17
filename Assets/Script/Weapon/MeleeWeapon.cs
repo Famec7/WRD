@@ -10,6 +10,7 @@ public class MeleeWeapon : WeaponBase
         Sword,
         Spear,
         Club,
+        Hammer,
         Joker,
     }
     
@@ -46,6 +47,8 @@ public class MeleeWeapon : WeaponBase
                 return EffectManager.Instance.CreateEffect<ParticleEffect>("NormalHit");
             case Type.Club:
                 return EffectManager.Instance.CreateEffect<ParticleEffect>("ClubHit");
+            case Type.Hammer:
+                return EffectManager.Instance.CreateEffect<ParticleEffect>("HammerHit");
             case Type.Joker:
                 return EffectManager.Instance.CreateEffect<AnimationEffect>("JokerSlash");
             default:

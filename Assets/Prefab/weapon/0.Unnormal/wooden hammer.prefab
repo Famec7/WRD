@@ -55,7 +55,7 @@ MonoBehaviour:
   passiveAuraSkillList: []
   activeSkillList: []
   anim: {fileID: 5200792433066083113}
-  type: 2
+  type: 3
   _attackSound: {fileID: 8300000, guid: e7124a4641a18c94c952ff8eabc6adf9, type: 3}
 --- !u!1 &8380543946143749443
 GameObject:
