@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 849085743359343443}
   - component: {fileID: 5827977261769237252}
   - component: {fileID: 3827341178054065686}
+  - component: {fileID: 2509326225022819214}
   m_Layer: 0
   m_Name: failnot
   m_TagString: Untagged
@@ -200,3 +201,18 @@ MonoBehaviour:
   indicatorType: 1
   _isFixedPosition: 1
   IndicatorMonsters: []
+--- !u!114 &2509326225022819214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4170057505856472504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3215578308642759325fcd41f7729f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 25
+  _skillIcon: {fileID: 0}
+  weapon: {fileID: 0}
