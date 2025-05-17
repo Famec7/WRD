@@ -10,6 +10,7 @@ public class RangedWeapon : WeaponBase
         Gun,
         Orb,
         HighOrb,
+        Wand,
     }
 
     [SerializeField] protected Type type;
