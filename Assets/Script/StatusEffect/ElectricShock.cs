@@ -37,6 +37,8 @@ public class ElectricShock : StatusEffect
 #if STATUS_EFFECT_LOG
         Debug.Log($"{Shock Effect Removed} - Duration: {duration}");
 #endif
+        
+        StatusEffectManager.Instance.RemoveValue(status, this);
     }
 
     private IEnumerator ElectricShockCoroutine()

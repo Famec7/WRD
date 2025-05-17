@@ -34,7 +34,10 @@ public class SilentTrueshot : ClickTypeSkill
         
         foreach (var monster in IndicatorMonsters)
         {
-            monster.HasAttacked(_damage);
+            if (HasTargetMark(monster))
+            {
+                monster.HasAttacked(_damage);
+            }
         }
 
         return true;

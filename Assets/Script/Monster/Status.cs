@@ -113,5 +113,7 @@ public class Status : MonoBehaviour
         IsJokerMark = 0;
         DevilBulletDamageAmplification = 0;
         moveSpeedMultiplier = 1f;
+        
+        StatusEffectManager.Instance.RemoveAllStatusEffects(this);
     }
 }

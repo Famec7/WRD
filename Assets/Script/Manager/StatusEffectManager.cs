@@ -38,7 +38,7 @@ public class StatusEffectManager : Singleton<StatusEffectManager>
             if (removedStatusEffect != null)
             {
                 removedStatusEffect.RemoveEffect();
-                _statusEffects[status].Remove(removedStatusEffect);
+                RemoveValue(status, removedStatusEffect);
             }
         }
     }
@@ -48,7 +48,28 @@ public class StatusEffectManager : Singleton<StatusEffectManager>
         if (_statusEffects.ContainsKey(status))
         {
             statusEffect.RemoveEffect();
-            _statusEffects[status].Remove(statusEffect);
+            RemoveValue(status, statusEffect);
+        }
+    }
+
+    public void RemoveValue(Status status, StatusEffect statusEffect)
+    {
+        if (_statusEffects.TryGetValue(status, out List<StatusEffect> effect))
+        {
+            effect.Remove(statusEffect);
+            
+            if (effect.Count == 0)
+            {
+                _statusEffects.Remove(status);
+            }
+        }
+    }
+    
+    public void RemoveAllStatusEffects(Status status)
+    {
+        if (_statusEffects.ContainsKey(status))
+        {
+            _statusEffects.Remove(status);
         }
     }
 

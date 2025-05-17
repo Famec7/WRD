@@ -45,5 +45,7 @@ public class Wound : StatusEffect
 #if STATUS_EFFECT_LOG
         Debug.Log("${Wound Effect Removed}");
 #endif
+        
+        StatusEffectManager.Instance.RemoveValue(status, this);
     }
 }

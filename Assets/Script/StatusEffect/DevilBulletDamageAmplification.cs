@@ -31,5 +31,7 @@ public class DevilBulletDamageAmplification : StatusEffect
             Debug.Log($"DevilBulletDamageAmplification: {target.name} has {status.devilBulletDamageAmplification} devil bullets : RemoveEffect");
 #endif
         }
+        
+        StatusEffectManager.Instance.RemoveValue(status, this);
     }
 }

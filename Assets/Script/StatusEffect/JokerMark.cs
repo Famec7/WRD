@@ -44,6 +44,8 @@ public class JokerMark : StatusEffect
         {
             monsterEffecter.SetJokerEffect(false);
         }
+        
+        StatusEffectManager.Instance.RemoveValue(status, this);
     }
     
     private IEnumerator JokerMarkCoroutine()

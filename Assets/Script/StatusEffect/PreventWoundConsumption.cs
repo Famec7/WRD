@@ -21,6 +21,7 @@ public class PreventWoundConsumption : StatusEffect
             if(target.TryGetComponent(out Status status))
             {
                 status.PreventWoundConsumption = false;
+                StatusEffectManager.Instance.RemoveValue(status, this);
             }
             target.GetComponent<MonoBehaviour>().StopCoroutine(_preventWoundConsumptionCoroutine);
         }
