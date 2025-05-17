@@ -105,8 +105,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD328\uC2DC\uBE0C \uC2A4\uD0AC1"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: afcaba26d655e744b8bddb89b93f0227, type: 2}
-  m_sharedMaterial: {fileID: -3131009173449175294, guid: afcaba26d655e744b8bddb89b93f0227, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: df78b7b8541d9804eabf1a3a211ec66f, type: 2}
+  m_sharedMaterial: {fileID: 4973898010293837499, guid: df78b7b8541d9804eabf1a3a211ec66f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -397,7 +397,7 @@ MonoBehaviour:
   SkillType: {fileID: 4713782001047879171}
   SkillDescriptionText: {fileID: 2382926260775044999}
   SkillIconSelectUI: {fileID: 2013442308061883231}
-  WeaponID: 0
+  WeaponNum: 0
   SkillCount: 0
 --- !u!1 &6768286796543304251
 GameObject:
@@ -543,8 +543,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC2A4\uD0AC\uC124\uBA85 \uBB50\uC2DC\uAE30\uBB50\uC2DC\uAE30"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: afcaba26d655e744b8bddb89b93f0227, type: 2}
-  m_sharedMaterial: {fileID: -3131009173449175294, guid: afcaba26d655e744b8bddb89b93f0227, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fdd58a3ae75b47f4dabeefab8ba170b9, type: 2}
+  m_sharedMaterial: {fileID: -7461233582017661810, guid: fdd58a3ae75b47f4dabeefab8ba170b9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

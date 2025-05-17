@@ -267,7 +267,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 106.93, y: -65}
+  m_AnchoredPosition: {x: 100, y: -72.1}
   m_SizeDelta: {x: 215, y: 61.700012}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6957052104076337725
@@ -300,8 +300,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB9C9\uB300\uAE30"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 02f3de7e2bfde754caa0916f26487519, type: 2}
-  m_sharedMaterial: {fileID: -3841224631870627235, guid: 02f3de7e2bfde754caa0916f26487519, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: df78b7b8541d9804eabf1a3a211ec66f, type: 2}
+  m_sharedMaterial: {fileID: 4973898010293837499, guid: df78b7b8541d9804eabf1a3a211ec66f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -325,8 +325,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

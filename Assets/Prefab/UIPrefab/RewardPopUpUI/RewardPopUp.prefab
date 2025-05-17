@@ -351,8 +351,8 @@ MonoBehaviour:
   m_text: "?\uB77C\uC6B4\uB4DC \uBCF4\uC2A4 \uD074\uB9AC\uC5B4!\n\uB2E4\uC74C \uBCF4\uC0C1
     \uD68D\uB4DD"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: afcaba26d655e744b8bddb89b93f0227, type: 2}
-  m_sharedMaterial: {fileID: -3131009173449175294, guid: afcaba26d655e744b8bddb89b93f0227, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: df78b7b8541d9804eabf1a3a211ec66f, type: 2}
+  m_sharedMaterial: {fileID: 4973898010293837499, guid: df78b7b8541d9804eabf1a3a211ec66f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
