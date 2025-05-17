@@ -22,7 +22,7 @@ public class Triaina : MeleeWeapon
 
         if (owner.Target.TryGetComponent(out Status status))
         {
-            ApplyMark(status);
+            ApplyWound(status);
         }
         
         AttackNearbyMonsters();
@@ -46,18 +46,18 @@ public class Triaina : MeleeWeapon
             if (targets[i].TryGetComponent(out Monster monster))
             {
                 monster.HasAttacked(Data.AttackDamage);
-                ApplyMark(monster.status);
+                ApplyWound(monster.status);
             }
         }
     }
 
-    private void ApplyMark(Status status)
+    private void ApplyWound(Status status)
     {
         if (status is null)
             return;
 
-        Mark mark = new Mark(status.gameObject);
+        Wound wound = new Wound(status.gameObject);
 
-        StatusEffectManager.Instance.AddStatusEffect(status, mark);
+        StatusEffectManager.Instance.AddStatusEffect(status, wound);
     }
 }
