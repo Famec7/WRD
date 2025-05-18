@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GuidedProjectile : ProjectileBase
 {
+    [SerializeField]
+    private string _name;
+    
     private GameObject _target;
 
     public GameObject Target
@@ -13,6 +16,9 @@ public class GuidedProjectile : ProjectileBase
         {
             _target = value;
             LookAtTarget(value.transform.position);
+            
+            _startPosition = transform.position;
+            _journeyLength = Vector3.Distance(_startPosition, _target.transform.position);
         }
     }
 
@@ -24,18 +30,11 @@ public class GuidedProjectile : ProjectileBase
 
     protected string _hitEffectName;
 
-    private void Start()
-    {
-        _startPosition = transform.position;
-        _journeyLength = Vector3.Distance(_startPosition, Target.transform.position);
-        _startTime = Time.time;
-    }
-
     protected override void MoveToTarget()
     {
         if (Target is null || !Target.activeSelf)
         {
-            ProjectileManager.Instance.ReturnProjectileToPool(this);
+            ProjectileManager.Instance.ReturnProjectileToPool(this, _name);
             return;
         }
 
@@ -44,7 +43,7 @@ public class GuidedProjectile : ProjectileBase
         {
             OnHit?.Invoke();
             
-            ProjectileManager.Instance.ReturnProjectileToPool(this);
+            ProjectileManager.Instance.ReturnProjectileToPool(this, _name);
 
             if (_hitEffectName != null)
             {
@@ -63,7 +62,7 @@ public class GuidedProjectile : ProjectileBase
 
     public override void GetFromPool()
     {
-        ;
+        _startTime = Time.time;
     }
 
     public override void ReturnToPool()

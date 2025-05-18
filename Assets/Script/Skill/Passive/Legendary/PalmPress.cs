@@ -22,6 +22,11 @@ public class PalmPress : PassiveSkillBase
 
         LayerMask monsterLayer = LayerMaskProvider.MonsterLayerMask;
         var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Data.Range, 360.0f, monsterLayer);
+        
+        if (targets.Count == 0)
+        {
+            return false;
+        }
 
         foreach (var tar in targets)
         {
@@ -35,6 +40,10 @@ public class PalmPress : PassiveSkillBase
                 }
             }
         }
+
+        var effect = EffectManager.Instance.CreateEffect<AnimationEffect>("BuddhaEffect");
+        effect.transform.position = targets[0].transform.position;
+        effect.PlayEffect();
 
         return true;
     }

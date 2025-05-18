@@ -35,6 +35,8 @@ public class Mark : StatusEffect
         {
             monsterEffecter.SetMarkEffect(false);
         }
+        
+        StatusEffectManager.Instance.RemoveValue(status, this);
     }
     
     private IEnumerator MarkCoroutine()

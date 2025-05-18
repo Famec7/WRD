@@ -10,9 +10,12 @@ public class RangedWeapon : WeaponBase
         Gun,
         Orb,
         HighOrb,
+        Wand,
+        Stone,
     }
 
     [SerializeField] protected Type type;
+    public Type WeaponType => type;
     
     [SerializeField]
     private bool _isShowProjectile = true;
@@ -26,8 +29,8 @@ public class RangedWeapon : WeaponBase
     {
         if (owner.Target.TryGetComponent(out Monster monster))
         {
-            var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
-            
+            GuidedProjectile projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(type == Type.Stone ? "Stone" : default, this.transform.position);
+
             if (_isShowProjectile == false)
             {
                 projectile.GetComponent<SpriteRenderer>().enabled = false;

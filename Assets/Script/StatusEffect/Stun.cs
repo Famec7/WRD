@@ -33,6 +33,8 @@ public class Stun : StatusEffect
 #if STATUS_EFFECT_LOG
     Debug.Log("${Stun Effect Removed} - Duration: {duration}");
 #endif
+        
+        StatusEffectManager.Instance.RemoveValue(status, this);
     }
     
     private IEnumerator StunCoroutine()

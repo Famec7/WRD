@@ -14,6 +14,8 @@ public class MatryoshkaPassive : PassiveSkillBase
     
     [SerializeField] private SlowZone _slowZone;
     
+    private int _currentSlowRangeIndex = 0;
+    
     private void SetSlowRange(int index)
     {
         if (index < 0 || index >= slowRanges.Count)
@@ -22,6 +24,7 @@ public class MatryoshkaPassive : PassiveSkillBase
             return;
         }
         
+        _currentSlowRangeIndex = index;
         float value = slowRanges[index];
         _slowZone.SetData(0, value, Data.GetValue(0));
         
@@ -59,8 +62,27 @@ public class MatryoshkaPassive : PassiveSkillBase
                 monster.HasAttacked(Data.GetValue(1));
             }
         }
+        
+        ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>("MatryoshkaPassive");
+        particleEffect.SetColor(GetColor(_currentSlowRangeIndex));
+        particleEffect.SetPosition(targets[0].transform.position);
 
         return true;
+    }
+
+    private Color GetColor(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Color.blue;
+            case 1:
+                return Color.yellow;
+            case 2:
+                return Color.red;
+        }
+        
+        return Color.white;
     }
 
     private void OnDisable()

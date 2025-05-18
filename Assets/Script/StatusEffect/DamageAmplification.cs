@@ -39,6 +39,8 @@ public class DamageAmplification : StatusEffect
 #if STATUS_EFFECT_LOG
         Debug.Log($"{nameof(DamageAmplification)} Effect Removed - Amplification Rate: {_amplificationRate}");
 #endif
+        
+        StatusEffectManager.Instance.RemoveValue(status, this);
     }
 
     private IEnumerator DamageAmplificationCoroutine()

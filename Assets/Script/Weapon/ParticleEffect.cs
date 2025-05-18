@@ -8,6 +8,10 @@ public class ParticleEffect : EffectBase
     [SerializeField]
     private string effectName;
     
+    [Header("파티클 목록")]
+    [SerializeField]
+    private ParticleSystem[] particleSystems;
+    
     private ParticleSystem _hitEffect;
     
     private Vector3 _originScale;
@@ -37,6 +41,15 @@ public class ParticleEffect : EffectBase
     public void ResetScale()
     {
         SetScale(_originScale);
+    }
+    
+    public void SetColor(Color color)
+    {
+        foreach (ParticleSystem particleSystem in particleSystems)
+        {
+            ParticleSystem.MainModule main = particleSystem.main;
+            main.startColor = color;
+        }
     }
 
     private void OnParticleSystemStopped()

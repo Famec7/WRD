@@ -5,6 +5,8 @@ public class SilentTrueshot : ClickTypeSkill
     private float _damageDelay = 0.0f;
     private float _damage = 0.0f;
 
+    [SerializeField] private Animator _effect;
+
     protected override void Init()
     {
         base.Init();
@@ -19,6 +21,13 @@ public class SilentTrueshot : ClickTypeSkill
         
         weapon.enabled = false;
         weapon.owner.enabled = false;
+        
+        if (_effect != null)
+        {
+            _effect.gameObject.SetActive(true);
+            _effect.transform.position = ClickPosition;
+            _effect.Play("ActiveEffect");
+        }
     }
 
     public override bool OnActiveExecute()
@@ -29,12 +38,12 @@ public class SilentTrueshot : ClickTypeSkill
             return false;
         }
         
-        LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
-        IndicatorMonsters = RangeDetectionUtility.GetAttackTargets(Indicator.Collider, layerMask);
-        
         foreach (var monster in IndicatorMonsters)
         {
-            monster.HasAttacked(_damage);
+            if (HasTargetMark(monster))
+            {
+                monster.HasAttacked(_damage);
+            }
         }
 
         return true;
@@ -44,6 +53,7 @@ public class SilentTrueshot : ClickTypeSkill
     {
         weapon.enabled = true;
         weapon.owner.enabled = true;
+        _effect.gameObject.SetActive(false);
     }
 
     private bool HasTargetMark(Monster monster)

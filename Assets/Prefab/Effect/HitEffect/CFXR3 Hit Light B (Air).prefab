@@ -20003,3 +20003,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: OrbHit
+  particleSystems:
+  - {fileID: 8771972552311404798}
+  - {fileID: 4218550677005678463}
+  - {fileID: 4317077836563233687}
+  - {fileID: 5595010364606615787}

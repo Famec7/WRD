@@ -71,7 +71,7 @@ public class IndicatorCommand : ICommand
             return true;
         }
         
-        int indicatorLayer = 1 << LayerMask.NameToLayer("Indicator");
+        /*int indicatorLayer = 1 << LayerMask.NameToLayer("Indicator");
         Ray ray = Camera.main.ScreenPointToRay(touch.position);
         RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, indicatorLayer);
         
@@ -79,7 +79,7 @@ public class IndicatorCommand : ICommand
         {
             _skill.CancelSkill();
             return false;
-        }
+        }*/
 
         _skill.ClickPosition = Camera.main.ScreenToWorldPoint(touch.position);
         _skill.AddCommand(new ActiveSkillCommand(_skill));

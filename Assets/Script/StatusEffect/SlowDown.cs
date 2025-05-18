@@ -42,6 +42,8 @@ public class SlowDown : StatusEffect
 #if STATUS_EFFECT_LOG
         Debug.Log("${SlowDown Effect Removed} - SlowDown Rate: {_slowDownRate}");
 #endif
+        
+        StatusEffectManager.Instance.RemoveValue(status, this);
     }
 
     private IEnumerator SlowDownCoroutine()

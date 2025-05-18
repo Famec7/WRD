@@ -4,6 +4,7 @@ using UnityEngine.Serialization;
 public class BuddhaPress : ClickTypeSkill
 {
     [SerializeField] private DamageAmplificationZone _damageAmplificationZone;
+    [SerializeField] private BuddhaHandEffect _buddhaHandEffect;
     
     private float _damage;
     private float _stunDuration;
@@ -18,11 +19,15 @@ public class BuddhaPress : ClickTypeSkill
         float brokenGroundTime = Data.GetValue(2);
         float damageAmplification = Data.GetValue(3);
         _damageAmplificationZone.SetData(brokenGroundTime, Data.Range, damageAmplification);
+        
+        _buddhaHandEffect.transform.SetParent(null);
     }
 
     public override void OnActiveEnter()
     {
-        ;
+        _buddhaHandEffect.gameObject.SetActive(true);
+        _buddhaHandEffect.SetPosition(ClickPosition);
+        _buddhaHandEffect.PlayEffect();
     }
 
     public override bool OnActiveExecute()
