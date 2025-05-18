@@ -41,7 +41,7 @@ public class PalmPress : PassiveSkillBase
             }
         }
 
-        var effect = EffectManager.Instance.CreateEffect<AnimationEffect>("BuddhaEffect");
+        var effect = EffectManager.Instance.CreateEffect<BuddhaHandEffect>("BuddhaEffect");
         effect.transform.position = targets[0].transform.position;
         effect.PlayEffect();
 

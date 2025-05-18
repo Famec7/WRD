@@ -764,6 +764,7 @@ MonoBehaviour:
   - {fileID: 5723006329895053955}
   anim: {fileID: 5921340581029874775}
   type: 0
+  _isShowProjectile: 1
   _attackSound: {fileID: 0}
 --- !u!114 &-5200391543111187388
 MonoBehaviour:
@@ -798,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e019e2c36c2477fb65e7b930fac1367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 27
+  skillId: 26
   _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!114 &5723006329895053955

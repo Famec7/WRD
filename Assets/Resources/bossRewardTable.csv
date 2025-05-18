@@ -1,7 +1,7 @@
-wave_num,reward_grade,reward_number,reward_transform
-5,unnormal,2,0
-10,rare,2,0
-15,rare,2,0
-20,epic,1,1
-25,epic,1,1
-30,legendary,1,2
+wave_num,reward_grade,reward_number,reward_transform,mnormal_reward
+5,unnormal,2,0,0
+10,rare,2,0,0
+15,rare,2,0,1
+20,epic,1,1,1
+25,epic,1,1,2
+30,legendary,1,2,2

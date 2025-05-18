@@ -20,7 +20,7 @@ public class BoobyTrap : ClickTypeSkill
         ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>("BoobyTrap");
         particleEffect.SetPosition(ClickPosition);
         GameObject particleEffectTrap = particleEffect.gameObject.transform.GetChild(0).gameObject;
-        particleEffectTrap.GetComponent<SlowZone>().SetData(effectTime, Data.Range, 100);
+        particleEffectTrap.GetComponent<SlowZone>().SetData(effectTime, Data.Range, Data.GetValue(2));
         particleEffectTrap.GetComponent<DamageAmplificationZone>().SetData(effectTime, Data.Range, Data.GetValue(1));
         particleEffectTrap.transform.SetParent(null);
         particleEffectTrap.GetComponent<SlowZone>().SetPosition(ClickPosition);

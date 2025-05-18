@@ -5241,7 +5241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9d01aa8b0d498fb0272676b9529517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 23
+  skillId: 22
   _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!114 &1098530659345011886

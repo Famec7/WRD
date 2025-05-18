@@ -231,6 +231,7 @@ MonoBehaviour:
   activeSkillList: []
   anim: {fileID: 7464385104826212803}
   type: 0
+  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 621f3f3faa6bc2942a03d8c5b7d640b3, type: 3}
 --- !u!114 &7185011095431227588
 MonoBehaviour:
@@ -244,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3099be126abec04e803238b52621a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 52
+  skillId: 51
   _skillIcon: {fileID: 21300000, guid: 666d87be1bf331942a1d19c5268ec95c, type: 3}
   weapon: {fileID: 0}
   _trap: {fileID: 2053947674168135204}
@@ -260,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c18af7bd7dfc24ebc97679673a628e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 51
+  skillId: 50
   _skillIcon: {fileID: 21300000, guid: 7dac5ae599c136b44a1f9e93e9e9d84b, type: 3}
   weapon: {fileID: 0}
   _skillSound: {fileID: 8300000, guid: 6cd7ad9795877e24db87479c86d613c8, type: 3}

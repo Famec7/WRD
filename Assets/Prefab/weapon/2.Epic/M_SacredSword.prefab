@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90c77cb2b6f44fd817352e501a23da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 38
+  skillId: 37
   _skillIcon: {fileID: 21300000, guid: abb53d6e7265d8a498d4ec0d38d831ec, type: 3}
   weapon: {fileID: 0}
   _hitSize: {x: 0, y: 0}
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1fbd569e97487dbfba57f86f6b744b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 37
+  skillId: 36
   _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
   _slowZone: {fileID: 1176701553595717035}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7532056971248366043}
   - component: {fileID: 5823808155564251743}
   - component: {fileID: 5571679544942119043}
+  - component: {fileID: -4027881950252289369}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -52,7 +53,8 @@ MonoBehaviour:
     _originRotation: {x: 0, y: 0, z: 0}
     _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 304
-  passiveSkillList: []
+  passiveSkillList:
+  - {fileID: -4027881950252289369}
   passiveAuraSkillList: []
   activeSkillList:
   - {fileID: 5571679544942119043}
@@ -79,6 +81,21 @@ MonoBehaviour:
   _isFixedPosition: 0
   IndicatorMonsters: []
   _reloadSound: {fileID: 8300000, guid: 3a8aca95ee9814143a9b0f136ec1a616, type: 3}
+--- !u!114 &-4027881950252289369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113596503222121041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c107cf5593a04af699782d086276a9d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 35
+  _skillIcon: {fileID: 0}
+  weapon: {fileID: 0}
 --- !u!1 &7212394079033049343
 GameObject:
   m_ObjectHideFlags: 0

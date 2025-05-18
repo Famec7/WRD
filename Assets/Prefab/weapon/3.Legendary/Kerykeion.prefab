@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5bc41300be34157a06637e0d586b093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 28
+  skillId: 27
   _skillIcon: {fileID: 0}
   weapon: {fileID: 0}
 --- !u!114 &7864080563941399353

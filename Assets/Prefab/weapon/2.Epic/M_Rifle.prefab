@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6265a8658e8495992f62e9de4d7e5b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 44
+  skillId: 43
   _skillIcon: {fileID: 21300000, guid: f8e5497d255251840ac311949857f8e6, type: 3}
   weapon: {fileID: 0}
 --- !u!114 &7927082219012507534
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8002b871999740d2919b5c530d7c8ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 45
+  skillId: 44
   _skillIcon: {fileID: 21300000, guid: bb7be7da20c52f747b9699f6a07b69e9, type: 3}
   weapon: {fileID: 0}
   _fireSound: {fileID: 8300000, guid: d580799338a23b045a30f8c072b0a638, type: 3}
