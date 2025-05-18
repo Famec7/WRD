@@ -13,6 +13,8 @@ public class WaterPool : MonoBehaviour
     private DamageAmplificationZone _damageAmplificationZone;
 
     private WaitForSeconds _duration;
+    
+    private Animator _animator;
 
     public void Init(float slowRate, float damageAmplificationRate, float duration)
     {
@@ -23,6 +25,8 @@ public class WaterPool : MonoBehaviour
         this.transform.localScale = newScale;
         
         _duration = new WaitForSeconds(duration);
+        
+        _animator = GetComponent<Animator>();
     }
 
     public void PlayEffect()
@@ -34,6 +38,8 @@ public class WaterPool : MonoBehaviour
         
         _damageAmplificationZone.SetPosition(this.transform.position);
         _damageAmplificationZone.PlayEffect();
+        
+        _animator.Play("WaterPool");
         
         StartCoroutine(IE_PlayEffect());
     }

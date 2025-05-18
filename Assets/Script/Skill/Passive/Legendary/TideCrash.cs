@@ -5,7 +5,15 @@ public class TideCrash : PassiveSkillBase
 {
     [SerializeField] private float _attackRange = 3.0f;
 
+    [SerializeField] private Animator _crashEffect;
+
     private bool _isActivated = false;
+
+    protected override void Init()
+    {
+        base.Init();
+        _crashEffect.transform.SetParent(null);
+    }
 
     public override bool Activate(GameObject target = null)
     {
@@ -26,6 +34,10 @@ public class TideCrash : PassiveSkillBase
         {
             Vector3 targetPosition = target.transform.position;
             var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, _attackRange, default, targetLayer);
+            
+            _crashEffect.gameObject.SetActive(true);
+            _crashEffect.transform.position = targetPosition;
+            _crashEffect.Play("TideCrash");
 
             foreach (var tar in targets)
             {
@@ -40,5 +52,8 @@ public class TideCrash : PassiveSkillBase
         }
 
         yield return new WaitForSeconds(Data.GetValue(0));
+        
+        _crashEffect.gameObject.SetActive(false);
+        _isActivated = false;
     }
 }
