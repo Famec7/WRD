@@ -28,6 +28,9 @@ public class BuddhaPress : ClickTypeSkill
         _buddhaHandEffect.gameObject.SetActive(true);
         _buddhaHandEffect.SetPosition(ClickPosition);
         _buddhaHandEffect.PlayEffect();
+        
+        _damageAmplificationZone.SetPosition(ClickPosition);
+        _damageAmplificationZone.PlayEffect();
     }
 
     public override bool OnActiveExecute()
@@ -40,8 +43,6 @@ public class BuddhaPress : ClickTypeSkill
             
         }
         
-        _damageAmplificationZone.SetPosition(ClickPosition);
-        _damageAmplificationZone.PlayEffect();
         return true;
     }
 
