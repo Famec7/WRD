@@ -1791,7 +1791,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
       propertyPath: _poolDatas.Array.size
-      value: 33
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
       propertyPath: _poolDatas.Array.data[0]._count
@@ -1874,6 +1874,10 @@ PrefabInstance:
       value: BuddhaEffect
       objectReference: {fileID: 0}
     - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[33]._name
+      value: ChopEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
       propertyPath: _poolDatas.Array.data[6]._count
       value: 20
       objectReference: {fileID: 0}
@@ -1947,6 +1951,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
       propertyPath: _poolDatas.Array.data[32]._count
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[33]._count
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
@@ -2025,6 +2033,10 @@ PrefabInstance:
       propertyPath: _poolDatas.Array.data[32]._prefab
       value: 
       objectReference: {fileID: 1584201226132930210, guid: a7e02a7dce79900468f9bce13d0073a3, type: 3}
+    - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
+      propertyPath: _poolDatas.Array.data[33]._prefab
+      value: 
+      objectReference: {fileID: -2400409030820806089, guid: ec5c5dd5b27354042b340bb50b164b6c, type: 3}
     - target: {fileID: 2038229657988090479, guid: 0ab4bf913616a154392db3f93554a703, type: 3}
       propertyPath: _poolDatas.Array.data[13]._preloadOnStart
       value: 0
