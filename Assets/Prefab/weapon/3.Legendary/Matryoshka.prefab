@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 19
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: 521c87b51756f9946aa87529730bc8a3, type: 3}
   weapon: {fileID: 0}
   stunRange: 3
   slowRanges:
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 16
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: 6ac0ded48149a2c40a044d5e33b329f2, type: 3}
   weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 1

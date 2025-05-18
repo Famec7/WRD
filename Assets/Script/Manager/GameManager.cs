@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
 {
     public int wave = 1;
     public bool isSKip = false;
+    public bool isGameClear = false;
     public bool isGameOver = false;
     public int[] weaponCnt;
     public int[] useAbleWeaponCnt;

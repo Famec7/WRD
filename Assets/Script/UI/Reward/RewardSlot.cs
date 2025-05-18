@@ -25,7 +25,7 @@ public class RewardSlot : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        float duration = 0.9f;
+        float duration = 0.35f;
         float elapsed = 0f;
         RectTransform rectTransform = GetComponent<RectTransform>();
 

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class LongClickPopUpUi : MonoBehaviour
 {
-    public GameObject _bookmarkButton;
+    //public GameObject _bookmarkButton;
     public GameObject _equipButton;
     public InventorySlot inventorySlot;
 
@@ -52,30 +52,30 @@ public class LongClickPopUpUi : MonoBehaviour
         transform.SetAsLastSibling();
     }
 
-    public void SetBookmarkedButtonText(bool isBookmarked, bool isInventory, bool isWeaponSlot)
-    {
+    //public void SetBookmarkedButtonText(bool isBookmarked, bool isInventory, bool isWeaponSlot)
+    //{
 
-        //var bookmarkButtonTMP = _bookmarkButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        //var equipButtonTMP = _equipButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+    //    //var bookmarkButtonTMP = _bookmarkButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+    //    //var equipButtonTMP = _equipButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
 
-        if (!isWeaponSlot && GameManager.Instance.useAbleWeaponCnt[weaponID - 1] > 0)
-            _equipButton.GetComponent<Image>().sprite = equipImage;
+    //    if (!isWeaponSlot && GameManager.Instance.useAbleWeaponCnt[weaponID - 1] > 0)
+    //        _equipButton.GetComponent<Image>().sprite = equipImage;
 
-        if (isBookmarked || (isInventory && BookMakredSlotUI.Instance.GetSlotWithWeaponID(weaponID)))
-        {
-            _bookmarkButton.GetComponent<Image>().sprite = unBookMarkImage;
-        }
-        else if (isInventory || isWeaponSlot)
-        {
-            _bookmarkButton.GetComponent<Image>().sprite = bookMarkImage;
-        }
+    //    if (isBookmarked || (isInventory && BookMakredSlotUI.Instance.GetSlotWithWeaponID(weaponID)))
+    //    {
+    //        _bookmarkButton.GetComponent<Image>().sprite = unBookMarkImage;
+    //    }
+    //    else if (isInventory || isWeaponSlot)
+    //    {
+    //        _bookmarkButton.GetComponent<Image>().sprite = bookMarkImage;
+    //    }
 
-        if (isWeaponSlot || isInventory && inventorySlot.isEquiped)
-        {
-            _equipButton.GetComponent<Image>().sprite = unEquipImage;
-        }
-    }
+    //    if (isWeaponSlot || isInventory && inventorySlot.isEquiped)
+    //    {
+    //        _equipButton.GetComponent<Image>().sprite = unEquipImage;
+    //    }
+    //}
 
     public void ClickDetailedDescriptionButton()
     {
@@ -157,7 +157,7 @@ public class LongClickPopUpUi : MonoBehaviour
         if (inventorySlot == null)
             inventorySlot = InventoryManager.instance.FindInventorySlot(weaponID);
 
-        inventorySlot.GetComponent<InventorySlot>().equipText.gameObject.SetActive(false);
+        inventorySlot.GetComponent<InventorySlot>().ChangeBorder(false);
         
         // 장착중인 무기 해제
         WeaponManager.Instance.RemoveWeapon(weaponSlot.SlotIndex);
@@ -167,7 +167,7 @@ public class LongClickPopUpUi : MonoBehaviour
         weaponSlot = null;
         inventorySlot = null;
 
-        SetBookmarkedButtonText(isBookmarked, isInventory, isWeaponSlot);
+        //SetBookmarkedButtonText(isBookmarked, isInventory, isWeaponSlot);
 
         BookMakredSlotUI.Instance.UpdateAllSlot();
         gameObject.SetActive(false);

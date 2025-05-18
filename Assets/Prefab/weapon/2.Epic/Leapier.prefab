@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 30
-  _skillIcon: {fileID: 21300000, guid: 53b8d515e300f1242b6f6a1e17b3a9cb, type: 3}
+  _skillIcon: {fileID: 21300000, guid: e38447346ad6cd54a8cd5cc1f8e6832a, type: 3}
   weapon: {fileID: 0}
   _originalMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   _blueMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 4
-  _skillIcon: {fileID: 21300000, guid: 1f7d9a3b7efc2714babf836d7ab99315, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 6f04c7827b7a9c543bdf6e5f0788ab90, type: 3}
   weapon: {fileID: 0}
   indicatorType: 2
   _isFixedPosition: 1

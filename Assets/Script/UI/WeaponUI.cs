@@ -36,7 +36,7 @@ public class WeaponUI : Singleton<WeaponUI>
         targetSlot.gameObject.transform.GetChild(0).GetComponent<InventorySlot>().weapon = item;
 
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
-        longClickPopUpUi.SetBookmarkedButtonText(longClickPopUpUi.isBookmarked, false, true);
+       // longClickPopUpUi.SetBookmarkedButtonText(longClickPopUpUi.isBookmarked, false, true);
 
         GameManager.Instance.useWeapon.Add(weaponID);
         GameManager.Instance.UpdateUseableWeaponCnt();
@@ -57,7 +57,7 @@ public class WeaponUI : Singleton<WeaponUI>
         else
             targetSlot.inventorySlot = InventoryManager.instance.FindInventorySlot(weaponID);
 
-        targetSlot.inventorySlot.equipText.gameObject.SetActive(true);
+        targetSlot.inventorySlot.ChangeBorder();
         targetSlot.inventorySlot.isEquiped = true;
         InventoryManager.instance.SyncWeaponSlotInventorySlot();
         
@@ -70,9 +70,9 @@ public class WeaponUI : Singleton<WeaponUI>
        
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
         //��Ŭ�� �˾� ui �����ͼ� ���� �ֽ�ȭ�� ���� setFavoritevbutton �Լ� ����
-        longClickPopUpUi.SetBookmarkedButtonText(longClickPopUpUi.isBookmarked, false, true);
+        //longClickPopUpUi.SetBookmarkedButtonText(longClickPopUpUi.isBookmarked, false, true);
 
-        //�����ִ� ���� �迭�� �߰��ϰ� ����� �� �ִ� ���� ���� �迭 ������Ʈ
+        //�����ִ� ���� �迭�� �߰��ϰ� ����� �� �ִ� ���� ���� �迭 ������Ʈ   
         GameManager.Instance.useWeapon.Add(weaponID);
 
         //���ã�⿡�� �����ϰ� ��밡���� ���⿡ �ش� �ϴ� ���� ���� �� ���� ��ư ��Ȱ��ȭ

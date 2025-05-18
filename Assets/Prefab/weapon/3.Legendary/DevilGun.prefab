@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 17
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: dab13492e9ae0e843a2ed7a140b471e1, type: 3}
   weapon: {fileID: 0}
   _bulletSound: {fileID: 8300000, guid: 95b39c726153cce4e8023e5231370ab8, type: 3}
 --- !u!114 &1958692894468307965
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 18
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: 6619afd9c91cd2b43bda19719ae0b830, type: 3}
   weapon: {fileID: 0}
 --- !u!114 &6877894846575197835
 MonoBehaviour:
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 15
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: 3cc60393c4bdecd4f88f38e09c494420, type: 3}
   weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0

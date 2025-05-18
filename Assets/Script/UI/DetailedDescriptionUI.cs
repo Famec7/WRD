@@ -18,7 +18,6 @@ public class DetailedDescriptionUI : UIPopUp
     
     public TextMeshProUGUI weaponNameText;
     public TextMeshProUGUI weaponClassText;
-    public TextMeshProUGUI weaponTypeText;
     public TextMeshProUGUI weaponDescriptionText;
     public List<GameObject> iconList;
 

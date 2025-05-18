@@ -25,6 +25,7 @@ public class MonsterSpawnManager : MonoBehaviour
 
     public GameObject[] spawnPoints;
     public GameObject hpBarPrefab;
+
     public Status targetBossStatus;
     public Monster targetBoss;
 
@@ -109,7 +110,7 @@ public class MonsterSpawnManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
             Time.timeScale = 3.0f;
 
-        if (GameManager.Instance.isGameOver) return;
+        if (GameManager.Instance.isGameOver || GameManager.Instance.isGameClear) return;
         
         int idx = GameManager.Instance.wave - 1;
         isBossWave = bossSpawnNum[idx] >= 1;
@@ -123,8 +124,8 @@ public class MonsterSpawnManager : MonoBehaviour
         if ((currentMonsterNum >= limitMonsterNum && !GameManager.Instance.isGameOver) || Input.GetKeyDown(KeyCode.R))
         {
             GameManager.Instance.isGameOver = true;
-            MessageManager.Instance.ShowMessage("GAME OVER", new Vector2(0, 218), 1f, 0.5f);
-            StartCoroutine(CountdownCoroutine(5));
+            UIManager.instance.ResultUI.gameObject.SetActive(true);
+            UIManager.instance.ResultUI.SetResultUI(false);
             isNormalSpawnStop = true;
         }
         else 
@@ -165,7 +166,8 @@ public class MonsterSpawnManager : MonoBehaviour
         if (isBossWave && !isBossSpawn)
         {
             UnitCode code = UnitCode.ELITEMONSTER5 + (GameManager.Instance.wave / 5);
-
+            if (code == UnitCode.MISSIONBOSS1)
+                code = UnitCode.BOSS6;
             SpawnMonster(code);
             MessageManager.Instance.ShowMessage(targetBossStatus.unitCode.ToString() + "가 등장했습니다.", new Vector2(0, 200), 1f, 0.5f);
 
@@ -233,7 +235,17 @@ public class MonsterSpawnManager : MonoBehaviour
             Restart();
         }
 
-        GameManager.Instance.wave+= waveCnt;
+        if (GameManager.Instance.wave == 35)
+        {
+            isNormalSpawnStop = true;
+            UIManager.instance.ResultUI.gameObject.SetActive(true);
+            UIManager.instance.ResultUI.SetResultUI(true);
+            GameManager.Instance.isGameClear = true;
+            return;
+
+        }
+
+            GameManager.Instance.wave+= waveCnt;
         UIManager.instance.waveNum.text = "Wave " + GameManager.Instance.wave.ToString();
 
         if (waveCnt > 0 && GameManager.Instance.wave <= 30)
@@ -248,6 +260,7 @@ public class MonsterSpawnManager : MonoBehaviour
         if (isBossWave && GameManager.Instance.wave <= 30)
             isNormalSpawnStop = true;
         _skipButton.gameObject.SetActive(false);
+
     }
 
     public void WaveSkip()
@@ -288,28 +301,35 @@ public class MonsterSpawnManager : MonoBehaviour
     private IEnumerator  CountdownStartCoroutine(int seconds)
     {
         int countdown = seconds;
+        UIManager.instance.GameStartImage.gameObject.SetActive(true);
         while (countdown > 0)
         {
-
+            UIManager.instance.GameStartImage.sprite = UIManager.instance.GameStartSprites[countdown - 1];
             // 메시지 매니저를 통해 카운트다운 메시지 표시
             MessageManager.Instance.ShowMessage($"Start {countdown}", new Vector2(0, 200), 1f, 0.1f);
 
             // 1초 기다리기
             yield return new WaitForSeconds(1f);
-
+            
             // 카운트다운 감소
             countdown--;
         }
 
+        StartCoroutine(DisableStartImage());
         isWait = true;
     }
 
-    private void ReloadScene()
+    public  void ReloadScene()
     {
         // 현재 씬을 다시 로드
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
 
-
+    IEnumerator DisableStartImage()
+    {
+        UIManager.instance.GameStartImage.sprite = UIManager.instance.GameStartSprites[3];
+        yield return new WaitForSeconds(1f);
+        UIManager.instance.GameStartImage.gameObject.SetActive(false);
+    }
 }

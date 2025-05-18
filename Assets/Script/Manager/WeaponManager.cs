@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 public class WeaponManager : Singleton<WeaponManager>
 {
     private PoolManager _poolManager;
-    private WeaponBase[] _equippedWeapons;
+    public WeaponBase[] _equippedWeapons;
     
     public event Action<CharacterController> OnWeaponEquipped;
     public event Action<CharacterController> OnWeaponDetached; 

@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 6
-  _skillIcon: {fileID: 21300000, guid: 43388f43442b2e8478e7175a91d2b275, type: 3}
+  _skillIcon: {fileID: 21300000, guid: e8552851d8bd97642a10699151593274, type: 3}
   weapon: {fileID: 0}
   indicatorType: 2
   _isFixedPosition: 0

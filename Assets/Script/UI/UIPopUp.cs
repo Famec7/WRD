@@ -33,6 +33,7 @@ public class UIPopUp : MonoBehaviour
                 UIManager.instance.CloseDetailedCombinationPopUpUI();
                 UIManager.instance.longClickPopUpUI.SetActive(false);
                 UIManager.instance.WeaponPickerPopUpUI.SetActive(false);
+                InventoryManager.instance.SyncWeaponSlotInventorySlot();
                 foreach (var pickerUI in MasterKeyManager.Instance.WeaponPickerList)
                     pickerUI.SetActive(false);
             }
@@ -56,6 +57,7 @@ public class UIPopUp : MonoBehaviour
                     results.Count < 4)
                 {
                     UIManager.instance.CloseAllPopUpUI();
+                    InventoryManager.instance.SyncWeaponSlotInventorySlot();
                     UIManager.instance.longClickPopUpUI.SetActive(false);
                     foreach (var pickerUI in MasterKeyManager.Instance.WeaponPickerList)
                         pickerUI.SetActive(false);

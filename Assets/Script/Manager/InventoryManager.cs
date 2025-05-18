@@ -60,7 +60,7 @@ public class InventoryManager : MonoBehaviour
         items = new List<InventoryItem>();
         
         const int unnormalWeaponIDImageMin = 201;
-        const int unnormalWeaponIDImageMax = 205;
+        const int unnormalWeaponIDImageMax = 208;
         
         int randomUnnormalWeaponNum = Random.Range(unnormalWeaponIDImageMin, unnormalWeaponIDImageMax + 1);
         int randomUnnormalWeaponID = WeaponDataManager.Instance.Database.GetWeaponIdByNum(randomUnnormalWeaponNum);
@@ -97,7 +97,6 @@ public class InventoryManager : MonoBehaviour
         for (int j = 0; j < slots.Length; j++)
         {
             slots[j].isEquiped = false;
-            slots[j].equipText.gameObject.SetActive(false);
 
             if (slots[j].weapon == null) continue;
             
@@ -110,7 +109,7 @@ public class InventoryManager : MonoBehaviour
                     if (weaponSlotUI.transform.GetChild(0).GetComponent<InventorySlot>().weapon == slots[j].weapon)
                     {
                         weaponSlotUI.inventorySlot = slots[j];
-                        weaponSlotUI.inventorySlot.equipText.gameObject.SetActive(true);
+                        weaponSlotUI.inventorySlot.ChangeBorder();
                         weaponSlotUI.inventorySlot.isEquiped = true;
                         break;
                     }
@@ -511,7 +510,7 @@ public class InventoryManager : MonoBehaviour
                 
                 bool isEquiped = GameManager.Instance.IsUsing(j+1);
                 notHeldSlotItem.GetComponent<InventorySlot>().isEquiped = isEquiped;
-                notHeldSlotItem.GetComponent<InventorySlot>().equipText.gameObject.SetActive(isEquiped);
+                notHeldSlotItem.GetComponent<InventorySlot>().ChangeBorder(isEquiped);
                 notHeldSlotItem.GetComponent<LongClickComponenet>().weaponID = data.ID;
                 i++;
             }
@@ -608,7 +607,7 @@ public class InventoryManager : MonoBehaviour
                 AddItem(weapon, false);
             }
 
-            BookMakredSlotUI.Instance.UpdateAllSlot();
+            //BookMakredSlotUI.Instance.UpdateAllSlot();
         }
     }
 

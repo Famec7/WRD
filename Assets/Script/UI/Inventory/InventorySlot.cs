@@ -8,7 +8,7 @@ public class InventorySlot : MonoBehaviour
     public bool hasItem;
     public bool isEquiped;
     public InventoryItem _weapon;
-    public TextMeshProUGUI equipText;
+    public Image Border;
     public InventoryItem weapon
     {
         get { return _weapon; }
@@ -40,6 +40,16 @@ public class InventorySlot : MonoBehaviour
         weapon = null;
         hasItem = false;
         isEquiped = false;
-        equipText.gameObject.SetActive(false);
+        ChangeBorder(false);
+    }
+
+    public void ChangeBorder(bool isEquip = true)
+    {
+        if (isEquip)
+            Border.gameObject.SetActive(true);
+        else
+            Border.gameObject.SetActive(false);
+
+
     }
 }

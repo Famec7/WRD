@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI currentMonsterNum;
     public TextMeshProUGUI limitMonsterNum;
     public TextMeshProUGUI currentWaveTime;
+    public TextMeshProUGUI currentTime;
 
     public TextMeshProUGUI[] elementCnt;
 
@@ -53,6 +54,11 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Image _blockImage;
     private UIPopUp[] _popups;
+    public float elapsedTime = 0f;
+    public ResultUI ResultUI;
+
+    public Sprite[] GameStartSprites;
+    public Image GameStartImage;
 
     [SerializeField] private GameObject missionUI;
 
@@ -80,9 +86,6 @@ public class UIManager : MonoBehaviour
         popUpStack = new Stack<UIPopUp>();
         DetailedCombinationPopupUIStack = new Stack<DetailedCombinationPopupUI>();
         _popups = new UIPopUp[UIType.MissionCheck.GetHashCode() + 1];
-        
-
-
     }
 
     private void Update()
@@ -91,6 +94,15 @@ public class UIManager : MonoBehaviour
         {
             elementCnt[i].text = GameManager.Instance.weaponCnt[i].ToString();
         }
+
+        elapsedTime += Time.deltaTime;
+
+        // 분·초 계산 (정수화)
+        int minutes = Mathf.FloorToInt(elapsedTime / 60f);
+        int seconds = Mathf.FloorToInt(elapsedTime % 60f);
+
+        currentTime.text = string.Format("{0:D2}:{1:D2}", minutes, seconds);
+
     }
 
     public void CreateDetailedCombinationPopupUI(int weaponID)

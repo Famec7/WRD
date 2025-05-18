@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryDescriptionUIGenerator : Singleton<InventoryDescriptionUIGenerator>
 {
@@ -47,18 +48,17 @@ public class InventoryDescriptionUIGenerator : Singleton<InventoryDescriptionUIG
             {
 
                 var skillList = SkillInfoManager.Instance.WeaponSkills[weaponNums[weaponId - 1]];
-
+                int weaponNum = WeaponDataManager.Instance.Database.GetWeaponNumByID(weaponId);
                 foreach (var skill in skillList)
                 {
-
                     var skillIconGameObject = Instantiate(SkillIconPrefab, inventoryDescriptionPopUpUI.transform.GetChild(2)) as GameObject;
                     skillIconGameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(15 + skillIndex * 85f, 0);
-                    skillIconGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(60f, 60f);
+                    skillIconGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(80f, 80f);
                     SkillIcon skillIcon = skillIconGameObject.GetComponent<SkillIcon>();
                     skillIcon.Init();
                     skillIcon.WeaponNum = WeaponDataManager.Instance.Database.GetWeaponNumByID(weaponId);
                     skillIcon.SkillCount = skillIndex;
-
+                    skillIcon.transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>("SkillIcon/" + weaponNum.ToString() + "_" + skillIndex.ToString());
                     // UI 업데이트 (스킬 정보 적용)
                     if (skillIndex == 0)
                     {

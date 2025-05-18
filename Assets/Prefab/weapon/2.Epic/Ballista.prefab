@@ -60,6 +60,7 @@ MonoBehaviour:
   activeSkillList: []
   anim: {fileID: 7683878575097369065}
   type: 0
+  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
   _range: 2
   _twoTargetSound: {fileID: 8300000, guid: 88324a7147ab6f444a7cd768c8d4f7ff, type: 3}
@@ -76,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 9
-  _skillIcon: {fileID: 21300000, guid: 725d822ccba4148449f62c0547fe2bca, type: 3}
+  _skillIcon: {fileID: 21300000, guid: a0d4a42187662d54e88d65365bb0af2a, type: 3}
   weapon: {fileID: 0}
 --- !u!114 &5001452256315348524
 MonoBehaviour:
@@ -91,7 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 8
-  _skillIcon: {fileID: 21300000, guid: cbda0e124eb240841acbe841a95ae1a8, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 78ddd578a8592bc4a9ef5a38beb62b2a, type: 3}
   weapon: {fileID: 0}
 --- !u!1 &7529458644039154109
 GameObject:
