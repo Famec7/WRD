@@ -34,7 +34,7 @@ public class Rush : ClickTypeSkill
     public override bool OnActiveExecute()
     {
         Vector2 direction = (ClickPosition - (Vector2)weapon.transform.position).normalized;
-        Vector2 targetPosition = (Vector2)weapon.transform.position + (direction * DashDistance);
+        Vector2 targetPosition = (Vector2)weapon.transform.position + (direction);
 
         _originAngleZ = transform.rotation.eulerAngles.z;
         angleZ = Vector3.SignedAngle(transform.up, direction, transform.forward);
@@ -95,7 +95,9 @@ public class Rush : ClickTypeSkill
             weapon.owner.GetComponent<PlayerController>().enabled = true;
         }
 
-       
+        ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("HeavyBlowEffect");
+        effect.SetPosition(targetPosition);
+        effect.PlayEffect();
     }
 
     void LateUpdate()
