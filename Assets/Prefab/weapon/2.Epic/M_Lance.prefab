@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084e984f55c34224e826cc964c10fe8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 49
+  skillId: 48
   _skillIcon: {fileID: 21300000, guid: ded9fa58bd4166144b9369a83ae32ba3, type: 3}
   weapon: {fileID: 0}
 --- !u!114 &624195310461648214
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c93ce46837df4e94db16c088d16bfa8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 50
+  skillId: 49
   _skillIcon: {fileID: 21300000, guid: 43388f43442b2e8478e7175a91d2b275, type: 3}
   weapon: {fileID: 0}
   DashDistance: 2

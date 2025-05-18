@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c54654207c7493294818368d3740125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 39
+  skillId: 38
   _skillIcon: {fileID: 21300000, guid: 1ce06f31b71fdab4783101861f43b38d, type: 3}
   weapon: {fileID: 0}
   _heavyBlowSound: {fileID: 8300000, guid: 4256eaf8cf3b0c145b96f9bf3de33153, type: 3}

@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7701331785a255f4888d3d8d63ed09f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 30
+  skillId: 29
   _skillIcon: {fileID: 21300000, guid: 53b8d515e300f1242b6f6a1e17b3a9cb, type: 3}
   weapon: {fileID: 0}
   _originalMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}

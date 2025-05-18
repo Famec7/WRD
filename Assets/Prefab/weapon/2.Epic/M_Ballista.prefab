@@ -60,10 +60,10 @@ MonoBehaviour:
   activeSkillList: []
   anim: {fileID: 7683878575097369065}
   type: 0
+  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
   _range: 2
   _twoTargetSound: {fileID: 8300000, guid: 88324a7147ab6f444a7cd768c8d4f7ff, type: 3}
-  _passiveAuraSkillId: 40
 --- !u!114 &608144257787451840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd01e262462940bc94a8aa7ef303db9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 41
+  skillId: 40
   _skillIcon: {fileID: 21300000, guid: 725d822ccba4148449f62c0547fe2bca, type: 3}
   weapon: {fileID: 0}
 --- !u!114 &8544672496049482536
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a95cb2a1f0e430ba721e510f8248290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 40
+  skillId: 39
   _skillIcon: {fileID: 21300000, guid: cbda0e124eb240841acbe841a95ae1a8, type: 3}
   weapon: {fileID: 0}
 --- !u!1 &7529458644039154109

@@ -60,6 +60,7 @@ MonoBehaviour:
   - {fileID: 2745252123847738697}
   anim: {fileID: 8887362761926240980}
   type: 0
+  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
 --- !u!114 &1782632758593961849
 MonoBehaviour:
@@ -73,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93a300ed2864ad44bf1874943c7f231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillId: 31
+  skillId: 30
   _skillIcon: {fileID: 21300000, guid: 607b18a5f16520f469b89b584f87e9f5, type: 3}
   weapon: {fileID: 0}
 --- !u!114 &2745252123847738697
