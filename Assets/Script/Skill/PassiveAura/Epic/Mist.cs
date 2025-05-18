@@ -1,18 +1,13 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TridentOfPoseidon : PassiveAuraSkillBase
+public class Mist : PassiveAuraSkillBase
 {
-    [Header("이속 감소 범위")]
-    [SerializeField]
-    private float _slowZoneRange = 1.0f;
-    
     [SerializeField] private SlowZone _slowZone;
 
     protected override void Init()
     {
         base.Init();
-        _slowZone.SetData(0, _slowZoneRange, Data.GetValue(1));
+        _slowZone.SetData(0, Data.Range, Data.GetValue(0));
     }
 
     private void OnEnable()
