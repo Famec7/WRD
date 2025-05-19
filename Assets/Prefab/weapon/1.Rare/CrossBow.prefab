@@ -180,6 +180,7 @@ MonoBehaviour:
   activeSkillList: []
   anim: {fileID: 6239497332095291070}
   type: 0
+  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
 --- !u!114 &9218373063751830235
 MonoBehaviour:
@@ -194,5 +195,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 3
-  _skillIcon: {fileID: 21300000, guid: 005be5d5d3690e643a2a9c69938db161, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 3812c9bad97a66c44ac9fa06ed4923fe, type: 3}
   weapon: {fileID: 0}

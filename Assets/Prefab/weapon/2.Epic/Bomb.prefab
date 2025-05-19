@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 34
-  _skillIcon: {fileID: 21300000, guid: 79fb565262c691446adc8e4c4bed8e28, type: 3}
+  _skillIcon: {fileID: 21300000, guid: ed6d9f252f71cf746923b4db80d61894, type: 3}
   weapon: {fileID: 0}
   BombProjectiles: []
   _attackSound: {fileID: 8300000, guid: f9941eda762f1474993231acf8ba2d2f, type: 3}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 8
-  _skillIcon: {fileID: 21300000, guid: 575e051419faa2c4093a921ff54918d4, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 6e6441aa18b1694438d569587fedc30a, type: 3}
   weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 1
