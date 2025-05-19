@@ -9,15 +9,17 @@ public class WeaponTierTranslator
             case WeaponTier.Normal:
                 return "흔함";
             case WeaponTier.UNNORMAL:
-                return "안흔함";
+                return "고급";
             case WeaponTier.RARE:
-                return "특별함";
+                return "희귀";
             case WeaponTier.EPIC:
-                return "희귀함";
+                return "영웅";
             case WeaponTier.LEGENDARY:
                 return "전설";
             case WeaponTier.MYTH:
                 return "신화";
+            case WeaponTier.MODIFIED:
+                return "변이";
             default:
                 return "알 수 없음";
         }
