@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,14 +32,23 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
             DetailedDescriptionUI detailedDescriptionUI = detailedDescriptionUIGameObject.GetComponent<DetailedDescriptionUI>();
             List<int> canCombinWeaponsList = new List<int>();
             detailedDescriptionUIList.Add(detailedDescriptionUIGameObject);
-            
+
+             
             for (int j = 0; j < weaponDataCount; j++)
             {
-                string mainCombi = WeaponDataManager.Instance.Database.GetWeaponData(j + 1).MainCombi;
-                if (mainCombi == weaponNum.ToString())
-                {
-                    canCombinWeaponsList.Add(WeaponDataManager.Instance.Database.GetWeaponData(j + 1).ID);
-                }
+                var data = WeaponDataManager.Instance.Database.GetWeaponData(j + 1);
+                string main = data.MainCombi;
+                string combi = data.Combi ?? "";
+
+                bool isMain = main == weaponNum.ToString();
+                bool inRecipe = combi
+                    .Split(' ')
+                    .Where(s => int.TryParse(s, out _))
+                    .Select(int.Parse)
+                    .Contains(weaponNum);
+
+                if (isMain || inRecipe)
+                    canCombinWeaponsList.Add(data.ID);
             }
             canCombineCnt = canCombinWeaponsList.Count;
 
