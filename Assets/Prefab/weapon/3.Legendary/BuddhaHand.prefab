@@ -5242,7 +5242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 22
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: 9f87f0fb26273ce479e7db504856df80, type: 3}
   weapon: {fileID: 0}
 --- !u!114 &1098530659345011886
 MonoBehaviour:

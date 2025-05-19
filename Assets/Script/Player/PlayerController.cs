@@ -101,15 +101,15 @@ public class PlayerController : CharacterController, ISubject
 
     private void OnClickMove()
     {
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR*/
         if (!Input.GetMouseButton(0))
             return;
-#else
+/*#else
     if (Input.touchCount <= 0)
         return;
-#endif
+#endif*/
 
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR*/
         bool isPointerOverUI = UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("UI"));
         bool isPointerOverSkillUI = UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("SkillUI"));
         if (isPointerOverUI || isPointerOverSkillUI)
@@ -118,7 +118,7 @@ public class PlayerController : CharacterController, ISubject
         }
 
         Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-#else
+/*#else
     Touch touch = Input.GetTouch(0);
 
     bool isPointerOverUI = UIHelper.IsPointerOverUILayer(LayerMask.NameToLayer("UI"), touch);
@@ -129,7 +129,7 @@ public class PlayerController : CharacterController, ISubject
     }
 
     Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-#endif
+#endif*/
 
         TouchPos = touchPosition;
 

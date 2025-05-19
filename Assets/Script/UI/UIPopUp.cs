@@ -19,14 +19,14 @@ public class UIPopUp : MonoBehaviour
 
     public void Update()
     {
-#if UNITY_EDITOR
+/*#if UNITY_EDITOR*/
         if (!Input.GetMouseButton(0))
             return;
-#else
+/*#else
     if (Input.touchCount <= 0)
         return;
-#endif
-#if UNITY_EDITOR
+#endif*/
+/*#if UNITY_EDITOR*/
         if (Input.GetMouseButtonDown(0))
         {
             var popUPresults = UIManager.instance.GetRayCastResult(true);
@@ -73,7 +73,7 @@ public class UIPopUp : MonoBehaviour
                 }
             }
         }
-#else
+/*#else
 Input.GetTouch(0);
         {
             var popUPresults = UIManager.instance.GetRayCastResult(true);
@@ -120,7 +120,7 @@ Input.GetTouch(0);
                 }
             }
         }
-#endif
+#endif*/
     }
 
 
