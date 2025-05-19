@@ -999,6 +999,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skillName: {fileID: 7714745968545972971}
   _description: {fileID: 7107251031004851483}
+  _skillCoolTime: {fileID: 0}
+  _coolTimeIcon: {fileID: 0}
 --- !u!114 &4539680291123958337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1867,8 +1869,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 193.745, y: -78.51499}
-  m_SizeDelta: {x: 367.49, y: 25.01}
+  m_AnchoredPosition: {x: 203.00037, y: -78.11582}
+  m_SizeDelta: {x: 262.4196, y: 25.8083}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7413553966985927862
 CanvasRenderer:
