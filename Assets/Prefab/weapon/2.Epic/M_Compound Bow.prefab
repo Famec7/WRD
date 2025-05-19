@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 47
-  _skillIcon: {fileID: 21300000, guid: fa97a227db4443a48a248dbeb2e5fd90, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 7c237315571569847a8cc315938b1b76, type: 3}
   weapon: {fileID: 0}
   _arrowJourneyTime: 1
 --- !u!114 &-2780196588165844571
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 46
-  _skillIcon: {fileID: 21300000, guid: 607b18a5f16520f469b89b584f87e9f5, type: 3}
+  _skillIcon: {fileID: 21300000, guid: a2d0199cc15ad8a48ae11aeaea1c4980, type: 3}
   weapon: {fileID: 0}
 --- !u!1 &7028890157330334918
 GameObject:
