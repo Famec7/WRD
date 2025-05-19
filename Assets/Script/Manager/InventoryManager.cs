@@ -97,7 +97,7 @@ public class InventoryManager : MonoBehaviour
         for (int j = 0; j < slots.Length; j++)
         {
             slots[j].isEquiped = false;
-
+            slots[j].ChangeBorder(false);
             if (slots[j].weapon == null) continue;
             
             for (int weapnUIIDX = 0; weapnUIIDX < UIManager.instance.weaponSlotUI.Length; weapnUIIDX++)
