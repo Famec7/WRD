@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SettingUI : MonoBehaviour
 {
@@ -8,7 +9,10 @@ public class SettingUI : MonoBehaviour
     private bool _isPause = false;
     
     [SerializeField] private GameObject _settingUI;
-    
+    public Image PauseButton;
+    public Sprite PauseSprite;
+    public Sprite ResumeSprite;
+
     private void OpenSettingUI()
     {
         _isSettingUIOpen = true;
@@ -17,8 +21,9 @@ public class SettingUI : MonoBehaviour
         Time.timeScale = 0;
         
         _settingUI.SetActive(true);
+        PauseButton.sprite = ResumeSprite;
     }
-    
+
     private void CloseSettingUI()
     {
         _isSettingUIOpen = false;
@@ -27,6 +32,7 @@ public class SettingUI : MonoBehaviour
         Time.timeScale = 1;
         
         _settingUI.SetActive(false);
+        PauseButton.sprite = PauseSprite;
     }
     
     public void OnClickPauseButton()

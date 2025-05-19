@@ -2169,7 +2169,7 @@ RectTransform:
   m_GameObject: {fileID: 1050710327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1650429294}
@@ -2177,8 +2177,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20.09961, y: -15.800781}
-  m_SizeDelta: {x: 32.3804, y: 24.7482}
+  m_AnchoredPosition: {x: -90, y: -50}
+  m_SizeDelta: {x: 168, y: 83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1050710329
 MonoBehaviour:
@@ -2256,8 +2256,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: a04325bda12df424bba7e95d3213f24b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4268,6 +4268,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settingUI: {fileID: 983066341}
+  PauseButton: {fileID: 1050710330}
+  PauseSprite: {fileID: 21300000, guid: a04325bda12df424bba7e95d3213f24b, type: 3}
+  ResumeSprite: {fileID: 21300000, guid: 2769d0ccf9efad948a7d2f2abfb2ad17, type: 3}
 --- !u!114 &1292885895 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9092358566743588955, guid: 61e1792beb769f74f9a24809eaf99f2f, type: 3}
@@ -4606,7 +4609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1650429294
 RectTransform:
   m_ObjectHideFlags: 0
