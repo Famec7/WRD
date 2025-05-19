@@ -213,6 +213,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
+      propertyPath: weaponDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: cddbc37002f6cac49ab358ea8e9cbc96, type: 2}
+    - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: StartElementCnt
       value: 5
       objectReference: {fileID: 0}
@@ -3089,6 +3093,18 @@ PrefabInstance:
     - target: {fileID: 4605409888651584771, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703332040312131974, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_Delegates.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703332040312131974, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_Delegates.Array.data[0].eventID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703332040312131974, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPointerExit
       objectReference: {fileID: 0}
     - target: {fileID: 4780477009684210871, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_Delegates.Array.size
