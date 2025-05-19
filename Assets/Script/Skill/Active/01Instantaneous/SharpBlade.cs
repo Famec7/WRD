@@ -51,10 +51,10 @@ public class SharpBlade : InstantaneousSkill
         List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, _range, dir, targetLayer);
 
         // 이펙트 재생
-        ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("SharpBladeEffect");
+        ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("SwingEffect");
 
-        effect.SetPosition(weapon.owner.transform.position + dir);
-        effect.SetRotation(Quaternion.Euler(180, 0, Vector2.SignedAngle(Vector2.left, dir)));
+        effect.SetPosition(weapon.owner.transform.position);
+        effect.SetRotation(Quaternion.Euler(180, 0, Vector2.SignedAngle(Vector2.right, dir)));
         effect.PlayEffect();
 
         foreach (var tar in targets)
