@@ -9,10 +9,7 @@ public class CondemnVariation : Condemn
 
         if (target.TryGetComponent(out Monster monster))
         {
-            GuidedProjectile projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
-            projectile.Target = target.gameObject;
-                    
-            projectile.OnHit += () => OnHit(monster, Data.GetValue(0));
+            OnHit(monster, Data.GetValue(0));
         }
         
         return true;
