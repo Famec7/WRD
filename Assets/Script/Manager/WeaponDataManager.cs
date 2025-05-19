@@ -29,13 +29,13 @@ public class WeaponDataManager : Singleton<WeaponDataManager>
         switch (classEngText)
         {
             case "unnormal":
-                classKorText = "안흔함";
+                classKorText = "고급";
                 break;
             case "rare":
-                classKorText = "특별함";
+                classKorText = "희귀";
                 break;
             case "epic":
-                classKorText = "희귀함";
+                classKorText = "영웅";
                 break;
             case "legendary":
                 classKorText = "전설";
