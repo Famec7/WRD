@@ -42,7 +42,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
             }
             canCombineCnt = canCombinWeaponsList.Count;
 
-            detailedDescriptionUI.weaponNameText.text = WeaponDataManager.Instance.Database.GetWeaponData(weaponId).WeaponName;
+            detailedDescriptionUI.weaponNameText.text = WeaponDataManager.Instance.Database.GetWeaponData(weaponId).WeaponNameKR;
             string weaponIconPath = "WeaponIcon/" + weaponNums[weaponId-1].ToString();
 
             detailedDescriptionUI.weaponImage.sprite = ResourceManager.Instance.Load<Sprite>(weaponIconPath);
@@ -86,7 +86,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
                 var highLevelWeaponIcon = Instantiate(highLevelCombinationPrefab, detailedDescriptionUI.transform) as GameObject;
                 highLevelWeaponIcon.GetComponent<RectTransform>().anchoredPosition = new Vector3(-280 + 120 * idx, -170);
                 highLevelWeaponIcon.GetComponent<Image>().color = WeaponTierTranslator.GetClassColor(WeaponDataManager.Instance.GetWeaponData(highLevelweaponID).tier);
-                highLevelWeaponIcon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(highLevelweaponID).WeaponName;
+                highLevelWeaponIcon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(highLevelweaponID).WeaponNameKR;
                 var path = "WeaponIcon/" + WeaponDataManager.Instance.GetWeaponData(highLevelweaponID).num;
                 highLevelWeaponIcon.transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
                 highLevelWeaponIcon.transform.GetComponent<Button>().onClick.AddListener(()=>UIManager.instance.CreateDetailedDescriptionUI(highLevelweaponID));
@@ -108,7 +108,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
                         var highLevelWeaponIcon = Instantiate(highLevelCombinationPrefab,detailedDescriptionUI.transform) as GameObject;
                         highLevelWeaponIcon.GetComponent<RectTransform>().anchoredPosition = new Vector3(-280 + 120 * idx, -350);
                         highLevelWeaponIcon.GetComponent<Image>().color = WeaponTierTranslator.GetClassColor(WeaponDataManager.Instance.GetWeaponData(capturedHighID).tier);
-                        highLevelWeaponIcon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(capturedJ).WeaponName;
+                        highLevelWeaponIcon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(capturedJ).WeaponNameKR;
                        
                         string path = "WeaponIcon/" +WeaponDataManager.Instance.Database.GetWeaponData(capturedJ).num;
                         highLevelWeaponIcon.transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);

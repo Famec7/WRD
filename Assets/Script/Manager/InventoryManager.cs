@@ -629,7 +629,7 @@ public class InventoryManager : MonoBehaviour
         TextMeshProUGUI warningText = WeaponPickerConfirmPopUp.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
         confirmText.text = WeaponTierTranslator.TranslateToKorean(data.tier) + " 마스터키를 사용하겠습니까?";
-        warningText.text = data.WeaponName + " 대신 " + WeaponTierTranslator.TranslateToKorean(data.tier) +
+        warningText.text = data.WeaponNameKR + " 대신 " + WeaponTierTranslator.TranslateToKorean(data.tier) +
             " 등급의\n마스터키가 1개가 교환됩니다.";
 
         WeaponPickerConfirmPopUp.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
@@ -686,7 +686,7 @@ public class InventoryManager : MonoBehaviour
             }
 
             // 무기 이름 가져오기
-            string weaponName = weaponData.WeaponName;
+            string weaponName = weaponData.WeaponNameKR;
 
             // 메시지 작성: "무슨 무기 대신에 무슨 등급"
             string message = $"{weaponName} 대신에 {tierKorean} 등급";

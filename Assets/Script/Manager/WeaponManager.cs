@@ -69,7 +69,7 @@ public class WeaponManager : Singleton<WeaponManager>
             SkillManager.Instance.RemoveAllSkill();
         }
         
-        _poolManager.ReturnToPool(detachedWeapon.Data.WeaponName, detachedWeapon);
+        _poolManager.ReturnToPool(detachedWeapon.Data.WeaponNameEN, detachedWeapon);
         
         _equippedWeapons[characterIndex] = null;
     }
@@ -139,11 +139,11 @@ public class WeaponManager : Singleton<WeaponManager>
             return null;
         }
 
-        var weapon = _poolManager.GetFromPool<WeaponBase>(weaponData.WeaponName);
+        var weapon = _poolManager.GetFromPool<WeaponBase>(weaponData.WeaponNameEN);
         
         if (weapon is null)
         {
-            Debug.LogError($"Weapon is null. WeaponName: {weaponData.WeaponName}");
+            Debug.LogError($"Weapon is null. WeaponName: {weaponData.WeaponNameKR}");
             return null;
         }
 

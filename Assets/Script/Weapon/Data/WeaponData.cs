@@ -8,7 +8,8 @@ public class WeaponData
 {
     public int ID { get; set; }
 
-    public string WeaponName { get; set; }
+    public string WeaponNameKR { get; set; }
+    public string WeaponNameEN { get; set; }
     public int Type1 { get; }
     public float AttackDamage { get; set; }
     public int skillA;

@@ -11,6 +11,8 @@ public class GameScene : SceneBase
         {
             SoundManager.Instance.PlayBGM(bgm);
         }
+        
+        Application.targetFrameRate = 60;
     }
 
     protected override void Cleanup()

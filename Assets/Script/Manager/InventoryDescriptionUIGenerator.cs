@@ -28,7 +28,7 @@ public class InventoryDescriptionUIGenerator : Singleton<InventoryDescriptionUIG
             var inventoryDescriptionPopUpUIGameObject = Instantiate(inventoryDescriptionUIPrefab, parentTransform) as GameObject;
             InventoryDescriptionPopUpUI inventoryDescriptionPopUpUI = inventoryDescriptionPopUpUIGameObject.GetComponent<InventoryDescriptionPopUpUI>();
             inventoryDescriptionPopUpUI.weaponId = weaponId;
-            inventoryDescriptionPopUpUI.weaponNameText.text = data.WeaponName;
+            inventoryDescriptionPopUpUI.weaponNameText.text = data.WeaponNameKR;
             string weaponIconPath = "WeaponIcon/" + weaponNums[weaponId - 1].ToString();
 
             inventoryDescriptionPopUpUI.weaponImage.sprite = ResourceManager.Instance.Load<Sprite>(weaponIconPath);

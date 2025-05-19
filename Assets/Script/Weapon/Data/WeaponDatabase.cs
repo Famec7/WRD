@@ -20,7 +20,8 @@ public class WeaponDatabase : ScriptableObject
             {
                 ID = idx++,
                 WeaponClass = (data["class"].ToString()),
-                WeaponName = (data["name"].ToString()),
+                WeaponNameKR = (data["name"].ToString()),
+                WeaponNameEN = (data["english_name"].ToString()),
                 rType = int.Parse(data["r_type"].ToString()),
                 num = int.Parse(data["num"].ToString()),
                 //reload = int.Parse(data["reload"].ToString()),
