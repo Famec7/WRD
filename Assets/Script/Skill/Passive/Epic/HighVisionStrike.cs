@@ -36,6 +36,6 @@ public class HighVisionStrike : PassiveSkillBase
     protected virtual void Attack(Monster monster)
     {
         monster.HasAttacked(Data.GetValue(0));
-        StatusEffectManager.Instance.AddStatusEffect(monster.status, new SlowDown(monster.gameObject, 100f, Data.GetValue(1)));
+        StatusEffectManager.Instance.AddStatusEffect(monster.status, new Stun(monster.gameObject, Data.GetValue(1)));
     }
 }
