@@ -13,6 +13,8 @@ public class WeaponDataManager : Singleton<WeaponDataManager>
     {
         Database = ResourceManager.Instance.Load<WeaponDatabase>("Database/WeaponDatabase");
         Database.Load();
+        
+        GameManager.Instance.weaponCnt = new int[Database.GetWeaponDataCount()];
     }
     
     public WeaponData GetWeaponData(int id)
