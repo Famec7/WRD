@@ -57,7 +57,7 @@ public class WeaponCombinationUIGenerator : Singleton<WeaponCombinationUIGenerat
             combineWeaponUIList.Add((combinationUI));
             canCombineCnt = canCombinWeaponsList.Count;
             var weaponName = combinationUI.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-            weaponName.text = WeaponDataManager.Instance.Database.GetWeaponData(i).WeaponName;
+            weaponName.text = WeaponDataManager.Instance.Database.GetWeaponData(i).WeaponNameKR;
 
             var weaponIcon = combinationUI.transform.GetChild(0).GetComponent<Image>();
             string weaponIconPath = "WeaponIcon/" + weaponNums[i-1].ToString();
