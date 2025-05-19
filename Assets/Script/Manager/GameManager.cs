@@ -18,6 +18,10 @@ public class GameManager : Singleton<GameManager>
     protected override void Init()
     {
         useWeapon = new List<int>();
+    }
+
+    private void OnEnable()
+    {
         weaponCnt = new int[WeaponDataManager.Instance.Database.GetWeaponDataCount()];
     }
 
