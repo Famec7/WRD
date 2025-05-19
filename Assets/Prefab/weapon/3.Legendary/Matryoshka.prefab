@@ -168,7 +168,7 @@ MonoBehaviour:
   skillId: 19
   _skillIcon: {fileID: 21300000, guid: 521c87b51756f9946aa87529730bc8a3, type: 3}
   weapon: {fileID: 0}
-  stunRange: 3
+  stunRange: 2
   slowRanges:
   - 2
   - 2.5
@@ -193,9 +193,9 @@ MonoBehaviour:
   _isFixedPosition: 1
   IndicatorMonsters: []
   _ranges:
-  - 4.5
   - 4
   - 3.5
+  - 2.5
   _matryoshkaSpriteChanger: {fileID: 4508801962611740291}
   _effect: {fileID: 8631461450688211319}
 --- !u!1 &8631461450688211319

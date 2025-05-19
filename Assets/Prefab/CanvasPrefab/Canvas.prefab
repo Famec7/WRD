@@ -3857,6 +3857,18 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4621118329948826331, guid: fe0a949808c8d0242b9500ed5032728c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621118329948826331, guid: fe0a949808c8d0242b9500ed5032728c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4621118329948826331, guid: fe0a949808c8d0242b9500ed5032728c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -23.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4707466613670250866, guid: fe0a949808c8d0242b9500ed5032728c, type: 3}
       propertyPath: m_fontAsset
       value: 

@@ -633,7 +633,7 @@ MonoBehaviour:
   skillId: 21
   _skillIcon: {fileID: 21300000, guid: 2bc2ae98680d07648b5864e31a7666dc, type: 3}
   weapon: {fileID: 0}
-  _attackRange: 3
+  _attackRange: 1
   _crashEffect: {fileID: 2155119629124417988}
 --- !u!114 &704148395022289597
 MonoBehaviour:

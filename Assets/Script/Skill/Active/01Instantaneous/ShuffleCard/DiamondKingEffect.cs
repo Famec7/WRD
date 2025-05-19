@@ -36,7 +36,7 @@ public class DiamondKingEffect : CardEffectBase
         
         var effect = EffectManager.Instance.CreateEffect<ParticleEffect>("DiamondKing");
         effect.SetPosition(Weapon.owner.transform.position);
-        effect.SetScale(_range);
+        //effect.SetScale(_range);
         effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, targetPosition)));
         effect.PlayEffect();
         
