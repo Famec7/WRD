@@ -29,18 +29,7 @@ public class RangedWeapon : WeaponBase
     {
         if (owner.Target.TryGetComponent(out Monster monster))
         {
-            GuidedProjectile projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(type == Type.Stone ? "Stone" : default, this.transform.position);
-
-            if (_isShowProjectile == false)
-            {
-                projectile.GetComponent<SpriteRenderer>().enabled = false;
-            }
-
-            projectile.Target = owner.Target.gameObject;
-            projectile.SetType(type);
-            
-            projectile.OnHit += () => OnHit(monster, Data.AttackDamage);
-            
+            OnHit(monster, Data.AttackDamage);
             PlayAttackSound();
         }
     }
