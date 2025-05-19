@@ -99,21 +99,29 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
             {
                 foreach (var highLevelweaponID in canCombinWeaponsList)
                 {
-                    if (WeaponDataManager.Instance.Database.GetWeaponData(j + 1).MainCombi == WeaponDataManager.Instance.Database.GetWeaponNumByID(highLevelweaponID).ToString())
+                    var data = WeaponDataManager.Instance.Database.GetWeaponData(j + 1);
+                    if (data.MainCombi == WeaponDataManager.Instance.Database.GetWeaponNumByID(highLevelweaponID).ToString())
                     {
-                        var highLevelWeaponIcon = Instantiate(highLevelCombinationPrefab, detailedDescriptionUI.transform) as GameObject;
+                        int capturedJ = j;
+                        int capturedHighID = highLevelweaponID;
+
+                        var highLevelWeaponIcon = Instantiate(highLevelCombinationPrefab,detailedDescriptionUI.transform) as GameObject;
                         highLevelWeaponIcon.GetComponent<RectTransform>().anchoredPosition = new Vector3(-280 + 120 * idx, -350);
-                        highLevelWeaponIcon.GetComponent<Image>().color = WeaponTierTranslator.GetClassColor(WeaponDataManager.Instance.GetWeaponData(highLevelweaponID).tier);
-                        highLevelWeaponIcon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(j).WeaponName;
-                        var path = "WeaponIcon/" + WeaponDataManager.Instance.GetWeaponData(j).num; 
+                        highLevelWeaponIcon.GetComponent<Image>().color = WeaponTierTranslator.GetClassColor(WeaponDataManager.Instance.GetWeaponData(capturedHighID).tier);
+                        highLevelWeaponIcon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(capturedJ).WeaponName;
+                       
+                        string path = "WeaponIcon/" +WeaponDataManager.Instance.Database.GetWeaponData(capturedJ).num;
                         highLevelWeaponIcon.transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
-                        highLevelWeaponIcon.transform.GetComponent<Button>().onClick.AddListener(()=>UIManager.instance.CreateDetailedDescriptionUI(j));
+
+                        var button = highLevelWeaponIcon.GetComponent<Button>();
+
+                        button.onClick.AddListener(() => { UIManager.instance.CreateDetailedDescriptionUI(capturedJ);});
                         idx++;
                     }
                 }
             }
-            
-            
+
+
 
             detailedDescriptionUIGameObject.SetActive((false));
         }
