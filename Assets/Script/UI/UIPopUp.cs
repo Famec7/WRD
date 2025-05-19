@@ -74,7 +74,7 @@ public class UIPopUp : MonoBehaviour
             }
         }
 #else
-Input.GetTouch(0)
+Input.GetTouch(0);
         {
             var popUPresults = UIManager.instance.GetRayCastResult(true);
             var results = UIManager.instance.GetRayCastResult(false);
