@@ -305,9 +305,6 @@ public class MonsterSpawnManager : MonoBehaviour
         while (countdown > 0)
         {
             UIManager.instance.GameStartImage.sprite = UIManager.instance.GameStartSprites[countdown - 1];
-            // 메시지 매니저를 통해 카운트다운 메시지 표시
-            MessageManager.Instance.ShowMessage($"Start {countdown}", new Vector2(0, 200), 1f, 0.1f);
-
             // 1초 기다리기
             yield return new WaitForSeconds(1f);
             

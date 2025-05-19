@@ -98,7 +98,7 @@ public class LongClickComponenet : MonoBehaviour
             longClickPopUpUI.isBookmarked = isBookmarked;
             longClickPopUpUI.isInventory = isInventory;
             longClickPopUpUI.isWeaponSlot = isWeaponSlot;
-            //longClickPopUpUI.SetBookmarkedButtonText(isBookmarked, isInventory,isWeaponSlot);
+            longClickPopUpUI.SetBookmarkedButtonText(isBookmarked, isInventory,isWeaponSlot);
         }
     
         isClicked = false;

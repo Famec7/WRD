@@ -17,6 +17,11 @@ public class ResultUI : MonoBehaviour
     public Sprite ClearHeader;
     public Image Header;
 
+    public void Update()
+    {
+        transform.SetAsLastSibling();
+        Time.timeScale = 0f;
+    }
     public void SetResultUI(bool isClear)
    {
         if (isClear)

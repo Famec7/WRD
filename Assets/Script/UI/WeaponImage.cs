@@ -173,9 +173,9 @@ public class WeaponImage : MonoBehaviour
                         longClickPopUpUi.SetLongClickPopUpUI(targetWeaponID, false, false, false, targetInventorySlot, targetWeaponSlot);
                         longClickPopUpUi.UnEuqip();
 
-                        BookMakredSlotUI.Instance.RemoveItem(BookMakredSlotUI.Instance.GetSlotWithWeaponID(transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID).transform.GetChild(0).GetComponent<InventorySlot>());
-                        BookMakredSlotUI.Instance.weaponID = targetWeaponID;
-                        BookMakredSlotUI.Instance.AddItem(int.Parse(transform.parent.name));
+                        //BookMakredSlotUI.Instance.RemoveItem(BookMakredSlotUI.Instance.GetSlotWithWeaponID(transform.parent.gameObject.GetComponent<WeaponSlotUI>().weaponID).transform.GetChild(0).GetComponent<InventorySlot>());
+                        //BookMakredSlotUI.Instance.weaponID = targetWeaponID;
+                        //BookMakredSlotUI.Instance.AddItem(int.Parse(transform.parent.name));
                     }
 
                     string numberString = Regex.Replace(targetSlotObject.gameObject.name, @"\D", "");
@@ -209,11 +209,11 @@ public class WeaponImage : MonoBehaviour
                     targetSlotObject.GetComponent<WeaponSlotUI>().ChangeWeaponUseable();
                 }
 
-                if (!BookMakredSlotUI.Instance.IsDuplicatedID(myWeaponID))
-                {
-                    BookMakredSlotUI.Instance.weaponID = myWeaponID;
-                    BookMakredSlotUI.Instance.AddItem(int.Parse(targetSlotObject.name));
-                }
+                //if (!BookMakredSlotUI.Instance.IsDuplicatedID(myWeaponID))
+                //{
+                //    BookMakredSlotUI.Instance.weaponID = myWeaponID;
+                //    BookMakredSlotUI.Instance.AddItem(int.Parse(targetSlotObject.name));
+                //}
 
             }
         }

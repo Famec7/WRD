@@ -50,8 +50,8 @@ public class SlotSelectUI : MonoBehaviour
                     GameManager.Instance.UpdateUseableWeaponCnt();
                     WeaponUI.Instance.AddItem(order,_item);
                 }
-                else 
-                    BookMakredSlotUI.Instance.AddItem(order);
+                //else 
+                //    BookMakredSlotUI.Instance.AddItem(order);
 
             }
 
