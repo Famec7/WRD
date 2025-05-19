@@ -19,6 +19,14 @@ public class UIPopUp : MonoBehaviour
 
     public void Update()
     {
+#if UNITY_EDITOR
+        if (!Input.GetMouseButton(0))
+            return;
+#else
+    if (Input.touchCount <= 0)
+        return;
+#endif
+#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
             var popUPresults = UIManager.instance.GetRayCastResult(true);
@@ -65,7 +73,56 @@ public class UIPopUp : MonoBehaviour
                 }
             }
         }
+#else
+Input.GetTouch(0)
+        {
+            var popUPresults = UIManager.instance.GetRayCastResult(true);
+            var results = UIManager.instance.GetRayCastResult(false);
+            // 없으면 return
+
+            if (popUPresults.Count == 0 && results.Count == 0)
+            {
+                UIManager.instance.CloseCombinePopUpUI();
+                UIManager.instance.CloseInventoryDescriptionPopUpUI();
+                UIManager.instance.CloseDetailedDescriptionPopUpUI();
+                UIManager.instance.CloseDetailedCombinationPopUpUI();
+                UIManager.instance.longClickPopUpUI.SetActive(false);
+                UIManager.instance.WeaponPickerPopUpUI.SetActive(false);
+                InventoryManager.instance.SyncWeaponSlotInventorySlot();
+                foreach (var pickerUI in MasterKeyManager.Instance.WeaponPickerList)
+                    pickerUI.SetActive(false);
+            }
+
+            bool isButton = false;
+            foreach (var result in popUPresults)
+            {
+                if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count >= 3 || result.gameObject.CompareTag("DetailedDescriptionUI") ||
+                    result.gameObject.CompareTag("Mission") || result.gameObject.CompareTag("InventoryDescriptionUI") || result.gameObject.CompareTag("WeaponPicker") || result.gameObject.CompareTag("CombinedWeaponImage") ||
+                    result.gameObject.CompareTag("WeaponPickerConfrimPopUp") || result.gameObject.CompareTag("DescriptionButton"))
+                    isButton = true;
+            }
+
+            if (isButton) return;
+
+            foreach (var result in results)
+            {
+                Debug.Log(result.gameObject.name);
+
+                if ((result.gameObject.name == "Slot" && !result.gameObject.transform.GetChild(0).GetComponent<InventorySlot>().isEquiped) ||
+                    results.Count < 4)
+                {
+                    UIManager.instance.CloseAllPopUpUI();
+                    InventoryManager.instance.SyncWeaponSlotInventorySlot();
+                    UIManager.instance.longClickPopUpUI.SetActive(false);
+                    foreach (var pickerUI in MasterKeyManager.Instance.WeaponPickerList)
+                        pickerUI.SetActive(false);
+                    break;
+                }
+            }
+        }
+#endif
     }
+
 
     /// <summary>
     /// 닫기 버튼 이벤트 설정
