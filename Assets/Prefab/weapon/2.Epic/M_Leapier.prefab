@@ -99,6 +99,7 @@ MonoBehaviour:
   indicatorType: 2
   _isFixedPosition: 1
   IndicatorMonsters: []
+  sfx: {fileID: 8300000, guid: c84da4f71903d344396520a93486d400, type: 3}
   MaxDashDistance: 2
   InitialSpeed: 3
   MaxSpeed: 5

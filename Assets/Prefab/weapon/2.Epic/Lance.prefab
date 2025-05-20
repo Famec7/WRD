@@ -98,6 +98,7 @@ MonoBehaviour:
   InitialSpeed: 5
   MaxSpeed: 7
   pivot: {x: -0.181, y: -0.1, z: 0}
+  dashSound: {fileID: 8300000, guid: b0a72847a2048eb48ab12274253e0624, type: 3}
 --- !u!1 &7582972423524674569
 GameObject:
   m_ObjectHideFlags: 0
