@@ -3,7 +3,6 @@
 public class DiamondKingEffect : CardEffectBase
 {
     private float _time;
-    private readonly Vector3 _range = new Vector3(3, 5, 0);
     
     public DiamondKingEffect(WeaponBase weapon) : base(weapon)
     {
@@ -32,7 +31,7 @@ public class DiamondKingEffect : CardEffectBase
         Vector3 targetPosition = Weapon.owner.Target.transform.position;
         var layer = LayerMaskProvider.MonsterLayerMask;
 
-        var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, _range, default, layer);
+        var targets = RangeDetectionUtility.GetAttackTargets(targetPosition, Data.Range, 360.0f, layer);
         
         var effect = EffectManager.Instance.CreateEffect<ParticleEffect>("DiamondKing");
         effect.SetPosition(Weapon.owner.transform.position);
