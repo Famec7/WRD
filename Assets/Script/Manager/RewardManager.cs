@@ -38,6 +38,7 @@ public class RewardManager : Singleton<RewardManager>
 
         bossRewardGrades = new string[data.Count];
         bossRewardNumbers = new string[data.Count];
+        bossRewardMNumbers = new string[data.Count];
         elementRewardCnt = new int[data.Count];
         unnormalRewardCnt = new int[data.Count];
         rareRewardCnt = new int[data.Count];

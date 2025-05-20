@@ -64,5 +64,7 @@ public class GameManager : Singleton<GameManager>
         {
             useAbleWeaponCnt[id - 1]--;
         }
+
+        InventoryManager.instance.ModifyCnt.text = weaponCnt[weaponCnt.Length - 1].ToString();
     }
 }

@@ -37,6 +37,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject[] sortButtons;
     public GameObject WeaponPickerConfirmPopUp;
 
+    public TextMeshProUGUI ModifyCnt;
     public ScrollRect scrollRect;
 
     public Toggle allShowToggle;
@@ -90,6 +91,7 @@ public class InventoryManager : MonoBehaviour
     {
         transform.SetAsLastSibling();
         isAllShow = allShowInventoryContent.activeSelf;
+
     }
 
     public void SyncWeaponSlotInventorySlot()
