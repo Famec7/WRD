@@ -10,13 +10,14 @@ public class SkillInfoManager : Singleton<SkillInfoManager>
         public string Name;
         public string Info;
         public string Type;
+        public string CoolTime;
 
-
-        public SkillInfo(string name, string info, string type)
+        public SkillInfo(string name, string info, string type, string coolTime)
         {
             Name = name;
             Info = info;
             Type = type;
+            CoolTime = coolTime;
         }
     }
 
@@ -33,13 +34,13 @@ public class SkillInfoManager : Singleton<SkillInfoManager>
             string skillName = data[i]["skill_name"].ToString();
             string skillInfo = data[i]["skill_info"].ToString();
             string skillType = data[i]["skill_type_1"].ToString();
-
+            string coolTime = data[i]["skill_cooltime"].ToString();
             if (!WeaponSkills.ContainsKey(weaponNum))
             {
                 WeaponSkills[weaponNum] = new List<SkillInfo>();
             }
 
-            WeaponSkills[weaponNum].Add(new SkillInfo(skillName, skillInfo, skillType));
+            WeaponSkills[weaponNum].Add(new SkillInfo(skillName, skillInfo, skillType,coolTime));
         }
     }
 }

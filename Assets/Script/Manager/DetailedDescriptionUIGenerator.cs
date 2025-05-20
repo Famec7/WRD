@@ -71,9 +71,12 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
                     skillIconGameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(-280 + skillIndex * 120f, 204.2f);
                     
                     SkillIcon skillIcon = skillIconGameObject.GetComponent<SkillIcon>();
+                    skillIcon.WeaponNum = weaponNums[weaponId - 1];
+
                     skillIcon.Init();
                     skillIcon.transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>("SkillIcon/" + weaponNum.ToString() + "_" + skillIndex.ToString());
-                    skillIcon.WeaponNum = weaponNums[weaponId - 1];
+                    if (skillIcon.WeaponNum == 0) continue;
+
                     skillIcon.SkillCount = skillIndex;
 
                     // UI 업데이트 (스킬 정보 적용)
@@ -82,6 +85,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
                         skillIcon.SkillIconSelectUI.GetComponent<RectTransform>().anchoredPosition = skillIcon.GetComponent<RectTransform>().anchoredPosition;
                         skillIcon.SkillName.text = skill.Name;
                         skillIcon.SkillType.text = skill.Type;
+                        skillIcon.CoolTimeText.text = skill.CoolTime;
                         skillIcon.SkillDescriptionText.text = skill.Info;
                     }
                     skillIndex++;
