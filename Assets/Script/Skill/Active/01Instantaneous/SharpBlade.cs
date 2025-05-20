@@ -15,6 +15,8 @@ public class SharpBlade : InstantaneousSkill
     
     private bool _isAttack = false;
 
+    [SerializeField] private AudioClip sfx;
+
     protected override void Init()
     {
         base.Init();
@@ -56,6 +58,8 @@ public class SharpBlade : InstantaneousSkill
         effect.SetPosition(weapon.owner.transform.position);
         effect.SetRotation(Quaternion.Euler(180, 0, Vector2.SignedAngle(Vector2.right, dir)));
         effect.PlayEffect();
+        
+        SoundManager.Instance.PlaySFX(sfx);
 
         foreach (var tar in targets)
         {

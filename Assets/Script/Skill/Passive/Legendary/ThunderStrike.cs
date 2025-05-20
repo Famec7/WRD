@@ -4,6 +4,8 @@ using UnityEngine;
 public class ThunderStrike : PassiveSkillBase
 {
     private float _damage = 0f;
+    
+    [SerializeField] private AudioClip sfx;
 
     protected override void Init()
     {
@@ -36,6 +38,9 @@ public class ThunderStrike : PassiveSkillBase
         thunderEffect.SetData(Data);
         thunderEffect.SetPosition(target.transform.position);
         thunderEffect.PlayEffect();
+        
+        // 사운드 재생
+        SoundManager.Instance.PlaySFX(sfx);
     }
 
     private void Attack()

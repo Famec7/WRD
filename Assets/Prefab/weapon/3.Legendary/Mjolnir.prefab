@@ -77,6 +77,7 @@ MonoBehaviour:
   skillId: 23
   _skillIcon: {fileID: 21300000, guid: d4d4dfc401dcbd54e9cf667e995c8bc3, type: 3}
   weapon: {fileID: 0}
+  sfx: {fileID: 8300000, guid: aaeb9cb92d2d1af418f0a459f7516105, type: 3}
 --- !u!114 &-5849220522782477472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +97,7 @@ MonoBehaviour:
   _isFixedPosition: 0
   IndicatorMonsters: []
   _chainAttackRange: 7
+  sfx: {fileID: 8300000, guid: 62cc2a9172689f24da84924572a6697d, type: 3}
 --- !u!114 &-8115485028832374192
 MonoBehaviour:
   m_ObjectHideFlags: 0

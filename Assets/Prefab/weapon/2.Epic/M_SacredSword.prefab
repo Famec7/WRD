@@ -180,6 +180,7 @@ MonoBehaviour:
   _isFixedPosition: 0
   IndicatorMonsters: []
   _range: {x: 1.5, y: 3.5, z: 1}
+  sfx: {fileID: 8300000, guid: a2d0d5b7f4b77bd4ca48fb219b76e5e8, type: 3}
 --- !u!114 &8929435555099841464
 MonoBehaviour:
   m_ObjectHideFlags: 0

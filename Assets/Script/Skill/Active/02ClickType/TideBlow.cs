@@ -10,6 +10,9 @@ public class TideBlow : ClickTypeSkill
     [SerializeField] private float _pushForce = 10.0f;
     [SerializeField] private float _moveSpeed = 3.0f;
     
+    [Header("스킬 관련 사운드")]
+    [SerializeField] private AudioClip sfx;
+    
     public override void OnActiveEnter()
     {
         _wave.transform.SetParent(null);
@@ -31,6 +34,8 @@ public class TideBlow : ClickTypeSkill
         _wave.Init(_pushForce, direction, _moveSpeed, Data.GetValue(0));
         _wave.transform.position = transform.position;
         _wave.PlayEffect();
+        
+        SoundManager.Instance.PlaySFX(sfx);
         
         _wave.OnWaveEnd = CreateWaterPool;
     }

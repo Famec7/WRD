@@ -60,7 +60,6 @@ MonoBehaviour:
   - {fileID: 2745252123847738697}
   anim: {fileID: 8887362761926240980}
   type: 0
-  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
 --- !u!114 &1782632758593961849
 MonoBehaviour:
@@ -98,6 +97,7 @@ MonoBehaviour:
   _arrowJourneyTime: 0.3
   _offset: {x: 0, y: 4}
   _arrowCount: 20
+  sfx: {fileID: 8300000, guid: 7e51958d56683154bbbaf03d9c2840eb, type: 3}
 --- !u!1 &7028890157330334918
 GameObject:
   m_ObjectHideFlags: 0
