@@ -212,6 +212,7 @@ public class UIManager : MonoBehaviour
         CloseCombinePopUpUI();
 
         InventoryManager.instance.inventorySelectUI.SetActive(false);
+        InventoryManager.instance.SyncWeaponSlotInventorySlot();
         foreach (var popup in inventoryDescriptionPopUpUiStack)
         {
             GameObject current = popup.gameObject;

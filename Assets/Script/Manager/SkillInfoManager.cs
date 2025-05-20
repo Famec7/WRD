@@ -11,6 +11,7 @@ public class SkillInfoManager : Singleton<SkillInfoManager>
         public string Info;
         public string Type;
 
+
         public SkillInfo(string name, string info, string type)
         {
             Name = name;

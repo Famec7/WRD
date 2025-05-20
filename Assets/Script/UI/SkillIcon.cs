@@ -13,6 +13,9 @@ public class SkillIcon : MonoBehaviour
     public TextMeshProUGUI SkillName;
     public TextMeshProUGUI SkillType;
     public TextMeshProUGUI SkillDescriptionText;
+    public TextMeshProUGUI CoolTimeText;
+    public Image CoolTimeImage;
+
     public GameObject SkillIconSelectUI;
 
     public int WeaponNum;
@@ -30,6 +33,9 @@ public class SkillIcon : MonoBehaviour
         SkillType.gameObject.SetActive(true);
         SkillDescriptionText = SkillDescriptionTextArea.GetChild(2).GetComponent<TextMeshProUGUI>();
         SkillDescriptionText.gameObject.SetActive(true);
+        //CoolTimeText = SkillDescriptionTextArea.GetChild(3).GetComponent<TextMeshProUGUI>();
+        //CoolTimeText.gameObject.SetActive(true);
+        //CoolTimeImage = SkillDescriptionTextArea.GetChild(4).GetComponent<Image>();
     }
 
     public void InventoryDescriptionPopUpInit()
@@ -47,6 +53,8 @@ public class SkillIcon : MonoBehaviour
     {
         SkillIconSelectUI.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
         SkillIconSelectUI.SetActive(true);
+        CoolTimeImage.gameObject.SetActive(true);
+
         if (SkillInfoManager.Instance.WeaponSkills.ContainsKey(WeaponNum))
         {
             var skills = SkillInfoManager.Instance.WeaponSkills[WeaponNum];

@@ -2718,6 +2718,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1756340780165677382, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3deefba2e4f0bf4449b09a9944705011, type: 3}
     - target: {fileID: 1785191704204640426, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -3450,6 +3454,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnPointerExit
       objectReference: {fileID: 0}
+    - target: {fileID: 6483731868723001073, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6dce66d2474a5e648ae2a685b7f5c318, type: 3}
     - target: {fileID: 6555260147918181346, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -3590,6 +3598,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7544235139790638163, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 27f5ced0cfdbeb0488e75349ea7c146d, type: 3}
     - target: {fileID: 7572257297512960976, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_Camera
       value: 
@@ -3786,6 +3798,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8834050802055776357, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7ccfc56e854e21e479b2f845e4058875, type: 3}
     - target: {fileID: 8925339077216437720, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 159.20001
@@ -4838,7 +4854,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a07249d258a255d44a78653b9bd61250, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
