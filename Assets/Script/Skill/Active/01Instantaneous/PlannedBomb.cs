@@ -48,7 +48,7 @@ public class PlannedBomb : InstantaneousSkill
             {
                 monster.HasAttacked(Data.GetValue(0));
 
-                StatusEffect stun = new SlowDown(monster.gameObject, 100f, Data.GetValue(1));
+                StatusEffect stun = new Stun(monster.gameObject, Data.GetValue(1));
                 StatusEffectManager.Instance.AddStatusEffect(monster.status, stun);
 
                 ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("FireEffect");
