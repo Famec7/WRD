@@ -92,7 +92,7 @@ public class GlueBomb : PassiveAuraSkillBase
             BombProjectiles.Add(projectile);
 
             StartCoroutine(AddBombToMonster(monster, projectile));
-            SoundManager.Instance.PlaySFX(_attackSound);
+            SoundManager.Instance.PlaySFX(_attackSound, 0.5f);
         }
     }
 

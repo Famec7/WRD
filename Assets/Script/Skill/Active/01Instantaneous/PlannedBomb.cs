@@ -22,7 +22,7 @@ public class PlannedBomb : InstantaneousSkill
         // 딕셔너리 초기화
         passiveAuraSkill.monsterBombs.Clear();
         
-        SoundManager.Instance.PlaySFX(_bombSound);
+        SoundManager.Instance.PlaySFX(_bombSound, 0.5f);
     }
 
     public override bool OnActiveExecute()
