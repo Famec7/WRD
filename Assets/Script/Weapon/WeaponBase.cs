@@ -223,7 +223,7 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
         }
         
         // 무기 해제
-        owner.DetachWeapon();
+        owner?.DetachWeapon();
 
         ResetStats();
 
