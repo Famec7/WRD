@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class ClickTypeSkill : ActiveSkillBase
@@ -19,8 +20,12 @@ public abstract class ClickTypeSkill : ActiveSkillBase
     /// <returns></returns>
     protected Monster SelectMonsterAtClickPosition()
     {
+        const float range = 100f;
+        
         LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
-        Collider2D collider = Physics2D.OverlapPoint(ClickPosition, layerMask);
+        Collider2D collider = Physics2D.OverlapCircleAll(ClickPosition, range, layerMask)
+                .OrderBy(c => Vector2.Distance(ClickPosition, c.transform.position))
+                .FirstOrDefault();
 
         if (collider is null)
         {
