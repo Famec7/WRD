@@ -55,7 +55,7 @@ public class MonsterPoolManager : Singleton<MonsterPoolManager>
         else
             pooledObject.GetComponent<Status>().SetUnitStatus(code);
 
-        if (code >= UnitCode.BOSS1)
+        if (code >= UnitCode.BOSS1 && code <= UnitCode.BOSS6)
         {
             MonsterSpawnManager.instance.targetBossStatus = pooledObject.GetComponent<Status>();
             MonsterSpawnManager.instance.targetBoss = pooledObject;

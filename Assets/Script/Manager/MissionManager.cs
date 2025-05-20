@@ -44,7 +44,7 @@ public class MissionManager : Singleton<MissionManager>
             // 몬스터 제거 로직
             MessageManager.Instance.ShowMessage(monster.status.unitCode.ToString() + " Fail!", new Vector2(0, 200), 2f, 0.5f);
             MonsterPoolManager.Instance.ReturnObject(monster.status.unitCode.ToString(), monster.gameObject);
-            MonsterHPBarPool.ReturnObject(monster.transform.GetChild(1).GetComponent<MonsterHPBar>());
+            MonsterHPBarPool.ReturnObject(monster.transform.GetChild(2).GetComponent<MonsterHPBar>());
             TargetMonsterList.Remove(monster);
             MonsterTimerDict.Remove(monster);
         }
