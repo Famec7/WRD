@@ -7,9 +7,6 @@ public class Swing : PassiveSkillBase
     private float _skillDamage;
     
     [SerializeField]
-    private Vector2 _hitSize;
-    
-    [SerializeField]
     private AudioClip _swingSound;
     
     protected override void Init()
@@ -27,7 +24,7 @@ public class Swing : PassiveSkillBase
         if (dir == Vector3.zero)
             return false;
         
-        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, _hitSize, dir, targetLayer);
+        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, Data.Range, 360.0f, targetLayer);
 
         if(targets.Count == 0)
             return false;
