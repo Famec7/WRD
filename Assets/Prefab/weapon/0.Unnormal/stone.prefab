@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6888917218563530692}
-  - component: {fileID: 2399733218464352375}
+  - component: {fileID: 1731462342643969116}
   m_Layer: 0
   m_Name: stone
   m_TagString: Untagged
@@ -155,7 +155,7 @@ Transform:
   - {fileID: 1948215685927515672}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2399733218464352375
+--- !u!114 &1731462342643969116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9047339751986635526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b373136225d446f699fb8370bb6c5bcd, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dba1bc186e6439da0a6f6c6532509a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
@@ -178,5 +178,4 @@ MonoBehaviour:
   activeSkillList: []
   anim: {fileID: 3808358629734200006}
   type: 5
-  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 621f3f3faa6bc2942a03d8c5b7d640b3, type: 3}
