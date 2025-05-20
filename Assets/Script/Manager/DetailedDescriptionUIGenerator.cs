@@ -93,7 +93,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
 
             foreach (var highLevelweaponID in canCombinWeaponsList)
             {
-                var highLevelWeaponIcon = Instantiate(highLevelCombinationPrefab, detailedDescriptionUI.transform) as GameObject;
+                var highLevelWeaponIcon = Instantiate(highLevelCombinationPrefab, detailedDescriptionUI.HighLevelTransform.transform) as GameObject;
                 highLevelWeaponIcon.GetComponent<RectTransform>().anchoredPosition = new Vector3(-280 + 120 * idx, -170);
                 highLevelWeaponIcon.GetComponent<Image>().color = WeaponTierTranslator.GetClassColor(WeaponDataManager.Instance.GetWeaponData(highLevelweaponID).tier);
                 highLevelWeaponIcon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(highLevelweaponID).WeaponNameKR;
@@ -115,7 +115,7 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
                         int capturedJ = j;
                         int capturedHighID = highLevelweaponID;
 
-                        var highLevelWeaponIcon = Instantiate(highLevelCombinationPrefab,detailedDescriptionUI.transform) as GameObject;
+                        var highLevelWeaponIcon = Instantiate(highLevelCombinationPrefab, detailedDescriptionUI.HighHighLevelTransform.transform) as GameObject;
                         highLevelWeaponIcon.GetComponent<RectTransform>().anchoredPosition = new Vector3(-280 + 120 * idx, -350);
                         highLevelWeaponIcon.GetComponent<Image>().color = WeaponTierTranslator.GetClassColor(WeaponDataManager.Instance.GetWeaponData(capturedHighID).tier);
                         highLevelWeaponIcon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(capturedJ).WeaponNameKR;
