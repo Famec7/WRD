@@ -66,7 +66,7 @@ public abstract class CharacterController : MonoBehaviour
         {
             if(col.gameObject.activeSelf is false)
                 continue;
-            if (col.gameObject.GetComponent<Monster>().status.unitCode >= UnitCode.BOSS1 && col.gameObject.GetComponent<Monster>().status.unitCode <= UnitCode.BOSS6)
+            if (col.gameObject.GetComponent<Monster>().status.unitCode >= UnitCode.BOSS1 && col.gameObject.GetComponent<Monster>().status.unitCode <= UnitCode.MISSIONBOSS6)
             {
                 nearestTarget = col.gameObject;
                 break;
