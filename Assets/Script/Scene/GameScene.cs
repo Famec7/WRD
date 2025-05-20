@@ -17,6 +17,6 @@ public class GameScene : SceneBase
 
     protected override void Cleanup()
     {
-        ;
+        
     }
 }

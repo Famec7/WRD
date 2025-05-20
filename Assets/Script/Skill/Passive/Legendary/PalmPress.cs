@@ -4,6 +4,9 @@ public class PalmPress : PassiveSkillBase
 {
     private float _damage;
     private float _stunDuration;
+    
+    [SerializeField]
+    private AudioClip sfx;
 
     protected override void Init()
     {
@@ -44,6 +47,7 @@ public class PalmPress : PassiveSkillBase
         var effect = EffectManager.Instance.CreateEffect<BuddhaHandEffect>("BuddhaEffect");
         effect.transform.position = targets[0].transform.position;
         effect.PlayEffect();
+        SoundManager.Instance.PlaySFX(sfx);
 
         return true;
     }

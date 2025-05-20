@@ -21,6 +21,9 @@ public class DetailedDescriptionUI : UIPopUp
     public TextMeshProUGUI weaponDescriptionText;
     public List<GameObject> iconList;
 
+    public GameObject HighLevelTransform;
+    public GameObject HighHighLevelTransform;
+
 
 
     private List<int> canCombinWeaponsList;

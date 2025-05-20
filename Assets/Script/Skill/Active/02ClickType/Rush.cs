@@ -23,12 +23,17 @@ public class Rush : ClickTypeSkill
     public Vector3 pivot = new Vector3(-0.181f, -0.1f,0);
 
     private Coroutine _dashCoroutine = null;
+    
+    [SerializeField]
+    private AudioClip dashSound;
 
     public override void OnActiveEnter()
     {
         _damage = Data.GetValue(0);
         _duration = Data.GetValue(1);
         _reducedSpeed = (int)Data.GetValue(2);
+        
+        SoundManager.Instance.PlaySFX(dashSound);
     }
 
     public override bool OnActiveExecute()

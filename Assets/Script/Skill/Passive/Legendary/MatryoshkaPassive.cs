@@ -41,10 +41,10 @@ public class MatryoshkaPassive : PassiveSkillBase
 
     public override bool Activate(GameObject target = null)
     {
-        if (!CheckTrigger())
+        if (!CheckTrigger() || target == null)
             return false;
 
-        var targets = RangeDetectionUtility.GetAttackTargets(transform.position, stunRange, default, targetLayer);
+        var targets = RangeDetectionUtility.GetAttackTargets(target.transform.position, stunRange, default, targetLayer);
 
         if (targets.Count == 0)
             return false;
@@ -65,7 +65,7 @@ public class MatryoshkaPassive : PassiveSkillBase
         
         ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>("MatryoshkaPassive");
         particleEffect.SetColor(GetColor(_currentSlowRangeIndex));
-        particleEffect.SetPosition(targets[0].transform.position);
+        particleEffect.SetPosition(target.transform.position);
 
         return true;
     }

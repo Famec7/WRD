@@ -13,6 +13,9 @@ public class SkillIcon : MonoBehaviour
     public TextMeshProUGUI SkillName;
     public TextMeshProUGUI SkillType;
     public TextMeshProUGUI SkillDescriptionText;
+    public TextMeshProUGUI CoolTimeText;
+    public Image CoolTimeImage;
+
     public GameObject SkillIconSelectUI;
 
     public int WeaponNum;
@@ -20,6 +23,7 @@ public class SkillIcon : MonoBehaviour
 
     public void Init()
     {
+
         Transform SkillDescriptionTextArea = transform.parent.GetChild(0);
         SkillDescriptionTextArea.gameObject.SetActive(true);
         SkillIconSelectUI = transform.parent.GetChild(1).gameObject;
@@ -29,7 +33,21 @@ public class SkillIcon : MonoBehaviour
         SkillType = SkillDescriptionTextArea.GetChild(1).GetComponent<TextMeshProUGUI>();
         SkillType.gameObject.SetActive(true);
         SkillDescriptionText = SkillDescriptionTextArea.GetChild(2).GetComponent<TextMeshProUGUI>();
+        int childCount = SkillDescriptionTextArea.transform.childCount;
+        CoolTimeText = SkillDescriptionTextArea.GetChild(4).GetComponent<TextMeshProUGUI>();
+        CoolTimeImage = SkillDescriptionTextArea.GetChild(3).GetComponent<Image>();
+
         SkillDescriptionText.gameObject.SetActive(true);
+        if (SkillType.text == "액티브")
+        {
+            CoolTimeText.gameObject.SetActive(true);
+            CoolTimeImage.gameObject.SetActive(true);
+        }
+        else
+        {
+            CoolTimeText.gameObject.SetActive(false);
+            CoolTimeImage.gameObject.SetActive(false);
+        }
     }
 
     public void InventoryDescriptionPopUpInit()
@@ -47,6 +65,8 @@ public class SkillIcon : MonoBehaviour
     {
         SkillIconSelectUI.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
         SkillIconSelectUI.SetActive(true);
+        CoolTimeImage.gameObject.SetActive(true);
+
         if (SkillInfoManager.Instance.WeaponSkills.ContainsKey(WeaponNum))
         {
             var skills = SkillInfoManager.Instance.WeaponSkills[WeaponNum];
@@ -55,6 +75,18 @@ public class SkillIcon : MonoBehaviour
             if(SkillType != null)
                 SkillType.text = skills[SkillCount].Type;
             SkillDescriptionText.text = skills[SkillCount].Info;
+
+            if (SkillType.text == "액티브")
+            {
+                CoolTimeText.text = skills[SkillCount].CoolTime;
+                CoolTimeImage.gameObject.SetActive(true);
+                CoolTimeText.gameObject.SetActive(true);
+            }
+            else
+            {
+                CoolTimeText.gameObject.SetActive(false);
+                CoolTimeImage.gameObject.SetActive(false);
+            }
         }
     }
 }

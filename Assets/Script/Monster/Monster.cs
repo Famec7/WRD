@@ -83,7 +83,6 @@ public class Monster : MonoBehaviour, IPoolObject
             }
 
             RewardManager.Instance.GetReward(status.unitCode);
-            MessageManager.Instance.ShowMessage(status.unitCode.ToString() + " Clear!", new Vector2(0, 200), 2f, 0.5f);
             MissionManager.Instance.missionInfo._missionSlots[status.unitCode - UnitCode.MISSIONBOSS1].Clear(true);
         }
 

@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 37
-  _skillIcon: {fileID: 21300000, guid: abb53d6e7265d8a498d4ec0d38d831ec, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 46228ec4205530a4aaf6e4db79156f2e, type: 3}
   weapon: {fileID: 0}
   _hitSize: {x: 0, y: 0}
   _swingSound: {fileID: 8300000, guid: 06f89da76928e4f4b8b7d6597867196f, type: 3}
@@ -174,12 +174,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 25
-  _skillIcon: {fileID: 21300000, guid: 72c3c589b659a2141a622d0322539df2, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 9fe023e833e00b647b84da461c1566b2, type: 3}
   weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []
   _range: {x: 1.5, y: 3.5, z: 1}
+  sfx: {fileID: 8300000, guid: a2d0d5b7f4b77bd4ca48fb219b76e5e8, type: 3}
 --- !u!114 &8929435555099841464
 MonoBehaviour:
   m_ObjectHideFlags: 0

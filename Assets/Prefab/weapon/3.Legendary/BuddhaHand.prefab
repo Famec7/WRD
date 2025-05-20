@@ -5242,8 +5242,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 22
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: 9f87f0fb26273ce479e7db504856df80, type: 3}
   weapon: {fileID: 0}
+  sfx: {fileID: 8300000, guid: 4256eaf8cf3b0c145b96f9bf3de33153, type: 3}
 --- !u!114 &1098530659345011886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5264,6 +5265,7 @@ MonoBehaviour:
   IndicatorMonsters: []
   _damageAmplificationZone: {fileID: 6680142398026861271}
   _buddhaHandEffect: {fileID: 7200753399039325296}
+  sfx: {fileID: 8300000, guid: 4256eaf8cf3b0c145b96f9bf3de33153, type: 3}
 --- !u!1 &6770145250986671537
 GameObject:
   m_ObjectHideFlags: 0

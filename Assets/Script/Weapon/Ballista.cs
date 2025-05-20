@@ -23,12 +23,7 @@ public class Ballista : RangedWeapon
         if(GetPassiveSkill().Activate(monster.gameObject))
             return;
         
-        var projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
-
-        projectile.Target = monster.gameObject;
-        projectile.SetType(type);
-        
-        projectile.OnHit += () => OnHit(monster, Data.AttackDamage);
+        OnHit(monster, Data.AttackDamage);
         
         SoundManager.Instance.PlaySFX(_twoTargetSound);
     }

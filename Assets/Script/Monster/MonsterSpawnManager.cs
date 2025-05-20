@@ -232,7 +232,10 @@ public class MonsterSpawnManager : MonoBehaviour
 
         if ((isBossWave && targetBossStatus.HP > 0) && !GameManager.Instance.isGameOver)
         {
-            Restart();
+            GameManager.Instance.isGameOver = true;
+            UIManager.instance.ResultUI.gameObject.SetActive(true);
+            UIManager.instance.ResultUI.SetResultUI(false);
+            isNormalSpawnStop = true;
         }
 
         if (GameManager.Instance.wave == 35)
@@ -274,8 +277,6 @@ public class MonsterSpawnManager : MonoBehaviour
     public void Restart()
     {
         GameManager.Instance.isGameOver = true;
-        MessageManager.Instance.ShowMessage("GAME OVER", new Vector2(0, 218), 1f, 0.5f);
-        StartCoroutine(CountdownCoroutine(5));
     }
 
     private IEnumerator CountdownCoroutine(int seconds)

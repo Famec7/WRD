@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,31 +17,18 @@ public class RangedWeapon : WeaponBase
 
     [SerializeField] protected Type type;
     public Type WeaponType => type;
-    
-    [SerializeField]
-    private bool _isShowProjectile = true;
-    
-    [Space] [Header("무기 종류에 맞는 사운드")]
-    [SerializeField] private AudioClip _attackSound;
-    
+
+    [Space] [Header("무기 종류에 맞는 사운드")] [SerializeField]
+    private AudioClip _attackSound;
+
     protected AudioClip AttackSound => _attackSound;
 
     protected override void Attack()
     {
         if (owner.Target.TryGetComponent(out Monster monster))
         {
-            GuidedProjectile projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(type == Type.Stone ? "Stone" : default, this.transform.position);
-
-            if (_isShowProjectile == false)
-            {
-                projectile.GetComponent<SpriteRenderer>().enabled = false;
-            }
-
-            projectile.Target = owner.Target.gameObject;
-            projectile.SetType(type);
-            
-            projectile.OnHit += () => OnHit(monster, Data.AttackDamage);
-            
+            OnHit(monster, Data.AttackDamage);
+            PlayEffect(monster.transform.position);
             PlayAttackSound();
         }
     }
@@ -49,7 +37,13 @@ public class RangedWeapon : WeaponBase
     {
         monster.HasAttacked(damage);
     }
-    
+
+    protected virtual void PlayEffect(Vector3 position)
+    {
+        ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>(type + "Hit");
+        particleEffect.SetPosition(position);
+    }
+
     protected virtual void PlayAttackSound()
     {
         SoundManager.Instance.PlaySFX(_attackSound);

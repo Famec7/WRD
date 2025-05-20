@@ -17,6 +17,8 @@ public class ArrowRain : ClickTypeSkill
 
     [SerializeField]
     private int _arrowCount;
+    
+    [SerializeField] private AudioClip sfx;
 
     protected override void Init()
     {
@@ -31,6 +33,7 @@ public class ArrowRain : ClickTypeSkill
         ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("ArrowRain");
         effect.SetPosition(ClickPosition);
         effect.PlayEffect();
+        SoundManager.Instance.PlaySFX(sfx);
         StartCoroutine(Damage(ClickPosition));
     }
 

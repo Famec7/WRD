@@ -6,6 +6,8 @@ public class ArrowRainVariation : PassiveSkillBase
 {
     [SerializeField]
     private float _arrowJourneyTime = 1.0f;
+    
+    [SerializeField] private AudioClip sfx;
 
     public override bool Activate(GameObject target = null)
     {
@@ -14,6 +16,7 @@ public class ArrowRainVariation : PassiveSkillBase
         ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("ArrowRain");
         effect.SetPosition(target.transform.position);
         effect.PlayEffect();
+        SoundManager.Instance.PlaySFX(sfx);
         StartCoroutine(Damage(target.transform.position));
         return true;
     }

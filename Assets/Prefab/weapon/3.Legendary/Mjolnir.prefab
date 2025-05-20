@@ -75,8 +75,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 23
-  _skillIcon: {fileID: 21300000, guid: b58394d9381802d4f83a793ddb41a456, type: 3}
+  _skillIcon: {fileID: 21300000, guid: d4d4dfc401dcbd54e9cf667e995c8bc3, type: 3}
   weapon: {fileID: 0}
+  sfx: {fileID: 8300000, guid: aaeb9cb92d2d1af418f0a459f7516105, type: 3}
 --- !u!114 &-5849220522782477472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,12 +91,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 19
-  _skillIcon: {fileID: 21300000, guid: cdac5cea2a196ca478f4bd7cc82b16ef, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 47be4ffea3946bb479a23fe0de6aaa13, type: 3}
   weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []
   _chainAttackRange: 7
+  sfx: {fileID: 8300000, guid: 62cc2a9172689f24da84924572a6697d, type: 3}
 --- !u!114 &-8115485028832374192
 MonoBehaviour:
   m_ObjectHideFlags: 0

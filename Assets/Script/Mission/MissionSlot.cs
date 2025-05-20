@@ -51,6 +51,12 @@ public class MissionSlot : MonoBehaviour
 
     private void OpenMissionUI()
     {
+        if (MissionManager.Instance.IsRunning)
+        {
+            MessageManager.Instance.ShowMessage("미션이 진행중입니다.", new Vector2(0, 200), 2f, 0.5f);
+            return;
+        }
+        
         UIManager.instance.OpenPopUpUI(UIType.MissionDescription);
         MissionUI missionUI = UIManager.instance.GetPopUpUI() as MissionUI;
 

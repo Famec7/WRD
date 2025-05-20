@@ -67,6 +67,13 @@ public class RewardPopUpUI : MonoBehaviour
         rewardSlot.GetComponent<RewardSlot>().SettingRandomWeaponRewardSlot(weaponNum);
     }
 
+    public void CreateModifyRewardSlot(int cnt)
+    {
+        GameObject rewardSlot = Instantiate(rewardSlotPrefab_, rewardSpace_.transform);
+        PositionRewardSlot(rewardSlot);
+        rewardSlot.GetComponent<RewardSlot>().SettingModifyRewardSlot(cnt);
+    }
+
     public void CreateMasterKeyRewardSlot(Tuple<WeaponTier, int> rewardTuple)
     {
         GameObject rewardSlot = Instantiate(rewardSlotPrefab_, rewardSpace_.transform);

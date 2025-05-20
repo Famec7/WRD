@@ -19,16 +19,14 @@ public class RushVariation : PassiveSkillBase
     private Coroutine _dashCoroutine = null;
 
     public Vector3 pivot = new Vector3(-0.181f, -0.1f, 0);
-
-
-    protected override void Init()
-    {
-        base.Init();
-    }
+    
+    [SerializeField]
+    private AudioClip dashSound;
 
     public override bool Activate(GameObject target = null)
     {
-        if (!CheckTrigger()) return false;
+        if (!CheckTrigger() || target == null) return false;
+        SoundManager.Instance.PlaySFX(dashSound);
         StartCoroutine(IE_Activate(target));
         return true;
     }

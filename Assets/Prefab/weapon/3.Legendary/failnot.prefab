@@ -283,12 +283,12 @@ MonoBehaviour:
     _originScale: {x: 1, y: 1, z: 1}
   weaponNum: 508
   passiveSkillList: []
-  passiveAuraSkillList: []
+  passiveAuraSkillList:
+  - {fileID: 2509326225022819214}
   activeSkillList:
   - {fileID: 3827341178054065686}
   anim: {fileID: 7049387736139468}
   type: 0
-  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
 --- !u!114 &3827341178054065686
 MonoBehaviour:
@@ -303,12 +303,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 20
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: c9345c62c7ed13f49a41e982f2a936ce, type: 3}
   weapon: {fileID: 0}
   indicatorType: 1
   _isFixedPosition: 1
   IndicatorMonsters: []
   _effect: {fileID: 9075329004204516396}
+  sfx: {fileID: 8300000, guid: be893160fbfb8294f92b4eda618b603e, type: 3}
 --- !u!114 &2509326225022819214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,5 +323,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 24
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: c9345c62c7ed13f49a41e982f2a936ce, type: 3}
   weapon: {fileID: 0}

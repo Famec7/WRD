@@ -53,7 +53,7 @@ public class MissionTimer : MonoBehaviour
     private void UpdateTimerText()
     {
         string timeText = currentTime.ToString("F2");
-        timerText.text = $"미션 {missionIndex + 1}({timeText}초)";
+        timerText.text = $"미션 {missionIndex + 1}\n({timeText}초)";
         
     }
 }

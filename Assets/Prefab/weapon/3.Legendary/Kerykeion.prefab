@@ -185,8 +185,7 @@ MonoBehaviour:
   - {fileID: 3811254620233172672}
   anim: {fileID: 2812040360970317227}
   type: 3
-  _isShowProjectile: 1
-  _attackSound: {fileID: 0}
+  _attackSound: {fileID: 8300000, guid: fca4c491b8995704bad63c9afc2af30b, type: 3}
 --- !u!114 &4042815741261854713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 27
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: 137b5a8ed09e9f44e91b29b4c1f716dd, type: 3}
   weapon: {fileID: 0}
 --- !u!114 &7864080563941399353
 MonoBehaviour:
@@ -215,12 +214,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 23
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: 137b5a8ed09e9f44e91b29b4c1f716dd, type: 3}
   weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []
   _windEffect: {fileID: 7949708441582127241}
+  sfx: {fileID: 0}
 --- !u!114 &3811254620233172672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 24
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: 137b5a8ed09e9f44e91b29b4c1f716dd, type: 3}
   weapon: {fileID: 0}
   indicatorType: 0
   _isFixedPosition: 0

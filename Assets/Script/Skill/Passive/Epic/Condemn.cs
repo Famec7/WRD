@@ -19,10 +19,7 @@ public class Condemn : PassiveSkillBase
                 monster.HasAttacked(Data.GetValue(0));
                 if (markStatus != null)
                 {
-                    GuidedProjectile projectile = ProjectileManager.Instance.CreateProjectile<GuidedProjectile>(default, this.transform.position);
-                    projectile.Target = target.gameObject;
-
-                    projectile.OnHit += () => OnHit(monster, Data.GetValue(3));
+                    OnHit(monster, Data.GetValue(3));
                 }
             }
 

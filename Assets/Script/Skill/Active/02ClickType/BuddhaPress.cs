@@ -6,6 +6,8 @@ public class BuddhaPress : ClickTypeSkill
     [SerializeField] private DamageAmplificationZone _damageAmplificationZone;
     [SerializeField] private BuddhaHandEffect _buddhaHandEffect;
     
+    [SerializeField] private AudioClip sfx;
+    
     private float _damage;
     private float _stunDuration;
 
@@ -21,6 +23,8 @@ public class BuddhaPress : ClickTypeSkill
         _damageAmplificationZone.SetData(brokenGroundTime, Data.Range, damageAmplification);
         
         _buddhaHandEffect.transform.SetParent(null);
+        
+        SoundManager.Instance.PlaySFX(sfx);
     }
 
     public override void OnActiveEnter()

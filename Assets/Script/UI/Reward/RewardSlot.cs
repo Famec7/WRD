@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,12 +56,23 @@ public class RewardSlot : MonoBehaviour
         var path = "WeaponIcon/" + weaponNum;
         rewardItemImage_.GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
         countTMP_.gameObject.SetActive(false);
+        rewardSlotBackground_.gameObject.SetActive(true);
         rewardSlotBackground_.color = WeaponTierTranslator.GetClassColor(WeaponDataManager.Instance.Database.GetWeaponDataByNum(weaponNum).WeaponClass);
     }
 
     public void SettingMasterKeyRewardSlot(Tuple<WeaponTier, int> rewardTuple)
     {
+        var path = "MasterKey/" + rewardTuple.Item1.ToString();
+        Debug.Log(path);
+        rewardItemImage_.GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
         countTMP_.text = "x" + rewardTuple.Item2.ToString();
-        rewardSlotBackground_.color = WeaponTierTranslator.GetClassColor(rewardTuple.Item1);
+        rewardSlotBackground_.color = new Color(0,0,0,0);
+    }
+
+    public void SettingModifyRewardSlot(int cnt)
+    {
+        var path = "WeaponIcon/" + 701;
+        rewardItemImage_.GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
+        countTMP_.text = "x" + cnt.ToString();
     }
 }

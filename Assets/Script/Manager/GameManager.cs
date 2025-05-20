@@ -24,6 +24,7 @@ public class GameManager : Singleton<GameManager>
     {
         //GameManager.Instance.weaponCnt[5]++;
         //useWeapon.Add(6);
+        Time.timeScale = 1;
         UpdateUseableWeaponCnt();
       //  ElementManager.instance.GetElement(StartElementCnt);
 
@@ -64,5 +65,7 @@ public class GameManager : Singleton<GameManager>
         {
             useAbleWeaponCnt[id - 1]--;
         }
+
+        InventoryManager.instance.ModifyCnt.text = weaponCnt[weaponCnt.Length - 1].ToString();
     }
 }
