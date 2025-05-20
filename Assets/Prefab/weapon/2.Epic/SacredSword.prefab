@@ -96,7 +96,7 @@ MonoBehaviour:
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []
-  _range: {x: 1.5, y: 3.5, z: 1}
+  _range: {x: 1, y: 1, z: 1}
   sfx: {fileID: 8300000, guid: a2d0d5b7f4b77bd4ca48fb219b76e5e8, type: 3}
 --- !u!1 &8818613340853973319
 GameObject:

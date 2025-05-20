@@ -74,7 +74,7 @@ MonoBehaviour:
   skillId: 1
   _skillIcon: {fileID: 21300000, guid: eb4f605a9645fe04481dddd2b4e810c0, type: 3}
   weapon: {fileID: 0}
-  _hitSize: {x: 1, y: 3}
+  _hitSize: {x: 1, y: 1}
   _swingSound: {fileID: 8300000, guid: 6e6f9d4b4d009d64093ace14b101c274, type: 3}
 --- !u!1 &4406865825014555588
 GameObject:

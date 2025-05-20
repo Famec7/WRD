@@ -173,7 +173,6 @@ MonoBehaviour:
   - 2.5
   - 3
   _slowZone: {fileID: 6736480360790856242}
-  sfx: {fileID: 0}
 --- !u!114 &3935019648868971263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,9 +192,9 @@ MonoBehaviour:
   _isFixedPosition: 1
   IndicatorMonsters: []
   _ranges:
+  - 5
   - 4
-  - 3.5
-  - 2.5
+  - 3
   _matryoshkaSpriteChanger: {fileID: 4508801962611740291}
   _effect: {fileID: 8631461450688211319}
   sfx: {fileID: 8300000, guid: 13e8b8ea39fea0b43a15cf7c90899300, type: 3}
