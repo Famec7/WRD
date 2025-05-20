@@ -12,6 +12,8 @@ public class MissionManager : Singleton<MissionManager>
     public MissionInfo missionInfo;
 
     private int _timerCnt = 0;
+    
+    public bool IsRunning => TargetMonsterList.Count > 0;
 
     protected override void Init()
     {
@@ -23,9 +25,10 @@ public class MissionManager : Singleton<MissionManager>
     public MissionTimer StartTimer(int index, Monster monster)
     {
         GameObject missionTimerObject = Instantiate(MissionTimerPrefab,GameObject.Find("Canvas").transform);
-        missionTimerObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(400, -500 + ++_timerCnt * 25);
+        missionTimerObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -235 + ++_timerCnt * 25);
+        missionTimerObject.transform.SetAsFirstSibling();
+        
         MissionTimer missionTimer = missionTimerObject.GetComponent<MissionTimer>();
-
         MissionTimerList.Add(missionTimer);
         missionTimer.StartTimer(MissionMonsterManager.instance.playTimeData[index],index);
 

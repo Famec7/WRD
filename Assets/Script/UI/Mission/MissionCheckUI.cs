@@ -24,6 +24,11 @@ public class MissionCheckUI : UIPopUp
 
     public void ClickChallengeButton()
     {
+        if (MissionManager.Instance.IsRunning)
+        {
+            return;
+        }
+        
         // 몬스터 생성
         Monster monster = MonsterSpawnManager.instance.SpawnMonster(UnitCode.MISSIONBOSS1 + _index);
         MissionManager.Instance.TargetMonsterList.Add(monster);

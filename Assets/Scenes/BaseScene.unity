@@ -2261,19 +2261,19 @@ PrefabInstance:
       objectReference: {fileID: 50970456}
     - target: {fileID: 1948274170084646426, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 122.3
+      value: 186.8
       objectReference: {fileID: 0}
     - target: {fileID: 1948274170084646426, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 122.3
+      value: 186.8
       objectReference: {fileID: 0}
     - target: {fileID: 1948274170084646426, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 867.7
       objectReference: {fileID: 0}
     - target: {fileID: 1948274170084646426, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 531
+      value: 52.5
       objectReference: {fileID: 0}
     - target: {fileID: 2565572074887386185, guid: b2d2361f48de99c4d9a3e121a84d60f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
