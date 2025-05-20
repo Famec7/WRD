@@ -2943,6 +2943,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7942446279013483748, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1473164780}
+    - target: {fileID: 7942446279013483748, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942446279013483748, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ResultUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942446279013483748, guid: 1485981702313414aa36d998bb951cc0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8041890927033543818, guid: 1485981702313414aa36d998bb951cc0, type: 3}
       propertyPath: m_Color.a
       value: 0

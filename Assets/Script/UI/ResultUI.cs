@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ResultUI : MonoBehaviour
@@ -45,6 +46,11 @@ public class ResultUI : MonoBehaviour
             string weaponIconPath = "WeaponIcon/" + data.num.ToString();
             EquipWeapon.transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(weaponIconPath);
         }
+    }
+
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }
     
