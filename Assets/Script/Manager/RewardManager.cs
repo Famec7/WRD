@@ -21,6 +21,8 @@ public class RewardManager : Singleton<RewardManager>
 
     public string[] bossRewardGrades;
     public string[] bossRewardNumbers;
+    public string[] bossRewardMNumbers;
+
 
     [SerializeField]
     private GameObject rewardPopUpUIObejct_;
@@ -57,6 +59,7 @@ public class RewardManager : Singleton<RewardManager>
         {
             bossRewardGrades[i] = bossRewardData[i]["reward_grade"].ToString();
             bossRewardNumbers[i] = bossRewardData[i]["reward_number"].ToString();
+            bossRewardMNumbers[i] = bossRewardData[i]["mnormal_reward"].ToString() ;
         }
 
         for (int i = 0; i < bossRewardData.Count; i++)
@@ -112,6 +115,17 @@ public class RewardManager : Singleton<RewardManager>
             int idx = code - UnitCode.BOSS1;
             rewardTuple = bossRewardList[idx];
             rewardPopUpUI.SettingRewardPopUpUI(true, idx);
+
+            int mCnt = int.Parse(bossRewardMNumbers[idx]);
+            if (mCnt > 0)
+            {
+                for (int i = 0; i < mCnt; i++)
+                {
+                    GameManager.Instance.weaponCnt[GameManager.Instance.weaponCnt.Length - 1]++;
+                }
+                rewardPopUpUI.CreateModifyRewardSlot(mCnt);
+                GameManager.Instance.UpdateUseableWeaponCnt();
+            }
         }
 
         if (rewardTuple != null)
@@ -182,7 +196,4 @@ public class RewardManager : Singleton<RewardManager>
             rewardPopUpUI.CreateRandomWeaponRewardSlot(rewardData.num);
         }
     }
-
-
-
 }

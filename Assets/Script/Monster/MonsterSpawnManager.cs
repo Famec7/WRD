@@ -274,8 +274,6 @@ public class MonsterSpawnManager : MonoBehaviour
     public void Restart()
     {
         GameManager.Instance.isGameOver = true;
-        MessageManager.Instance.ShowMessage("GAME OVER", new Vector2(0, 218), 1f, 0.5f);
-        StartCoroutine(CountdownCoroutine(5));
     }
 
     private IEnumerator CountdownCoroutine(int seconds)
