@@ -4,10 +4,12 @@ public class HeavenFalling : ClickTypeSkill
 {
     [Header("Offset From Target")] [SerializeField]
     private Vector2 _offset;
+    
+    [SerializeField] private AudioClip sfx;
 
     public override void OnActiveEnter()
     {
-        ;
+        SoundManager.Instance.PlaySFX(sfx);
     }
 
     public override bool OnActiveExecute()

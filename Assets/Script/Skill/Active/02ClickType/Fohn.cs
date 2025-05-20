@@ -4,6 +4,7 @@ using UnityEngine;
 public class Fohn : ClickTypeSkill
 {
     [SerializeField] private Wind _windEffect;
+    [SerializeField] private AudioClip sfx;
     
     private float _stunDuration = 0.0f;
     private float _damageAmplificationDuration = 0.0f;
@@ -14,6 +15,8 @@ public class Fohn : ClickTypeSkill
         _stunDuration = Data.GetValue(1);
         _damageAmplificationDuration = Data.GetValue(2);
         _damageAmplification = Data.GetValue(3);
+        
+        SoundManager.Instance.PlaySFX(sfx);
     }
 
     public override bool OnActiveExecute()

@@ -60,7 +60,6 @@ MonoBehaviour:
   activeSkillList: []
   anim: {fileID: 8887362761926240980}
   type: 0
-  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 1de2a6df29bb7f04db2dbfe2e5abd03e, type: 3}
 --- !u!114 &6186103000589138683
 MonoBehaviour:
@@ -78,6 +77,7 @@ MonoBehaviour:
   _skillIcon: {fileID: 21300000, guid: 7c237315571569847a8cc315938b1b76, type: 3}
   weapon: {fileID: 0}
   _arrowJourneyTime: 1
+  sfx: {fileID: 8300000, guid: 7e51958d56683154bbbaf03d9c2840eb, type: 3}
 --- !u!114 &-2780196588165844571
 MonoBehaviour:
   m_ObjectHideFlags: 0

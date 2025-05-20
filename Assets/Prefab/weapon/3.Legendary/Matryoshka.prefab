@@ -151,7 +151,6 @@ MonoBehaviour:
   - {fileID: 3935019648868971263}
   anim: {fileID: 0}
   type: 2
-  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 382ebf6ebe0983a4a8d6780a155a9da8, type: 3}
 --- !u!114 &3641344283379959334
 MonoBehaviour:
@@ -174,6 +173,7 @@ MonoBehaviour:
   - 2.5
   - 3
   _slowZone: {fileID: 6736480360790856242}
+  sfx: {fileID: 0}
 --- !u!114 &3935019648868971263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +198,7 @@ MonoBehaviour:
   - 2.5
   _matryoshkaSpriteChanger: {fileID: 4508801962611740291}
   _effect: {fileID: 8631461450688211319}
+  sfx: {fileID: 8300000, guid: 13e8b8ea39fea0b43a15cf7c90899300, type: 3}
 --- !u!1 &8631461450688211319
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@
         
         private ParticleEffect _electricAura = null;
         
+        [SerializeField] private AudioClip sfx;
+        
         #region Data
 
         private float _duration;
@@ -46,6 +48,7 @@
             _electricAura.transform.SetParent(weapon.owner.transform, false);
             
             _electricAura.PlayEffect();
+            SoundManager.Instance.PlaySFX(sfx);
             
             weapon.AddAction(ChainAttack);
         }

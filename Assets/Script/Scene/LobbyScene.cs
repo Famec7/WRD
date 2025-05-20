@@ -18,9 +18,6 @@ public class LobbyScene : SceneBase
 
     protected override void Cleanup()
     {
-        if (bgm != null)
-        {
-            SoundManager.Instance.StopBGM();
-        }
+        
     }
 }

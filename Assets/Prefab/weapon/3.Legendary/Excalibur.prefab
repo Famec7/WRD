@@ -200,6 +200,7 @@ MonoBehaviour:
   skillId: 13
   _skillIcon: {fileID: 21300000, guid: 88f50c26aea5867448e22462a4b37941, type: 3}
   weapon: {fileID: 0}
+  sfx: {fileID: 8300000, guid: a99e569f37fc2524a83cd4e8d207a8ed, type: 3}
 --- !u!114 &7926419819972194322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,3 +235,4 @@ MonoBehaviour:
   _isFixedPosition: 0
   IndicatorMonsters: []
   _offset: {x: 0, y: 2}
+  sfx: {fileID: 8300000, guid: ff7c0d43b33885c458a115d1c3ffdd59, type: 3}

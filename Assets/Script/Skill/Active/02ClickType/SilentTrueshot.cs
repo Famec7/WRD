@@ -6,6 +6,7 @@ public class SilentTrueshot : ClickTypeSkill
     private float _damage = 0.0f;
 
     [SerializeField] private Animator _effect;
+    [SerializeField] private AudioClip sfx;
 
     protected override void Init()
     {
@@ -28,6 +29,8 @@ public class SilentTrueshot : ClickTypeSkill
             _effect.transform.position = ClickPosition;
             _effect.Play("ActiveEffect");
         }
+        
+        SoundManager.Instance.PlaySFX(sfx);
     }
 
     public override bool OnActiveExecute()

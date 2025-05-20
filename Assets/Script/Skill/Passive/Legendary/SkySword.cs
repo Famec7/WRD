@@ -4,6 +4,8 @@ using UnityEngine;
 public class SkySword : PassiveSkillBase
 {
     private WaitForSeconds _delay;
+    
+    [SerializeField] private AudioClip sfx;
 
     protected override void Init()
     {
@@ -15,8 +17,9 @@ public class SkySword : PassiveSkillBase
     {
         if (CheckTrigger())
         {
+            SoundManager.Instance.PlaySFX(sfx);
+            
             var manager = ProjectileManager.Instance;
-
             var projectile = manager.CreateProjectile<SkyProjectile>("SkySword");
 
             if (projectile is null)

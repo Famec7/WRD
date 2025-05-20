@@ -6,6 +6,8 @@ public class TideCrash : PassiveSkillBase
     [SerializeField] private float _attackRange = 3.0f;
 
     [SerializeField] private Animator _crashEffect;
+    
+    [SerializeField] private AudioClip sfx;
 
     private bool _isActivated = false;
 
@@ -38,6 +40,8 @@ public class TideCrash : PassiveSkillBase
             _crashEffect.gameObject.SetActive(true);
             _crashEffect.transform.position = targetPosition;
             _crashEffect.Play("TideCrash");
+            
+            SoundManager.Instance.PlaySFX(sfx);
 
             foreach (var tar in targets)
             {

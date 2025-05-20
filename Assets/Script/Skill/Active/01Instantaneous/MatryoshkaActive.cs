@@ -23,6 +23,8 @@ public class MatryoshkaActive : InstantaneousSkill
     [Header("스킬 이펙트")]
     [SerializeField]
     private GameObject _effect;
+    
+    [SerializeField] private AudioClip sfx;
 
     private int _stackLevel = 0;
 
@@ -52,6 +54,8 @@ public class MatryoshkaActive : InstantaneousSkill
         {
             animator.Play("ActiveEffect", -1, 0f);
         }
+        
+        SoundManager.Instance.PlaySFX(sfx);
     }
 
     public override bool OnActiveExecute()

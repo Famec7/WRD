@@ -13,6 +13,8 @@ public class Attaque : ClickTypeSkill
     protected int _originPassiveChance;
     #endregion
 
+    [SerializeField] private AudioClip sfx;
+
     public float MaxDashDistance = 2f;
     public float InitialSpeed = 3f;       
     public float MaxSpeed = 5f;
@@ -29,6 +31,7 @@ public class Attaque : ClickTypeSkill
 
     public override void OnActiveEnter()
     {
+        SoundManager.Instance.PlaySFX(sfx);
         _originPassiveChance = weapon.GetPassiveSkill().Data.Chance;
 
         float distacne = Mathf.Clamp(Vector2.Distance(ClickPosition, (Vector2)weapon.owner.transform.position),0, MaxDashDistance);
