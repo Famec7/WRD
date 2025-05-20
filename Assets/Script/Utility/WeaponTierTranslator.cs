@@ -78,6 +78,9 @@ public class WeaponTierTranslator
             case WeaponTier.MYTH:
                 color = new Color32(255, 255, 255, 255);
                 break;
+            case WeaponTier.MODIFIED:
+                color = new Color32(160, 43, 147, 255);
+                break;
         }
 
         return color;
