@@ -36,7 +36,7 @@ public class ArrowRainVariation : PassiveSkillBase
             {
                 monster.HasAttacked(Data.GetValue(0));
                 Status status = monster.status;
-                StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(status.gameObject, 100f, Data.GetValue(1)));
+                StatusEffectManager.Instance.AddStatusEffect(status, new Stun(status.gameObject, Data.GetValue(1)));
             }
         }
     }
