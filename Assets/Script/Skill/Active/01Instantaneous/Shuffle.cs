@@ -7,6 +7,12 @@ public class Shuffle : InstantaneousSkill
     [SerializeField]
     private ShuffleEffect _shuffleEffect;
     
+    [Header("효과음")]
+    [SerializeField]
+    private AudioClip _diamondKingSfx;
+    [SerializeField]
+    private AudioClip _cloverJackSfx;
+    
     private CardEffectBase _cardEffect;
 
     public override void OnActiveEnter()

@@ -3,6 +3,7 @@
 public class MarkOfJoker : PassiveSkillBase
 {
     [SerializeField] private float _range = 1.0f;
+    [SerializeField] private AudioClip sfx;
     
     public override bool Activate(GameObject target = null)
     {
@@ -14,6 +15,11 @@ public class MarkOfJoker : PassiveSkillBase
 
         if (target.TryGetComponent(out Status status))
         {
+            if (sfx != null)
+            {
+                SoundManager.Instance.PlaySFX(sfx);
+            }
+            
             StatusEffectManager.Instance.AddStatusEffect(status, new JokerMark(status.gameObject, OnEndDebuff));
             
             return true;

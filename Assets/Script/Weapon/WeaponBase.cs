@@ -224,13 +224,14 @@ public abstract class WeaponBase : MonoBehaviour, IPoolObject
         
         // 무기 해제
         owner?.DetachWeapon();
-
-        ResetStats();
-
         this.owner = null;
-        _isAttack = false;
-
-        StopAllCoroutines();
+        
+        if (isResetCoolTime)
+        {
+            ResetStats();
+            _isAttack = false;
+            StopAllCoroutines();
+        }
     }
 
     private void ResetStats()
