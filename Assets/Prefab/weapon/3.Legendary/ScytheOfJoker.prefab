@@ -327,6 +327,7 @@ MonoBehaviour:
   _skillIcon: {fileID: 21300000, guid: dedbaa8e638fafa48acd83df9f3e6030, type: 3}
   weapon: {fileID: 0}
   _range: 1
+  sfx: {fileID: 0}
 --- !u!114 &-6321969850104291216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +347,8 @@ MonoBehaviour:
   _isFixedPosition: 0
   IndicatorMonsters: []
   _shuffleEffect: {fileID: 5988036985146382726}
+  _diamondKingSfx: {fileID: 0}
+  _cloverJackSfx: {fileID: 0}
 --- !u!114 &7582952464594474972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 16
-  _skillIcon: {fileID: 21300000, guid: dedbaa8e638fafa48acd83df9f3e6030, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 1b78c9c21ab4da64ab42cf596835d0dd, type: 3}
   weapon: {fileID: 0}
   _slowZone: {fileID: 5220957387716039936}
 --- !u!1 &7981910824660856023
