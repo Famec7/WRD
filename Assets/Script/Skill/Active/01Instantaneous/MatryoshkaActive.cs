@@ -34,7 +34,7 @@ public class MatryoshkaActive : InstantaneousSkill
         base.Init();
 
         _amplificationDuration = Data.GetValue(6);
-        _damageAmplification = Data.GetValue(7) / 100.0f;
+        _damageAmplification = Data.GetValue(7);
 
         SetRange(_stackLevel);
     }

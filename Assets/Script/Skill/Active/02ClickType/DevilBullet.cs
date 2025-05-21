@@ -18,7 +18,7 @@ public class DevilBullet : ClickTypeSkill
         _originAttackSpeed = weapon.Data.AttackSpeed;
         
         _attackDamage = Data.GetValue(0);
-        _amplification = Data.GetValue(1) / 100.0f;
+        _amplification = Data.GetValue(1);
     }
 
     public override bool OnActiveExecute()
