@@ -404,6 +404,7 @@ public class InventoryManager : MonoBehaviour
 
                         if (pressSlot == weaponSlot.inventorySlot)
                         {
+                            weaponSlot.Init();
                             items.Remove(pressSlot.weapon);
                             WeaponUI.Instance.weaponID = item.data.ID;
                             WeaponUI.Instance.ChangeItem(j, item);
