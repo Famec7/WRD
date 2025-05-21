@@ -347,8 +347,8 @@ MonoBehaviour:
   _isFixedPosition: 0
   IndicatorMonsters: []
   _shuffleEffect: {fileID: 5988036985146382726}
-  _diamondKingSfx: {fileID: 0}
-  _cloverJackSfx: {fileID: 0}
+  _diamondKingSfx: {fileID: 8300000, guid: 66c525f8d269da34ca103bdfd42e34af, type: 3}
+  _cloverJackSfx: {fileID: 8300000, guid: 66c525f8d269da34ca103bdfd42e34af, type: 3}
 --- !u!114 &7582952464594474972
 MonoBehaviour:
   m_ObjectHideFlags: 0

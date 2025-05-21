@@ -192,9 +192,9 @@ MonoBehaviour:
   _isFixedPosition: 1
   IndicatorMonsters: []
   _ranges:
-  - 2.5
-  - 2
-  - 1.7
+  - 4
+  - 3.5
+  - 3
   _matryoshkaSpriteChanger: {fileID: 4508801962611740291}
   _effect: {fileID: 8631461450688211319}
   sfx: {fileID: 8300000, guid: 13e8b8ea39fea0b43a15cf7c90899300, type: 3}
