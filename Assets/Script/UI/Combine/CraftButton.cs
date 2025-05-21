@@ -30,9 +30,9 @@ public class CraftButton : MonoBehaviour
         if (GameManager.Instance.weaponCnt[weaponID - 1] > 0)
             transform.GetComponent<Image>().color = mainColor;
         else
-            transform.GetComponent<Image>().color = new Color32(56, 56, 56, 255); 
+            transform.GetComponent<Image>().color = new Color32(56, 56, 56, 255);
 
-        if (GameManager.Instance.weaponCnt[weaponID-1] > 0 && !isMain)
+        if (GameManager.Instance.weaponCnt[weaponID - 1] > 0 && !isMain)
         {
             gameObject.GetComponent<Button>().enabled = false;
             canCombineBorder.SetActive(false);
@@ -41,7 +41,6 @@ public class CraftButton : MonoBehaviour
         else
         {
             gameObject.GetComponent<Button>().enabled = true;
-
         }
 
         bool isMasterKey = false;
@@ -86,7 +85,7 @@ public class CraftButton : MonoBehaviour
 
             foreach (var data in absentWeaponData)
             {
-                if (data.tier == WeaponTier.MNORMAL) continue; 
+                if (data.tier == WeaponTier.MNORMAL) continue;
 
                 if (tmpMasterKeyCnt[(int)data.tier - 1] >= 1)
                 {
@@ -96,13 +95,16 @@ public class CraftButton : MonoBehaviour
             }
 
             WeaponData weaponData = WeaponDataManager.Instance.GetWeaponData(weaponID);
+#if UNITY_EDITOR
             Debug.Log(weaponID);
+#endif
             if (hasMaterialCnt == materialWeapons.Length && !isMasterKey)
             {
                 canCombineBorder.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
                 canCombineBorder.SetActive(true);
             }
-            else if (weaponData.tier < WeaponTier.LEGENDARY && MasterKeyManager.Instance.masterKeyCnt[(int)weaponData.tier - 1] > 0 && !isElement)
+            else if (weaponData.tier < WeaponTier.LEGENDARY &&
+                     MasterKeyManager.Instance.masterKeyCnt[(int)weaponData.tier - 1] > 0 && !isElement)
             {
                 canCombineBorder.GetComponent<Image>().color = new Color32(255, 71, 40, 255);
                 canCombineBorder.SetActive(true);
@@ -110,7 +112,6 @@ public class CraftButton : MonoBehaviour
             else
                 canCombineBorder.SetActive(false);
         }
-            
     }
 
     public void CraftWeapon(bool isMainWeapon = false)
@@ -119,7 +120,7 @@ public class CraftButton : MonoBehaviour
         int[] tmpCnt = new int[GameManager.Instance.weaponCnt.Length];
         int[] tmpMasterKeyCnt = new int[MasterKeyManager.Instance.masterKeyCnt.Length];
 
-        List<int>absentWeaponList = new List<int>();
+        List<int> absentWeaponList = new List<int>();
         Array.Copy(GameManager.Instance.weaponCnt, tmpCnt, tmpCnt.Length);
         Array.Copy(MasterKeyManager.Instance.masterKeyCnt, tmpMasterKeyCnt, tmpMasterKeyCnt.Length);
         WeaponData weaponData = WeaponDataManager.Instance.GetWeaponData(weaponID);
@@ -143,37 +144,38 @@ public class CraftButton : MonoBehaviour
                 materialIDList.Add(WeaponDataManager.Instance.Database.GetWeaponIdByNum(i));
             }
 
-            InventoryManager.instance.ProcessWeaponAcquisition( 
+            InventoryManager.instance.ProcessWeaponAcquisition(
                 weaponID: weaponID, weaponSprite: transform.GetChild(0).GetComponent<Image>().sprite,
-                isMainWeapon: isMainWeapon,materialIDList: materialIDList,
+                isMainWeapon: isMainWeapon, materialIDList: materialIDList,
                 createUIWithExtraParams: true);
         }
-        else 
+        else
         {
-           List<WeaponData> absentWeaponData = new List<WeaponData>();
+            List<WeaponData> absentWeaponData = new List<WeaponData>();
 
-           foreach(int id in absentWeaponList)
-            absentWeaponData.Add(WeaponDataManager.Instance.Database.GetWeaponDataByNum(id));
+            foreach (int id in absentWeaponList)
+                absentWeaponData.Add(WeaponDataManager.Instance.Database.GetWeaponDataByNum(id));
 
-           List<int> materialIDList = new List<int>();
-           foreach (int i in materialWeapons)
-           {
-               materialIDList.Add(WeaponDataManager.Instance.Database.GetWeaponIdByNum(i));
-           }
+            List<int> materialIDList = new List<int>();
+            foreach (int i in materialWeapons)
+            {
+                materialIDList.Add(WeaponDataManager.Instance.Database.GetWeaponIdByNum(i));
+            }
 
-           foreach (var data in absentWeaponData)
-           {
+            foreach (var data in absentWeaponData)
+            {
                 if (tmpMasterKeyCnt[(int)data.tier - 1] >= 1)
                 {
                     hasMaterialCnt++;
                     tmpMasterKeyCnt[(int)data.tier - 1]--;
                     materialIDList.Remove(data.ID);
                 }
-           }
+            }
 
-           if (hasMaterialCnt == materialWeapons.Length)
+            if (hasMaterialCnt == materialWeapons.Length)
             {
-                InventoryManager.instance.OpenWeaponPickerConfirmPopUp(absentWeaponList,weaponID, materialIDList , isMain);
+                InventoryManager.instance.OpenWeaponPickerConfirmPopUp(absentWeaponList, weaponID, materialIDList,
+                    isMain);
             }
         }
     }

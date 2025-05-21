@@ -9,8 +9,6 @@ public class SharpBlade : InstantaneousSkill
     private float _damage;
     protected float WoundDamage { get; private set; }
 
-    [SerializeField] private Vector3 _range = new Vector3(1.5f, 3.5f, 1);
-
     #endregion
     
     private bool _isAttack = false;
@@ -50,7 +48,7 @@ public class SharpBlade : InstantaneousSkill
     {
         Vector3 dir = weapon.owner.Target.transform.position - weapon.owner.transform.position;
 
-        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, _range, dir, targetLayer);
+        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, Data.Range, 360.0f, targetLayer);
 
         // 이펙트 재생
         ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("SwingEffect");

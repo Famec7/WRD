@@ -3,15 +3,12 @@ using UnityEngine;
 
 public class Thrust : PassiveSkillBase
 {
-    [SerializeField]
-    private Vector2 _range = new Vector2(3.0f, 1.0f);
-    
     public override bool Activate(GameObject target = null)
     {
         if (!CheckTrigger()) return false;
         
         Vector3 dir = target.transform.position - weapon.owner.transform.position;
-        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, _range, dir, targetLayer);
+        List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, Data.Range, 360.0f, targetLayer);
 
         if(targets.Count == 0)
             return false;
