@@ -81,12 +81,6 @@ public class MonsterSpawnManager : MonoBehaviour
         }
 
 
-        if (limitMonsterNum >= 11 && limitMonsterNum <= 20)
-            limitMonsterNum = 70;
-        if (limitMonsterNum >= 21 && limitMonsterNum <= 30)
-            limitMonsterNum = 60;
-        if (limitMonsterNum >= 31 && limitMonsterNum <= 35)
-            limitMonsterNum = 50;
 
         UIManager.instance.limitMonsterNum.text = limitMonsterNum.ToString();
         TimeSpan timeSpan = TimeSpan.FromSeconds(wavePlayTime[0]);
@@ -102,6 +96,14 @@ public class MonsterSpawnManager : MonoBehaviour
     {
         UIManager.instance.currentMonsterNum.text = currentMonsterNum.ToString();
         if (!isWait) return;
+
+
+        if (GameManager.Instance.wave >= 11 && GameManager.Instance.wave <= 20)
+            limitMonsterNum = 70;
+        if (GameManager.Instance.wave >= 21 && GameManager.Instance.wave <= 30)
+            limitMonsterNum = 60;
+        if (GameManager.Instance.wave >= 31 && GameManager.Instance.wave <= 35)
+            limitMonsterNum = 50;
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
             Time.timeScale = 1.0f;
