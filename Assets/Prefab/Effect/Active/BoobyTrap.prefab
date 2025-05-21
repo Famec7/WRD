@@ -116,8 +116,8 @@ GameObject:
   - component: {fileID: 8385014782763388490}
   - component: {fileID: 6490561222568968195}
   - component: {fileID: 4041843423200307963}
-  - component: {fileID: 4815132046972852505}
   - component: {fileID: -2809067824183445443}
+  - component: {fileID: 6681040897422727751}
   m_Layer: 0
   m_Name: BoobyTrap
   m_TagString: Untagged
@@ -5024,19 +5024,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &4815132046972852505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2351477456666883861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 552afd9778a44d7eb24ec8a2f5b3507a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectName: BoobyTrap
 --- !u!61 &-2809067824183445443
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5082,3 +5069,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 20, y: 20}
   m_EdgeRadius: 0
+--- !u!114 &6681040897422727751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2351477456666883861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4c40924eb04ec49d8c420d081e5afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectName: BoobyTrap
+  particleSystems: []
+  particleEffectTrap: {fileID: 10106745006564190}
