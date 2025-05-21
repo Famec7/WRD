@@ -304,7 +304,8 @@ MonoBehaviour:
   weaponNum: 502
   passiveSkillList:
   - {fileID: -3269616315496645424}
-  passiveAuraSkillList: []
+  passiveAuraSkillList:
+  - {fileID: 7582952464594474972}
   activeSkillList:
   - {fileID: -6321969850104291216}
   anim: {fileID: 6453325785724259777}
@@ -358,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 16
-  _skillIcon: {fileID: 0}
+  _skillIcon: {fileID: 21300000, guid: dedbaa8e638fafa48acd83df9f3e6030, type: 3}
   weapon: {fileID: 0}
   _slowZone: {fileID: 5220957387716039936}
 --- !u!1 &7981910824660856023

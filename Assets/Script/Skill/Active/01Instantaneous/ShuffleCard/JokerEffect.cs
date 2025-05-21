@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class JokerEffect : CardEffectBase
 {
     private readonly List<CardEffectBase> _cardEffects;
     private List<bool> _isComplete;
     
-    public JokerEffect(WeaponBase weapon) : base(weapon)
+    public JokerEffect(WeaponBase weapon, AudioClip sfx = null) : base(weapon, sfx)
     {
         Data = SkillManager.Instance.GetActiveSkillData(14);
         

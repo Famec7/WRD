@@ -4,7 +4,7 @@ public class DiamondKingEffect : CardEffectBase
 {
     private float _time;
     
-    public DiamondKingEffect(WeaponBase weapon) : base(weapon)
+    public DiamondKingEffect(WeaponBase weapon, AudioClip sfx = null) : base(weapon, sfx)
     {
         Data = SkillManager.Instance.GetActiveSkillData(13);
         _time = Data.GetValue(0);
@@ -38,7 +38,12 @@ public class DiamondKingEffect : CardEffectBase
         //effect.SetScale(_range);
         effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, targetPosition)));
         effect.PlayEffect();
-        
+
+        if (Sfx != null)
+        {
+            SoundManager.Instance.PlaySFX(Sfx);
+        }
+
         foreach (var target in targets)
         {
             if (target.TryGetComponent(out Monster monster))
