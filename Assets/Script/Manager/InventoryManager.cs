@@ -94,6 +94,36 @@ public class InventoryManager : MonoBehaviour
 
     }
 
+
+    public void CleanUpInventory()
+    {
+        var cntArray = GameManager.Instance.weaponCnt;
+
+        var groups = items
+            .GroupBy(it => it.data.ID)
+            .ToDictionary(g => g.Key, g => g.ToList());
+
+        foreach (var kv in groups)
+        {
+            int id = kv.Key;
+            int allowed = cntArray[id - 1];   // 허용된 개수
+            var list = kv.Value;           // 현재 items에 있는 리스트
+            int excess = list.Count - allowed;
+
+            if (excess > 0)
+            {
+                // 초과분만큼 제거
+                for (int i = 0; i < excess; i++)
+                {
+                    items.Remove(list[i]);
+                }
+            }
+        }
+
+        // 실제 UI에도 반영
+        FreshSlot();
+    }
+
     public void SyncWeaponSlotInventorySlot()
     {
         for (int j = 0; j < slots.Length; j++)
@@ -477,8 +507,6 @@ public class InventoryManager : MonoBehaviour
         return returnValue;
     }
 
-   
-
     public void NotHeldSort(int grade)
     {
         string cmp = "";
@@ -800,6 +828,8 @@ public class InventoryManager : MonoBehaviour
             popUp.weaponID = weaponID;
             popUp.inventorySlot = InventoryManager.instance.FindInventorySlot(weaponID);
         }
+
+        CleanUpInventory();
     }
 }
 
