@@ -65,21 +65,47 @@ public class HeartQueenEffect : CardEffectBase
     {
         WeaponBase weapon = character.Data.CurrentWeapon;
         
+        if (weapon == null)
+        {
+            return;
+        }
+        
         float originalAttackSpeed = character.Data.CurrentWeapon.Data.AttackSpeed;
         originalAttackSpeed += Data.GetValue(1) / 100.0f;
         weapon.SetAttackDelay(originalAttackSpeed);
 
-        weapon.GetPassiveSkill().Data.Chance += (int)Data.GetValue(2);
+        if (weapon.IsPassiveSkillNull)
+        {
+            return;
+        }
+
+        for (int i = 0; i < weapon.GetPassiveSkillCount(); i++)
+        {
+            weapon.GetPassiveSkill(i).Data.Chance += (int)Data.GetValue(2);
+        }
     }
     
     private void RemoveBuffFromCharacter(CharacterController character)
     {
         WeaponBase weapon = character.Data.CurrentWeapon;
         
+        if (weapon == null)
+        {
+            return;
+        }
+        
         float originalAttackSpeed = character.Data.CurrentWeapon.Data.AttackSpeed;
         originalAttackSpeed -= Data.GetValue(1) / 100.0f;
         weapon.SetAttackDelay(originalAttackSpeed);
 
-        weapon.GetPassiveSkill().Data.Chance -= (int)Data.GetValue(2);
+        if (weapon.IsPassiveSkillNull)
+        {
+            return;
+        }
+
+        for (int i = 0; i < weapon.GetPassiveSkillCount(); i++)
+        {
+            weapon.GetPassiveSkill(i).Data.Chance -= (int)Data.GetValue(2);            
+        }
     }
 }
