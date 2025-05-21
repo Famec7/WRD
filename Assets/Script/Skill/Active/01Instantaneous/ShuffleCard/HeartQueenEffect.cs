@@ -4,7 +4,7 @@ public class HeartQueenEffect : CardEffectBase
 {
     private float _time;
     
-    public HeartQueenEffect(WeaponBase weapon) : base(weapon)
+    public HeartQueenEffect(WeaponBase weapon, AudioClip sfx = null) : base(weapon, sfx)
     {
         Data = SkillManager.Instance.GetActiveSkillData(12);
         _time = Data.GetValue(0);

@@ -28,7 +28,7 @@ public class Shuffle : InstantaneousSkill
 
         if (random < cloverJack)
         {
-            _cardEffect = new CloverJackEffect(weapon);
+            _cardEffect = new CloverJackEffect(weapon, _cloverJackSfx);
             _shuffleEffect.PlayEffect(targetRenderer, ShuffleEffect.CardType.CloverJack);
         }
         else if (random < cloverJack + heartQueen)
@@ -38,7 +38,7 @@ public class Shuffle : InstantaneousSkill
         }
         else if (random < cloverJack + heartQueen + diamondKing)
         {
-            _cardEffect = new DiamondKingEffect(weapon);
+            _cardEffect = new DiamondKingEffect(weapon, _diamondKingSfx);
             _shuffleEffect.PlayEffect(targetRenderer, ShuffleEffect.CardType.DiamondKing);
         }
         else

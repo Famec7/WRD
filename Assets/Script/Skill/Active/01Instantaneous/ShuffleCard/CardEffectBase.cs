@@ -1,12 +1,15 @@
 ﻿using System;
+using UnityEngine;
 
 public abstract class CardEffectBase
 {
     public ActiveSkillData Data { get; set; }
+    public AudioClip Sfx { get; set; }
 
-    protected CardEffectBase(WeaponBase weapon)
+    protected CardEffectBase(WeaponBase weapon, AudioClip sfx = null)
     {
         Weapon = weapon;
+        Sfx = sfx;
     }
     
     public WeaponBase Weapon { get; set; }
