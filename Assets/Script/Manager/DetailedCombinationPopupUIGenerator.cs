@@ -68,6 +68,10 @@ public class DetailedCombinationPopupUIGenerator : Singleton<DetailedCombination
                 var lowLevelWeaponIcon = Instantiate(highLevelCombinationPrefab, detailedCombinationPopupUI.transform.GetChild(3)) as GameObject;
                 lowLevelWeaponIcon.GetComponent<RectTransform>().anchoredPosition = new Vector3(-110 + 110 * idx2, 0);
                 var path = "WeaponIcon/" + lowLevelNum;
+                
+                if (lowLevelNum == "")
+                    continue;
+                
                 int lowLevelID = WeaponDataManager.Instance.Database.GetWeaponIdByNum(Int32.Parse(lowLevelNum));
                 lowLevelWeaponIcon.transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
                 if (lowLevelID  > 5)
