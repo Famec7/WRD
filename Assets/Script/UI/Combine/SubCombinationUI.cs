@@ -40,6 +40,7 @@ public class SubCombinationUI : MonoBehaviour
             
             foreach (string s in combis)
             {
+                if (s == "") continue;
                 craftButtons[i].materialWeapons[j++] = Convert.ToInt32(s);
             }
             i++;
