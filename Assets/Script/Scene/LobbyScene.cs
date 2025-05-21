@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class LobbyScene : SceneBase
 {
@@ -10,7 +10,7 @@ public class LobbyScene : SceneBase
     {
         if (bgm != null)
         {
-            SoundManager.Instance.PlayBGM(bgm);
+           SoundManager.Instance.PlayBGM(bgm);
         }
         
         Application.targetFrameRate = 60;

@@ -35,6 +35,5 @@ public class MainSceneManager : MonoBehaviour
     {
         RankingCanvas.gameObject.SetActive(true);
     }
-
 }
 
