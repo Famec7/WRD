@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ArrowRainVariation : PassiveSkillBase
 {
-    [SerializeField]
-    private float _arrowJourneyTime = 1.0f;
-    
     [SerializeField] private AudioClip sfx;
 
     public override bool Activate(GameObject target = null)
@@ -17,18 +14,17 @@ public class ArrowRainVariation : PassiveSkillBase
         effect.SetPosition(target.transform.position);
         effect.PlayEffect();
         SoundManager.Instance.PlaySFX(sfx);
-        StartCoroutine(Damage(target.transform.position));
+        Damage(target.transform.position);
         return true;
     }
 
 
-    IEnumerator Damage(Vector3 position)
+    private void Damage(Vector3 position)
     {
-        yield return new WaitForSeconds(_arrowJourneyTime);
         var targets = RangeDetectionUtility.GetAttackTargets(position, Data.Range / 2f, default, targetLayer);
 
         if (targets.Count == 0)
-            yield break;
+            return;
 
         foreach (var tar in targets)
         {
@@ -36,7 +32,7 @@ public class ArrowRainVariation : PassiveSkillBase
             {
                 monster.HasAttacked(Data.GetValue(0));
                 Status status = monster.status;
-                StatusEffectManager.Instance.AddStatusEffect(status, new SlowDown(status.gameObject, 100f, Data.GetValue(1)));
+                StatusEffectManager.Instance.AddStatusEffect(status, new Stun(status.gameObject, Data.GetValue(1)));
             }
         }
     }

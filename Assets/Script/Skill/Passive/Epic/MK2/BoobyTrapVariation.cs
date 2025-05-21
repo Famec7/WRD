@@ -16,9 +16,9 @@ public class BoobyTrapVariation : PassiveSkillBase
     public override bool Activate(GameObject target = null)
     {
         if (!CheckTrigger()) return false;
-        ParticleEffect particleEffect = EffectManager.Instance.CreateEffect<ParticleEffect>("BoobyTrap");
+        BoobyTrapEffect particleEffect = EffectManager.Instance.CreateEffect<BoobyTrapEffect>("BoobyTrap");
         particleEffect.SetPosition(target.transform.position);
-        GameObject particleEffectTrap = particleEffect.gameObject.transform.GetChild(0).gameObject;
+        GameObject particleEffectTrap = particleEffect.ParticleEffectTrap;
         particleEffectTrap.GetComponent<SlowZone>().SetData(effectTime, Data.Range, Data.GetValue(2));
         particleEffectTrap.GetComponent<DamageAmplificationZone>().SetData(effectTime, Data.Range, Data.GetValue(1));
         particleEffectTrap.transform.SetParent(null);

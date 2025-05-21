@@ -22,7 +22,7 @@ public class Triaina : MeleeWeapon
 
         if (owner.Target.TryGetComponent(out Status status))
         {
-            ApplyWound(status);
+            ApplySlowDown(status);
         }
         
         AttackNearbyMonsters();
@@ -46,18 +46,18 @@ public class Triaina : MeleeWeapon
             if (targets[i].TryGetComponent(out Monster monster))
             {
                 monster.HasAttacked(Data.AttackDamage);
-                ApplyWound(monster.status);
+                ApplySlowDown(monster.status);
             }
         }
     }
 
-    private void ApplyWound(Status status)
+    private void ApplySlowDown(Status status)
     {
         if (status is null)
             return;
 
-        Wound wound = new Wound(status.gameObject);
+        SlowDown slow = new SlowDown(status.gameObject, _passiveAuraSkillData.GetValue(1));
 
-        StatusEffectManager.Instance.AddStatusEffect(status, wound);
+        StatusEffectManager.Instance.AddStatusEffect(status, slow);
     }
 }

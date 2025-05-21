@@ -5,7 +5,7 @@ using UnityEngine;
 public class MatryoshkaActive : InstantaneousSkill
 {
     #region Skill Data
-    
+
     private float _damageAmplification = 0.0f;
     private float _amplificationDuration = 0.0f;
     private float _stunDuration = 0.0f;
@@ -19,11 +19,9 @@ public class MatryoshkaActive : InstantaneousSkill
     [Space] [SerializeField] private MatryoshkaSpriteChanger _matryoshkaSpriteChanger;
 
     #endregion
-    
-    [Header("스킬 이펙트")]
-    [SerializeField]
-    private GameObject _effect;
-    
+
+    [Header("스킬 이펙트")] [SerializeField] private GameObject _effect;
+
     [SerializeField] private AudioClip sfx;
 
     private int _stackLevel = 0;
@@ -36,8 +34,8 @@ public class MatryoshkaActive : InstantaneousSkill
         base.Init();
 
         _amplificationDuration = Data.GetValue(6);
-        _damageAmplification = Data.GetValue(7) / 100.0f;
-        
+        _damageAmplification = Data.GetValue(7);
+
         SetRange(_stackLevel);
     }
 
@@ -50,23 +48,18 @@ public class MatryoshkaActive : InstantaneousSkill
         {
             animator.Play("ActiveEffect", -1, 0f);
         }
-        
+
         SoundManager.Instance.PlaySFX(sfx);
     }
 
     public override bool OnActiveExecute()
     {
-        var monsters = RangeDetectionUtility.GetAttackTargets(transform.position, _range, default, targetLayer);
-
-        foreach (var target in monsters)
+        foreach (var target in IndicatorMonsters)
         {
-            if (target.TryGetComponent(out Monster monster))
-            {
-                monster.HasAttacked(_damage);
+            target.HasAttacked(_damage);
 
-                Stun(monster.status, _stunDuration);
-                DamageAmplification(monster.status, _damageAmplification, _amplificationDuration);
-            }
+            Stun(target.status, _stunDuration);
+            DamageAmplification(target.status, _damageAmplification, _amplificationDuration);
         }
 
         return true;
@@ -75,16 +68,16 @@ public class MatryoshkaActive : InstantaneousSkill
     public override void OnActiveExit()
     {
         _stackLevel++;
-        
+
         if (_stackLevel >= MaxStackLevel)
         {
             _stackLevel = 0;
         }
 
         SetRange(_stackLevel);
-        
+
         _range = _ranges[_stackLevel];
-        
+
         _effect.transform.localScale = new Vector3(_range, _range, 1);
         _effect.SetActive(true);
     }
@@ -147,7 +140,7 @@ public class MatryoshkaActive : InstantaneousSkill
     public override void ExecuteSkill()
     {
         base.ExecuteSkill();
-        
+
         _stackLevel = 0;
         SetRange(0);
     }

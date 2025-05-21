@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7092392161500946401}
   - component: {fileID: -8939883723684518921}
   - component: {fileID: -8120889208162515596}
-  - component: {fileID: -7991946785698264664}
   - component: {fileID: 211618907367024181}
+  - component: {fileID: -7991946785698264664}
   m_Layer: 0
   m_Name: Kunai
   m_TagString: Untagged
@@ -62,7 +62,6 @@ MonoBehaviour:
   - {fileID: -7991946785698264664}
   anim: {fileID: 7464385104826212803}
   type: 0
-  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 621f3f3faa6bc2942a03d8c5b7d640b3, type: 3}
 --- !u!114 &-8120889208162515596
 MonoBehaviour:
@@ -80,24 +79,6 @@ MonoBehaviour:
   _skillIcon: {fileID: 21300000, guid: 7e4852ea0d4d1224f8a8b6361aa7f396, type: 3}
   weapon: {fileID: 0}
   _skillSound: {fileID: 8300000, guid: 6cd7ad9795877e24db87479c86d613c8, type: 3}
---- !u!114 &-7991946785698264664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4391208131410620124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39527a372d8a8ab489c4a6ab4da89365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillId: 7
-  _skillIcon: {fileID: 21300000, guid: 9dbc32c74e377654e9433f66c5194db1, type: 3}
-  weapon: {fileID: 0}
-  indicatorType: 2
-  _isFixedPosition: 0
-  IndicatorMonsters: []
 --- !u!114 &211618907367024181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,9 +92,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillId: 33
-  _skillIcon: {fileID: 21300000, guid: 9dbc32c74e377654e9433f66c5194db1, type: 3}
+  _skillIcon: {fileID: 21300000, guid: 7174758c688f84148b5229187a601c2f, type: 3}
   weapon: {fileID: 0}
   _slowZone: {fileID: 1603582667610213956}
+--- !u!114 &-7991946785698264664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4391208131410620124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39527a372d8a8ab489c4a6ab4da89365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillId: 7
+  _skillIcon: {fileID: 21300000, guid: 1b2b8552e7ea4684e8adc534c15f0b1d, type: 3}
+  weapon: {fileID: 0}
+  indicatorType: 2
+  _isFixedPosition: 0
+  IndicatorMonsters: []
 --- !u!1 &5051919937147673749
 GameObject:
   m_ObjectHideFlags: 0

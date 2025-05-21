@@ -4,7 +4,7 @@ public class HeartQueenEffect : CardEffectBase
 {
     private float _time;
     
-    public HeartQueenEffect(WeaponBase weapon) : base(weapon)
+    public HeartQueenEffect(WeaponBase weapon, AudioClip sfx = null) : base(weapon, sfx)
     {
         Data = SkillManager.Instance.GetActiveSkillData(12);
         _time = Data.GetValue(0);
@@ -65,21 +65,47 @@ public class HeartQueenEffect : CardEffectBase
     {
         WeaponBase weapon = character.Data.CurrentWeapon;
         
+        if (weapon == null)
+        {
+            return;
+        }
+        
         float originalAttackSpeed = character.Data.CurrentWeapon.Data.AttackSpeed;
         originalAttackSpeed += Data.GetValue(1) / 100.0f;
         weapon.SetAttackDelay(originalAttackSpeed);
 
-        weapon.GetPassiveSkill().Data.Chance += (int)Data.GetValue(2);
+        if (weapon.IsPassiveSkillNull)
+        {
+            return;
+        }
+
+        for (int i = 0; i < weapon.GetPassiveSkillCount(); i++)
+        {
+            weapon.GetPassiveSkill(i).Data.Chance += (int)Data.GetValue(2);
+        }
     }
     
     private void RemoveBuffFromCharacter(CharacterController character)
     {
         WeaponBase weapon = character.Data.CurrentWeapon;
         
+        if (weapon == null)
+        {
+            return;
+        }
+        
         float originalAttackSpeed = character.Data.CurrentWeapon.Data.AttackSpeed;
         originalAttackSpeed -= Data.GetValue(1) / 100.0f;
         weapon.SetAttackDelay(originalAttackSpeed);
 
-        weapon.GetPassiveSkill().Data.Chance -= (int)Data.GetValue(2);
+        if (weapon.IsPassiveSkillNull)
+        {
+            return;
+        }
+
+        for (int i = 0; i < weapon.GetPassiveSkillCount(); i++)
+        {
+            weapon.GetPassiveSkill(i).Data.Chance -= (int)Data.GetValue(2);            
+        }
     }
 }

@@ -2,20 +2,14 @@
 
 public class StaffOfHermes : PassiveAuraSkillBase
 {
-    
-    CharacterController player;
-    
     private float _attackSpeedMultiplier;
-    private float _moveSpeedMultiplier;
     private float _originMoveSpeed;
     
     protected override void Init()
     {
         base.Init();
         
-        _moveSpeedMultiplier = Data.GetValue(0) / 100.0f;
-        _attackSpeedMultiplier = Data.GetValue(1) / 100.0f;
-        player = CharacterManager.Instance.GetCharacter(CharacterManager.CharacterType.Player);
+        _attackSpeedMultiplier = Data.GetValue(0) / 100.0f;
     }
     
     private void OnEnable()
@@ -23,9 +17,6 @@ public class StaffOfHermes : PassiveAuraSkillBase
         ApplyBuff(_attackSpeedMultiplier);
         
         WeaponManager.Instance.OnWeaponEquipped += OnWeaponEquipped;
-        
-        _originMoveSpeed = player.Data.MoveSpeed;
-        player.Data.MoveSpeed += player.Data.MoveSpeed * _moveSpeedMultiplier;
     }
     
     private void OnDisable()
@@ -33,8 +24,6 @@ public class StaffOfHermes : PassiveAuraSkillBase
         RemoveBuff();
         
         WeaponManager.Instance.OnWeaponEquipped -= OnWeaponEquipped;
-        
-        player.Data.MoveSpeed -= _originMoveSpeed * _moveSpeedMultiplier;
     }
     
     private void ApplyBuff(float attackSpeedMultiplier)

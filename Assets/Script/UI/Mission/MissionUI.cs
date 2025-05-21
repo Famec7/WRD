@@ -37,25 +37,25 @@ public class MissionUI : UIPopUp
         {
             case 0:
                 missionName.text = "흙흙이";
-                missionDescription.text = "온순하고 약한 녀석입니다. 고급무기 두개면 손쉽게 해치울 수 있습니다.";
+                missionDescription.text = "온순하고 약한 녀석입니다. 희귀무기 하나면 손쉽게 해치울 수 있습니다.";
                 missionReward.text = "원소 마스터키 5개";
                 break;
 
             case 1:
                 missionName.text = "미역이";
-                missionDescription.text = "적당히 강한 녀석입니다. 희귀무기 하나면 적당하게 처리할 수 있습니다.";
+                missionDescription.text = "적당히 강한 녀석입니다. 영웅무기 하나면 적당하게 처리할 수 있습니다.";
                 missionReward.text = "원소 마스터키 10개";
                 break;
 
             case 2:
                 missionName.text = "얼음이";
-                missionDescription.text = "한눈에 봐도 단단하게 생긴 녀석입니다. 영웅무기 하나면 어찌저찌 처리될 것 같습니다.";
+                missionDescription.text = "한눈에 봐도 단단하게 생긴 녀석입니다. 영웅무기 두개면 해치울만 합니다.";
                 missionReward.text = "희귀 마스터키 1개";
                 break;
 
             case 3:
                 missionName.text = "마왕이";
-                missionDescription.text = "딱 봐도 날렵하게 생긴 녀석입니다. 영웅무기와 스턴 무기로 꼼짝 못하게 할 수 있습니다.";
+                missionDescription.text = "딱 봐도 날렵하게 생긴 녀석입니다. 영웅무기 두개와 스턴 무기로 꼼짝 못하게 할 수 있습니다.";
                 missionReward.text = "희귀 마스터키 2개";
                 break;
 
@@ -67,7 +67,7 @@ public class MissionUI : UIPopUp
 
             case 5:
                 missionName.text = "죽음이";
-                missionDescription.text = "아주 강력한 녀석입니다. 전설무기 하나와 스턴 무기면 덤벼볼만 하겠군요.";
+                missionDescription.text = "아주 강력한 녀석입니다. 전설무기 하나와 강력한 스턴 무기가 있다면 덤벼볼만 하겠군요.";
                 missionReward.text = "영웅 마스터키 2개";
                 break;
 

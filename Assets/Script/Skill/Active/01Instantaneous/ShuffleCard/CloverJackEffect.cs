@@ -4,7 +4,7 @@ public class CloverJackEffect : CardEffectBase
 {
     private bool _isAttack;
     
-    public CloverJackEffect(WeaponBase weapon) : base(weapon)
+    public CloverJackEffect(WeaponBase weapon, AudioClip sfx = null) : base(weapon, sfx)
     {
         Data = SkillManager.Instance.GetActiveSkillData(11);
     }
@@ -37,6 +37,11 @@ public class CloverJackEffect : CardEffectBase
         effect.SetPosition(Weapon.owner.transform.position);
         effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, targetPosition)));
         effect.PlayEffect();
+        
+        if (Sfx != null)
+        {
+            SoundManager.Instance.PlaySFX(Sfx);
+        }
         
         foreach (var target in targets)
         {

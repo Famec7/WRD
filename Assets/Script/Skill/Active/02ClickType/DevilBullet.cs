@@ -9,7 +9,6 @@ public class DevilBullet : ClickTypeSkill
     
     private float _attackDamage = 0.0f;
     private float _amplification = 0.0f;
-    private int _attackCount = 0;
     private float _attackSpeedIncrease = 0.0f;
     
     private float _originAttackSpeed;
@@ -19,9 +18,7 @@ public class DevilBullet : ClickTypeSkill
         _originAttackSpeed = weapon.Data.AttackSpeed;
         
         _attackDamage = Data.GetValue(0);
-        _amplification = Data.GetValue(1) / 100.0f;
-        _attackCount = (int)Data.GetValue(2);
-        _attackSpeedIncrease = weapon.Data.AttackSpeed + weapon.Data.AttackSpeed * Data.GetValue(3);
+        _amplification = Data.GetValue(1);
     }
 
     public override bool OnActiveExecute()
@@ -33,26 +30,6 @@ public class DevilBullet : ClickTypeSkill
             return true;
         }
         
-        StatusEffect markStatus = StatusEffectManager.Instance.GetStatusEffect(target.status, typeof(Mark));
-
-        if (markStatus != null)
-        {
-            if (target.CompareTag("Boss"))
-            {
-                weapon.SetAttackDelay(_attackSpeedIncrease);
-                weapon.AddAction(OnAttack);
-            }
-            else if (target.CompareTag("Monster"))
-            {
-                target.Die();
-            }
-        }
-        else
-        {
-            StatusEffect status = new Mark(target.gameObject);
-            StatusEffectManager.Instance.AddStatusEffect(target.status, status);
-        }
-
         target.HasAttacked(_attackDamage);
         
         StatusEffect devilBulletDamageAmplification = new DevilBulletDamageAmplification(target.gameObject, _amplification);
@@ -68,17 +45,6 @@ public class DevilBullet : ClickTypeSkill
     public override void OnActiveExit()
     {
         ;
-    }
-
-    private void OnAttack()
-    {
-        _attackCount--;
-
-        if (_attackCount <= 0)
-        {
-            weapon.SetAttackDelay(_originAttackSpeed);
-            weapon.RemoveAction(OnAttack);
-        }
     }
 
     public override void ExecuteCoolTimeCommand()
