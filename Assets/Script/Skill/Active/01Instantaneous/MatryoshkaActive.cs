@@ -45,10 +45,6 @@ public class MatryoshkaActive : InstantaneousSkill
     {
         _damage = Data.GetValue(_stackLevel);
         _stunDuration = Data.GetValue(BaseStunIndex + _stackLevel);
-        _range = _ranges[_stackLevel];
-        
-        _effect.transform.localScale = new Vector3(_range, _range, 1);
-        _effect.SetActive(true);
 
         if (_effect.TryGetComponent(out Animator animator))
         {
@@ -78,18 +74,19 @@ public class MatryoshkaActive : InstantaneousSkill
 
     public override void OnActiveExit()
     {
-        _stackLevel += _levelDelta;
-
-        if (_stackLevel >= MaxStackLevel - 1)
+        _stackLevel++;
+        
+        if (_stackLevel >= MaxStackLevel)
         {
-            _levelDelta = -1;
-        }
-        else if (_stackLevel <= 0)
-        {
-            _levelDelta = 1;
+            _stackLevel = 0;
         }
 
         SetRange(_stackLevel);
+        
+        _range = _ranges[_stackLevel];
+        
+        _effect.transform.localScale = new Vector3(_range, _range, 1);
+        _effect.SetActive(true);
     }
 
     private void Stun(Status status, float duration)
