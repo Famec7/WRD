@@ -84,7 +84,7 @@ public class MissionSlot : MonoBehaviour
         else
         {
             _clearText.text = "Fail";
-            _clearText.color = Color.red;
+            _clearText.color = Color.white;
         }
         GetComponent<Button>().enabled = false;
     }
