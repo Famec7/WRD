@@ -145,7 +145,7 @@ public class MonsterSpawnManager : MonoBehaviour
             UIManager.instance.currentWaveTime.text = timeSpan.ToString(@"mm\:ss");
             waveSecTimer = 0f;
         }
-        if (waveTimer >= wavePlayTime[idx] && isAutoWaveProgression)
+        if (waveTimer >= wavePlayTime[idx] && isAutoWaveProgression && !isBossWave)
         {
             ProgressWave(1);
         }
