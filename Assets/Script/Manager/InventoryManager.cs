@@ -784,8 +784,11 @@ public class InventoryManager : MonoBehaviour
         // 7) 나머지 UI 갱신
        // BookMakredSlotUI.Instance.UpdateAllSlot();
         LongClickPopUpUi popUp = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
-        popUp.weaponID = weaponID;
-        popUp.inventorySlot = InventoryManager.instance.FindInventorySlot(weaponID);
+        if (isMainWeapon)
+        {
+            popUp.weaponID = weaponID;
+            popUp.inventorySlot = InventoryManager.instance.FindInventorySlot(weaponID);
+        }
     }
 }
 
