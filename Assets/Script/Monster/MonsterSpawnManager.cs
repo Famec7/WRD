@@ -50,7 +50,7 @@ public class MonsterSpawnManager : MonoBehaviour
     private Canvas _hpBarCanvas;
 
     public Button _skipButton;
-    public bool isAutoWaveProgression = true;
+    public bool isAutoWaveProgression = false;
 
     private void Awake()
     {
