@@ -182,6 +182,10 @@ public class MonsterSpawnManager : MonoBehaviour
             {
                 ProgressWave(1);
             }
+            else if (waveTimer >= wavePlayTime[idx])
+            {
+                ProgressWave(1);
+            }
         }
     }
     
