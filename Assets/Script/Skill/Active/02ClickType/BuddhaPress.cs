@@ -23,8 +23,6 @@ public class BuddhaPress : ClickTypeSkill
         _damageAmplificationZone.SetData(brokenGroundTime, Data.Range, damageAmplification);
         
         _buddhaHandEffect.transform.SetParent(null);
-        
-        SoundManager.Instance.PlaySFX(sfx);
     }
 
     public override void OnActiveEnter()
@@ -35,6 +33,8 @@ public class BuddhaPress : ClickTypeSkill
         
         _damageAmplificationZone.SetPosition(ClickPosition);
         _damageAmplificationZone.PlayEffect();
+        
+        SoundManager.Instance.PlaySFX(sfx);
     }
 
     public override bool OnActiveExecute()

@@ -43,6 +43,12 @@ public class SilentTrueshot : ClickTypeSkill
             return false;
         }
         
+        ClearTargetMonsters();
+        Physics2D.SyncTransforms();
+        
+        LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
+        IndicatorMonsters = RangeDetectionUtility.GetAttackTargets(Indicator.Collider, layerMask);
+        
         foreach (var monster in IndicatorMonsters)
         {
             monster.HasAttacked(_damage);
