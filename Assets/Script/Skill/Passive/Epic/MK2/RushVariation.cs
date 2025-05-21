@@ -22,10 +22,12 @@ public class RushVariation : PassiveSkillBase
     
     [SerializeField]
     private AudioClip dashSound;
+    
+    private bool _isActivated = false;
 
     public override bool Activate(GameObject target = null)
     {
-        if (!CheckTrigger() || target == null) return false;
+        if (target == null || _isActivated) return false;
         SoundManager.Instance.PlaySFX(dashSound);
         StartCoroutine(IE_Activate(target));
         return true;
@@ -33,7 +35,7 @@ public class RushVariation : PassiveSkillBase
 
     private IEnumerator IE_Activate(GameObject target)
     {
-
+        _isActivated = true;
         Vector2 direction = ((Vector2)target.transform.position - (Vector2)weapon.transform.position).normalized;
         Vector2 targetPosition = (Vector2)weapon.transform.position + (direction);
 
@@ -56,6 +58,8 @@ public class RushVariation : PassiveSkillBase
 
 
         yield return new WaitForSeconds(Data.GetValue(0));
+        
+        _isActivated = false;
     }
 
     private IEnumerator Dash(Vector3 targetPosition)

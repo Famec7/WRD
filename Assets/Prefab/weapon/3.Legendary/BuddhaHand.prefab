@@ -5263,7 +5263,6 @@ MonoBehaviour:
   indicatorType: 0
   _isFixedPosition: 0
   IndicatorMonsters: []
-  _damageAmplificationZone: {fileID: 6680142398026861271}
   _buddhaHandEffect: {fileID: 7200753399039325296}
   sfx: {fileID: 8300000, guid: 4256eaf8cf3b0c145b96f9bf3de33153, type: 3}
 --- !u!1 &6770145250986671537

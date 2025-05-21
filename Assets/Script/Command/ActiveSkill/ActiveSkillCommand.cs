@@ -16,6 +16,7 @@ public class ActiveSkillCommand : ICommand
         SkillUIManager.Instance.ShowPopupPanel(3);
         _skill.IsActive = true;
 
+        _skill.ShowIndicator(_skill.ClickPosition, false);
         LayerMask layerMask = LayerMaskProvider.MonsterLayerMask;
         _skill.IndicatorMonsters = RangeDetectionUtility.GetAttackTargets(_skill.Indicator.Collider, layerMask);
         

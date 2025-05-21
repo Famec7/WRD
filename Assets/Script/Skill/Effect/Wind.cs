@@ -40,7 +40,7 @@ public class Wind : MonoBehaviour
     {
         while ((monster.transform.position - _targetPosition).sqrMagnitude > Mathf.Epsilon)
         {
-            monster.transform.position = Vector3.MoveTowards(monster.transform.position, _targetPosition, 0.01f);
+            monster.transform.position = Vector3.MoveTowards(monster.transform.position, _targetPosition, 0.1f);
             yield return null;
         }
         

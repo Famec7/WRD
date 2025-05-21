@@ -54,7 +54,7 @@ public class SharpBlade : InstantaneousSkill
         ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("SwingEffect");
 
         effect.SetPosition(weapon.owner.transform.position);
-        effect.SetRotation(Quaternion.Euler(180, 0, Vector2.SignedAngle(Vector2.right, dir)));
+        effect.SetRotation(Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, dir)));
         effect.PlayEffect();
         
         SoundManager.Instance.PlaySFX(sfx);
