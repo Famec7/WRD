@@ -3,13 +3,14 @@ using UnityEngine.Serialization;
 
 public class BuddhaPress : ClickTypeSkill
 {
-    [SerializeField] private DamageAmplificationZone _damageAmplificationZone;
     [SerializeField] private BuddhaHandEffect _buddhaHandEffect;
     
     [SerializeField] private AudioClip sfx;
     
     private float _damage;
     private float _stunDuration;
+    float _damageAmplificationDuration;
+    float _damageAmplification;
 
     protected override void Init()
     {
@@ -17,10 +18,9 @@ public class BuddhaPress : ClickTypeSkill
         
         _damage = Data.GetValue(0);
         _stunDuration = Data.GetValue(1);
-        
-        float brokenGroundTime = Data.GetValue(2);
-        float damageAmplification = Data.GetValue(3);
-        _damageAmplificationZone.SetData(brokenGroundTime, Data.Range, damageAmplification);
+
+        _damageAmplificationDuration = Data.GetValue(2);
+        _damageAmplification = Data.GetValue(3) / 100.0f;
         
         _buddhaHandEffect.transform.SetParent(null);
     }
@@ -31,9 +31,6 @@ public class BuddhaPress : ClickTypeSkill
         _buddhaHandEffect.SetPosition(ClickPosition);
         _buddhaHandEffect.PlayEffect();
         
-        _damageAmplificationZone.SetPosition(ClickPosition);
-        _damageAmplificationZone.PlayEffect();
-        
         SoundManager.Instance.PlaySFX(sfx);
     }
 
@@ -41,10 +38,10 @@ public class BuddhaPress : ClickTypeSkill
     {
         foreach (var monster in IndicatorMonsters)
         {
-            ApplyWound(monster);
             monster.HasAttacked(_damage);
+            ApplyWound(monster);
             ApplyStun(monster);
-            
+            ApplyDamageAmplification(monster);
         }
         
         return true;
@@ -65,5 +62,11 @@ public class BuddhaPress : ClickTypeSkill
     {
         StatusEffect stun = new Stun(monster.gameObject, _stunDuration);
         StatusEffectManager.Instance.AddStatusEffect(monster.status, stun);
+    }
+    
+    private void ApplyDamageAmplification(Monster monster)
+    {
+        StatusEffect damageAmplification = new DamageAmplification(monster.gameObject, _damageAmplification, _damageAmplificationDuration);
+        StatusEffectManager.Instance.AddStatusEffect(monster.status, damageAmplification);
     }
 }
