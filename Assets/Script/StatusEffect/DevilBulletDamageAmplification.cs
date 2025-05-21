@@ -14,6 +14,7 @@ public class DevilBulletDamageAmplification : StatusEffect
         if (target.TryGetComponent(out Status status))
         {
             status.DevilBulletDamageAmplification += _damageAmplification;
+            PlayEffect(status.DevilBulletDamageAmplification);
 
 #if STATUS_EFFECT_LOG
             Debug.Log($"DevilBulletDamageAmplification: {target.name} has {status.devilBulletDamageAmplification} devil bullets : ApplyEffect");
@@ -25,7 +26,9 @@ public class DevilBulletDamageAmplification : StatusEffect
     {
         if (target.TryGetComponent(out Status status))
         {
-            status.DevilBulletDamageAmplification -= _damageAmplification;
+            float newAmplificationRate = Mathf.Round((status.DevilBulletDamageAmplification - _damageAmplification / 100.0f) * 100.0f) / 100.0f;
+            status.DevilBulletDamageAmplification = newAmplificationRate;
+            PlayEffect(status.DevilBulletDamageAmplification);
             
 #if STATUS_EFFECT_LOG
             Debug.Log($"DevilBulletDamageAmplification: {target.name} has {status.devilBulletDamageAmplification} devil bullets : RemoveEffect");
