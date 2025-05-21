@@ -185,7 +185,7 @@ MonoBehaviour:
   - {fileID: 3811254620233172672}
   anim: {fileID: 2812040360970317227}
   type: 3
-  _attackSound: {fileID: 8300000, guid: fca4c491b8995704bad63c9afc2af30b, type: 3}
+  _attackSound: {fileID: 8300000, guid: 382ebf6ebe0983a4a8d6780a155a9da8, type: 3}
 --- !u!114 &4042815741261854713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
   _isFixedPosition: 0
   IndicatorMonsters: []
   _windEffect: {fileID: 7949708441582127241}
-  sfx: {fileID: 0}
+  sfx: {fileID: 8300000, guid: dc99f1d8ab724414ca1577a0cec3dfb0, type: 3}
 --- !u!114 &3811254620233172672
 MonoBehaviour:
   m_ObjectHideFlags: 0

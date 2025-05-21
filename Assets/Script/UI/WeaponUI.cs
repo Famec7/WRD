@@ -69,17 +69,13 @@ public class WeaponUI : Singleton<WeaponUI>
         WeaponSlotUI targetSlot = weaponSlots[order];
        
         LongClickPopUpUi longClickPopUpUi = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
-        //��Ŭ�� �˾� ui �����ͼ� ���� �ֽ�ȭ�� ���� setFavoritevbutton �Լ� ����
         longClickPopUpUi.SetBookmarkedButtonText(longClickPopUpUi.isBookmarked, false, true);
 
-        //�����ִ� ���� �迭�� �߰��ϰ� ����� �� �ִ� ���� ���� �迭 ������Ʈ   
         GameManager.Instance.useWeapon.Add(weaponID);
 
-        //���ã�⿡�� �����ϰ� ��밡���� ���⿡ �ش� �ϴ� ���� ���� �� ���� ��ư ��Ȱ��ȭ
         if (longClickPopUpUi.isBookmarked && GameManager.Instance.useAbleWeaponCnt[weaponID - 1] <= 0)
             longClickPopUpUi._equipButton.SetActive(false);
 
-        //�ش� ���Կ� �̹��� ���� �� id ����
         targetSlot.hasWeapon = true;
         targetSlot.gameObject.transform.GetChild(0).GetComponent<Image>().sprite = item.image;
         targetSlot.gameObject.transform.GetChild(0).GetComponent<Image>().enabled = true;

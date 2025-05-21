@@ -363,6 +363,9 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
+        Debug.Log(pressSlot);
+        Debug.Log(itemIDs);
+
         if (WeaponDataManager.Instance.GetKorWeaponClassText(mainWeaponID) != "안흔함" && isMainWeapon)
         {
             if (pressSlot == null)
@@ -401,6 +404,7 @@ public class InventoryManager : MonoBehaviour
 
                         if (pressSlot == weaponSlot.inventorySlot)
                         {
+                            weaponSlot.Init();
                             items.Remove(pressSlot.weapon);
                             WeaponUI.Instance.weaponID = item.data.ID;
                             WeaponUI.Instance.ChangeItem(j, item);
@@ -423,31 +427,37 @@ public class InventoryManager : MonoBehaviour
             InventoryItem removeToItem = null;
             if (i>5)
             {
+                // 인벤에 남는 아이템이 있을 때
                 if (GameManager.Instance.useAbleWeaponCnt[i-1] > 0)
                 {
+                    //슬롯을 돌아
                     foreach (var slot in slots)
                     {
+                        // 슬롯에 템이 없으면
                         if (!slot.hasItem) continue;
-
+                        // 장착되어있지 않고 슬롯  id가 같으면
                         if (!slot.isEquiped && slot.weapon.data.ID == i)
                         {
+                            // 삭제
                             removeToItem = slot.weapon;
                             break;
                         }
                     }
                     GameManager.Instance.useAbleWeaponCnt[i-1]--;
                 }
-
+                // 사용중인 무기일 때
                 else
                 {
+                    //무기 ui를 돌아
                     for (int j = 0; j < UIManager.instance.weaponSlotUI.Length; j++)
                     {
                         var weaponSlot = UIManager.instance.weaponSlotUI[j];
-
+                        //무기 없으면 컨티뉴
                         if (!weaponSlot.hasWeapon) continue;
+
                         removeToItem = weaponSlot.transform.GetChild(0).GetComponent<InventorySlot>().weapon;
 
-                        if (removeToItem.data.ID == i)
+                        if (weaponSlot.transform.GetChild(0).GetComponent<InventorySlot>().weapon.data.ID == i)
                         {
                             WeaponManager.Instance.RemoveWeapon(j);
                             GameManager.Instance.RemoveUseWeaponList(i);
@@ -458,7 +468,8 @@ public class InventoryManager : MonoBehaviour
                 }
             }
 
-            items.Remove(removeToItem);
+            if(removeToItem != null)
+                items.Remove(removeToItem);
             GameManager.Instance.weaponCnt[i - 1]--;
         }
         
@@ -784,8 +795,11 @@ public class InventoryManager : MonoBehaviour
         // 7) 나머지 UI 갱신
        // BookMakredSlotUI.Instance.UpdateAllSlot();
         LongClickPopUpUi popUp = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
-        popUp.weaponID = weaponID;
-        popUp.inventorySlot = InventoryManager.instance.FindInventorySlot(weaponID);
+        if (isMainWeapon)
+        {
+            popUp.weaponID = weaponID;
+            popUp.inventorySlot = InventoryManager.instance.FindInventorySlot(weaponID);
+        }
     }
 }
 

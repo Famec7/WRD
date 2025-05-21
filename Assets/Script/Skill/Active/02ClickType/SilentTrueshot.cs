@@ -4,6 +4,7 @@ public class SilentTrueshot : ClickTypeSkill
 {
     private float _damageDelay = 0.0f;
     private float _damage = 0.0f;
+    private float _woundDamage = 0.0f;
 
     [SerializeField] private Animator _effect;
     [SerializeField] private AudioClip sfx;
@@ -13,6 +14,7 @@ public class SilentTrueshot : ClickTypeSkill
         base.Init();
         
         _damage = Data.GetValue(1);
+        _woundDamage = Data.GetValue(2);
     }
 
     public override void OnActiveEnter()
@@ -43,9 +45,10 @@ public class SilentTrueshot : ClickTypeSkill
         
         foreach (var monster in IndicatorMonsters)
         {
+            monster.HasAttacked(_damage);
             if (HasTargetMark(monster))
             {
-                monster.HasAttacked(_damage);
+                monster.HasAttacked(_woundDamage);
             }
         }
 

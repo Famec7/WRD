@@ -108,7 +108,8 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
             }
 
             idx = 0;
-            //최상위
+
+
             for (int j = 0; j < weaponDataCount; j++)
             {
                 foreach (var highLevelweaponID in canCombinWeaponsList)
@@ -123,13 +124,13 @@ public class DetailedDescriptionUIGenerator : Singleton<DetailedDescriptionUIGen
                         highLevelWeaponIcon.GetComponent<RectTransform>().anchoredPosition = new Vector3(-280 + 120 * idx, -350);
                         highLevelWeaponIcon.GetComponent<Image>().color = WeaponTierTranslator.GetClassColor(WeaponDataManager.Instance.GetWeaponData(capturedHighID).tier);
                         highLevelWeaponIcon.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = WeaponDataManager.Instance.Database.GetWeaponData(capturedJ).WeaponNameKR;
-                       
-                        string path = "WeaponIcon/" +WeaponDataManager.Instance.Database.GetWeaponData(capturedJ).num;
+
+                        string path = "WeaponIcon/" + WeaponDataManager.Instance.Database.GetWeaponData(capturedJ).num;
                         highLevelWeaponIcon.transform.GetChild(0).GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
 
                         var button = highLevelWeaponIcon.GetComponent<Button>();
 
-                        button.onClick.AddListener(() => { UIManager.instance.CreateDetailedDescriptionUI(capturedJ);});
+                        button.onClick.AddListener(() => { UIManager.instance.CreateDetailedDescriptionUI(capturedJ); });
                         idx++;
                     }
                 }
