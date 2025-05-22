@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5652be1ec8794f64a117d047cc0ec3b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isParentNull: 1
+  _isParentNull: 0
 --- !u!1 &5017856223001294117
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,4 +345,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ecf172c975e4f5aa451e510402f6090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isParentNull: 1
+  _isParentNull: 0
