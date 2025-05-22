@@ -19,7 +19,7 @@ public class CraftButton : MonoBehaviour
     void Start()
     {
         isElement = weaponID < 6 ? true : false;
-        isModifyElement = weaponID == 50;
+        isModifyElement = weaponID == 49;
     }
 
     // Update is called once per frame
