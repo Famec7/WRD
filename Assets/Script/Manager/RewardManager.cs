@@ -100,7 +100,7 @@ public class RewardManager : Singleton<RewardManager>
 
     public void GetReward(UnitCode code)
     {
-        if (GameManager.Instance.wave > 30) return;
+        if (GameManager.Instance.wave > 30 && !(code >= UnitCode.MISSIONBOSS1 && code <= UnitCode.MISSIONBOSS6)) return;
 
         Tuple<string, List<int>> rewardTuple = null;
         rewardPopUpUIObejct_.SetActive(true);

@@ -465,7 +465,7 @@ public class InventoryManager : MonoBehaviour
                         if (!slot.isEquiped && slot.weapon.data.ID == i)
                         {
                             // 삭제
-dh                            removeToItem = slot.weapon;
+                            removeToItem = slot.weapon;
                             break;
                         }
                     }
