@@ -73,13 +73,14 @@ public class MissionMonsterManager : MonoBehaviour
             rewardList.Add(new Tuple<string, List<int>>(grade, rewardNumbersList));
         }
 
+#if UNITY_EDITOR
         // 결과 출력
         foreach (var item in rewardList)
         {
             Debug.Log($"Grade: {item.Item1}, Rewards: {string.Join(", ", item.Item2)}");
         }
+#endif
     }
 
     // Update is called once per frame
- 
 }

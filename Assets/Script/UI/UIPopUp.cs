@@ -3,10 +3,8 @@ using UnityEngine.UI;
 
 public class UIPopUp : MonoBehaviour
 {
-    [Header("닫기 버튼")]
-    [SerializeField]
-    protected Button closeButton;
-    
+    [Header("닫기 버튼")] [SerializeField] protected Button closeButton;
+
     /// <summary>
     /// 팝업 초기화
     /// 팝업창과 관련된 초기화 작업을 수행한다.
@@ -49,9 +47,13 @@ public class UIPopUp : MonoBehaviour
             bool isButton = false;
             foreach (var result in popUPresults)
             {
-                if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count >= 3 || result.gameObject.CompareTag("DetailedDescriptionUI") ||
-                    result.gameObject.CompareTag("Mission") || result.gameObject.CompareTag("InventoryDescriptionUI") || result.gameObject.CompareTag("WeaponPicker") || result.gameObject.CompareTag("CombinedWeaponImage") ||
-                    result.gameObject.CompareTag("WeaponPickerConfrimPopUp") || result.gameObject.CompareTag("DescriptionButton"))
+                if (result.gameObject.CompareTag("LongClickPopUpUI") || popUPresults.Count >= 3 ||
+                    result.gameObject.CompareTag("DetailedDescriptionUI") ||
+                    result.gameObject.CompareTag("Mission") || result.gameObject.CompareTag("InventoryDescriptionUI") ||
+                    result.gameObject.CompareTag("WeaponPicker") ||
+                    result.gameObject.CompareTag("CombinedWeaponImage") ||
+                    result.gameObject.CompareTag("WeaponPickerConfrimPopUp") ||
+                    result.gameObject.CompareTag("DescriptionButton"))
                     isButton = true;
             }
 
@@ -59,9 +61,12 @@ public class UIPopUp : MonoBehaviour
 
             foreach (var result in results)
             {
+#if UNITY_EDITOR
                 Debug.Log(result.gameObject.name);
+#endif
 
-                if ((result.gameObject.name == "Slot" && !result.gameObject.transform.GetChild(0).GetComponent<InventorySlot>().isEquiped) ||
+                if ((result.gameObject.name == "Slot" &&
+                     !result.gameObject.transform.GetChild(0).GetComponent<InventorySlot>().isEquiped) ||
                     results.Count < 4)
                 {
                     UIManager.instance.CloseAllPopUpUI();

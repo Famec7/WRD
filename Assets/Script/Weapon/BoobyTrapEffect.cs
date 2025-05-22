@@ -2,7 +2,18 @@
 
 public class BoobyTrapEffect : ParticleEffect
 {
-    [SerializeField] private GameObject particleEffectTrap;
+    [SerializeField] private SlowZone slowZone;
+    [SerializeField] private DamageAmplificationZone damageAmplificationZone;
     
-    public GameObject ParticleEffectTrap => particleEffectTrap;
+    public void SetData(float effectTime, float radius, float damageAmplificationRate, float slowRate)
+    {
+        slowZone.SetData(effectTime, radius, slowRate);
+        damageAmplificationZone.SetData(effectTime, radius, damageAmplificationRate);
+    }
+    
+    public void PlayDebuff()
+    {
+        slowZone.PlayEffect();
+        damageAmplificationZone.PlayEffect();
+    }
 }

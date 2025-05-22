@@ -8,20 +8,24 @@ public class ArrowRainVariation : PassiveSkillBase
 
     public override bool Activate(GameObject target = null)
     {
-        if (!CheckTrigger()) return false;
+        if (!CheckTrigger() || target == null)
+        {
+            return false;
+        }
 
         ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("ArrowRain");
         effect.SetPosition(target.transform.position);
         effect.PlayEffect();
         SoundManager.Instance.PlaySFX(sfx);
         Damage(target.transform.position);
+        
         return true;
     }
 
 
     private void Damage(Vector3 position)
     {
-        var targets = RangeDetectionUtility.GetAttackTargets(position, Data.Range / 2f, default, targetLayer);
+        var targets = RangeDetectionUtility.GetAttackTargets(position, Data.Range, 360.0f, targetLayer);
 
         if (targets.Count == 0)
             return;
