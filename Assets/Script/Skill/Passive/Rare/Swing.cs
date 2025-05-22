@@ -18,9 +18,12 @@ public class Swing : PassiveSkillBase
     
     public override bool Activate(GameObject target = null)
     {
-        if (!CheckTrigger()) return false;
+        if (!CheckTrigger() || target == null)
+        {
+            return false;
+        }
         
-        Vector3 dir = weapon.owner.Target.transform.position - weapon.owner.transform.position;
+        Vector3 dir = target.transform.position - weapon.owner.transform.position;
         if (dir == Vector3.zero)
             return false;
         

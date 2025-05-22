@@ -5,7 +5,10 @@ public class Thrust : PassiveSkillBase
 {
     public override bool Activate(GameObject target = null)
     {
-        if (!CheckTrigger()) return false;
+        if (!CheckTrigger() || target == null)
+        {
+            return false;
+        }
         
         Vector3 dir = target.transform.position - weapon.owner.transform.position;
         List<Collider2D> targets = RangeDetectionUtility.GetAttackTargets(weapon.owner.transform.position, Data.Range, 360.0f, targetLayer);

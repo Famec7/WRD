@@ -17,14 +17,14 @@ public class Deuxfer : PassiveSkillBase
 
     public override bool Activate(GameObject target = null)
     {
-        if (!CheckTrigger()) return false;
+        if (!CheckTrigger() || target == null) return false;
         StartCoroutine(ApplyBlueEffect());
 
-        if (weapon.owner.Target.TryGetComponent(out Monster monster))
+        if (target.TryGetComponent(out Monster monster))
         {
             TakeDamage(monster);
             ParticleEffect effect = EffectManager.Instance.CreateEffect<ParticleEffect>("NormalHit");
-            effect.SetPosition(weapon.owner.Target.transform.position);
+            effect.SetPosition(target.transform.position);
         }
 
         return true;

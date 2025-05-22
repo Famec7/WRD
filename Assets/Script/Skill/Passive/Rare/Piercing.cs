@@ -4,7 +4,7 @@ public class Piercing : PassiveSkillBase
 {
     public override bool Activate(GameObject target)
     {
-        if (!CheckTrigger()) return false;
+        if (!CheckTrigger() || target == null) return false;
         
         if(target.TryGetComponent(out Monster monster))
         {
