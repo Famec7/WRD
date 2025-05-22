@@ -115,7 +115,6 @@ MonoBehaviour:
   activeSkillList: []
   anim: {fileID: 2834433722928262828}
   type: 2
-  _isShowProjectile: 1
   _attackSound: {fileID: 8300000, guid: 382ebf6ebe0983a4a8d6780a155a9da8, type: 3}
 --- !u!114 &3779694955444831281
 MonoBehaviour:
@@ -300,4 +299,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2377b8b094334dbc8b80ca6aca2191a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isParentNull: 1
+  _isParentNull: 0

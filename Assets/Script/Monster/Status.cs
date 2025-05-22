@@ -58,6 +58,9 @@ public class Status : MonoBehaviour
     
     [HideInInspector]
     public float moveSpeedMultiplier = 1f; // 이동속도 배수
+    
+    [HideInInspector]
+    public int stunStack; // 스턴
 
     #endregion
     
@@ -112,6 +115,7 @@ public class Status : MonoBehaviour
         ElectricShockStack = 0;
         IsJokerMark = 0;
         DevilBulletDamageAmplification = 0;
+        stunStack = 0;
         moveSpeedMultiplier = 1f;
         
         StatusEffectManager.Instance.RemoveAllStatusEffects(this);

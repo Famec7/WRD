@@ -175,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 716824510}
     - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: weaponCnt.Array.size
-      value: 50
+      value: 49
       objectReference: {fileID: 0}
     - target: {fileID: 2289481386926037448, guid: 73a9616085a8a3544b2ecd6f7603bc66, type: 3}
       propertyPath: useAbleWeaponCnt.Array.size

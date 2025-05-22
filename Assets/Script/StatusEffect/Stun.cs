@@ -22,7 +22,13 @@ public class Stun : StatusEffect
     {
         if (target.TryGetComponent(out Status status))
         {
-            status.ResetSpeed();
+            status.stunStack--;
+            
+            if (status.stunStack <= 0)
+            {
+                status.stunStack = 0;
+                status.ResetSpeed();
+            }
         }
         
         if (_stunCoroutine != null)
@@ -41,6 +47,7 @@ public class Stun : StatusEffect
     {
         if (target.TryGetComponent(out Status status))
         {
+            status.stunStack++;
             status.MoveSpeed = 0.0f;
             
             if (Mathf.Abs(duration) > 0.01f)
