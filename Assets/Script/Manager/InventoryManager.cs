@@ -12,19 +12,14 @@ using Random = UnityEngine.Random;
 public class InventoryManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    [HideInInspector]
-    public static InventoryManager instance;
+    [HideInInspector] public static InventoryManager instance;
 
     public List<InventoryItem> items;
-    [SerializeField]
-    private Transform slotParent;
-    [SerializeField]
-    private Transform notHeldParent;
-    [SerializeField]
-    private InventorySlot[] slots;
+    [SerializeField] private Transform slotParent;
+    [SerializeField] private Transform notHeldParent;
+    [SerializeField] private InventorySlot[] slots;
 
-    [SerializeField]
-    AllShowInventorySlot[] notHeldslots;
+    [SerializeField] AllShowInventorySlot[] notHeldslots;
 
     public GameObject inventorySlotsPrefab;
     public GameObject allShowInventoryContent;
@@ -59,28 +54,26 @@ public class InventoryManager : MonoBehaviour
         slots = slotParent.GetComponentsInChildren<InventorySlot>();
         notHeldslots = notHeldParent.GetComponentsInChildren<AllShowInventorySlot>();
         items = new List<InventoryItem>();
-        
+
         const int unnormalWeaponIDImageMin = 201;
         const int unnormalWeaponIDImageMax = 208;
-        
+
         int randomUnnormalWeaponNum = Random.Range(unnormalWeaponIDImageMin, unnormalWeaponIDImageMax + 1);
         int randomUnnormalWeaponID = WeaponDataManager.Instance.Database.GetWeaponIdByNum(randomUnnormalWeaponNum);
-        
+
         string path = "WeaponIcon/" + randomUnnormalWeaponNum;
-        InventoryItem item = new InventoryItem
-        {
-            image =  ResourceManager.Instance.Load<Sprite>(path)
-        };
+        InventoryItem item = new InventoryItem { image = ResourceManager.Instance.Load<Sprite>(path) };
         item.AssignWeapon(randomUnnormalWeaponID);
         AddItem(item);
         WeaponUI.Instance.weaponSlots[4].transform.GetChild(0).GetComponent<InventorySlot>().weapon = item;
         WeaponUI.Instance.weaponSlots[4].weaponID = randomUnnormalWeaponID;
-        WeaponUI.Instance.weaponSlots[4].transform.GetChild(0).GetComponent<LongClickComponenet>().weaponID = randomUnnormalWeaponID;
+        WeaponUI.Instance.weaponSlots[4].transform.GetChild(0).GetComponent<LongClickComponenet>().weaponID =
+            randomUnnormalWeaponID;
         slots[0].isEquiped = true;
-        GameManager.Instance.weaponCnt[randomUnnormalWeaponID-1]++;
+        GameManager.Instance.weaponCnt[randomUnnormalWeaponID - 1]++;
         GameManager.Instance.useWeapon.Add(randomUnnormalWeaponID);
         WeaponManager.Instance.AddWeapon(4, randomUnnormalWeaponID);
-        
+
 #if ADD_ALL_ITEM
         CreateAllItem();
 #endif
@@ -91,7 +84,6 @@ public class InventoryManager : MonoBehaviour
     {
         transform.SetAsLastSibling();
         isAllShow = allShowInventoryContent.activeSelf;
-
     }
 
 
@@ -106,8 +98,8 @@ public class InventoryManager : MonoBehaviour
         foreach (var kv in groups)
         {
             int id = kv.Key;
-            int allowed = cntArray[id - 1];   // 허용된 개수
-            var list = kv.Value;           // 현재 items에 있는 리스트
+            int allowed = cntArray[id - 1]; // 허용된 개수
+            var list = kv.Value; // 현재 items에 있는 리스트
             int excess = list.Count - allowed;
 
             if (excess > 0)
@@ -131,7 +123,7 @@ public class InventoryManager : MonoBehaviour
             slots[j].isEquiped = false;
             slots[j].ChangeBorder(false);
             if (slots[j].weapon == null) continue;
-            
+
             for (int weapnUIIDX = 0; weapnUIIDX < UIManager.instance.weaponSlotUI.Length; weapnUIIDX++)
             {
                 WeaponSlotUI weaponSlotUI = UIManager.instance.weaponSlotUI[weapnUIIDX];
@@ -146,10 +138,10 @@ public class InventoryManager : MonoBehaviour
                         break;
                     }
                 }
-
             }
         }
     }
+
     public void FreshSlot(bool isSync = true)
     {
         int i = 0;
@@ -159,9 +151,10 @@ public class InventoryManager : MonoBehaviour
             slots[j].weapon = items[i];
             slots[j].hasItem = true;
             slots[j].gameObject.GetComponent<LongClickComponenet>().weaponID = items[i].data.ID;
-            
+
             j++;
         }
+
         for (; j < slots.Length; j++)
         {
             slots[j].weapon = null;
@@ -169,17 +162,17 @@ public class InventoryManager : MonoBehaviour
             slots[j].gameObject.GetComponent<LongClickComponenet>().weaponID = -1;
         }
 
-        if(isSync)
-        SyncWeaponSlotInventorySlot();
+        if (isSync)
+            SyncWeaponSlotInventorySlot();
     }
 
     public void InventorySort(int grade)
     {
         int i = 0;
         int j = 0;
-        string cmp="";
+        string cmp = "";
         List<int> tmpList = new List<int>(GameManager.Instance.useWeapon);
-        switch(grade)
+        switch (grade)
         {
             case 0:
                 cmp = "unnormal";
@@ -197,12 +190,12 @@ public class InventoryManager : MonoBehaviour
                 cmp = "myth";
                 break;
         }
-        
+
         for (; i < items.Count && j < slots.Length; i++)
         {
             if (items[i].data.WeaponClass != cmp)
                 continue;
-                   
+
             slots[j].weapon = items[i];
             slots[j].gameObject.GetComponent<LongClickComponenet>().weaponID = items[i].data.ID;
             j++;
@@ -254,27 +247,25 @@ public class InventoryManager : MonoBehaviour
                 slots = newSlotsArray;
 
                 items.Add(_item);
-
             }
             else
             {
                 Debug.LogError("No InventorySlot components found in the new slots!");
             }
-        
         }
     }
 
-    public void CloseButton()  
+    public void CloseButton()
     {
         transform.GetChild(0).gameObject.SetActive(false);
     }
 
-    public void ChangeAllShowToggle() 
+    public void ChangeAllShowToggle()
     {
         allShowInventoryContent.SetActive(allShowToggle.isOn);
         normalInventoryContent.SetActive(!allShowToggle.isOn);
         bool isSelect = false;
-        
+
         foreach (ClassSelectButton button in allShowClassSelectButtons.GetComponentsInChildren<ClassSelectButton>())
         {
             if (button.select)
@@ -282,7 +273,7 @@ public class InventoryManager : MonoBehaviour
                 NotHeldSort(button.grade);
                 InventorySort(button.grade);
                 isSelect = true;
-            }   
+            }
         }
 
         foreach (ClassSelectButton button in classShowClassSelectButtons.GetComponentsInChildren<ClassSelectButton>())
@@ -320,13 +311,13 @@ public class InventoryManager : MonoBehaviour
         }
 
         allShowClassSelectButtons.SetActive(false);
-        
+
         allShowButton.GetComponent<Image>().color = new Color32(255, 223, 0, 255);
         classShowButton.GetComponent<Image>().color = new Color32(173, 173, 173, 255);
         InventoryManager.instance.FreshSlot();
 
         isClassSorted = false;
-        
+
         if (!allShowToggle.isOn)
         {
             for (int i = 0; i < sortButtons.Length; i++)
@@ -346,8 +337,8 @@ public class InventoryManager : MonoBehaviour
 
         allShowButton.GetComponent<Image>().color = new Color32(173, 173, 173, 255);
         classShowButton.GetComponent<Image>().color = new Color32(255, 223, 0, 255);
-       
-        foreach(ClassSelectButton button in classShowClassSelectButtons.GetComponentsInChildren<ClassSelectButton>())
+
+        foreach (ClassSelectButton button in classShowClassSelectButtons.GetComponentsInChildren<ClassSelectButton>())
         {
             if (button.select)
             {
@@ -368,8 +359,10 @@ public class InventoryManager : MonoBehaviour
             sortButtons[i].gameObject.SetActive(false);
         }
 
-        normalInventoryContent.transform.GetChild(0).transform.GetChild(0).GetComponent<RectTransform>().anchoredPosition = new Vector2(20,-200);
-        allShowInventoryContent.transform.GetChild(0).transform.GetChild(0).GetComponent<RectTransform>().anchoredPosition = new Vector2(20, -200);
+        normalInventoryContent.transform.GetChild(0).transform.GetChild(0).GetComponent<RectTransform>()
+            .anchoredPosition = new Vector2(20, -200);
+        allShowInventoryContent.transform.GetChild(0).transform.GetChild(0).GetComponent<RectTransform>()
+            .anchoredPosition = new Vector2(20, -200);
     }
 
     public bool RemoveItem(List<int> itemIDs, int mainWeaponID, InventoryItem item, bool isMainWeapon)
@@ -393,10 +386,12 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
+#if UNITY_EDITOR
         Debug.Log(pressSlot);
         Debug.Log(itemIDs);
+#endif
 
-        if (WeaponDataManager.Instance.GetKorWeaponClassText(mainWeaponID) != "안흔함" && isMainWeapon)
+        if (WeaponDataManager.Instance.GetKorWeaponClassText(mainWeaponID) != "고급" && isMainWeapon)
         {
             if (pressSlot == null)
             {
@@ -419,8 +414,8 @@ public class InventoryManager : MonoBehaviour
                     {
                         firstMatchingSlot = slot;
                     }
-
                 }
+
                 pressSlot = equippedSlot ?? firstMatchingSlot;
             }
 
@@ -440,7 +435,8 @@ public class InventoryManager : MonoBehaviour
                             WeaponUI.Instance.ChangeItem(j, item);
                             longClickPopUpUi.weaponID = mainWeaponID;
                             GameManager.Instance.weaponCnt[itemIDs[0] - 1]--;
-                            GameManager.Instance.RemoveUseWeaponList(pressSlot.GetComponent<LongClickComponenet>().weaponID);
+                            GameManager.Instance.RemoveUseWeaponList(pressSlot.GetComponent<LongClickComponenet>()
+                                .weaponID);
                             WeaponManager.Instance.RemoveWeapon(j);
                             WeaponManager.Instance.AddWeapon(j, mainWeaponID);
                             weaponSlot.weaponID = mainWeaponID;
@@ -455,10 +451,10 @@ public class InventoryManager : MonoBehaviour
         foreach (int i in itemIDs)
         {
             InventoryItem removeToItem = null;
-            if (i>5)
+            if (i > 5)
             {
                 // 인벤에 남는 아이템이 있을 때
-                if (GameManager.Instance.useAbleWeaponCnt[i-1] > 0)
+                if (GameManager.Instance.useAbleWeaponCnt[i - 1] > 0)
                 {
                     //슬롯을 돌아
                     foreach (var slot in slots)
@@ -473,7 +469,8 @@ public class InventoryManager : MonoBehaviour
                             break;
                         }
                     }
-                    GameManager.Instance.useAbleWeaponCnt[i-1]--;
+
+                    GameManager.Instance.useAbleWeaponCnt[i - 1]--;
                 }
                 // 사용중인 무기일 때
                 else
@@ -498,11 +495,11 @@ public class InventoryManager : MonoBehaviour
                 }
             }
 
-            if(removeToItem != null)
+            if (removeToItem != null)
                 items.Remove(removeToItem);
             GameManager.Instance.weaponCnt[i - 1]--;
         }
-        
+
         FreshSlot(pressSlot != null);
         return returnValue;
     }
@@ -530,9 +527,9 @@ public class InventoryManager : MonoBehaviour
                 break;
         }
 
-        int i = 0 , j= 5;
+        int i = 0, j = 5;
 
-        for (; i < notHeldslots.Length && j <WeaponDataManager.Instance.Database.GetWeaponDataCount(); j++)
+        for (; i < notHeldslots.Length && j < WeaponDataManager.Instance.Database.GetWeaponDataCount(); j++)
         {
             var data = WeaponDataManager.Instance.GetWeaponData(j + 1);
 
@@ -548,28 +545,26 @@ public class InventoryManager : MonoBehaviour
                 notHeldSlotItem.GetComponent<InventorySlot>().weapon = new InventoryItem();
                 notHeldSlotItem.GetComponent<InventorySlot>().weapon.AssignWeapon(data.ID);
                 notHeldSlotItem.GetComponent<Image>().sprite = ResourceManager.Instance.Load<Sprite>(path);
-                
-                bool isEquiped = GameManager.Instance.IsUsing(j+1);
+
+                bool isEquiped = GameManager.Instance.IsUsing(j + 1);
                 notHeldSlotItem.GetComponent<InventorySlot>().isEquiped = isEquiped;
                 notHeldSlotItem.GetComponent<InventorySlot>().ChangeBorder(isEquiped);
                 notHeldSlotItem.GetComponent<LongClickComponenet>().weaponID = data.ID;
                 i++;
             }
-         
         }
 
-        for (;  i < notHeldslots.Length; i++)
+        for (; i < notHeldslots.Length; i++)
         {
             notHeldslots[i].transform.GetChild(0).GetComponent<Image>().sprite = null;
             notHeldslots[i].gameObject.SetActive(false);
             notHeldslots[i].transform.GetChild(0).gameObject.GetComponent<LongClickComponenet>().weaponID = 0;
         }
-
     }
 
     public void AllClassSort()
     {
-        items.Sort((item1,item2) => (item2.data.ID).CompareTo(item1.data.ID));
+        items.Sort((item1, item2) => (item2.data.ID).CompareTo(item1.data.ID));
         FreshSlot();
     }
 
@@ -578,7 +573,7 @@ public class InventoryManager : MonoBehaviour
         items.Sort((item1, item2) => (item2.earnTime).CompareTo(item1.earnTime));
         FreshSlot();
     }
-    
+
     public WeaponTuple<WeaponTier, int> GetHighestTier()
     {
         WeaponTier highest = WeaponTier.UNNORMAL;
@@ -587,7 +582,7 @@ public class InventoryManager : MonoBehaviour
             if (items[i] != null && items[i].data.tier > highest)
                 highest = items[i].data.tier;
         }
-        
+
         return new WeaponTuple<WeaponTier, int>(highest, items.FindAll(item => item.data.tier == highest).Count);
     }
 
@@ -608,7 +603,6 @@ public class InventoryManager : MonoBehaviour
         }
 
         return targetSlot;
-
     }
 
     public InventoryItem FindUnEquipedItem(int id)
@@ -617,10 +611,10 @@ public class InventoryManager : MonoBehaviour
 
         foreach (InventorySlot slot in slots)
         {
-            if (!slot.isEquiped  && slot.hasItem)
+            if (!slot.isEquiped && slot.hasItem)
             {
                 if (slot.weapon.data.ID == id)
-                findItem = slot.weapon;
+                    findItem = slot.weapon;
             }
         }
 
@@ -632,7 +626,7 @@ public class InventoryManager : MonoBehaviour
         foreach (var item in WeaponDataManager.Instance.Database.GetAllWeaponNums().Select((value, i) => (value, i)))
         {
             {
-                if (WeaponDataManager.Instance.GetWeaponData(item.i+1).WeaponClass == "normal") continue;
+                if (WeaponDataManager.Instance.GetWeaponData(item.i + 1).WeaponClass == "normal") continue;
 
                 string weaponIconPath = "WeaponIcon/" + item.value.ToString();
 
@@ -640,7 +634,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     image = ResourceManager.Instance.Load<Sprite>(weaponIconPath)
                 };
-                weapon.AssignWeapon(item.i+1);
+                weapon.AssignWeapon(item.i + 1);
 
 
                 GameManager.Instance.weaponCnt[item.i]++;
@@ -655,10 +649,7 @@ public class InventoryManager : MonoBehaviour
     public void AddItemByNum(int num)
     {
         string path = "WeaponIcon/" + num;
-        InventoryItem item = new InventoryItem
-        {
-            image = ResourceManager.Instance.Load<Sprite>(path)
-        };
+        InventoryItem item = new InventoryItem { image = ResourceManager.Instance.Load<Sprite>(path) };
         item.AssignWeapon(WeaponDataManager.Instance.Database.GetWeaponIdByNum(num));
         AddItem(item);
     }
@@ -671,7 +662,7 @@ public class InventoryManager : MonoBehaviour
 
         confirmText.text = WeaponTierTranslator.TranslateToKorean(data.tier) + " 마스터키를 사용하겠습니까?";
         warningText.text = data.WeaponNameKR + " 대신 " + WeaponTierTranslator.TranslateToKorean(data.tier) +
-            " 등급의\n마스터키가 1개가 교환됩니다.";
+                           " 등급의\n마스터키가 1개가 교환됩니다.";
 
         WeaponPickerConfirmPopUp.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
         {
@@ -683,14 +674,14 @@ public class InventoryManager : MonoBehaviour
 
     public void OnclickWeaponPicker(int num)
     {
-       WeaponData data = WeaponDataManager.Instance.Database.GetWeaponDataByNum(num);
+        WeaponData data = WeaponDataManager.Instance.Database.GetWeaponDataByNum(num);
 
-       MasterKeyManager.Instance.UpdateMasterKeyCount(data.tier, -1);
+        MasterKeyManager.Instance.UpdateMasterKeyCount(data.tier, -1);
 
         if (data.tier > WeaponTier.Normal)
         {
             AddItemByNum(num);
-            GameManager.Instance.weaponCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(num)-1]++;
+            GameManager.Instance.weaponCnt[WeaponDataManager.Instance.Database.GetWeaponIdByNum(num) - 1]++;
         }
         else
             GameManager.Instance.weaponCnt[num - 101]++;
@@ -698,9 +689,9 @@ public class InventoryManager : MonoBehaviour
         GameManager.Instance.UpdateUseableWeaponCnt();
     }
 
-    public void OpenWeaponPickerConfirmPopUp(List<int> num,int targetWeaponID,List<int> materialIDList , bool isMain)
+    public void OpenWeaponPickerConfirmPopUp(List<int> num, int targetWeaponID, List<int> materialIDList, bool isMain)
     {
-        List<WeaponData>datas = new List<WeaponData>();
+        List<WeaponData> datas = new List<WeaponData>();
         foreach (int i in num)
         {
             WeaponData data = WeaponDataManager.Instance.Database.GetWeaponDataByNum(i);
@@ -751,11 +742,12 @@ public class InventoryManager : MonoBehaviour
         WeaponPickerConfirmPopUp.transform.GetChild(2).GetComponent<Button>().onClick.RemoveAllListeners();
         WeaponPickerConfirmPopUp.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() =>
         {
-            foreach(var data in datas)
+            foreach (var data in datas)
                 MasterKeyManager.Instance.UpdateMasterKeyCount(data.tier, -1);
 
             // 스프라이트 설정 로직
-            string weaponIconPath = "WeaponIcon/" + WeaponDataManager.Instance.Database.GetWeaponNumByID(targetWeaponID);
+            string weaponIconPath =
+                "WeaponIcon/" + WeaponDataManager.Instance.Database.GetWeaponNumByID(targetWeaponID);
             Sprite loadedSprite = ResourceManager.Instance.Load<Sprite>(weaponIconPath);
 
             // 공통 로직 함수 호출
@@ -775,18 +767,15 @@ public class InventoryManager : MonoBehaviour
     }
 
     public void ProcessWeaponAcquisition(
-    int weaponID,
-    Sprite weaponSprite,
-    bool isMainWeapon,
-    List<int> materialIDList,
-    bool createUIWithExtraParams = false
-)
+        int weaponID,
+        Sprite weaponSprite,
+        bool isMainWeapon,
+        List<int> materialIDList,
+        bool createUIWithExtraParams = false
+    )
     {
         // 1) 인벤토리 아이템 생성
-        InventoryItem item = new InventoryItem
-        {
-            image = weaponSprite
-        };
+        InventoryItem item = new InventoryItem { image = weaponSprite };
         item.AssignWeapon(weaponID);
 
         // 2) WeaponUI 설정
@@ -821,7 +810,7 @@ public class InventoryManager : MonoBehaviour
         GameManager.Instance.UpdateUseableWeaponCnt();
 
         // 7) 나머지 UI 갱신
-       // BookMakredSlotUI.Instance.UpdateAllSlot();
+        // BookMakredSlotUI.Instance.UpdateAllSlot();
         LongClickPopUpUi popUp = UIManager.instance.longClickPopUpUI.GetComponent<LongClickPopUpUi>();
         if (isMainWeapon)
         {
@@ -832,4 +821,3 @@ public class InventoryManager : MonoBehaviour
         CleanUpInventory();
     }
 }
-
