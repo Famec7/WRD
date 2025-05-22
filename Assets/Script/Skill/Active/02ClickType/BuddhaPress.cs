@@ -8,8 +8,7 @@ public class BuddhaPress : ClickTypeSkill
     [SerializeField] private AudioClip sfx;
     
     private float _damage;
-    private float _stunDuration;
-    float _damageAmplificationDuration;
+    private float _duration;
     float _damageAmplification;
 
     protected override void Init()
@@ -17,10 +16,8 @@ public class BuddhaPress : ClickTypeSkill
         base.Init();
         
         _damage = Data.GetValue(0);
-        _stunDuration = Data.GetValue(1);
-
-        _damageAmplificationDuration = Data.GetValue(2);
-        _damageAmplification = Data.GetValue(3) / 100.0f;
+        _duration = Data.GetValue(1);
+        _damageAmplification = Data.GetValue(2);
         
         _buddhaHandEffect.transform.SetParent(null);
     }
@@ -60,13 +57,13 @@ public class BuddhaPress : ClickTypeSkill
     
     private void ApplyStun(Monster monster)
     {
-        StatusEffect stun = new Stun(monster.gameObject, _stunDuration);
+        StatusEffect stun = new Stun(monster.gameObject, _duration);
         StatusEffectManager.Instance.AddStatusEffect(monster.status, stun);
     }
     
     private void ApplyDamageAmplification(Monster monster)
     {
-        StatusEffect damageAmplification = new DamageAmplification(monster.gameObject, _damageAmplification, _damageAmplificationDuration);
+        StatusEffect damageAmplification = new DamageAmplification(monster.gameObject, _damageAmplification, _duration);
         StatusEffectManager.Instance.AddStatusEffect(monster.status, damageAmplification);
     }
 }

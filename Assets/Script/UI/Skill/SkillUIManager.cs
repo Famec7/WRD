@@ -27,6 +27,11 @@ public class SkillUIManager : Singleton<SkillUIManager>
     {
         _skillButtons[_activeButton].SetSkill(skill);
         _activeButton++;
+        
+        if (_activeButton >= _skillButtons.Count)
+        {
+            _activeButton = _skillButtons.Count - 1;
+        }
     }
 
     /*
@@ -35,6 +40,12 @@ public class SkillUIManager : Singleton<SkillUIManager>
     public void RemoveSkillButton(SkillBase skill)
     {
         _activeButton--;
+        
+        if (_activeButton < 0)
+        {
+            _activeButton = 0;
+        }
+        
         _skillButtons[_activeButton].RemoveSkill(skill);
     }
 

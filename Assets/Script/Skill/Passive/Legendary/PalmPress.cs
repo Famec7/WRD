@@ -4,6 +4,7 @@ public class PalmPress : PassiveSkillBase
 {
     private float _damage;
     private float _stunDuration;
+    private float _woundDamage;
     
     [SerializeField]
     private AudioClip sfx;
@@ -14,17 +15,18 @@ public class PalmPress : PassiveSkillBase
 
         _damage = Data.GetValue(0);
         _stunDuration = Data.GetValue(1);
+        _woundDamage = Data.GetValue(2);
     }
 
     public override bool Activate(GameObject target = null)
     {
-        if (!CheckTrigger())
+        if (!CheckTrigger() || target == null)
         {
             return false;
         }
 
         LayerMask monsterLayer = LayerMaskProvider.MonsterLayerMask;
-        var targets = RangeDetectionUtility.GetAttackTargets(transform.position, Data.Range, 360.0f, monsterLayer);
+        var targets = RangeDetectionUtility.GetAttackTargets(target.transform.position, Data.Range, 360.0f, monsterLayer);
         
         if (targets.Count == 0)
         {
@@ -36,10 +38,11 @@ public class PalmPress : PassiveSkillBase
             if (tar.TryGetComponent(out Monster monster))
             {
                 monster.HasAttacked(_damage);
+                ApplyStun(monster);
 
                 if (HasWound(monster))
                 {
-                    ApplyStun(monster);
+                    monster.HasAttacked(_woundDamage);                    
                 }
             }
         }
