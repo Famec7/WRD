@@ -161,6 +161,16 @@ public class CraftButton : MonoBehaviour
 
             foreach (var data in absentWeaponData)
             {
+                int index = (int)data.tier - 1;
+
+                if (index < 0 || index >= tmpMasterKeyCnt.Length)
+                {
+#if UNITY_EDITOR
+                    Debug.LogError($"Invalid tier index: {index} for weapon ID: {data.ID}");
+# endif
+                    continue;
+                }
+
                 if (tmpMasterKeyCnt[(int)data.tier - 1] >= 1)
                 {
                     hasMaterialCnt++;
