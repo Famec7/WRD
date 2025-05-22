@@ -14,9 +14,8 @@ public class LowDomainExpansion : PassiveAuraSkillBase
         _slowZone.SetData(0, Data.Range, Data.GetValue(0));
     }
     
-    private void Start()
+    private void OnEnable()
     {
-        _slowZone.transform.SetParent(weapon.owner.transform);
         _slowZone.PlayEffect();
     }
 

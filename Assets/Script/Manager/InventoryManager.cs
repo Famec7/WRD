@@ -391,7 +391,7 @@ public class InventoryManager : MonoBehaviour
         Debug.Log(itemIDs);
 #endif
 
-        if (WeaponDataManager.Instance.GetKorWeaponClassText(mainWeaponID) != "고급" && isMainWeapon)
+        if (isMainWeapon)
         {
             if (pressSlot == null)
             {
