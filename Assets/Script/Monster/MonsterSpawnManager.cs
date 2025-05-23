@@ -61,15 +61,13 @@ public class MonsterSpawnManager : MonoBehaviour
     [SerializeField]
     private Sprite[] _tutorialSprites; // 10개 이미지
 
-    [SerializeField]
-    private Button _tutorialSkipButton;
-
 
     [SerializeField]
     private GameObject[] _uis;
 
     private int _tutorialIndex = 0;
     private bool _isTutorialMode = true;
+    private Vector2 _mouseDownPos;
     private void Awake()
     {
         if (instance == null)
@@ -113,22 +111,18 @@ public class MonsterSpawnManager : MonoBehaviour
     {
         _isTutorialMode = true;
         _tutorialIndex = 0;
+        Time.timeScale = 0f;
 
         _tutorialImage.gameObject.SetActive(true);
         for (int i = 0; i < _uis.Length; i++)
             _uis[i].gameObject.SetActive(false);
         _tutorialImage.sprite = _tutorialSprites[_tutorialIndex];
-
-        _tutorialSkipButton.gameObject.SetActive(true);
-        _tutorialSkipButton.onClick.RemoveAllListeners();
-        _tutorialSkipButton.onClick.AddListener(SkipTutorial);
     }
 
     private void SkipTutorial()
     {
         _isTutorialMode = false;
         _tutorialImage.gameObject.SetActive(false);
-        _tutorialSkipButton.gameObject.SetActive(false);
         for (int i = 0; i < _uis.Length; i++)
             _uis[i].gameObject.SetActive(true);
         StartCoroutine(CountdownStartCoroutine(3));
@@ -136,30 +130,71 @@ public class MonsterSpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (_isTutorialMode)
         {
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
+
+            // 마우스 클릭 처리 (PC)
             if (Input.GetMouseButtonDown(0))
             {
-                _tutorialIndex++;
+                Vector2 clickPos = Input.mousePosition;
+                float screenHalf = Screen.width / 2f;
+
+                if (clickPos.x < screenHalf)
+                {
+                    // 이전 이미지
+                    _tutorialIndex = Mathf.Max(0, _tutorialIndex - 1);
+                }
+                else
+                {
+                    // 다음 이미지
+                    _tutorialIndex++;
+                }
+
                 if (_tutorialIndex < _tutorialSprites.Length)
                 {
                     _tutorialImage.sprite = _tutorialSprites[_tutorialIndex];
                 }
                 else
                 {
-                    _tutorialImage.gameObject.SetActive(false);
-                    _tutorialSkipButton.gameObject.SetActive(false);
-                    _isTutorialMode = false;
-                    for (int i = 0; i < _uis.Length; i++)
-                        _uis[i].gameObject.SetActive(true);
-                    StartCoroutine(CountdownStartCoroutine(3));
+                    SkipTutorial();
                 }
             }
-            return; // 튜토리얼 중에는 Update 나머지 로직 실행 X
+
+#if UNITY_EDITOR
+            // 마우스로 스와이프 테스트
+            if (Input.GetMouseButtonDown(0))
+            {
+                _mouseDownPos = Input.mousePosition;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                Vector2 upPos = Input.mousePosition;
+                float deltaY = upPos.y - _mouseDownPos.y;
+
+                if (deltaY < -50f) // 아래로 드래그
+                {
+                    SkipTutorial();
+                }
+            }
+#else
+    if (Input.touchCount > 0)
+    {
+        Touch touch = Input.GetTouch(0);
+        if (touch.phase == TouchPhase.Moved)
+        {
+            if (touch.deltaPosition.y < -50f)
+            {
+                SkipTutorial();
+            }
         }
+    }
+#endif
+
+            return;
+        }
+
 
         UIManager.instance.currentMonsterNum.text = currentMonsterNum.ToString();
         if (!isWait) return;
@@ -376,6 +411,7 @@ public class MonsterSpawnManager : MonoBehaviour
     {
         int countdown = seconds;
         UIManager.instance.GameStartImage.gameObject.SetActive(true);
+        Time.timeScale = 1f;
         while (countdown > 0)
         {
             UIManager.instance.GameStartImage.sprite = UIManager.instance.GameStartSprites[countdown - 1];
@@ -385,7 +421,6 @@ public class MonsterSpawnManager : MonoBehaviour
             // 카운트다운 감소
             countdown--;
         }
-
         StartCoroutine(DisableStartImage());
         isWait = true;
     }
