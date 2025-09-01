@@ -95,7 +95,7 @@ MonoBehaviour:
   skillId: 4
   _skillIcon: {fileID: 21300000, guid: 6f04c7827b7a9c543bdf6e5f0788ab90, type: 3}
   weapon: {fileID: 0}
-  indicatorType: 2
+  indicatorType: 0
   _isFixedPosition: 1
   IndicatorMonsters: []
   sfx: {fileID: 8300000, guid: c84da4f71903d344396520a93486d400, type: 3}
