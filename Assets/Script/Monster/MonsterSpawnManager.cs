@@ -225,6 +225,7 @@ public class MonsterSpawnManager : MonoBehaviour
         spawnDelayTimer += Time.deltaTime;
         if (currentMonsterNum >= currentWaveMonsterNum)
             _skipButton.gameObject.SetActive(true);
+        // 게임오버 조건 체크 - 보스 웨이브든 일반 웨이브든 몬스터 수가 제한에 도달하면 게임오버
         if ((currentMonsterNum >= limitMonsterNum && !GameManager.Instance.isGameOver) || Input.GetKeyDown(KeyCode.R))
         {
             GameManager.Instance.isGameOver = true;
@@ -247,9 +248,22 @@ public class MonsterSpawnManager : MonoBehaviour
             UIManager.instance.currentWaveTime.text = timeSpan.ToString(@"mm\:ss");
             waveSecTimer = 0f;
         }
-        if (waveTimer >= wavePlayTime[idx] && isAutoWaveProgression && !isBossWave)
+        // 보스 스테이지에서 제한시간이 끝났을 때 보스가 살아있으면 게임오버
+        if (waveTimer >= wavePlayTime[idx])
         {
-            ProgressWave(1);
+            if (isBossWave && targetBossStatus != null && targetBossStatus.HP > 0 && !GameManager.Instance.isGameOver)
+            {
+                // 보스가 살아있는 상태에서 제한시간이 끝나면 게임오버
+                GameManager.Instance.isGameOver = true;
+                UIManager.instance.ResultUI.gameObject.SetActive(true);
+                UIManager.instance.ResultUI.SetResultUI(false);
+                isNormalSpawnStop = true;
+            }
+            else if (isAutoWaveProgression && !isBossWave)
+            {
+                // 일반 스테이지에서 자동 웨이브 진행
+                ProgressWave(1);
+            }
         }
 
         if (isSpawnStop) return;
@@ -272,7 +286,11 @@ public class MonsterSpawnManager : MonoBehaviour
             UnitCode code = UnitCode.ELITEMONSTER5 + (GameManager.Instance.wave / 5);
             if (code == UnitCode.MISSIONBOSS1)
                 code = UnitCode.BOSS6;
-            SpawnMonster(code);
+            
+            Monster bossMonster = SpawnMonster(code);
+            targetBoss = bossMonster;
+            targetBossStatus = bossMonster.status;
+            
             MessageManager.Instance.ShowMessage(targetBossStatus.unitCode.ToString() + "가 등장했습니다.", new Vector2(0, 200), 1f, 0.5f);
 
             isBossSpawn = true;
@@ -367,6 +385,8 @@ public class MonsterSpawnManager : MonoBehaviour
         currentWaveMonsterNum = 0;
         isSpawnStop = false;
         isBossSpawn = false;
+        targetBoss = null;
+        targetBossStatus = null;
         isBossWave = bossSpawnNum[GameManager.Instance.wave - 1] >= 1;
         if (isBossWave && GameManager.Instance.wave <= 30)
             isNormalSpawnStop = true;
