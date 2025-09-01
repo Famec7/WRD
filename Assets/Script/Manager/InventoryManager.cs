@@ -781,17 +781,21 @@ public class InventoryManager : MonoBehaviour
         // 2) WeaponUI 설정
         WeaponUI.Instance.weaponID = weaponID;
 
-        // 3) 아이템 추가/재료 제거
+        // 3) 먼저 GameManager 카운트 업데이트 (CleanUpInventory가 올바르게 작동하도록)
+        GameManager.Instance.weaponCnt[weaponID - 1]++;
+        GameManager.Instance.UpdateUseableWeaponCnt();
+
+        // 4) 아이템 추가/재료 제거
         InventoryManager.instance.AddItem(item, true);
         InventoryManager.instance.RemoveItem(materialIDList, weaponID, item, isMainWeapon);
 
-        // 4) 클래스 정렬이 되어 있으면 UI 갱신
+        // 5) 클래스 정렬이 되어 있으면 UI 갱신
         if (InventoryManager.instance.isClassSorted)
         {
             InventoryManager.instance.ClickClassShowButton();
         }
 
-        // 5) 무기 합성 UI 호출 (필요 시 파라미터 다르게 전달)
+        // 6) 무기 합성 UI 호출 (필요 시 파라미터 다르게 전달)
         if (isMainWeapon)
         {
             if (createUIWithExtraParams)
@@ -804,10 +808,6 @@ public class InventoryManager : MonoBehaviour
                 UIManager.instance.CreateCombineUI(weaponID);
             }
         }
-
-        // 6) GameManager 카운트 업데이트
-        GameManager.Instance.weaponCnt[weaponID - 1]++;
-        GameManager.Instance.UpdateUseableWeaponCnt();
 
         // 7) 나머지 UI 갱신
         // BookMakredSlotUI.Instance.UpdateAllSlot();
